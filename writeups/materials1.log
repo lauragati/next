@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 AUG 2019 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 AUG 2019 16:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -625,7 +625,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout4 = `materials1.toc'.
 
 
-<../figures/materials1_infl_targeting_countries.png, id=34, 1121.18875pt x 605.
+<../figures/materials1_infl_targeting_countries.png, id=39, 1121.18875pt x 605.
 26125pt>
 File: ../figures/materials1_infl_targeting_countries.png Graphic file (type png
 )
@@ -645,23 +645,23 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
- [2] [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 195.
- [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 195.
+ [2] [3] [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
 
-(./materials1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 195.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 195.
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
+ (./materials1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
 Package rerunfilecheck Info: File `materials1.out' has not changed.
-(rerunfilecheck)             Checksum: 9FA7A3CA8D24D2ED4451FCD221062425;457.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 195.
+(rerunfilecheck)             Checksum: 9AE139BB20D9697FECA120B2F3930969;501.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 200.
  ) 
 Here is how much of TeX's memory you used:
- 10040 strings out of 493089
- 150940 string characters out of 6134842
+ 10043 strings out of 493089
+ 150966 string characters out of 6134842
  260912 words of memory out of 5000000
- 13345 multiletter control sequences out of 15000+600000
+ 13346 multiletter control sequences out of 15000+600000
  12580 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,14n,39p,533b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -680,10 +680,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials1.pdf (4 pages, 244977 bytes).
+Output written on materials1.pdf (5 pages, 246725 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 111 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 145 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 
