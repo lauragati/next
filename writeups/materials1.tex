@@ -102,12 +102,93 @@ bottom=1in}
 %\listoffigures
 
 
-
+\section{Some inflation targeting countries}
 \begin{figure}[h!]
 \caption{4 inflation targeting countries (switch to IT year in brackets)}
 \centering
 \includegraphics[scale=\myBiggerFigScale]{\myFigPath materials1_infl_targeting_countries}
 \end{figure}
+
+\newpage
+\section{Cost-push shock in NK model w/o and w/ learning - Intuition}
+
+Same clarification (based on Justiniano \& Primiceri's Bank of Belgium presentation 2010):
+\begin{itemize}
+\item \underline{efficient output}: output under flexible prices and no distortions
+\item \underline{potential output}: output under flexible prices but imperfect competition, yet constant markups
+\item \underline{natural output}: output under flexible prices but imperfect competition AND nominal frictions (time-varying markups)
+\end{itemize}
+$\rightarrow$ Eric Sims: ``2 distortions in the NK model: LR distortion (imperfect competition) and SR distortion (price rigidity).''
+I think:
+\begin{enumerate}
+\item In st.st, potential output = natural output. 
+\item In an NK model, mon. policy stabilizes actual output to potential output (= st.st. natural output). In other words, mon. pol can't undo a LR distortion because money is neutral in the LR.
+\end{enumerate}
+A cost-push shock:
+\begin{itemize}
+\item is a shock to the steady-state markup $\mu$: $\mu = \frac{\theta}{\theta-1}$, where $\theta =$ el. of substitution between varieties $\rightarrow$ it's a shock to the level of LR distortions (to the distance to perfect competition).
+\item Note that a cost-push shock isn't the only thing that can move markups in the NK model: out of st.st., marginal costs are an increasing function of demand (and thus of output gaps), and so demand shocks increase marginal costs, decreasing markups.
+\item I think it is for this reason that Clarida, Gali \& Gertler (1999) call cost-push shocks ``all shocks that are not demand that move markups.''
+\end{itemize}
+Why think about cost-push shocks? $\rightarrow$ because they are the only shock that introduces an inflation-output gap tradeoff for the mon. authority. Key point: I think that this tradeoff is amplified is expectations are allowed to move around. That is, I think one can make a case for anchoring expectations here. I'm going to lay out the argument in three steps:
+\begin{itemize}
+\item Clarida, Gali \& Gertler (1999)'s Result 1: for mon. policy w/o commitment, cost-push shocks introduce an inflation-output gap tradeoff in a NK model. If expectations are allowed to adjust, the tradeoff is amplified.
+\item Let's see the same intuition on the plain-vanilla 3-equation NK model w/ commitment (a Taylor rule). f expectations are allowed to adjust, the tradeoff is amplified.
+\item Let's look at the CEMP economy: we can see the same intuition at work as in the 3-equation NK model.
+\end{itemize}
+
+
+\subsection{Clarida, Gali \& Gertler (1999)'s Result 1}
+The CB's problem is the standard mon. policy problem under discretion:
+\begin{align}
+\max -\frac{1}{2}(\alpha x_t^2 + \pi_t^2 ) + F_t \quad \text{s.t} \quad \pi_t = \lambda x_t + f_t
+\end{align}
+where expectations $F_t$ and $f_t = \beta \E \pi_{t+1} + u_t$ are taken as given by the CB, and $u_t$ is a cost-push shock (appended to the NKPC). Optimality conditions to this problem, subbing $f_t$ in, are:
+\begin{align}
+x_t = -\frac{\lambda}{\alpha + \lambda^2}(\beta \E \pi_{t+1} + u_t) \\
+\pi_t = \frac{\alpha}{\alpha + \lambda^2}(\beta \E \pi_{t+1} + u_t) 
+\end{align}
+\begin{itemize}
+\item A favorable cost-push shock ($\theta  \uparrow, u_t \downarrow$, that is we move towards perfect competition) $\rightarrow x_t \uparrow, \pi_t \downarrow$.
+\item If $\E \pi_{t+1}$ is allowed to move (unanchored), it will decrease over time, amplifying the shock. (I'm implicitly assuming RLS learning for the expectation formation.)
+\end{itemize}
+
+\subsection{The 3-equation NK model}
+\begin{align}
+\pi_t & = \beta \E_t\pi_{t+1} + \kappa x_t  + u_t\\
+x_t & = \E_t x_{t+1} -\frac{1}{\sigma} (i_t - \E_t\pi_{t+1}) + \frac{1}{\sigma}r_t^n \\
+i_t & = \delta_{\pi} \pi_t + \delta_x x_t
+\end{align}
+\begin{itemize}
+\item $u_t \downarrow \rightarrow \pi_t \downarrow$ (my intuition tells me that $x_t$ should go up because less market power means higher quantities, lower prices, but I fail to see it here).
+\item If mon policy reacts, as the TR tells it to, it lowers interest rates, leading to a rise in output gaps. Voila. 
+\item Again, if expectations are allowed to move, assuming RLS learning, $\E\pi_{t+1} \downarrow$, pushing inflation down further, amplifying the shock. 
+\item Although expectations moving also helps you a bit, because it balances some of the increase in $x_t$. (?)
+\end{itemize}
+
+	
+\subsection{CEMP (w/o specified mon. policy)}
+\begin{align}
+k_t & = \mathbf{f_k} \\
+\bar{\pi}_t &=\mathbf{f_{\bar{\pi}}} + \mathbf{f_k}^{-1}\eta_{t-1}\\
+\xi_t & = \mathbf{f_{\xi}} + \mathbf{A_{\xi}} \xi_{t-1} + S_{\xi} \begin{pmatrix} \epsilon_t \\ \mu_t \end{pmatrix} 
+\end{align}
+where $\xi = (\eta, \varphi, \pi)'$, and $\pi$ is described by a hybrid Phillips-curve with marginal cost shocks (shock $\epsilon$ on $\varphi$) and markup shocks $\mu_t$, and $\eta_t = \mu_t + \epsilon_t$, i.e. it's a catch-all shock which mixes marginal cost and markup shocks $\rightarrow$ marginal cost shocks stand in for demand shocks (which is absent in the model), and $\mu_t$ is the cost-push shock. (Here a demand shock will have the same effect as a cost-push shock... mmm, I don't know if I like that...)
+\begin{itemize}
+\item $\mu_t \downarrow \rightarrow \eta_t \downarrow$
+\item $\pi_t \downarrow$
+\item If beliefs anchored, $\mathbf{f_k}^{-1} \rightarrow 0$, i.e. beliefs aren't allowed to fluctuate, so we stop here.
+\item If unanchored, $\bar{\pi}_t \downarrow \rightarrow \pi_t \downarrow \dots$ Again, shock is amplified. 
+\end{itemize}
+
+\section{Questions}
+\begin{itemize}
+\item Why is the discretion and 3-equation intuition not quite the same? Does ignoring beliefs make their amplification role more acute?
+\item Demand shocks? $\rightarrow$ it seems to me to be a general thing that expectations (if based on RLS learning) amplify shocks, making stabilization more costly. But cost-push shocks seem special because of the tradeoff they introduce. 
+\item Cost-push shocks as supply shocks? The issue of stabilization when shocks permanent (new steady state).
+\end{itemize}
+
+
 
 
  
