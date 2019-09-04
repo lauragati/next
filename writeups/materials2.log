@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 SEP 2019 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 SEP 2019 15:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**materials1.tex
-(./materials1.tex
+**materials2.tex
+(./materials2.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -505,8 +505,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 \c@lemma=\count142
 \c@corollary=\count143
 
-(./materials1.aux)
-\openout1 = `materials1.aux'.
+(./materials2.aux)
+\openout1 = `materials2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
 LaTeX Font Info:    ... okay on input line 89.
@@ -606,9 +606,9 @@ LaTeX Info: Redefining \ref on input line 89.
 LaTeX Info: Redefining \pageref on input line 89.
 LaTeX Info: Redefining \nameref on input line 89.
 
-(./materials1.out) (./materials1.out)
+(./materials2.out) (./materials2.out)
 \@outlinefile=\write3
-\openout3 = `materials1.out'.
+\openout3 = `materials2.out'.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 97.
 
@@ -620,95 +620,72 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 97.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(./materials1.toc)
+(./materials2.toc)
 \tf@toc=\write4
-\openout4 = `materials1.toc'.
+\openout4 = `materials2.toc'.
 
+ [1
 
-<../figures/materials1_infl_targeting_countries.png, id=59, 1121.18875pt x 605.
-26125pt>
-File: ../figures/materials1_infl_targeting_countries.png Graphic file (type png
-)
- <use ../figures/materials1_infl_targeting_countries.png>
-Package pdftex.def Info: ../figures/materials1_infl_targeting_countries.png use
-d on input line 109.
-(pdftex.def)             Requested size: 448.46756pt x 242.1002pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[1
-
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 117.
-
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
- [2 <../figures/materials1_infl_targeting_countries.png (PNG copy)>] [3] [4] [5
-] [6] [7pdfTeX warning (ext4): destination with the same identifier (name{equat
-ion.5.13}) has been already used, duplicate ignored
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2pdfTe
+X warning (ext4): destination with the same identifier (name{equation.1.4}) has
+ been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.281 \end{align}
-                 pdfTeX warning (ext4): destination with the same identifier (n
-ame{equation.5.20}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.281 \end{align}
+l.173 \end{align}
                  ]
-Overfull \hbox (41.36119pt too wide) in paragraph at lines 297--297
+Overfull \hbox (41.36119pt too wide) in paragraph at lines 194--194
 [] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 314.
-[8pdfTeX warning (ext4): destination with the same identifier (name{equation.5.
-30}) has been already used, duplicate ignored
+[3pdfTeX warning (ext4): destination with the same identifier (name{equation.1.
+11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.314 \end{document}
+l.194 \end{align}
+                 ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
+ [4pdfTeX warning (ext4): destination with the same identifier (name{equation.1
+.21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.211 \end{document}
                     ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 314.
- (./materials1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 314.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 314.
-Package rerunfilecheck Info: File `materials1.out' has not changed.
-(rerunfilecheck)             Checksum: 38EC16EB3078EA09EE5D598EB0DA5C25;767.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 314.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
+ (./materials2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package rerunfilecheck Info: File `materials2.out' has not changed.
+(rerunfilecheck)             Checksum: DA5177131B9ABBA1BC2913F0B141B8A4;264.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
  ) 
 Here is how much of TeX's memory you used:
- 10095 strings out of 493089
- 151522 string characters out of 6134842
- 267912 words of memory out of 5000000
- 13355 multiletter control sequences out of 15000+600000
- 13534 words of font info for 51 fonts, out of 8000000 for 9000
+ 10031 strings out of 493089
+ 150482 string characters out of 6134842
+ 268912 words of memory out of 5000000
+ 13322 multiletter control sequences out of 15000+600000
+ 12927 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,39p,533b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,21n,38p,270b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials1.pdf (8 pages, 267404 bytes).
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials2.pdf (4 pages, 142194 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 66 named destinations out of 1000 (max. 500000)
- 94 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 143 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

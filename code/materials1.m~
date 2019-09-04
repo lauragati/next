@@ -23,7 +23,7 @@ addpath(figpath)
 addpath(datapath)
 
 % Variable stuff ---
-print_figs    = 0;
+print_figs    = 1;
 do_old_plots  = 0;
 if print_figs ==1
     output_table  = 1;
@@ -44,19 +44,13 @@ cpi_NZ = num(:,4);
 datenums_NZ = datenums;
 
 % Canada
-xls_file = [datapath, '/CPI_MONTHLY.csv'];
+xls_file = [datapath, '/CPI_MONTHLY.xlsx'];
 sheetname = 'data';
 [num,txt,raw] = xlsread(xls_file, sheetname);
+datenums = x2mdate(num(:,1),1);
 
-
-csv_file = [datapath, '/CPI_MONTHLY.csv'];
-M = csvread(csv_file, 1,0); % this works, reads in the numeric data only,
-% starting with row 2 ("1") and column 1 ("0")
-datestrings = num2str( M(:,1));
-T = size(datestrings,1);
-hyphens = char(ones(T,1) * '-');
-datestrings = [datestrings(:,1:4), hyphens, datestrings(:,5:6)];
-datenums = datenum(datestrings,'yyyy-mm');
+cpi_CA = num(:,4);
+datenums_CA = datenums;
 
 % UK
 xls_file = [datapath, '/L55O-270819.xls'];
@@ -103,13 +97,13 @@ title('New Zealand (1990)')
 
 % Canada
 subplot(2,2,2)
-plot(datenums_NZ,cpi_NZ, 'b', 'linewidth',2)
+plot(datenums_CA,cpi_CA, 'b', 'linewidth',2)
 ax = gca; % current axes
 ax.FontSize = fs;
 grid on
 grid minor
 datetick('x','yyyy-mm')
-legend('CPI y-o-y % changes')
+legend('CPI y-o-y % changes, monthly')
 title('Canada (1991)')
 
 % UK
@@ -131,17 +125,22 @@ ax.FontSize = fs;
 grid on
 grid minor
 datetick('x','yyyy-mm')
-legend('CPI monthly % changes, monthyl')
+legend('CPI monthly % changes, monthly')
 title('Sweden (1993)')
 
 
 if print_figs ==1
-    figname = ['materials1_infl_targeting_countries'];
+    figname = ['materials1_infl_targeting_countries']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close
 end
+
+%% Start working on simulating the mixed CEMP - Preston model
+param = parameters_next;
+T = 500;
+burnin = 0;
 
 
 
