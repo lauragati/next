@@ -112,7 +112,7 @@ bottom=1in}
 \newpage
 \section{Cost-push shock in NK model w/o and w/ learning - Intuition}
 
-Same clarification (based on Justiniano \& Primiceri's Bank of Belgium presentation 2010):
+Some clarification (based on Justiniano \& Primiceri's Bank of Belgium presentation 2010):
 \begin{itemize}
 \item \underline{efficient output}: output under flexible prices and no distortions
 \item \underline{potential output}: output under flexible prices but imperfect competition, yet constant markups
@@ -130,10 +130,10 @@ A cost-push shock:
 \item Note that a cost-push shock isn't the only thing that can move markups in the NK model: out of st.st., marginal costs are an increasing function of demand (and thus of output gaps), and so demand shocks increase marginal costs, decreasing markups.
 \item I think it is for this reason that Clarida, Gali \& Gertler (1999) call cost-push shocks ``all shocks that are not demand that move markups.''
 \end{itemize}
-Why think about cost-push shocks? $\rightarrow$ because they are the only shock that introduces an inflation-output gap tradeoff for the mon. authority. Key point: I think that this tradeoff is amplified is expectations are allowed to move around. That is, I think one can make a case for anchoring expectations here. I'm going to lay out the argument in three steps:
+Why think about cost-push shocks? $\rightarrow$ because they are the only shock that introduces an inflation-output gap tradeoff for the mon. authority. Key point: I think that this tradeoff is amplified if expectations are allowed to move around. That is, I think one can make a case for anchoring expectations here. I'm going to lay out the argument in three steps:
 \begin{itemize}
 \item Clarida, Gali \& Gertler (1999)'s Result 1: for mon. policy w/o commitment, cost-push shocks introduce an inflation-output gap tradeoff in a NK model. If expectations are allowed to adjust, the tradeoff is amplified.
-\item Let's see the same intuition on the plain-vanilla 3-equation NK model w/ commitment (a Taylor rule). f expectations are allowed to adjust, the tradeoff is amplified.
+\item Let's see the same intuition on the plain-vanilla 3-equation NK model w/ commitment (a Taylor rule). If expectations are allowed to adjust, the tradeoff is amplified.
 \item Let's look at the CEMP economy: we can see the same intuition at work as in the 3-equation NK model.
 \end{itemize}
 
@@ -161,7 +161,7 @@ i_t & = \delta_{\pi} \pi_t + \delta_x x_t
 \end{align}
 \begin{itemize}
 \item $u_t \downarrow \rightarrow \pi_t \downarrow$ (my intuition tells me that $x_t$ should go up because less market power means higher quantities, lower prices, but I fail to see it here).
-\item If mon policy reacts, as the TR tells it to, it lowers interest rates, leading to a rise in output gaps. Voila. 
+\item If mon policy reacts, as the TR tells it to, it lowers interest rates, leading to a rise in output gaps. Voil\`a. 
 \item Again, if expectations are allowed to move, assuming RLS learning, $\E\pi_{t+1} \downarrow$, pushing inflation down further, amplifying the shock. 
 \item Although expectations moving also helps you a bit, because it balances some of the increase in $x_t$. (?)
 \end{itemize}
@@ -194,20 +194,125 @@ where $\xi = (\eta, \varphi, \pi)'$, and $\pi$ is described by a hybrid Phillips
 \item Eusepi \& Preston (2018, JEL): reevaluates optimal mon. pol in the NK model through the lens of learning. Bam. 
 \begin{itemize}
 \item Result 5B. New tradeoff due to learning: policy today needs to respond more aggressively to inflation in order to limit future movements in expectations that would make the short-run tradeoff worse. 
-\item Result 6. Divine coincidence doesn't hold, even in the absence of cost-push shocks. (apparently already shown in Eusepi, Giannoni \& Preston (2015))
+\item Result 6. Divine coincidence doesn't hold, even in the absence of cost-push shocks. (apparently already shown in Eusepi, Giannoni \& Preston (2015) - and I've just understood that this is the very Prop. 2 in ``On the Limits of Monetary Policy'' - these guys are driving me nuts! The whole literature is one giant Eusepi-Preston spiderweb!)
 \item My only hope:  here the gain isn't endogenous;
-\item and they mention heterogenous learning as an unexplored territory.
+\item and they mention heterogenous learning as an unexplored territory. ($\rightarrow$ heterogenous deanchoring???)
 \end{itemize}
-\item Eusepi, Giannoni \& Preston (2019), On the Limits of Monetary Policy:
+\item Eusepi, Giannoni \& Preston (2019, NBER WP), On the Limits of Monetary Policy:
 \begin{itemize}
-\item a model not unlike CEMP, but agents are uncertain about LR inflation and LR real rates. 
-\item The latter seems excessively important: optimal mon. pol is less aggressive on inflation than under RE because large movements in short rates unanchor LR real rate beliefs. They call this a novel tradeoff for mon. pol. 
+\item a model not unlike CEMP, but agents are uncertain about LR inflation and LR real rates. Two main results:
+\item Prop. 2: with LR expectations of the real rate, the divine coincidence doesn't hold. Therefore optimal mon. pol is less aggressive on inflation than under RE because large movements in short rates unanchor LR real rate beliefs, making the AD curve a constraint on mon. pol. 
+\item Variance decompositions after estimation reveal the importance of mon pol shocks: they argue that mon policy mistakes drive the great inflation, and the reason for this great importance is their propagation through LR expectations. 
 \end{itemize}
-\item Literature a bit saturated...? But anchored inflation expectations might not yet have been ``chewed to the bone''...?
+\item Literature a bit saturated...? But anchored inflation expectations might not yet have been ``chewed to the bone''...? Also, E \& P kinda contradict themselves by one time suggesting that optimal mon pol is more aggressive, one time that it's less. 
 \end{itemize}
 
 
+\section{A CEMP-Preston mix}
 
+Suppose we have a NK model with LR forecasts being relevant, as in Preston (2005):
+\begin{align}
+x_t &=  -\sigma i_t +\hat{E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \tag{Preston, eq. (18)} \\
+\pi_t &= \kappa x_t +\hat{E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\tag{Preston, eq. (19)} \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)} 
+\end{align}
+ where I've 1) added $\sigma$ in front of $r_T^n,$ reflecting the derivation of the shock on the NKIS; 2) added $u_T$, a cost-push shock to the NKPC. 
+ 
+ I'm assuming that the innovations can be summarized as:
+ \begin{align}
+ s_t & = P s_{t-1} + \epsilon_t \\
+ \text{where} \quad 
+ s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} \quad 
+ P  \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \text{and } \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix} 
+ \end{align}
+ Let $z_t$ summarize the endogenous variables as
+ \begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix}
+ \end{equation}
+This is where the CEMP bit comes in: let agents form forecasts according to the relation
+\begin{equation}
+\bar{\E}_t z_{t+1} = \bar{z}_t + s_{t} + e_{t+1} \tag{PLM}
+\end{equation}
+where $\bar{z}_t$ is the LR expectation of all endogenous variables. CEMP would love if we called this the ``drift'' in beliefs. Let this drift evolve according to CEMP's criterion as:
+\begin{align}
+\bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \\
+f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error)} \\
+k_t & = \mathbb{I}(k_{t-1}) + (1-\mathbb{I})\bar{g}^{-1} \\
+\mathbb{I} &= \begin{cases} 1 \quad \text{if} \quad \theta_t \leq \bar{\theta} \\
+0 \quad \text{otherwise.}
+\end{cases} \\
+\text{where} \quad \theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(subjective - objective forecast)}
+\end{align}
+%$\theta_t$ is supposed to measure the distance between subjective and objective, model-consistent forecasts, and is scaled by the variance of the noise in the model. 
+
+\subsection{Deriving the ALM}
+Let the discounted infinite sums of expectations be given by
+\begin{align}
+f_a & \equiv  \sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1}\\
+f_b & \equiv \sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1}
+\end{align}
+Given these, and matrices $A_1, A_2, A_3$, we can write the reduced form LOM of the system as
+\begin{equation}
+z_t = A_1 f_a + A_2 f_b + A_3 s_t \tag {RF}
+\end{equation}
+where
+\begin{align}
+A_1 & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_2 = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_3 = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+To get the ALM, we need to write the expectations $f_a, f_b$ based on the PLM. Subbing in the PLM and using the anticipated utility assumption, I get
+\begin{align}
+f_a & = \frac{1}{1-\alpha\beta}\bar{z}_t + (I_3-\alpha\beta P)^{-1}s_t \\
+f_b & = \frac{1}{1-\beta}\bar{z}_t + (I_3-\beta P)^{-1}s_t 
+\end{align}
+Then the ALM is the reduced-form expression RF, with expectations evaluated using these two expressions:
+\begin{equation}
+z_t = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \tag{ALM}
+\end{equation}
+
+\subsection{SR forecast error and the criterion}
+
+\begin{align*}
+f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error: ALM - PLM)} \\
+\theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(criterion: PLM - $\E_{t-1}$ALM)}
+\end{align*}
+Evaluating PLM, ALM, and $\E_{t-1}$ALM
+\begin{align}
+f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta -I_3}\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
+(\sigma_r + \sigma_i + \sigma_u) \theta_t & = \bigg(I_3 - A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_{t-1} + \bigg(I_3 - \big(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\big)P \bigg)s_{t-1}
+\end{align}
+
+\subsection{Model summary}
+\begin{align}
+z_t & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \tag{ALM} \\
+\bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \tag{Drift LOM}\\
+k_t & = \mathbf{f_k}(\bar{z}_{t-1}, k_{t-1}, s_{t-1})  \quad \text{where $\mathbf{f_k}$ evaluates the criterion $\theta_t$}\tag{Gain LOM} \\
+f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta -I_3}\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
+s_t &= Ps_{t-1} +\epsilon_t \tag{exog. process}
+\end{align}
+
+	
+
+
+
+ 
  
 \end{document}
 
