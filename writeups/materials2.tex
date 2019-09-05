@@ -137,7 +137,7 @@ where $\bar{z}_t$ is the LR expectation of all endogenous variables. CEMP would 
 \begin{align}
 \bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \\
 f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error)} \\
-k_t & = \mathbb{I}(k_{t-1}) + (1-\mathbb{I})\bar{g}^{-1} \\
+k_t & = \mathbb{I}(k_{t-1}+1) + (1-\mathbb{I})\bar{g}^{-1} \\
 \mathbb{I} &= \begin{cases} 1 \quad \text{if} \quad \theta_t \leq \bar{\theta} \\
 0 \quad \text{otherwise.}
 \end{cases} \\
@@ -198,9 +198,16 @@ f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta -I_3}\bigg)\ba
 z_t & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \tag{ALM} \\
 \bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \tag{Drift LOM}\\
 k_t & = \mathbf{f_k}(\bar{z}_{t-1}, k_{t-1}, s_{t-1})  \quad \text{where $\mathbf{f_k}$ evaluates the criterion $\theta_t$}\tag{Gain LOM} \\
-f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta -I_3}\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
+f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta} -I_3\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
 s_t &= Ps_{t-1} +\epsilon_t \tag{exog. process}
 \end{align}
+More compactly
+\begin{align*}
+z_t & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \\
+\bar{z}_t & = \bigg( I_3 + k_t^{-1}\bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta} -I_3\bigg) \bigg) \bar{z}_{t-1} + k_t^{-1} \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
+k_t & = \mathbf{f_k}(\bar{z}_{t-1}, k_{t-1}, s_{t-1})  \\
+s_t &= Ps_{t-1} +\epsilon_t 
+\end{align*}
 
 	
 

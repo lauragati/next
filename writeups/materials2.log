@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 SEP 2019 15:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 SEP 2019 14:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -645,21 +645,25 @@ Overfull \hbox (41.36119pt too wide) in paragraph at lines 194--194
                                                   \fi \fi 
 l.194 \end{align}
                  ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
- [4pdfTeX warning (ext4): destination with the same identifier (name{equation.1
-.21}) has been already used, duplicate ignored
+Overfull \hbox (29.77252pt too wide) in paragraph at lines 210--210
+[] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
+[4pdfTeX warning (ext4): destination with the same identifier (name{equation.1.
+21}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.211 \end{document}
+l.218 \end{document}
                     ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./materials2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
 Package rerunfilecheck Info: File `materials2.out' has not changed.
 (rerunfilecheck)             Checksum: DA5177131B9ABBA1BC2913F0B141B8A4;264.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
  10031 strings out of 493089
@@ -682,7 +686,7 @@ texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials2.pdf (4 pages, 142194 bytes).
+Output written on materials2.pdf (4 pages, 142527 bytes).
 PDF statistics:
  143 PDF objects out of 1000 (max. 8388607)
  122 compressed objects within 2 object streams

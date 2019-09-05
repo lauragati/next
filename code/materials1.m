@@ -23,7 +23,7 @@ addpath(figpath)
 addpath(datapath)
 
 % Variable stuff ---
-print_figs    = 1;
+print_figs    = 0;
 do_old_plots  = 0;
 if print_figs ==1
     output_table  = 1;
@@ -137,9 +137,4 @@ if print_figs ==1
     close
 end
 
-%% Start working on simulating the mixed CEMP - Preston model
-[param, set] = parameters_next;
-T = 500;
-burnin = 0;
 
-[xn_true, xl_true, y, wl] = next_simul(param,set,T, burnin);
