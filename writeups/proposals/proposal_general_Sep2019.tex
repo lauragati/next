@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.97in,right=1in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Monetary Policy and Anchored Expectations}
+\author{Laura G\'ati\thanks{%
+Department of Economics, Boston College, Chestnut Hill, MA 02467, U.S.A. Email: gati@bc.edu} \\
+%EndAName
+ Boston College \\
+%EndAName
+}
+\date{Institution \\
+ Doctoral Grant Proposal \\
+ \today}
+\maketitle
+
+
+% This file does a general sketch proposal  
+% I follow On the Art of Writing Proposals By Adam Przeworski and Frank Salomon
+% https://s3.amazonaws.com/ssrc-cdn1/crmuploads/new_publication_3/the-art-of-writing-proposals.pdf
+% The 3 criteria:
+% conceptual innovation, methodological rigor, and rich, substantive content
+
+% Answer 3 questions:
+% What are we going to learn as the result of the proposed project that we do not know now?
+% Why is it worth knowing?
+% How will we know that the conclusions are valid?
+% -->> answer them immediately in 1st paragraph so you grab their attention
+% Starting with a question is a great way!
+
+% leave out the "tiresome trek through the duller idiosyncrasies of your discipline" --> committees multidisciplinary!!
+
+% what do we learn that WE DIDNT KNOW: summarize research up to today: comprehensive precise bibliography
+% missing even one item can lead to failure! --> consult Review of Economic Literature!
+
+% state the payoff of your topic:
+% - it has not been studied yet, or it's an unusual topic
+% - cite the importance of events that provide your subject matter, e.g turning points, or current importance, or its theoretical importance (main theoretical debates)
+% in economics, abandoning the assumption of full information
+
+% fresh approach: surprises, puzzles, apparent contradictions 
+% we haven't returned to high inflation, despite labor markets tight
+%  you may be well advised to avoid topics typically styled of central interest to the discipline. Usually these are topics about which everyone is writing, and the reason is that somebody else has already made the decisive and exciting contribution.
+
+% Methodology
+% Do not just tell what you mean to achieve, tell how you will spend your time while doing it. 
+% Second, a methodology is not just a list of research tasks but an argument as to why these tasks add up to the best attack on the problem.
+% I will write a NK model with long-run expectations in the footsteps of Preston 2005, augmented with the deanchoring mechanism of CEMP. I will derive optimal monetary policy in this context.
+% Be as specific as you possibly can be about the activities you plan to undertake to collect information, about the techniques you will use to analyze it, and about the tests of validity to which you commit yourself. Most proposals fail because they leave reviewers wondering what the applicant will actually do. Tell them!
+% A research design proposing comparison between cases often has special appeal. --> vs. full information RE NK
+
+% End with restatement of your objective and:
+%  How will research procedures and their products finally connect with the central question? How will you know if your idea was wrong or right?
+% Proposals should normally describe the final product of the project: an article, book, chapter, dissertation, etc. 
+
+%%%%%%%%%%%%%%%%%%%
+\vspace{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%
+%% INTRO, QUESTION, PAYOFF
+%%%%%%%%%%%%%%%%%%%
+
+\section{De-anchoring as a challenge to monetary policy}
+
+%\begin{quote}
+%I must - and I do - take seriously the risk that inflation shortfalls that persist even in a robust economy could precipitate a difficult-to-arrest downward drift in inflation expectations. At the heart of [our] review is the evaluation of potential changes to our strategy designed to strengthen the credibility of our [...] 2 percent inflation objective [such that] inflation expectations [remain] well anchored.\\
+%Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Conference on Monetary Policy Strategy, Tools, and Communications Practices,''  June 4, 2019, Opening Remarks.}
+%\end{quote}
+\begin{quote}
+Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
+Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019, Opening Remarks.}
+\end{quote}
+
+% Intro paragraph
+The opening remarks of Federal Reserve Chairman Jerome Powell at the Fed's August 2019 conference ``Challenges for Monetary Policy'' is one of the many central banker speeches that stress the importance of anchoring inflation expectations. Yet what do central bankers mean when they talk of anchored expectations?\footnote{For example, going through the European Central Bank (ECB) president Mario Draghi's speeches of  and the ensuing Q\&A sessions in recent years, one finds that the question of whether expectations are anchored and what this actually means for central bank policy always comes up; journalists and the general public are confused about how to think about anchoring.} And, more importantly, why should anchoring be a major concern for central bankers, in particular in the current post-crisis, low interest rate environment?
+
+This project aims to investigate the ways in which the possibility of de-anchored expectations can pose problems for the conduct of monetary policy. My objective is to theoretically assess whether de-anchored expectations can render monetary policy ineffective, or potentially even unable to achieve its price stability objective. Understanding how de-anchored expectations affect the monetary policy problem is crucial for optimal policy design, since if policy-makers are aware of potential threats due to de-anchoring, they can adapt policy in order to mitigate those threats. Thus by analyzing the nature of the monetary policy problem under potentially de-anchored expectations, I will also be able to formulate policy proposals and suggest ways optimal monetary policy should behave if expectations threaten to become unanchored.  
+
+Broadly, the project belongs to the macroeconomic literature that emphasizes the role of expectations for macroeconomic outcomes. Much research has been devoted to departing from standard assumptions in macroeconomic modeling of full information and expectations that are formed with the optimal use of available information (the ``rational expectations'' paradigm). In particular, my approach aligns closely with the statistical learning literature in macroeconomics which postulates that economic expectations evolve according to simple statistical rules; that is, economic actors use a forecasting rule to predict future economic outcomes, and update the forecasting rule as new data become available. 
+
+The novelty of my project is to use recent developments within the learning literature to reevaluate monetary policy in a framework where expectations may or may not be well anchored. Specifically, I will embed the anchoring mechanism of Carvalho, Eusepi, Moench \& Preston (2019, henceforth CEMP) in an otherwise standard state-of-the-art macroeconomic model, augmented to allow for long-run expectations in the spirit of Preston (2005). This will allow me to complement the standard results of the learning literature, which speak more to the technical question of under what conditions statistical learning renders the economy unstable. %for different specifications of monetary policy. 
+Instead, my interest here concerns policy: if statistical learning with the possibility of de-anchored expectations indeed alters the problem faced by monetary policy, then understanding the nature of the novel challenges will also shed light on how central bankers can respond optimally. 
+
+
+%%%%%%%%%%%%%%%%%%%
+% METHODOLOGY 
+%%%%%%%%%%%%%%%%%%%
+\section{Methodology}
+
+My proposed project is first and foremost theoretical. In essence, this means that I plan to write down a standard macroeconomic model, make the minimal adjustments necessary so as to incorporate the possibility of expectations becoming unanchored, and study how optimal monetary policy behaves in this setting. Without going into technical details, let me illustrate what each of these steps means specifically. 
+
+The standard workhorse model in contemporary macroeconomics is the so-called New Keynesian (NK) model. NK models provide the baseline for evaluating optimal monetary policy.\footnote{Clarida, Gali, Gertler, Woodford} However, in the standard NK model, there is no clear concept of anchored expectations.\footnote{Moreover, numerous economic studies indicate that the rational expectations assumption underlying standard NK models is widely rejected in the data, providing more reason to abandon the rational expectations assumption.} Therefore, CEMP extends a simplified version of the NK framework using the statistical learning approach mentioned above.\footnote{While the simplifications CEMP makes are purely technical in nature and do not matter for the empirical estimation exercise that paper pursues, for my purposes they are not tenable; see below.} Moreover, the authors incorporate a novel specification of the forecasting rule used by economic actors, in which one-period ahead forecasts of inflation depend on agents' expectations of where inflation will be in the long run. This allows CEMP to provide a model-based definition of anchoring as the situation in which long-run expectations are not sensitive to short-run forecast errors. 
+
+In order to study what implications this has for monetary policy, I first need to replace CEMP's simplifying assumptions. In other words, I need to reintroduce the demand side of the model economy in order to be able to specify monetary policy at all, which is missing in CEMP's model.  Thus the first step of my project is to solve a full-blown version of the NK model, augmented with long-run expectations and with CEMP's forecasting rule specification. This technically challenging task will give me a representation of the economy in which both monetary policy and a potential de-anchoring of expectations is explicitly spelled out.
+
+As a second step, I plan to carry out simulations of the model in order to understand how it behaves and to assess whether its dynamics resembles the behavior of modern economies known from data and stylized facts. This step is necessary to get a first-pass feel for how the mechanism of anchoring works in the model and whether it seems like an adequate representation of reality.
+
+The third step is the heart of the analysis. This involves comparing the monetary policy problem in my model with the standard rational expectations NK model benchmark. I intend to do this is two ways, and will thus have two metrics for evaluating the extent to which the optimal conduct of monetary policy differs in the two models. The first way is via simulating both models for various specifications of monetary policy. Studying differences in the evolution of economic variables such as inflation, output and interest rates across the two models for the same policy specification will then inform me of how the anchoring mechanism affects the policy problem. 
+
+The second way is to formulate the monetary policy problem analytically, and solving it for the optimal policy parameters in both models. In this approach, differences between the optimal policy parameters will allow me to assess on what dimensions and to what extent optimal policy behaves differently when it needs to take a potential de-anchoring of expectations into account.  
+
+Lastly, armed with these theoretical results, I plan to use data to estimate the model. In particular, my interest here is to investigate to what extent estimated policy parameters deviate from the optimal values I derived in the previous step. This will provide insight into whether central bankers have conducted monetary policy suboptimally, not taking proper account of the anchoring mechanism in expectations.    
+ 
+ %%%%%%%%%%%%%%%%%%%
+% CONCLUSION 
+%%%%%%%%%%%%%%%%%%%
+ \section{Monetary policy manages expectations}
+ The abundance of central bankers anxious to anchor expectations makes it clear that in practice, central banks are concerned about managing expectations. The fact that economic theory has so far not suggested a theoretical reason for doing so constitutes a gap in the literature on monetary policy. This project aims to fill this gap by extending the standard macroeconomic model with the CEMP-mechanism that allows for expectations to become unanchored. Deriving optimal monetary policy and comparing it to its counterpart in the standard NK framework will shed light what novel tradeoffs potential de-anchoring introduces for monetary policy as well as how to react to these new challenges in an optimal way. 
+ 
+%%%%%%%%%%%%%%%%%%%
+%% ADDITIONAL ITEMS AS REQUESTED
+%%%%%%%%%%%%%%%%%%%
+
+%\section{Preliminary Timeline}
+%\begin{itemize}
+%\item[]{\underline{Spring 2019}} 
+%\vspace{-0.2cm}
+%\item [] Derivation of dynamic communication policy in an infinite horizon, representative-receiver economy (for the current particular signal structure). Contrasting optimal dynamic policy with the static one (already standing).
+%\item[]{\underline{Summer 2019}} 
+%\vspace{-0.2cm}
+%\item[] Generalize the signal structure and investigation of robustness of optimal dynamic policy to the choice of signal structure. Particular attention should be devoted to the choice of temporal distance between communication period and the object of communication.
+%\item[]{\underline{Fall 2019}} 
+%\vspace{-0.2cm}
+%\item[] Implementation of dispersed information extension.  Addition of heterogeneity among receivers. 
+%\item[]{\underline{Spring 2020}} 
+%\vspace{-0.2cm}
+%\item[] Analysis of inequality effects of dynamic communication. Again contrasting to the static case.
+%\end{itemize}
+%
+% 
+%\section{Budget}
+%Since this is an entirely theoretical paper, no data acquisition costs or similar is anticipated. The funding is thus intended for support purposes only.
+
+\newpage
+\bibliographystyle{chicago}
+\bibliography{ref_info_infl}
+\nocite{*}
+
+\end{document}
+
+
