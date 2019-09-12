@@ -120,8 +120,8 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)}
  \end{pmatrix} \quad 
  P  \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
  \end{pmatrix}  \quad 
- \text{and } \quad 
  \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
  \end{pmatrix} 
  \end{align}
  Let $z_t$ summarize the endogenous variables as
@@ -129,34 +129,17 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)}
  z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
  \end{pmatrix}
  \end{equation}
-This is where the CEMP bit comes in: let agents form forecasts according to the relation
-\begin{equation}
-\bar{\E}_t z_{t+1} = \bar{z}_t + s_{t} + e_{t+1} \tag{PLM}
-\end{equation}
-where $\bar{z}_t$ is the LR expectation of all endogenous variables. CEMP would love if we called this the ``drift'' in beliefs. Let this drift evolve according to CEMP's criterion as:
-\begin{align}
-\bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \\
-f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error)} \\
-k_t & = \mathbb{I}(k_{t-1}+1) + (1-\mathbb{I})\bar{g}^{-1} \\
-\mathbb{I} &= \begin{cases} 1 \quad \text{if} \quad \theta_t \leq \bar{\theta} \\
-0 \quad \text{otherwise.}
-\end{cases} \\
-\text{where} \quad \theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(subjective - objective forecast)}
+ Then I can write system (1), (18), (19) and (27) compactly as
+ \begin{align}
+z_t & = A_1 f_a + A_2 f_b + A_3 s_t \label{RF} \\
+s_t & = P s_{t-1} + \epsilon_t \label{exog}
 \end{align}
-%$\theta_t$ is supposed to measure the distance between subjective and objective, model-consistent forecasts, and is scaled by the variance of the noise in the model. 
-
-\subsection{Deriving the ALM}
-Let the discounted infinite sums of expectations be given by
-\begin{align}
+ where $f_a$ and $f_b$ capture discounted long-run expectations of the endogenous states $z$, and matrices $A_1, A_2$ and $A_3$ gather coefficients as:
+ \begin{align}
 f_a & \equiv  \sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1}\\
 f_b & \equiv \sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1}
 \end{align}
-Given these, and matrices $A_1, A_2, A_3$, we can write the reduced form LOM of the system as
-\begin{equation}
-z_t = A_1 f_a + A_2 f_b + A_3 s_t \tag {RF}
-\end{equation}
-where
-\begin{align}
+ \begin{align}
 A_1 & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
 \end{pmatrix}
 \quad A_2 = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
@@ -171,45 +154,82 @@ g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bm
 g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
 w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
 \end{align}
-To get the ALM, we need to write the expectations $f_a, f_b$ based on the PLM. Subbing in the PLM and using the anticipated utility assumption, I get
-\begin{align}
-f_a & = \frac{1}{1-\alpha\beta}\bar{z}_t + (I_3-\alpha\beta P)^{-1}s_t \\
-f_b & = \frac{1}{1-\beta}\bar{z}_t + (I_3-\beta P)^{-1}s_t 
-\end{align}
-Then the ALM is the reduced-form expression RF, with expectations evaluated using these two expressions:
+
+
+This is where the CEMP bit comes in: let agents form forecasts according to the relation
 \begin{equation}
-z_t = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \tag{ALM}
+\hat{\E}_t z_{t+1} = \bar{z}_t + \underbrace{C}_{\text{TBD}}s_{t} + e_{t+1} \tag{PLM}
+\end{equation}
+where $\bar{z}_t$ is the LR expectation of all endogenous variables. CEMP would love if we called this the ``drift'' in beliefs. Let this drift evolve according to CEMP's criterion as:
+\begin{align}
+\bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1}  \\
+f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error)} \\
+k_t & = \mathbb{I}(k_{t-1}+1) + (1-\mathbb{I})\bar{g}^{-1} \\
+\mathbb{I} &= \begin{cases} 1 \quad \text{if} \quad \theta_t \leq \bar{\theta} \\
+0 \quad \text{otherwise.}
+\end{cases} \\
+\text{where} \quad \theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(subjective - objective forecast)}
+\end{align}
+%$\theta_t$ measures the distance between subjective and objective, model-consistent forecasts, and is scaled by the variance of the noise in the model.
+Anticipated utility: 
+\begin{equation}
+\hat{\E}_t \bar{z}_T = \bar{z}_t \; \forall \; T > t \Rightarrow \bar{z}_{T|t} = \bar{z}_t \; \forall \; T > t
 \end{equation}
 
-\subsection{SR forecast error and the criterion}
 
+\subsection{Deriving the ALM}
+To get the ALM, we need to write the expectations $f_a, f_b$ based on the PLM. Subbing in the PLM and using the anticipated utility assumption, I get
+\begin{align}
+f_a & = \frac{1}{1-\alpha\beta}\bar{z}_t + C(I_3-\alpha\beta P)^{-1}s_t \label{fa}\\
+f_b & = \frac{1}{1-\beta}\bar{z}_t + C(I_3-\beta P)^{-1}s_t \label{fb}
+\end{align}
+Then the ALM is expression (\ref{RF}), with expectations evaluated using (\ref{fa}) and (\ref{fb}):
+\begin{align}
+z_t &= \underbrace{\bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)}_{\equiv B_1}\bar{z}_t + \underbrace{\bigg(A_1C(I_3 - \alpha\beta P)^{-1} +A_2C(I_3 - \beta P)^{-1} +A_3\bigg)}_{\equiv B_2}s_t \tag{ALM} \\
+z_t & = B_1 \bar{z}_t + B_2 s_t \label{ALM }
+\end{align}
+\subsection{SR forecast error and the criterion}
 \begin{align*}
 f_{t-1} & = z_{t-1} - \hat{\E}_{t-2}z_{t-1} \quad \text{(short-run forecast error: ALM - PLM)} \\
-\theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(criterion: PLM - $\E_{t-1}$ALM)}
+\theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t  | / (\sigma_r + \sigma_i + \sigma_u) \quad \text{(criterion: PLM - $\E_{t-1}$ALM)} \\
+\Rightarrow \quad \quad \quad \quad \quad \quad  f_{t-1} & = B_1 \bar{z}_{t-1} - \bar{z}_{t-2} +B_2 s_{t-1} -Cs_{t-2}\\
+(\sigma_r + \sigma_i + \sigma_u) \theta_t & = |(I_3 - B_1)\bar{z}_{t-1} + (I_3 - B_2P)s_{t-1}|
 \end{align*}
-Evaluating PLM, ALM, and $\E_{t-1}$ALM
-\begin{align}
-f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta -I_3}\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
-(\sigma_r + \sigma_i + \sigma_u) \theta_t & = \bigg(I_3 - A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_{t-1} + \bigg(I_3 - \big(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\big)P \bigg)s_{t-1}
-\end{align}
 
 \subsection{Model summary}
 \begin{align}
-z_t & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \tag{ALM} \\
+z_t & = B_1 \bar{z}_t + B_2 s_t  \tag{ALM} \\
 \bar{z}_t & = \bar{z}_{t-1} + k_t^{-1} f_{t-1} \tag{Drift LOM}\\
+f_{t-1} & = B_1 \bar{z}_{t-1} - \bar{z}_{t-2} +B_2 s_{t-1} -Cs_{t-2} \tag{SR fcst error}\\ 
 k_t & = \mathbf{f_k}(\bar{z}_{t-1}, k_{t-1}, s_{t-1})  \quad \text{where $\mathbf{f_k}$ evaluates the criterion $\theta_t$}\tag{Gain LOM} \\
-f_{t-1} & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta} -I_3\bigg)\bar{z}_{t-1} + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
+(\sigma_r + \sigma_i + \sigma_u) \theta_t & = |(I_3 - B_1)\bar{z}_{t-1} + (I_3 - B_2P)s_{t-1}| \tag{criterion}\\
+ \mathbf{f_k} &= \mathbb{I}_{\theta_t \leq \bar{\theta}}(k_{t-1}+1) + (1-\mathbb{I}_{\theta_t \leq \bar{\theta}})\bar{g}^{-1} \tag{anchoring}\\
 s_t &= Ps_{t-1} +\epsilon_t \tag{exog. process}
 \end{align}
-More compactly
-\begin{align*}
-z_t & = \bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta}\bigg)\bar{z}_t + \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3\bigg)s_t \\
-\bar{z}_t & = \bigg( I_3 + k_t^{-1}\bigg(A_1\frac{1}{1-\alpha\beta} +A_2\frac{1}{1-\beta} -I_3\bigg) \bigg) \bar{z}_{t-1} + k_t^{-1} \bigg(A_1(I_3 - \alpha\beta P)^{-1} +A_2(I_3 - \beta P)^{-1} +A_3 -I_3\bigg)s_{t-1} \\
-k_t & = \mathbf{f_k}(\bar{z}_{t-1}, k_{t-1}, s_{t-1})  \\
-s_t &= Ps_{t-1} +\epsilon_t 
-\end{align*}
 
-	
+%\newpage
+\section{Two initial simulations}	
+\begin{figure}[h!]
+\subfigure[Observables 1]{
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables1}}
+\subfigure[Nonlinear states 1]{
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states1}}
+\subfigure[Observables 2]{
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables2}}
+\subfigure[Nonlinear states 2]{
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states2}}
+\end{figure}
+
+Two (potentially connected) issues:
+\begin{itemize}
+\item $\bar{\theta}$ needs to be quite huge for gain to decrease (20 instead of CEMP's 0.029)
+\item Nonlinear states? Based on CEMP's def of $\bar{\pi}$ being a nonlinear state because the gain is a nonlinear function of it, here $\bar{z}$ and $s$ are both nonlinear states.
+\end{itemize}
+
+
+\newpage
+
+
 
 
 

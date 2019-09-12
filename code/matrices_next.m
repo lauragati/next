@@ -1,4 +1,4 @@
-function [A1, A2, A3] = matrices_next(param, set)
+function [B1, B2] = matrices_next(param, set)
 
 bet  = param(1);
 sig  = param(2);
@@ -20,6 +20,7 @@ nxnl = set(17);
 nxl = set(18);
 ny = set(19);
 P = eye(ne).*[rho_r, rho_i, rho_u]';
+C = eye(ne); % for now
 
 g_pia = (1-kapp*sig*psi_pi/w)*[(1-alph)*bet, kapp*alph*bet, 0];
 g_xa  =  -sig*psi_pi/w*[(1-alph)*bet, kapp*alph*bet, 0];
@@ -31,3 +32,7 @@ g_xs = -sig*psi_pi/w*[0 0 1]*(eye(ne)-alph*bet*P)^(-1) - sig/w*[-1 1 0]*(eye(ne)
 A1 = vertcat(g_pia, g_xa, psi_pi*g_pia + psi_x*g_xa);
 A2 = vertcat(g_pib, g_xb, psi_pi*g_pib + psi_x*g_xb);
 A3 = vertcat(g_pis, g_xs, psi_pi*g_pis + psi_x*g_xs + [0 1 0]);
+
+
+B1 = A1/(1-alph*bet) + A2/(1-bet);
+B2 = A1*C*(eye(ne) -alph*bet*P)^(-1) + A2*C*(eye(ne) -bet*P)^(-1) + A3;

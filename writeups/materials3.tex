@@ -1,0 +1,287 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 3 - Special cases}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+\newpage
+\section{The models to be simulated}
+\begin{enumerate}
+\item Rational expectations NK model (RE)
+\item Euler equation approach learning NK model \`a la Bullard \& Mitra (2002)  (EE)
+\item LR expectations learning NK model \`a la Preston (2005)  (LR)
+\item (Eventually: LR expectations learning NK model \`a la Preston with anchoring \`a la CEMP)
+\end{enumerate}
+
+The difference between these models is 1) in the expectations (rational or not), 2) in the number of horizons of expectations that need to be summed (1 vs. infinite). So what I'm going to do consists of 2 steps: 
+\begin{enumerate}
+\item Write a learning rule that takes the form of Preston's, but that nests CEMP, and has a decreasing gain.
+\item Write out $f_a$ and $f_b$ as truncated sums of $h$-period ahead forecasts. When $h=1$, models (\ref{LOM_EE}) and (\ref{LOM_LR}) should coincide.
+\end{enumerate}
+
+\subsection{RE}
+\begin{align}
+x_t &= \E_t x_{t+1} - \sigma(i_t - \E_t \pi_{t+1}) +\sigma r_t^n \label{NKIS} \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} + u_t  \label{NKPC} \\
+i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t  \label{TR}
+\end{align}
+\subsection{EE}
+\begin{align}
+x_t &= \hat{\E}_t x_{t+1} - \sigma(i_t - \hat{\E}_t \pi_{t+1}) +\sigma r_t^n \tag{Preston, eq. (13)} \label{prestons13} \\
+\pi_t &= \kappa x_t +\beta \hat{\E}_t \pi_{t+1} + u_t \tag{Preston, eq. (14)} \label{prestons14}  \\
+i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t \tag{Preston, eq. (27) } 
+\end{align}
+\subsection{LR}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \tag{Preston, eq. (18)} \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\tag{Preston, eq. (19)} \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)} 
+\end{align}
+
+ \section{Compact notation}
+Innovations are summarized as:
+ \begin{align*}
+ s_t & = P s_{t-1} + \epsilon_t 
+ \quad \text{where} \quad 
+ s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} \quad 
+ P  \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
+ \end{pmatrix} 
+ \end{align*}
+ Let $z_t$ summarize the endogenous variables as
+ \begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix}
+ \end{equation}
+ Then I can write the models compactly as
+ \begin{align}
+z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
+z_t & = A_p^{RE} \hat{\E}_t z_{t+1} + A_s^{RE} s_t \label{LOM_EE} \\
+z_t & = A_a^{LR} f_a + A_b^{LR} f_b + A_s^{LR} s_t \label{LOM_LR} \\
+s_t & = P s_{t-1} + \epsilon_t \label{exog}
+\end{align}
+ where $f_a$ and $f_b$ capture discounted sum of expectations at all horizons of the endogenous states $z$ (following Preston, I refer to these objects as ``long-run expectations''):
+  \begin{align}
+f_a  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+and the coefficient matrices are given by:
+\begin{align}
+A_p^{RE} & = \begin{pmatrix} \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) & \frac{\kappa}{w} & 0\\
+ \frac{\sigma}{w} (1-\psi_{\pi}\beta) & \frac{1}{w}& 0\\ 
+\psi_{\pi}\big( \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) \big) +\psi_x\frac{\sigma}{w} (1-\psi_{\pi}\beta)&  \psi_x (\frac{1}{w})+ \psi_{\pi} (\frac{\kappa}{w})& 0\end{pmatrix} \quad \\
+A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w}\\
+ - \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w}\\ 
+ \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w})\end{pmatrix}  
+\\
+A_a^{LR} & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_b^{LR} = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_s^{LR} = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+\clearpage
+
+ \section{Learning}
+
+In Preston (2005), agents forecast the endogenous variables using the exogenous ones as
+\begin{equation}
+z_t = a_t + b_t s_t + \epsilon_t \quad  \tag{Preston, p. 101}
+\end{equation}
+and then $\phi_t$ summarizes $(a,b)$, so that agents learn both a constant and a slope term. I'm going to simplify here a bit so that agents only learn about the constant, i.e. about CEMP's drift term:
+\begin{equation}
+z_t = \phi_{t-1} + s_{t-1} + \epsilon_t \label{PLM}  
+\end{equation}
+To clarify, the $t-1$ index on $\phi$ stands for the period \emph{in which} agents form the expectation. Anticipated utility implies that
+\begin{equation}
+\hat{\E}_t{\phi_{t+h}} = \hat{\E}_t{\phi_{t}} = \phi_t \quad \forall \; h>0 
+\end{equation}
+Assuming RE about the exogenous process and anticipated utility, this implies that $h$-horizon forecasts are constructed as:
+\begin{equation}
+\hat{\E}_t z_{t+h} = \phi_{t} + P^{h}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
+\end{equation}
+and the regression coefficients are updated using (for now) a decreasing gain RLS algorithm:
+\begin{align}
+\phi_t  & = \phi_{t-1} + t^{-1} \mathbf{R_t^{-1}s_{t-1}}\big(z_{t-1} - (\phi_{t-1}+ s_{t-1})\big) \\
+R_t &= R_{t-1} +  t^{-1} ( s_{t-1}s_{t-1}' - R_{t-1} )
+\end{align}
+$R_t$ is $3\times 3$ and $\phi_t$ is $3 \times 1$. The bold $R_t^{-1}s_{t-1}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. CEMP is a special case of this model, with the gain switching between decreasing and constant according to the anchoring mechanism. I'm leaving that out for the time being. 
+
+\section{ALMs}
+\subsection{RE}
+With some abuse of terminology, call the state-space representation the ALM of the RE model:
+\begin{align}
+x_{t} & = hx \; x_{t-1} + \eta s_t \label{state_eq}\\
+z_t & = gx \; x_t \label{obs_eq}
+\end{align}
+Then I can write the ``ALM" as
+\begin{align}
+z_t & = gx \; hx \; x_{t-1} + gx \; \eta s_t  \label{ALM_RE}
+\end{align}
+Since this ALM implies no constant, I will initialize $\phi_0$ as a $3\times1$ zero vector. Analogously, I will initialize $R$ as a $3\times3$ identity matrix. 
+\subsection{EE}
+Using (\ref{PLM_fcst}),
+\begin{equation}
+\hat{\E}_t z_{t+1} = \phi_{t} + Ps_t 
+\end{equation}
+Evaluating this in (\ref{LOM_EE}), I obtain the ALM of the EE model as
+\begin{equation}
+z_t = A_p^{RE}\phi_t + \big( A_p^{RE} P + A_s^{RE} \big)s_t \label{ALM_EE}
+\end{equation}
+
+
+\subsection{LR}
+Evaluation ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst}), I get
+\begin{equation}
+f_a = \frac{1}{1-\alpha\beta}\phi_t + P(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\phi_t + P(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
+\end{equation}
+Then the ALM of the LR model is (\ref{LOM_LR}) with (\ref{fafb_analytical}) subbed in (I suppress LR-superscripts):
+\begin{equation}
+z_t = \big( A_a \frac{1}{1-\alpha\beta} + A_b \frac{1}{1-\beta}\big)\phi_t + \big(A_aP(I_3 - \alpha\beta P)^{-1} +A_bP(I_3 - \beta P)^{-1} +A_s \big)s_t 
+\end{equation}
+
+
+
+\section{Timeline in the learning models}
+\begin{enumerate}
+\item[] \underline{$t=0$}: Initialize $\phi_t = \phi_0$ at the RE solution.
+\item[] For each $t$:
+\item Evaluate expectations (the one-period ahead, or the full 1 to $\infty$-period ahead)
+\item Evaluate ALM given expectations
+\item Update $\phi$
+\end{enumerate}
+Timing issues, as always!
+
+%%\newpage
+%\section{Two initial simulations}	
+%\begin{figure}[h!]
+%\subfigure[Observables 1]{
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables1}}
+%\subfigure[Nonlinear states 1]{
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states1}}
+%\subfigure[Observables 2]{
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables2}}
+%\subfigure[Nonlinear states 2]{
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states2}}
+%\end{figure}
+
+
+
+
+
+
+
+
+ 
+ 
+\end{document}
+
+
+

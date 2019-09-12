@@ -8,10 +8,10 @@ param.psi_pi = 1.5;
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % param_correct CEMP
 param.thetbar = 20;%0.029; % param_correct CEMP
-param.rho_r = 0.7;
-param.rho_i = 0;
-param.rho_u = 0; 
-param.sig_r = 0.1; %?
+param.rho_r = 0.9;
+param.rho_i = 0.9; 
+param.rho_u = 0.9; 
+param.sig_r = 0.1;%0.1; %?
 param.sig_i = 0.359; % = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 0.277; % = sig_mu from CEMP, the cost-push shock
 

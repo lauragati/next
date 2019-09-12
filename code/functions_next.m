@@ -1,4 +1,4 @@
-function [fk] = functions_next(param,set,zbar,s, kt_1)
+function [fk] = functions_next(param,set,zbar,s, kt_1, B1, B2)
 
 bet  = param(1);
 sig  = param(2);
@@ -21,9 +21,7 @@ nxl = set(18);
 ny = set(19);
 P = eye(ne).*[rho_r, rho_i, rho_u]';
 
-[A1, A2, A3] = matrices_next(param, set);
-
-I = abs( (eye(ne)- A1/(1-alph*bet) - A2/(1-bet))*zbar + (eye(ne) -(A1*(eye(ne)-alph*bet*P)^(-1) +A2*(eye(ne)-bet*P)^(-1) +A3)*P)*s ) ...
-    <= thetbar*(sig_r+sig_i + sig_u);
+I = abs( (eye(ne)-B1)*zbar +(eye(3)-B2*P)*s ) <= thetbar*(sig_r+sig_i + sig_u);
+% I = abs( (eye(ne)-B1)*zbar) <= thetbar*(sig_r+sig_i + sig_u);
 kt = I.*(kt_1+1) + (1-I)*gbar^(-1);
 fk = kt;

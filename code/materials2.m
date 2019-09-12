@@ -43,7 +43,9 @@ setp = struct2array(setp);
 T = 500;
 burnin = 0;
 
-[xn_true, xl_true, Y, e] = simul_next(param,setp,T, burnin);
+rng(0)
+[B1, B2] = matrices_next(param, setp);
+[xn_true, xl_true, Y, e] = simul_next(param,setp,T, burnin, B1, B2);
 [nx_nl1, nx_nl2] = size(xn_true(:,:,1));
 nx_l = size(xl_true,1);
 ny = size(Y,1);
