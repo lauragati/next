@@ -1,4 +1,5 @@
-function [fa, fb] = fafb_anal(param, set, phi, s)
+function Ezh_t = Ez_h_general(param, set, phit_1, st, h)
+% h-period ahead expectation (eq. 22 of materials3)
 % 12 Sept 2019
 
 bet = param.bet;  
@@ -20,12 +21,9 @@ n = 3; % fortunately, this is the dimension of everything
 P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
-a = phi(:,1);
-b = phi(:,2:end);
-% with P
-% fa = 1/(1-alph*bet)*a + P*(eye(n)-alph*bet*P)^(-1)*s;
-% fb = 1/(1-bet)*a + P*(eye(n)-bet*P)^(-1)*s;
+a = phit_1(:,1);
+b = phit_1(:,2:end);
 
-% without P
-fa = 1/(1-alph*bet)*a + b*(eye(n)-alph*bet*P)^(-1)*s;
-fb = 1/(1-bet)*a + b*(eye(n)-bet*P)^(-1)*s;
+% Ezh_t = phit_1*[1;P^(h-1)*st]; % this seems correct
+% Ezh_t = phit_1*[1;P^(h)*st]; 
+Ezh_t = a + b*P^(h-1)*st; % this seems to equal the top, correct one

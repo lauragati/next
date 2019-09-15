@@ -21,10 +21,13 @@ n = 3; % fortunately, this is the dimension of everything
 P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
+a = phi(:,1);
+b = phi(:,2:end);
+
 Ea = zeros(n,H); % alph-bet discounted expectations
 Eb = zeros(n,H); % bet discounted expectations
 for h=1:H
-    Ezh = Ez_h(param, set, phi, s, h);
+    Ezh = Ez_h_general(param, set, phi, s, h);
     Ea(:,h) = (alph*bet)^(h-1) * Ezh;
     Eb(:,h) = (bet)^(h-1) * Ezh;
 end

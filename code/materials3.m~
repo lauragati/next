@@ -89,7 +89,7 @@ phi_rand = rand(3,4);
 [fa_anal, fb_anal] = fafb_anal(param, setp, phi_rand, s(:,1));
 [fa_trunc, fb_trunc] = fafb_trunc(param, setp, phi_rand, s(:,1), H); 
 fa_anal - fa_trunc % these are the same
-fb_anal - fb_trunc % these are the same (to -12) only if H>10000.
+fb_anal - fb_trunc % these are the same (to -12) only 
 
 % Simulate the three models
 % Use Ryan's code to simulate from the RE model
@@ -98,7 +98,7 @@ fb_anal - fb_trunc % these are the same (to -12) only if H>10000.
 % y = z
 % x = s
 
-% Euler equation learning (learning both slope and constant)
+% Euler equation learning
 [x_EE, y_EE] = sim_learn_EE(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e);
 
 % Note:
@@ -106,14 +106,16 @@ fb_anal - fb_trunc % these are the same (to -12) only if H>10000.
 % b/c 1) agents aren't learning about states 2) in NK
 % model, the only states are exogenous states
 
-% a check (learning both slope and constant)
+% a check 
 [x_EE2, y_EE2] = sim_learn_EE_check(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e, Ap_RE, As_RE, param, setp);
 % x_EE = x_EE2 
 y_EE - y_EE2; % yep they equal too
 
 
-% LR learning (learning both slope and constant)
-[x_LR, y_LR] = sim_learn_LR(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H); 
+
+return
+% LR learning
+[zz] = sim_learn_LR(param,R0,phi0,s,tol); 
 
 
 

@@ -1,9 +1,11 @@
+% LR learning of both slope and constant
+% based on the structure of sim_learn_EE_check, except
 % simulate data from learning model with Euler equation learning
 % Rely strongly on Ryan's code sim_learn.m - here agents learn constant and
 % slope
-% 14 sept 2019
+% 15 sept 2019
 
-function [xsim, ysim, shock] = sim_learn_EE(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e)
+function [xsim, ysim, shock] = sim_learn_LR(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e, Ap, As, param, set)
 
 ny = size(gx,1);
 nx = size(hx,1);
@@ -24,12 +26,19 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
+        Ezp = Ez_h_general(param, set, gl, xsim(:,t), 1);
         yp_e = gl*[1; xsim(:,t)];
         yx = -[fy fxp]\(fyp*yp_e + fx*xsim(:,t));
         
         %Solve for current states
-        ysim(:,t) = yx(1:ny);
-        xesim     = yx(ny+1:end);
+%         Ezp = yp_e;
+        ysim(:,t) = Ap*Ezp + As*xsim(:,t);
+        xesim = hx*xsim(:,t);
+        
+%         disp(['t=', num2str(t)])
+        ysim(:,t) - yx(1:ny); % yep they equal
+%         ysim(:,t) = yx(1:ny);
+%         xesim     = yx(ny+1:end);
       
         %Update coefficients    
         R = R + t^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);

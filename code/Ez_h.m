@@ -1,4 +1,4 @@
-function Ezh = Ez_h(param, set, phi, s, h)
+function Ezh_t = Ez_h(param, set, zbart_1, st, h)
 % h-period ahead expectation (eq. 22 of materials3)
 % 12 Sept 2019
 
@@ -22,4 +22,4 @@ P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
 
-Ezh = phi + P^(h)*s; 
+Ezh_t = zbart_1 + P^(h)*st; 

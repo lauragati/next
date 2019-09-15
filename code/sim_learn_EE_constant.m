@@ -1,9 +1,8 @@
 % simulate data from learning model with Euler equation learning
-% Rely strongly on Ryan's code sim_learn.m - here agents learn constant and
-% slope
+% here agents learn about the constant ONLY
 % 14 sept 2019
 
-function [xsim, ysim, shock] = sim_learn_EE(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e)
+function [xsim, ysim, shock] = sim_learn_EE_constant(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e)
 
 ny = size(gx,1);
 nx = size(hx,1);
