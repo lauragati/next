@@ -1,4 +1,4 @@
-function [fa, fb] = fafb_anal_constant(param, set, a, s)
+function [fa, fb] = fafb_anal_constant(param, set, a, b, s)
 % 17 Sept 2019
 
 bet = param.bet;  
@@ -22,5 +22,5 @@ SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
 
 % without P
-fa = a/(1-alph*bet) + (eye(n)-alph*bet*P)^(-1)*s;
-fb = a/(1-bet) + (eye(n)-bet*P)^(-1)*s;
+fa = a/(1-alph*bet) + b*(eye(n)-alph*bet*P)^(-1)*s;
+fb = a/(1-bet) + b*(eye(n)-bet*P)^(-1)*s;

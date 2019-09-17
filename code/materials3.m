@@ -316,6 +316,7 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+close
 
 toc
 

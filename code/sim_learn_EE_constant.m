@@ -12,7 +12,7 @@ xsim = zeros(nx,T);
 
 %Learning PLM matrices, just a constant. Using RE as default starting point. 
 a = zeros(ny,1);
-
+b = gx*hx;
 
 %Simulate, with learning
 for t = 1:T-1
@@ -22,14 +22,14 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
-        Ezp = Ez_h_constant(param, setp, a, xsim(:,t), 1);
+        Ezp = Ez_h_constant(param, setp, a,b, xsim(:,t), 1);
         
         %Solve for current states
         ysim(:,t) = Ap*Ezp + As*xsim(:,t);
         xesim = hx*xsim(:,t);
       
         %Update coefficients    
-        a = a + t^(-1)* (ysim(:,t)-(a + xsim(:,t-1)) );
+        a = a + t^(-1)* (ysim(:,t)-(a + b*xsim(:,t-1)) );
         
     end
     

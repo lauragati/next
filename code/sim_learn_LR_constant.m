@@ -13,6 +13,7 @@ xsim = zeros(nx,T);
 
 %Learning PLM matrices, just a constant. Using RE as default starting point. 
 a = zeros(ny,1);
+b = gx*hx;
 
 diff = zeros(T,1);
 diff(1) = nan;
@@ -25,9 +26,9 @@ for t = 1:T-1
     else
         %Form Expectations using last period's estimates
         if anal ==1
-        [fa, fb] = fafb_anal_constant(param, setp, a, xsim(:,t));
+        [fa, fb] = fafb_anal_constant(param, setp, a,b, xsim(:,t));
         else
-        [fa, fb] = fafb_trunc_constant(param, setp, a, xsim(:,t), H); 
+        [fa, fb] = fafb_trunc_constant(param, setp, a,b, xsim(:,t), H); 
         end
         
         %Solve for current states
@@ -35,7 +36,7 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
       
          %Update coefficients    
-        a = a + t^(-1)* (ysim(:,t)-(a + xsim(:,t-1)) );
+        a = a + t^(-1)* (ysim(:,t)-(a + b*xsim(:,t-1)) );
         
         % check convergence
         diff(t) = max(max(abs(a - at_1)));

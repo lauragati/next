@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 SEP 2019 14:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 SEP 2019 15:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -499,30 +499,29 @@ Package floatrow Info: Modified rotfloat package code loaded on input line 473.
 \LTright=\skip80
 \flrow@types=\toks32
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 40.
+Package hyperref Info: Option `colorlinks' set `true' on input line 39.
 \c@prop=\count140
 \c@definition=\count141
 \c@lemma=\count142
 \c@corollary=\count143
 
-(./materials3.aux)
+No file materials3.aux.
 \openout1 = `materials3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count144
@@ -593,7 +592,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 89.
+Package hyperref Info: Link coloring ON on input line 88.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -602,32 +601,49 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count150
 )
-LaTeX Info: Redefining \ref on input line 89.
-LaTeX Info: Redefining \pageref on input line 89.
-LaTeX Info: Redefining \nameref on input line 89.
-
-(./materials3.out) (./materials3.out)
+LaTeX Info: Redefining \ref on input line 88.
+LaTeX Info: Redefining \pageref on input line 88.
+LaTeX Info: Redefining \nameref on input line 88.
 \@outlinefile=\write3
 \openout3 = `materials3.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 96.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+LaTeX Font Info:    Try loading font information for U+msb on input line 96.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(./materials3.toc)
 \tf@toc=\write4
 \openout4 = `materials3.toc'.
 
  [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (2.44633pt too wide) in paragraph at lines 150--150
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `LOM_EE' on page 2 undefined on input line 115.
+
+
+LaTeX Warning: Reference `LOM_LR' on page 2 undefined on input line 115.
+
+[2]
+
+LaTeX Warning: Reference `prestons18' on page 3 undefined on input line 136.
+
+
+LaTeX Warning: Reference `prestons13' on page 3 undefined on input line 136.
+
+
+LaTeX Warning: Reference `prestons19' on page 3 undefined on input line 136.
+
+
+LaTeX Warning: Reference `prestons14' on page 3 undefined on input line 136.
+
+
+Overfull \hbox (2.44633pt too wide) in paragraph at lines 149--149
 [] 
  []
 
@@ -638,114 +654,190 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.3.20
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.225 \end{align}
-                 ] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 280.
+l.224 \end{align}
+                 ]
+
+LaTeX Warning: Reference `PLM_fcst' on page 6 undefined on input line 231.
+
+[6]
+
+LaTeX Warning: Reference `PLM_fcst_general' on page 7 undefined on input line 2
+49.
 
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Warning: Reference `PLM_fcst' on page 7 undefined on input line 249.
+
+
+LaTeX Warning: Reference `LOM_EE' on page 7 undefined on input line 249.
+
+
+LaTeX Warning: Reference `fafb' on page 7 undefined on input line 252.
+
+
+LaTeX Warning: Reference `PLM_fcst_general' on page 7 undefined on input line 2
+52.
+
+
+LaTeX Warning: Reference `LOM_LR' on page 7 undefined on input line 257.
+
+
+LaTeX Warning: Reference `PLM_fcst' on page 7 undefined on input line 257.
+
+
+LaTeX Warning: Reference `PLM_fcst_general' on page 7 undefined on input line 2
+61.
+
+[7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 279.
+
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 280.
- [8]
-<../figures/materials3_observables_RE_EE_only.png, id=205, 1107.13625pt x 684.5
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 279.
+
+
+LaTeX Warning: Reference `LOM_EE' on page 8 undefined on input line 280.
+
+[8]
+<../figures/materials3_observables_RE_EE_only.png, id=122, 1107.13625pt x 684.5
 575pt>
 File: ../figures/materials3_observables_RE_EE_only.png Graphic file (type png)
  <use ../figures/materials3_observables_RE_EE_only.png>
 Package pdftex.def Info: ../figures/materials3_observables_RE_EE_only.png used 
-on input line 294.
+on input line 293.
 (pdftex.def)             Requested size: 332.14343pt x 205.36882pt.
 
-<../figures/materials3_observables1.png, id=206, 1126.2075pt x 684.5575pt>
+<../figures/materials3_observables1.png, id=123, 1126.2075pt x 684.5575pt>
 File: ../figures/materials3_observables1.png Graphic file (type png)
 
 <use ../figures/materials3_observables1.png>
 Package pdftex.def Info: ../figures/materials3_observables1.png used on input l
-ine 296.
+ine 295.
 (pdftex.def)             Requested size: 337.86487pt x 205.36882pt.
  [9 <../figures/materials3_observables_RE_EE_only.png (PNG copy)> <../figures/m
 aterials3_observables1.png (PNG copy)>] <../figures/materials3_horizons.png, id
-=216, 1126.2075pt x 685.56125pt>
+=136, 1126.2075pt x 685.56125pt>
 File: ../figures/materials3_horizons.png Graphic file (type png)
 
 <use ../figures/materials3_horizons.png>
 Package pdftex.def Info: ../figures/materials3_horizons.png used on input line 
-302.
+301.
 (pdftex.def)             Requested size: 450.47502pt x 274.21964pt.
  [10 <../figures/materials3_horizons.png (PNG copy)>]
-<../figures/materials3_diffs_LR.png, id=225, 1148.29pt x 684.5575pt>
+<../figures/materials3_diffs_LR.png, id=145, 1148.29pt x 684.5575pt>
 File: ../figures/materials3_diffs_LR.png Graphic file (type png)
 
 <use ../figures/materials3_diffs_LR.png>
 Package pdftex.def Info: ../figures/materials3_diffs_LR.png used on input line 
-318.
+317.
 (pdftex.def)             Requested size: 344.48965pt x 205.36882pt.
 
-<../figures/materials3_diffs_LR_100000.png, id=226, 1132.23pt x 716.6775pt>
+<../figures/materials3_diffs_LR_100000.png, id=146, 1132.23pt x 716.6775pt>
 File: ../figures/materials3_diffs_LR_100000.png Graphic file (type png)
 
 <use ../figures/materials3_diffs_LR_100000.png>
 Package pdftex.def Info: ../figures/materials3_diffs_LR_100000.png used on inpu
-t line 323.
+t line 322.
 (pdftex.def)             Requested size: 339.67162pt x 215.00491pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 327--328
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
 
  []
 
 [11 <../figures/materials3_diffs_LR.png (PNG copy)> <../figures/materials3_diff
 s_LR_100000.png (PNG copy)>]
-<../figures/materials3_observables_RE_LR_last100.png, id=234, 1113.15875pt x 68
+<../figures/materials3_observables_RE_LR_last100.png, id=154, 1113.15875pt x 68
 4.5575pt>
 File: ../figures/materials3_observables_RE_LR_last100.png Graphic file (type pn
 g)
  <use ../figures/materials3_observables_RE_LR_last100.png>
 Package pdftex.def Info: ../figures/materials3_observables_RE_LR_last100.png us
-ed on input line 334.
+ed on input line 333.
 (pdftex.def)             Requested size: 333.95021pt x 205.36882pt.
 
-<../figures/materials3_observables_RE_LR_last100_millionperiods.png, id=235, 11
+<../figures/materials3_observables_RE_LR_last100_millionperiods.png, id=155, 11
 13.15875pt x 685.56125pt>
 File: ../figures/materials3_observables_RE_LR_last100_millionperiods.png Graphi
 c file (type png)
 
 <use ../figures/materials3_observables_RE_LR_last100_millionperiods.png>
 Package pdftex.def Info: ../figures/materials3_observables_RE_LR_last100_millio
-nperiods.png used on input line 341.
+nperiods.png used on input line 340.
 (pdftex.def)             Requested size: 333.95021pt x 205.66995pt.
 
 [12 <../figures/materials3_observables_RE_LR_last100.png (PNG copy)> <../figure
 s/materials3_observables_RE_LR_last100_millionperiods.png (PNG copy)>]
-<../figures/materials3_observables_constant_last100_2millionperiods.png, id=242
+<../figures/materials3_observables_constant_last100_2millionperiods.png, id=162
 , 1101.11375pt x 684.5575pt>
 File: ../figures/materials3_observables_constant_last100_2millionperiods.png Gr
 aphic file (type png)
 
 <use ../figures/materials3_observables_constant_last100_2millionperiods.png>
 Package pdftex.def Info: ../figures/materials3_observables_constant_last100_2mi
-llionperiods.png used on input line 351.
+llionperiods.png used on input line 350.
 (pdftex.def)             Requested size: 330.33669pt x 205.36882pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 359.
+
+
+LaTeX Warning: Reference `PLM_fcst_general' on page 13 undefined on input line 
+356.
+
+
+LaTeX Warning: Reference `fafb_analytical_general' on page 13 undefined on inpu
+t line 362.
 
 [13 <../figures/materials3_observables_constant_last100_2millionperiods.png (PN
 G copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 359.
+<../figures/materials3_observables_constant_last100_1millionperiods.png, id=174
+, 1101.11375pt x 684.5575pt>
+File: ../figures/materials3_observables_constant_last100_1millionperiods.png Gr
+aphic file (type png)
+
+<use ../figures/materials3_observables_constant_last100_1millionperiods.png>
+Package pdftex.def Info: ../figures/materials3_observables_constant_last100_1mi
+llionperiods.png used on input line 377.
+(pdftex.def)             Requested size: 330.33669pt x 205.36882pt.
+
+
+LaTeX Warning: Reference `PLM_fcst_constant' on page 14 undefined on input line
+ 392.
+
+
+LaTeX Warning: Reference `fafb_analytical_constant' on page 14 undefined on inp
+ut line 392.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+[14 <../figures/materials3_observables_constant_last100_1millionperiods.png (PN
+G copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
  (./materials3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 359.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 359.
-Package rerunfilecheck Info: File `materials3.out' has not changed.
-(rerunfilecheck)             Checksum: 8CEB5791D1FC4A464412D9A6BF3B6D2F;845.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 359.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 403.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
+
+
+Package rerunfilecheck Warning: File `materials3.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `materials3.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  21CD076B2EB5337BD7C90C00DC59AB0E;897.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 403.
  ) 
 Here is how much of TeX's memory you used:
- 10197 strings out of 493089
- 153919 string characters out of 6134842
- 276981 words of memory out of 5000000
- 13414 multiletter control sequences out of 15000+600000
+ 10198 strings out of 493089
+ 154193 string characters out of 6134842
+ 267912 words of memory out of 5000000
+ 13408 multiletter control sequences out of 15000+600000
  15126 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,39p,616b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,21n,39p,629b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -765,10 +857,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials3.pdf (13 pages, 918903 bytes).
+Output written on materials3.pdf (14 pages, 1009331 bytes).
 PDF statistics:
- 334 PDF objects out of 1000 (max. 8388607)
- 286 compressed objects within 3 object streams
- 98 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 275 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 112 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

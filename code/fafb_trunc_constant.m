@@ -1,4 +1,4 @@
-function [fa, fb] = fafb_trunc_constant(param, set, a, s, H)
+function [fa, fb] = fafb_trunc_constant(param, set, a, b, s, H)
 % H is the horizon to which we're truncating here
 % 17 Sept 2019
 
@@ -24,7 +24,7 @@ SIG = eye(n).*[sig_r, sig_i, sig_u]';
 Ea = zeros(n,H); % alph-bet discounted expectations
 Eb = zeros(n,H); % bet discounted expectations
 for h=1:H
-    Ezh = Ez_h_constant(param, set, a, s, h);
+    Ezh = Ez_h_constant(param, set, a, b, s, h);
     Ea(:,h) = (alph*bet)^(h-1) * Ezh;
     Eb(:,h) = (bet)^(h-1) * Ezh;
 end

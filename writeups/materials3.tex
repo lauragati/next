@@ -21,7 +21,6 @@
 \usepackage[capposition=top]{floatrow}
 \usepackage{amssymb}
 
-
 \def \myFigPath {../figures/} 
 % BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
 \def \myTablePath {../tables/} 
@@ -113,7 +112,7 @@ bottom=1in}
 The difference between these models is 1) in the expectations (rational or not), 2) in the number of horizons of expectations that need to be summed (1 vs. infinite). So what I'm going to do consists of 2 steps: 
 \begin{enumerate}
 \item Write a learning rule that takes the form of Preston's, but that nests CEMP, and has a decreasing gain.
-\item Write out $f_a$ and $f_b$ as truncated sums of $h$-period ahead forecasts. When $h=1$, EE and LR (models (\ref{LOM_EE}) and (\ref{LOM_LR})) should coincide.
+\item Write out $f_a$ and $f_b$ as truncated sums of $h$-period ahead forecasts. When $h=1$, EE and LR (models (\ref{LOM_EE}) and (\ref{LOM_LR})) should coincide. (Actually - maybe they shouldn't. See later.)
 \end{enumerate}
 
 \subsection{RE}
@@ -134,7 +133,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\tag{Preston, eq. (19)} \label{prestons19}  \\
 i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)} 
 \end{align}
-One issue is that if I set $T=t$, I don't think \ref{prestons18} reduces to \ref{prestons13}, nor does \ref{prestons19} reduce to \ref{prestons14}.
+One issue is that if I set $T=t$, I don't think \ref{prestons18} reduces to \ref{prestons13}, nor does \ref{prestons19} reduce to \ref{prestons14}. But actually, maybe I shouldn't expect them to reduce to the EE learning equations. Why not? Because, as Preston stresses, the EE approach not only neglects future state variables that individuals find relevant to their decision (future wealth) but also imposes equilibrium conditions that agents wouldn't know (market clearing). Therefore if I subtract the $\infty$-future element, the element of equilibrium conditions remains as a difference.
  \section{Compact notation}
 Exogenous states are summarized as:
  \begin{align*}
@@ -238,12 +237,12 @@ And a note: CEMP is a special case of this model, with the gain switching betwee
 \subsection{RE}
 With some abuse of terminology, call the state-space representation the ALM of the RE model:
 \begin{align}
-x_{t} & = hx \; x_{t-1} + \eta s_t \label{state_eq}\\
+x_{t} & = hx \; x_{t-1} + \eta e_t \label{state_eq}\\
 z_t & = gx \; x_t \label{obs_eq}
 \end{align}
 Then I can write the ``ALM" as
 \begin{align}
-z_t & = gx \; hx \; x_{t-1} + gx \; \eta s_t  \label{ALM_RE}
+z_t & = gx \; hx \; x_{t-1} + gx \; \eta e_t  \label{ALM_RE}
 \end{align}
 Since this ALM implies no constant, I initialize $\bar{z}_0$ as a $3\times1$ zero vector, and thus $\phi_0 = \begin{bmatrix} \bar{z}_0 & gx \; hx\end{bmatrix} $ (and $hx = P$ for the NK model). Analogously, I initialize $R$ as a $R_0 = \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & \Sigma_x \end{bmatrix}$, where $\Sigma_x$ is the VC matrix of the states from the RE solution. For the case where agents only learn the constant, I still initialize $\bar{z}_0$ as a $3\times1$ zero vector (and $R$ drops).
 \subsection{EE}
@@ -307,7 +306,7 @@ Takeaways:
 \begin{enumerate}
 \item EE learning converges to RE over time, confirming that it's correct. Does LR? It doesn't seem like it (at $T=100000$, it hasn't converged).
 \item LR analytical and truncated expectations coincide for a large enough horizon ($H \sim 10000$)
-\item Even for $H=1$, LR and EE don't coincide; I think this is because the equations do not map onto one another.
+\item Even for $H=1$, LR and EE don't coincide; I think this is because the equations do not map onto one another. As argued before, maybe they shouldn't either.
 \end{enumerate}
 
 \newpage
@@ -352,11 +351,58 @@ I don't believe it! They are converging ...! (Side note: here, max abs differenc
 \caption{All models, $T = 200000$, last 100 periods}
 \end{figure}
  
- As I feared, this doesn't look E-stable: even after 1 million periods, neither EE nor LR converges to the RE solution. And this is despite learning clearly converging: max abs differences in the constant are $<10^{-5}$. Or are they converging, just \emph{much} slower?
+ As I feared, this doesn't look E-stable: even after 1 million periods, neither EE nor LR converges to the RE solution. And this is despite learning clearly converging: max abs differences in the constant are $<10^{-5}$. Or are they converging, just \emph{much} slower? After 10 million periods, still not closer. So no.
  
- Maybe I need to change the PLM such that it nests the REE. If under RE CHECK wheth
+ Maybe I need to change the PLM such that it nests the REE. In other words, I can't set $b = I_3$, because that's not what the REE implies. Maybe I need to set $b=gx\;hx$, i.e. the value at which I initialized learning earlier. This means that the PLM, instead of (\ref{PLM_fcst_general}), is:
+ 
+ \begin{equation}
+\hat{\E}_t z_{t+h} = a_{t-1} + bP^{h-1}s_t  \quad \forall h\geq 1 \quad \text{and} \quad b=gx \; hx \label{PLM_fcst_constant}
+\end{equation}
+ 
+ and the LR expectations, instead of (\ref{fafb_analytical_general}), are given by
+ 
+ \begin{equation}
+f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + b(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + b(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_constant}
+\end{equation}
+ again with $b= gx\;hx$ and I'm using $a$ and $\bar{z}$ interchangagbly.
+ 
+ And the learning algorithm is:
+ \begin{equation}
+\bar{z}_{t} = \bar{z}_{t-1} +t^{-1}\big(z_{t} -(\bar{z}_{t-1}+bs_{t-1}) \big) \quad  \quad \quad b= gx\;hx \label{RLS_constant}
+\end{equation}
+ 
+ \newpage
+ When I do that, here's the last 100 periods for all three models that I get:
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_constant_last100_1millionperiods} 
+\caption{All models, $T = 100000$, last 100 periods}
+\end{figure}
+ Yay!
+ 
+ Ok, so where to go from here?
+
+\section{Adding anchoring}
+ \begin{enumerate}
+ \item Take the LR learning model where agents learn the constant only
+ \item Add CEMP's anchoring
+ \item As a first step, just compare dynamics with the decreasing gain LR learning model
+ \item As a second step, implement the ``learn only about 1 element'' formulation
+ \end{enumerate}
+
+So the PLM is still (\ref{PLM_fcst_constant}), LR expectations are still (\ref{fafb_analytical_constant}), but the learning algorithm modifies to
+ \begin{align}
+\bar{z}_{t} & = \bar{z}_{t-1} +k_t^{-1}\big(z_{t} -(\bar{z}_{t-1}+bs_{t-1}) \big) \quad  \quad \quad b= gx\;hx \label{RLS_anchoring} \\
+k_t &= \mathbb{I}(k_{t-1} +1) + (1-\mathbb{I})\bar{g}^{-1} \label{gain} \\
+\mathbb{I} & = \begin{cases} 1 \quad \text{if} \; \theta_t \leq \bar{\theta}  \\ 0 \quad \text{otherwise.}\\
+\end{cases} \\
+\theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t| / (\sigma_r + \sigma_i + \sigma_u) \label{criterion}
+\end{align}
+
+Let's evaluate the criterion $\theta_t (\sigma_r + \sigma_i + \sigma_u)$ for this PLM and ALM:
  
 \end{document}
+
+
 
 
 
