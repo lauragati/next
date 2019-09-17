@@ -397,9 +397,39 @@ k_t &= \mathbb{I}(k_{t-1} +1) + (1-\mathbb{I})\bar{g}^{-1} \label{gain} \\
 \end{cases} \\
 \theta_t & = |\hat{\E}_{t-1}z_t - \E_{t-1}z_t| / (\sigma_r + \sigma_i + \sigma_u) \label{criterion}
 \end{align}
+and I denote by the function $\mathbf{f_k}$ the anchoring mechanism given by (\ref{gain})-(\ref{criterion}).
 
 Let's evaluate the criterion $\theta_t (\sigma_r + \sigma_i + \sigma_u)$ for this PLM and ALM:
  
+ \begin{align*}
+ \hat{\E}_{t-1}z_t & =\bar{z}_{t-2} + b s_{t-1} \numberthis \label{subjexp} \\
+  \E_{t-1}z_t & = \bigg( A_a f_a + A_b f_b + A_s s_t\bigg) \\
+  & = \E_{t-1}\bigg( A_a \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + A_a b(I_3 - \alpha\beta P)^{-1}s_t 
+   +A_b \frac{1}{1-\beta}\bar{z}_{t-1}  + A_b b(I_3 - \beta P)^{-1}s_t  + A_s s_t\bigg) \\
+   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg) \E_{t-1}\bar{z}_{t-1}  
+   + \bigg( A_a b(I_3 - \alpha\beta P)^{-1}+ A_bb(I_3 - \beta P)^{-1}  +A_s\bigg) \E_{t-1}s_t \\
+   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg)\bar{z}_{t-2}  
+   + \bigg( A_a b(I_3 - \alpha\beta P)^{-1}+ A_bb(I_3 - \beta P)^{-1}  +A_s\bigg) Ps_{t-1} \numberthis \label{objexp}
+ \end{align*}
+So subtracting objective expectations (\ref{objexp}) from subjective ones (\ref{subjexp}), and taking absolute values gives us the criterion times noise:
+\begin{align*}
+\theta_t (\sigma_r + \sigma_i + \sigma_u) & = |\bigg(I_3 - A_a  \frac{1}{1-\alpha\beta}- A_b \frac{1}{1-\beta}  \bigg)\bar{z}_{t-2}  \\
+  & + \bigg(b - A_a b(I_3 - \alpha\beta P)^{-1}P- A_bb(I_3 - \beta P)^{-1}P  -A_sP\bigg) s_{t-1} |\numberthis
+\end{align*}
+There's still a timing issue: for the simulation, I take $\bar{z}_{t-1}$ instead of $\bar{z}_{t-1}$.
+Here is a simulation with $\bar{\theta} = 5$, still higher than CEMP's 0.029, but lower than 20 that I needed before to get decreasing gains. (3-4 seems to be the threshold value: for lower $\bar{\theta}$, gains are always constant). 
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_last100} 
+\caption{All models, $T = 500$, last 100 periods}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_gain} 
+\caption{Gains for the anchoring model}
+\end{figure}
+
 \end{document}
 
 

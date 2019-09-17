@@ -38,6 +38,9 @@ fs=20; % fontsize
 
 
 %% Simulation
+T = 500
+burnin = 0;
+
 [param, setp] = parameters_next;
 
 bet = param.bet;
@@ -60,10 +63,7 @@ P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
 tic
-T = 500;
-burnin = 0;
-% learning convergence tolerance
-tol= 1e-4;
+
 
 % Sequence of shocks
 rng(0)
@@ -152,6 +152,12 @@ V(:,:,1) =y_RE; % let's call em V for a change
 V(:,:,2) =y_EE_const;
 V(:,:,3) =y_LR_const;
 
+%% LR learning with anchoring
+% LR learning (only constant)
+anal = 1; % take analytical LR exp
+[x_LR_anchor, y_LR_anchor, ~, diff_anchor, zbar, k] = sim_learn_LR_anchoring(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal);
+k_inv = 1./k;
+V(:,:,4) =y_LR_anchor;
 %% Plots
 % Observables
 figure
@@ -159,10 +165,10 @@ set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 
 titles = {'Inflation','Output gap','Int. rate'};
-k=0;
+l=0;
 for j=1:ny
-    k = k+1;
-    subplot(1,ny,k)
+    l = l+1;
+    subplot(1,ny,l)
     plot(squeeze(Y(j,:,1)),'linewidth', 2); hold on
     plot(squeeze(Y(j,:,2)),'linewidth', 2)
     plot(squeeze(Y(j,:,3)),'linewidth', 2)
@@ -171,7 +177,7 @@ for j=1:ny
     grid on
     grid minor
     legend('RE', 'EE','LR')
-    title(titles(k))
+    title(titles(l))
 end
 if print_figs ==1
     figname = ['materials3_observables1']
@@ -189,10 +195,10 @@ if skip_this==0
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
     
     titles = {'Inflation','Output gap','Int. rate'};
-    k=0;
+    l=0;
     for j=1:ny
-        k = k+1;
-        subplot(2,ny,k)
+        l = l+1;
+        subplot(2,ny,l)
         plot(squeeze(Z(j,:,1)),'linewidth', 2); hold on
         plot(squeeze(Z(j,:,2)),'linewidth', 2, 'linestyle', '--')
         plot(squeeze(Z(j,:,3)),'linewidth', 2)
@@ -201,8 +207,8 @@ if skip_this==0
         grid on
         grid minor
         legend('LR analytical', 'H = 10000','H = 100', 'location', 'best')
-        title(titles(k))
-        subplot(2,ny,k+3)
+        title(titles(l))
+        subplot(2,ny,l+3)
         %     plot(squeeze(Z(j,:,3)),'linewidth', 2)
         plot(squeeze(Z(j,:,4)),'linewidth', 2); hold on
         plot(squeeze(Z(j,:,5)),'linewidth', 2)
@@ -211,7 +217,7 @@ if skip_this==0
         grid on
         grid minor
         legend('H = 1', 'EE', 'location', 'best')
-        title(titles(k))
+        title(titles(l))
     end
     if print_figs ==1
         figname = ['materials3_horizons']
@@ -246,10 +252,10 @@ figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 plot(diff,'linewidth', 2)
-k=0;
+l=0;
 for j=1:ny
-    k = k+1;
-    subplot(1,ny,k)
+    l = l+1;
+    subplot(1,ny,l)
     plot(squeeze(Y(j,end-100:end,1)),'linewidth', 2); hold on
     plot(squeeze(Y(j,end-100:end,3)),'linewidth', 2)
     ax = gca; % current axes
@@ -257,7 +263,7 @@ for j=1:ny
     grid on
     grid minor
     legend('RE','LR', 'location', 'best')
-    title(titles(k))
+    title(titles(l))
 end
 if print_figs ==1
     figname = ['materials3_observables_RE_LR_last100']
@@ -275,10 +281,10 @@ set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 
 titles = {'Inflation','Output gap','Int. rate'};
-k=0;
+l=0;
 for j=1:ny
-    k = k+1;
-    subplot(1,ny,k)
+    l = l+1;
+    subplot(1,ny,l)
     plot(squeeze(V(j,end-100:end,1)),'linewidth', 2); hold on
     plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
     plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
@@ -287,7 +293,7 @@ for j=1:ny
     grid on
     grid minor
     legend('RE', 'EE','LR')
-    title(titles(k))
+    title(titles(l))
 end
 if print_figs ==1
     figname = ['materials3_observables_constant_last100']
@@ -298,6 +304,119 @@ if print_figs ==1
 end
 % close
 
+% Max abs differences in phi, LR learning
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(diff_const,'linewidth', 2)
+ylim([0, 0.05])
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('Maximum absolute differences in constant, LR model')
+if print_figs ==1
+    figname = ['materials3_diffs_LR']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+close
+
+
+close all
+% the anchoring plots
+% observables
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(squeeze(V(j,:,1)),'linewidth', 2); hold on
+    plot(squeeze(V(j,:,2)),'linewidth', 2)
+    plot(squeeze(V(j,:,3)),'linewidth', 2)
+    plot(squeeze(V(j,:,4)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE', 'EE','LR', 'LR anchoring')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_last100']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+% close
+
+
+% last 100
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(squeeze(V(j,end-100:end,1)),'linewidth', 2); hold on
+    plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,4)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE', 'EE','LR', 'LR anchoring')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_last100']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+% close
+
+% Gains
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(k_inv(ny),'linewidth', 2); hold on
+    plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,4)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE', 'EE','LR', 'LR anchoring')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_last100']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+% close
 
 toc
 
