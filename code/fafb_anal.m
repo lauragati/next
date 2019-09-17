@@ -27,5 +27,5 @@ b = phi(:,2:end);
 % fb = 1/(1-bet)*a + P*(eye(n)-bet*P)^(-1)*s;
 
 % without P
-fa = 1/(1-alph*bet)*a + b*(eye(n)-alph*bet*P)^(-1)*s;
-fb = 1/(1-bet)*a + b*(eye(n)-bet*P)^(-1)*s;
+fa = a/(1-alph*bet) + b*(eye(n)-alph*bet*P)^(-1)*s;
+fb = a/(1-bet) + b*(eye(n)-bet*P)^(-1)*s;

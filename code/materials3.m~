@@ -59,8 +59,7 @@ n = 3; % fortunately, this is the dimension of everything
 P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
-tic
-T = 2000000;
+T = 1000000;
 burnin = 0;
 % learning convergence tolerance
 tol= 1e-4;
@@ -245,11 +244,9 @@ for j=1:ny
     title(titles(k))
 end
 if print_figs ==1
-    figname = ['materials3_observables_RE_LR_last100']
+    figname = ['materials3_observables_RE_LR_last100_millionperi']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close
 end
-
-toc

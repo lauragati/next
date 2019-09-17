@@ -3,7 +3,7 @@
 % different.
 % 15 sept 2019
 
-function [xsim, ysim, shock] = sim_learn_LR(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H)
+function [xsim, ysim, shock, diff] = sim_learn_LR(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal)
 
 ny = size(gx,1);
 nx = size(hx,1);
@@ -16,6 +16,8 @@ gl = [zeros(ny,1) gx*hx];
 [~,sigx] = mom(gx,hx,eta*eta');
 R = eye(nx+1); R(2:end,2:end) = sigx;
 
+diff = zeros(T,1);
+diff(1) = nan;
 %Simulate, with learning
 for t = 1:T-1
     
@@ -24,10 +26,11 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
-        [fa_anal, fb_anal] = fafb_anal(param, setp, gl, xsim(:,t));
-        [fa_trunc, fb_trunc] = fafb_trunc(param, setp, gl, xsim(:,t), H); 
-        fa = fa_anal;
-        fb = fb_anal;
+        if anal ==1
+        [fa, fb] = fafb_anal(param, setp, gl, xsim(:,t));
+        else
+        [fa, fb] = fafb_trunc(param, setp, gl, xsim(:,t), H); 
+        end
         
         %Solve for current states
         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
@@ -37,10 +40,16 @@ for t = 1:T-1
         R = R + t^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);
         gl = (gl' + t^(-1)*(R\([1;xsim(:,t-1)]*(ysim(:,t)-gl*[1;xsim(:,t-1)])')))';
         
+        % check convergence
+        diff(t) = max(max(abs(gl - glt_1)));
+        
     end
     
     %Simulate transition with shock
     xsim(:,t+1) = xesim + eta*e(:,t+1);
+    
+    % generate an old phi, to check convergence
+    glt_1 = gl;
 end
 
 %Last period observables.

@@ -136,7 +136,7 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)}
 \end{align}
 One issue is that if I set $T=t$, I don't think \ref{prestons18} reduces to \ref{prestons13}, nor does \ref{prestons19} reduce to \ref{prestons14}.
  \section{Compact notation}
-Innovations are summarized as:
+Exogenous states are summarized as:
  \begin{align*}
  s_t & = P s_{t-1} + \epsilon_t 
  \quad \text{where} \quad 
@@ -160,7 +160,7 @@ z_t & = A_p^{RE} \hat{\E}_t z_{t+1} + A_s^{RE} s_t \label{LOM_EE} \\
 z_t & = A_a^{LR} f_a + A_b^{LR} f_b + A_s^{LR} s_t \label{LOM_LR} \\
 s_t & = P s_{t-1} + \epsilon_t \label{exog}
 \end{align}
- where $f_a$ and $f_b$ capture discounted sum of expectations at all horizons of the endogenous states $z$ (following Preston, I refer to these objects as ``long-run expectations''):
+ where $f_a$ and $f_b$ capture discounted sums of expectations at all horizons of the endogenous states $z$ (following Preston, I refer to these objects as ``long-run expectations''):
   \begin{align}
 f_a  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
 \end{align}
@@ -199,30 +199,35 @@ which I suspect isn't precise about the timing. Therefore, I write a general PLM
 \begin{equation}
 z_t = a_{t-2} + b_{t-2} s_{t-1} + \epsilon_t \quad  \label{generalPLM}
 \end{equation}
-and then $\phi_{t-2} = (a_{t-2}, b_{t-2})$, here $3\times4$, so that agents learn both a constant and a slope term. Later, I will simplify here so that agents only learn about the constant, i.e. about CEMP's drift term:
+and then $\phi_{t-2} = (a_{t-2}, b_{t-2})$, here $3\times4$, so that agents learn both a constant and a slope term. This means $\hat{\E}_t z_{t+1} = \phi_{t-1}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} $. Later, I will simplify here so that agents only learn about the constant, i.e. about CEMP's drift term, but forecast exogenous states rationally:
 \begin{equation}
-z_t = \bar{z}_{t-2} + Ps_{t-1} + \epsilon_t \label{PLM}  
+z_t = \bar{z}_{t-2} + s_{t-1} + \epsilon_t \label{PLM}  
 \end{equation}
-so that $\phi_{t-2} = (\bar{z}_{t-2}, I_3)$, and $\hat{\E}_t z_{t+1} = \phi_{t-1}\begin{bmatrix} 1 \\ Ps_{t} \end{bmatrix} $. I'm actually quite worried about the assumption that agents only learn about the constant because it seems like a permanent deviation from RE: might it screw up E-stability? I'm also worried about the way $P$ is treated in Preston. I've added it, because I think it makes sense that at time $t-1$, you expect $s_t$ to be $Ps_{t-1}$. Or is it the case that the learning of the slope embodies $P$? I don't think so, because agents know the structure of exogenous states.
+so that $\phi_{t-2} = (\bar{z}_{t-2}, I_3)$. I'm actually quite worried about the assumption that agents only learn about the constant because it seems like a permanent deviation from RE: might it screw up E-stability? 
 
 Anticipated utility implies that
 \begin{equation}
 \hat{\E}_{t-1}{\phi_{t+h}} = \hat{\E}_{t-1}{\phi_{t}} \equiv \phi_{t-1} \quad \forall \; h\geq0 
 \end{equation}
 This is a little tricky. It doesn't only mean that agents today mistakenly believe that they will not update the forecasting rule. It also implies that the belief about $\phi_t$ was formed at $t-1$.
-Assuming RE about the exogenous process and anticipated utility, this implies that $h$-horizon forecasts are constructed as:
+Assuming RE about the exogenous process and anticipated utility, Preston writes that $h$-horizon forecasts are constructed as:
 \begin{equation}
-\hat{\E}_t z_{t+h} = \bar{z}_{t-1} + P^{h}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
+\hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
+\end{equation}
+Or, if I assume that agents don't learn the slope, 
+\begin{equation}
+\hat{\E}_t z_{t+h} = \bar{z}_{t-1} + P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
 \end{equation}
 and the regression coefficients are updated using (for now) a decreasing gain RLS algorithm:
 \begin{align}
-\phi_t  & = \phi_{t-1} + t^{-1} \mathbf{R_t^{-1}s_{t-1}}\bigg(z_{t-1} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg) \\
+\phi_t  & = \phi_{t-1} + t^{-1} \mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}\bigg(z_{t-1} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg) \\
 R_t &= R_{t-1} +  t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
 \end{align}
-$R_t$ is $4\times 4$ and $\phi_t$ is $3 \times 4$. Two questions:
+$R_t$ is $4\times 4$ and $\phi_t$ is $3 \times 4$. Three questions:
 \begin{enumerate}
-\item Can this formulation capture the special case that agents only learn about the constant?
-\item The bold $R_t^{-1}s_{t-1}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. 
+\item Can this formulation capture the special case that agents only learn about the constant? $\Leftrightarrow$ Should $\phi_t = \bar{z}_{t-1}$ or $\phi_t = (\bar{z}_{t-1}, I_3)$?
+\item The forecast error $z_{t-1} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $ has weird timing: I don't think agents ever carried out this forecast, because at time $t-2$, their forecast was $\hat{\E}_{t-2}z_{t-1}=\phi_{t-3}\begin{bmatrix} 1 \\ s_{t-2} \end{bmatrix}$. So the fcst $\phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $  seems to be $\hat{\E}_{t-1}z_{t-1}$, i.e. a forecast that they are just using to assess $\phi$, but never actually relied upon previously. Or?
+\item The bold $\mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. Why?
 \end{enumerate}
 And a note: CEMP is a special case of this model, with the gain switching between decreasing and constant according to the anchoring mechanism. I'm leaving that out for the time being. 
 
@@ -237,20 +242,21 @@ Then I can write the ``ALM" as
 \begin{align}
 z_t & = gx \; hx \; x_{t-1} + gx \; \eta s_t  \label{ALM_RE}
 \end{align}
-Since this ALM implies no constant, I initialize $\bar{z}_0$ as a $3\times1$ zero vector, and thus $\phi_0 = \begin{bmatrix} \bar{z}_0 & P\end{bmatrix} $ (and $P = I_3 \; hx$). Analogously, I initialize $R$ as a $R_0 = \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & \Sigma_x \end{bmatrix}$, where $\Sigma_x$ is the VC matrix of the states from the RE solution. 
+Since this ALM implies no constant, I initialize $\bar{z}_0$ as a $3\times1$ zero vector, and thus $\phi_0 = \begin{bmatrix} \bar{z}_0 & gx \; hx\end{bmatrix} $ (and $hx = P$ for the NK model). Analogously, I initialize $R$ as a $R_0 = \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & \Sigma_x \end{bmatrix}$, where $\Sigma_x$ is the VC matrix of the states from the RE solution. For the case where agents only learn the constant, I still think to initialize $\bar{z}_0$ as a $3\times1$ zero vector, but I am unsure of the rest.
 \subsection{EE}
 I just need to use (\ref{PLM_fcst}) to evaluate one-period ahead forecasts, and plug those into (\ref{LOM_EE}).
 
 \subsection{LR}
-Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst}), 
-\begin{equation}
-f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + P(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + P(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
-\end{equation}
-and plug them into (\ref{LOM_LR}). In the general case, where agents learn the slope too, $b_{t-1}$ replaces $P$ in the above expression:
+Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst_general}), 
 \begin{equation}
 f_a = \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_general}
 \end{equation}
-Alternatively I can evaluate each $h$-period forecast individually using (\ref{PLM_fcst}), and then sum $H$ of these terms, discounting appropriately. Earlier, it seemed that already a $H=100$ is not a bad approximation of $\infty$-horizons, but now that only holds for $f_a$. For $f_b$ to be accurate, I need at least $H=10000$. Why?
+
+and plug them into (\ref{LOM_LR}). In the case where agents only learn the constant:
+\begin{equation}
+f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + (I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + (I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
+\end{equation}
+Alternatively I can evaluate each $h$-period ahead forecast individually using (\ref{PLM_fcst_general}), and then sum $H$ of these terms, discounting appropriately. Earlier, it seemed that already a $H=100$ is not a bad approximation of $\infty$-horizons, but now that only holds for $f_a$. For $f_b$ to be accurate, I need at least $H=10000$. Why?
 
 
 
@@ -267,39 +273,76 @@ Alternatively I can evaluate each $h$-period forecast individually using (\ref{P
 \begin{enumerate}
 \item Simulate RE model $\checkmark$
 \item Simulate EE model where agents learn both slope and constant $\checkmark$
-In this case, expectations take the easier form:
-\begin{equation}
-\hat{\E}_t z_{t+h} = \phi_{t-1} \begin{bmatrix} 1 \\P^{h-1}s_t \end{bmatrix}  \quad \forall h\geq 1 \label{PLM_fcst_general}
-\end{equation}
 	\begin{itemize}
 	\item Simulate using the ``implicit ALM": rearranging the expectational matrix equation that underlies the solution to the model, you obtain the simulated observables $z_t$ without explicitly writing out the ALM $\checkmark$
 	\item Simulate using the ``explicit ALM", equation (\ref{LOM_EE}), plugging in expectations evaluated separately. $\checkmark$
 	\item[] The cool thing is: when I do the above two steps, I obtain the same simulated observables, so I know I'm doing it correctly.
  	\end{itemize}
-\item Simulate LR model where agents learn both slope and constant, extend horizons from 1 to infinity
+\item Simulate LR model where agents learn both slope and constant, extend horizons from 1 to $\infty$ $\checkmark$
 \item Simulate EE model where agents learn only the constant
 \item Simulate LR model where agents learn only the constant, extend horizons from 1 to infinity
 \end{enumerate}
 
-%%\newpage
-%\section{Two initial simulations}	
-%\begin{figure}[h!]
-%\subfigure[Observables 1]{
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables1}}
-%\subfigure[Nonlinear states 1]{
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states1}}
-%\subfigure[Observables 2]{
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_observables2}}
-%\subfigure[Nonlinear states 2]{
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials2_nonlin_states2}}
-%\end{figure}
+\newpage
+\section{Simulations}	
+\subsection{Learning slope and constant}
+\begin{figure}[h!]
+\subfigure[RE and EE models only, learning both slope and constant]{
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_EE_only}}
+\subfigure[RE, EE and LR models, learning both slope and constant, analytical expectations]{
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables1}}
+\caption{Comparing models}
+\end{figure}
 
+\newpage
+\begin{figure}[h!]
+\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_horizons}
+\caption{Comparing horizons}
+\end{figure}
 
+Takeaways:
+\begin{enumerate}
+\item EE learning converges to RE over time, confirming that it's correct. Does LR? It doesn't seem like it (at $T=100000$, it hasn't converged).
+\item LR analytical and truncated expectations coincide for a large enough horizon ($H \sim 10000$)
+\item Even for $H=1$, LR and EE don't coincide; I think this is because the equations do not map onto one another.
+\end{enumerate}
 
+\newpage
+So is it the case that learning isn't converging in the LR model? \\
+$\rightarrow$ No! It's clearly converging, albeit slowly, see next fig!
 
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_diffs_LR}
+\caption{Convergence LR learning}
+\end{figure}
 
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_diffs_LR_100000}
+\caption{Convergence LR learning, $T = 100000$}
+\end{figure}
 
+See: clearly converging!  \\
 
+... but, problematically...
+
+\newpage
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100}
+\caption{RE and LR models, $T = 100000$, last 100 periods}
+\end{figure}
+
+... the LR model observables clearly aren't converging to the RE model, not even after 100,000 simulated periods! \\
+But wait a second, look at what they're doing after a million periods...
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100_millionperiods}
+\caption{RE and LR models, $T = 100000$, last 100 periods}
+\end{figure}
+
+I don't believe it! They are converging ...! (Side note: here, max abs differences in $\phi$ are on the order of magnitude of $10^{-5}$.) After 2 million periods, they nearly overlap, but still not quite. (Diffs are at $10^{-6}$ now. That takes 4 min to run though!)
+
+\newpage
+\subsection{Learning constant only}
 
  
  

@@ -21,9 +21,6 @@ n = 3; % fortunately, this is the dimension of everything
 P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
-a = phi(:,1);
-b = phi(:,2:end);
-
 Ea = zeros(n,H); % alph-bet discounted expectations
 Eb = zeros(n,H); % bet discounted expectations
 for h=1:H

@@ -6,7 +6,10 @@
 \contentsline {section}{\numberline {3}Learning}{5}{section.3}
 \contentsline {section}{\numberline {4}ALMs}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}RE}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}EE}{6}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}LR}{6}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.2}EE}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}LR}{7}{subsection.4.3}
 \contentsline {section}{\numberline {5}Timeline in the learning models}{7}{section.5}
-\contentsline {section}{\numberline {6}Special cases towards general case: procedure}{7}{section.6}
+\contentsline {section}{\numberline {6}Special cases towards general case: procedure}{8}{section.6}
+\contentsline {section}{\numberline {7}Simulations}{9}{section.7}
+\contentsline {subsection}{\numberline {7.1}Learning slope and constant}{9}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Learning constant only}{13}{subsection.7.2}
