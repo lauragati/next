@@ -38,6 +38,9 @@ fs=20; % fontsize
 
 
 %% Simulation
+T = 500
+burnin = 0;
+
 [param, setp] = parameters_next;
 
 bet = param.bet;
@@ -60,10 +63,7 @@ P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
 tic
-T = 2000000;
-burnin = 0;
-% learning convergence tolerance
-tol= 1e-4;
+
 
 % Sequence of shocks
 rng(0)
@@ -137,6 +137,21 @@ if skip_this==0
     end
     Z(:,:,end+1) = y_EE;
 end
+
+%% Now do EE and LR when agents only learn the constant
+
+% EE learning, only constant
+[x_EE_const, y_EE_const] = sim_learn_EE_constant(gx,hx,SIG,T,burnin,e,Ap_RE, As_RE, param, setp);
+
+% LR learning (only constant)
+anal = 1; % take analytical LR exp
+[x_LR_const, y_LR_const, ~, diff_const] = sim_learn_LR_constant(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal);
+
+% Gather observables
+V(:,:,1) =y_RE; % let's call em V for a change
+V(:,:,2) =y_EE_const;
+V(:,:,3) =y_LR_const;
+
 %% Plots
 % Observables
 figure
@@ -251,5 +266,56 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+close all
+% make way for the constant-only plots
+
+% Observables - constant only
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+k=0;
+for j=1:ny
+    k = k+1;
+    subplot(1,ny,k)
+    plot(squeeze(V(j,end-100:end,1)),'linewidth', 2); hold on
+    plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE', 'EE','LR')
+    title(titles(k))
+end
+if print_figs ==1
+    figname = ['materials3_observables_constant_last100']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+% close
+
+% Max abs differences in phi, LR learning
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(diff_const,'linewidth', 2)
+ylim([0, 0.05])
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('Maximum absolute differences in constant, LR model')
+if print_figs ==1
+    figname = ['materials3_diffs_LR']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 toc
+

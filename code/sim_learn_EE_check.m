@@ -5,7 +5,7 @@
 % slope
 % 15 sept 2019
 
-function [xsim, ysim, shock] = sim_learn_EE_check(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e, Ap, As, param, set)
+function [xsim, ysim, shock] = sim_learn_EE_check(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e, Ap, As, param, setp)
 
 ny = size(gx,1);
 nx = size(hx,1);
@@ -26,8 +26,7 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
-        
-        Ezp = Ez_h_general(param, set, gl, xsim(:,t), 1);
+        Ezp = Ez_h_general(param, setp, gl, xsim(:,t), 1);
         yp_e = gl*[1; xsim(:,t)];
         yx = -[fy fxp]\(fyp*yp_e + fx*xsim(:,t));
         

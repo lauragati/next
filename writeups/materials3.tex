@@ -203,14 +203,14 @@ and then $\phi_{t-2} = (a_{t-2}, b_{t-2})$, here $3\times4$, so that agents lear
 \begin{equation}
 z_t = \bar{z}_{t-2} + s_{t-1} + \epsilon_t \label{PLM}  
 \end{equation}
-so that $\phi_{t-2} = (\bar{z}_{t-2}, I_3)$. I'm actually quite worried about the assumption that agents only learn about the constant because it seems like a permanent deviation from RE: might it screw up E-stability? 
+so that $\phi_{t-2} = \bar{z}_{t-2}$. I'm actually quite worried about the assumption that agents only learn about the constant because it seems like a permanent deviation from RE: might it screw up E-stability? 
 
 Anticipated utility implies that
 \begin{equation}
 \hat{\E}_{t-1}{\phi_{t+h}} = \hat{\E}_{t-1}{\phi_{t}} \equiv \phi_{t-1} \quad \forall \; h\geq0 
 \end{equation}
 This is a little tricky. It doesn't only mean that agents today mistakenly believe that they will not update the forecasting rule. It also implies that the belief about $\phi_t$ was formed at $t-1$.
-Assuming RE about the exogenous process and anticipated utility, Preston writes that $h$-horizon forecasts are constructed as:
+Assuming RE about the exogenous process and anticipated utility, $h$-horizon forecasts are constructed as:
 \begin{equation}
 \hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
 \end{equation}
@@ -220,14 +220,17 @@ Or, if I assume that agents don't learn the slope,
 \end{equation}
 and the regression coefficients are updated using (for now) a decreasing gain RLS algorithm:
 \begin{align}
-\phi_t  & = \phi_{t-1} + t^{-1} \mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}\bigg(z_{t-1} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg) \\
+\phi_t  & = \bigg( \phi_{t-1}' + t^{-1} \mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
 R_t &= R_{t-1} +  t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
 \end{align}
 $R_t$ is $4\times 4$ and $\phi_t$ is $3 \times 4$. Three questions:
 \begin{enumerate}
-\item Can this formulation capture the special case that agents only learn about the constant? $\Leftrightarrow$ Should $\phi_t = \bar{z}_{t-1}$ or $\phi_t = (\bar{z}_{t-1}, I_3)$?
-\item The forecast error $z_{t-1} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $ has weird timing: I don't think agents ever carried out this forecast, because at time $t-2$, their forecast was $\hat{\E}_{t-2}z_{t-1}=\phi_{t-3}\begin{bmatrix} 1 \\ s_{t-2} \end{bmatrix}$. So the fcst $\phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $  seems to be $\hat{\E}_{t-1}z_{t-1}$, i.e. a forecast that they are just using to assess $\phi$, but never actually relied upon previously. Or?
-\item The bold $\mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. Why?
+\item The forecast error $z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $ has weird timing: I don't think agents ever carried out this forecast, because at time $t-1$, their forecast was $\hat{\E}_{t-1}z_{t}=\phi_{t-2}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}$. So the fcst $\phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $  seems to be $\hat{\E}_{t}z_{t}$, i.e. a forecast that they are just using to assess $\phi$, but never actually relied upon previously (let's refer to this forecast as the ``assessment forecast''; really it's actually a nowcast). Or?
+\item The bold $\mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. Am I right in thinking that that's because in CEMP, agents only learn the constant, and so the data they use is 1 instead of $\begin{bmatrix} 1 \\ s_{t} \end{bmatrix}$, making $R_t = 1 \; \forall \;t$?
+\item Can this formulation capture the special case that agents only learn about the constant? $\Leftrightarrow$ Following up on the previous point, it seems to me that when agents learn only the constant, then $\phi_t = \bar{z}_{t-1}$ and the learning algorithm boils down to
+\begin{equation}
+\bar{z}_{t} = \bar{z}_{t-1} +t^{-1}\underbrace{\big(z_{t} -(\bar{z}_{t-1}+s_{t-1}) \big)}_{\text{fcst error given assessment fcst using (\ref{PLM_fcst})} }
+\end{equation}
 \end{enumerate}
 And a note: CEMP is a special case of this model, with the gain switching between decreasing and constant according to the anchoring mechanism. I'm leaving that out for the time being. 
 
@@ -242,9 +245,9 @@ Then I can write the ``ALM" as
 \begin{align}
 z_t & = gx \; hx \; x_{t-1} + gx \; \eta s_t  \label{ALM_RE}
 \end{align}
-Since this ALM implies no constant, I initialize $\bar{z}_0$ as a $3\times1$ zero vector, and thus $\phi_0 = \begin{bmatrix} \bar{z}_0 & gx \; hx\end{bmatrix} $ (and $hx = P$ for the NK model). Analogously, I initialize $R$ as a $R_0 = \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & \Sigma_x \end{bmatrix}$, where $\Sigma_x$ is the VC matrix of the states from the RE solution. For the case where agents only learn the constant, I still think to initialize $\bar{z}_0$ as a $3\times1$ zero vector, but I am unsure of the rest.
+Since this ALM implies no constant, I initialize $\bar{z}_0$ as a $3\times1$ zero vector, and thus $\phi_0 = \begin{bmatrix} \bar{z}_0 & gx \; hx\end{bmatrix} $ (and $hx = P$ for the NK model). Analogously, I initialize $R$ as a $R_0 = \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & \Sigma_x \end{bmatrix}$, where $\Sigma_x$ is the VC matrix of the states from the RE solution. For the case where agents only learn the constant, I still initialize $\bar{z}_0$ as a $3\times1$ zero vector (and $R$ drops).
 \subsection{EE}
-I just need to use (\ref{PLM_fcst}) to evaluate one-period ahead forecasts, and plug those into (\ref{LOM_EE}).
+I just need to use (\ref{PLM_fcst_general}) to evaluate one-period ahead forecasts (for constant-learning only, (\ref{PLM_fcst})), and plug those into (\ref{LOM_EE}).
 
 \subsection{LR}
 Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst_general}), 
@@ -252,11 +255,11 @@ Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcs
 f_a = \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_general}
 \end{equation}
 
-and plug them into (\ref{LOM_LR}). In the case where agents only learn the constant:
+and plug them into (\ref{LOM_LR}). In the case where agents only learn the constant I use (\ref{PLM_fcst}):
 \begin{equation}
 f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + (I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + (I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
 \end{equation}
-Alternatively I can evaluate each $h$-period ahead forecast individually using (\ref{PLM_fcst_general}), and then sum $H$ of these terms, discounting appropriately. Earlier, it seemed that already a $H=100$ is not a bad approximation of $\infty$-horizons, but now that only holds for $f_a$. For $f_b$ to be accurate, I need at least $H=10000$. Why?
+Alternatively I can evaluate each $h$-period ahead forecast individually using (\ref{PLM_fcst_general}), and then sum $H$ of these terms, discounting appropriately. Earlier, it seemed that already a $H=100$ is not a bad approximation of $\infty$-horizons, but now that only holds for $f_a$. For $f_b$ to be accurate, I need at least $H=10000$. Why? Does the fact that $\alpha\beta < \beta$ matter so much?
 
 
 
@@ -279,8 +282,8 @@ Alternatively I can evaluate each $h$-period ahead forecast individually using (
 	\item[] The cool thing is: when I do the above two steps, I obtain the same simulated observables, so I know I'm doing it correctly.
  	\end{itemize}
 \item Simulate LR model where agents learn both slope and constant, extend horizons from 1 to $\infty$ $\checkmark$
-\item Simulate EE model where agents learn only the constant
-\item Simulate LR model where agents learn only the constant, extend horizons from 1 to infinity
+\item Simulate EE model where agents learn only the constant $\checkmark$
+\item Simulate LR model where agents learn only the constant, extend horizons from 1 to infinity $\checkmark$
 \end{enumerate}
 
 \newpage
@@ -344,7 +347,14 @@ I don't believe it! They are converging ...! (Side note: here, max abs differenc
 \newpage
 \subsection{Learning constant only}
 
+ \begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_constant_last100_2millionperiods}
+\caption{All models, $T = 200000$, last 100 periods}
+\end{figure}
  
+ As I feared, this doesn't look E-stable: even after 1 million periods, neither EE nor LR converges to the RE solution. And this is despite learning clearly converging: max abs differences in the constant are $<10^{-5}$. Or are they converging, just \emph{much} slower?
+ 
+ Maybe I need to change the PLM such that it nests the REE. If under RE CHECK wheth
  
 \end{document}
 

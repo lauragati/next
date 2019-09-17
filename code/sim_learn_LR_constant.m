@@ -1,8 +1,9 @@
-% simulate data from learning model with Euler equation learning
-% here agents learn about the constant ONLY
-% 17 sept 2019
+% simulate data from learning model LR learning of both slope and constant
+% Based on the structure of sim_learn_EE_check, except expectations are
+% different.
+% 15 sept 2019
 
-function [xsim, ysim, shock,a] = sim_learn_EE_constant(gx,hx,eta,T,ndrop,e,Ap, As, param, setp)
+function [xsim, ysim, shock, diff,a] = sim_learn_LR_constant(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal)
 
 ny = size(gx,1);
 nx = size(hx,1);
@@ -13,7 +14,8 @@ xsim = zeros(nx,T);
 %Learning PLM matrices, just a constant. Using RE as default starting point. 
 a = zeros(ny,1);
 
-
+diff = zeros(T,1);
+diff(1) = nan;
 %Simulate, with learning
 for t = 1:T-1
     
@@ -22,19 +24,29 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
-        Ezp = Ez_h_constant(param, setp, a, xsim(:,t), 1);
+        if anal ==1
+        [fa, fb] = fafb_anal_constant(param, setp, a, xsim(:,t));
+        else
+        [fa, fb] = fafb_trunc_constant(param, setp, a, xsim(:,t), H); 
+        end
         
         %Solve for current states
-        ysim(:,t) = Ap*Ezp + As*xsim(:,t);
+        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
         xesim = hx*xsim(:,t);
       
-        %Update coefficients    
+         %Update coefficients    
         a = a + t^(-1)* (ysim(:,t)-(a + xsim(:,t-1)) );
+        
+        % check convergence
+        diff(t) = max(max(abs(a - at_1)));
         
     end
     
     %Simulate transition with shock
     xsim(:,t+1) = xesim + eta*e(:,t+1);
+    
+    % generate an old constant, to check convergence
+    at_1 = a;
 end
 
 %Last period observables.
