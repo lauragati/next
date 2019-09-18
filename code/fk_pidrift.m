@@ -1,4 +1,4 @@
-function k = fk(zbar, b, s, kt_1, param, setp, Aa, Ab, As)
+function k = fk_pidrift(zbar, b, s, kt_1, param, setp, Aa, Ab, As)
 bet = param.bet;  
 sig = param.sig;
 alph = param.alph;
@@ -21,6 +21,7 @@ SIG = eye(n).*[sig_r, sig_i, sig_u]';
 M1 = eye(n) - Aa/(1-alph*bet)-Ab/(1-bet);
 M2 = b - Aa*b*(eye(n)-alph*bet*P)*(-1)*P -Ab*b*(eye(n)-bet*P)^(-1)*P -As*P;
 thet = abs(M1*zbar + M2*s);
+thet = thet(1);
 I = thet <= thetbar*(sig_r + sig_i + sig_u);
 k = I.*(kt_1+1)+(1-I).*gbar^(-1);
 

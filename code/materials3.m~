@@ -153,11 +153,16 @@ V(:,:,2) =y_EE_const;
 V(:,:,3) =y_LR_const;
 
 %% LR learning with anchoring
-% LR learning (only constant)
 anal = 1; % take analytical LR exp
 [x_LR_anchor, y_LR_anchor, ~, diff_anchor, zbar, k] = sim_learn_LR_anchoring(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal);
 k_inv = 1./k;
 V(:,:,4) =y_LR_anchor;
+
+%% LR learning with anchoring, learning the inflation drift only
+anal = 1; % take analytical LR exp
+[x_LR_pidrift, y_LR_pidrift, ~, diff_pidrift, pibar, kd] = sim_learn_LR_anchoring_pidrift(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal);
+kd_inv = 1./kd;
+V(:,:,5) =y_LR_pidrift;
 %% Plots
 % Observables
 figure
@@ -349,13 +354,13 @@ for j=1:ny
     title(titles(l))
 end
 if print_figs ==1
-    figname = ['materials3_observables_anchoring_last100']
+    figname = ['materials3_observables_anchoring']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close
 end
-% close
+close
 
 
 % last 100
@@ -386,7 +391,7 @@ if print_figs ==1
     cd(current_dir)
     close
 end
-% close
+close
 
 % Gains
 figure
@@ -398,25 +403,105 @@ l=0;
 for j=1:ny
     l = l+1;
     subplot(1,ny,l)
-    plot(k_inv(ny),'linewidth', 2); hold on
-    plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
-    plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
-    plot(squeeze(V(j,end-100:end,4)),'linewidth', 2)
+    plot(k_inv(l,:),'linewidth', 2)
     ax = gca; % current axes
     ax.FontSize = fs;
     grid on
     grid minor
-    legend('RE', 'EE','LR', 'LR anchoring')
+    legend('Inverse gain')
     title(titles(l))
 end
 if print_figs ==1
-    figname = ['materials3_observables_anchoring_last100']
+    figname = ['materials3_observables_anchoring_gain']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close
 end
 % close
+
+close all
+% the learning inflation drift only graphs
+
+% last 100
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(squeeze(V(j,end-100:end,1)),'linewidth', 2); hold on
+    plot(squeeze(V(j,end-100:end,2)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,3)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,4)),'linewidth', 2)
+    plot(squeeze(V(j,end-100:end,5)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE', 'EE','LR', 'LR anchoring', 'LR anchoring with only \pi drift','location', 'southoutside')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_pidrift_last100']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+plot(kd_inv(1,:),'linewidth', 2)
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('Inverse gain')
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_pidrift_gain']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+close all
+
+% full sample, compare vector and scalar anchoring
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(squeeze(V(j,:,1)),'linewidth', 2); hold on
+    plot(squeeze(V(j,:,4)),'linewidth', 2)
+    plot(squeeze(V(j,:,5)),'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('RE','LR anchoring', 'LR anchoring with only \pi drift','location', 'southoutside')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = ['materials3_observables_anchoring_pidrift_last100_compare_anchoring']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
 
 toc
 

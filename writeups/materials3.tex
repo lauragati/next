@@ -101,18 +101,47 @@ bottom=1in}
 %\listoffigures
 
 \newpage
+
+\section{Special cases towards general case: agenda}
+\begin{enumerate}
+\item Simulate RE model $\checkmark$
+\item Simulate EE model where agents learn both slope and constant $\checkmark$
+	\begin{itemize}
+	\item Simulate using the ``implicit ALM": rearranging the expectational matrix equation that underlies the solution to the model, you obtain the simulated observables $z_t$ without explicitly writing out the ALM $\checkmark$
+	\item Simulate using the ``explicit ALM", equation (\ref{LOM_EE}), plugging in expectations evaluated separately. $\checkmark$
+	\item[] The cool thing is: when I do the above two steps, I obtain the same simulated observables, so I know I'm doing it correctly.
+ 	\end{itemize}
+\item Simulate LR model where agents learn both slope and constant, extend horizons from 1 to $\infty$ $\checkmark$
+\item Simulate EE model where agents learn only the constant $\checkmark$
+\item Simulate LR model where agents learn only the constant, extend horizons from 1 to infinity $\checkmark$
+\item Simulate LR model with anchoring $\checkmark$
+\item[]So far, they all converge to RE!
+\item Simulate LR model with anchoring, when agents only learn LR inflation
+\end{enumerate}
+
+\section{Timeline in the learning models}
+\begin{enumerate}
+\item[] \underline{$t=0$}: Initialize learning coefficients $\phi_{t-1} = \phi_0$ at the RE solution.
+\item[] For each $t$:
+\item Evaluate expectations $t+s$ (the one-period ahead, ($s=1$) or the full 1 to $\infty$-period ahead $(s=1,\dots, \infty)$) given $\phi_{t}$ and states dated $t$
+\item Evaluate ALM given expectations: ``today's observables are a function of expectations and today's state''
+\item Update learning: $\phi_{t+1}= $ RLS of $\phi_{t}$ and fcst error between today's data and yesterday's forecast
+\end{enumerate}
+
 \section{The models to be simulated}
 \begin{enumerate}
 \item Rational expectations NK model (RE)
 \item Euler equation approach learning NK model \`a la Bullard \& Mitra (2002)  (EE)
 \item LR expectations learning NK model \`a la Preston (2005)  (LR)
-\item (Eventually: LR expectations learning NK model \`a la Preston with anchoring \`a la CEMP)
+\item LR expectations learning NK model \`a la Preston with anchoring \`a la CEMP
+\item Same, but with agents only learning about the drift in inflation
 \end{enumerate}
 
-The difference between these models is 1) in the expectations (rational or not), 2) in the number of horizons of expectations that need to be summed (1 vs. infinite). So what I'm going to do consists of 2 steps: 
+The difference between these models is 1) in the expectations (rational or not), 2) in the number of horizons of expectations that need to be summed (1 vs. infinite) and 3) the gain dynamics. So what I'm going to do consists of 3 steps: 
 \begin{enumerate}
 \item Write a learning rule that takes the form of Preston's, but that nests CEMP, and has a decreasing gain.
 \item Write out $f_a$ and $f_b$ as truncated sums of $h$-period ahead forecasts. When $h=1$, EE and LR (models (\ref{LOM_EE}) and (\ref{LOM_LR})) should coincide. (Actually - maybe they shouldn't. See later.)
+\item Add variations: anchoring, and scalar anchoring
 \end{enumerate}
 
 \subsection{RE}
@@ -156,12 +185,12 @@ Exogenous states are summarized as:
  \begin{align}
 z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
 z_t & = A_p^{RE} \hat{\E}_t z_{t+1} + A_s^{RE} s_t \label{LOM_EE} \\
-z_t & = A_a^{LR} f_a + A_b^{LR} f_b + A_s^{LR} s_t \label{LOM_LR} \\
+z_t & = A_a^{LR} f_a(t) + A_b^{LR} f_b(t) + A_s^{LR} s_t \label{LOM_LR} \\
 s_t & = P s_{t-1} + \epsilon_t \label{exog}
 \end{align}
  where $f_a$ and $f_b$ capture discounted sums of expectations at all horizons of the endogenous states $z$ (following Preston, I refer to these objects as ``long-run expectations''):
   \begin{align}
-f_a  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
 \end{align}
 and the coefficient matrices are given by:
 \begin{align}
@@ -196,42 +225,41 @@ z_t = a_{t} + b_{t} s_{t} + \epsilon_t \quad  \tag{Preston, p. 101}
 \end{equation}
 which I suspect isn't precise about the timing. Therefore, I write a general PLM of the form
 \begin{equation}
-z_t = a_{t-2} + b_{t-2} s_{t-1} + \epsilon_t \quad  \label{generalPLM}
+z_t = a_{t-1} + b_{t-1} s_{t-1} + \epsilon_t \quad  \label{generalPLM}
 \end{equation}
-and then $\phi_{t-2} = (a_{t-2}, b_{t-2})$, here $3\times4$, so that agents learn both a constant and a slope term. This means $\hat{\E}_t z_{t+1} = \phi_{t-1}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} $. Later, I will simplify here so that agents only learn about the constant, i.e. about CEMP's drift term, but forecast exogenous states rationally:
+and then $\phi_{t-1} = (a_{t-1}, b_{t-1})$, here $3\times4$, so that agents learn both a constant and a slope term. This means $\hat{\E}_t z_{t+1} = \phi_{t}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} $. Later, I will simplify here so that agents only learn about the constant, i.e. about CEMP's drift term, but forecast exogenous states rationally:
 \begin{equation}
-z_t = \bar{z}_{t-2} + s_{t-1} + \epsilon_t \label{PLM}  
+z_t = \bar{z}_{t-1} + bs_{t-1} + \epsilon_t \label{PLM_constant}  
 \end{equation}
-so that $\phi_{t-2} = \bar{z}_{t-2}$. I'm actually quite worried about the assumption that agents only learn about the constant because it seems like a permanent deviation from RE: might it screw up E-stability? 
+so that $\phi_{t-1} = \bar{z}_{t-1}$. I was initially quite worried about the assumption that agents only learn about the constant because without properly defining the constant slope $b$, it becomes a permanent deviation from RE that screws up E-stability.
 
 Anticipated utility implies that
 \begin{equation}
 \hat{\E}_{t-1}{\phi_{t+h}} = \hat{\E}_{t-1}{\phi_{t}} \equiv \phi_{t-1} \quad \forall \; h\geq0 
 \end{equation}
-This is a little tricky. It doesn't only mean that agents today mistakenly believe that they will not update the forecasting rule. It also implies that the belief about $\phi_t$ was formed at $t-1$.
+This is a little tricky. It doesn't only mean that agents today mistakenly believe that they will not update the forecasting rule. It also implies that the belief about $\phi_t$ was formed at $t-1$. In other words, in the evening of period $t-1$, agents update $\phi$ to get the $\phi_t$ they will use in period $t$.
 Assuming RE about the exogenous process and anticipated utility, $h$-horizon forecasts are constructed as:
 \begin{equation}
-\hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
+\hat{\E}_t z_{t+h} = a_{t} + b_{t}P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
 \end{equation}
 Or, if I assume that agents don't learn the slope, 
 \begin{equation}
-\hat{\E}_t z_{t+h} = \bar{z}_{t-1} + P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
+\hat{\E}_t z_{t+h} = \bar{z}_{t} + bP^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
 \end{equation}
 and the regression coefficients are updated using (for now) a decreasing gain RLS algorithm:
 \begin{align}
 \phi_t  & = \bigg( \phi_{t-1}' + t^{-1} \mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
 R_t &= R_{t-1} +  t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
 \end{align}
-$R_t$ is $4\times 4$ and $\phi_t$ is $3 \times 4$. Three questions:
+$R_t$ is $4\times 4$ and $\phi_t$ is $3 \times 4$. Two questions:
 \begin{enumerate}
-\item The forecast error $z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $ has weird timing: I don't think agents ever carried out this forecast, because at time $t-1$, their forecast was $\hat{\E}_{t-1}z_{t}=\phi_{t-2}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}$. So the fcst $\phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} $  seems to be $\hat{\E}_{t}z_{t}$, i.e. a forecast that they are just using to assess $\phi$, but never actually relied upon previously (let's refer to this forecast as the ``assessment forecast''; really it's actually a nowcast). Or?
 \item The bold $\mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}$ indicates a difference to CEMP's learning algorithm: these terms are missing in CEMP. Am I right in thinking that that's because in CEMP, agents only learn the constant, and so the data they use is 1 instead of $\begin{bmatrix} 1 \\ s_{t} \end{bmatrix}$, making $R_t = 1 \; \forall \;t$?
-\item Can this formulation capture the special case that agents only learn about the constant? $\Leftrightarrow$ Following up on the previous point, it seems to me that when agents learn only the constant, then $\phi_t = \bar{z}_{t-1}$ and the learning algorithm boils down to
+\item Can this formulation capture the special case that agents only learn about the constant? $\Leftrightarrow$ Following up on the previous point, it seems to me that when agents learn only the constant, then $\phi_t = \bar{z}_{t}$ and the learning algorithm boils down to
 \begin{equation}
-\bar{z}_{t} = \bar{z}_{t-1} +t^{-1}\underbrace{\big(z_{t} -(\bar{z}_{t-1}+s_{t-1}) \big)}_{\text{fcst error given assessment fcst using (\ref{PLM_fcst})} }
+\bar{z}_{t} = \bar{z}_{t-1} +t^{-1}\underbrace{\big(z_{t} -(\bar{z}_{t-1}+s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM_fcst})} }
 \end{equation}
 \end{enumerate}
-And a note: CEMP is a special case of this model, with the gain switching between decreasing and constant according to the anchoring mechanism. I'm leaving that out for the time being. 
+And a note: CEMP is a special case of this model, with the gain switching between decreasing and constant according to the anchoring mechanism. 
 
 \section{ALMs}
 \subsection{RE}
@@ -251,39 +279,14 @@ I just need to use (\ref{PLM_fcst_general}) to evaluate one-period ahead forecas
 \subsection{LR}
 Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst_general}), 
 \begin{equation}
-f_a = \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_general}
+f_a(t) = \frac{1}{1-\alpha\beta}a_{t}  + b_{t}(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}a_{t}  + b_{t}(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_general}
 \end{equation}
 
 and plug them into (\ref{LOM_LR}). In the case where agents only learn the constant I use (\ref{PLM_fcst}):
 \begin{equation}
-f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + (I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + (I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
+f_a(t) = \frac{1}{1-\alpha\beta}\bar{z}_{t}  + b(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\bar{z}_{t}  + b(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
 \end{equation}
 Alternatively I can evaluate each $h$-period ahead forecast individually using (\ref{PLM_fcst_general}), and then sum $H$ of these terms, discounting appropriately. Earlier, it seemed that already a $H=100$ is not a bad approximation of $\infty$-horizons, but now that only holds for $f_a$. For $f_b$ to be accurate, I need at least $H=10000$. Why? Does the fact that $\alpha\beta < \beta$ matter so much?
-
-
-
-\section{Timeline in the learning models}
-\begin{enumerate}
-\item[] \underline{$t=0$}: Initialize $\phi_{t-1} = \phi_0$ at the RE solution.
-\item[] For each $t$:
-\item Evaluate expectations $t+s$ (the one-period ahead, ($s=1$) or the full 1 to $\infty$-period ahead $(s=1,\dots, \infty)$) given $\phi_{t-1}$ and states dated $t$
-\item Evaluate ALM given expectations: ``today's observables are a function of expectations and today's state''
-\item Update learning: $\phi_t = $ RLS of $\phi_{t-1}$ and fcst error between today's data and yesterday's forecast
-\end{enumerate}
-
-\section{Special cases towards general case: procedure}
-\begin{enumerate}
-\item Simulate RE model $\checkmark$
-\item Simulate EE model where agents learn both slope and constant $\checkmark$
-	\begin{itemize}
-	\item Simulate using the ``implicit ALM": rearranging the expectational matrix equation that underlies the solution to the model, you obtain the simulated observables $z_t$ without explicitly writing out the ALM $\checkmark$
-	\item Simulate using the ``explicit ALM", equation (\ref{LOM_EE}), plugging in expectations evaluated separately. $\checkmark$
-	\item[] The cool thing is: when I do the above two steps, I obtain the same simulated observables, so I know I'm doing it correctly.
- 	\end{itemize}
-\item Simulate LR model where agents learn both slope and constant, extend horizons from 1 to $\infty$ $\checkmark$
-\item Simulate EE model where agents learn only the constant $\checkmark$
-\item Simulate LR model where agents learn only the constant, extend horizons from 1 to infinity $\checkmark$
-\end{enumerate}
 
 \newpage
 \section{Simulations}	
@@ -325,25 +328,23 @@ $\rightarrow$ No! It's clearly converging, albeit slowly, see next fig!
 
 See: clearly converging!  \\
 
-... but, problematically...
-
+... but, are they converging to the RE observables?
 \newpage
 
-\begin{figure}[h!]
-\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100}
-\caption{RE and LR models, $T = 100000$, last 100 periods}
-\end{figure}
-
-... the LR model observables clearly aren't converging to the RE model, not even after 100,000 simulated periods! \\
-But wait a second, look at what they're doing after a million periods...
+%\begin{figure}[h!]
+%\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100}
+%\caption{RE and LR models, $T = 100000$, last 100 periods}
+%\end{figure}
+%
+%... the LR model observables clearly aren't converging to the RE model, not even after 100,000 simulated periods! \\
+Yes, after a million periods, they are ... !
 \begin{figure}[h!]
 \includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100_millionperiods}
 \caption{RE and LR models, $T = 100000$, last 100 periods}
 \end{figure}
 
-I don't believe it! They are converging ...! (Side note: here, max abs differences in $\phi$ are on the order of magnitude of $10^{-5}$.) After 2 million periods, they nearly overlap, but still not quite. (Diffs are at $10^{-6}$ now. That takes 4 min to run though!)
+Side note: here, max abs differences in $\phi$ are on the order of magnitude of $10^{-5}$.) After 2 million periods, they nearly overlap, but still not quite. (Diffs are at $10^{-6}$ now. That takes 4 min to run though!)
 
-\newpage
 \subsection{Learning constant only}
 
  \begin{figure}[h!]
@@ -351,18 +352,18 @@ I don't believe it! They are converging ...! (Side note: here, max abs differenc
 \caption{All models, $T = 200000$, last 100 periods}
 \end{figure}
  
- As I feared, this doesn't look E-stable: even after 1 million periods, neither EE nor LR converges to the RE solution. And this is despite learning clearly converging: max abs differences in the constant are $<10^{-5}$. Or are they converging, just \emph{much} slower? After 10 million periods, still not closer. So no.
+ As I feared, for $b=I_3$, this doesn't look E-stable: even after 1 million periods, neither EE nor LR converges to the RE solution. And this is despite learning clearly converging: max abs differences in the constant are $<10^{-5}$. Or are they converging, just \emph{much} slower? After 10 million periods, still not closer. So no.
  
- Maybe I need to change the PLM such that it nests the REE. In other words, I can't set $b = I_3$, because that's not what the REE implies. Maybe I need to set $b=gx\;hx$, i.e. the value at which I initialized learning earlier. This means that the PLM, instead of (\ref{PLM_fcst_general}), is:
+Therefore I change the PLM such that it nests the REE. In other words, I can't set $b = I_3$, because that's not what the REE implies. Instead, I set $b=gx\;hx$, i.e. the value at which I initialized learning earlier. This means that the PLM, instead of (\ref{PLM_fcst_general}), is:
  
  \begin{equation}
-\hat{\E}_t z_{t+h} = a_{t-1} + bP^{h-1}s_t  \quad \forall h\geq 1 \quad \text{and} \quad b=gx \; hx \label{PLM_fcst_constant}
+\hat{\E}_t z_{t+h} = a_{t} + bP^{h-1}s_t  \quad \forall h\geq 1 \quad \text{and} \quad b=gx \; hx \label{PLM_fcst_constant}
 \end{equation}
  
  and the LR expectations, instead of (\ref{fafb_analytical_general}), are given by
  
  \begin{equation}
-f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + b(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b = \frac{1}{1-\beta}\bar{z}_{t-1}  + b(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_constant}
+f_a(t) = \frac{1}{1-\alpha\beta}\bar{z}_{t}  + b(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\bar{z}_{t}  + b(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_constant}
 \end{equation}
  again with $b= gx\;hx$ and I'm using $a$ and $\bar{z}$ interchangagbly.
  
@@ -371,7 +372,6 @@ f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + b(I_3 - \alpha\beta P)^{-1}s_t \qu
 \bar{z}_{t} = \bar{z}_{t-1} +t^{-1}\big(z_{t} -(\bar{z}_{t-1}+bs_{t-1}) \big) \quad  \quad \quad b= gx\;hx \label{RLS_constant}
 \end{equation}
  
- \newpage
  When I do that, here's the last 100 periods for all three models that I get:
 \begin{figure}[h!]
 \includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_constant_last100_1millionperiods} 
@@ -379,8 +379,6 @@ f_a = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + b(I_3 - \alpha\beta P)^{-1}s_t \qu
 \end{figure}
  Yay!
  
- Ok, so where to go from here?
-
 \section{Adding anchoring}
  \begin{enumerate}
  \item Take the LR learning model where agents learn the constant only
@@ -400,35 +398,93 @@ k_t &= \mathbb{I}(k_{t-1} +1) + (1-\mathbb{I})\bar{g}^{-1} \label{gain} \\
 and I denote by the function $\mathbf{f_k}$ the anchoring mechanism given by (\ref{gain})-(\ref{criterion}).
 
 Let's evaluate the criterion $\theta_t (\sigma_r + \sigma_i + \sigma_u)$ for this PLM and ALM:
- 
  \begin{align*}
- \hat{\E}_{t-1}z_t & =\bar{z}_{t-2} + b s_{t-1} \numberthis \label{subjexp} \\
-  \E_{t-1}z_t & = \bigg( A_a f_a + A_b f_b + A_s s_t\bigg) \\
-  & = \E_{t-1}\bigg( A_a \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + A_a b(I_3 - \alpha\beta P)^{-1}s_t 
-   +A_b \frac{1}{1-\beta}\bar{z}_{t-1}  + A_b b(I_3 - \beta P)^{-1}s_t  + A_s s_t\bigg) \\
-   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg) \E_{t-1}\bar{z}_{t-1}  
+ \hat{\E}_{t-1}z_t & =\bar{z}_{t-1} + b s_{t-1} \numberthis \label{subjexp} \\
+  \E_{t-1}z_t & = \bigg( A_a f_a(t) + A_b f_b(t) + A_s s_t\bigg) \\
+  & = \E_{t-1}\bigg( A_a \frac{1}{1-\alpha\beta}\bar{z}_{t}  + A_a b(I_3 - \alpha\beta P)^{-1}s_t 
+   +A_b \frac{1}{1-\beta}\bar{z}_{t}  + A_b b(I_3 - \beta P)^{-1}s_t  + A_s s_t\bigg) \\
+   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg) \E_{t-1}\bar{z}_{t}  
    + \bigg( A_a b(I_3 - \alpha\beta P)^{-1}+ A_bb(I_3 - \beta P)^{-1}  +A_s\bigg) \E_{t-1}s_t \\
-   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg)\bar{z}_{t-2}  
+   & = \bigg(A_a  \frac{1}{1-\alpha\beta}+ A_b \frac{1}{1-\beta}  \bigg)\underbrace{\bar{z}_{t-1}}_{\text{discuss!}}  
    + \bigg( A_a b(I_3 - \alpha\beta P)^{-1}+ A_bb(I_3 - \beta P)^{-1}  +A_s\bigg) Ps_{t-1} \numberthis \label{objexp}
  \end{align*}
+This relies on the assumption that
+\begin{equation}
+ \E_{t-1}\bar{z}_{t}   = \bar{z}_{t-1}  \label{ass}
+\end{equation}
+Is this an ok assumption?
+
 So subtracting objective expectations (\ref{objexp}) from subjective ones (\ref{subjexp}), and taking absolute values gives us the criterion times noise:
 \begin{align*}
-\theta_t (\sigma_r + \sigma_i + \sigma_u) & = |\bigg(I_3 - A_a  \frac{1}{1-\alpha\beta}- A_b \frac{1}{1-\beta}  \bigg)\bar{z}_{t-2}  \\
-  & + \bigg(b - A_a b(I_3 - \alpha\beta P)^{-1}P- A_bb(I_3 - \beta P)^{-1}P  -A_sP\bigg) s_{t-1} |\numberthis
+\theta_t (\sigma_r + \sigma_i + \sigma_u) & = |\bigg(I_3 - A_a  \frac{1}{1-\alpha\beta}- A_b \frac{1}{1-\beta}  \bigg)\bar{z}_{t-1}  \\
+  & + \bigg(b - A_a b(I_3 - \alpha\beta P)^{-1}P- A_bb(I_3 - \beta P)^{-1}P  -A_sP\bigg) s_{t-1} |\numberthis \label{criterion_final}
 \end{align*}
-There's still a timing issue: for the simulation, I take $\bar{z}_{t-1}$ instead of $\bar{z}_{t-1}$.
 Here is a simulation with $\bar{\theta} = 5$, still higher than CEMP's 0.029, but lower than 20 that I needed before to get decreasing gains. (3-4 seems to be the threshold value: for lower $\bar{\theta}$, gains are always constant). 
 
 \begin{figure}[h!]
 \includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_last100} 
 \caption{All models, $T = 500$, last 100 periods}
 \end{figure}
-
-
+\newpage
 \begin{figure}[h!]
 \includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_gain} 
 \caption{Gains for the anchoring model}
 \end{figure}
+
+\newpage
+\section{Learning about LR inflation only}
+ Let the model still be given by equation (\ref{LOM_LR}). But now assume that agents use the following PLM to forecast:
+ \begin{equation}
+ \hat{\E}_{t}z_{t+1} =  \begin{bmatrix} \bar{\pi}_{t} \\ 0 \\ \xi \label{PLM_pibar}
+ \end{bmatrix} + b_1 s_t 
+ \end{equation}
+where $b_1$ is the first row of $b$. Equation (\ref{PLM_pibar}) reflects that agents know that the output gap doesn't have a drift, but they think that inflation does. What I'm unsure about is what I should assume for what agents think about the drift in interest rates, $\xi$. Two options:
+\begin{itemize}
+\item $\xi = 0$, agents also know that there's no drift in interest rates;
+\item $\xi = \bar{\pi}$, agents think interest rates will share the inflation drift.  %\psi_{\pi}\bar{\pi}$
+\end{itemize}
+For now I'll go with the first option. 
+
+Agents estimate the inflation drift using the CEMP anchoring mechanism, but now in its scalar form, the way it was designed by CEMP. Thus the criterion $\theta_t$ of equation (\ref{criterion}) will now just be the first element of the old $\theta_t$ in (\ref{criterion_final}). 
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_pidrift_gain} 
+\caption{Gains for the anchoring model, inflation drift only}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100} 
+\caption{All models, $T = 500$, full sample}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100_compare_anchoring} 
+\caption{RE vs the vector and scalar LR anchoring models, $T = 500$, last 100 periods}
+\end{figure}
+\newpage
+\subsection{What I've learned so far:} 
+\begin{itemize}
+\item The more things there is to learn, the slower the convergence to RE
+\begin{itemize}
+\item Learning slope and intercept converges slower than just intercept, c.p.
+\end{itemize}
+\item LR expectations make convergence to RE slower and transition more volatile if agents learn slope and constant
+\begin{itemize}
+\item As I add more and more period-ahead forecasts, convergence becomes slower as the economy is initially extremely volatile, so that the ALM is far from the RE solution.
+\item This result reverses if agents are only learning the intercept. I think I see why: because the bulk of their LR expectations are still going to be correct then. (``A bigger fraction of their expectation will be the correct (slope) part, and the intercept will count to a smaller fraction.'')
+\end{itemize}
+\item Anchoring seems to improve the performance of the LR model, you converge faster. 
+\begin{itemize}
+\item I was expecting the opposite, and maybe that is true as well if you spend more time being deanchored. 
+\end{itemize}
+\item Having intercepts in the learning rule for inflation only vs. all the variables doesn't seem to matter much.
+\begin{itemize}
+\item I expected the ``scalar anchoring'' specification to have faster convergence, or at least less volatility in the transition than the ``vector anchoring'' counterpart because the PLM is closer to the RE solution to start with. But I don't see a lot of that.
+\end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
 

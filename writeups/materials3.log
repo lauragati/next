@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 SEP 2019 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 SEP 2019 16:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -626,110 +626,100 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (2.44633pt too wide) in paragraph at lines 149--149
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
+
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
+
+[2] [3]
+Overfull \hbox (2.44633pt too wide) in paragraph at lines 178--178
 [] 
  []
 
-[3] [4] [5
+[4] [5] [6
 
-pdfTeX warning (ext4): destination with the same identifier (name{equation.3.20
+pdfTeX warning (ext4): destination with the same identifier (name{equation.5.20
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.224 \end{align}
-                 ] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 279.
-
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 279.
- [8]
-<../figures/materials3_observables_RE_EE_only.png, id=210, 1107.13625pt x 684.5
+l.253 \end{align}
+                 ] [7] [8]
+<../figures/materials3_observables_RE_EE_only.png, id=223, 1107.13625pt x 684.5
 575pt>
 File: ../figures/materials3_observables_RE_EE_only.png Graphic file (type png)
  <use ../figures/materials3_observables_RE_EE_only.png>
 Package pdftex.def Info: ../figures/materials3_observables_RE_EE_only.png used 
-on input line 293.
+on input line 296.
 (pdftex.def)             Requested size: 332.14343pt x 205.36882pt.
 
-<../figures/materials3_observables1.png, id=211, 1126.2075pt x 684.5575pt>
+<../figures/materials3_observables1.png, id=224, 1126.2075pt x 684.5575pt>
 File: ../figures/materials3_observables1.png Graphic file (type png)
 
 <use ../figures/materials3_observables1.png>
 Package pdftex.def Info: ../figures/materials3_observables1.png used on input l
-ine 295.
+ine 298.
 (pdftex.def)             Requested size: 337.86487pt x 205.36882pt.
  [9 <../figures/materials3_observables_RE_EE_only.png (PNG copy)> <../figures/m
 aterials3_observables1.png (PNG copy)>] <../figures/materials3_horizons.png, id
-=221, 1126.2075pt x 685.56125pt>
+=234, 1126.2075pt x 685.56125pt>
 File: ../figures/materials3_horizons.png Graphic file (type png)
 
 <use ../figures/materials3_horizons.png>
 Package pdftex.def Info: ../figures/materials3_horizons.png used on input line 
-301.
+304.
 (pdftex.def)             Requested size: 450.47502pt x 274.21964pt.
  [10 <../figures/materials3_horizons.png (PNG copy)>]
-<../figures/materials3_diffs_LR.png, id=230, 1137.24875pt x 684.5575pt>
+<../figures/materials3_diffs_LR.png, id=243, 1137.24875pt x 684.5575pt>
 File: ../figures/materials3_diffs_LR.png Graphic file (type png)
 
 <use ../figures/materials3_diffs_LR.png>
 Package pdftex.def Info: ../figures/materials3_diffs_LR.png used on input line 
-317.
+320.
 (pdftex.def)             Requested size: 341.17726pt x 205.36882pt.
 
-<../figures/materials3_diffs_LR_100000.png, id=231, 1132.23pt x 716.6775pt>
+<../figures/materials3_diffs_LR_100000.png, id=244, 1132.23pt x 716.6775pt>
 File: ../figures/materials3_diffs_LR_100000.png Graphic file (type png)
 
 <use ../figures/materials3_diffs_LR_100000.png>
 Package pdftex.def Info: ../figures/materials3_diffs_LR_100000.png used on inpu
-t line 322.
+t line 325.
 (pdftex.def)             Requested size: 339.67162pt x 215.00491pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
 
  []
 
 [11 <../figures/materials3_diffs_LR.png (PNG copy)> <../figures/materials3_diff
 s_LR_100000.png (PNG copy)>]
-<../figures/materials3_observables_RE_LR_last100.png, id=239, 1124.2pt x 684.55
-75pt>
-File: ../figures/materials3_observables_RE_LR_last100.png Graphic file (type pn
-g)
- <use ../figures/materials3_observables_RE_LR_last100.png>
-Package pdftex.def Info: ../figures/materials3_observables_RE_LR_last100.png us
-ed on input line 333.
-(pdftex.def)             Requested size: 337.2626pt x 205.36882pt.
-
-<../figures/materials3_observables_RE_LR_last100_millionperiods.png, id=240, 11
+<../figures/materials3_observables_RE_LR_last100_millionperiods.png, id=252, 11
 13.15875pt x 685.56125pt>
 File: ../figures/materials3_observables_RE_LR_last100_millionperiods.png Graphi
 c file (type png)
 
 <use ../figures/materials3_observables_RE_LR_last100_millionperiods.png>
 Package pdftex.def Info: ../figures/materials3_observables_RE_LR_last100_millio
-nperiods.png used on input line 340.
+nperiods.png used on input line 342.
 (pdftex.def)             Requested size: 333.95021pt x 205.66995pt.
 
-[12 <../figures/materials3_observables_RE_LR_last100.png (PNG copy)> <../figure
-s/materials3_observables_RE_LR_last100_millionperiods.png (PNG copy)>]
-<../figures/materials3_observables_constant_last100_2millionperiods.png, id=247
+<../figures/materials3_observables_constant_last100_2millionperiods.png, id=253
 , 1101.11375pt x 684.5575pt>
 File: ../figures/materials3_observables_constant_last100_2millionperiods.png Gr
 aphic file (type png)
 
 <use ../figures/materials3_observables_constant_last100_2millionperiods.png>
 Package pdftex.def Info: ../figures/materials3_observables_constant_last100_2mi
-llionperiods.png used on input line 350.
+llionperiods.png used on input line 351.
 (pdftex.def)             Requested size: 330.33669pt x 205.36882pt.
 
-[13 <../figures/materials3_observables_constant_last100_2millionperiods.png (PN
-G copy)>]
-<../figures/materials3_observables_constant_last100_1millionperiods.png, id=260
+[12 <../figures/materials3_observables_RE_LR_last100_millionperiods.png (PNG co
+py)> <../figures/materials3_observables_constant_last100_2millionperiods.png (P
+NG copy)>]
+<../figures/materials3_observables_constant_last100_1millionperiods.png, id=262
 , 1101.11375pt x 684.5575pt>
 File: ../figures/materials3_observables_constant_last100_1millionperiods.png Gr
 aphic file (type png)
@@ -739,49 +729,83 @@ Package pdftex.def Info: ../figures/materials3_observables_constant_last100_1mi
 llionperiods.png used on input line 377.
 (pdftex.def)             Requested size: 330.33669pt x 205.36882pt.
 
-[14 <../figures/materials3_observables_constant_last100_1millionperiods.png (PN
+[13 <../figures/materials3_observables_constant_last100_1millionperiods.png (PN
 G copy)>]
-<../figures/materials3_observables_anchoring_last100.png, id=281, 1101.11375pt 
+<../figures/materials3_observables_anchoring_last100.png, id=282, 1101.11375pt 
 x 684.5575pt>
 File: ../figures/materials3_observables_anchoring_last100.png Graphic file (typ
 e png)
  <use ../figures/materials3_observables_anchoring_last100.png>
 Package pdftex.def Info: ../figures/materials3_observables_anchoring_last100.pn
-g used on input line 423.
+g used on input line 425.
 (pdftex.def)             Requested size: 330.33669pt x 205.36882pt.
 
-<../figures/materials3_observables_anchoring_gain.png, id=282, 1124.2pt x 685.5
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14]
+<../figures/materials3_observables_anchoring_gain.png, id=297, 1124.2pt x 685.5
 6125pt>
 File: ../figures/materials3_observables_anchoring_gain.png Graphic file (type p
 ng)
  <use ../figures/materials3_observables_anchoring_gain.png>
 Package pdftex.def Info: ../figures/materials3_observables_anchoring_gain.png u
-sed on input line 429.
+sed on input line 430.
 (pdftex.def)             Requested size: 337.2626pt x 205.66995pt.
+ [15 <../figures/materials3_observables_anchoring_last100.png (PNG copy)> <../f
+igures/materials3_observables_anchoring_gain.png (PNG copy)>]
+<../figures/materials3_observables_anchoring_pidrift_gain.png, id=308, 1125.203
+75pt x 684.5575pt>
+File: ../figures/materials3_observables_anchoring_pidrift_gain.png Graphic file
+ (type png)
 
+<use ../figures/materials3_observables_anchoring_pidrift_gain.png>
+Package pdftex.def Info: ../figures/materials3_observables_anchoring_pidrift_ga
+in.png used on input line 451.
+(pdftex.def)             Requested size: 337.56374pt x 205.36882pt.
+ [16 <../figures/materials3_observables_anchoring_pidrift_gain.png (PNG copy)>]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<../figures/materials3_observables_anchoring_pidrift_last100.png, id=315, 1101.
+11375pt x 658.46pt>
+File: ../figures/materials3_observables_anchoring_pidrift_last100.png Graphic f
+ile (type png)
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 433.
-[15 <../figures/materials3_observables_anchoring_last100.png (PNG copy)>]
-[16 <../figures/materials3_observables_anchoring_gain.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 433.
+<use ../figures/materials3_observables_anchoring_pidrift_last100.png>
+Package pdftex.def Info: ../figures/materials3_observables_anchoring_pidrift_la
+st100.png used on input line 456.
+(pdftex.def)             Requested size: 440.4377pt x 263.37933pt.
 
-(./materials3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 433.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 433.
+<../figures/materials3_observables_anchoring_pidrift_last100_compare_anchoring.
+png, id=316, 1103.12125pt x 658.46pt>
+File: ../figures/materials3_observables_anchoring_pidrift_last100_compare_ancho
+ring.png Graphic file (type png)
+
+<use ../figures/materials3_observables_anchoring_pidrift_last100_compare_anchor
+ing.png>
+Package pdftex.def Info: ../figures/materials3_observables_anchoring_pidrift_la
+st100_compare_anchoring.png used on input line 461.
+(pdftex.def)             Requested size: 441.24068pt x 263.37933pt.
+ [17 <../figures/materials3_observables_anchoring_pidrift_last100.png (PNG copy
+)> <../figures/materials3_observables_anchoring_pidrift_last100_compare_anchori
+ng.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 489.
+ [18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 489.
+ (./materials3.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 489.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 489.
 Package rerunfilecheck Info: File `materials3.out' has not changed.
-(rerunfilecheck)             Checksum: 21CD076B2EB5337BD7C90C00DC59AB0E;897.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 433.
+(rerunfilecheck)             Checksum: 7340D168224EE22527948519CF350C27;1037.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 489.
  ) 
 Here is how much of TeX's memory you used:
- 10242 strings out of 493089
- 155165 string characters out of 6134842
- 268349 words of memory out of 5000000
- 13435 multiletter control sequences out of 15000+600000
+ 10268 strings out of 493089
+ 156133 string characters out of 6134842
+ 268495 words of memory out of 5000000
+ 13448 multiletter control sequences out of 15000+600000
  15126 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,39p,629b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,21n,39p,629b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -801,10 +825,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials3.pdf (16 pages, 1173241 bytes).
+Output written on materials3.pdf (18 pages, 1352461 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
- 119 named destinations out of 1000 (max. 500000)
- 184 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 417 PDF objects out of 1000 (max. 8388607)
+ 358 compressed objects within 4 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 
