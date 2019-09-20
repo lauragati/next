@@ -1,9 +1,9 @@
 \contentsline {section}{\numberline {1}Special cases towards general case: agenda}{2}{section.1}
 \contentsline {section}{\numberline {2}Timeline in the learning models}{2}{section.2}
 \contentsline {section}{\numberline {3}The models to be simulated}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}RE}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}EE}{3}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}LR}{4}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.1}Rational expectations NK model (RE)}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}NK model with Euler equation learning (EE)}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}NK model with $\infty $-horizon forecasts (LR)}{4}{subsection.3.3}
 \contentsline {section}{\numberline {4}Compact notation}{4}{section.4}
 \contentsline {section}{\numberline {5}Learning}{6}{section.5}
 \contentsline {section}{\numberline {6}ALMs}{7}{section.6}
@@ -13,6 +13,8 @@
 \contentsline {section}{\numberline {7}Simulations}{9}{section.7}
 \contentsline {subsection}{\numberline {7.1}Learning slope and constant}{9}{subsection.7.1}
 \contentsline {subsection}{\numberline {7.2}Learning constant only}{12}{subsection.7.2}
-\contentsline {section}{\numberline {8}Adding anchoring}{13}{section.8}
-\contentsline {section}{\numberline {9}Learning about LR inflation only}{16}{section.9}
-\contentsline {subsection}{\numberline {9.1}What I've learned so far:}{18}{subsection.9.1}
+\contentsline {section}{\numberline {8}Extensions}{14}{section.8}
+\contentsline {subsection}{\numberline {8.1}Vector anchoring: add anchoring about all observables to LR model where agents learn only the constant}{14}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Scalar anchoring: learning about the constant in inflation only}{17}{subsection.8.2}
+\contentsline {section}{\numberline {9}What I've learned so far}{19}{section.9}
+\contentsline {section}{\numberline {10}Plan for DW presentation}{20}{section.10}

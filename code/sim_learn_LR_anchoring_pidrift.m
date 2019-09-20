@@ -2,7 +2,7 @@
 % with cemp's anchoring mechanism for the gain of PIBAR ONLY
 % 18 sept 2019
 
-function [xsim, ysim, shock, diff,pibar, k] = sim_learn_LR_anchoring_pidrift(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal)
+function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn_LR_anchoring_pidrift(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal)
 gbar = param.gbar;
 ny = size(gx,1);
 nx = size(hx,1);
@@ -13,9 +13,9 @@ xsim = zeros(nx,T);
 %Learning PLM matrices, just a constant. Using RE as default starting point.
 pibar = 0;
 b = gx*hx;
-brow_pibar = b(1,:);
-bp = brow_pibar;
+b1 = b(1,:);
 
+pibar_seq = zeros(T,1);
 diff = zeros(T,1);
 diff(1) = nan;
 k = zeros(1,T);
@@ -29,9 +29,9 @@ for t = 1:T-1
     else
         %Form Expectations using last period's estimates
         if anal ==1
-            [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0],b, xsim(:,t));
+            [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t));
         else
-            [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0],b, xsim(:,t), H);
+            [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0], b, xsim(:,t), H);
         end
         
         %Solve for current states
@@ -41,7 +41,7 @@ for t = 1:T-1
         %Update coefficients
         kt = fk_pidrift(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As);
         k(:,t) = kt;
-        pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + bp*xsim(:,t-1)) );
+        pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
         
         % check convergence
         diff(t) = max(max(abs(pibar - at_1)));
@@ -53,6 +53,7 @@ for t = 1:T-1
     
     % generate an old constant, to check convergence
     at_1 = pibar;
+    pibar_seq(t)= pibar;
 end
 
 %Last period observables.

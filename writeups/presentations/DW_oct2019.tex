@@ -1,0 +1,674 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc} % don't know what this does: it sets font encoding
+%\usepackage{gfsartemisia} % this chooses the font
+%%\usepackage{txfonts}
+%% the above two seem to give the same, the below two as well
+%%\usepackage{accanthis} 
+%%\usepackage{concmath}
+% Another way to go is the following
+%  The available themes are: structurebold, structurebolditalic, structuresmallcapsserif, structureitalicsserif, serif and default.
+%\usefonttheme{default}
+%\usefonttheme{serif}
+%\usefonttheme{structurebold}
+%%\usefonttheme{structurebolditalic} % .sty wasn't found
+%\usefonttheme{structuresmallcaps}
+\usefonttheme{structuresmallcapsserif}
+%%%%%%\usefonttheme{structureitalicsserif} % .sty wasn't found
+%%%%%\usefonttheme{serif} % the font theme has to correspond to the font used
+%%%%\usefonttheme{structurebold} % it seems you can use a combo of these
+%%%%% Here comes the font command itself:
+%%%%% The available fonts depend on your LATEX installation, the most common are: mathptmx, helvet, avat, bookman, chancery, charter, culer, mathtime, mathptm, newcent, palatino, pifont and utopia.
+%%%%% I also have ccfonts
+%%%%\usepackage{helvet}
+%%%%\usepackage[T1]{fontenc}  % some fonts, like concrete math, require a specific font encoding (concrete math requires T1)
+
+\usepackage[default]{lato}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usepackage{overpic}
+
+\def \myFigPath {../../figures/} 
+\def \myTablePath {../../tables/} 
+
+\beamertemplatenavigationsymbolsempty % this removes the blue navigation bar that used to be on the bottom right
+\setbeamersize{text margin left=5mm,text margin right=12mm} 
+%
+\font\reali=msbm10 at 12pt
+
+%
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{October 1, 2019}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%\usetheme{CambridgeUS} % CambridgeUS, Madrid
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Roadmap}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% creating colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid and dashed
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+% These are my colors -- there are many like them, but these ones are mine (Paul Goldsmith-Pinkham's)
+\definecolor{blue_PGP}{RGB}{0,114,178}
+\definecolor{red_PGP}{RGB}{213,94,0}
+\definecolor{yellow_PGP}{RGB}{240,228,66}
+\definecolor{green_PGP}{RGB}{0,158,115}
+%% I use a beige off white for my background 
+\definecolor{MyBackground}{RGB}{255,253,218}
+%% Uncomment this if you want to change the background color to something else 
+%\setbeamercolor{background canvas}{bg=MyBackground} % this is a very nice beige
+%% Change the bg color to adjust your transition slide background color! 
+%\newenvironment{transitionframe}{
+%\setbeamercolor{background canvas}{bg=yellow} \begin{frame}}{
+%\end{frame} }
+
+%\setbeamercolor{frametitle}{fg=blue_PGP} 
+%\setbeamercolor{title}{fg=black} 
+%\setbeamertemplate{footline}[frame number]  % this sets the footer the same color as the background
+%\setbeamertemplate{navigation symbols}{} % don't know what this does
+%\setbeamercolor{button}{bg=MyBackground,fg=blue_PGP}
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\begin{frame}
+
+\maketitle
+
+
+\end{frame}
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Motivation}
+
+A quote or a plot, something about how policy-makers worry about anchored inflation expectations
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring - a concern for monetary policy?}
+
+\begin{itemize}
+\item What is anchoring?
+
+\
+
+\
+
+\item (Why) do we want expectations to be anchored?
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{This paper}
+	
+	\begin{enumerate}
+	\item Defines anchoring from the lens of a learning model
+	
+	\
+	
+	\
+	
+	\item Embeds anchoring in a New Keynesian (NK) model with econometric learning
+	
+	\
+	
+	\
+	
+	\item Goal: Derive optimal monetary policy, and contrast it with rational expectations (RE) 
+	
+	\
+	
+	\
+	
+	\item Today: some initial simulations with different specifications for monetary policy
+	\end{enumerate}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{In words}
+	
+	\begin{enumerate}
+	\item Expectations anchored if unresponsive to short-run fluctuations
+	
+	\
+	
+	\
+	
+	\item Blessing or curse for monetary policy?
+
+	\end{enumerate}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Related literature}
+
+\begin{itemize}
+\item Optimal monetary policy in New Keynesian models
+\item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
+
+\
+
+\
+
+\item Econometric learning
+\item[] Evans \& Honkapohja (2001), Preston (2005), Graham (2011)
+
+\
+
+\
+
+\item Anchoring
+\item[] Carvalho et al (2019), Svensson (2015), Hooper et al (2019)
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\section{Intuition: what is anchoring and why should it matter?}
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{New Keynesian Phillips Curve}
+
+\begin{align*}
+\pi_t & = \beta \hat{\E}_t\pi_{t+1} + \kappa x_t
+\end{align*}
+
+\begin{itemize}
+\item $\pi_t = $ inflation
+
+\
+
+\item $x_t =$ output gap
+
+\
+
+\item $\hat{\E}_t =$ expectation-operator (not necessarily rational)
+
+
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+Suppose a negative demand shock:
+
+\
+
+\begin{align*}
+\pi_t & = \beta \hat{\E}_t\pi_{t+1} + \kappa \underset{\downarrow}{x_t} 
+\end{align*}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+If expectations do not move:
+
+\
+
+\begin{align*}
+\underset{\downarrow}{\pi_t} & = \beta \hat{\E}_t\pi_{t+1}+ \kappa \underset{\downarrow}{x_t} 
+\end{align*}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
+
+\
+
+\begin{align*}
+\underset{\downarrow \color{red}{\downarrow}}{\pi_t} & = \beta \underset{\color{blue}{\downarrow}}{\hat{\E}_t\pi_{t+1}}+ \kappa \underset{\downarrow}{x_t} 
+\end{align*}
+
+\
+
+\
+
+\
+
+\begin{itemize}
+\item[] Keeping expectations stable may be desirable
+
+\
+
+\item[$\rightarrow$]  Anchoring as a notion of stable expectations
+\end{itemize}
+
+\
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\section{A formal notion of anchoring}
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring definition}
+Suppose firms
+
+\
+
+\begin{itemize}
+\item observe everything up to time $t$ 
+
+\
+
+\
+
+\item do not observe future variables
+
+\
+
+\
+
+\item KEY: are unsure about the long-run mean of inflation, $\bar{\pi}$
+\end{itemize}
+
+
+\
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring definition II}
+
+Firms construct one-period-ahead inflation forecasts as
+
+\
+\color{red}{CHECK}
+\begin{equation}
+\hat{\E}_t\pi_{t+1} =  \bar{\pi}_{t-1}+bs_{t}
+\end{equation}
+
+\
+
+\begin{itemize}
+\item[] $\bar{\pi} =$ drift in inflation ($=$ long-run mean, ``target")
+
+\
+
+
+
+\item[] $\hat{\E} =$ subjective expectation operator (not rational expectations, $\E$)
+
+\
+
+
+
+\item[] $b =$ matrix of constants 
+
+\
+
+\item[] $s =$ shocks
+\end{itemize}
+
+\
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring definition III}
+	
+And update their estimate of the inflation drift as \\
+(Carvalho et al, 2019)
+\
+\color{red}{CHECK}
+ \begin{align*}
+\bar{\pi}_{t} & = \bar{\pi}_{t-1} +k_t\overbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t}) \big)}^{\text{short-run forecast error}}  \label{RLS_anchoring} \numberthis \\
+\\
+k_t &= \mathbb{I} \times \frac{1}{k_{t-1} +1} + (1-\mathbb{I})\times \bar{g} \label{gain} \numberthis\\
+\end{align*}
+
+\begin{itemize}
+\item[] $\bar{g} =$ constant
+
+\
+
+\item[] $k =$ gain $\rightarrow$ sensitivity to short-run forecast errors
+\end{itemize}
+\
+
+Anchoring: when $k$ decreases over time.
+
+\
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring definition IV}
+	
+	
+ \begin{align*}
+\mathbb{I} & = \begin{cases} 1 \quad \text{if} \; \theta_t \leq \bar{\theta}  \\ 0 \quad \text{otherwise.}\numberthis\\
+\end{cases} \\
+\\
+\theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s \label{criterion}\numberthis
+\end{align*}
+
+\begin{itemize}
+\item[] $\bar{\theta} = $ constant
+
+\
+
+\item[] $\theta = $ difference between subjective and objective (model-consistent) expectations, scaled by noise
+\end{itemize}
+
+\
+
+Anchoring $\equiv$ when the deviation between objective and subjective expectations is small enough such that firms choose decreasing gains
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Intuition}
+
+\begin{itemize}
+\item When my expectation far from what is implied by the model, I update my estimate of the drift strongly 
+
+\
+
+\
+
+\item When the two are close, I load less on my forecast error because it matters less
+
+\
+
+\
+
+\item Unanchored if: $\pi$ deviates from target 
+\item[] i) strongly enough
+\item [] ii) long enough
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+\section{NK model with anchoring}
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{3-Equation New Keynesian Model}
+
+\begin{align*}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \label{prestons18}  \numberthis \\
+\\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \numberthis \\
+\\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \label{TR} \numberthis
+\end{align*}
+
+\
+
+``Long-horizon forecasts'' $\rightarrow$ firms do not know beliefs of others \\
+(Preston, 2005)
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Compact notation}
+
+ \begin{align*}
+z_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = P s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
+
+\begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} 
+\end{equation}
+and
+
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\section{Simulations}
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Calibration}
+
+\begin{center}
+\begin{tabular}{ c | c }
+ $\beta$ & 0.98  \\ \hline
+ $\sigma$ & 0.5  \\  \hline
+ $\alpha$ & 0.5    \\\hline
+ $\psi_{\pi} $& 1.5    \\\hline
+ $\psi_x$ & 1.5    \\\hline
+ $\bar{g}$ & $0.145^{-1}$    \\ \hline
+ $\bar{\theta}$ & 1    \\ \hline
+    $\rho_r$ & 0.9    \\ \hline
+    $\rho_i$ & 0.9    \\ \hline
+    $\rho_u$ & 0.9    \\ \hline
+    $\sigma_i$ & 0.1    \\ \hline
+    $\sigma_r$ & 0.359    \\ \hline
+    $\sigma_u$ & 0.277    \\ \hline
+\end{tabular}
+\end{center}
+
+Carvalho et al, 2019
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Role of learning}
+% learning models against RE
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Varying $\bar{\theta}$}
+% learning model with and w/o anchoring, potentially for different thetbars
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Varying Taylor-rule coefficients}
+% learning model with and w/o anchoring, for different TR coefficients
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Slide template}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%
+%         TEMPLATES
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Slide template}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%  	
+%\begin{frame}
+%	\frametitle{A beamer button template}
+%	\label{identification}
+%	
+%\hyperlink{Technicalities}{\beamergotobutton{Technicalities}}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+\frametitle{A beamer button template, how to get back to main text}
+\label{Steps}
+
+\begin{equation}
+D = \begin{bmatrix}
+d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
+d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
+\vdots & \vdots & \vdots & \ddots & \vdots 
+\end{bmatrix}
+\end{equation}
+
+\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+
+\end{document}

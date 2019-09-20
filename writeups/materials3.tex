@@ -144,19 +144,19 @@ The difference between these models is 1) in the expectations (rational or not),
 \item Add variations: anchoring, and scalar anchoring
 \end{enumerate}
 
-\subsection{RE}
+\subsection{Rational expectations NK model (RE)}
 \begin{align}
 x_t &= \E_t x_{t+1} - \sigma(i_t - \E_t \pi_{t+1}) +\sigma r_t^n \label{NKIS} \\
 \pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} + u_t  \label{NKPC} \\
 i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t  \label{TR}
 \end{align}
-\subsection{EE}
+\subsection{NK model with Euler equation learning (EE)}
 \begin{align}
 x_t &= \hat{\E}_t x_{t+1} - \sigma(i_t - \hat{\E}_t \pi_{t+1}) +\sigma r_t^n \tag{Preston, eq. (13)} \label{prestons13} \\
 \pi_t &= \kappa x_t +\beta \hat{\E}_t \pi_{t+1} + u_t \tag{Preston, eq. (14)} \label{prestons14}  \\
 i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t \tag{Preston, eq. (27) } 
 \end{align}
-\subsection{LR}
+\subsection{NK model with $\infty$-horizon forecasts (LR)}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \tag{Preston, eq. (18)} \label{prestons18}  \\
 \pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\tag{Preston, eq. (19)} \label{prestons19}  \\
@@ -379,7 +379,8 @@ f_a(t) = \frac{1}{1-\alpha\beta}\bar{z}_{t}  + b(I_3 - \alpha\beta P)^{-1}s_t \q
 \end{figure}
  Yay!
  
-\section{Adding anchoring}
+\section{Extensions}
+\subsection{Vector anchoring: add anchoring about all observables to LR model where agents learn only the constant}
  \begin{enumerate}
  \item Take the LR learning model where agents learn the constant only
  \item Add CEMP's anchoring
@@ -432,7 +433,7 @@ Here is a simulation with $\bar{\theta} = 5$, still higher than CEMP's 0.029, bu
 \end{figure}
 
 \newpage
-\section{Learning about LR inflation only}
+\subsection{Scalar anchoring: learning about the constant in inflation only}
  Let the model still be given by equation (\ref{LOM_LR}). But now assume that agents use the following PLM to forecast:
  \begin{equation}
  \hat{\E}_{t}z_{t+1} =  \begin{bmatrix} \bar{\pi}_{t} \\ 0 \\ \xi \label{PLM_pibar}
@@ -462,26 +463,41 @@ Agents estimate the inflation drift using the CEMP anchoring mechanism, but now 
 \caption{RE vs the vector and scalar LR anchoring models, $T = 500$, last 100 periods}
 \end{figure}
 \newpage
-\subsection{What I've learned so far:} 
+\section{What I've learned so far} 
 \begin{itemize}
 \item The more things there is to learn, the slower the convergence to RE
 \begin{itemize}
 \item Learning slope and intercept converges slower than just intercept, c.p.
 \end{itemize}
-\item LR expectations make convergence to RE slower and transition more volatile if agents learn slope and constant
+\item LR expectations make convergence to RE slower and transition more volatile if agents learn slope and constant (Liam Graham gets the opposite)
 \begin{itemize}
 \item As I add more and more period-ahead forecasts, convergence becomes slower as the economy is initially extremely volatile, so that the ALM is far from the RE solution.
 \item This result reverses if agents are only learning the intercept. I think I see why: because the bulk of their LR expectations are still going to be correct then. (``A bigger fraction of their expectation will be the correct (slope) part, and the intercept will count to a smaller fraction.'')
 \end{itemize}
 \item Anchoring seems to improve the performance of the LR model, you converge faster. 
 \begin{itemize}
-\item I was expecting the opposite, and maybe that is true as well if you spend more time being deanchored. 
+\item I was expecting the opposite, and maybe that is true as well if you spend more time being deanchored $\Rightarrow$ I hypothesize that whether anchoring actually improves convergence depends on the series of innovations you're subject to, such that convergence is slower the more time you spend being de-anchored. (\emph{How should I write this btw? With or w/o hyphen? CEMP write both ``unanchored'' and ``un-anchored,'' but the latter only occurs once. They never use the ``de-'' prefix.}) (Liam Graham finds that constant gain learning doesn't have much business cycle effects, so similar.)
 \end{itemize}
 \item Having intercepts in the learning rule for inflation only vs. all the variables doesn't seem to matter much.
 \begin{itemize}
 \item I expected the ``scalar anchoring'' specification to have faster convergence, or at least less volatility in the transition than the ``vector anchoring'' counterpart because the PLM is closer to the RE solution to start with. But I don't see a lot of that.
 \end{itemize}
+\item For the same TR coefficients as for the other learning models (1.5 for both), anchoring models become explosive at around $\bar{\theta} \approx 4$.
+\begin{itemize}
+\item I haven't had to invoke the projection facility for LR learning because I haven't had explosions.
+\item I'm a little unsure how to do projection when agents are only learning a constant.
 \end{itemize}
+\item A note on volatility and convergence: I don't think that there is an iff. relationship, but I do think there is an if relationship. High volatility (relative to the RE path) does imply slower convergence because inference is based on realizations that are far from the RE path. However, slow convergence doesn't imply high volatility, because you can be close to the RE path and yet only approach it slowly (small updating steps).
+\end{itemize}
+
+\section{Plan for DW presentation}
+\begin{itemize}
+\item Present only LR model with anchoring
+\item Scalar anchoring: message is easier to convey (one gain plot instead of three)
+\item Or should I present simulations that contrast with LR learning with decreasing gains?
+\item Don't expect to have any optimal monetary policy results yet, so just plan to present it as future work
+\end{itemize}
+
 
 
 

@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 4 - DW prep}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+\newpage
+
+
+\section{Timeline in the learning models}
+\begin{enumerate}
+\item[] \underline{$t=0$}: Initialize learning coefficients $\phi_{t-1} = \phi_0$ at the RE solution. For each $t$:
+\item Evaluate expectations $t+s$ (the one-period ahead, ($s=1$) or the full 1 to $\infty$-period ahead $(s=1,\dots, \infty)$) given $\phi_{t-1}$ and states dated $t$
+\item Evaluate ALM given expectations: ``today's observables are a function of expectations and today's state''
+\item Update learning: $\phi_{t}= $ RLS of $\phi_{t-1}$ and fcst error between today's data and yesterday's forecast
+\end{enumerate}
+
+\section{The models}
+\subsection{Rational expectations NK model (RE)}
+\begin{align}
+x_t &= \E_t x_{t+1} - \sigma(i_t - \E_t \pi_{t+1}) +\sigma r_t^n \label{NKIS} \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} + u_t  \label{NKPC} \\
+i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t  \label{TR}
+\end{align}
+\subsection{NK model with $\infty$-horizon forecasts (LR) with learning the constant of $\pi$ only}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \tag{Preston, eq. (18)} \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\tag{Preston, eq. (19)} \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \tag{Preston, eq. (27)} 
+\end{align}
+\subsection{Anchoring: same as LR, just anchoring instead of decreasing gain}
+
+ \section{Compact notation}
+Exogenous states are summarized as:
+ \begin{align*}
+ s_t & = P s_{t-1} + \epsilon_t 
+ \quad \text{where} \quad 
+ s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} \quad 
+ P  \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
+ \end{pmatrix} 
+ \end{align*}
+ Let $z_t$ summarize the endogenous variables as
+ \begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix}
+ \end{equation}
+ Then I can write the models compactly as
+ \begin{align}
+z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
+z_t & = A_p^{RE} \hat{\E}_t z_{t+1} + A_s^{RE} s_t \label{LOM_EE} \\
+z_t & = A_a^{LR} f_a(t) + A_b^{LR} f_b(t) + A_s^{LR} s_t \label{LOM_LR} \\
+s_t & = P s_{t-1} + \epsilon_t \label{exog}
+\end{align}
+ where $f_a$ and $f_b$ capture discounted sums of expectations at all horizons of the endogenous states $z$ (following Preston, I refer to these objects as ``long-run expectations''):
+  \begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+and the coefficient matrices are given by:
+\begin{align}
+A_p^{RE} & = \begin{pmatrix} \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) & \frac{\kappa}{w} & 0\\
+ \frac{\sigma}{w} (1-\psi_{\pi}\beta) & \frac{1}{w}& 0\\ 
+\psi_{\pi}\big( \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) \big) +\psi_x\frac{\sigma}{w} (1-\psi_{\pi}\beta)&  \psi_x (\frac{1}{w})+ \psi_{\pi} (\frac{\kappa}{w})& 0\end{pmatrix} \quad \\
+A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w}\\
+ \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w}\\ 
+ \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w})\end{pmatrix}  
+\\
+A_a^{LR} & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_b^{LR} = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_s^{LR} = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+\clearpage
+
+ \section{Learning}
+
+Use Ryan's timing notation, in which the time index designated the time in which the coefficient is \emph{realized}, which is always one less than the period in which it is \emph{used}. Agents only learn about the constant, and only about the constant of inflation, i.e. about CEMP's drift term, but forecast exogenous states rationally:
+\begin{equation}
+z_t = \begin{bmatrix}\bar{\pi}_{t-2} \\ 0 \\
+ 0 \end{bmatrix}
++ bs_{t-1} + \epsilon_t \quad \quad b = gx \; hx\label{PLM_constant}  
+\end{equation}
+which is equivalent to saying that their expectations about $x$ and $i$ are rational.
+
+Anticipated utility implies that
+\begin{equation}
+\hat{\E}_{t-1}{\bar{\pi}_{t+h}} = \hat{\E}_{t-1}{\bar{\pi}_{t}} \equiv \bar{\pi}_{t-1} \quad \forall \; h\geq0 
+\end{equation}
+Agents today mistakenly believe that they will not update the forecasting rule. Moreover, the constant $\bar{\pi}$ agents will use in period $t$ is the one they updated to in $t-1$.
+Assuming RE about the exogenous process and anticipated utility, $h$-horizon forecasts are constructed as:
+\begin{equation}
+\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\
+ 0 \end{bmatrix}+ bP^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst}
+\end{equation}
+and the regression coefficient is updated using an RLS algorithm ($b_1$ is the first row of $b$):
+\begin{equation}
+\bar{\pi}_{t} = \bar{\pi}_{t-1} +k_t^{-1}\underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM_fcst})} }
+\end{equation}
+where $k_t $ is either always $k_{t-1}+1$ (decreasing gain), or it's described by the CEMP anchoring mechanism:
+ \begin{align*}
+k_t &= \mathbb{I} \times \frac{1}{k_{t-1} +1} + (1-\mathbb{I})\times \bar{g} \label{gain} \numberthis\\
+\mathbb{I} & = \begin{cases} 1 \quad \text{if} \; \theta_t \leq \bar{\theta}  \\ 0 \quad \text{otherwise.}\numberthis
+\end{cases} \\
+\theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s \label{criterion}\numberthis
+\end{align*}
+
+\section{ALMs}
+\subsection{RE}
+With some abuse of terminology, call the state-space representation the ALM of the RE model:
+\begin{align}
+x_{t} & = hx \; x_{t-1} + \eta e_t \label{state_eq}\\
+z_t & = gx \; x_t \label{obs_eq}
+\end{align}
+Then I can write the ``ALM" as
+\begin{align}
+z_t & = gx \; hx \; x_{t-1} + gx \; \eta e_t  \label{ALM_RE}
+\end{align}
+Since this ALM implies no constant, I initialize $\bar{\pi}_0 = 0$. 
+
+\subsection{LR}
+Evaluate analytical ``LR expectations'' (\ref{fafb}) using the PLM (\ref{PLM_fcst}):
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}\bar{z}_{t-1}  + b(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\bar{z}_{t-1}  + b(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical}
+\end{equation}
+
+
+\section{Plan for DW presentation}
+\subsection{Contrast LR model w/ and w/o anchoring}
+\subsection{Simulations w/ different TR coefficients}
+
+%\begin{figure}[h!]
+%\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_pidrift_gain} 
+%\caption{Gains for the anchoring model, inflation drift only}
+%\end{figure}
+%\newpage
+%\begin{figure}[h!]
+%\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100} 
+%\caption{All models, $T = 500$, full sample}
+%\end{figure}
+%
+%\begin{figure}[h!]
+%\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100_compare_anchoring} 
+%\caption{RE vs the vector and scalar LR anchoring models, $T = 500$, last 100 periods}
+%\end{figure}
+
+
+
+\end{document}
+
+
+
+
+
