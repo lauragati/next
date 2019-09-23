@@ -39,7 +39,7 @@ lw=2; % linewidth
 fs_pres = 80;
 lw_pres = 6;
 %% Simulation
-T = 1000
+T = 40
 burnin = 0;
 
 [param, setp] = parameters_next;
@@ -178,6 +178,7 @@ for j=1:ny
         close
     end
 end
+close all
 
 % 2. Gain and inflation drift in the fully anchored case
 % Gain
@@ -213,6 +214,7 @@ if print1 ==1
     cd(current_dir)
     close
 end
+close all
 
 % 3. Unanchored: RE against LR
 nameset1 = {'pi','x','i'};
@@ -272,6 +274,7 @@ if print3 ==1
     cd(current_dir)
     close
 end
+close all
 
 % 5. Varying Taylor rule coefficients,  Gain for different TR coefficients
 print5 =0;
@@ -340,47 +343,24 @@ if print6 ==1
     close
 end
 
-for j=1:ny
-%     Observables - they should explode though
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    plot(squeeze(Y(j,:,1)),'k', 'linewidth', lw_pres); hold on
-    plot(squeeze(Y(j,:,2)),'b', 'linewidth', lw_pres);
-    plot(squeeze(Y(j,:,3)),'r--', 'linewidth', lw_pres);
-    ax = gca; % current axes
-    ax.FontSize = fs_pres;
-    grid on
-    grid minor
-    if print6 ==1
-        figname = ['dw6_',nameset1{j}]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-end
-
-
-
+close all
 
 %% Read in and plot data
-print7=0;
+print7=1;
+url = 'https://fred.stlouisfed.org/';
+c = fred(url);
+series = 'UNRATE';
+d = fetch(c,series);
 
-series_id = 'UNRATE';
-observation_start = '2010-01-01';
-observation_end   = datestr(today,'yyyy-mm-dd');
-units  = 'level';
-frequency = 'd';
-aggregation_method = 'eop';
-[output] = getFredData(series_id, observation_start, observation_end)
-urate = output.Data(:,2);
-time_urate = output.Data(:,1);
+timestr  = datestr([d.Data(:,1)]);
+timenum  = d.Data(:,1);
+urate = d.Data(:,2); 
+close(c)
 
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_urate,urate, 'k', 'linewidth',lw_pres)
+plot(timenum,urate, 'k', 'linewidth',lw_pres)
 ax = gca; % current axes
 ax.FontSize = fs_pres;
 grid on
@@ -394,21 +374,29 @@ if print7 ==1
     close
 end
 
-series_id = 'DFEDTARU';
-observation_start = '2010-01-01';
-observation_end   = datestr(today,'yyyy-mm-dd');
-units  = 'level';
-frequency = 'd';
-aggregation_method = 'eop';
-[output] = getFredData(series_id, observation_start, observation_end)
-ffr_t = output.Data(:,2);
-time_fedfunds = output.Data(:,1);
+url = 'https://fred.stlouisfed.org/';
+c = fred(url);
+series = 'DFEDTARU';
+d = fetch(c,series);
 
+series_id = 'DFEDTARU';
+observation_start = '1947-01-01';
+observation_end   = datestr(today,'yyyy-mm-dd');
+units  = 'log';
+frequency = 'q';
+aggregation_method = 'eop';
+[output] = getFredData(series_id, observation_start, observation_end, units, frequency, aggregation_method)
+time_fedfunds = datestr(output.Data(:,1));
+
+timestr  = datestr([d.Data(:,1)]);
+timenum  = d.Data(:,1);
+ffr = d.Data(:,2); 
+close(c)
 
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_fedfunds,ffr_t, 'k', 'linewidth',lw_pres)
+plot(timenum,ffr, 'k', 'linewidth',lw_pres)
 ax = gca; % current axes
 ax.FontSize = fs_pres;
 grid on
