@@ -1,6 +1,7 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {english}
-\beamer@sectionintoc {1}{Intuition: what is anchoring and why should it matter?}{7}{0}{1}
-\beamer@sectionintoc {2}{A formal notion of anchoring}{12}{0}{2}
-\beamer@sectionintoc {3}{NK model with anchoring}{18}{0}{3}
-\beamer@sectionintoc {4}{Simulations}{21}{0}{4}
+\beamer@sectionintoc {1}{Related literature}{5}{0}{1}
+\beamer@sectionintoc {2}{Intuition: what is anchoring and why should it matter?}{7}{0}{2}
+\beamer@sectionintoc {3}{A formal notion of anchoring}{12}{0}{3}
+\beamer@sectionintoc {4}{NK model with anchoring mechanism}{17}{0}{4}
+\beamer@sectionintoc {5}{Simulations}{19}{0}{5}

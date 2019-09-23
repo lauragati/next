@@ -35,8 +35,9 @@ else
 end
 
 fs=20; % fontsize
-
-
+lw=2; % linewidth
+fs_pres = 80;
+lw_pres = 6;
 %% Simulation
 T = 40
 burnin = 0;
@@ -62,7 +63,6 @@ n = 3; % fortunately, this is the dimension of everything
 P = eye(n).*[rho_r, rho_i, rho_u]';
 SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
-tic
 
 % Sequence of innovations
 rng(0)
@@ -76,7 +76,7 @@ e = randn(n,T);
 
 % Simulate the three models
 % Use Ryan's code to simulate from the RE model
-[x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e); 
+[x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
 
 % LR learning (only constant, only for pi) EDIT THIS
 anal = 1; % take analytical LR exp
@@ -94,7 +94,7 @@ kd_inv = 1./kd;
 Y(:,:,1) =y_RE; % let's call em V for a change
 Y(:,:,2) =y_LR;
 Y(:,:,3) =y_LR_anchor;
-%% Plots
+%% Analysis plots
 % Observables
 figure
 set(gcf,'color','w'); % sets white background color
@@ -150,8 +150,197 @@ if print_figs ==1
     close
 end
 
+close all
+
+%% Presentation plots
+clc
+
+% 1. Role of learning: RE against LR, fully anchored
+nameset1 = {'pi','x','i'};
+print1 =0;
+for j=1:ny
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    plot(squeeze(Y(j,:,1)),'k', 'linewidth', lw_pres); hold on
+    plot(squeeze(Y(j,:,2)),'b', 'linewidth', lw_pres);
+    plot(squeeze(Y(j,:,3)),'r--', 'linewidth', lw_pres);
+    ax = gca; % current axes
+    ax.FontSize = fs_pres;
+    grid on
+    grid minor
+    if print1 ==1
+        figname = ['dw_role_of_learning_',nameset1{j}]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+end
+close all
+
+% 2. Gain and inflation drift in the fully anchored case
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(kd_inv(1,:),'r--', 'linewidth', lw_pres)
+ylim([0,0.15]);
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print1 ==1
+    figname = ['dw2_gain']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(pibar,'r--', 'linewidth', lw_pres)
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print1 ==1
+    figname = ['dw2_drift']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+close all
+
+% 3. Unanchored: RE against LR
+nameset1 = {'pi','x','i'};
+print3 =0;
+for j=1:ny
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    plot(squeeze(Y(j,:,1)),'k', 'linewidth', lw_pres); hold on
+    plot(squeeze(Y(j,:,2)),'b', 'linewidth', lw_pres);
+    plot(squeeze(Y(j,:,3)),'r--', 'linewidth', lw_pres);
+    ax = gca; % current axes
+    ax.FontSize = fs_pres;
+    grid on
+    grid minor
+    if print3 ==1
+        figname = ['dw3_',nameset1{j}]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+end
+
+% 4. Gain and inflation drift in the unanchored case
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(kd_inv(1,:),'r--', 'linewidth', lw_pres)
+ylim([0,0.15]);
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print3 ==1
+    figname = ['dw4_gain']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(pibar,'r--', 'linewidth', lw_pres)
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print3 ==1
+    figname = ['dw4_drift']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+close all
+
+% 5. Varying Taylor rule coefficients,  Gain for different TR coefficients
+print5 =0;
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(kd_inv(1,:),'r--', 'linewidth', lw_pres)
+ylim([0,0.15]);
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print5 ==11
+    figname = ['dw5_gain_psipi1_1']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+elseif print5 == 3
+    figname = ['dw5_gain_psipi3']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+elseif print5 == 5
+    figname = ['dw5_gain_psipi5']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% 6. CEMP's thetbar
+print6 = 0;
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(kd_inv(1,:),'r--', 'linewidth', lw_pres)
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print6 ==1
+    figname = ['dw6_gain']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(pibar,'r--', 'linewidth', lw_pres)
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+if print6 ==1
+    figname = ['dw6_drift']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
-toc
-
+close all

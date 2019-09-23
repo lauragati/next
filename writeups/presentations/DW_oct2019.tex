@@ -23,7 +23,7 @@
 %%%%% I also have ccfonts
 %%%%\usepackage{helvet}
 %%%%\usepackage[T1]{fontenc}  % some fonts, like concrete math, require a specific font encoding (concrete math requires T1)
-
+\usepackage{subfigure}
 \usepackage[default]{lato}
 
 \usepackage{amssymb}
@@ -38,7 +38,9 @@
 \usepackage{multicol}
 \pdfmapfile{+sansmathaccent.map}
 \usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
 \usepackage{overpic}
+\usepackage{color,soul}
 
 \def \myFigPath {../../figures/} 
 \def \myTablePath {../../tables/} 
@@ -72,7 +74,7 @@
 \AtBeginSection[]
 {
   \begin{frame}<beamer>
-    \frametitle{Roadmap}
+    \frametitle{Structure of talk}
     \tableofcontents[currentsection]
   \end{frame}
 }
@@ -108,9 +110,11 @@
 % creating colored lines for legends
 % green solid
 \newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
-% red solid and dashed
+% red solid, dashed, dotted
 \newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
 \newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
 % blue solid and dashed
 \newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
 \newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
@@ -139,6 +143,14 @@
 %\setbeamertemplate{navigation symbols}{} % don't know what this does
 %\setbeamercolor{button}{bg=MyBackground,fg=blue_PGP}
 
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
 %%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -153,53 +165,51 @@
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Motivation}
+	\frametitle{}
 
-A quote or a plot, something about how policy-makers worry about anchored inflation expectations
+\begin{quote}
+Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
+\end{quote}
+
+\hspace{1cm} Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019, Opening Remarks.}
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Anchoring - a concern for monetary policy?}
-
-\begin{itemize}
-\item What is anchoring?
-
-\
-
-\
-
-\item (Why) do we want expectations to be anchored?
-\end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{This paper}
+	\frametitle{This project}
 	
 	\begin{enumerate}
-	\item Defines anchoring from the lens of a learning model
+	\item Combines a formal definition of an anchoring mechanism (AM) from econometric learning 
 	
 	\
 	
 	\
 	
-	\item Embeds anchoring in a New Keynesian (NK) model with econometric learning
+	\item with a general equilibrium New Keynesian (NK) model
 	
 	\
 	
 	\
 	
-	\item Goal: Derive optimal monetary policy, and contrast it with rational expectations (RE) 
+	\item[] $\Rightarrow$ Analyzes optimal monetary policy with AM, in contrast to rational expectations (RE) 
 	
 	\
 	
+	\begin{itemize}
+	\item theoretically
+	
 	\
 	
-	\item Today: some initial simulations with different specifications for monetary policy
+	\item empirically
+	\end{itemize}
+
+	
+	\
+	
 	\end{enumerate}
 
 
@@ -208,44 +218,63 @@ A quote or a plot, something about how policy-makers worry about anchored inflat
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{In words}
+	\frametitle{Today's talk}
 	
 	\begin{enumerate}
-	\item Expectations anchored if unresponsive to short-run fluctuations
+	\item Related literature
+		
+	\
+	
+	\
+	
+	\item Intuition: what is anchoring and why should it matter?
 	
 	\
 	
 	\
 	
-	\item Blessing or curse for monetary policy?
-
+	\item A formal notion of anchoring
+	
+	
+	\
+	
+	\
+	
+	\item NK model with anchoring mechanism
+	
+	\
+	
+	\
+	
+	\item Simulations
+	
 	\end{enumerate}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-
+\section{Related literature}
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Related literature}
 
 \begin{itemize}
-\item Optimal monetary policy in New Keynesian models
+\item \textbf{Optimal monetary policy in New Keynesian models}
 \item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
 
 \
 
 \
 
-\item Econometric learning
+\item \textbf{Econometric learning}
 \item[] Evans \& Honkapohja (2001), Preston (2005), Graham (2011)
 
 \
 
 \
 
-\item Anchoring
+\item \textbf{Anchoring} 
 \item[] Carvalho et al (2019), Svensson (2015), Hooper et al (2019)
 \end{itemize}
 
@@ -341,7 +370,7 @@ If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
 
 \
 
-\item[$\rightarrow$]  Anchoring as a notion of stable expectations
+\item[$\rightarrow$]  ``Anchored'': notion of stable expectations
 \end{itemize}
 
 \
@@ -353,8 +382,8 @@ If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
 \section{A formal notion of anchoring}
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring definition}
-Suppose firms
+	\frametitle{A learning model of expectation formation}
+Suppose firms and households
 
 \
 
@@ -384,20 +413,20 @@ Suppose firms
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring definition II}
+	\frametitle{}
 
-Firms construct one-period-ahead inflation forecasts as
+Agents construct one-period-ahead inflation forecasts as
 
 \
-\color{red}{CHECK}
+
 \begin{equation}
-\hat{\E}_t\pi_{t+1} =  \bar{\pi}_{t-1}+bs_{t}
+\hat{\E}_{t}\pi_{t+1} =  \bar{\pi}_{t-1}+bs_{t}
 \end{equation}
 
 \
 
 \begin{itemize}
-\item[] $\bar{\pi} =$ drift in inflation ($=$ long-run mean, ``target")
+\item[] $\bar{\pi} =$ estimate of inflation drift ($=$ long-run mean, ``target")
 
 \
 
@@ -425,81 +454,48 @@ Firms construct one-period-ahead inflation forecasts as
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring definition III}
+	\frametitle{Definition: Anchoring mechanism}
+%\vspace{-1cm}
 	
-And update their estimate of the inflation drift as \\
-(Carvalho et al, 2019)
-\
-\color{red}{CHECK}
  \begin{align*}
-\bar{\pi}_{t} & = \bar{\pi}_{t-1} +k_t\overbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t}) \big)}^{\text{short-run forecast error}}  \label{RLS_anchoring} \numberthis \\
+\bar{\pi}_{t} & = \bar{\pi}_{t-1} +k_t\overbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t-1}) \big)}^{\text{short-run forecast error}}  \label{RLS_anchoring} \numberthis \\
 \\
-k_t &= \mathbb{I} \times \frac{1}{k_{t-1} +1} + (1-\mathbb{I})\times \bar{g} \label{gain} \numberthis\\
+k_t &= \begin{cases}  \frac{1}{k_{t-1} +1} \quad \quad \text{if} \quad \overbrace{|\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s}^{\equiv \theta_t} \leq \bar{\theta} \\ \\\bar{g} \quad \quad \quad \quad \text{otherwise}\end{cases} \label{gain} \numberthis
 \end{align*}
 
+\
+
+Equation (\ref{gain}): endogenous gain
+
+\
+
 \begin{itemize}
-\item[] $\bar{g} =$ constant
+\item Carvalho et al (2019)
 
 \
 
-\item[] $k =$ gain $\rightarrow$ sensitivity to short-run forecast errors
+\item Difference to standard econometric learning
 \end{itemize}
-\
 
-Anchoring: when $k$ decreases over time.
-
-\
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring definition IV}
+	\frametitle{}
 	
 	
- \begin{align*}
-\mathbb{I} & = \begin{cases} 1 \quad \text{if} \; \theta_t \leq \bar{\theta}  \\ 0 \quad \text{otherwise.}\numberthis\\
-\end{cases} \\
-\\
-\theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s \label{criterion}\numberthis
-\end{align*}
+
 
 \begin{itemize}
-\item[] $\bar{\theta} = $ constant
-
-\
-
-\item[] $\theta = $ difference between subjective and objective (model-consistent) expectations, scaled by noise
-\end{itemize}
-
-\
-
-Anchoring $\equiv$ when the deviation between objective and subjective expectations is small enough such that firms choose decreasing gains
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Intuition}
-
-\begin{itemize}
-\item When my expectation far from what is implied by the model, I update my estimate of the drift strongly 
+\item Expectations anchored $ = $ when agents choose \textbf{decreasing} gains
 
 \
 
 \
 
-\item When the two are close, I load less on my forecast error because it matters less
-
-\
-
-\
-
-\item Unanchored if: $\pi$ deviates from target 
-\item[] i) strongly enough
-\item [] ii) long enough
+\item Expectations unanchored $ = $ when agents choose \textbf{constant} gains
 \end{itemize}
 
 
@@ -508,11 +504,13 @@ Anchoring $\equiv$ when the deviation between objective and subjective expectati
 %%%%%%%%%%%%%%%%%%
 
 
-\section{NK model with anchoring}
+
+\section{NK model with anchoring mechanism}
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{3-Equation New Keynesian Model}
+	\label{NK}
 
 \begin{align*}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \label{prestons18}  \numberthis \\
@@ -524,41 +522,18 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t \label{TR} \numberthis
 
 \
 
-``Long-horizon forecasts'' $\rightarrow$ firms do not know beliefs of others \\
-(Preston, 2005)
+``Long-horizon forecasts'' $\rightarrow$ agents do not know the model\\
+$\; $Preston (2005)
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%
+\
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Compact notation}
-
- \begin{align*}
-z_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
-\\
-s_t & = P s_{t-1} + \epsilon_t \label{exog} \numberthis
-\end{align*}
-where
-
-\begin{equation}
- z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
- \end{pmatrix} 
- \quad \quad \quad 
-  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
- \end{pmatrix} 
-\end{equation}
-and
-
-  \begin{align}
-f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
-\end{align}
-
-
+\hyperlink{compact}{\beamergotobutton{Compact notation}}	
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+
 
 \section{Simulations}
 
@@ -573,55 +548,192 @@ f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \qua
  $\alpha$ & 0.5    \\\hline
  $\psi_{\pi} $& 1.5    \\\hline
  $\psi_x$ & 1.5    \\\hline
- $\bar{g}$ & $0.145^{-1}$    \\ \hline
- $\bar{\theta}$ & 1    \\ \hline
-    $\rho_r$ & 0.9    \\ \hline
-    $\rho_i$ & 0.9    \\ \hline
-    $\rho_u$ & 0.9    \\ \hline
-    $\sigma_i$ & 0.1    \\ \hline
-    $\sigma_r$ & 0.359    \\ \hline
-    $\sigma_u$ & 0.277    \\ \hline
+ $\bar{g}$ & $1/0.145^{*}$    \\ \hline
+ \\[-1em] % this raises the ceiling for thetbar's row
+ $\bar{\theta}$ & 5*   \\ \hline
+    $\rho_r$ & 0    \\ \hline
+    $\rho_i$ & 0.877*    \\ \hline
+    $\rho_u$ & 0    \\ \hline
+    $\sigma_i$ & 0.359*    \\ \hline
+    $\sigma_r$ &  0.1   \\ \hline
+    $\sigma_u$ & 0.277*    \\ \hline
 \end{tabular}
 \end{center}
 
-Carvalho et al, 2019
+\blfootnote{* Carvalho et al (2019)'s estimates.  Exception: $\bar{\theta} = 0.029$.} 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Role of learning}
+	\frametitle{}
 % learning models against RE
 
+\begin{figure}[h!]
+\subfigure[Inflation]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_pi}}
+\subfigure[Output gap]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_x}}
+\subfigure[Interest rate]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_i}}
+\put (-180, 50){\makebox[0.7\textwidth][r]{\blackline $\; $ RE}}
+\put (-152, 30){\makebox[0.7\textwidth][r]{\blueline $\; $ Learning}}
+\put (-176, 10){\makebox[0.7\textwidth][r]{\reddashedline $\; $ AM}}
+\caption{Rational expectations (RE), learning and anchoring mechanism (AM)}
+\end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Varying $\bar{\theta}$}
+	\frametitle{}
+% gain and drift in pi in this case
+
+\begin{figure}[h!]
+\subfigure[Gain]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw2_gain}}
+\subfigure[Inflation drift]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw2_drift}}
+\caption{Well anchored expectations: decreasing gain}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Decreasing $\bar{\theta}$: an unanchored case}
+% gain and drift in pi in this case
+
+\begin{figure}[h!]
+\subfigure[Gain]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_gain}}
+\subfigure[Inflation drift]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_drift}}
+\caption{$\bar{\theta}=1$. Unanchored expectations: constant gain}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
 % learning model with and w/o anchoring, potentially for different thetbars
-
+\begin{figure}[h!]
+\subfigure[Inflation]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw3_pi}}
+\subfigure[Output gap]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw3_x}}
+\subfigure[Interest rate]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw3_i}}
+\put (-180, 50){\makebox[0.7\textwidth][r]{\blackline $\; $ RE}}
+\put (-152, 30){\makebox[0.7\textwidth][r]{\blueline $\; $ Learning}}
+\put (-176, 10){\makebox[0.7\textwidth][r]{\reddashedline $\; $ AM}}
+\caption{$\bar{\theta}=1$}
+\end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Varying Taylor-rule coefficients}
-% learning model with and w/o anchoring, for different TR coefficients
+	\frametitle{}
+% gain and drift in pi in this case
 
+\begin{figure}[h!]
+\subfigure[Gain]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw6_gain}}
+\subfigure[Inflation drift]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw6_drift}}
+\caption{$\bar{\theta}=0.029$. Carvalho et al's estimate extremely unanchored!}
+\end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Gain when Varying Taylor-rule coefficients}
+% gain and drift in pi in this case
+
+
+\blfootnote{ $\bar{\theta}=1$}
+\begin{figure}[h!]
+\subfigure[$(\psi_{\pi}, \psi_x) = (1.5, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_gain}}
+\subfigure[$(\psi_{\pi}, \psi_x) = (\colorbox{yellow}{1.1}, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw5_gain_psipi1_1}}
+%\begin{tikzpicture}[remember picture,overlay]
+%\draw [red,thick, rounded corners] (-2.55,-0.6) rectangle (-2.05,-0.1);
+%\end{tikzpicture}
+\caption{Less aggressive on inflation}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
-%\begin{frame}
-%	\frametitle{Slide template}
-%
-%\end{frame}
+\begin{frame}
+	\frametitle{}
+\begin{figure}[h!]
+\subfigure[$(\psi_{\pi}, \psi_x) = (1.5, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_gain}}
+\subfigure[$(\psi_{\pi}, \psi_x) = (\colorbox{yellow}{3}, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw5_gain_psipi3}}
+%\begin{tikzpicture}[remember picture,overlay]
+%\draw [red,thick, rounded corners] (-2.55,-0.6) rectangle (-2.05,-0.1);
+%\end{tikzpicture}
+\caption{More aggressive on inflation}
+\end{figure}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+\begin{figure}[h!]
+\subfigure[$(\psi_{\pi}, \psi_x) = (1.5, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_gain}}
+\subfigure[$(\psi_{\pi}, \psi_x) = (\colorbox{yellow}{5}, 1.5)$]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw5_gain_psipi5}}
+%\begin{tikzpicture}[remember picture,overlay]
+%\draw [red,thick, rounded corners] (-2.55,-0.6) rectangle (-2.05,-0.1);
+%\end{tikzpicture}
+\caption{Too aggressive on inflation?}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Today's conclusion and work ahead}
+\vspace{-1cm}
+	
+\begin{itemize}
+\item Formal definition of anchoring $+$ New Keynesian model
+
+\
+
+\begin{itemize}
+\item[] $\rightarrow$ investigation of new constraint on monetary policy
+\end{itemize}
+
+\
+
+\item Next steps
+
+\
+
+\begin{itemize}
+\item Write and solve monetary policy problem
+
+\
+
+\item Estimate model
+\end{itemize}
+
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+\vspace{-1cm}
+	
+\centering Thank you!
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%
 %         TEMPLATES
@@ -646,27 +758,58 @@ Carvalho et al, 2019
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%                     APPENDIX  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 
-%%%%%%% Slide %%%%%%
+%%%%%%%% Slide %%%%%%
 \begin{frame}
-\frametitle{A beamer button template, how to get back to main text}
-\label{Steps}
+	\frametitle{Compact notation}
+	\label{compact}
+
+ \begin{align*}
+z_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = P s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
 
 \begin{equation}
-D = \begin{bmatrix}
-d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
-d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
-\vdots & \vdots & \vdots & \ddots & \vdots 
-\end{bmatrix}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} 
 \end{equation}
+and
 
-\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+
+\hyperlink{NK}{\beamerreturnbutton{Return}}	
+
+
 \end{frame}
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%\frametitle{A beamer button template, how to get back to main text}
+%\label{Steps}
+%
+%\begin{equation}
+%D = \begin{bmatrix}
+%d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
+%d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
+%\vdots & \vdots & \vdots & \ddots & \vdots 
+%\end{bmatrix}
+%\end{equation}
+%
+%\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 
 
