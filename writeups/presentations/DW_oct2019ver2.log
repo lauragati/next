@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 SEP 2019 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  29 SEP 2019 12:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1453,97 +1453,97 @@ LaTeX Font Info:    Font shape `OT1/fla/bx/n' in size <10.95> not available
 ] [20
 
 ]
-<../../figures/dw_role_of_learning_pi.png, id=229, 1196.47pt x 700.6175pt>
+<../../figures/dw_role_of_learning_pi.png, id=233, 1196.47pt x 700.6175pt>
 File: ../../figures/dw_role_of_learning_pi.png Graphic file (type png)
 
 <use ../../figures/dw_role_of_learning_pi.png>
 Package pdftex.def Info: ../../figures/dw_role_of_learning_pi.png used on input
- line 552.
+ line 586.
 (pdftex.def)             Requested size: 143.5702pt x 84.07047pt.
 
-<../../figures/dw_role_of_learning_x.png, id=230, 1263.72125pt x 724.7075pt>
+<../../figures/dw_role_of_learning_x.png, id=234, 1263.72125pt x 724.7075pt>
 File: ../../figures/dw_role_of_learning_x.png Graphic file (type png)
 
 <use ../../figures/dw_role_of_learning_x.png>
 Package pdftex.def Info: ../../figures/dw_role_of_learning_x.png used on input 
-line 552.
+line 586.
 (pdftex.def)             Requested size: 151.64pt x 86.96114pt.
 
-<../../figures/dw_role_of_learning_i.png, id=231, 1196.47pt x 706.64pt>
+<../../figures/dw_role_of_learning_i.png, id=235, 1196.47pt x 706.64pt>
 File: ../../figures/dw_role_of_learning_i.png Graphic file (type png)
 
 <use ../../figures/dw_role_of_learning_i.png>
 Package pdftex.def Info: ../../figures/dw_role_of_learning_i.png used on input 
-line 552.
+line 586.
 (pdftex.def)             Requested size: 143.5702pt x 84.79314pt.
  [21
 
  <../../figures/dw_role_of_learning_pi.png (PNG copy)> <../../figures/dw_role_o
 f_learning_x.png (PNG copy)> <../../figures/dw_role_of_learning_i.png (PNG copy
 )>]
-<../../figures/dw2_gain.png, id=238, 1277.77374pt x 724.7075pt>
+<../../figures/dw2_gain.png, id=242, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw2_gain.png Graphic file (type png)
 
 <use ../../figures/dw2_gain.png>
-Package pdftex.def Info: ../../figures/dw2_gain.png used on input line 566.
+Package pdftex.def Info: ../../figures/dw2_gain.png used on input line 600.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
 
-<../../figures/dw2_drift.png, id=239, 1277.77374pt x 697.60625pt>
+<../../figures/dw2_drift.png, id=243, 1277.77374pt x 697.60625pt>
 File: ../../figures/dw2_drift.png Graphic file (type png)
 
 <use ../../figures/dw2_drift.png>
-Package pdftex.def Info: ../../figures/dw2_drift.png used on input line 566.
+Package pdftex.def Info: ../../figures/dw2_drift.png used on input line 600.
 (pdftex.def)             Requested size: 153.32623pt x 83.70914pt.
  [22
 
  <../../figures/dw2_gain.png (PNG copy)> <../../figures/dw2_drift.png (PNG copy
 )>]
-<../../figures/dw4_gain.png, id=246, 1277.77374pt x 724.7075pt>
+<../../figures/dw4_gain.png, id=250, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw4_gain.png Graphic file (type png)
 
 <use ../../figures/dw4_gain.png>
-Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 580.
+Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 614.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
 
-<../../figures/dw4_drift.png, id=247, 1263.72125pt x 724.7075pt>
+<../../figures/dw4_drift.png, id=251, 1263.72125pt x 724.7075pt>
 File: ../../figures/dw4_drift.png Graphic file (type png)
 
 <use ../../figures/dw4_drift.png>
-Package pdftex.def Info: ../../figures/dw4_drift.png used on input line 580.
+Package pdftex.def Info: ../../figures/dw4_drift.png used on input line 614.
 (pdftex.def)             Requested size: 151.64pt x 86.96114pt.
  [23
 
  <../../figures/dw4_gain.png (PNG copy)> <../../figures/dw4_drift.png (PNG copy
 )>]
-<../../figures/dw3_pi.png, id=256, 1196.47pt x 700.6175pt>
+<../../figures/dw3_pi.png, id=260, 1196.47pt x 700.6175pt>
 File: ../../figures/dw3_pi.png Graphic file (type png)
 
 <use ../../figures/dw3_pi.png>
-Package pdftex.def Info: ../../figures/dw3_pi.png used on input line 596.
+Package pdftex.def Info: ../../figures/dw3_pi.png used on input line 630.
 (pdftex.def)             Requested size: 143.5702pt x 84.07047pt.
 
-<../../figures/dw3_x.png, id=257, 1263.72125pt x 713.66624pt>
+<../../figures/dw3_x.png, id=261, 1263.72125pt x 713.66624pt>
 File: ../../figures/dw3_x.png Graphic file (type png)
 
 <use ../../figures/dw3_x.png>
-Package pdftex.def Info: ../../figures/dw3_x.png used on input line 596.
+Package pdftex.def Info: ../../figures/dw3_x.png used on input line 630.
 (pdftex.def)             Requested size: 151.64pt x 85.63625pt.
 
-<../../figures/dw3_i.png, id=258, 1196.47pt x 700.6175pt>
+<../../figures/dw3_i.png, id=262, 1196.47pt x 700.6175pt>
 File: ../../figures/dw3_i.png Graphic file (type png)
 
 <use ../../figures/dw3_i.png>
-Package pdftex.def Info: ../../figures/dw3_i.png used on input line 596.
+Package pdftex.def Info: ../../figures/dw3_i.png used on input line 630.
 (pdftex.def)             Requested size: 143.5702pt x 84.07047pt.
  [24
 
  <../../figures/dw3_pi.png (PNG copy)> <../../figures/dw3_x.png (PNG copy)> <..
 /../figures/dw3_i.png (PNG copy)>]
-<../../figures/dw6_gain.png, id=265, 1277.77374pt x 724.7075pt>
+<../../figures/dw6_gain.png, id=269, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw6_gain.png Graphic file (type png)
 
 <use ../../figures/dw6_gain.png>
-Package pdftex.def Info: ../../figures/dw6_gain.png used on input line 610.
+Package pdftex.def Info: ../../figures/dw6_gain.png used on input line 644.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
  [25
 
@@ -1551,45 +1551,45 @@ Package pdftex.def Info: ../../figures/dw6_gain.png used on input line 610.
 File: ../../figures/dw4_gain.png Graphic file (type png)
 
 <use ../../figures/dw4_gain.png>
-Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 630.
+Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 664.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
 
-<../../figures/dw5_gain_psipi1_1.png, id=273, 1277.77374pt x 724.7075pt>
+<../../figures/dw5_gain_psipi1_1.png, id=277, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw5_gain_psipi1_1.png Graphic file (type png)
 
 <use ../../figures/dw5_gain_psipi1_1.png>
 Package pdftex.def Info: ../../figures/dw5_gain_psipi1_1.png used on input line
- 630.
+ 664.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
  [26
 
  <../../figures/dw5_gain_psipi1_1.png (PNG copy)>]
 File: ../../figures/dw4_gain.png Graphic file (type png)
  <use ../../figures/dw4_gain.png>
-Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 645.
+Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 679.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
 
-<../../figures/dw5_gain_psipi3.png, id=281, 1277.77374pt x 724.7075pt>
+<../../figures/dw5_gain_psipi3.png, id=285, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw5_gain_psipi3.png Graphic file (type png)
 
 <use ../../figures/dw5_gain_psipi3.png>
 Package pdftex.def Info: ../../figures/dw5_gain_psipi3.png used on input line 6
-45.
+79.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
  [27
 
  <../../figures/dw5_gain_psipi3.png (PNG copy)>]
 File: ../../figures/dw4_gain.png Graphic file (type png)
  <use ../../figures/dw4_gain.png>
-Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 660.
+Package pdftex.def Info: ../../figures/dw4_gain.png used on input line 694.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
 
-<../../figures/dw5_gain_psipi5.png, id=288, 1277.77374pt x 724.7075pt>
+<../../figures/dw5_gain_psipi5.png, id=292, 1277.77374pt x 724.7075pt>
 File: ../../figures/dw5_gain_psipi5.png Graphic file (type png)
 
 <use ../../figures/dw5_gain_psipi5.png>
 Package pdftex.def Info: ../../figures/dw5_gain_psipi5.png used on input line 6
-60.
+94.
 (pdftex.def)             Requested size: 153.32623pt x 86.96114pt.
  [28
 
@@ -1598,6 +1598,8 @@ Package pdftex.def Info: ../../figures/dw5_gain_psipi5.png used on input line 6
 ] [30
 
 ] [31
+
+] [32
 
 ]
 \tf@nav=\write6
@@ -1609,11 +1611,11 @@ Package pdftex.def Info: ../../figures/dw5_gain_psipi5.png used on input line 6
 \tf@snm=\write8
 \openout8 = `DW_oct2019ver2.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 788.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 788.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 850.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 850.
  (./DW_oct2019ver2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 788.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 788.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 850.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 850.
 Package rerunfilecheck Info: File `DW_oct2019ver2.out' has not changed.
 (rerunfilecheck)             Checksum: 977366F1E79D83D023809B2B66D94DBF;357.
 
@@ -1621,13 +1623,13 @@ Package rerunfilecheck Info: File `DW_oct2019ver2.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 788.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 850.
  ) 
 Here is how much of TeX's memory you used:
- 32033 strings out of 493089
- 746191 string characters out of 6134842
- 951394 words of memory out of 5000000
- 34697 multiletter control sequences out of 15000+600000
+ 32045 strings out of 493089
+ 746272 string characters out of 6134842
+ 953394 words of memory out of 5000000
+ 34703 multiletter control sequences out of 15000+600000
  49952 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,25n,79p,946b,729s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1651,10 +1653,10 @@ public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on DW_oct2019ver2.pdf (31 pages, 889181 bytes).
+Output written on DW_oct2019ver2.pdf (32 pages, 894964 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 317 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 333 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

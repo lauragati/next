@@ -248,7 +248,7 @@
 \section{Intuition: what is anchoring and why should it matter?}
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{New Keynesian Phillips Curve}
+	\frametitle{Phillips Curve}
 
 \begin{align*}
 \pi_t & = \beta \hat{\E}_t\pi_{t+1} + \kappa x_t
@@ -333,6 +333,13 @@ If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
 \
 
 \item[$\rightarrow$]  ``Anchored'': notion of stable expectations
+
+\
+
+
+\
+
+\item[] \small{(Flattening PC due to anchored expectations, Hooper et al (2019))}
 \end{itemize}
 
 \
@@ -382,7 +389,7 @@ Agents construct one-period-ahead inflation forecasts as
 \
 
 \begin{equation}
-\hat{\E}_{t}\pi_{t+1} =  \bar{\pi}_{t-1}+bs_{t}
+\hat{\E}_{t}\pi_{t+1} =  \bar{\pi}_{t-1}+bs_{t} \label{PLM}
 \end{equation}
 
 \
@@ -473,7 +480,33 @@ Equation (\ref{gain}): endogenous gain
 \begin{frame}
 	\frametitle{The model}
 
+Households maximize
+\begin{equation}
+\hat{\E}^i_t \sum_{s=0}^{\infty} \beta^s \bigg( U(C^i_s) - v(H^i_s)\bigg)
+\end{equation}
 
+\
+
+\
+
+Household budget constraint:
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + W_tH^i_t + \Pi_t^i -T_t -P_tC^i_t
+\end{equation}
+
+%M^i_t + B^i_t \leq (1+i^m_{t-1})M^i_{t-1} + (1+i_{t-1})B^i_{t-1} + W_tH^i_t + \Pi_t^i -T_t -P_tC^i_t
+
+\
+
+\
+
+Firms: monopolistic competition in varieties $C^j$, Calvo price setting
+
+\
+
+\
+
+Expectations: $\hat{\E}$ as in (\ref{PLM})
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -498,6 +531,7 @@ $\; $Preston (2005)
 
 \
 
+\hyperlink{derivations}{\beamergotobutton{Derivations}} \\
 \hyperlink{compact}{\beamergotobutton{Compact notation}}	
 
 
@@ -667,7 +701,7 @@ $\; $Preston (2005)
 \vspace{-1cm}
 	
 \begin{itemize}
-\item Formal definition of anchoring $+$ New Keynesian model
+\item Formal definition of anchoring $+$ macro model with monetary policy
 
 \
 
@@ -733,6 +767,34 @@ $\; $Preston (2005)
 %%%%%%%                     APPENDIX  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Derivations}
+	\label{derivations}
+
+Household FOCs
+ \begin{align*}
+\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
+\\
+\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
+\end{align*}
+where a hat denotes log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+
+\begin{enumerate}
+\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
+\item Sub in (\ref{IBC})
+\item Aggregate over households $i$
+\item[$\rightarrow$] Obtain (\ref{prestons18})
+\end{enumerate}
+
+
+
+\hyperlink{NK}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
