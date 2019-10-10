@@ -41,6 +41,7 @@
 \usetikzlibrary{tikzmark,calc}
 \usepackage{overpic}
 \usepackage{color,soul}
+\usepackage{stackengine}
 
 \def \myFigPath {../../figures/} 
 \def \myTablePath {../../tables/} 
@@ -151,6 +152,16 @@
   \endgroup
 }
 
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
 %%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -163,13 +174,26 @@
 \end{frame}
 
 
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Inflation expectations moving down}
+
+\begin{figure}[h!]
+\subfigure[Market-based inflation expectations, 10 year, average]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath dw_Epi10}}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
 %%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{}
 
 \begin{figure}[h!]
-\subfigure[Unemployment rate]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath dw_urate}}
-\subfigure[Fed funds rate target range, upper limit]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath dw_ffr}}
+\subfigure[Unemployment rate]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_urate}}
+\subfigure[Fed funds rate target, upper limit]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_ffr}}
 \end{figure}
 
 
@@ -177,33 +201,32 @@
 %%%%%%%%%%%%%%%%%
 
 
+
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{This project}
 	
 	\begin{enumerate}
-	\item Combines a formal definition of an anchoring mechanism (AM) from econometric learning 
+	\item[] I embed an endogenous anchoring mechanism (AM) in a standard model of monetary policy
 	
 	\
 	
 	\
 	
-	\item with a standard macro model of monetary policy
-	
-	\
-	
-	\
-	
-	\item[$\Rightarrow$]  Explains current monetary policy as a concern to keep expectations anchored
+	\item[] Results 
 	
 	\
 	
 	\begin{itemize}
-	\item Reinterprets Great Inflation as a period of unanchored expectations
+	\item Anchoring expectations is a new objective of monetary policy
 	
 	\
 	
-	\item Reevaluates optimal monetary policy
+	\item Great Inflation was a period of unanchored expectations
+	
+	\
+	
+	\item Optimal policy should take recent economic environment into account when responding to current shocks
 	\end{itemize}
 
 	
@@ -339,7 +362,7 @@ If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
 
 \
 
-\item[] \small{(Flattening PC due to anchored expectations, Hooper et al (2019))}
+%\item[] \small{(Flattening PC due to anchored expectations, Hooper et al (2019))}
 \end{itemize}
 
 \
@@ -348,7 +371,7 @@ If seeing $\underset{\downarrow}{\pi_t}$, expectations adjust:
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-\section{A formal notion of anchoring}
+\section{A model of anchoring}
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{A learning model of expectation formation}
@@ -423,7 +446,7 @@ Agents construct one-period-ahead inflation forecasts as
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Definition: Anchoring mechanism}
+	\frametitle{Anchoring mechanism}
 %\vspace{-1cm}
 	
  \begin{align*}
@@ -434,7 +457,7 @@ k_t &= \begin{cases}  \frac{1}{k_{t-1} +1} \quad \quad \text{if} \quad \overbrac
 
 \
 
-Equation (\ref{gain}): endogenous gain
+Equation (\ref{gain}): \textbf{endogenous} gain
 
 \
 
@@ -474,7 +497,7 @@ Equation (\ref{gain}): endogenous gain
 
 
 
-\section{Model with anchoring mechanism}
+\section{Full model with anchoring mechanism}
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -482,7 +505,7 @@ Equation (\ref{gain}): endogenous gain
 
 Households maximize
 \begin{equation}
-\hat{\E}^i_t \sum_{s=0}^{\infty} \beta^s \bigg( U(C^i_s) - v(H^i_s)\bigg)
+\hat{\E}^i_t \sum_{T=t}^{\infty} \beta^{T-t} \bigg( U(C^i_{T}) - v(H^i_{T})\bigg)
 \end{equation}
 
 \
@@ -547,34 +570,46 @@ $\; $Preston (2005)
 	\frametitle{Calibration}
 
 \begin{center}
-\begin{tabular}{ c | c }
- $\beta$ & 0.98  \\ \hline
- $\sigma$ & 0.5  \\  \hline
- $\alpha$ & 0.5    \\\hline
- $\psi_{\pi} $& 1.5    \\\hline
- $\psi_x$ & 1.5    \\\hline
- $\bar{g}$ & $1/0.145^{*}$    \\ \hline
- \\[-1em] % this raises the ceiling for thetbar's row
- $\bar{\theta}$ & 5*   \\ \hline
-    $\rho_r$ & 0    \\ \hline
-    $\rho_i$ & 0.877*    \\ \hline
-    $\rho_u$ & 0    \\ \hline
-    $\sigma_i$ & 0.359*    \\ \hline
-    $\sigma_r$ &  0.1   \\ \hline
-    $\sigma_u$ & 0.277*    \\ \hline
+\begin{tabular}{ c | c  | l }
+ $\beta$ & 0.98 & stochastic discount factor \\  \hline
+ $\sigma$ & 0.5  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule \\\hline
+ $\psi_x$ & 1.5   & coefficient of the output gap in Taylor rule  \\\hline
+ $\bar{g}$ & $0.145^{*}$  & value of the constant gain \\\hline
+& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+ $\bar{\theta}$ &  5*  & threshold deviation between subjective \& objective $\E$ \\ \hline
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline
+    $\rho_i$ & 0.877* &  persistence of monetary policy shock  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+    $\sigma_i$ & 0.359* & standard deviation of natural rate shock  \\ \hline
+    $\sigma_r$ &  0.1  &standard deviation of monetary policy shock  \\ \hline
+    $\sigma_u$ & 0.277* & standard deviation of cost-push shock   \\ \hline
 \end{tabular}
 \end{center}
+
+%\begin{tabular}{cc}
+%\hline
+%hi & tall one\\[10ex]
+%\hline
+%hi & medium one\\[5ex]
+%\hline
+%hi & standard one\\
+%\hline
+%\end{tabular}
 
 \blfootnote{* Carvalho et al (2019)'s estimates.  Exception: $\bar{\theta} = 0.029$.} 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{}
+	\frametitle{When always anchored, AM = learning}
 % learning models against RE
 
 \begin{figure}[h!]
+\addtocounter{subfigure}{-3} % the a,b,c was starting at d, so I move it back 3 steps to a
 \subfigure[Inflation]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_pi}}
+%\stackunder[5pt]{\includegraphics[width=2in,height=.7in]{\myFigPath dw_role_of_learning_pi}}{NorESM1-M}
 \subfigure[Output gap]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_x}}
 \subfigure[Interest rate]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw_role_of_learning_i}}
 \put (-180, 50){\makebox[0.7\textwidth][r]{\blackline $\; $ RE}}
@@ -602,13 +637,13 @@ $\; $Preston (2005)
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Decreasing $\bar{\theta}$: an unanchored case}
+	\frametitle{A lower $\bar{\theta}$: a brief unanchored period}
 % gain and drift in pi in this case
 
 \begin{figure}[h!]
 \subfigure[Gain]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_gain}}
 \subfigure[Inflation drift]{\includegraphics[scale = \myTinierFigScale]{\myFigPath dw4_drift}}
-\caption{$\bar{\theta}=1$. Unanchored expectations: constant gain}
+\caption{$\bar{\theta}=1$. Short unanchored episode: constant gain}
 \end{figure}
 
 \end{frame}
@@ -632,7 +667,7 @@ $\; $Preston (2005)
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{}
+	\frametitle{A much lower $\bar{\theta}$}
 % gain and drift in pi in this case
 
 \begin{figure}[h!]
@@ -701,7 +736,7 @@ $\; $Preston (2005)
 \vspace{-1cm}
 	
 \begin{itemize}
-\item Formal definition of anchoring $+$ macro model with monetary policy
+\item Model of anchoring $+$ macro model with monetary policy
 
 \
 
@@ -767,7 +802,7 @@ $\; $Preston (2005)
 %%%%%%%                     APPENDIX  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-
+\backupbegin
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Derivations}
@@ -844,7 +879,7 @@ f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \qua
 %\end{frame}
 %%%%%%%%%%%%%%%%%%
 
-
+\backupend
 
 
 \end{document}

@@ -38,8 +38,11 @@ fs=20; % fontsize
 lw=2; % linewidth
 fs_pres = 80;
 lw_pres = 6;
+fs_prop = 40;
+lw_prop = 4;
+
 %% Simulation
-T = 1000
+T = 40
 burnin = 0;
 
 [param, setp] = parameters_next;
@@ -157,7 +160,8 @@ clc
 
 % 1. Role of learning: RE against LR, fully anchored
 nameset1 = {'pi','x','i'};
-print1 =0;
+print1 =0
+disp("there's no print2")
 for j=1:ny
     % Observables
     figure
@@ -216,7 +220,8 @@ end
 
 % 3. Unanchored: RE against LR
 nameset1 = {'pi','x','i'};
-print3 =0;
+print3 =0
+disp("there's no print4")
 for j=1:ny
     % Observables
     figure
@@ -274,7 +279,7 @@ if print3 ==1
 end
 
 % 5. Varying Taylor rule coefficients,  Gain for different TR coefficients
-print5 =0;
+print5 =0
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -305,7 +310,7 @@ elseif print5 == 5
 end
 
 % 6. CEMP's thetbar
-print6 = 0;
+print6 = 0
 % Gain
 figure
 set(gcf,'color','w'); % sets white background color
@@ -365,15 +370,12 @@ end
 
 
 %% Read in and plot data
-print7=0;
+print7=0
 
 series_id = 'UNRATE';
 observation_start = '2010-01-01';
 observation_end   = datestr(today,'yyyy-mm-dd');
-units  = 'level';
-frequency = 'd';
-aggregation_method = 'eop';
-[output] = getFredData(series_id, observation_start, observation_end)
+[output] = getFredData(series_id, observation_start, observation_end);
 urate = output.Data(:,2);
 time_urate = output.Data(:,1);
 
@@ -394,13 +396,11 @@ if print7 ==1
     close
 end
 
+% Fed funds rate target upper limit
 series_id = 'DFEDTARU';
 observation_start = '2010-01-01';
 observation_end   = datestr(today,'yyyy-mm-dd');
-units  = 'level';
-frequency = 'd';
-aggregation_method = 'eop';
-[output] = getFredData(series_id, observation_start, observation_end)
+[output] = getFredData(series_id, observation_start, observation_end);
 ffr_t = output.Data(:,2);
 time_fedfunds = output.Data(:,1);
 
@@ -421,3 +421,138 @@ if print7 ==1
     cd(current_dir)
     close
 end
+
+% inflation expectations, market based
+url = 'https://fred.stlouisfed.org/';
+c = fred(url);
+series = 'T10YIE';
+d = fetch(c,series);
+time_epi  = d.Data(:,1);
+epi = d.Data(:,2);
+close(c)
+
+obs_start= datenum(observation_start, 'yyyy-mm-dd');
+ind = find(time_epi==obs_start);
+epi = epi(ind:end);
+time_epi = time_epi(ind:end);
+% 
+% series_id = 'T10YIE';
+% observation_start = '2010-01-01';
+% observation_end   = datestr(today,'yyyy-mm-dd');
+% [output] = getFredData(series_id, observation_start, observation_end);
+% Epi10 = output.Data(:,2);
+% time_Epi10 = output.Data(:,1);
+
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_epi,epi, 'k', 'linewidth',lw_pres); hold on
+plot(time_epi, 2*ones(length(epi)), 'b--', 'linewidth',lw_pres)
+ax = gca; % current axes
+ax.FontSize = fs_pres;
+grid on
+grid minor
+datetick('x','yyyy-mm')
+if print7 ==1
+    figname = ['dw_Epi10']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% Read in and plot data for proposals (slightly smaller font)
+print8=1
+
+series_id = 'UNRATE';
+observation_start = '2010-01-01';
+observation_end   = datestr(today,'yyyy-mm-dd');
+[output] = getFredData(series_id, observation_start, observation_end);
+urate = output.Data(:,2);
+time_urate = output.Data(:,1);
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_urate,urate, 'k', 'linewidth',lw_prop)
+ax = gca; % current axes
+ax.FontSize = fs_prop;
+grid on
+grid minor
+datetick('x','yyyy-mm')
+if print8 ==1
+    figname = ['proposal_urate']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Fed funds rate target upper limit
+series_id = 'DFEDTARU';
+observation_start = '2010-01-01';
+observation_end   = datestr(today,'yyyy-mm-dd');
+[output] = getFredData(series_id, observation_start, observation_end);
+ffr_t = output.Data(:,2);
+time_fedfunds = output.Data(:,1);
+
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_fedfunds,ffr_t, 'k', 'linewidth',lw_prop)
+ax = gca; % current axes
+ax.FontSize = fs_prop;
+grid on
+grid minor
+datetick('x','yyyy-mm')
+if print8 ==1
+    figname = ['proposal_ffr']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% inflation expectations, market based
+url = 'https://fred.stlouisfed.org/';
+c = fred(url);
+series = 'T10YIE';
+d = fetch(c,series);
+time_epi  = d.Data(:,1);
+epi = d.Data(:,2);
+close(c)
+
+obs_start= datenum(observation_start, 'yyyy-mm-dd');
+ind = find(time_epi==obs_start);
+epi = epi(ind:end);
+time_epi = time_epi(ind:end);
+% 
+% series_id = 'T10YIE';
+% observation_start = '2010-01-01';
+% observation_end   = datestr(today,'yyyy-mm-dd');
+% [output] = getFredData(series_id, observation_start, observation_end);
+% Epi10 = output.Data(:,2);
+% time_Epi10 = output.Data(:,1);
+
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_epi,epi, 'k', 'linewidth',lw_prop); hold on
+plot(time_epi, 2*ones(length(epi)), 'b--', 'linewidth',lw_prop)
+ax = gca; % current axes
+ax.FontSize = fs_prop;
+grid on
+grid minor
+datetick('x','yyyy-mm')
+if print8 ==1
+    figname = ['proposal_Epi10']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+close all
