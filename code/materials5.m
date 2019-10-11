@@ -81,11 +81,10 @@ e = randn(n,T);
 % Use Ryan's code to simulate from the RE model
 [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
 
-% LR learning (only constant, only for pi) EDIT THIS
+% LR learning (only constant, only for pi) 
 anal = 1; % take analytical LR exp
 H=0;
 [x_LR, y_LR] = sim_learn_LR_constant_pidrift(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal);
-
 
 % LR learning with anchoring, learning the inflation drift only
 anal = 1; % take analytical LR exp
@@ -154,3 +153,23 @@ if print_figs ==1
     close
 end
 
+
+%% Generate IRFs for RE and anchoring
+x0 = [0 1 0]'; % shock to monpol
+h = 10; % horizon of IRF
+[IR, iry, irx]=ir(gx,hx,x0,h);
+
+% For learning, the approach I take is resimulate everything and for each
+% period t, expose the econ to this same shock. Then take an average.
+
+GIR = zeros(n,h,T-h);
+for t=1:T-h
+    % 1. create alternative simulations, adding the impulse always at a new
+    % time t
+    [x_LR_anchor_shockd, y_LR_anchor_shockd] = sim_learn_LR_anchoring_pidrift_shockd(gx,hx,SIG,T,burnin,e, Aa_LR, Ab_LR, As_LR, param, setp, H, anal, t);
+    % 2. take differences between this and the standard simulation
+    GIR(:,:,t) = y_LR_anchor(:,t:t+h-1) - y_LR_anchor_shockd(:,t:t+h-1);
+end
+
+% option 1: take simple averages
+RIR1 = mean(GIR,3);

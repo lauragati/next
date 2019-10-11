@@ -100,7 +100,70 @@ bottom=1in}
 
 %\listoffigures
 
-\newpage
+%\newpage
+
+\section{Some points from DW and after}
+
+\begin{enumerate}
+\item The expectation operator $\hat{\E}$
+	\begin{itemize}
+	\item \emph{Everyone} in the literature is happily differentiating through $\hat{\E}$ w/o any remark
+	\item[] e.g. Evans \& Honkapohja (2001 and the papers), Preston (2005), Graham (2011)
+	\item The only hint I've found in the literature and in  Evans \& Honkapohja (2001) is the following (Chapter 11): \\
+	Suppose agents in the model are trying to form the expectation $\hat{\E}\big(G(y_{t+1},v_{t+1}) \big)$, where $y$ is a vector of  endogenous variables, $v$ a vector of shocks and $G$ is a nonlinear function.\\
+	They don't know future values, but have access to past values $G(y_{j},v_{j}) \quad j=1,\dots,t$. \\
+	Then a natural estimator is the sample mean, $\theta_t \equiv \frac{1}{t} \sum_{j=1}^t G(y_{j},v_{j}) $. \\
+	The sample mean is a linear operator. It's a discrete and backward-looking approximation of the integral of all possible states. Thus differentiation w.r.t. variables of the problem $(y)$ should be fine.
+	\end{itemize}
+\item Small deviations in $\pi$, large ones in $x$ (Susanto: ``show me IRFs from RE and the anchoring model")\\
+My playing around with the simulated model yields the following result: 
+	\begin{prop} The degree to which inflation responds to expectational deviations from rational expectations (RE) depends on $\kappa$, the slope of the Phillips curve. A lower $\kappa$ means higher price rigidity and translates to current inflation responding less to expectation gaps.
+	\end{prop}
+	\begin{corollary}Whether expectation gaps between subjective and rational expectations show up in inflation or output depends on the value of $\kappa$. When nominal rigidities are high ($\kappa$ is low), money is strongly nonneutral, and thus output is the margin of adjustment. When prices are flexible, money is neutral and inflation is the margin of adjustment. 
+	\end{corollary}
+	
+	 Do we see this result in the learning literature?
+		\begin{itemize}
+		\item No - most of the learning literature focuses on E-stability.
+		\item Yes! A few studies that look at how NK models with learning actually behave obtain similar things, even if not quite the same. But my result seems more to be in the background, never explicit:
+			\begin{enumerate}
+			\item Orphanides \& Williams (2004) \\
+			This just documents that learning reduces the persistence of inflation, and this is the more so the more aggressive monetary policy is on inflation. $\rightarrow$
+			Inflation persistence literature?
+			\begin{itemize}
+			\item Idea that Phillips-curves only fit the data well if you include lagged inflation, and that models where inflation is forward-looking (like the NK model) have a hard time matching this.
+			\item Data: inflation persistence was small midcentury, increased considerably between 1960-80, and is now decreasing. 
+			\item But it seems like this literature concluded that the higher $\kappa$, the more inflation ``inherits'' the output gap persistence. 
+			\item But it makes sense why learning is like the ``hybrid Phillips curve:" expectations enter as novel backward-looking components, introducing a novel channel of ``intrinsic'' inflation inertia (persistence).
+			\end{itemize}
+
+			\item Eusepi \& Preston (2018), Fig 4 \\
+			This figure plots the weighted volatility $\sigma_{\pi}^2 + \lambda \sigma_x^2$ as a function of $\lambda$, the weight of the output gap in the central bank's loss function. This function is (for the most part) increasing in $\lambda$. Here, by coincidence, we learn that in general, $\sigma_x > \sigma_{\pi}$. That means that for their parameterization, expectational errors will show up more in output gap volatility than in inflation volatility. \\ 
+			But this is already a step further, b/c it looks at the interplay of monetary policy and learning, whereas my result is purely about the dynamics of the economy, keeping monetary policy constant.
+			\item Noah Williams (2003), Fig 2. \\
+			This is the closest to my result: in an NK model with constant gain learning ($\rightarrow$ unanchored), $\pi$ responds less to a shock to the natural rate than $x$. 
+			\end{enumerate}
+			$\Rightarrow$ would need to investigate my result with IRFs. But IRFs for the learning world are tricky! Why? B/c $gx$ changes in every period after the impulse as outcomes affect expectations and those feed back into outcomes. 
+		\end{itemize}
+		So how do I try to generate IRFs for the learning world? \\
+		For a simulation consisting of $T$ periods and h-horizon IRFs, redo the simulation $T-h$ times, each time increasing $t$ from $1\dots T-h$:
+		\begin{enumerate}
+		\item[1)] imposing the unit innovation at time $t$ and calling the thus simulated series $y^{sim,t}$;
+		\item[2)] calculating the difference between the newly simulated series and the original simulation: $y^{sim,t} - y^{sim}$;
+		\item[3)] Finally take an average of these differences. 
+		\end{enumerate}
+		This should be something like an expected generalized impulse response in the sense that it is invariant to at what time we impose the innovation. 
+
+\item SR FE as the anchoring criterion $\theta_t$ instead of subjective - objective expectations
+	\begin{itemize}
+	\item  CEMP has 2 arguments for $\theta_t$ 
+		\begin{enumerate}
+		\item stand-in for a whole class of misspecification tests that firms may be doing (w/o taking a stance on which one firms are using)
+		\item an alternative calibrated model in which $\theta_t$ is instead a version of the CUSUM test for structural breaks (Brown, Durbin \& Evans 1975) when simulated a) yields almost identical results to their estimation with their $\theta_t$, b) however imposes a larger number of parameters, making the estimation exercise even more cumbersome than it already is. \\
+		By the way, Pablo also told me to do everything in C++ (to get speedups). Opinions?
+		\end{enumerate}
+	\end{itemize}
+\end{enumerate}
 
 
 
