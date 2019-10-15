@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 5b - Revisiting the timing}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+%\tableofcontents
+
+%\listoffigures
+
+%\newpage
+Define some objects:
+\begin{align}
+f_t &= \hat{\E}_t(z_{t+1}) \quad \text{one-period-ahead forecast formed at time } t \\
+fe_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast realized at time } t+1 \\
+& = ALM(t+1) - PLM(t+1) \\
+\theta_t &=  \hat{\E}_{t-1}(z_{t}) - \E_{t-1}(z_{t}) \quad \text{CEMP's criterion} \\
+& = PLM(t) - \E_{t-1}ALM(t)
+\end{align}
+
+
+\begin{multicols}{2}
+
+\begin{enumerate}
+\item[] $PLM_1: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
+\item[] Then at time $t$ available: $\bar{z}_{\color{red}{t-1}}, s_t, k_{t-1}, f_{t-2}$
+\item Form all future expectations using $PLM_1 \rightarrow z_t$ realized 
+\item Form $\theta_t \rightarrow k_t$ realized
+\item Update $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(fe_{t-1})$
+\item[] where $fe_{t-1} = z_{t}-f_{t-1} = $ 
+\item[] $fe_{t-1} = z_{t}-(\bar{z}_{\color{red}{t-2}} + bs_{t-1})$, so:
+\item[] $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(z_{t}-(\bar{z}_{\color{red}{t-2}} + bs_{t-1}))$
+\end{enumerate}
+
+\columnbreak
+\begin{enumerate}
+\item[] $PLM_2: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t}} + bs_t$
+\item[] Then at time $t$ available: $\bar{z}_{\color{red}{t}}, s_t, k_{t-1}, f_{t-2}$
+\item Form all future expectations using $PLM_2 \rightarrow z_t$ realized
+\item Form $\theta_t \rightarrow k_t$ realized
+\item Update $\bar{z}_{t+1} = \bar{z}_{t} + k_t^{-1}(fe_{t-1})$
+\item[] where $fe_{t-1} = z_{t}-f_{t-1} = $ 
+\item[] $fe_{t-1} = z_{t}-(\bar{z}_{\color{red}{t-1}} + bs_{t-1})$, so:
+\item[] $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(z_{t}-(\bar{z}_{\color{red}{t-1}} + bs_{t-1}))$
+\end{enumerate}
+\end{multicols}
+\textbf{Issue \# 1}: Updating of $\bar{z}$ is in any case a function of last period's $\bar{z}$ (i.e. not the one available to use this morning) (unless you use an ``assessment forecast": the $\bar{z}$ you used this morning with $s_{t-1}$ you used yesterday).
+
+The second issue will be about the criterion. Recall:
+\begin{align*}
+\theta_t &=  \hat{\E}_{t-1}(z_{t}) - \E_{t-1}(z_{t})  \\
+& = PLM(t) - \E_{t-1}ALM(t)
+\end{align*}
+\begin{multicols}{2}
+ Recall: $PLM_1: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
+\begin{align*}
+ALM_t & = \text{stuff} \times \bar{z}_{t-1} + \text{stuff} \times s_t \\
+\theta_t &= \bar{z}_{\color{red}{t-2}} + bs_{t-1} - \E_{t-1}( \text{stuff} \times \bar{z}_{t-1} + \text{stuff} \times s_t)
+\end{align*}
+
+\columnbreak
+Recall: $PLM_2: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t}} + bs_t$
+\begin{align*}
+ALM_t & = \text{stuff} \times \bar{z}_{t} + \text{stuff} \times s_t \\
+\theta_t &= \bar{z}_{\color{red}{t-1}} + bs_{t-1} - \E_{t-1}( \text{stuff} \times \bar{z}_{t} + \text{stuff} \times s_t)
+\end{align*}
+\end{multicols}
+\textbf{Issue \#2}: I had this issue before, but it's not clear what the RE of $\bar{z}$ is. In particular, I don't know what the index of $\E_{t-1}$ refers to: the morning of $t-1$ or the evening?
+\begin{multicols}{2}
+\begin{itemize}
+\item If it's the morning, then $ \E_{t-1}(\bar{z}_{t-1}) =  \bar{z}_{t-2}$
+\item[] $\rightarrow \theta_t = f(\bar{z}_{t-2}, s_{t-1})$
+\item If it's the evening, then $ \E_{t-1}(\bar{z}_{t-1}) =  \bar{z}_{t-1}$
+\item[] $\rightarrow \theta_t = f(\bar{z}_{t-2}, \bar{z}_{t-1}, s_{t-1})$
+\end{itemize}
+
+\columnbreak
+\begin{itemize}
+\item If it's the morning, then $ \E_{t-1}(\bar{z}_{t}) =  \bar{z}_{t-1}$
+\item[] $\rightarrow \theta_t = f(\bar{z}_{t-1}, s_{t-1})$
+\item If it's the evening, then $ \E_{t-1}(\bar{z}_{t}) =  \bar{z}_{t}$
+\item[] $\rightarrow \theta_t = f(\bar{z}_{t-1}, \bar{z}_{t}, s_{t-1})$
+\end{itemize}
+\end{multicols}
+The ``evening" assumption isn't cool because the criterion depends on the intercept at several time periods, the ``morning" assumption isn't cool because just like in Issue \#1, we need access to yesterday morning's estimate of the intercept.
+
+But one can use Ryan's PLM ($PLM_1$) in any case, because the issues are exactly the same, the notation is just different. 
+
+
+\end{document}
+
+
+
+
+
