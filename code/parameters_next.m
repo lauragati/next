@@ -3,7 +3,6 @@ param.bet  = 0.98;%0.98
 param.sig  = 0.5; % IES, mean across studies is 0.5
 param.alph = 0.5; %0.5 (prob that firm stuck with price)
 param.kapp = (1-param.alph)*(1-param.alph*param.bet)/param.alph;
-% param.kapp = 1;
 param.psi_x  = 1.5; %1.5
 param.psi_pi = 1.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;

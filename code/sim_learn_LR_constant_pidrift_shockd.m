@@ -1,11 +1,11 @@
-% same as sim_learn_LR_anchoring_pidrift.m, except there's an innovation of
+% same as sim_learn_LR_constant_pidrift.m, except there's an innovation of
 % x0 = vector of impulses with the innovation (delta)
 % dt = innovation is imposed at time dt
-% 11 oct 2019
+% 14 oct 2019
 
-
-function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn_LR_anchoring_pidrift_shockd(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal,dt, x0)
+function [xsim, ysim, shock, diff,pibar] = sim_learn_LR_constant_pidrift_shockd(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal,dt, x0)
 gbar = param.gbar;
+
 ny = size(gx,1);
 nx = size(hx,1);
 
@@ -17,11 +17,9 @@ pibar = 0;
 b = gx*hx;
 b1 = b(1,:);
 
-pibar_seq = zeros(T,1);
 diff = zeros(T,1);
 diff(1) = nan;
-k = zeros(1,T);
-k(:,1) = gbar^(-1);
+k=gbar^(-1);
 %Simulate, with learning
 for t = 1:T-1
     
@@ -41,9 +39,8 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
         
         %Update coefficients
-        kt = fk_pidrift(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As);
-        k(:,t) = kt;
-        pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
+        k = k+1;
+        pibar = pibar + k^(-1)* (ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
         
         % check convergence
         diff(t) = max(max(abs(pibar - at_1)));
@@ -60,7 +57,6 @@ for t = 1:T-1
     
     % generate an old constant, to check convergence
     at_1 = pibar;
-    pibar_seq(t)= pibar;
 end
 
 %Last period observables.

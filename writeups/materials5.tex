@@ -89,7 +89,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 5 - Some post-DW analysis}
+\title{Materials 5 - Points raised in DW presentation and after}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -102,10 +102,8 @@ bottom=1in}
 
 %\newpage
 
-\section{Some points from DW and after}
+\section{The expectation operator $\hat{\E}$}
 
-\begin{enumerate}
-\item The expectation operator $\hat{\E}$
 	\begin{itemize}
 	\item \emph{Everyone} in the literature is happily differentiating through $\hat{\E}$ w/o any remark
 	\item[] e.g. Evans \& Honkapohja (2001 and the papers), Preston (2005), Graham (2011)
@@ -113,9 +111,9 @@ bottom=1in}
 	Suppose agents in the model are trying to form the expectation $\hat{\E}\big(G(y_{t+1},v_{t+1}) \big)$, where $y$ is a vector of  endogenous variables, $v$ a vector of shocks and $G$ is a nonlinear function.\\
 	They don't know future values, but have access to past values $G(y_{j},v_{j}) \quad j=1,\dots,t$. \\
 	Then a natural estimator is the sample mean, $\theta_t \equiv \frac{1}{t} \sum_{j=1}^t G(y_{j},v_{j}) $. \\
-	The sample mean is a linear operator. It's a discrete and backward-looking approximation of the integral of all possible states. Thus differentiation w.r.t. variables of the problem $(y)$ should be fine.
+	E\&H never say this, but I'm thinking that the sample mean is a linear operator. It's a discrete and backward-looking approximation of the integral of all possible states. Thus differentiation w.r.t. variables of the problem $(y)$ should be fine.
 	\end{itemize}
-\item Small deviations in $\pi$, large ones in $x$ (Susanto: ``show me IRFs from RE and the anchoring model")\\
+\section{Small deviations in $\pi$, large ones in $x$ (Susanto: ``show me IRFs from RE and the anchoring model")}
 My playing around with the simulated model yields the following result: 
 	\begin{prop} The degree to which inflation responds to expectational deviations from rational expectations (RE) depends on $\kappa$, the slope of the Phillips curve. A lower $\kappa$ means higher price rigidity and translates to current inflation responding less to expectation gaps.
 	\end{prop}
@@ -149,38 +147,86 @@ My playing around with the simulated model yields the following result:
 		For a simulation consisting of $T$ periods and h-horizon IRFs, redo the simulation $T-h$ times, each time increasing $t$ from $1\dots T-h$:
 		\begin{enumerate}
 		\item[1)] imposing the unit innovation at time $t$ and calling the thus simulated series $y^{sim,t}$;
-		\item[2)] calculating the difference between the newly simulated series and the original simulation: $y^{sim,t} - y^{sim}$;
+		\item[2)] calculating the difference between the newly simulated series and the originally simulated series: $y^{sim,t} - y^{sim}$;
 		\item[3)] Finally take an average of these differences. 
 		\end{enumerate}
-		This should be something like an expected generalized impulse response in the sense that it is invariant to at what time we impose the innovation. 
+		This should be something like an expected generalized impulse response in the sense that it is invariant to at what time we impose the innovation. However, it is still conditioned on a specific shock sequence, which I plot as a reminder below:
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials5_observables1} 
+\caption{The observables for the specific shock sequence}
+\end{figure}		
 
-\item SR FE as the anchoring criterion $\theta_t$ instead of subjective - objective expectations
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials5_gain_drift} 
+\caption{Inverse gain and drift for the specific shock sequence}
+\end{figure}			
+		
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials5_IRFs_natrate} 
+\caption{IRFs to a natural rate shock ($r^n$)}
+\end{figure}		
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials5_IRFs_monpol} 
+\caption{IRFs to a monetary policy shock ($\bar{i}$)}
+\end{figure}	
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials5_IRFs_costpush} 
+\caption{IRFs to a cost-push shock ($u$)}
+\end{figure}
+\clearpage	
+
+Some thoughts on the IRFs:
+\begin{itemize}
+\item I replicate here my previous result: the bigger $\alpha$ i.e. lower $\kappa$, the more it is the output gap that is the margin of adjustment. This is less so for the impact of shocks, more for the dynamics after. 
+\item In terms of deviations from RE, those are in general bigger for the output gap than inflation except for the monetary policy shock.
+\item Responses on impact have the same sign as RE, but can reverse over time. 
+\item In general learning seems to induce sluggishness and hump shapes - not a surprise given that learning introduces backward-lookingness into the model.
+\item In terms of uncertainty, anchoring $>$ decreasing gain $>$ constant gain b/c it is in this order that the timing makes a difference. Of course b/c it all depends on how the gain changes.
+\item Also not a surprise: the most extreme responses are the perpetual learning ones (always constant gain), while the closest to RE are the decreasing gain ones. 
+\item The more constant gains, the more things overreact.
+\item I get almost the same IRFs as Williams (2003), Fig 2, but for the learning models I have an overshooting going on that's absent in Williams (2003).
+\end{itemize}
+
+\section{SR FE as the anchoring criterion $\theta_t$ instead of subjective - objective expectations}
 	\begin{itemize}
-	\item  CEMP has 2 arguments for $\theta_t$ 
+	\item  CEMP has 4 arguments for $\theta_t$ 
 		\begin{enumerate}
-		\item stand-in for a whole class of misspecification tests that firms may be doing (w/o taking a stance on which one firms are using)
-		\item an alternative calibrated model in which $\theta_t$ is instead a version of the CUSUM test for structural breaks (Brown, Durbin \& Evans 1975) when simulated a) yields almost identical results to their estimation with their $\theta_t$, b) however imposes a larger number of parameters, making the estimation exercise even more cumbersome than it already is. \\
+		\item Stand-in for a whole class of misspecification tests that firms may be doing (w/o taking a stance on which one firms are using)
+		\item An alternative calibrated model in which $\theta_t$ is instead a version of the CUSUM test for structural breaks (Brown, Durbin \& Evans 1975) when simulated a) yields almost identical results to their estimation with their $\theta_t$, b) however imposes a larger number of parameters, making the estimation exercise even more cumbersome than it already is. \\
 		By the way, Pablo also told me to do everything in C++ (to get speedups). Opinions?
+		\item Low-frequency movements are hard to detect in real time using just forecast errors.
+		\item CEMP show that their $\theta_t$ can be written as a sum of forecast errors.
 		\end{enumerate}
 	\end{itemize}
+
+Here's my short summary and replication (with some guesswork) of CEMP's CUSUM-test based alternative criterion:
+\begin{enumerate}
+\item Let $f_t$ denote the short-run forecast error, and $\omega_t$ firms' estimate of the FE variance.
+\item Let $\kappa \in (0,1)$ and $\tilde{\theta}$ be the new threshold value for the criterion.
+\item Then for some dubious initial $(\omega_0, \theta_0)$, let firms in every period estimate the criterion and the FEV as:
+\begin{align}
+ \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(f_t^2 -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(f_t^2/\omega_t -\theta_{t-1})\
+\end{align}
+and set the gain endogenously as (CUSUM anchoring mechanism)
+\begin{align}
+k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1} \\
+\mathbb{I} & = 1 \quad \text{if} \quad  \theta_t \leq \tilde{\theta}
+\end{align}
 \end{enumerate}
 
 
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials5_observables2} 
+\caption{CEMP's criterion against the CUSUM criterion, $\kappa = 0.8, \tilde{\theta} = 1.6$}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials5_gain_drift2} 
+\caption{CEMP's criterion against the CUSUM criterion, $\kappa = 0.8, \tilde{\theta} = 1.6$}
+\end{figure}
 
-%\begin{figure}[h!]
-%\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_anchoring_pidrift_gain} 
-%\caption{Gains for the anchoring model, inflation drift only}
-%\end{figure}
-%\newpage
-%\begin{figure}[h!]
-%\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100} 
-%\caption{All models, $T = 500$, full sample}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_observables_anchoring_pidrift_last100_compare_anchoring} 
-%\caption{RE vs the vector and scalar LR anchoring models, $T = 500$, last 100 periods}
-%\end{figure}
 
 
 

@@ -1,10 +1,8 @@
-% same as sim_learn_LR_anchoring_pidrift.m, except there's an innovation of
-% x0 = vector of impulses with the innovation (delta)
-% dt = innovation is imposed at time dt
-% 11 oct 2019
+% simulate data from learning model LR learning of just constant
+% with cemp's ALTERNATIVE anchoring mechanism (using the CUSUM test as a criterion) for the gain of PIBAR ONLY
+% 14 oct 2019
 
-
-function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn_LR_anchoring_pidrift_shockd(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal,dt, x0)
+function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn_LR_anchoring_pidrift_cusum(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal)
 gbar = param.gbar;
 ny = size(gx,1);
 nx = size(hx,1);
@@ -22,6 +20,10 @@ diff = zeros(T,1);
 diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
+%%% initialize CUSUM variables: FEV om and criterion theta
+om = 0;
+thet = 0; % CEMP don't really help with this, but I think zero is ok.
+%%%
 %Simulate, with learning
 for t = 1:T-1
     
@@ -41,7 +43,10 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
         
         %Update coefficients
-        kt = fk_pidrift(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As);
+        %%% CUSUM criterion
+        f = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % short-run FE 
+        [kt, om, thet] = fk_cusum(param,k(:,t-1),omt_1, thett_1,f);
+        %%%
         k(:,t) = kt;
         pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
         
@@ -51,16 +56,14 @@ for t = 1:T-1
     end
     
     %Simulate transition with shock
-    %%% here is the addition of the impulse
-    if t+1==dt
-        e(:,t+1) = e(:,t+1)+x0';
-    end
-    %%%
     xsim(:,t+1) = xesim + eta*e(:,t+1);
     
     % generate an old constant, to check convergence
     at_1 = pibar;
     pibar_seq(t)= pibar;
+    %%% update CUSUM parameters
+    omt_1 = om;
+    thett_1 = thet;
 end
 
 %Last period observables.

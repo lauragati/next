@@ -252,7 +252,6 @@ for s=1:n
 end
 
 %% compare the two anchoring mechanisms
-close all
 
 % Observables
 figure
@@ -297,7 +296,7 @@ legend('CEMP criterion',  'CUSUM criterion')
 title('Inverse gain')
 subplot(1,2,2)
 plot(pibar,'r','linewidth', 2); hold on
-plot(pibar_cusum,'color', saddle_brown,'linewidth', 2)
+plot(pibar_cusum,saddle_brown,'linewidth', 2)
 ax = gca; % current axes
 ax.FontSize = fs;
 grid on
