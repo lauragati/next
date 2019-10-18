@@ -14,7 +14,8 @@ x  = 0;
 ib = 0;
 rn = 0;
 u  = 0;
+il = 0;
 %Put the ss values in a vector consistent with Y and X vectors in model.m
 yy  = [pi x i];
-xx  = [rn ib u];
+xx  = [rn ib u il];
 ss  = [yy xx];

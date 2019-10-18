@@ -1,3 +1,3 @@
 \contentsline {section}{\numberline {1}The expectation operator $\mathaccentV {hat}05E{\E }$}{1}{section.1}
 \contentsline {section}{\numberline {2}Small deviations in $\pi $, large ones in $x$ (Susanto: ``show me IRFs from RE and the anchoring model")}{1}{section.2}
-\contentsline {section}{\numberline {3}SR FE as the anchoring criterion $\theta _t$ instead of subjective - objective expectations}{6}{section.3}
+\contentsline {section}{\numberline {3}SR FE as the anchoring criterion $\theta _t$ instead of subjective - objective expectations}{7}{section.3}

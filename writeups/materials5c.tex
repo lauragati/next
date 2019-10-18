@@ -89,7 +89,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 5b - Revisiting the timing}
+\title{Materials 5c - Evening forecasts}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -101,36 +101,36 @@ bottom=1in}
 %\listoffigures
 
 %\newpage
-Define some objects:
+Define some objects: \emph{(I usually let t denote the time in which the variable is formed.)}
 \begin{align}
 f_t &= \hat{\E}_t(z_{t+1}) \quad \text{one-period-ahead forecast formed at time } t \\
-FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast realized at time } t+1 \\
-& = ALM(t+1) - PLM(t+1) \\
+FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at time } t+1 \\
+& = ALM(t+1) - PLM(t) \\
 \theta_t &=  \hat{\E}_{t-1}(z_{t}) - \E_{t-1}(z_{t}) \quad \text{CEMP's criterion} \\
-& = PLM(t) - \E_{t-1}ALM(t)
+& = PLM(t-1) - \E_{t-1}ALM(t)
 \end{align}
 
 
 \begin{enumerate}
-\item[] $PLM: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
+\item[] $PLM(t): \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
 \item[] \textbf{Morning}: morning of time $t$ available: $\mathcal{I}_t^m = \{\bar{z}_{\color{red}{t-1}}, s_t, k_{t-1}, FE_{t-2}\}$
-\item Form all future expectations using $PLM_1 \rightarrow z_t$ realized 
-\item Form $\theta_t \rightarrow k_t$ realized, $\rightarrow FE_{t-1}$ realized 
+\item Form all future expectations using $PLM(t) \rightarrow z_t$ realized, $\rightarrow FE_{t-1}$ realized 
+\item Form $\theta_t \rightarrow k_t$ realized
 \item \textbf{Evening}: Update $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(FE_{t-1})$
 \item[] where $FE_{t-1} = z_{t}-f_{t-1} = z_{t}-(\bar{z}_{\color{red}{t-2}} + bs_{t-1})$, so:
 \item[] $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(z_{t}-(\bar{z}_{\color{red}{t-2}} + bs_{t-1}))$
 \item[] $\rightarrow$ evening of time $t$ available: $\mathcal{I}_t^e = \{\bar{z}_{\color{red}{t}}, s_t, k_{t}, FE_{t-1}\}$
 \end{enumerate}
 
-\textbf{Issue \# 1}: Updating of $\bar{z}$ is a function of last period's $\bar{z}$, $\bar{z}_{t-2}$, (i.e. not the one available to use this morning). The formulation I've had so far, updating based on $\bar{z}_{\color{red}{t-1}} + bs_{t-1}$ is what I've called an ``assessment forecast": it combines the $\bar{z}_{t-1}$ you used this morning with $s_{t-1}$ you used yesterday morning. Is that legitimate?
+\textbf{Issue \# 1}: Updating of $\bar{z}$ is a function of last period's $\bar{z}$, $\bar{z}_{t-2}$, (i.e. not the one available to use this morning). The formulation I've had so far, updating based on $\bar{z}_{\color{red}{t-1}} + bs_{t-1}$ is what I've called an ``assessment forecast": it's yesterday evening's forecast that is distinct from yesterday morning's forecast. Is that legitimate?
 
 The second issue will be about the criterion. Recall:
 \begin{align*}
 \theta_t &=  \hat{\E}_{t-1}(z_{t}) - \E_{t-1}(z_{t})  \\
-& = PLM(t) - \E_{t-1}ALM(t)
+& = PLM(t-1) - \E_{t-1}ALM(t)
 \end{align*}
 
- Recall: $PLM: \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
+ Recall: $PLM(t): \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
 \begin{align*}
 ALM_t & = \text{stuff} \times \bar{z}_{t-1} + \text{stuff} \times s_t \\
 \theta_t &= \bar{z}_{\color{red}{t-2}} + bs_{t-1} - \E_{t-1}( \text{stuff} \times \bar{z}_{t-1} + \text{stuff} \times s_t)
@@ -144,7 +144,38 @@ ALM_t & = \text{stuff} \times \bar{z}_{t-1} + \text{stuff} \times s_t \\
 \item[] $\rightarrow \theta_t =  \mathcal{F}(\bar{z}_{t-2}, \bar{z}_{t-1}, s_{t-1})$
 \end{itemize}
 
-The ``evening" assumption isn't cool because the criterion depends on the intercept at several time periods, the ``morning" assumption isn't cool because just like in Issue \#1, we need access to yesterday morning's estimate of the intercept.
+The ``evening" assumption isn't cool because the criterion depends on the intercept at several time periods, the ``morning" assumption isn't cool because just like in Issue \#1, we need access to yesterday morning's estimate of the intercept. 
+
+What I'm doing right now is $\theta_t =  \mathcal{F}(\bar{z}_{t-1}, s_{t-1})$ which amounts to assuming that both expectations, $\hat{\E}_{t-1}, \E_{t-1}$, are taken with respect to the information set of $t-1$ evening, $\mathcal{I}_{t-1}^e = \{ \bar{z}_{t-1}, s_{t-1}, \dots\}$. Again: legitimate?
+
+\newpage
+And actually, going back to CEMP reveals that they aren't consequent either:
+\begin{align*}
+\pi_t & = \gamma\pi_{t-1} +(1-\gamma)\bar{\pi}_t + \rho \varphi_{t-1} \quad \text{PLM, i.e. } \hat{\E}_{t-1}\pi_t \\
+\rightarrow \quad & \text{Clearly $\bar{\pi}_t$ is formed at time $t-1$ morning, before evaluation of the PLM, or $t-2$ evening} \\
+\bar{\pi}_t & = \bar{\pi}_{t-1} + k_t^{-1}(f_{t-1}) \\
+\rightarrow \quad & \text{This means $k_t$ too is formed at $t-1$ morning, or $t-2$ evening} \\
+k_t & = \mathbb{I}_{\theta_t \leq \bar{\theta}}(k_{t-1} +1) + (1-\mathbb{I}_{\theta_t \leq \bar{\theta}})\bar{g}^{-1} \\
+\rightarrow \quad & \text{This means $\theta_t$ too is formed at $t-1$ morning, or $t-2$ evening}  \\
+\theta_t &= |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| \\
+&\text{But $\theta_t$ is a function of $\hat{\E}_{t-1}\pi_t $, which we haven't evaluated yet!} \\
+f_{t-1} & = \pi_{t-1} - \hat{\E}_{t-2}\pi_{t-1} \\
+& \text{Note also that this FE corresponds to my } FE_{t-2}. 
+\end{align*}
+
+An alternative timing for the CEMP world is that all of the above takes place at time $t$, not $t-1$ (so agents are forming $\hat{\E}_t\pi_t$ - which is weird...)
+\begin{align*}
+\pi_t & = \gamma\pi_{t-1} +(1-\gamma)\bar{\pi}_t + \rho \varphi_{t-1} \quad \text{PLM, i.e. } \hat{\E}_{t-1}\pi_t \\
+\rightarrow \quad & \text{Now $\bar{\pi}_t$ is formed at time $t$ morning, before evaluation of the PLM, or $t-1$ evening} \\
+\bar{\pi}_t & = \bar{\pi}_{t-1} + k_t^{-1}(f_{t-1}) \\
+\rightarrow \quad & \text{This means $k_t$ too is formed at $t$ morning, or $t-1$ evening} \\
+k_t & = \mathbb{I}_{\theta_t \leq \bar{\theta}}(k_{t-1} +1) + (1-\mathbb{I}_{\theta_t \leq \bar{\theta}})\bar{g}^{-1} \\
+\rightarrow \quad & \text{This means $\theta_t$ too is formed at $t$ morning, or $t-1$ , after PLM $\hat{\E}_{t-1}\pi_t$ was formed}  \\
+\theta_t &= |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| \\
+f_{t-1} & = \pi_{t-1} - \hat{\E}_{t-2}\pi_{t-1} \\
+& \text{In this case $f_{t-1}$ makes sense, it just raises Issue \#1}. 
+\end{align*}
+
 
 
 \end{document}

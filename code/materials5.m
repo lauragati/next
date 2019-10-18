@@ -252,7 +252,7 @@ for s=1:n
 end
 
 %% compare the two anchoring mechanisms
-close all
+% close all
 
 % Observables
 figure

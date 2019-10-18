@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+
+\def \myFigPath {../../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../../tables/} 
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Do Long-Horizon Expectations Matter for New Keynesian Models? \\
+\vspace{0.8cm}
+\small{Preliminary and Incomplete}}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\abstract{When assessing the fit of New Keynesian (NK) models with statistical learning, common practice is to write down the log-linearized first-order conditions of the NK model and replace the objective expectations operator with the subjective one that captures learning (``Euler-equation approach"). As \cite{preston2005} argues, the Euler-equation approach imposes market clearing conditions that agents in the model have no knowledge of, implicitly making long-horizon expectations irrelevant for model dynamics. I take up the Preston argument to investigate numerically to what extent the Euler-equation approach delivers different dynamics than a model where long-horizon expectations are explicitly spelled out. Is the Euler-equation approach an innocent simplification that doesn't matter quantitatively, or does it distort the behavior of NK models with learning, leading to false predictions and inferences?}
+
+%\tableofcontents
+
+%\listoffigures
+
+\newpage
+
+\section{Introduction}\label{introduction}
+The last two decades have seen increasing skepticism in macroeconomics about the assumption of rational expectations, so frequently made in both theoretical and applied work. This has come hand-in-hand with a renewed interest information frictions on the hand and bounded rationality on the other. One avenue for departing from rational expectations is the adaptive learning literature that postulates that economic agents use ad-hoc forecasting rules to form expectations, but, like econometricians, update these rules as new data arrives. 
+
+Much work within the learning literature has been devoted to policy analysis using a learning version of the New Keynesian framework. In particular, the issue of optimal monetary policy has been revisited from a learning perspective. However, the learning literature has faced a conceptual divide. Many scholars have advocated the so-called Euler-equation approach that simply replaces the expectation operator in the loglinearized first-order conditions of the model with subjective expectations that are then specified according to various learning assumptions. By contrast, \cite{preston2005} shows that this is inconsistent with the microfoundations of the model as it implies that agents make suboptimal forecasts. Instead, he demonstrates that the conceptually correct learning representation involves what he calls ``long-horizon forecasts:'' infinite discounted sums of forecasts of all future periods. 
+
+In this paper I investigate whether the Euler-equation approach, if conceptually not accurate, can at least deliver dynamics of model variables that are consistent with those of Preston's long-horizon approach. If the two approaches yield dynamics are that are close enough then the issue of conceptual correctness becomes second-order because the model generates the same predictions no matter which learning framework is used. For example, conclusions about optimal monetary policy under learning would in this case be identical under Euler-equation or long-horizon learning. However, if dynamics under the two frameworks are far apart, then having the conceptually correct formulation becomes a first-order issue for any model analysis. This question is also relevant because the long-horizon formulation is mathematically more involved than the Euler-equation approach. Thus, from an applied perspective we want to know: do we get anything wrong if we take the shortcut?
+
+\subsection{Related literature}
+
+\section{The model}\label{models}
+% need a section that describes the model
+The textbook New Keynesian model, once one loglinearizes all first-order conditions, boils down to three equations. Denoting the current output gap with $x_t$, inflation with $\pi_t$ and the nominal interest rate with $i_t$, the model can be summarized as follows.
+\begin{align}
+x_t &= \E_t x_{t+1} - \sigma(i_t - \E_t \pi_{t+1}) +\sigma r_t^n \label{NKIS} \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} + u_t  \label{NKPC} \\
+i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t  \label{TR}
+\end{align}
+Equation (\ref{NKIS}) is the IS curve, linking today's output gap to expectations of tomorrow's inflation and output gap, as well as to today's interest rate and a shock, $r_t^n$ which can be shown to have the interpretation of the natural real rate of interest, $r_t^n = \E_t y^n - y_t^n$, where $y^n_t$ is the natural level of output. Equation (\ref{NKPC}) is the Phillips curve, establishing current inflation as the result of firms' price setting behavior. The variable $u_t$ is a cost-push shock. The model is closed with a specification of monetary policy, equation (\ref{TR}). Here this takes the simplest Taylor-rule form, letting monetary policy react to current inflation and current output gap with the coefficients $\psi_{\pi}$ and $\psi_x$, and allowing for innovations to the nominal interest rate as $\bar{i}_t$.
+
+The Euler-equation approach consists of adopting equations (\ref{NKIS})-(\ref{TR}) and replacing the rational expectation (RE) operator $\E$ with a subjective expectation operator, $\hat{\E}$. This gives rise to the following system:
+\begin{align}
+x_t &= \hat{\E}_t x_{t+1} - \sigma(i_t - \hat{\E}_t \pi_{t+1}) +\sigma r_t^n \label{prestons13} \\
+\pi_t &= \kappa x_t +\beta \hat{\E}_t \pi_{t+1} + u_t \label{prestons14}  \\
+i_t &= \bar{i}_t + \psi_{\pi}\pi_t + \psi_{x} x_t 
+\end{align}
+The subjective expectation $\hat{\E}$ is then specified separately, usually as a reduced-form forecasting rule with coefficients updated using recursive least squares. As I spell out explicitly in Section \ref{learning}, I will use the most general formulation here, namely decreasing gain learning where agents learn both the slope and the constant of their forecasting rule. 
+\cite{preston2005} makes a case for a different way of translating the RE NK model to a learning setting. His argument is that the derivation of system (\ref{NKIS})-(\ref{NKPC}) relies on imposing information on individual agents' forecasts that are only available to firms and households under rational expectations. Therefore the representation (\ref{prestons13})-(\ref{prestons14}) is not a valid learning representation of the NK model. 
+
+To see the Preston-argument in detail, reconsider the derivation steps we have undertaken to obtain equation (\ref{NKIS})-(\ref{NKPC}).
+% now derive Preston's LH formulation. 
+
+Thus the valid learning representation of the NK model according to Preston consists of the following equations:
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t 
+\end{align}
+Clearly, the difference between systems (\ref{prestons13})-(\ref{prestons14}) and (\ref{prestons18})-(\ref{prestons19}) is that in the latter, long-horizon expectations are present. A more subtle issue is that the long-horizon expectations in the latter system also embody a different informational assumption, namely that agents in the model do not know the model and thus do not rely on market clearing conditions when forecasting.
+  
+ \subsection{Compact notation}
+ For expositional purposes, let me now introduce the following notation. Let exogenous states be summarized as:
+ \begin{align}
+ s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} \quad 
+ P  \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
+ \end{pmatrix} 
+ \end{align}
+ where $P$ and $\Sigma$ are the matrix of shock persistence and standard deviation respectively. The law of motion of the exogenous states can then be written in the compact form
+ \begin{equation}
+ s_t  = P s_{t-1} + \epsilon_t  \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0}, \Sigma)
+ \end{equation}
+
+ Similarly, letting $z_t$ summarize the endogenous variables as
+ \begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix}
+ \end{equation}
+ allows me to write the models (\ref{NKIS})-(\ref{NKPC}), (\ref{prestons13})-(\ref{prestons14}) and (\ref{prestons18})-(\ref{prestons19}) compactly as
+ \begin{align}
+z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
+z_t & = A_p^{RE} \hat{\E}_t z_{t+1} + A_s^{RE} s_t \label{LOM_EE} \\
+z_t & = A_a^{LR} f_a(t) + A_b^{LR} f_b(t) + A_s^{LR} s_t \label{LOM_LR} \\
+s_t & = P s_{t-1} + \epsilon_t \label{exog}
+\end{align}
+ where the $A$ matrices gather coefficients and are specified below. Here $f_a(t)$ and $f_b(t)$ capture period $t$ long-horizon expectations of the endogenous states $z$:
+  \begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+The coefficient matrices are given by:
+\begin{align}
+A_p^{RE} & = \begin{pmatrix} \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) & \frac{\kappa}{w} & 0\\
+ \frac{\sigma}{w} (1-\psi_{\pi}\beta) & \frac{1}{w}& 0\\ 
+\psi_{\pi}\big( \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) \big) +\psi_x\frac{\sigma}{w} (1-\psi_{\pi}\beta)&  \psi_x (\frac{1}{w})+ \psi_{\pi} (\frac{\kappa}{w})& 0\end{pmatrix} \quad \\
+A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w}\\
+ \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w}\\ 
+ \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w})\end{pmatrix}  
+\\
+A_a^{LR} & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_b^{LR} = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_s^{LR} = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+
+Before turning to the specification of learning, I also note that the solution of the RE model can be written as the state-space representation \begin{align}
+s_{t} & = h s_{t-1} +  \epsilon_t \label{state_eq}\\
+z_t & = g  s_t \label{obs_eq}
+\end{align}
+where $g$ and $h$ are matrices of coefficients. Using this, one can write the law of motion of the observables $z_t$ as
+\begin{align}
+z_t & = g  h s_{t-1} + g  e_t  \label{ALM_RE}
+\end{align}
+Note that a RE solution to the NK model implies that current observables depend on past states and current innovations with a loading matrix $gh$ and $g$ respectively.  
+
+ \section{Learning}\label{learning}
+Let me now turn to the specification of the subjective expectation operator, $\hat{\E}$. In the adaptive learning literature, it is common practice to postulate the following forecasting rule:
+\begin{equation}
+\hat{\E}_{t}z_{t+1} = a_{t-1} + b_{t-1} s_{t} \label{PLM}  
+\end{equation}
+where $a$ and $b$ are the learning coefficients that agents update as time goes by. It is worth contrasting this perceived law of motion (PLM) with the law of motion of $z_t$ under rational expectations, equation (\ref{ALM_RE}). In particular, note that (\ref{ALM_RE}) implies $a = 0$ and $b = gh$, that is, a particular slope coefficient and an intercept of zero. The interpretation of this is that the crucial assumption of the learning literature is that agents do not know the model. In particular, since they do not know the model, they do not know equation (\ref{ALM_RE}). Instead, they form expectations using (\ref{PLM}) and evaluate the performance of this forecast in each period in order to update $(a,b)$. Their goal is thus to learn the correct, RE value of $(a,b)$. 
+
+Introducing the notation $\phi_{t-1} = (a_{t-1}, b_{t-1})$, here $3\times 4$, I can rewrite the PLM of equation (\ref{PLM}) as $\hat{\E}_t z_{t+1} = \phi_{t}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} $. Also in line with standard practice in the learning literature, I impose the anticipated utility assumption:
+\begin{equation}
+\hat{\E}_{t-1}{\phi_{t+h}} = \phi_{t-1} \quad \forall \; h\geq0 
+\end{equation}
+This embodies two things. On the one hand, it means that agents today mistakenly believe that they will not update the forecasting rule in the future. This is a technical assumption that simplifies the solution of learning models.\footnote{Sargent (1999) shows that relaxing this assumption does not change the conclusions of learning models. CHECK} On the other hand, anticipated utility also carries a timing assumption: it implies that the belief about $\phi_t$ was formed at $t-1$. In other words, in the evening of period $t-1$, agents update $\phi_{t-2}$ to get the $\phi_{t-1}$ they will use to form expectations in period $t$.
+Adding the assumption that agents know the law of motion of the exogenous process (also standard in the learning literature), $h$-horizon forecasts can be written using the PLM of equation (\ref{PLM}) as:
+\begin{equation}
+\hat{\E}_t z_{t+h} = a_{t} + b_{t}P^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
+\end{equation}
+To close the learning framework one needs to specify how the regression coefficients are updated. I once again follow the standard assumption in the learning literature and let agents update $\phi$ using a decreasing gain recursive least squares (RLS) algorithm:
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + t^{-1} R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+where $R_t$ is the variance-covariance matrix of the regressors and is $4\times 4$.
+
+\subsection{Actual laws of motion}\label{ALMs}
+Having specified the expectation formation in the learning models, I can now evaluate the laws of motion in these two models. As we saw in section (\ref{models}), the rational expectation version of the NK model gives rise to a law of motion of observables $z_t$ given by equation (\ref{ALM_RE}). For the learning versions of the model, we need to evaluate expectations to obtain the the actual laws of motion (ALMs) at each period $t$. For the Euler-equation learning model, this means using the PLM of equation (\ref{PLM}) to evaluate one-period ahead forecasts and plug those into (\ref{LOM_EE}). For the long-horizon learning model, we need to evaluate the long-horizon expectations in equation (\ref{fafb}). By plugging the expression for $h$-period ahead forecasts (\ref{PLM_fcst_general}) into (\ref{fafb}) and evaluating the infinite sums, I obtain:
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}a_{t}  + b_{t}(I_3 - \alpha\beta P)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}a_{t}  + b_{t}(I_3 - \beta P)^{-1}s_t  \label{fafb_analytical_general}
+\end{equation}
+Alternatively I can evaluate each $h$-period ahead forecast individually using (\ref{PLM_fcst_general}), and then sum $H$ of these terms, discounting appropriately.\footnote{For $f_a$, already $H=100$ is not a bad approximation of $\infty$-horizons, but for $f_b$ to be accurate, I need at least $H=10000$.}
+%\newpage
+\section{Simulations}	\label{simulations}
+Now I turn to the simulations of the NK model under the three specifications of expectation formation: rational expectations, Euler-equation learning and long-horizon learning. The main question of interest is whether the long-horizon specification of the model yields different dynamics than the Euler-equation counterpart for identical expectation formation. 
+
+Fig. \ref{main} presents the main results. This figure shows the evolution of the observables inflation, output gap and nominal interest rate over time conditional on the same sequence of shocks. As the top panel makes clear, the dynamics of Euler-equation learning (abbreviated as EE) is extremely different from that of long-horizon learning (abbreviated as LR). In particular, the latter produces much more volatile dynamics and takes considerably longer to converge to rational expectations than EE. As the bottom panel illustrates, after 600 periods, the EE dynamics are fairly close to rational expectations. By contrast, the long-horizon expectation dynamics remain distinct from rational expectations even after 100000 periods (Fig. \ref{last}).
+\begin{figure}[h!]
+\subfigure[All models]{
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables1}}
+\subfigure[Rational expectations and Euler-equation learning only]{
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_EE_only}}
+\caption{Comparing models}
+\label{main}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100_millionperiods}
+\caption{Rational expectations and long-horizon learning, $T = 100000$, last 100 periods}
+\label{last}
+\end{figure}
+
+One might think that the Euler-equation and long-horizon learning models only differ in terms of the horizon of forecasts that show up in the expectations of agents. To investigate this, I next plot simulations for the same sequence of shocks of the long-horizon learning model where I evaluate each $h$-period ahead forecast separately and add up $H$ of these forecasts, discounting each as needed. Fig. \ref{horizons} presents the results. The top panels show the observables for the long-horizon learning model. The blue lines are long-horizon model observables for the long-horizon expectations evaluated analytically (equation (\ref{fafb_analytical_general})), while the red dashed and yellow lines are for the alternative evaluation of long-horizon expectations, using $H=10000$ and $H = 100$ respectively. It is clear that $H=10000$ is a good approximation in the sense that observables behave exactly as if analytical expectations had been used. The opposite is true for $H=100$; this evaluation of long-horizon expectations leads to drastically different dynamics. 
+
+Are these the dynamics of Euler-equation learning? The bottom panel of Fig. \ref{horizons} gives a stark answer: no. Even if I set $H=1$, thus considering only one-period ahead forecasts, as in Euler-equation learning, I still do not obtain the Euler-equation learning dynamics (in red here). This is because the long-horizon forecast approach does not only differ from the Euler-equation approach in the amount and horizon of forecasts that figure into period $t$ expectations.  Instead, the presence of infinite $h$-period ahead forecasts reflects the fact that this approach does not endow agents with information the expectational assumptions imply they do not know. 
+
+\begin{figure}[h!]
+\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_horizons}
+\caption{Comparing horizons}
+\label{horizons}
+\end{figure}
+
+\section{Conclusion}
+Many an analysis of New Keynesian models with learning has worked with the Euler-equation approach: replacing the expectation operator of the three-equation NK model with a subjective expectation operator and studying the ensuing dynamics. Here I have investigated the critique of \cite{preston2005} which suggests that such a formulation is not the correct learning representation of the NK model. Replacing the rational expectation operator with subjective expectations without revisiting the optimal forecasting behavior of agents in the model is at odds with the informational assumption of learning that agents do not know the model. 
+
+Such concerns may however be of a theoretical nature only. If it was the case that Euler-equation learning produces nearly identical dynamics with the long-horizon approach, macroeconomists interested only policy applications of NK models with learning could calmly resort to the admittedly simpler Euler-equation approach. But my simulations reveal that the two approaches give rise to dramatically different dynamics. Thus relying on the Euler-equation approach can be misleading and generate false predictions. 
+
+ %%%%%%%%%%%%%%%%%%           BIBLIOGRAPHY            %%%%%%%%%%%%%%%%%% 
+\newpage
+\bibliographystyle{chicago}
+\bibliography{ref_LH}
+\nocite{*}
+
+\end{document}
+
+
+
+
+

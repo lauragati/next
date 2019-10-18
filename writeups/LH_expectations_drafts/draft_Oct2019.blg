@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft_Oct2019.aux
+The style file: chicago.bst
+Database file #1: ref_LH.bib
+Warning--no number and no volume in carvalho2019anchored
+Warning--page numbers missing in carvalho2019anchored
+Warning--no journal in eusepi2018limits
+Warning--no number and no volume in eusepi2018limits
+Warning--page numbers missing in eusepi2018limits
+Warning--page numbers missing in graham2011individual
+Warning--no number and no volume in williams2003adaptive
+Warning--page numbers missing in williams2003adaptive
+Warning--no number and no volume in winkler2019role
+Warning--page numbers missing in winkler2019role
+You've used 27 entries,
+            2861 wiz_defined-function locations,
+            774 strings with 8798 characters,
+and the built_in function-call counts, 18168 in all, are:
+= -- 1549
+> -- 1334
+< -- 2
++ -- 404
+- -- 469
+* -- 1622
+:= -- 3349
+add.period$ -- 80
+call.type$ -- 27
+change.case$ -- 190
+chr.to.int$ -- 26
+cite$ -- 37
+duplicate$ -- 466
+empty$ -- 1073
+format.name$ -- 544
+if$ -- 3326
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 26
+newline$ -- 137
+num.names$ -- 268
+pop$ -- 122
+preamble$ -- 1
+purify$ -- 351
+quote$ -- 0
+skip$ -- 520
+stack$ -- 0
+substring$ -- 946
+swap$ -- 146
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 516
+warning$ -- 10
+while$ -- 269
+width$ -- 0
+write$ -- 354
+(There were 10 warnings)

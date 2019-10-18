@@ -126,7 +126,7 @@ My playing around with the simulated model yields the following result:
 		\item Yes! A few studies that look at how NK models with learning actually behave obtain similar things, even if not quite the same. But my result seems more to be in the background, never explicit:
 			\begin{enumerate}
 			\item Orphanides \& Williams (2004) \\
-			This just documents that learning reduces the persistence of inflation, and this is the more so the more aggressive monetary policy is on inflation. $\rightarrow$
+			This just documents that learning adds to the persistence of inflation, and this is even more so with constant gain learning $\rightarrow$
 			Inflation persistence literature?
 			\begin{itemize}
 			\item Idea that Phillips-curves only fit the data well if you include lagged inflation, and that models where inflation is forward-looking (like the NK model) have a hard time matching this.
@@ -187,28 +187,34 @@ Some thoughts on the IRFs:
 \item Also not a surprise: the most extreme responses are the perpetual learning ones (always constant gain), while the closest to RE are the decreasing gain ones. 
 \item The more constant gains, the more things overreact.
 \item I get almost the same IRFs as Williams (2003), Fig 2, but for the learning models I have an overshooting going on that's absent in Williams (2003).
+\item I hypothesize that the overshooting comes from too reactive monetary policy: and indeed, if I lower $\psi_{x}$, and in particular $\psi_{\pi}$, I stop seeing the overshooting. This however leads to another interesting observation:
+\item Overshooting is bad because it leads to output gaps. In the learning world, therefore, monetary policy needs to respond less to current output gaps and in particular inflation. This is better for decreasing and constant gain learning because it decreases overshooting. It is not unambiguously better for the anchoring world, however, because it opens the door to potential unanchoring, which can in some cases even increase the overshooting! This leads me to my second result:
 \end{itemize}
+
+	\begin{prop} The fact that firms and households choose between decreasing and constant gains endogenously (anchoring mechanism) introduces a novel tradeoff for monetary policy relative to exogenous gain learning (decreasing or constant). With exogenous gain learning, too strong monetary responsiveness to shocks leads to overshooting due to increased persistence of inflation. With endogenous gain learning, however, monetary policy has to hit a lower bound on responsiveness in order to keep inflation expectations anchored. With endogenous gain learning, monetary policy faces a tradeoff between overshooting and anchoring. 
+	\end{prop}
 
 \section{SR FE as the anchoring criterion $\theta_t$ instead of subjective - objective expectations}
 	\begin{itemize}
-	\item  CEMP has 4 arguments for $\theta_t$ 
+	\item  CEMP has 5 arguments for $\theta_t$ 
 		\begin{enumerate}
 		\item Stand-in for a whole class of misspecification tests that firms may be doing (w/o taking a stance on which one firms are using)
 		\item An alternative calibrated model in which $\theta_t$ is instead a version of the CUSUM test for structural breaks (Brown, Durbin \& Evans 1975) when simulated a) yields almost identical results to their estimation with their $\theta_t$, b) however imposes a larger number of parameters, making the estimation exercise even more cumbersome than it already is. \\
 		By the way, Pablo also told me to do everything in C++ (to get speedups). Opinions?
 		\item Low-frequency movements are hard to detect in real time using just forecast errors.
 		\item CEMP show that their $\theta_t$ can be written as a sum of forecast errors.
+		\item In CEMP's model, FEs consist of a) noise, b) model misspecification. They want a criterion that doesn't reflect noise, but instead reflects misspecification.
 		\end{enumerate}
 	\end{itemize}
 
 Here's my short summary and replication (with some guesswork) of CEMP's CUSUM-test based alternative criterion:
 \begin{enumerate}
-\item Let $f_t$ denote the short-run forecast error, and $\omega_t$ firms' estimate of the FE variance.
+\item Let $FE_t$ denote the short-run forecast error, and $\omega_t$ firms' estimate of the FE variance.
 \item Let $\kappa \in (0,1)$ and $\tilde{\theta}$ be the new threshold value for the criterion.
 \item Then for some dubious initial $(\omega_0, \theta_0)$, let firms in every period estimate the criterion and the FEV as:
 \begin{align}
- \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(f_t^2 -\omega_{t-1})\\
-\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(f_t^2/\omega_t -\theta_{t-1})\
+ \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2 -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2/\omega_t -\theta_{t-1})\
 \end{align}
 and set the gain endogenously as (CUSUM anchoring mechanism)
 \begin{align}
