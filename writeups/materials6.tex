@@ -103,15 +103,14 @@ bottom=1in}
 %\newpage
 
 \newpage
-\section{Model summary}
+\section{Model summary, adding $\rho i_{t-1}$}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
 \pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
-i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \rho i_{t-1}+ \bar{i}_t \label{TR}
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \textcolor{blue}{\rho i_{t-1}} + \bar{i}_t \label{TR}
 \end{align}
 \begin{equation}
-\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\
- 0 \end{bmatrix}+ bP^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = gx \; hx \quad \quad \text{PLM} \label{PLM}
+\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\ 0 \end{bmatrix}+ bP^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = gx \; hx \quad \quad \text{PLM} \label{PLM}
 \end{equation}
 \begin{equation}
 \bar{\pi}_{t} = \bar{\pi}_{t-1} +k_t^{-1}\underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM})} } \quad \quad  \text{($b_1$ is the first row of $b$)}
@@ -123,21 +122,46 @@ k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1}  \label
 \theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s \quad \quad \text{CEMP criterion for the gain}\label{criterion}\numberthis
 \end{align*}
 
-The alternative, SR-forecast-based criterion for the choice of gain is a recursive variant of the CUSUM-test (Brown, Durbin, Evans 1975):
+The alternative criterion for the choice of gain is a recursive variant of the CUSUM-test (Brown, Durbin, Evans 1975):
 \begin{enumerate}
 \item Let $FE_t$ denote the short-run forecast error, and $\omega_t$ firms' estimate of the FE variance.
 \item Let $\kappa \in (0,1)$ and $\tilde{\theta}$ be the new threshold value for the criterion.
-\item Then for initial $(\omega_0, \theta_0)$, let firms in every period estimate the criterion and the FEV as:
+\item Then for initial $(\omega_0, \theta_0)$, firms in every period estimate the criterion and the FEV as:
 \begin{align}
  \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2 -\omega_{t-1})\\
-\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2/\omega_t -\theta_{t-1})\
-\end{align}
-and set the gain endogenously as (CUSUM anchoring mechanism)
-\begin{align}
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2/\omega_t -\theta_{t-1})\\
 k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1} \\
 \mathbb{I} & = 1 \quad \text{if} \quad  \theta_t \leq \tilde{\theta}
 \end{align}
 \end{enumerate}
+
+\newpage
+\section{Compact notation - with lagged interest rate term in TR}
+ \begin{align}
+z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
+z_t & = A_a^{LH} f_a(t) + A_b^{LH} f_b(t) + A_s^{LH} s_t \label{LOM_LH} \\
+s_t & = P s_{t-1} + \epsilon_t \label{exog} \\
+ \quad \text{where} \quad 
+ s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t \\ i_{t-1}
+ \end{pmatrix} \quad 
+ P  \equiv \begin{pmatrix} \rho_r & 0 & 0 & 0\\ 0& \rho_i & 0 & 0\\ 0&0& \rho_u & 0 \\ 0&0& 0 & \rho
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} \\ 0
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 & 0 \\ 0& \sigma_i & 0 & 0 \\ 0&0& \sigma_u & 0 \\ 0 & 0& 0& 0&
+ \end{pmatrix} 
+\end{align}
+
+Adding $i_{t-1}$ to the state vector fortunately doesn't change $A^{RE}_p, A^{LH}_a$ or $A^{LH}_b$, but it does change $A^{RE}_s$ and $A^{LH}_s$. The latter two get an additional column to account for the new state variable. With $g_{i, j} \; i=\pi,x, \; j=a,b$ unchanged from Materials 4, the new coefficient matrices are given by (new elements highlighted in \textcolor{blue}{blue}):
+\begin{align}
+A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w} & \textcolor{blue}{0}\\
+ \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w} & \textcolor{blue}{0}\\ 
+ \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w}) & \textcolor{blue}{\rho}\end{pmatrix}  
+\\
+ A_s^{LR} & = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0 & \textcolor{blue}{\rho}\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 & \textcolor{blue}{0}\end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho} \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}{0} \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho}\end{bmatrix}(I_3 -\beta P)^{-1}
+\end{align}
 
 %%%%%%%%%%%  IRFs
 
