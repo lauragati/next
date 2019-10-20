@@ -16,9 +16,9 @@ rho_u = param.rho_u;
 sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
-n = 3; % fortunately, this is the dimension of everything
-P = eye(n).*[rho_r, rho_i, rho_u]';
-SIG = eye(n).*[sig_r, sig_i, sig_u]';
+% n = 3; % fortunately, this is the dimension of everything
+% P = eye(n).*[rho_r, rho_i, rho_u]';
+% SIG = eye(n).*[sig_r, sig_i, sig_u]';
 
 kap = 0.80; %0.035 allows the test-statistic to be revised at a different rate than the estimate of the mean. For now, I just set it to the mean value of CEMP's calibration.
 thettilde = 1.60; % 0.75 the new thetbar, I set it to the mean of the calibration of CEMP.

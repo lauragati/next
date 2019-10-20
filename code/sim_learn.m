@@ -6,12 +6,16 @@
 % criterion: 1= CEMP's, 2 = CUSUM
 % dt = timing of shock. If 0 or not specified, then no shock.
 % x0 = the shock.
+% free=1; % use versions of the code that are n-free (use hx instead of P)
 % 19 Oct 2019
 
-function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, dt, x0)
-if nargin < 17 %no shock specified
+function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
+if nargin < 18 %no shock specified
     dt = 0;
     x0 = 0;
+end
+if nargin < 17
+    free=1; % make using hx the default case instead of P.
 end
 gbar = param.gbar;
 ny = size(gx,1);
@@ -47,8 +51,11 @@ for t = 1:T-1
     else
         %Form Expectations using last period's estimates
         if anal ==1
-            [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t)); %% old version with P
-%             [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
+            if free==0
+                [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t)); %% old version with P
+            elseif free==1
+                [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
+            end
         else
             [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0], b, xsim(:,t), H);
         end
@@ -65,8 +72,14 @@ for t = 1:T-1
         elseif gain==2
             % now choose the criterion
             if criterion == 1 % CEMP's
-                kt = fk_pidrift(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As);
+                if free==0
+                    kt = fk_pidrift(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As); %% old version with P
+                elseif free==1
+                    kt = fk_pidrift_free(pibar, b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As, hx);  % new hx version
+                end
             elseif criterion == 2 % CUSUM
+                % Cusum doesn't depend on P or n, so we need no difference
+                % between free or not.
                 f = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % short-run FE
                 [kt, om, thet] = fk_cusum(param,k(:,t-1),omt_1, thett_1,f);
             end
