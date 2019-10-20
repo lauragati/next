@@ -227,7 +227,7 @@ for s=1:n
         [x_LR_perp_shockd, y_LR_perp_shockd] = sim_learn_LR_constant_pidrift_perpetual_shockd(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, t, x0);
         % Now let's shock our general learning code
         [xs, ys] = sim_learn(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
-%         y_LR_perp_shockd - y; % perfect - all of these are the same!
+        %         y_LR_perp_shockd - y; % perfect - all of these are the same!
         % 2. take differences between this and the standard simulation
         GIRd(:,:,t) = y_LR_shockd(:,t:t+h-1) - y_LR(:,t:t+h-1);
         GIRa(:,:,t) = y_LR_anchor_shockd(:,t:t+h-1) - y_LR_anchor(:,t:t+h-1);
@@ -340,7 +340,7 @@ end
 
 %% New approach:  implement interest rate smoothing AFTER you've done the rest
 % This way I'm hoping to preserve things intact
-close all
+% close all
 
 % introduce the new parameter and adapt shit
 rho = param.rho;
@@ -370,9 +370,11 @@ e_i = [e; zeros(1,T)];
 
 % Now simulate the learning models using the general code
 [x_d, y_d] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, dgain, critCEMP, free);
-[x_a, y_a] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP, free);
-[x_a_cusum, y_a_cusum] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM, free);
+[x_a, y_a, ~, ~,pibar_a, k_a] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP, free);
+[x_a_cusum, y_a_cusum, ~, ~,pibar_a_cusum, k_cusum] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM, free);
 [x_c, y_c] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, cgain, critCEMP, free);
+ka_inv = 1./k_a;
+k_cusum_inv = 1./k_cusum;
 
 
 % Gather observables
@@ -413,6 +415,168 @@ if print_figs ==1
     close
 end
 
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+subplot(1,2,1)
+plot(ka_inv(1,:),'r','linewidth', 2)
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('Inverse gain')
+subplot(1,2,2)
+plot(pibar_a,'r','linewidth', 2)
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('Inflation drift')
+if print_figs ==1
+    figname = [this_code, '_', 'gain_drift_intrate_smoothing']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
 % Ok finally! The graph is the same, and thu w/ interest rate smoothing, if
 % rho = 0, I obtain the exact same dynamics. Cool!
 
+%% GIRs for interest rate smoothing
+d = 1; % the innovation, delta
+shocknames = {'natrate', 'monpol','costpush'};
+
+
+% cycle thru the shocks of the model
+for s=1:n-1
+    x0 = zeros(1,n);
+    x0(s) = d;
+    h = 20; % horizon of IRF
+    [IR, iry, irx]=ir(gx,hx,x0,h);
+    iry = iry';
+    
+    % For learning, the approach I take is resimulate everything and for each
+    % period t, expose the econ to this same shock. Then take an average.
+    GIRd = zeros(ny,h,T-h); % decreasing gain
+    GIRa = zeros(ny,h,T-h); % anchoring
+    GIRc = zeros(ny,h,T-h); % constant gain
+    for t=1:T-h
+        % 1. create alternative simulations, adding the impulse always at a new time t
+        % Now let's shock our general learning code
+        [xs_d, ys_d] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, dgain, critCEMP,free, t, x0);
+        [xs_a, ys_a] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
+        [xs_c, ys_c] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
+        [xs_a_cusum, ys_a_cusum] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM,free, t, x0);
+        
+        % 2. take differences between this and the standard simulation
+        GIRd(:,:,t) = ys_d(:,t:t+h-1) - y_d(:,t:t+h-1);
+        GIRa(:,:,t) = ys_a(:,t:t+h-1) - y_a(:,t:t+h-1);
+        GIRc(:,:,t) = ys_c(:,t:t+h-1) - y_c(:,t:t+h-1);
+    end
+    
+    % option 1: take simple averages
+    RIRd = mean(GIRd,3);
+    RIRa = mean(GIRa,3);
+    RIRc = mean(GIRc,3);
+    
+    
+    % Plot IRFs
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    for i=1:n-1
+        subplot(1,n-1,i)
+        plot(zeros(1,h),'k--','linewidth', 2); hold on
+        for j=2:h
+            plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
+            plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
+            plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+        end
+        re = plot(iry(i,:),'k','linewidth', 2);
+        d_mean = plot(RIRd(i,:),'b','linewidth', 2);
+        am_mean = plot(RIRa(i,:),'r','linewidth', 2);
+        c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
+        legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain')
+        title(titles(i))
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        grid on
+        grid minor
+        if s==1
+            ylim([-0.015, 0.005])
+        elseif s==3
+            ylim([-0.2, 0.05])
+        end
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'IRFs_intrate_smoothing', shocknames{s}]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+end
+
+%% compare the two anchoring mechanisms with interest rate smoothing
+% close all
+
+% Observables
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+titles = {'Inflation','Output gap','Int. rate'};
+l=0;
+for j=1:ny
+    l = l+1;
+    subplot(1,ny,l)
+    plot(squeeze(Z(j,:,3)),'r','linewidth', 2); hold on
+    plot(squeeze(Z(j,:,5)),'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion')
+    title(titles(l))
+end
+if print_figs ==1
+    figname = [this_code, '_', 'observables2_intrate_smoothing']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+
+subplot(1,2,1)
+plot(ka_inv(1,:),'r','linewidth', 2); hold on
+plot(k_cusum_inv(1,:),'color', saddle_brown,'linewidth', 2)
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+legend('CEMP criterion',  'CUSUM criterion')
+title('Inverse gain')
+subplot(1,2,2)
+plot(pibar_a,'r','linewidth', 2); hold on
+plot(pibar_a_cusum,'color', saddle_brown,'linewidth', 2)
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+legend('CEMP criterion',  'CUSUM criterion')
+title('Inflation drift')
+if print_figs ==1
+    figname = [this_code, '_', 'gain_drift2_intrate_smoothing']
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
