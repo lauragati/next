@@ -3,8 +3,8 @@ param.bet  = 0.98;%0.98
 param.sig  = 0.5; % IES, mean across studies is 0.5
 param.alph = 0.5; %0.5 (prob that firm stuck with price)
 param.kapp = (1-param.alph)*(1-param.alph*param.bet)/param.alph;
-param.psi_x  = 1.5; %1.5
-param.psi_pi = 1.5; %1.5
+param.psi_x  = 0; %1.5
+param.psi_pi = 2.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % 0.145 param_correct CEMP
 param.thetbar = 1;%0.029; % param_correct CEMP
@@ -15,6 +15,8 @@ param.rho = 0; % persistence of lag of interest rate
 param.sig_r = 0.1;%0.1; %?
 param.sig_i = 0.359; % 0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 0.277; % 0.277 = sig_mu from CEMP, the cost-push shock
+param.kap =  0.80; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
+param.thettilde = 1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 
 set.bet  = 0.98;
 set.sig  = 0.5; 
@@ -32,6 +34,8 @@ set.rho = 0;
 set.sig_r = 0.1; 
 set.sig_i = 0.359; 
 set.sig_u = 0.277; 
+set.kap =  0.80; 
+set.thettilde = 1.60; 
 set.ne = 3; % the number of shocks
 set.nxnl = 3; % the number of nonlinear states (k + zbar, at 3 each -- > 3x2)
 set.nxl = 3; % the number of linear states (z)

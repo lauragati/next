@@ -20,10 +20,22 @@
 \usepackage[]{hyperref}
 \usepackage[capposition=top]{floatrow}
 \usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\rfoot{\centering \thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
 
 \def \myFigPath {../figures/} 
 % BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
 \def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
 
 \definecolor{citec}{rgb}{0,0,.5}
 \definecolor{linkc}{rgb}{0,0,.6}
@@ -85,6 +97,9 @@ bottom=1in}
 \renewcommand*\contentsname{Overview}
 \setcounter{tocdepth}{2}
 
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
 \begin{document}
 
 \linespread{1.0}
@@ -101,6 +116,7 @@ bottom=1in}
 %\listoffigures
 
 %\newpage
+
 
 \newpage
 \section{Model summary, adding $\rho i_{t-1}$}
@@ -141,15 +157,19 @@ k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1} \\
 z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
 z_t & = A_a^{LH} f_a(t) + A_b^{LH} f_b(t) + A_s^{LH} s_t \label{LOM_LH} \\
 s_t & = P s_{t-1} + \epsilon_t \label{exog} \\
+s'_t & = hx \; s'_{t-1} + \epsilon'_t \label{exog} \\
  \quad \text{where} \quad 
- s_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t \\ i_{t-1}
+ s'_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t \\ \textcolor{blue}{i_{t-1}}
  \end{pmatrix} \quad 
- P  \equiv \begin{pmatrix} \rho_r & 0 & 0 & 0\\ 0& \rho_i & 0 & 0\\ 0&0& \rho_u & 0 \\ 0&0& 0 & \rho
+ hx  \equiv \begin{pmatrix} \rho_r & 0 & 0 & \textcolor{blue}{0} \\ 0& \rho_i & 0 & \textcolor{blue}{0} \\ 0&0& \rho_u & \textcolor{blue}{0}  \\ 
+ \textcolor{blue}{gx_{3,1}}&\textcolor{blue}{gx_{3,1}}& \textcolor{blue}{gx_{3,3}} & \textcolor{blue}{gx_{3,4}}
  \end{pmatrix}  \quad 
- \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} \\ 0
- \end{pmatrix}  \quad  \text{and } \quad \Sigma  =  \begin{pmatrix} \sigma_r & 0 & 0 & 0 \\ 0& \sigma_i & 0 & 0 \\ 0&0& \sigma_u & 0 \\ 0 & 0& 0& 0&
+ \epsilon'_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} \\ \textcolor{blue}{0} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma'  =  \begin{pmatrix} \sigma_r & 0 & 0 & \textcolor{blue}{0} \\ 0& \sigma_i & 0 & \textcolor{blue}{0}  \\ 0&0& \sigma_u & \textcolor{blue}{0}  \\ \textcolor{blue}{0}  & \textcolor{blue}{0} & \textcolor{mygreen}{0} & \textcolor{blue}{0} &
  \end{pmatrix} 
 \end{align}
+
+$i_{t-1}$ is an endogenous state and breaks the link that previously had $P = hx$; now this is no longer true. In particular, using Matlabby notation, $P = hx(1:3,1:3)$. What I don't get though is why $gx_{3,4} \neq \rho$? $\textcolor{mygreen}{\bigqm[5]}$ 
 
 Adding $i_{t-1}$ to the state vector fortunately doesn't change $A^{RE}_p, A^{LH}_a$ or $A^{LH}_b$, but it does change $A^{RE}_s$ and $A^{LH}_s$. The latter two get an additional column to account for the new state variable. With $g_{i, j} \; i=\pi,x, \; j=a,b$ unchanged from Materials 4, the new coefficient matrices are given by (new elements highlighted in \textcolor{blue}{blue}):
 \begin{align}
@@ -159,30 +179,133 @@ A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  
 \\
  A_s^{LR} & = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0 & \textcolor{blue}{\rho}\end{bmatrix}
 \end{pmatrix} \\
-g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 & \textcolor{blue}{0}\end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho} \end{bmatrix} (I_3 -\beta P)^{-1}\\
-g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}{0} \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho}\end{bmatrix}(I_3 -\beta P)^{-1}
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 & \textcolor{blue}{0}\end{bmatrix} (I_{\textcolor{blue}{4}} - \alpha\beta \textcolor{blue}{hx})^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho} \end{bmatrix} (I_{\textcolor{blue}{4}} -\beta \textcolor{blue}{hx})^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}{0} \end{bmatrix}(I_{\textcolor{blue}{4}} - \alpha\beta \textcolor{blue}{hx})^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho}\end{bmatrix}(I_{\textcolor{blue}{4}} -\beta \textcolor{blue}{hx})^{-1}
 \end{align}
 
 %%%%%%%%%%%  IRFs
+\newpage
+\section{Small deviations in $\pi$, large ones in $x$, overshooting - IRFs}
 
-\section{Small deviations in $\pi$, large ones in $x$, overshooting - IRFs to a natural real rate shock}
-
+\subsection{Baseline figures, $\psi_x = 0, \psi_{\pi} = 1.5, \rho = 0$}
 \begin{figure}[h!]
-\subfigure[The observables for the specific shock sequence]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials5_observables1}} 
-\subfigure[Inverse gain and drift for the specific shock sequence]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials5_gain_drift} }
-\caption{A baseline shock sequence}
-
+\subfigure[The observables for the specific shock sequence]{\includegraphics[scale = \mySmallFigScale]{\myFigPath materials6_observables_intrate_smoothing_rho0}} 
+\subfigure[Inverse gain and drift for the specific shock sequence, CEMP and CUSUM criterion]{\includegraphics[scale = \mySmallFigScale]{\myFigPath materials6_gain_drift_cusum_intrate_smoothing_rho0} }
+\caption{A baseline shock sequence,$\psi_x = 0, \psi_{\pi} = 1.5, \rho = 0$}
 \end{figure}		
-			
-		
+						
+
+
+\newpage
+\vspace{-0.5cm}
+\subsection{IRFs when changing $\rho$}
+\vspace{-0.5cm}
 \begin{figure}[h!]
-\includegraphics[scale = \mySmallFigScale]{\myFigPath materials5_IRFs_natrate} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_9} }
 \caption{IRFs to a natural rate shock ($r^n$)}
-\end{figure}		
+\end{figure}
 
+\vspace{-0.5cm}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_9} }
+\caption{IRFs to a monetary policy shock ($\bar{i}$)}
+\end{figure}
+\vspace{-0.5cm}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_9} }
+\caption{IRFs to a cost-push shock ($u$)}
+\end{figure}
 
 \clearpage	
+\subsection{Inverse gain and drift when changing $\rho$, no shocks}
 
+\vspace{-0.5cm}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myTinierFigScale]{\myFigPath materials6_gain_drift_cusum_intrate_smoothing_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myTinierFigScale]{\myFigPath materials6_gain_drift_cusum_intrate_smoothing_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myTinierFigScale]{\myFigPath materials6_gain_drift_cusum_intrate_smoothing_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myTinierFigScale]{\myFigPath materials6_gain_drift_cusum_intrate_smoothing_rho0_9} }
+%\caption{Inverse gain and drift when increasing $\rho$}
+\end{figure}
+\vspace{-0.5cm}
+
+\subsection{Gain and drift conditional on shocks when changing $\rho$}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_9} }
+\caption{Mean gain and drift after a natural rate shock ($r^n$)}
+\end{figure}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_9} }
+\caption{Mean gain and drift after a monetary policy shock ($\bar{i}$)}
+\end{figure}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_3} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_6} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_9} }
+\caption{Mean gain and drift after a cost-push shock ($u$)}
+\end{figure}
+
+\clearpage
+\subsection{IRFs when changing $\psi_{\pi} (\rho =0)$}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_2} }
+\caption{IRFs to a natural rate shock ($r^n$)}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_2} }
+\caption{IRFs to a monetary policy shock ($\bar{i}$)}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_2} }
+\caption{IRFs to a cost-push shock ($u$)}
+\end{figure}
+
+\clearpage
+\subsection{Gain and drift conditional on shocks when changing $\psi_{\pi}$}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_natrate_rho0_psi_pi_2} }
+\caption{Mean gain and drift after a natural rate shock ($r^n$)}
+\end{figure}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_monpol_rho0_psi_pi_2} }
+\caption{Mean gain and drift after a monetary policy shock ($\bar{i}$)}
+\end{figure}
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath materials6_gain_drift_costpush_rho0_psi_pi_2} }
+\caption{Mean gain and drift after a cost-push shock ($u$)}
+\end{figure}
+
+\clearpage
 	\begin{prop} The degree to which inflation responds to expectational deviations from rational expectations (RE) depends on $\kappa$, the slope of the Phillips curve. A lower $\kappa$ means higher price rigidity and translates to current inflation responding less to expectation gaps.
 	\end{prop}
 	\begin{corollary}Whether expectation gaps between subjective and rational expectations show up in inflation or output depends on the value of $\kappa$. When nominal rigidities are high ($\kappa$ is low), money is strongly nonneutral, and thus output is the margin of adjustment. When prices are flexible, money is neutral and inflation is the margin of adjustment. 

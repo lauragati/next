@@ -1,3 +1,9 @@
 \contentsline {section}{\numberline {1}Model summary, adding $\rho i_{t-1}$}{2}{section.1}
 \contentsline {section}{\numberline {2}Compact notation - with lagged interest rate term in TR}{3}{section.2}
-\contentsline {section}{\numberline {3}Small deviations in $\pi $, large ones in $x$, overshooting - IRFs to a natural real rate shock}{3}{section.3}
+\contentsline {section}{\numberline {3}Small deviations in $\pi $, large ones in $x$, overshooting - IRFs}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Baseline figures, $\psi _x = 0, \psi _{\pi } = 1.5, \rho = 0$}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}IRFs when changing $\rho $}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Inverse gain and drift when changing $\rho $, no shocks}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Gain and drift conditional on shocks when changing $\rho $}{7}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}IRFs when changing $\psi _{\pi } (\rho =0)$}{9}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Gain and drift conditional on shocks when changing $\psi _{\pi }$}{11}{subsection.3.6}

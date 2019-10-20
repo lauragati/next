@@ -167,7 +167,7 @@ for j=1:ny
     title(titles(l))
 end
 if print_figs ==1
-    figname = [this_code, '_', 'observables1']
+    figname = [this_code, '_', 'observables_notfree']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -194,7 +194,7 @@ grid on
 grid minor
 title('Inflation drift')
 if print_figs ==1
-    figname = [this_code, '_', gain_drift']
+    figname = [this_code, '_', 'gain_drift_notfree']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -269,7 +269,7 @@ for s=1:n
         end
     end
     if print_figs ==1
-        figname = [this_code, '_', 'IRFs_', shocknames{s}]
+        figname = [this_code, '_', 'IRFs_notfree_', shocknames{s}]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -300,7 +300,7 @@ for j=1:ny
     title(titles(l))
 end
 if print_figs ==1
-    figname = [this_code, '_', 'observables2']
+    figname = [this_code, '_', 'observables2_notfree']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -331,7 +331,7 @@ grid minor
 legend('CEMP criterion',  'CUSUM criterion')
 title('Inflation drift')
 if print_figs ==1
-    figname = [this_code, '_', 'gain_drift2']
+    figname = [this_code, '_', 'gain_drift2_notfree']
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -344,6 +344,12 @@ end
 
 % introduce the new parameter and adapt shit
 rho = param.rho;
+% introduce adaptive names depending on the value of rho
+rho_val_raw = num2str(rho);
+rho_val = replace(rho_val_raw,'.','_');
+psi_pi_val_raw = num2str(psi_pi);
+psi_pi_val = replace(psi_pi_val_raw,'.','_');
+
 n = 4; % now n becomes 4
 % P = eye(n).*[rho_r, rho_i, rho_u, 0]';
 SIG = eye(n).*[sig_r, sig_i, sig_u, 0]';
@@ -361,7 +367,7 @@ e_i = [e; zeros(1,T)];
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn) % cool is the same so far
 [ny, nx] = size(gx);
-[~, ~, Aa_LH_i, Ab_LH_i, As_LH_i] = matrices_A_intrate_smoothing(param, setp); % perfect - Aa, Ab are the same as before, As has extra column of zeros, otherwise identical!
+[~, ~, Aa_LH_i, Ab_LH_i, As_LH_i] = matrices_A_intrate_smoothing(param, setp, hx); % perfect - Aa, Ab are the same as before, As has extra column of zeros, otherwise identical!
 
 % Simulate models
 % Use Ryan's code to simulate from the RE model
@@ -401,14 +407,14 @@ for j=1:ny
     plot(squeeze(Z(j,:,4)),'color', dark_green,'linewidth', 2)
     
     ax = gca; % current axes
-    ax.FontSize = fs;
+    ax.FontSize = fs_prop;
     grid on
     grid minor
-    legend('RE', 'LH decreasing gain','LH anchor',  'LH constant gain')
+    legend('RE', 'LH decreasing gain','LH anchor',  'LH constant gain', 'location', 'southoutside')
     title(titles(l))
 end
 if print_figs ==1
-    figname = [this_code, '_', 'observables_intrate_smoothing']
+    figname = [this_code, '_', 'observables_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -430,12 +436,12 @@ title('Inverse gain')
 subplot(1,2,2)
 plot(pibar_a,'r','linewidth', 2)
 ax = gca; % current axes
-ax.FontSize = fs;
+ax.FontSize = fs_prop;
 grid on
 grid minor
 title('Inflation drift')
 if print_figs ==1
-    figname = [this_code, '_', 'gain_drift_intrate_smoothing']
+    figname = [this_code, '_', 'gain_drift_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -454,7 +460,7 @@ shocknames = {'natrate', 'monpol','costpush'};
 for s=1:n-1
     x0 = zeros(1,n);
     x0(s) = d;
-    h = 20; % horizon of IRF
+    h = 10; % horizon of IRF
     [IR, iry, irx]=ir(gx,hx,x0,h);
     iry = iry';
     
@@ -463,13 +469,17 @@ for s=1:n-1
     GIRd = zeros(ny,h,T-h); % decreasing gain
     GIRa = zeros(ny,h,T-h); % anchoring
     GIRc = zeros(ny,h,T-h); % constant gain
+    pibars_a = zeros(T,1,T-h);
+    pibars_a_cusum = zeros(T,1,T-h);
+    ks_a = zeros(T,1,T-h);
+    ks_a_cusum = zeros(T,1,T-h);
     for t=1:T-h
         % 1. create alternative simulations, adding the impulse always at a new time t
         % Now let's shock our general learning code
         [xs_d, ys_d] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, dgain, critCEMP,free, t, x0);
-        [xs_a, ys_a] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
+        [xs_a, ys_a, ~, ~,pibars_a(:,:,t), ks_a(:,:,t)] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
         [xs_c, ys_c] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
-        [xs_a_cusum, ys_a_cusum] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM,free, t, x0);
+        [xs_a_cusum, ys_a_cusum, ~, ~,pibars_a_cusum(:,:,t), ks_a_cusum(:,:,t)] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM,free, t, x0);
         
         % 2. take differences between this and the standard simulation
         GIRd(:,:,t) = ys_d(:,t:t+h-1) - y_d(:,t:t+h-1);
@@ -482,6 +492,13 @@ for s=1:n-1
     RIRa = mean(GIRa,3);
     RIRc = mean(GIRc,3);
     
+    % take averages of gains and drifts too
+    pibars_a_mean = mean(pibars_a,3);
+    pibars_a_cusum_mean = mean(pibars_a_cusum,3);
+    ks_a_mean = mean(ks_a,3);
+    ks_a_cusum_mean = mean(ks_a_cusum,3);
+    inv_ks_a_mean = 1./ks_a_mean;
+    inv_ks_a_cusum_mean = 1./ks_a_cusum_mean;
     
     % Plot IRFs
     figure
@@ -490,34 +507,68 @@ for s=1:n-1
     for i=1:n-1
         subplot(1,n-1,i)
         plot(zeros(1,h),'k--','linewidth', 2); hold on
-        for j=2:h
-            plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
-            plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
-            plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
-        end
+        %         for j=2:h
+        %             plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
+        %             plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
+        %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+        %         end
         re = plot(iry(i,:),'k','linewidth', 2);
         d_mean = plot(RIRd(i,:),'b','linewidth', 2);
         am_mean = plot(RIRa(i,:),'r','linewidth', 2);
         c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
-        legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain')
+        legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain','location', 'southoutside')
         title(titles(i))
         ax = gca; % current axes
-        ax.FontSize = fs;
+        ax.FontSize = fs_prop;
         grid on
         grid minor
         if s==1
-            ylim([-0.015, 0.005])
+            ylim([-0.02, 0.01])
+        elseif s==2
+            ylim([-1, 0.4])
         elseif s==3
-            ylim([-0.2, 0.05])
+            ylim([-0.3, 0.1])
         end
     end
     if print_figs ==1
-        figname = [this_code, '_', 'IRFs_intrate_smoothing', shocknames{s}]
+        figname = [this_code, '_', 'IRFs_intrate_smoothing_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
         close
     end
+    
+    % Plot gain and drift conditional on shock
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    subplot(1,2,1)
+    plot(inv_ks_a_mean,'r','linewidth', 2); hold on
+    plot(inv_ks_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+    title('Inverse gain')
+    subplot(1,2,2)
+    plot(pibars_a_mean,'r','linewidth', 2); hold on
+    plot(pibars_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+    title('Inflation drift')
+    if print_figs ==1
+        figname = [this_code, '_', 'gain_drift_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
 end
 
 %% compare the two anchoring mechanisms with interest rate smoothing
@@ -543,7 +594,7 @@ for j=1:ny
     title(titles(l))
 end
 if print_figs ==1
-    figname = [this_code, '_', 'observables2_intrate_smoothing']
+    figname = [this_code, '_', 'observables_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
@@ -559,24 +610,28 @@ subplot(1,2,1)
 plot(ka_inv(1,:),'r','linewidth', 2); hold on
 plot(k_cusum_inv(1,:),'color', saddle_brown,'linewidth', 2)
 ax = gca; % current axes
-ax.FontSize = fs;
+ax.FontSize = fs_prop;
 grid on
 grid minor
-legend('CEMP criterion',  'CUSUM criterion')
+legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
 title('Inverse gain')
 subplot(1,2,2)
 plot(pibar_a,'r','linewidth', 2); hold on
 plot(pibar_a_cusum,'color', saddle_brown,'linewidth', 2)
 ax = gca; % current axes
-ax.FontSize = fs;
+ax.FontSize = fs_prop;
 grid on
 grid minor
-legend('CEMP criterion',  'CUSUM criterion')
+legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
 title('Inflation drift')
 if print_figs ==1
-    figname = [this_code, '_', 'gain_drift2_intrate_smoothing']
+    figname = [this_code, '_', 'gain_drift_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
     cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close
+end
+
+if print_figs==1
+    disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
 end
