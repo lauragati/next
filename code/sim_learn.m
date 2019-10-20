@@ -6,7 +6,7 @@
 % criterion: 1= CEMP's, 2 = CUSUM
 % dt = timing of shock. If 0 or not specified, then no shock.
 % x0 = the shock.
-% 19 sept 2019
+% 19 Oct 2019
 
 function [xsim, ysim, shock, diff,pibar_seq, k] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, dt, x0)
 if nargin < 17 %no shock specified
@@ -47,7 +47,8 @@ for t = 1:T-1
     else
         %Form Expectations using last period's estimates
         if anal ==1
-            [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t));
+            [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t)); %% old version with P
+%             [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
         else
             [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0], b, xsim(:,t), H);
         end

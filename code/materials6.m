@@ -93,7 +93,7 @@ e = randn(n,T);
 
 % Solve RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn)
 [ny, nx] = size(gx);
 [~, ~, Aa_LH, Ab_LH, As_LH] = matrices_A(param, setp);
 
@@ -140,7 +140,7 @@ Y(:,:,3) =y_LR_anchor;
 Y(:,:,4) =y_LR_perp;
 Y(:,:,5) =y_LR_anchor_cusum;
 
-
+return
 %% Analysis plots
 % Observables
 figure
@@ -335,3 +335,50 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+
+%% New approach:  implement interest rate smoothing AFTER you've done the rest
+% This way I'm hoping to preserve things intact
+close all
+
+% introduce the new parameter and adapt shit
+rho = param.rho;
+n = 4; % now n becomes 4
+% P = eye(n).*[rho_r, rho_i, rho_u, 0]';
+SIG = eye(n).*[sig_r, sig_i, sig_u, 0]';
+
+
+% Sequence of innovations
+% adopt the old one - somehow, rng(0)-ing doesn't get you the same thing
+% because e_i is a different size
+e_i = [e; zeros(1,T)];
+% gzactly - note that the below reproduces e
+% rng(0)
+% e2 = randn(n-1,T);
+
+% Solve RE model
+[fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn) % cool is the same so far
+[ny, nx] = size(gx);
+[~, ~, Aa_LH_i, Ab_LH_i, As_LH_i] = matrices_A_intrate_smoothing(param, setp); % perfect - Aa, Ab are the same as before, As has extra column of zeros, otherwise identical!
+
+% Simulate models
+% Use Ryan's code to simulate from the RE model
+[x_RE_i, y_RE_i] = sim_model(gx,hx,SIG,T,burnin,e_i);
+
+
+% Now simulate the learning models using the general code
+[x_d, y_d] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, dgain, critCEMP);
+[x_a, y_a] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP);
+[x_a_cusum, y_a_cusum] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCUSUM);
+[x_c, y_c] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, cgain, critCEMP);
+
+
+% Gather observables
+Z(:,:,1) =y_RE_i;
+Z(:,:,2) =y_d;
+Z(:,:,3) =y_a;
+Z(:,:,4) =y_c;
+Z(:,:,5) =y_a_cusum;
+
+
+
