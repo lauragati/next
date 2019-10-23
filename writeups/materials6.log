@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 OCT 2019 13:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 OCT 2019 14:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1451,7 +1451,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_5
-.png, id=300, 1143.27126pt x 589.20125pt>
+.png, id=300, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
 i_1_5.png Graphic file (type png)
 
@@ -1459,10 +1459,10 @@ i_1_5.png Graphic file (type png)
 _1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_psi_pi_1_5.png used on input line 349.
-(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi_pi_1
-_5.png, id=301, 1143.27126pt x 589.20125pt>
+_5.png, id=301, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi
 _pi_1_5.png Graphic file (type png)
 
@@ -1470,10 +1470,10 @@ _pi_1_5.png Graphic file (type png)
 pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_3_psi_pi_1_5.png used on input line 350.
-(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi_pi_1
-_5.png, id=302, 1165.35374pt x 589.20125pt>
+_5.png, id=302, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi
 _pi_1_5.png Graphic file (type png)
 
@@ -1481,10 +1481,10 @@ _pi_1_5.png Graphic file (type png)
 pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_6_psi_pi_1_5.png used on input line 351.
-(pdftex.def)             Requested size: 209.75462pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi_pi_1
-_5.png, id=303, 1180.41pt x 589.20125pt>
+_5.png, id=303, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi
 _pi_1_5.png Graphic file (type png)
 
@@ -1492,10 +1492,10 @@ _pi_1_5.png Graphic file (type png)
 pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_9_psi_pi_1_5.png used on input line 352.
-(pdftex.def)             Requested size: 212.46463pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_5.
-png, id=304, 1153.30875pt x 589.20125pt>
+png, id=304, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
 _1_5.png Graphic file (type png)
 
@@ -1503,10 +1503,10 @@ _1_5.png Graphic file (type png)
 1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_psi_pi_1_5.png used on input line 358.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_pi_1_
-5.png, id=305, 1153.30875pt x 589.20125pt>
+5.png, id=305, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_
 pi_1_5.png Graphic file (type png)
 
@@ -1514,10 +1514,10 @@ pi_1_5.png Graphic file (type png)
 i_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_3_psi_pi_1_5.png used on input line 359.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_pi_1_
-5.png, id=306, 1153.30875pt x 589.20125pt>
+5.png, id=306, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_
 pi_1_5.png Graphic file (type png)
 
@@ -1525,10 +1525,10 @@ pi_1_5.png Graphic file (type png)
 i_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_6_psi_pi_1_5.png used on input line 360.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_pi_1_
-5.png, id=307, 1153.30875pt x 589.20125pt>
+5.png, id=307, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_
 pi_1_5.png Graphic file (type png)
 
@@ -1536,14 +1536,14 @@ pi_1_5.png Graphic file (type png)
 i_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_9_psi_pi_1_5.png used on input line 361.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_
-5.png, id=308, 1138.2525pt x 589.20125pt>
+5.png, id=308, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
 pi_1_5.png Graphic file (type png)
 
@@ -1551,10 +1551,10 @@ pi_1_5.png Graphic file (type png)
 i_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_psi_pi_1_5.png used on input line 366.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_psi_pi_
-1_5.png, id=309, 1138.2525pt x 589.20125pt>
+1_5.png, id=309, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_ps
 i_pi_1_5.png Graphic file (type png)
 
@@ -1562,10 +1562,10 @@ i_pi_1_5.png Graphic file (type png)
 _pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_3_psi_pi_1_5.png used on input line 367.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_psi_pi_
-1_5.png, id=310, 1138.2525pt x 589.20125pt>
+1_5.png, id=310, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_ps
 i_pi_1_5.png Graphic file (type png)
 
@@ -1573,10 +1573,10 @@ i_pi_1_5.png Graphic file (type png)
 _pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_6_psi_pi_1_5.png used on input line 368.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_psi_pi_
-1_5.png, id=311, 1153.30875pt x 589.20125pt>
+1_5.png, id=311, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_ps
 i_pi_1_5.png Graphic file (type png)
 
@@ -1584,7 +1584,7 @@ i_pi_1_5.png Graphic file (type png)
 _pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_9_psi_pi_1_5.png used on input line 369.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1630,124 +1630,124 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png, id=336, 1172
-.38pt x 603.25375pt>
+.38pt x 606.265pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png Graphic 
 file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
 pi_1_5.png used on input line 376.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png, id=337, 11
-72.38pt x 603.25375pt>
+72.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png Graphi
 c file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_3_ps
 i_pi_1_5.png used on input line 377.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png, id=338, 11
-72.38pt x 603.25375pt>
+72.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png Graphi
 c file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_6_ps
 i_pi_1_5.png used on input line 378.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png, id=339, 11
-72.38pt x 603.25375pt>
+72.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png Graphi
 c file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_9_ps
 i_pi_1_5.png used on input line 379.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png, id=340, 1172.
-38pt x 603.25375pt>
+38pt x 606.265pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
 i_1_5.png used on input line 383.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png, id=341, 117
-2.38pt x 602.25pt>
+2.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi
 _pi_1_5.png used on input line 384.
-(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png, id=342, 117
-2.38pt x 603.25375pt>
+2.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi
 _pi_1_5.png used on input line 385.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png, id=343, 117
-2.38pt x 603.25375pt>
+2.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi
 _pi_1_5.png used on input line 386.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png, id=344, 117
-2.38pt x 603.25375pt>
+2.38pt x 606.265pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
 _pi_1_5.png used on input line 390.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png, id=345, 1
-172.38pt x 603.25375pt>
+172.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png Graph
 ic file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_3_p
 si_pi_1_5.png used on input line 391.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png, id=346, 1
-172.38pt x 603.25375pt>
+172.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png Graph
 ic file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_6_p
 si_pi_1_5.png used on input line 392.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png, id=347, 1
-172.38pt x 603.25375pt>
+172.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png Graph
 ic file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_9_p
 si_pi_1_5.png used on input line 393.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1806,7 +1806,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_1
-.png, id=371, 1143.27126pt x 589.20125pt>
+.png, id=371, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
 i_1_1.png Graphic file (type png)
 
@@ -1814,7 +1814,7 @@ i_1_1.png Graphic file (type png)
 _1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_psi_pi_1_1.png used on input line 400.
-(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
 i_1_5.png Graphic file (type png)
 
@@ -1822,10 +1822,10 @@ i_1_5.png Graphic file (type png)
 _1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_psi_pi_1_5.png used on input line 401.
-(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_2.p
-ng, id=372, 1143.27126pt x 589.20125pt>
+ng, id=372, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
 i_2.png Graphic file (type png)
 
@@ -1833,10 +1833,10 @@ i_2.png Graphic file (type png)
 _2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _natrate_rho0_psi_pi_2.png used on input line 402.
-(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_1.
-png, id=373, 1119.18124pt x 589.20125pt>
+png, id=373, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
 _1_1.png Graphic file (type png)
 
@@ -1844,7 +1844,7 @@ _1_1.png Graphic file (type png)
 1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_psi_pi_1_1.png used on input line 407.
-(pdftex.def)             Requested size: 201.44392pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
 _1_5.png Graphic file (type png)
 
@@ -1852,10 +1852,10 @@ _1_5.png Graphic file (type png)
 1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_psi_pi_1_5.png used on input line 408.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_2.pn
-g, id=374, 1153.30875pt x 589.20125pt>
+g, id=374, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
 _2.png Graphic file (type png)
 
@@ -1863,10 +1863,10 @@ _2.png Graphic file (type png)
 2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _monpol_rho0_psi_pi_2.png used on input line 409.
-(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_
-1.png, id=375, 1138.2525pt x 589.20125pt>
+1.png, id=375, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
 pi_1_1.png Graphic file (type png)
 
@@ -1874,7 +1874,7 @@ pi_1_1.png Graphic file (type png)
 i_1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_psi_pi_1_1.png used on input line 414.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
 pi_1_5.png Graphic file (type png)
 
@@ -1882,10 +1882,10 @@ pi_1_5.png Graphic file (type png)
 i_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_psi_pi_1_5.png used on input line 415.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_2.
-png, id=376, 1138.2525pt x 589.20125pt>
+png, id=376, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
 pi_2.png Graphic file (type png)
 
@@ -1893,7 +1893,7 @@ pi_2.png Graphic file (type png)
 i_2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
 _costpush_rho0_psi_pi_2.png used on input line 416.
-(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1942,85 +1942,85 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png, id=398, 1172
-.38pt x 602.25pt>
+.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png Graphic 
 file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
 pi_1_1.png used on input line 423.
-(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png Graphic 
 file (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
 pi_1_5.png used on input line 424.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png, id=399, 1172.3
-8pt x 603.25375pt>
+8pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png Graphic fi
 le (type png)
 
 <use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
 pi_2.png used on input line 425.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png, id=400, 1172.
-38pt x 603.25375pt>
+38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
 i_1_1.png used on input line 429.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
 i_1_5.png used on input line 430.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png, id=401, 1172.38
-pt x 603.25375pt>
+pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png Graphic fil
 e (type png)
 
 <use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
 i_2.png used on input line 431.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png, id=402, 117
-2.38pt x 602.25pt>
+2.38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
 _pi_1_1.png used on input line 435.
-(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png Graphic
  file (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
 _pi_1_5.png used on input line 436.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.74866pt.
 
 <../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png, id=403, 1172.
-38pt x 603.25375pt>
+38pt x 607.26875pt>
 File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
 _pi_2.png used on input line 437.
-(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+(pdftex.def)             Requested size: 140.67952pt x 72.8691pt.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 446.
 
 
@@ -2073,7 +2073,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials6.pdf (20 pages, 5869201 bytes).
+Output written on materials6.pdf (20 pages, 5755231 bytes).
 PDF statistics:
  521 PDF objects out of 1000 (max. 8388607)
  390 compressed objects within 4 object streams

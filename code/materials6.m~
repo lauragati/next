@@ -31,7 +31,7 @@ addpath(datapath)
 this_code = mfilename;
 
 % Variable stuff ---
-print_figs    = 1;
+print_figs    = 0;
 do_old_plots  = 0;
 if print_figs ==1
     output_table  = 1;
@@ -691,7 +691,45 @@ for s=1:n-1
     inv_ks_mean1 = 1./ks_mean1;
     inv_ks_mean2 = 1./ks_mean2;
     
+    
+    % option 2: sort and take percentile bands
+    [lb1, med1, ub1] = confi_bands(GIR(:,:,anch),0.1);
+    [lb2, med2, ub2] = confi_bands(GIR(:,:,unanch),0.1);
+    
     % Plot IRFs
+    % IRF of Option 2
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    for i=1:n-1
+        subplot(1,n-1,i)
+        plot(zeros(1,h),'k--','linewidth', 2); hold on
+        re = plot(iry(i,:),'k','linewidth', 2);
+        ancho = plot(med1(i,:),'b','linewidth', 2);
+        unancho = plot(med2(i,:),'r--','linewidth', 2);
+        legend([re, ancho, unancho], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
+        title(titles(i))
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        if s==1
+            ylim([-0.02, 0.01])
+        elseif s==2
+            ylim([-1, 0.4])
+        elseif s==3
+            ylim([-0.3, 0.1])
+        end
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'IRFs_intrate_smoothing_', 'cond_anch_','SORTED_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % IRF of Option 1
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -704,21 +742,21 @@ for s=1:n-1
         %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
         %         end
         re = plot(iry(i,:),'k','linewidth', 2);
-        anch = plot(RIR1(i,:),'b','linewidth', 2);
-        unanch = plot(RIR2(i,:),'r--','linewidth', 2);
-        legend([re, anch, unanch], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
+        ancho = plot(RIR1(i,:),'b','linewidth', 2);
+        unancho = plot(RIR2(i,:),'r--','linewidth', 2);
+        legend([re, ancho, unancho], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
         title(titles(i))
         ax = gca; % current axes
         ax.FontSize = fs_prop;
         grid on
         grid minor
-        %         if s==1
-        %             ylim([-0.02, 0.01])
-        %         elseif s==2
-        %             ylim([-1, 0.4])
-        %         elseif s==3
-        %             ylim([-0.3, 0.1])
-        %         end
+        if s==1
+            ylim([-0.02, 0.01])
+        elseif s==2
+            ylim([-1, 0.4])
+        elseif s==3
+            ylim([-0.3, 0.1])
+        end
     end
     if print_figs ==1
         figname = [this_code, '_', 'IRFs_intrate_smoothing_', 'cond_anch_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
@@ -734,8 +772,6 @@ for s=1:n-1
         figure
         set(gcf,'color','w'); % sets white background color
         set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        
-        %         subplot(1,2,1)
         plot(inv_ks_mean1,'b','linewidth', 2); hold on
         plot(inv_ks_mean2,'r--','linewidth', 2)
         ax = gca; % current axes
