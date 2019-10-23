@@ -31,13 +31,14 @@ addpath(datapath)
 this_code = mfilename;
 
 % Variable stuff ---
-print_figs    = 0;
+print_figs    = 1;
 do_old_plots  = 0;
 if print_figs ==1
     output_table  = 1;
 else
     output_table =0;
 end
+skip_old_plots =1;
 
 fs=20; % fontsize
 lw=2; % linewidth
@@ -143,65 +144,66 @@ Y(:,:,4) =y_LR_perp;
 Y(:,:,5) =y_LR_anchor_cusum;
 
 
-%% Analysis plots
-% Observables
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-titles = {'Inflation','Output gap','Int. rate'};
-l=0;
-for j=1:ny
-    l = l+1;
-    subplot(1,ny,l)
-    plot(squeeze(Y(j,:,1)),'k','linewidth', 2); hold on
-    plot(squeeze(Y(j,:,2)),'b','linewidth', 2)
-    plot(squeeze(Y(j,:,3)),'r','linewidth', 2)
-    plot(squeeze(Y(j,:,4)),'color', dark_green,'linewidth', 2)
+if skip_old_plots==0
+    %% Analysis plots
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
     
+    titles = {'Inflation','Output gap','Int. rate'};
+    l=0;
+    for j=1:ny
+        l = l+1;
+        subplot(1,ny,l)
+        plot(squeeze(Y(j,:,1)),'k','linewidth', 2); hold on
+        plot(squeeze(Y(j,:,2)),'b','linewidth', 2)
+        plot(squeeze(Y(j,:,3)),'r','linewidth', 2)
+        plot(squeeze(Y(j,:,4)),'color', dark_green,'linewidth', 2)
+        
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        grid on
+        grid minor
+        legend('RE', 'LR decreasing gain','LR anchor',  'LR constant gain')
+        title(titles(l))
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'observables_notfree']
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % Gain
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    subplot(1,2,1)
+    plot(kd_inv(1,:),'r','linewidth', 2)
     ax = gca; % current axes
     ax.FontSize = fs;
     grid on
     grid minor
-    legend('RE', 'LR decreasing gain','LR anchor',  'LR constant gain')
-    title(titles(l))
+    title('Inverse gain')
+    subplot(1,2,2)
+    plot(pibar,'r','linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    title('Inflation drift')
+    if print_figs ==1
+        figname = [this_code, '_', 'gain_drift_notfree']
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
 end
-if print_figs ==1
-    figname = [this_code, '_', 'observables_notfree']
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-% Gain
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-subplot(1,2,1)
-plot(kd_inv(1,:),'r','linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
-title('Inverse gain')
-subplot(1,2,2)
-plot(pibar,'r','linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
-title('Inflation drift')
-if print_figs ==1
-    figname = [this_code, '_', 'gain_drift_notfree']
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-
 %% Generate IRFs for RE and anchoring
 d = 1; % the innovation, delta
 shocknames = {'natrate', 'monpol','costpush'};
@@ -239,104 +241,109 @@ for s=1:n
     RIRa = mean(GIRa,3);
     RIRc = mean(GIRc,3);
     
-    
-    % Plot IRFs
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    for i=1:n
-        subplot(1,n,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        for j=2:h
-            plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
-            plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
-            plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+    if skip_old_plots==0
+        % Plot IRFs
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        for i=1:n
+            subplot(1,n,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            for j=2:h
+                plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
+                plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
+                plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+            end
+            re = plot(iry(i,:),'k','linewidth', 2);
+            d_mean = plot(RIRd(i,:),'b','linewidth', 2);
+            am_mean = plot(RIRa(i,:),'r','linewidth', 2);
+            c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
+            legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain')
+            title(titles(i))
+            ax = gca; % current axes
+            ax.FontSize = fs;
+            grid on
+            grid minor
+            if s==1
+                ylim([-0.015, 0.005])
+            elseif s==3
+                ylim([-0.2, 0.05])
+            end
         end
-        re = plot(iry(i,:),'k','linewidth', 2);
-        d_mean = plot(RIRd(i,:),'b','linewidth', 2);
-        am_mean = plot(RIRa(i,:),'r','linewidth', 2);
-        c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
-        legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain')
-        title(titles(i))
-        ax = gca; % current axes
-        ax.FontSize = fs;
-        grid on
-        grid minor
-        if s==1
-            ylim([-0.015, 0.005])
-        elseif s==3
-            ylim([-0.2, 0.05])
+        if print_figs ==1
+            figname = [this_code, '_', 'IRFs_notfree_', shocknames{s}]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
         end
-    end
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_notfree_', shocknames{s}]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
     end
 end
 
 %% compare the two anchoring mechanisms
 % close all
-
-% Observables
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-titles = {'Inflation','Output gap','Int. rate'};
-l=0;
-for j=1:ny
-    l = l+1;
-    subplot(1,ny,l)
-    plot(squeeze(Y(j,:,3)),'r','linewidth', 2); hold on
-    plot(squeeze(Y(j,:,5)),'color', saddle_brown,'linewidth', 2)
+if skip_old_plots==0
+    
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    titles = {'Inflation','Output gap','Int. rate'};
+    l=0;
+    for j=1:ny
+        l = l+1;
+        subplot(1,ny,l)
+        plot(squeeze(Y(j,:,3)),'r','linewidth', 2); hold on
+        plot(squeeze(Y(j,:,5)),'color', saddle_brown,'linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        grid on
+        grid minor
+        legend('CEMP criterion',  'CUSUM criterion')
+        title(titles(l))
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'observables2_notfree']
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % Gain
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    subplot(1,2,1)
+    plot(kd_inv(1,:),'r','linewidth', 2); hold on
+    plot(kd_inv_cusum(1,:),'color', saddle_brown,'linewidth', 2)
     ax = gca; % current axes
     ax.FontSize = fs;
     grid on
     grid minor
     legend('CEMP criterion',  'CUSUM criterion')
-    title(titles(l))
+    title('Inverse gain')
+    subplot(1,2,2)
+    plot(pibar,'r','linewidth', 2); hold on
+    plot(pibar_cusum,'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion')
+    title('Inflation drift')
+    if print_figs ==1
+        figname = [this_code, '_', 'gain_drift2_notfree']
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
 end
-if print_figs ==1
-    figname = [this_code, '_', 'observables2_notfree']
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-% Gain
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-subplot(1,2,1)
-plot(kd_inv(1,:),'r','linewidth', 2); hold on
-plot(kd_inv_cusum(1,:),'color', saddle_brown,'linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
-legend('CEMP criterion',  'CUSUM criterion')
-title('Inverse gain')
-subplot(1,2,2)
-plot(pibar,'r','linewidth', 2); hold on
-plot(pibar_cusum,'color', saddle_brown,'linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
-legend('CEMP criterion',  'CUSUM criterion')
-title('Inflation drift')
-if print_figs ==1
-    figname = [this_code, '_', 'gain_drift2_notfree']
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
+close all
 
 %% New approach:  implement interest rate smoothing AFTER you've done the rest
 % This way I'm hoping to preserve things intact
@@ -391,66 +398,68 @@ Z(:,:,4) =y_c;
 Z(:,:,5) =y_a_cusum;
 
 %% Analysis plots interest rate smoothing
-% Observables
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-titles = {'Inflation','Output gap','Int. rate'};
-l=0;
-for j=1:ny
-    l = l+1;
-    subplot(1,ny,l)
-    plot(squeeze(Z(j,:,1)),'k','linewidth', 2); hold on
-    plot(squeeze(Z(j,:,2)),'b','linewidth', 2)
-    plot(squeeze(Z(j,:,3)),'r','linewidth', 2)
-    plot(squeeze(Z(j,:,4)),'color', dark_green,'linewidth', 2)
+if skip_old_plots==0
     
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    titles = {'Inflation','Output gap','Int. rate'};
+    l=0;
+    for j=1:ny
+        l = l+1;
+        subplot(1,ny,l)
+        plot(squeeze(Z(j,:,1)),'k','linewidth', 2); hold on
+        plot(squeeze(Z(j,:,2)),'b','linewidth', 2)
+        plot(squeeze(Z(j,:,3)),'r','linewidth', 2)
+        plot(squeeze(Z(j,:,4)),'color', dark_green,'linewidth', 2)
+        
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        legend('RE', 'LH decreasing gain','LH anchor',  'LH constant gain', 'location', 'southoutside')
+        title(titles(l))
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'observables_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % Gain
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    subplot(1,2,1)
+    plot(ka_inv(1,:),'r','linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
+    title('Inverse gain')
+    subplot(1,2,2)
+    plot(pibar_a,'r','linewidth', 2)
     ax = gca; % current axes
     ax.FontSize = fs_prop;
     grid on
     grid minor
-    legend('RE', 'LH decreasing gain','LH anchor',  'LH constant gain', 'location', 'southoutside')
-    title(titles(l))
+    title('Inflation drift')
+    if print_figs ==1
+        figname = [this_code, '_', 'gain_drift_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % Ok finally! The graph is the same, and thu w/ interest rate smoothing, if
+    % rho = 0, I obtain the exact same dynamics. Cool!
 end
-if print_figs ==1
-    figname = [this_code, '_', 'observables_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-% Gain
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-subplot(1,2,1)
-plot(ka_inv(1,:),'r','linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
-title('Inverse gain')
-subplot(1,2,2)
-plot(pibar_a,'r','linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs_prop;
-grid on
-grid minor
-title('Inflation drift')
-if print_figs ==1
-    figname = [this_code, '_', 'gain_drift_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-% Ok finally! The graph is the same, and thu w/ interest rate smoothing, if
-% rho = 0, I obtain the exact same dynamics. Cool!
-
 %% GIRs for interest rate smoothing
 d = 1; % the innovation, delta
 shocknames = {'natrate', 'monpol','costpush'};
@@ -500,6 +509,188 @@ for s=1:n-1
     inv_ks_a_mean = 1./ks_a_mean;
     inv_ks_a_cusum_mean = 1./ks_a_cusum_mean;
     
+    if skip_old_plots==0
+        % Plot IRFs
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        for i=1:n-1
+            subplot(1,n-1,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            %         for j=2:h
+            %             plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
+            %             plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
+            %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+            %         end
+            re = plot(iry(i,:),'k','linewidth', 2);
+            d_mean = plot(RIRd(i,:),'b','linewidth', 2);
+            am_mean = plot(RIRa(i,:),'r','linewidth', 2);
+            c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
+            legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain','location', 'southoutside')
+            title(titles(i))
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            if s==1
+                ylim([-0.02, 0.01])
+            elseif s==2
+                ylim([-1, 0.4])
+            elseif s==3
+                ylim([-0.3, 0.1])
+            end
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'IRFs_intrate_smoothing_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        
+        % Plot gain and drift conditional on shock
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        
+        subplot(1,2,1)
+        plot(inv_ks_a_mean,'r','linewidth', 2); hold on
+        plot(inv_ks_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+        title('Inverse gain')
+        subplot(1,2,2)
+        plot(pibars_a_mean,'r','linewidth', 2); hold on
+        plot(pibars_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+        title('Inflation drift')
+        if print_figs ==1
+            figname = [this_code, '_', 'gain_drift_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+    end
+    
+end
+
+%% compare the two anchoring mechanisms with interest rate smoothing
+% close all
+if skip_old_plots==0
+    
+    % Observables
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    titles = {'Inflation','Output gap','Int. rate'};
+    l=0;
+    for j=1:ny
+        l = l+1;
+        subplot(1,ny,l)
+        plot(squeeze(Z(j,:,3)),'r','linewidth', 2); hold on
+        plot(squeeze(Z(j,:,5)),'color', saddle_brown,'linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        grid on
+        grid minor
+        legend('CEMP criterion',  'CUSUM criterion')
+        title(titles(l))
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'observables_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    % Gain
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    
+    subplot(1,2,1)
+    plot(ka_inv(1,:),'r','linewidth', 2); hold on
+    plot(k_cusum_inv(1,:),'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+    title('Inverse gain')
+    subplot(1,2,2)
+    plot(pibar_a,'r','linewidth', 2); hold on
+    plot(pibar_a_cusum,'color', saddle_brown,'linewidth', 2)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+    title('Inflation drift')
+    if print_figs ==1
+        figname = [this_code, '_', 'gain_drift_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
+end
+%% Generating IRFs differentiating ones that are anchored / unanchored when shock hits
+% let 1 denote anchored
+% let 0 (or 2) denote unanchored
+anchored = nan(1,T-h);
+close all
+
+d = 1; % the innovation, delta
+shocknames = {'natrate', 'monpol','costpush'};
+titles = {'Inflation','Output gap','Int. rate'};
+% cycle thru the shocks of the model
+for s=1:n-1
+    x0 = zeros(1,n);
+    x0(s) = d;
+    h = 10; % horizon of IRF
+    [IR, iry, irx]=ir(gx,hx,x0,h);
+    iry = iry';
+    
+    % For learning, the approach I take is resimulate everything and for each
+    % period t, expose the econ to this same shock. Then take an average.
+    GIR = zeros(ny,h,T-h); % third index is when the shock is imposed
+    pibars = zeros(T,1,T-h);
+    ks = zeros(T,1,T-h);
+    for t=1:T-h
+        % 1. create alternative simulations, adding the impulse always at a new time t
+        % Now let's shock our general learning code
+        [xs, ys, ~, ~,pibars(:,:,t), ks(:,:,t), anchored(t)] = sim_learn(gx,hx,SIG,T,burnin,e_i, Aa_LH_i, Ab_LH_i, As_LH_i, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
+        
+        % 2. take differences between this and the standard simulation
+        GIR(:,:,t) = ys(:,t:t+h-1) - y_a(:,t:t+h-1);
+    end
+    
+    % get indeces for anchored or unanchored at time shock hits
+    anch = find(anchored==1);
+    unanch = find(anchored==0);
+    % option 1: take simple averages
+    RIR1 = mean(GIR(:,:,anch),3);
+    RIR2 = mean(GIR(:,:,unanch),3);
+    % take averages of gains and drifts too
+    pibar_mean1 = mean(pibars(:,:,anch),3);
+    pibar_mean2 = mean(pibars(:,:,unanch),3);
+    ks_mean1 = mean( ks(:,:,anch),3);
+    ks_mean2 = mean( ks(:,:,unanch),3);
+    inv_ks_mean1 = 1./ks_mean1;
+    inv_ks_mean2 = 1./ks_mean2;
+    
     % Plot IRFs
     figure
     set(gcf,'color','w'); % sets white background color
@@ -513,125 +704,71 @@ for s=1:n-1
         %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
         %         end
         re = plot(iry(i,:),'k','linewidth', 2);
-        d_mean = plot(RIRd(i,:),'b','linewidth', 2);
-        am_mean = plot(RIRa(i,:),'r','linewidth', 2);
-        c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
-        legend([re,d_mean, am_mean, c_mean],'RE', 'Decreasing gain', 'Anchor', 'Constant gain','location', 'southoutside')
+        anch = plot(RIR1(i,:),'b','linewidth', 2);
+        unanch = plot(RIR2(i,:),'r--','linewidth', 2);
+        legend([re, anch, unanch], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
         title(titles(i))
         ax = gca; % current axes
         ax.FontSize = fs_prop;
         grid on
         grid minor
-        if s==1
-            ylim([-0.02, 0.01])
-        elseif s==2
-            ylim([-1, 0.4])
-        elseif s==3
-            ylim([-0.3, 0.1])
+        %         if s==1
+        %             ylim([-0.02, 0.01])
+        %         elseif s==2
+        %             ylim([-1, 0.4])
+        %         elseif s==3
+        %             ylim([-0.3, 0.1])
+        %         end
+    end
+    if print_figs ==1
+        figname = [this_code, '_', 'IRFs_intrate_smoothing_', 'cond_anch_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    skip_this=0;
+    if skip_this==0
+        % Plot gain and drift conditional on shock
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        plot(inv_ks_mean1,'b','linewidth', 2); hold on
+        plot(inv_ks_mean2,'r--','linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        legend('Anchored',  'Unanchored','location', 'southoutside')
+        title('Inverse gain')
+        if print_figs ==1
+            figname = [this_code, '_', 'cond_anch_','gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        plot(pibar_mean1,'b','linewidth', 2); hold on
+        plot(pibar_mean2,'r--','linewidth', 2)
+        ax = gca; % current axes
+        ax.FontSize = fs_prop;
+        grid on
+        grid minor
+        legend('Anchored',  'Unanchored','location', 'southoutside')
+        title('Inflation drift')
+        if print_figs ==1
+            figname = [this_code, '_', 'cond_anch_','drift_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
         end
     end
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_intrate_smoothing_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
-    % Plot gain and drift conditional on shock
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    
-    subplot(1,2,1)
-    plot(inv_ks_a_mean,'r','linewidth', 2); hold on
-    plot(inv_ks_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
-    title('Inverse gain')
-    subplot(1,2,2)
-    plot(pibars_a_mean,'r','linewidth', 2); hold on
-    plot(pibars_a_cusum_mean,'color', saddle_brown,'linewidth', 2)
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
-    title('Inflation drift')
-    if print_figs ==1
-        figname = [this_code, '_', 'gain_drift_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
 end
 
-%% compare the two anchoring mechanisms with interest rate smoothing
-% close all
-
-% Observables
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-titles = {'Inflation','Output gap','Int. rate'};
-l=0;
-for j=1:ny
-    l = l+1;
-    subplot(1,ny,l)
-    plot(squeeze(Z(j,:,3)),'r','linewidth', 2); hold on
-    plot(squeeze(Z(j,:,5)),'color', saddle_brown,'linewidth', 2)
-    ax = gca; % current axes
-    ax.FontSize = fs;
-    grid on
-    grid minor
-    legend('CEMP criterion',  'CUSUM criterion')
-    title(titles(l))
-end
-if print_figs ==1
-    figname = [this_code, '_', 'observables_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-% Gain
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-
-subplot(1,2,1)
-plot(ka_inv(1,:),'r','linewidth', 2); hold on
-plot(k_cusum_inv(1,:),'color', saddle_brown,'linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs_prop;
-grid on
-grid minor
-legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
-title('Inverse gain')
-subplot(1,2,2)
-plot(pibar_a,'r','linewidth', 2); hold on
-plot(pibar_a_cusum,'color', saddle_brown,'linewidth', 2)
-ax = gca; % current axes
-ax.FontSize = fs_prop;
-grid on
-grid minor
-legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
-title('Inflation drift')
-if print_figs ==1
-    figname = [this_code, '_', 'gain_drift_cusum_intrate_smoothing_rho',rho_val, '_psi_pi_', psi_pi_val]
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-if print_figs==1
-    disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
-end
+disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
+disp('Done.')

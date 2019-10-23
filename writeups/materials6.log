@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 OCT 2019 17:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 OCT 2019 13:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -534,45 +534,43 @@ File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
 \f@ncyO@olf=\skip88
 \f@ncyO@orf=\skip89
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 51.
+Package hyperref Info: Option `colorlinks' set `true' on input line 52.
 \c@prop=\count140
 \c@definition=\count141
 \c@lemma=\count142
 \c@corollary=\count143
+\c@conjecture=\count144
 
-(./materials6.aux
-
-LaTeX Warning: Label `exog' multiply defined.
-
-)
+(./materials6.aux)
 \openout1 = `materials6.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
-LaTeX Font Info:    ... okay on input line 103.
- (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count144
+\scratchcounter=\count145
 \scratchdimen=\dimen162
 \scratchbox=\box59
-\nofMPsegments=\count145
-\nofMParguments=\count146
+\nofMPsegments=\count146
+\nofMParguments=\count147
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count147
+\MPscratchCnt=\count148
 \MPscratchDim=\dimen163
-\MPnumerator=\count148
-\makeMPintoPDFobject=\count149
+\MPnumerator=\count149
+\makeMPintoPDFobject=\count150
 \everyMPtoPDFconversion=\toks34
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -631,29 +629,29 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 103.
+Package hyperref Info: Link coloring ON on input line 106.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count150
+\c@section@level=\count151
 )
-LaTeX Info: Redefining \ref on input line 103.
-LaTeX Info: Redefining \pageref on input line 103.
-LaTeX Info: Redefining \nameref on input line 103.
+LaTeX Info: Redefining \ref on input line 106.
+LaTeX Info: Redefining \pageref on input line 106.
+LaTeX Info: Redefining \nameref on input line 106.
 
 (./materials6.out) (./materials6.out)
 \@outlinefile=\write3
 \openout3 = `materials6.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 111.
+LaTeX Font Info:    Try loading font information for U+msa on input line 114.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 111.
+LaTeX Font Info:    Try loading font information for U+msb on input line 114.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -667,19 +665,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 122.
+(hyperref)                removing `math shift' on input line 125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 122.
+(hyperref)                removing `\rho' on input line 125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 122.
+(hyperref)                removing `subscript' on input line 125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 122.
+(hyperref)                removing `math shift' on input line 125.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -688,13 +686,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (34.84163pt too wide) in paragraph at lines 170--170
+Overfull \hbox (34.84163pt too wide) in paragraph at lines 172--172
 [] 
  []
 
 
 Package relsize Warning: Font size 27.24664pt is too large.
-(relsize)                Using 24.88pt instead on input line 172.
+(relsize)                Using 24.88pt instead on input line 174.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -705,43 +703,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 188.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 188.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 188.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 188.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 188.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 190.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 190.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 190.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 190.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -749,31 +711,67 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 190.
+(hyperref)                removing `math shift' on input line 190.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 190.
 
 
-<../figures/materials6_observables_intrate_smoothing_rho0.png, id=105, 1561.835
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 190.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\psi' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\psi' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\pi' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 192.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 192.
+
+
+<../figures/materials6_observables_intrate_smoothing_rho0.png, id=134, 1561.835
 pt x 859.21pt>
 File: ../figures/materials6_observables_intrate_smoothing_rho0.png Graphic file
  (type png)
 
 <use ../figures/materials6_observables_intrate_smoothing_rho0.png>
 Package pdftex.def Info: ../figures/materials6_observables_intrate_smoothing_rh
-o0.png used on input line 192.
+o0.png used on input line 194.
 (pdftex.def)             Requested size: 343.60477pt x 189.02678pt.
 
-<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png, id=106, 160
+<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png, id=135, 160
 3.9925pt x 858.20625pt>
 File: ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png Graphic
  file (type png)
 
 <use ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_cusum_intrate_smoothi
-ng_rho0.png used on input line 193.
+ng_rho0.png used on input line 195.
 (pdftex.def)             Requested size: 352.87944pt x 188.80595pt.
 
 
@@ -786,139 +784,139 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ./figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 201.
+(hyperref)                removing `math shift' on input line 203.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 201.
+(hyperref)                removing `\rho' on input line 203.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 201.
+(hyperref)                removing `math shift' on input line 203.
 
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0.png, id=117, 1622.06
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0.png, id=146, 1622.06
 pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0.png Graphic fil
 e (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0.png used on input line 204.
+ho0.png used on input line 206.
 (pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_3.png, id=118, 1622.
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_3.png, id=147, 1622.
 06pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_3.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_3.png used on input line 205.
+ho0_3.png used on input line 207.
 (pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_6.png, id=119, 1622.
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_6.png, id=148, 1622.
 06pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_6.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_6.png used on input line 206.
+ho0_6.png used on input line 208.
 (pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_9.png, id=120, 1622.
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_9.png, id=149, 1622.
 06pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_9.png Graphic f
 ile (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_9.png used on input line 207.
+ho0_9.png used on input line 209.
 (pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0.png, id=121, 1595.962
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0.png, id=150, 1595.962
 5pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0.png Graphic file
  (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0.png used on input line 213.
+o0.png used on input line 215.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_3.png, id=122, 1595.9
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_3.png, id=151, 1595.9
 625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_3.png Graphic fi
 le (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_3.png used on input line 214.
+o0_3.png used on input line 216.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_6.png, id=123, 1595.9
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_6.png, id=152, 1595.9
 625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_6.png Graphic fi
 le (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_6.png used on input line 215.
+o0_6.png used on input line 217.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_9.png, id=124, 1595.9
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_9.png, id=153, 1595.9
 625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_9.png Graphic fi
 le (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_9.png used on input line 216.
+o0_9.png used on input line 218.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0.png, id=125, 1595.9
+<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0.png, id=154, 1595.9
 625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0.png Graphic fi
 le (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0.png used on input line 221.
+rho0.png used on input line 223.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_3.png, id=126, 1595
+<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_3.png, id=155, 1595
 .9625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_3.png Graphic 
 file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_3.png used on input line 222.
+rho0_3.png used on input line 224.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_6.png, id=127, 1595
+<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_6.png, id=156, 1595
 .9625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_6.png Graphic 
 file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_6.png used on input line 223.
+rho0_6.png used on input line 225.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_9.png, id=128, 1595
+<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_9.png, id=157, 1595
 .9625pt x 859.21pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_9.png Graphic 
 file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_9.png used on input line 224.
+rho0_9.png used on input line 226.
 (pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
 
 
@@ -950,175 +948,175 @@ erials6_IRFs_intrate_smoothing_costpush_rho0_6.png (PNG copy)> <../figures/mate
 rials6_IRFs_intrate_smoothing_costpush_rho0_9.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 229.
+(hyperref)                removing `math shift' on input line 231.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 229.
+(hyperref)                removing `\rho' on input line 231.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 229.
+(hyperref)                removing `math shift' on input line 231.
 
 File: ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png Graphic
  file (type png)
 <use ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_cusum_intrate_smoothi
-ng_rho0.png used on input line 233.
+ng_rho0.png used on input line 235.
 (pdftex.def)             Requested size: 192.4708pt x 102.9803pt.
 
-<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_3.png, id=152, 1
+<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_3.png, id=182, 1
 603.9925pt x 858.20625pt>
 File: ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_3.png Graph
 ic file (type png)
 
 <use ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_cusum_intrate_smoothi
-ng_rho0_3.png used on input line 234.
+ng_rho0_3.png used on input line 236.
 (pdftex.def)             Requested size: 192.4708pt x 102.9803pt.
 
-<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_6.png, id=153, 1
+<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_6.png, id=183, 1
 603.9925pt x 858.20625pt>
 File: ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_6.png Graph
 ic file (type png)
 
 <use ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_cusum_intrate_smoothi
-ng_rho0_6.png used on input line 235.
+ng_rho0_6.png used on input line 237.
 (pdftex.def)             Requested size: 192.4708pt x 102.9803pt.
 
-<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_9.png, id=154, 1
+<../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_9.png, id=184, 1
 603.9925pt x 858.20625pt>
 File: ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_9.png Graph
 ic file (type png)
 
 <use ../figures/materials6_gain_drift_cusum_intrate_smoothing_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_cusum_intrate_smoothi
-ng_rho0_9.png used on input line 236.
+ng_rho0_9.png used on input line 238.
 (pdftex.def)             Requested size: 192.4708pt x 102.9803pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 241.
+(hyperref)                removing `math shift' on input line 243.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 241.
+(hyperref)                removing `\rho' on input line 243.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 241.
+(hyperref)                removing `math shift' on input line 243.
 
 
-<../figures/materials6_gain_drift_natrate_rho0.png, id=155, 1603.9925pt x 858.2
+<../figures/materials6_gain_drift_natrate_rho0.png, id=185, 1603.9925pt x 858.2
 0625pt>
 File: ../figures/materials6_gain_drift_natrate_rho0.png Graphic file (type png)
 
  <use ../figures/materials6_gain_drift_natrate_rho0.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0.png used
- on input line 243.
+ on input line 245.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_natrate_rho0_3.png, id=156, 1603.9925pt x 858
+<../figures/materials6_gain_drift_natrate_rho0_3.png, id=186, 1603.9925pt x 858
 .20625pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_3.png Graphic file (type pn
 g)
  <use ../figures/materials6_gain_drift_natrate_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_3.png us
-ed on input line 244.
+ed on input line 246.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_natrate_rho0_6.png, id=157, 1603.9925pt x 858
+<../figures/materials6_gain_drift_natrate_rho0_6.png, id=187, 1603.9925pt x 858
 .20625pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_6.png Graphic file (type pn
 g)
  <use ../figures/materials6_gain_drift_natrate_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_6.png us
-ed on input line 245.
+ed on input line 247.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_natrate_rho0_9.png, id=158, 1603.9925pt x 858
+<../figures/materials6_gain_drift_natrate_rho0_9.png, id=188, 1603.9925pt x 858
 .20625pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_9.png Graphic file (type pn
 g)
  <use ../figures/materials6_gain_drift_natrate_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_9.png us
-ed on input line 246.
+ed on input line 248.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_monpol_rho0.png, id=159, 1603.9925pt x 858.20
+<../figures/materials6_gain_drift_monpol_rho0.png, id=189, 1603.9925pt x 858.20
 625pt>
 File: ../figures/materials6_gain_drift_monpol_rho0.png Graphic file (type png)
  <use ../figures/materials6_gain_drift_monpol_rho0.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0.png used 
-on input line 250.
+on input line 252.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_3.png, id=160, 1603.9925pt x 858.
+<../figures/materials6_gain_drift_monpol_rho0_3.png, id=190, 1603.9925pt x 858.
 20625pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_3.png Graphic file (type png
 )
  <use ../figures/materials6_gain_drift_monpol_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_3.png use
-d on input line 251.
+d on input line 253.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_6.png, id=161, 1603.9925pt x 858.
+<../figures/materials6_gain_drift_monpol_rho0_6.png, id=191, 1603.9925pt x 858.
 20625pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_6.png Graphic file (type png
 )
  <use ../figures/materials6_gain_drift_monpol_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_6.png use
-d on input line 252.
+d on input line 254.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_9.png, id=162, 1603.9925pt x 858.
+<../figures/materials6_gain_drift_monpol_rho0_9.png, id=192, 1603.9925pt x 858.
 20625pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_9.png Graphic file (type png
 )
  <use ../figures/materials6_gain_drift_monpol_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_9.png use
-d on input line 253.
+d on input line 255.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../figures/materials6_gain_drift_costpush_rho0.png, id=163, 1603.9925pt x 858.
+<../figures/materials6_gain_drift_costpush_rho0.png, id=193, 1603.9925pt x 858.
 20625pt>
 File: ../figures/materials6_gain_drift_costpush_rho0.png Graphic file (type png
 )
  <use ../figures/materials6_gain_drift_costpush_rho0.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0.png use
-d on input line 257.
+d on input line 259.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_costpush_rho0_3.png, id=164, 1603.9925pt x 85
+<../figures/materials6_gain_drift_costpush_rho0_3.png, id=194, 1603.9925pt x 85
 8.20625pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_3.png Graphic file (type p
 ng)
  <use ../figures/materials6_gain_drift_costpush_rho0_3.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_3.png u
-sed on input line 258.
+sed on input line 260.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_costpush_rho0_6.png, id=165, 1603.9925pt x 85
+<../figures/materials6_gain_drift_costpush_rho0_6.png, id=195, 1603.9925pt x 85
 8.20625pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_6.png Graphic file (type p
 ng)
  <use ../figures/materials6_gain_drift_costpush_rho0_6.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_6.png u
-sed on input line 259.
+sed on input line 261.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
-<../figures/materials6_gain_drift_costpush_rho0_9.png, id=166, 1603.9925pt x 85
+<../figures/materials6_gain_drift_costpush_rho0_9.png, id=196, 1603.9925pt x 85
 8.20625pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_9.png Graphic file (type p
 ng)
  <use ../figures/materials6_gain_drift_costpush_rho0_9.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_9.png u
-sed on input line 260.
+sed on input line 262.
 (pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
 
 
@@ -1154,122 +1152,118 @@ res/materials6_gain_drift_costpush_rho0_6.png (PNG copy)> <../figures/materials
 6_gain_drift_costpush_rho0_9.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 265.
+(hyperref)                removing `math shift' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 265.
+(hyperref)                removing `\psi' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 265.
+(hyperref)                removing `subscript' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 265.
+(hyperref)                removing `\pi' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 265.
+(hyperref)                removing `\rho' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 265.
+(hyperref)                removing `math shift' on input line 267.
 
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1.png, id=1
-97, 1622.06pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1.png, id=2
+26, 1153.30875pt x 588.1975pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1.png 
 Graphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_psi_pi_1_1.png used on input line 267.
-(pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
+ho0_psi_pi_1_1.png used on input line 269.
+(pdftex.def)             Requested size: 207.58661pt x 105.87097pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5.png, id=1
-98, 1622.06pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5.png, id=2
+27, 1153.30875pt x 592.2125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5.png 
 Graphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_psi_pi_1_5.png used on input line 268.
-(pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
+ho0_psi_pi_1_5.png used on input line 270.
+(pdftex.def)             Requested size: 207.58661pt x 106.59364pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_2.png, id=199
-, 1622.06pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_2.png, id=228
+, 1153.30875pt x 588.1975pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_2.png Gr
 aphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_natrate_r
-ho0_psi_pi_2.png used on input line 269.
-(pdftex.def)             Requested size: 227.08685pt x 120.28857pt.
+ho0_psi_pi_2.png used on input line 271.
+(pdftex.def)             Requested size: 207.58661pt x 105.87097pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1.png, id=20
-0, 1595.9625pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1.png, id=22
+9, 1153.30875pt x 588.1975pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1.png G
 raphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_psi_pi_1_1.png used on input line 274.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
+o0_psi_pi_1_1.png used on input line 276.
+(pdftex.def)             Requested size: 207.58661pt x 105.87097pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5.png, id=20
-1, 1595.9625pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5.png, id=23
+0, 1153.30875pt x 593.21625pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5.png G
 raphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_psi_pi_1_5.png used on input line 275.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
+o0_psi_pi_1_5.png used on input line 277.
+(pdftex.def)             Requested size: 207.58661pt x 106.7743pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_2.png, id=202,
- 1595.9625pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_2.png, id=231,
+ 1153.30875pt x 588.1975pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_2.png Gra
 phic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_monpol_rh
-o0_psi_pi_2.png used on input line 276.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+o0_psi_pi_2.png used on input line 278.
+(pdftex.def)             Requested size: 207.58661pt x 105.87097pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_1.png, id=
-203, 1595.9625pt x 859.21pt>
+232, 1153.30875pt x 589.20125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_1.png
  Graphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_psi_pi_1_1.png used on input line 281.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
+rho0_psi_pi_1_1.png used on input line 283.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
 
 <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_5.png, id=
-204, 1595.9625pt x 859.21pt>
+233, 1153.30875pt x 593.21625pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_5.png
  Graphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_psi_pi_1_5.png used on input line 282.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
+rho0_psi_pi_1_5.png used on input line 284.
+(pdftex.def)             Requested size: 207.58661pt x 106.7743pt.
 
-<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_2.png, id=20
-5, 1595.9625pt x 859.21pt>
+<../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_2.png, id=23
+4, 1153.30875pt x 589.20125pt>
 File: ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_2.png G
 raphic file (type png)
 
 <use ../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_costpush_
-rho0_psi_pi_2.png used on input line 283.
-(pdftex.def)             Requested size: 223.43323pt x 120.28857pt.
+rho0_psi_pi_2.png used on input line 285.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1285,134 +1279,128 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  <../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_1.png (PNG
  copy)> <../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_pi_1_5.p
 ng (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_natrate_rho0_psi_p
-i_2.png (PNG copy)>]
+i_2.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_p
+si_pi_1_1.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_monpol_
+rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_m
+onpol_rho0_psi_pi_2.png (PNG copy)>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_1.png (P
-NG copy)> <../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_pi_1_5.
-png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_monpol_rho0_psi_p
-i_2.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0
-_psi_pi_1_1.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_costp
-ush_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothi
-ng_costpush_rho0_psi_pi_2.png (PNG copy)>]
+[10 <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_1_1.png 
+(PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0_psi_pi_
+1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_costpush_rho0
+_psi_pi_2.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 288.
+(hyperref)                removing `math shift' on input line 290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 288.
+(hyperref)                removing `\psi' on input line 290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 288.
+(hyperref)                removing `subscript' on input line 290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 288.
+(hyperref)                removing `\pi' on input line 290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 288.
+(hyperref)                removing `math shift' on input line 290.
 
 
-<../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_1.png, id=226, 1603.992
-5pt x 858.20625pt>
+<../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_1.png, id=255, 1172.38p
+t x 588.1975pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_1.png Graphic file
  (type png)
 
 <use ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1
-_1.png used on input line 290.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+_1.png used on input line 292.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
-<../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_5.png, id=227, 1603.992
-5pt x 858.20625pt>
+<../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_5.png, id=256, 1172.38p
+t x 592.2125pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_5.png Graphic file
  (type png)
 
 <use ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_1
-_5.png used on input line 291.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+_5.png used on input line 293.
+(pdftex.def)             Requested size: 211.01929pt x 106.59364pt.
 
-<../figures/materials6_gain_drift_natrate_rho0_psi_pi_2.png, id=228, 1603.9925p
-t x 858.20625pt>
+<../figures/materials6_gain_drift_natrate_rho0_psi_pi_2.png, id=257, 1172.38pt 
+x 588.1975pt>
 File: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_2.png Graphic file (
 type png)
-
-<use ../figures/materials6_gain_drift_natrate_rho0_psi_pi_2.png>
+ <use ../figures/materials6_gain_drift_natrate_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_natrate_rho0_psi_pi_2
-.png used on input line 292.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+.png used on input line 294.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_1.png, id=229, 1603.9925
-pt x 858.20625pt>
+<../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_1.png, id=258, 1172.38pt
+ x 588.1975pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_1.png Graphic file 
 (type png)
 
 <use ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_
-1.png used on input line 296.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+1.png used on input line 298.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_5.png, id=230, 1603.9925
-pt x 858.20625pt>
+<../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_5.png, id=259, 1172.38pt
+ x 592.2125pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_5.png Graphic file 
 (type png)
 
 <use ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_
-5.png used on input line 297.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+5.png used on input line 299.
+(pdftex.def)             Requested size: 211.01929pt x 106.59364pt.
 
-<../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.png, id=231, 1603.9925pt
- x 858.20625pt>
+<../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.png, id=260, 1172.38pt x
+ 588.1975pt>
 File: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.png Graphic file (t
 ype png)
-
-<use ../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.png>
+ <use ../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_monpol_rho0_psi_pi_2.
-png used on input line 298.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+png used on input line 300.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-<../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_1.png, id=232, 1603.99
-25pt x 858.20625pt>
+<../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_1.png, id=261, 1172.38
+pt x 588.1975pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_1.png Graphic fil
 e (type png)
 
 <use ../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_
-1_1.png used on input line 302.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+1_1.png used on input line 304.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
-<../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_5.png, id=233, 1603.99
-25pt x 858.20625pt>
+<../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_5.png, id=262, 1172.38
+pt x 592.2125pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_5.png Graphic fil
 e (type png)
 
 <use ../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_
-1_5.png used on input line 303.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+1_5.png used on input line 305.
+(pdftex.def)             Requested size: 211.01929pt x 106.59364pt.
 
-<../figures/materials6_gain_drift_costpush_rho0_psi_pi_2.png, id=234, 1603.9925
-pt x 858.20625pt>
+<../figures/materials6_gain_drift_costpush_rho0_psi_pi_2.png, id=263, 1172.38pt
+ x 588.1975pt>
 File: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_2.png Graphic file 
 (type png)
 
 <use ../figures/materials6_gain_drift_costpush_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials6_gain_drift_costpush_rho0_psi_pi_
-2.png used on input line 304.
-(pdftex.def)             Requested size: 224.55742pt x 120.14806pt.
+2.png used on input line 306.
+(pdftex.def)             Requested size: 211.01929pt x 105.87097pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1427,21 +1415,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
  <../figures/materials6_gain_drift_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../
 figures/materials6_gain_drift_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figur
-es/materials6_gain_drift_natrate_rho0_psi_pi_2.png (PNG copy)>]
+es/materials6_gain_drift_natrate_rho0_psi_pi_2.png (PNG copy)> <../figures/mate
+rials6_gain_drift_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figures/materials6
+_gain_drift_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials6_gain_
+drift_monpol_rho0_psi_pi_2.png (PNG copy)>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <../figures/materials6_gain_drift_monpol_rho0_psi_pi_1_1.png (PNG copy)> <.
-./figures/materials6_gain_drift_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figu
-res/materials6_gain_drift_monpol_rho0_psi_pi_2.png (PNG copy)> <../figures/mate
-rials6_gain_drift_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../figures/material
-s6_gain_drift_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials6_g
-ain_drift_costpush_rho0_psi_pi_2.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 321.
-
+[12 <../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_1.png (PNG copy)> 
+<../figures/materials6_gain_drift_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../
+figures/materials6_gain_drift_costpush_rho0_psi_pi_2.png (PNG copy)>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
@@ -1451,29 +1437,627 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [13
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 321.
- (./materials6.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 321.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 321.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 346.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 346.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 346.
+
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_5
+.png, id=300, 1143.27126pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
+i_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi
+_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_psi_pi_1_5.png used on input line 349.
+(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi_pi_1
+_5.png, id=301, 1143.27126pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi
+_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi_
+pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_3_psi_pi_1_5.png used on input line 350.
+(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi_pi_1
+_5.png, id=302, 1165.35374pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi
+_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi_
+pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_6_psi_pi_1_5.png used on input line 351.
+(pdftex.def)             Requested size: 209.75462pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi_pi_1
+_5.png, id=303, 1180.41pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi
+_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi_
+pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_9_psi_pi_1_5.png used on input line 352.
+(pdftex.def)             Requested size: 212.46463pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_5.
+png, id=304, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
+_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_
+1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_psi_pi_1_5.png used on input line 358.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_pi_1_
+5.png, id=305, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_
+pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_p
+i_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_3_psi_pi_1_5.png used on input line 359.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_pi_1_
+5.png, id=306, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_
+pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_p
+i_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_6_psi_pi_1_5.png used on input line 360.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_pi_1_
+5.png, id=307, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_
+pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_p
+i_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_9_psi_pi_1_5.png used on input line 361.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_
+5.png, id=308, 1138.2525pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
+pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_p
+i_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_psi_pi_1_5.png used on input line 366.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_psi_pi_
+1_5.png, id=309, 1138.2525pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_ps
+i_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_psi
+_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_3_psi_pi_1_5.png used on input line 367.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_psi_pi_
+1_5.png, id=310, 1138.2525pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_ps
+i_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_psi
+_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_6_psi_pi_1_5.png used on input line 368.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_psi_pi_
+1_5.png, id=311, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_ps
+i_pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_psi
+_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_9_psi_pi_1_5.png used on input line 369.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi
+_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_cond_anch_na
+trate_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smo
+othing_cond_anch_natrate_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/material
+s6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi_pi_1_5.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_
+1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_cond_anch_mon
+pol_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoot
+hing_cond_anch_monpol_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials6_
+IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_pi_1_5.png (PNG copy)> <../f
+igures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_5.png
+ (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_r
+ho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_
+cond_anch_costpush_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials6_IRF
+s_intrate_smoothing_cond_anch_costpush_rho0_9_psi_pi_1_5.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 374.
+
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png, id=336, 1172
+.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png Graphic 
+file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
+pi_1_5.png used on input line 376.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png, id=337, 11
+72.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png Graphi
+c file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_3_ps
+i_pi_1_5.png used on input line 377.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png, id=338, 11
+72.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png Graphi
+c file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_6_ps
+i_pi_1_5.png used on input line 378.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png, id=339, 11
+72.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png Graphi
+c file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_9_ps
+i_pi_1_5.png used on input line 379.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png, id=340, 1172.
+38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png Graphic f
+ile (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
+i_1_5.png used on input line 383.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png, id=341, 117
+2.38pt x 602.25pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_3_psi
+_pi_1_5.png used on input line 384.
+(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png, id=342, 117
+2.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_6_psi
+_pi_1_5.png used on input line 385.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png, id=343, 117
+2.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_9_psi
+_pi_1_5.png used on input line 386.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png, id=344, 117
+2.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
+_pi_1_5.png used on input line 390.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png, id=345, 1
+172.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png Graph
+ic file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_3_p
+si_pi_1_5.png used on input line 391.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png, id=346, 1
+172.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png Graph
+ic file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_6_p
+si_pi_1_5.png used on input line 392.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png, id=347, 1
+172.38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png Graph
+ic file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_9_p
+si_pi_1_5.png used on input line 393.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[16
+
+ <../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png (PNG copy)> 
+<../figures/materials6_cond_anch_gain_natrate_rho0_3_psi_pi_1_5.png (PNG copy)>
+ <../figures/materials6_cond_anch_gain_natrate_rho0_6_psi_pi_1_5.png (PNG copy)
+> <../figures/materials6_cond_anch_gain_natrate_rho0_9_psi_pi_1_5.png (PNG copy
+)> <../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png (PNG copy)>
+ <../figures/materials6_cond_anch_gain_monpol_rho0_3_psi_pi_1_5.png (PNG copy)>
+ <../figures/materials6_cond_anch_gain_monpol_rho0_6_psi_pi_1_5.png (PNG copy)>
+ <../figures/materials6_cond_anch_gain_monpol_rho0_9_psi_pi_1_5.png (PNG copy)>
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17 <../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png (PNG cop
+y)> <../figures/materials6_cond_anch_gain_costpush_rho0_3_psi_pi_1_5.png (PNG c
+opy)> <../figures/materials6_cond_anch_gain_costpush_rho0_6_psi_pi_1_5.png (PNG
+ copy)> <../figures/materials6_cond_anch_gain_costpush_rho0_9_psi_pi_1_5.png (P
+NG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 398.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\psi' on input line 398.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 398.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\pi' on input line 398.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 398.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 398.
+
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_1
+.png, id=371, 1143.27126pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
+i_1_1.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi
+_1_1.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_psi_pi_1_1.png used on input line 400.
+(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
+i_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi
+_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_psi_pi_1_5.png used on input line 401.
+(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_2.p
+ng, id=372, 1143.27126pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_p
+i_2.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi
+_2.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_natrate_rho0_psi_pi_2.png used on input line 402.
+(pdftex.def)             Requested size: 205.77994pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_1.
+png, id=373, 1119.18124pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
+_1_1.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_
+1_1.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_psi_pi_1_1.png used on input line 407.
+(pdftex.def)             Requested size: 201.44392pt x 106.05164pt.
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
+_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_
+1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_psi_pi_1_5.png used on input line 408.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_2.pn
+g, id=374, 1153.30875pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi
+_2.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_
+2.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_monpol_rho0_psi_pi_2.png used on input line 409.
+(pdftex.def)             Requested size: 207.58661pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_
+1.png, id=375, 1138.2525pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
+pi_1_1.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_p
+i_1_1.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_psi_pi_1_1.png used on input line 414.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
+pi_1_5.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_p
+i_1_5.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_psi_pi_1_5.png used on input line 415.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+
+<../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_2.
+png, id=376, 1138.2525pt x 589.20125pt>
+File: ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_
+pi_2.png Graphic file (type png)
+
+<use ../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_p
+i_2.png>
+Package pdftex.def Info: ../figures/materials6_IRFs_intrate_smoothing_cond_anch
+_costpush_rho0_psi_pi_2.png used on input line 416.
+(pdftex.def)             Requested size: 204.8766pt x 106.05164pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18
+
+ <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_
+1.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_cond_anch_natra
+te_rho0_psi_pi_2.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_
+cond_anch_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figures/materials6_IRFs_in
+trate_smoothing_cond_anch_monpol_rho0_psi_pi_2.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[19 <../figures/materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_p
+i_1_1.png (PNG copy)> <../figures/materials6_IRFs_intrate_smoothing_cond_anch_c
+ostpush_rho0_psi_pi_2.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\psi' on input line 421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\pi' on input line 421.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 421.
+
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png, id=398, 1172
+.38pt x 602.25pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png Graphic 
+file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
+pi_1_1.png used on input line 423.
+(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png Graphic 
+file (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
+pi_1_5.png used on input line 424.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png, id=399, 1172.3
+8pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png Graphic fi
+le (type png)
+
+<use ../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_natrate_rho0_psi_
+pi_2.png used on input line 425.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png, id=400, 1172.
+38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png Graphic f
+ile (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
+i_1_1.png used on input line 429.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png Graphic f
+ile (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
+i_1_5.png used on input line 430.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png, id=401, 1172.38
+pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png Graphic fil
+e (type png)
+
+<use ../figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_monpol_rho0_psi_p
+i_2.png used on input line 431.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png, id=402, 117
+2.38pt x 602.25pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
+_pi_1_1.png used on input line 435.
+(pdftex.def)             Requested size: 140.67952pt x 72.26688pt.
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png Graphic
+ file (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
+_pi_1_5.png used on input line 436.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+
+<../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png, id=403, 1172.
+38pt x 603.25375pt>
+File: ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png Graphic f
+ile (type png)
+
+<use ../figures/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials6_cond_anch_gain_costpush_rho0_psi
+_pi_2.png used on input line 437.
+(pdftex.def)             Requested size: 140.67952pt x 72.38731pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 446.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20
+
+ <../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_1_1.png (PNG copy)> 
+<../figures/materials6_cond_anch_gain_natrate_rho0_psi_pi_2.png (PNG copy)> <..
+/figures/materials6_cond_anch_gain_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../f
+igures/materials6_cond_anch_gain_monpol_rho0_psi_pi_2.png (PNG copy)> <../figur
+es/materials6_cond_anch_gain_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../figur
+es/materials6_cond_anch_gain_costpush_rho0_psi_pi_2.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 446.
+
+(./materials6.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 446.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 446.
 Package rerunfilecheck Info: File `materials6.out' has not changed.
-(rerunfilecheck)             Checksum: 61931B9DC293B88D4C05FE8361029A42;775.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 321.
+(rerunfilecheck)             Checksum: 26C04CA044BBEE76277FD3E507912BEE;1333.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 446.
  ) 
 Here is how much of TeX's memory you used:
- 11037 strings out of 493089
- 174525 string characters out of 6134842
- 286110 words of memory out of 5000000
- 14189 multiletter control sequences out of 15000+600000
- 17709 words of font info for 68 fonts, out of 8000000 for 9000
+ 11304 strings out of 493089
+ 189220 string characters out of 6134842
+ 286138 words of memory out of 5000000
+ 14347 multiletter control sequences out of 15000+600000
+ 18010 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,22n,43p,663b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,22n,43p,757b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
@@ -1489,10 +2073,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials6.pdf (13 pages, 4736910 bytes).
+Output written on materials6.pdf (20 pages, 5869201 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 262 compressed objects within 3 object streams
- 113 named destinations out of 1000 (max. 500000)
- 308 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 521 PDF objects out of 1000 (max. 8388607)
+ 390 compressed objects within 4 object streams
+ 185 named destinations out of 1000 (max. 500000)
+ 536 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,7 +3,13 @@
 \BOOKMARK [1][-]{section.3}{Small deviations in , large ones in x, overshooting - IRFs}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Baseline figures, x = 0, \040= 1.5, = 0}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{IRFs when changing }{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{Inverse gain and drift when changing , no shocks}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.3}{Inverse gain and drift when changing , no shocks, CEMP vs CUSUM}{section.3}% 6
 \BOOKMARK [2][-]{subsection.3.4}{Gain and drift conditional on shocks when changing }{section.3}% 7
 \BOOKMARK [2][-]{subsection.3.5}{IRFs when changing \040\(=0\)}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.6}{Gain and drift conditional on shocks when changing }{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Discussion}{}% 10
+\BOOKMARK [1][-]{section.5}{IRFs conditional on being anchored / unanchored}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{IRFs when changing , anchored/unanchored}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Gain conditional on shocks when changing , anchored/unanchored}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{IRFs when changing \040\(=0\), anchored/unanchored}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.4}{Gain conditional on shocks when changing , anchored/unanchored}{section.5}% 15
