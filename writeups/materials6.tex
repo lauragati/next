@@ -23,6 +23,7 @@
 \usepackage{relsize}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fancyhdr}
+\usepackage{tikz}
  
 \pagestyle{fancy} % customize header and footer
 \fancyhf{} % clear initial header and footer
@@ -316,28 +317,44 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 	Under learning, impulse responses exhibit more persistence to iid shocks than under rational expectations because shocks propagate via expectations, and under learning, expectations are slow-moving. Persistence is higher the less agents load on recent forecast errors. Thus decreasing gain learning leads to more persistence than constant gain learning. 
 	\end{prop}
 	\begin{prop} \textsc{(Overshooting)} \\
-	Under learning, impulse responses exhibit overshooting, i.e. change sign after impact. This is because the shock interrupts an ongoing learning process of the law of motion of the economy. Expectations incorporate not only the current shock, but also responses of jump variables to it, which feeds back into the law of motion itself. Overshooting is the more pronounced the more agents load on recent forecast errors. Thus constant gain learning produces stronger overshooting than decreasing gain learning. 
+	Under learning, impulse responses exhibit overshooting, i.e. change sign after impact. This is because the shock interrupts an ongoing learning process of the law of motion of the economy. Expectations incorporate not only the current shock, but also responses of jump variables to it, which feeds back into the law of motion itself. Overshooting is the more pronounced the more agents load on recent forecast errors and the more volatile jump variables are. Thus constant gain learning and aggressive policy responses produce stronger overshooting c.p. 
 	\end{prop}
 	\begin{corollary} \textsc{(Overshooting to monetary policy)} \\
-	Under learning, a monetary policy coefficient on inflation of $\psi_{\pi}$ leads to bigger responses than under rational expectations. In particular, a monetary policy that exactly closes inflation gaps under rational expectations overshoots under learning, opening a gap of the opposite sign. The size of overshooting depends on whether, given $\psi_{\pi}$, expectations are anchored or not. 
+	Under learning, a monetary policy coefficient on inflation of $\psi_{\pi}$ leads to bigger responses than under rational expectations. In particular, a monetary policy that exactly closes inflation gaps under rational expectations overshoots under learning, opening a gap of the opposite sign. The size of overshooting depends on i) the size of $\psi_{\pi}$ and ii) whether, given $\psi_{\pi}$, expectations are anchored or not. 
 	\end{corollary}
 	\begin{corollary} \textsc{(Anchoring expectations diminishes overshooting)} \\
-	Since anchoring expectations means decreasing gains, monetary policy will wish to anchor expectations in order to mitigate overshooting. 
-	\end{corollary}
-	\begin{prop}\textsc{(Comparative statics of anchoring)} \\
+	Since anchoring expectations means decreasing gains, monetary policy will wish to anchor expectations in order to mitigate overshooting. However, if anchoring expectations involves being too aggressive on inflation, the central bank can induce excess volatility despite anchoring expectations. 	\end{corollary}
+	\begin{lemma}\textsc{(Comparative statics of anchoring)} \\
 	In general, increasing any parameter that induces more stability in the system (makes inflation less volatile) leads to more anchoring. Thus increasing $\rho$ or lowering $\kappa$ c.p. leads to more anchoring.
-	\end{prop}
+	\end{lemma}
 	
-	\begin{prop}\textsc{(Inflation aggressivity and anchoring)} \\
+	\begin{lemma}\textsc{(Inflation aggressivity and anchoring)} \\
 	The relationship between the probability of expectations becoming unanchored and $\psi_{\pi}$, the aggressiveness of the central bank on inflation, has a U-shape. Very low values of $\psi_{\pi}$ lead to frequent unanchoring as agents doubt the central bank's commitment to the inflation target. Very high values also lead to frequent unanchoring because by moving the nominal interest rate often and strongly, the monetary authority contributes to a volatile environment. 
-	\end{prop}
-	
-	\begin{prop} \textsc{(Margin of adjustment)} \\
+	\end{lemma}
+	\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}
+	\fill[red!10!white] (2.1,0) rectangle (4,4) ;
+	 \node[below] at (6,2) {\textcolor{red}{suboptimal region}};
+	 \node[below] at (-1.5,2) {\textcolor{blue}{tradeoff region}};
+
+	\fill[blue!10!white] (0,0) rectangle (2.1,4);
+
+\draw[thick,->] (0,0) -- (4.5,0) node[anchor=north west] {$\psi_{\pi}$};
+\draw[thick,->] (0,0) -- (0,4.5) node[anchor=south east] {Prob(unanchored)};
+\draw[thick] (0.2,4) .. controls (2.1,0)  .. (4,4);
+\draw[dashed] (2.1,0) -- (2.1,4);
+\end{tikzpicture}
+\end{figure}
+	\begin{lemma} \textsc{(Margin of adjustment)} \\
 	Whether expectational differences between learning and rational expectations show up in inflation or the output gap depends on $\kappa$ (or equivalently $\alpha)$, the extent of nominal rigidities. A lower $\kappa$ (higher $\alpha$) means higher price rigidity and translates to output gaps being the margin of adjustment. 
-	\end{prop}
+	\end{lemma}
 	
 	\begin{conjecture} \textsc{(Optimal monetary policy)} \\
-	Monetary policy under learning with endogenous gain trades off overshooting with persistent impulse responses. On the one hand, monetary policy wishes to anchor expectations to mitigate overshooting. On the other hand, having unanchored expectations has the advantage that agents ``learn away" the shock faster. However, unanchoring leads to more volatile observables since expectations are more volatile, feeding back into endogenous variables. Thus optimal monetary policy needs to consider a) the type of shock and its severity, b) the extent of overshooting c) the desirability of getting out of the shock quickly d) and whether expectations are currently anchored, as well as how costly it would be to keep them or get them anchored. 
+	Monetary policy under learning with endogenous gain faces two novel tradeoffs. The first is the tradeoff between overshooting and the persistence of impulse responses. On the one hand, monetary policy wishes to anchor expectations to mitigate overshooting. On the other hand, having unanchored expectations has the advantage that agents ``learn away" the shock faster. However, unanchoring leads to more volatile observables since expectations are more volatile, feeding back into endogenous variables. Thus optimal monetary policy needs to consider a) the type of shock and its severity, b) the extent of overshooting c) the desirability of getting out of the shock quickly d) and whether expectations are currently anchored, as well as how costly it would be to keep them or get them anchored. 
+	
+	The second tradeoff is the cost versus benefit of anchoring expectations. Having anchored expectations has the benefit of lower overshooting and volatility of observables. The cost is higher volatility of observables coming from a higher $\psi_{\pi}$ (assuming that we're in the downward-sloping part of the U-curve). Thus, ideally, monetary policy wants to ``inherit'' anchored expectations in order not to pay the cost today but enjoy the benefits.
+
 	\end{conjecture}
 
 
@@ -346,27 +363,27 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \subsection{IRFs when changing $\rho$, anchored/unanchored}
 \vspace{-0.5cm}
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_5}} 
-\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_3_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_6_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_9_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_psi_pi_1_5}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_3_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_6_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_9_psi_pi_1_5} }
 \caption{IRFs to a natural rate shock ($r^n$)}
 \end{figure}
 
 \vspace{-0.5cm}
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_5}} 
-\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_3_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_6_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_9_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_psi_pi_1_5}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_3_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_6_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_9_psi_pi_1_5} }
 \caption{IRFs to a monetary policy shock ($\bar{i}$)}
 \end{figure}
 \vspace{-0.5cm}
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_5}} 
-\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_3_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_6_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_9_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_psi_pi_1_5}} 
+\subfigure[\colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_3_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_6_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_9_psi_pi_1_5} }
 \caption{IRFs to a cost-push shock ($u$)}
 \end{figure}
 
@@ -397,23 +414,23 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \clearpage
 \subsection{IRFs when changing $\psi_{\pi} (\rho =0)$, anchored/unanchored}
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_1}} 
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_natrate_rho0_psi_pi_2} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_natrate_rho0_psi_pi_2} }
 \caption{IRFs to a natural rate shock ($r^n$)}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_1}} 
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_monpol_rho0_psi_pi_2} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_monpol_rho0_psi_pi_2} }
 \caption{IRFs to a monetary policy shock ($\bar{i}$)}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_1}} 
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_1_5} }
-\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_costpush_rho0_psi_pi_2} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.1}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_psi_pi_1_1}} 
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 1.5}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_psi_pi_1_5} }
+\subfigure[\colorbox{yellow}{$\psi_{\pi} $ = 2}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials6_IRFs_intrate_smoothing_cond_anch_SORTED_costpush_rho0_psi_pi_2} }
 \caption{IRFs to a cost-push shock ($u$)}
 \end{figure}
 

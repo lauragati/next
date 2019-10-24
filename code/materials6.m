@@ -63,7 +63,8 @@ purple = [128,0,128]/255;
 saddle_brown = [139,69,19]/255;
 
 %% Simulation
-T = 40
+tic
+T = 400
 burnin = 0;
 
 [param, setp] = parameters_next;
@@ -696,7 +697,54 @@ for s=1:n-1
     [lb1, med1, ub1] = confi_bands(GIR(:,:,anch),0.1);
     [lb2, med2, ub2] = confi_bands(GIR(:,:,unanch),0.1);
     
+    [lb_k1, med_k1, ub_k1] = confi_bands(1./ks(:,:,anch),0.1);
+    [lb_k2, med_k2, ub_k2] = confi_bands(1./ks(:,:,unanch),0.1);
+    
+    [lb_pib1, med_pib1, ub_pib1] = confi_bands(pibars(:,:,anch),0.1);
+    [lb_pib2, med_pib2, ub_pib2] = confi_bands(pibars(:,:,unanch),0.1);
+    
     % Plot IRFs
+    
+    % IRF of Option 1
+    skip_this=1;
+    if skip_this==0
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        for i=1:n-1
+            subplot(1,n-1,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            %         for j=2:h
+            %             plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
+            %             plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
+            %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
+            %         end
+            re = plot(iry(i,:),'k','linewidth', 2);
+            ancho = plot(RIR1(i,:),'b','linewidth', 2);
+            unancho = plot(RIR2(i,:),'r--','linewidth', 2);
+            legend([re, ancho, unancho], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
+            title(titles(i))
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            if s==1
+                ylim([-0.02, 0.01])
+            elseif s==2
+                ylim([-1, 0.4])
+            elseif s==3
+                ylim([-0.3, 0.1])
+            end
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'IRFs_intrate_smoothing_', 'cond_anch_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        close
+    end
     % IRF of Option 2
     figure
     set(gcf,'color','w'); % sets white background color
@@ -705,14 +753,19 @@ for s=1:n-1
         subplot(1,n-1,i)
         plot(zeros(1,h),'k--','linewidth', 2); hold on
         re = plot(iry(i,:),'k','linewidth', 2);
-        plot(lb1(i,:),'color', light_sky_blue,'linewidth', 2);
         ancho = plot(med1(i,:),'b','linewidth', 2);
-        plot(ub1(i,:),'color', light_sky_blue,'linewidth', 2);
+        fill_Xcoord = [1:h, fliplr(1:h)];
+        fillYcoord = [lb1(i,:), fliplr(ub1(i,:))];
+        f = fill(fill_Xcoord, fillYcoord, light_sky_blue,'LineStyle','none');
+        set(f,'facealpha',.5)
         
-        plot(lb2(i,:),'color', light_salmon,'linewidth', 2); 
         unancho = plot(med2(i,:),'r--','linewidth', 2);
-        plot(ub2(i,:),'color', light_salmon,'linewidth', 2);
-        
+        fillYcoord = [lb2(i,:), fliplr(ub2(i,:))];
+        f = fill(fill_Xcoord, fillYcoord, light_salmon,'LineStyle','none');
+        set(f,'facealpha',.5)
+        uistack(ancho, 'top') % move f to the top layer of the figure
+        uistack(unancho, 'top') % move f to the top layer of the figure
+        uistack(re, 'top') % move f to the top layer of the figure
         legend([re, ancho, unancho], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
         title(titles(i))
         ax = gca; % current axes
@@ -735,64 +788,35 @@ for s=1:n-1
         close
     end
     
-    % IRF of Option 1
+    
+    % Plot gain and drift conditional on shock
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    for i=1:n-1
-        subplot(1,n-1,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        %         for j=2:h
-        %             plot(squeeze(GIRd(i,:,j)),'color',light_sky_blue,'linewidth', 2)
-        %             plot(squeeze(GIRa(i,:,j)),'color',light_salmon,'linewidth', 2)
-        %             plot(squeeze(GIRc(i,:,j)),'color',light_green,'linewidth', 2)
-        %         end
-        re = plot(iry(i,:),'k','linewidth', 2);
-        ancho = plot(RIR1(i,:),'b','linewidth', 2);
-        unancho = plot(RIR2(i,:),'r--','linewidth', 2);
-        legend([re, ancho, unancho], 'RE', 'Anchored', 'Unanchored','location', 'southoutside')
-        title(titles(i))
-        ax = gca; % current axes
-        ax.FontSize = fs_prop;
-        grid on
-        grid minor
-        if s==1
-            ylim([-0.02, 0.01])
-        elseif s==2
-            ylim([-1, 0.4])
-        elseif s==3
-            ylim([-0.3, 0.1])
-        end
-    end
+    plot(inv_ks_mean1,'b','linewidth', 2); hold on
+    plot(inv_ks_mean2,'r--','linewidth', 2)
+    fill_Xcoord = [1:T, fliplr(1:T)];
+    fillYcoord = [lb_k1', fliplr(ub_k1)'];
+    f = fill(fill_Xcoord, fillYcoord, light_sky_blue,'LineStyle','none');
+    set(f,'facealpha',.5)
+    fillYcoord = [lb_k2', fliplr(ub_k2)'];
+    f = fill(fill_Xcoord, fillYcoord, light_salmon,'LineStyle','none');
+    set(f,'facealpha',.5)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend('Anchored',  'Unanchored','location', 'southoutside')
+    title('Inverse gain')
     if print_figs ==1
-        figname = [this_code, '_', 'IRFs_intrate_smoothing_', 'cond_anch_', shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'cond_anch_','gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
         close
     end
-    
-    skip_this=0;
+    skip_this=1;
     if skip_this==0
-        % Plot gain and drift conditional on shock
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        plot(inv_ks_mean1,'b','linewidth', 2); hold on
-        plot(inv_ks_mean2,'r--','linewidth', 2)
-        ax = gca; % current axes
-        ax.FontSize = fs_prop;
-        grid on
-        grid minor
-        legend('Anchored',  'Unanchored','location', 'southoutside')
-        title('Inverse gain')
-        if print_figs ==1
-            figname = [this_code, '_', 'cond_anch_','gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
         figure
         set(gcf,'color','w'); % sets white background color
         set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -811,8 +835,10 @@ for s=1:n-1
             cd(current_dir)
             close
         end
+        close
     end
 end
 
 disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
 disp('Done.')
+toc
