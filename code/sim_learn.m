@@ -10,7 +10,7 @@
 % anchored: % 1 denotes anchored, 0 denotes unanchored when shock hits
 % 19 Oct 2019
 
-function [xsim, ysim, shock, diff,pibar_seq, k, anchored] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, shock, diff,pibar_seq, k, anchored] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
 if nargin < 18 %no shock specified
     dt = 0;
     x0 = 0;
@@ -44,6 +44,8 @@ k(:,1) = gbar^(-1);
 om = 0;
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
 %%%
+evening_fcst = nan(T,1);
+morning_fcst = nan(T,1);
 %Simulate, with learning
 for t = 1:T-1
     
@@ -89,6 +91,8 @@ for t = 1:T-1
         elseif gain==3
             k(:,t) = gbar^(-1);
         end
+        evening_fcst(t) = pibar + b1*xsim(:,t-1); % yesterday evening's one-step ahead forecast of today's state E(pi_{t} | I_{t-1}^e)
+        morning_fcst(t) = pibar + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
         pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
         
         % check convergence

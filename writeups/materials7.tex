@@ -1,0 +1,277 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 7 - IRFs and making sure RE is right}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+%\newpage
+
+
+\newpage
+\section{Model summary with interest rate smoothing $\rho i_{t-1}$}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \textcolor{blue}{\rho i_{t-1}} + \bar{i}_t \label{TR}
+\end{align}
+\begin{equation}
+\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\ 0 \end{bmatrix}+ b\textcolor{blue}{hx}^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = gx \; hx \quad \quad \text{PLM} \label{PLM}
+\end{equation}
+\begin{equation}
+\bar{\pi}_{t} = \bar{\pi}_{t-1} +k_t^{-1}\underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM})} } \quad \quad  \text{($b_1$ is the first row of $b$)}
+\end{equation}
+ \begin{align*}
+k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1}  \label{gain} \numberthis\\
+\mathbb{I} & = \begin{cases} 1 \quad \text{if} \; \theta_t \leq \bar{\theta}  \\ 0 \quad \text{otherwise.}\numberthis
+\end{cases} \\
+\theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t| / \sigma_s \quad \quad \text{CEMP criterion for the gain}\label{criterion}\numberthis
+\end{align*}
+
+The alternative criterion for the choice of gain is a recursive variant of the CUSUM-test (Brown, Durbin, Evans 1975):
+\begin{enumerate}
+\item Let $FE_t$ denote the short-run forecast error, and $\omega_t$ firms' estimate of the FE variance.
+\item Let $\kappa \in (0,1)$ and $\tilde{\theta}$ be the new threshold value for the criterion.
+\item Then for initial $(\omega_0, \theta_0)$, firms in every period estimate the criterion and the FEV as:
+\begin{align}
+ \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2 -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2/\omega_t -\theta_{t-1})\\
+k_t & = \mathbb{I}\times(k_{t-1}+1) + (1-\mathbb{I}) \times \bar{g}^{-1} \\
+\mathbb{I} & = 1 \quad \text{if} \quad  \theta_t \leq \tilde{\theta}
+\end{align}
+\end{enumerate}
+
+\newpage
+\section{Compact notation - with lagged interest rate term in TR}
+ \begin{align}
+z_t & = A_p^{RE} \E_t z_{t+1} + A_s^{RE} s_t \label{LOM_RE} \\
+z_t & = A_a^{LH} f_a(t) + A_b^{LH} f_b(t) + A_s^{LH} s_t \label{LOM_LH} \\
+s_t & = P s_{t-1} + \epsilon_t \quad \quad \textcolor{blue}{\rightarrow} \quad s'_t  = hx \; s'_{t-1} + \epsilon'_t \label{exog} \\
+ \quad \text{where} \quad 
+ s'_t & \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t \\ \textcolor{blue}{i_{t-1}}
+ \end{pmatrix} \quad 
+ hx  \equiv \begin{pmatrix} \rho_r & 0 & 0 & \textcolor{blue}{0} \\ 0& \rho_i & 0 & \textcolor{blue}{0} \\ 0&0& \rho_u & \textcolor{blue}{0}  \\ 
+ \textcolor{blue}{gx_{3,1}}&\textcolor{blue}{gx_{3,2}}& \textcolor{blue}{gx_{3,3}} & \textcolor{blue}{gx_{3,4}}
+ \end{pmatrix}  \quad 
+ \epsilon'_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} \\ \textcolor{blue}{0} 
+ \end{pmatrix}  \quad  \text{and } \quad \Sigma'  =  \begin{pmatrix} \sigma_r & 0 & 0 & \textcolor{blue}{0} \\ 0& \sigma_i & 0 & \textcolor{blue}{0}  \\ 0&0& \sigma_u & \textcolor{blue}{0}  \\ \textcolor{blue}{0}  & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} &
+ \end{pmatrix} 
+\end{align}
+
+$i_{t-1}$ is an endogenous state and breaks the link that previously had $P = hx$; now this is no longer true. In particular, using Matlabby notation, $P = hx(1:3,1:3)$. 
+
+And the $A^{RE}_s$ and $A^{LH}_s$ are given by:
+\begin{align}
+A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w} & \textcolor{blue}{0}\\
+ \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w} & \textcolor{blue}{0}\\ 
+ \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w}) & \textcolor{blue}{\rho}\end{pmatrix}  
+\\
+ A_s^{LH} & = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0 & \textcolor{blue}{\rho}\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 & \textcolor{blue}{0}\end{bmatrix} (I_{\textcolor{blue}{4}} - \alpha\beta \textcolor{blue}{hx})^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho} \end{bmatrix} (I_{\textcolor{blue}{4}} -\beta \textcolor{blue}{hx})^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}{0} \end{bmatrix}(I_{\textcolor{blue}{4}} - \alpha\beta \textcolor{blue}{hx})^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho}\end{bmatrix}(I_{\textcolor{blue}{4}} -\beta \textcolor{blue}{hx})^{-1}
+\end{align}
+
+%%%%%%%%%%%  IRFs
+\newpage
+\section{IRFs splitting by decreasing, constant and endogenous gain learning}
+
+\subsection{Natural rate shock}	
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\rho$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ =2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\psi_{\pi}$}
+\end{figure}
+\clearpage
+
+
+\subsection{Monetary policy shock}	
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\rho$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ =2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\psi_{\pi}$}
+\end{figure}
+\clearpage
+
+
+\subsection{Cost-push shock}				
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.3}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.6}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\rho$ = 0.9}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\rho$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.1}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder}} 
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ = 1.5}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[IRFs, \colorbox{yellow}{$\psi_{\pi}$ = 2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\subfigure[Gain, \colorbox{yellow}{$\psi_{\pi}$ =2}]{\includegraphics[scale = \myPointFourteenFigScale]{\myFigPath placeholder} }
+\caption{Moving $\psi_{\pi}$}
+\end{figure}
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
