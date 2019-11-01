@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 OCT 2019 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 NOV 2019 11:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -968,70 +968,135 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3] <../figures/placeholder.png, id=92, 1165.35374pt x 727.71875pt>
-File: ../figures/placeholder.png Graphic file (type png)
+[3]
+<../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png, id=97, 1058.95625pt x 
+603.25375pt>
+File: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png Graphic file (type
+ png)
+ <use ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png
+ used on input line 195.
+(pdftex.def)             Requested size: 232.9711pt x 132.71623pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 195.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 196.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png, id=98, 1117.17375pt x 
+625.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png Graphic file (type
+ png)
+ <use ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png
+ used on input line 196.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 197.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 198.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_IRFs_natrate_rho0_3_psi_pi_1_5.png, id=99, 1054.94125pt 
+x 604.2575pt>
+File: ../figures/materials7_IRFs_natrate_rho0_3_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_IRFs_natrate_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_3_psi_pi_1_5.p
+ng used on input line 197.
+(pdftex.def)             Requested size: 232.0878pt x 132.93706pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 199.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 200.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_natrate_rho0_3_psi_pi_1_5.png, id=100, 1117.17375pt
+ x 625.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_3_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_gain_natrate_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_3_psi_pi_1_5.p
+ng used on input line 198.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 201.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 202.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_IRFs_natrate_rho0_6_psi_pi_1_5.png, id=101, 1043.9pt x 6
+03.25375pt>
+File: ../figures/materials7_IRFs_natrate_rho0_6_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_IRFs_natrate_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_6_psi_pi_1_5.p
+ng used on input line 199.
+(pdftex.def)             Requested size: 229.6587pt x 132.71623pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 207.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 208.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_natrate_rho0_6_psi_pi_1_5.png, id=102, 1117.17375pt
+ x 625.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_6_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_gain_natrate_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_6_psi_pi_1_5.p
+ng used on input line 200.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 209.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 210.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_IRFs_natrate_rho0_9_psi_pi_1_5.png, id=103, 1058.95625pt
+ x 604.2575pt>
+File: ../figures/materials7_IRFs_natrate_rho0_9_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_IRFs_natrate_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_9_psi_pi_1_5.p
+ng used on input line 201.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 211.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 212.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
+<../figures/materials7_gain_natrate_rho0_9_psi_pi_1_5.png, id=104, 1117.17375pt
+ x 625.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_9_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials7_gain_natrate_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_9_psi_pi_1_5.p
+ng used on input line 202.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+
+LaTeX Warning: Float too large for page by 13.2766pt on input line 204.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../figures/materials7_IRFs_natrate_rho0_psi_pi_1_1.png, id=105, 1037.8775pt x 
+603.25375pt>
+File: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_1.png Graphic file (type
+ png)
+ <use ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_1.png
+ used on input line 207.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
+
+<../figures/materials7_gain_natrate_rho0_psi_pi_1_1.png, id=106, 1117.17375pt x
+ 625.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_psi_pi_1_1.png Graphic file (type
+ png)
+ <use ../figures/materials7_gain_natrate_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_psi_pi_1_1.png
+ used on input line 208.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+File: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png Graphic file (type
+ png)
+
+<use ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png
+ used on input line 209.
+(pdftex.def)             Requested size: 232.9711pt x 132.71623pt.
+File: ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png Graphic file (type
+ png)
+
+<use ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_psi_pi_1_5.png
+ used on input line 210.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_natrate_rho0_psi_pi_2.png, id=107, 1058.95625pt x 6
+04.2575pt>
+File: ../figures/materials7_IRFs_natrate_rho0_psi_pi_2.png Graphic file (type p
+ng)
+ <use ../figures/materials7_IRFs_natrate_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_natrate_rho0_psi_pi_2.png u
+sed on input line 211.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
+
+<../figures/materials7_gain_natrate_rho0_psi_pi_2.png, id=108, 1117.17375pt x 6
+25.33624pt>
+File: ../figures/materials7_gain_natrate_rho0_psi_pi_2.png Graphic file (type p
+ng)
+ <use ../figures/materials7_gain_natrate_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_gain_natrate_rho0_psi_pi_2.png u
+sed on input line 212.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1042,76 +1107,159 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4 <../figures/placeholder.png (PNG copy)>]
+[4]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5]
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 220.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 221.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+[5 <../figures/materials7_IRFs_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figu
+res/materials7_gain_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materia
+ls7_IRFs_natrate_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_gain_
+natrate_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_IRFs_natrate_r
+ho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials7_gain_natrate_rho0_6_psi
+_pi_1_5.png (PNG copy)> <../figures/materials7_IRFs_natrate_rho0_9_psi_pi_1_5.p
+ng (PNG copy)> <../figures/materials7_gain_natrate_rho0_9_psi_pi_1_5.png (PNG c
+opy)>]
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 222.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 223.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 224.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 225.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+[6 <../figures/materials7_IRFs_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../figu
+res/materials7_gain_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../figures/materia
+ls7_IRFs_natrate_rho0_psi_pi_2.png (PNG copy)> <../figures/materials7_gain_natr
+ate_rho0_psi_pi_2.png (PNG copy)>]
+<../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png, id=140, 1058.95625pt x 
+604.2575pt>
+File: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png Graphic file (type 
+png)
+ <use ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png 
+used on input line 220.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 226.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 227.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png, id=141, 1117.17375pt x 
+625.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png Graphic file (type 
+png)
+ <use ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png 
+used on input line 221.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 232.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 233.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_IRFs_monpol_rho0_3_psi_pi_1_5.png, id=142, 1058.95625pt 
+x 604.2575pt>
+File: ../figures/materials7_IRFs_monpol_rho0_3_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_IRFs_monpol_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_3_psi_pi_1_5.pn
+g used on input line 222.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 234.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 235.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_monpol_rho0_3_psi_pi_1_5.png, id=143, 1117.17375pt 
+x 625.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_3_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_gain_monpol_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_3_psi_pi_1_5.pn
+g used on input line 223.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 236.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 237.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
+<../figures/materials7_IRFs_monpol_rho0_6_psi_pi_1_5.png, id=144, 1058.95625pt 
+x 603.25375pt>
+File: ../figures/materials7_IRFs_monpol_rho0_6_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_IRFs_monpol_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_6_psi_pi_1_5.pn
+g used on input line 224.
+(pdftex.def)             Requested size: 232.9711pt x 132.71623pt.
+
+<../figures/materials7_gain_monpol_rho0_6_psi_pi_1_5.png, id=145, 1117.17375pt 
+x 625.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_6_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_gain_monpol_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_6_psi_pi_1_5.pn
+g used on input line 225.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_monpol_rho0_9_psi_pi_1_5.png, id=146, 1058.95625pt 
+x 604.2575pt>
+File: ../figures/materials7_IRFs_monpol_rho0_9_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_IRFs_monpol_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_9_psi_pi_1_5.pn
+g used on input line 226.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
+
+<../figures/materials7_gain_monpol_rho0_9_psi_pi_1_5.png, id=147, 1117.17375pt 
+x 625.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_9_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_gain_monpol_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_9_psi_pi_1_5.pn
+g used on input line 227.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+
+LaTeX Warning: Float too large for page by 13.49742pt on input line 229.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../figures/materials7_IRFs_monpol_rho0_psi_pi_1_1.png, id=148, 1037.8775pt x 6
+04.2575pt>
+File: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_1.png Graphic file (type 
+png)
+ <use ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_1.png 
+used on input line 232.
+(pdftex.def)             Requested size: 228.33376pt x 132.93706pt.
+
+<../figures/materials7_gain_monpol_rho0_psi_pi_1_1.png, id=149, 1117.17375pt x 
+625.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_psi_pi_1_1.png Graphic file (type 
+png)
+ <use ../figures/materials7_gain_monpol_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_psi_pi_1_1.png 
+used on input line 233.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+File: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png Graphic file (type 
+png)
+
+<use ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png 
+used on input line 234.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
+File: ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png Graphic file (type 
+png)
+
+<use ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_psi_pi_1_5.png 
+used on input line 235.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_monpol_rho0_psi_pi_2.png, id=150, 1058.95625pt x 60
+3.25375pt>
+File: ../figures/materials7_IRFs_monpol_rho0_psi_pi_2.png Graphic file (type pn
+g)
+ <use ../figures/materials7_IRFs_monpol_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_monpol_rho0_psi_pi_2.png us
+ed on input line 236.
+(pdftex.def)             Requested size: 232.9711pt x 132.71623pt.
+
+<../figures/materials7_gain_monpol_rho0_psi_pi_2.png, id=151, 1117.17375pt x 62
+5.33624pt>
+File: ../figures/materials7_gain_monpol_rho0_psi_pi_2.png Graphic file (type pn
+g)
+ <use ../figures/materials7_gain_monpol_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_gain_monpol_rho0_psi_pi_2.png us
+ed on input line 237.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1122,7 +1270,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6
+[7
 
 ]
 
@@ -1131,69 +1279,156 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7]
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 245.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 246.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+[8 <../figures/materials7_IRFs_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figur
+es/materials7_gain_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials
+7_IRFs_monpol_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_gain_mon
+pol_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_IRFs_monpol_rho0_6
+_psi_pi_1_5.png (PNG copy)> <../figures/materials7_gain_monpol_rho0_6_psi_pi_1_
+5.png (PNG copy)> <../figures/materials7_IRFs_monpol_rho0_9_psi_pi_1_5.png (PNG
+ copy)> <../figures/materials7_gain_monpol_rho0_9_psi_pi_1_5.png (PNG copy)>]
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 247.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 248.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 249.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 250.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+[9 <../figures/materials7_IRFs_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figur
+es/materials7_gain_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figures/materials
+7_IRFs_monpol_rho0_psi_pi_2.png (PNG copy)> <../figures/materials7_gain_monpol_
+rho0_psi_pi_2.png (PNG copy)>]
+<../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png, id=182, 1037.8775pt x
+ 603.25375pt>
+File: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.pn
+g used on input line 246.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 251.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 252.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_costpush_rho0_psi_pi_1_5.png, id=183, 1117.17375pt 
+x 625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.png Graphic file (typ
+e png)
+ <use ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.pn
+g used on input line 247.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 257.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 258.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_IRFs_costpush_rho0_3_psi_pi_1_5.png, id=184, 1037.8775pt
+ x 604.2575pt>
+File: ../figures/materials7_IRFs_costpush_rho0_3_psi_pi_1_5.png Graphic file (t
+ype png)
+ <use ../figures/materials7_IRFs_costpush_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_3_psi_pi_1_5.
+png used on input line 248.
+(pdftex.def)             Requested size: 228.33376pt x 132.93706pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 259.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 260.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials7_gain_costpush_rho0_3_psi_pi_1_5.png, id=185, 1117.17375p
+t x 625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_3_psi_pi_1_5.png Graphic file (t
+ype png)
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 261.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 262.
-(pdftex.def)             Requested size: 163.1484pt x 101.87993pt.
+<use ../figures/materials7_gain_costpush_rho0_3_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_3_psi_pi_1_5.
+png used on input line 249.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_costpush_rho0_6_psi_pi_1_5.png, id=186, 1037.8775pt
+ x 603.25375pt>
+File: ../figures/materials7_IRFs_costpush_rho0_6_psi_pi_1_5.png Graphic file (t
+ype png)
+
+<use ../figures/materials7_IRFs_costpush_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_6_psi_pi_1_5.
+png used on input line 250.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
+
+<../figures/materials7_gain_costpush_rho0_6_psi_pi_1_5.png, id=187, 1117.17375p
+t x 625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_6_psi_pi_1_5.png Graphic file (t
+ype png)
+
+<use ../figures/materials7_gain_costpush_rho0_6_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_6_psi_pi_1_5.
+png used on input line 251.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_costpush_rho0_9_psi_pi_1_5.png, id=188, 1058.95625p
+t x 604.2575pt>
+File: ../figures/materials7_IRFs_costpush_rho0_9_psi_pi_1_5.png Graphic file (t
+ype png)
+
+<use ../figures/materials7_IRFs_costpush_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_9_psi_pi_1_5.
+png used on input line 252.
+(pdftex.def)             Requested size: 232.9711pt x 132.93706pt.
+
+<../figures/materials7_gain_costpush_rho0_9_psi_pi_1_5.png, id=189, 1117.17375p
+t x 625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_9_psi_pi_1_5.png Graphic file (t
+ype png)
+
+<use ../figures/materials7_gain_costpush_rho0_9_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_9_psi_pi_1_5.
+png used on input line 253.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+
+LaTeX Warning: Float too large for page by 13.2766pt on input line 255.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../figures/materials7_IRFs_costpush_rho0_psi_pi_1_1.png, id=190, 1037.8775pt x
+ 603.25375pt>
+File: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_1.png Graphic file (typ
+e png)
+ <use ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_1.pn
+g used on input line 258.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
+
+<../figures/materials7_gain_costpush_rho0_psi_pi_1_1.png, id=191, 1117.17375pt 
+x 625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_psi_pi_1_1.png Graphic file (typ
+e png)
+ <use ../figures/materials7_gain_costpush_rho0_psi_pi_1_1.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_psi_pi_1_1.pn
+g used on input line 259.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+File: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png Graphic file (typ
+e png)
+
+<use ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.pn
+g used on input line 260.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
+File: ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.png Graphic file (typ
+e png)
+
+<use ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_psi_pi_1_5.pn
+g used on input line 261.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
+
+<../figures/materials7_IRFs_costpush_rho0_psi_pi_2.png, id=192, 1037.8775pt x 6
+03.25375pt>
+File: ../figures/materials7_IRFs_costpush_rho0_psi_pi_2.png Graphic file (type 
+png)
+ <use ../figures/materials7_IRFs_costpush_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_IRFs_costpush_rho0_psi_pi_2.png 
+used on input line 262.
+(pdftex.def)             Requested size: 228.33376pt x 132.71623pt.
+
+<../figures/materials7_gain_costpush_rho0_psi_pi_2.png, id=193, 1117.17375pt x 
+625.33624pt>
+File: ../figures/materials7_gain_costpush_rho0_psi_pi_2.png Graphic file (type 
+png)
+ <use ../figures/materials7_gain_costpush_rho0_psi_pi_2.png>
+Package pdftex.def Info: ../figures/materials7_gain_costpush_rho0_psi_pi_2.png 
+used on input line 263.
+(pdftex.def)             Requested size: 201.0826pt x 112.55566pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1204,10 +1439,36 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8
+[10
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <../figures/materials7_IRFs_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../fi
+gures/materials7_gain_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../figures/mate
+rials7_IRFs_costpush_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_g
+ain_costpush_rho0_3_psi_pi_1_5.png (PNG copy)> <../figures/materials7_IRFs_cost
+push_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials7_gain_costpush_rho
+0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials7_IRFs_costpush_rho0_9_psi_
+pi_1_5.png (PNG copy)> <../figures/materials7_gain_costpush_rho0_9_psi_pi_1_5.p
+ng (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <../figures/materials7_IRFs_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../fi
+gures/materials7_gain_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../figures/mate
+rials7_IRFs_costpush_rho0_psi_pi_2.png (PNG copy)> <../figures/materials7_gain_
+costpush_rho0_psi_pi_2.png (PNG copy)>]
+Overfull \hbox (57.88667pt too wide) in paragraph at lines 270--289
+[] 
+ []
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1215,20 +1476,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
+[13
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
  (./materials7.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
 Package rerunfilecheck Info: File `materials7.out' has not changed.
-(rerunfilecheck)             Checksum: DB64B47368EA38E8C1E24FEFF993A10B;475.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
+(rerunfilecheck)             Checksum: 4976310C69DD90B1E27277A5197DD04F;544.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 293.
  ) 
 Here is how much of TeX's memory you used:
- 20058 strings out of 493089
- 362816 string characters out of 6134842
+ 20239 strings out of 493089
+ 372854 string characters out of 6134842
  457756 words of memory out of 5000000
- 23080 multiletter control sequences out of 15000+600000
+ 23221 multiletter control sequences out of 15000+600000
  16151 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,54p,391b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1249,10 +1513,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials7.pdf (9 pages, 207169 bytes).
+Output written on materials7.pdf (13 pages, 2330197 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 211 compressed objects within 3 object streams
- 88 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 304 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

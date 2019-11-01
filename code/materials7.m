@@ -104,11 +104,15 @@ psi_pi_val_raw = num2str(psi_pi);
 psi_pi_val = replace(psi_pi_val_raw,'.','_');
 
 % Solve RE model
+% First old version w/o int rate smoothing
+[fyn, fxn, fypn, fxpn] = model_NK(param);
+[gx0,hx0]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, setp, hx); % perfect - Aa, Ab are the same as before, As has extra column of zeros, otherwise identical!
-
+[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, setp, hx); % perfect - Aa, Ab are the same as before, As has extra column of zeros, otherwise identical!
+bigguy = -[fyn fxpn]^(-1)*[fypn fxn];
 % Simulate models
 % Use Ryan's code to simulate from the RE model
 [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
@@ -131,7 +135,7 @@ free=1; % use versions of the code that are n-free (use hx instead of P)
 not_free=0;
 [x_d, y_d, e_fcst_d, m_fcst_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP, free);
 [x_a, y_a, e_fcst_a, m_fcst_a, ~, ~,pibar_a, k_a] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCEMP, free);
-[x_a_cusum, y_a_cusum,e_fcst_a, m_fcst_ac, ~, ~,pibar_a_cusum, k_cusum] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM, free);
+[x_a_cusum, y_a_cusum,e_fcst_ac, m_fcst_ac, ~, ~,pibar_a_cusum, k_cusum] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM, free);
 [x_c, y_c, e_fcst_c, m_fcst_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP, free);
 ka_inv = 1./k_a;
 k_cusum_inv = 1./k_cusum;
@@ -148,6 +152,59 @@ Z(:,:,5) =y_a_cusum;
 %% GIRs for interest rate smoothing
 d = 1; % the innovation, delta
 shocknames = {'natrate', 'monpol','costpush'};
+% gx0
+% gx
+% % Check IRF for RE model w/o int rate smoothing
+% x0 = zeros(1,3);
+% x0(2) = d;
+% h = 10; % horizon of IRF
+% [IR, iry, irx]=ir(gx0,hx0,x0,h);
+% iry = iry';
+% figure
+% set(gcf,'color','w'); % sets white background color
+% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+% subplot(1,3,1)
+% plot(zeros(1,h),'k--','linewidth', 2); hold on
+% plot(iry(1,:))
+% title('\pi')
+% subplot(1,3,2)
+% plot(zeros(1,h),'k--','linewidth', 2); hold on
+% plot(iry(2,:))
+% title('x')
+% subplot(1,3,3)
+% plot(zeros(1,h),'k--','linewidth', 2); hold on
+% plot(iry(3,:))
+% title('i')
+% 
+% 
+% % Let's check shocks in RE
+% for s=1:ne
+%     x0 = zeros(1,nx);
+%     x0(s) = d;
+%     h = 10; % horizon of IRF
+%     [IR, iry, irx]=ir(gx,hx,x0,h);
+%     iry = iry';
+%     
+%     figure
+%     set(gcf,'color','w'); % sets white background color
+%     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+%     subplot(1,3,1)
+%     plot(zeros(1,h),'k--','linewidth', 2); hold on
+%     plot(iry(1,:))
+%     title('\pi')
+%     subplot(1,3,2)
+%     plot(zeros(1,h),'k--','linewidth', 2); hold on
+%     plot(iry(2,:))
+%     title('x')
+%     subplot(1,3,3)
+%     plot(zeros(1,h),'k--','linewidth', 2); hold on
+%     plot(iry(3,:))
+%     title('i')
+% end
+% 
+% 
+% 
+% return
 
 % cycle thru the shocks of the model
 for s=1:ne
@@ -156,6 +213,7 @@ for s=1:ne
     h = 10; % horizon of IRF
     [IR, iry, irx]=ir(gx,hx,x0,h);
     iry = iry';
+    RE_fcsts = gx*hx*irx';
     
     % For learning, the approach I take is resimulate everything and for each
     % period t, expose the econ to this same shock. Then take an average.
@@ -220,51 +278,54 @@ for s=1:ne
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
     for i=1:ny+1
         if i>ny
-        subplot(1,ny+1,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        mf_d = plot(med_mf_d,'b','linewidth', 2);
-        mf_a = plot(med_mf_a,'r','linewidth', 2);
-        mf_c = plot(med_mf_c,'color', dark_green,'linewidth', 2);
-        legend([mf_d, mf_a, mf_c], 'Decreasing', 'Anchor', 'Constant ','location', 'southoutside')
+            subplot(1,ny+1,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            fcst_RE = plot(RE_fcsts(1,:),'k','linewidth', 2);
+            mf_d = plot(med_mf_d,'b','linewidth', 2);
+            mf_a = plot(med_mf_a,'r','linewidth', 2);
+            mf_c = plot(med_mf_c,'color', dark_green,'linewidth', 2);
+            legend([fcst_RE, mf_d, mf_a, mf_c],'RE', 'Decreasing', 'Anchor', 'Constant ','location', 'southoutside')
+            legend('boxoff')
         else
-        subplot(1,ny+1,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        re = plot(iry(i,:),'k','linewidth', 2);
-        % Plot means
-        %         d_mean = plot(RIRd(i,:),'b','linewidth', 2);
-        %         am_mean = plot(RIRa(i,:),'r','linewidth', 2);
-        %         c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
-        
-        % Plot medians
-        d_med = plot(medd(i,:),'b','linewidth', 2);
-        a_med = plot(meda(i,:),'r','linewidth', 2);
-        c_med = plot(medc(i,:),'color', dark_green,'linewidth', 2);
-        % Plot CIs
-        fill_Xcoord = [1:h, fliplr(1:h)];
-        fillYcoord = [lbd(i,:), fliplr(ubd(i,:))];
-        f = fill(fill_Xcoord, fillYcoord, light_sky_blue,'LineStyle','none');
-        set(f,'facealpha',.5)
-        fillYcoord = [lba(i,:), fliplr(uba(i,:))];
-        f = fill(fill_Xcoord, fillYcoord, light_salmon,'LineStyle','none');
-        set(f,'facealpha',.5)
-        fillYcoord = [lbc(i,:), fliplr(ubc(i,:))];
-        f = fill(fill_Xcoord, fillYcoord, light_green,'LineStyle','none');
-        set(f,'facealpha',.5)
-        
-        legend([re,d_med, a_med, c_med],'RE', 'Decreasing', 'Anchor', 'Constant','location', 'southoutside')
+            subplot(1,ny+1,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            re = plot(iry(i,:),'k','linewidth', 2);
+            % Plot means
+            %         d_mean = plot(RIRd(i,:),'b','linewidth', 2);
+            %         am_mean = plot(RIRa(i,:),'r','linewidth', 2);
+            %         c_mean = plot(RIRc(i,:),'color', dark_green,'linewidth', 2);
+            
+            % Plot medians
+            d_med = plot(medd(i,:),'b','linewidth', 2);
+            a_med = plot(meda(i,:),'r','linewidth', 2);
+            c_med = plot(medc(i,:),'color', dark_green,'linewidth', 2);
+            % Plot CIs
+            fill_Xcoord = [1:h, fliplr(1:h)];
+            fillYcoord = [lbd(i,:), fliplr(ubd(i,:))];
+            f = fill(fill_Xcoord, fillYcoord, light_sky_blue,'LineStyle','none');
+            set(f,'facealpha',.5)
+            fillYcoord = [lba(i,:), fliplr(uba(i,:))];
+            f = fill(fill_Xcoord, fillYcoord, light_salmon,'LineStyle','none');
+            set(f,'facealpha',.5)
+            fillYcoord = [lbc(i,:), fliplr(ubc(i,:))];
+            f = fill(fill_Xcoord, fillYcoord, light_green,'LineStyle','none');
+            set(f,'facealpha',.5)
+            
+            legend([re,d_med, a_med, c_med],'RE', 'Decreasing', 'Anchor', 'Constant','location', 'southoutside')
+            legend('boxoff')
         end
         title(titles(i))
         ax = gca; % current axes
         ax.FontSize = fs_prop;
         grid on
         grid minor
-%         if s==1
-%             ylim([-0.02, 0.01])
-%         elseif s==2
-%             ylim([-1, 0.4])
-%         elseif s==3
-%             ylim([-0.3, 0.1])
-%         end
+        %         if s==1
+        %             ylim([-0.02, 0.01])
+        %         elseif s==2
+        %             ylim([-1, 0.4])
+        %         elseif s==3
+        %             ylim([-0.3, 0.1])
+        %         end
     end
     if print_figs ==1
         figname = [this_code, '_', 'IRFs_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
@@ -286,6 +347,7 @@ for s=1:ne
     grid on
     grid minor
     legend('CEMP criterion',  'CUSUM criterion','location', 'southoutside')
+    legend('boxoff')
     title('Inverse gain')
     if print_figs ==1
         figname = [this_code, '_', 'gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]

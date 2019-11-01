@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Model summary with interest rate smoothing $\rho i_{t-1}$}{2}{section.1}
+\contentsline {section}{\numberline {2}Compact notation - with lagged interest rate term in TR}{3}{section.2}
+\contentsline {section}{\numberline {3}Current set of baseline parameters}{4}{section.3}
+\contentsline {section}{\numberline {4}IRFs: RE only}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}RE: all shocks at a glance}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}RE: monetary policy shock for various $\rho _i$}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}RE: monetary policy shock for various $\rho $ (keep $\rho _i = 0.7$)}{7}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}RE: monetary policy shock for various $\alpha $ (keep $\rho _i = 0.7$)}{8}{subsection.4.4}
+\contentsline {section}{\numberline {5}IRFs for learning, $\rho _i = 0.6, \alpha =0.5$}{9}{section.5}
+\contentsline {subsection}{\numberline {5.1}Natural rate shock, varying $\rho $}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Natural rate shock, varying $\psi _{\pi }$}{10}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Monetary policy shock, varying $\rho $}{11}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Monetary policy shock, varying $\psi _{\pi }$}{12}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Cost-push shock, varying $\rho $}{13}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Cost-push shock, varying $\psi _{\pi }$}{14}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Further analysis plots}{15}{subsection.5.7}

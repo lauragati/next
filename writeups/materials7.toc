@@ -2,5 +2,6 @@
 \contentsline {section}{\numberline {2}Compact notation - with lagged interest rate term in TR}{3}{section.2}
 \contentsline {section}{\numberline {3}IRFs splitting by decreasing, constant and endogenous gain learning}{4}{section.3}
 \contentsline {subsection}{\numberline {3.1}Natural rate shock}{4}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Monetary policy shock}{6}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Cost-push shock}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.2}Monetary policy shock}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Cost-push shock}{10}{subsection.3.3}
+\contentsline {section}{\numberline {4}Current set of baseline parameters}{13}{section.4}
