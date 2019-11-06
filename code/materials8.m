@@ -114,8 +114,8 @@ current_param_values = [rho, rho_i, alph, kapp, psi_pi]
 current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}']
 % Solve RE model
 % First old version w/o int rate smoothing
-[fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx0,hx0]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+% [fyn, fxn, fypn, fxpn] = model_NK(param);
+% [gx0,hx0]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -141,11 +141,11 @@ cgain = 3;
 critCEMP=1;
 critCUSUM=2;
 free=1; % use versions of the code that are n-free (use hx instead of P)
-not_free=0;
-[x_d, y_d, e_fcst_d, m_fcst_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP, free);
-[x_a, y_a, e_fcst_a, m_fcst_a, ~, ~,pibar_a, k_a] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCEMP, free);
-[x_a_cusum, y_a_cusum,e_fcst_ac, m_fcst_ac, ~, ~,pibar_a_cusum, k_cusum] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM, free);
-[x_c, y_c, e_fcst_c, m_fcst_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP, free);
+not_free=0;                                            
+[x_d, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP, free);
+[x_a, y_a, e_fcst_a, m_fcst_a, FA_a, FB_a, ~, ~,pibar_a, k_a] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCEMP, free);
+[x_a_cusum, y_a_cusum,e_fcst_ac, m_fcst_ac, FA_acusum, FB_acusum, ~, ~,pibar_a_cusum, k_cusum] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM, free);
+[x_c, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP, free);
 ka_inv = 1./k_a;
 k_cusum_inv = 1./k_cusum;
 
@@ -210,9 +210,11 @@ titles = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})'};
 % current_param_names
 % current_param_values
 %
+
 % return
+d=1
 % cycle thru the shocks of the model
-for s=2 %1:ne zoom in on monetary policy shock 
+for s=2 %1:ne  %2->zoom in on monetary policy shock
     x0 = zeros(1,nx);
     x0(s) = d;
     h = 10; % horizon of IRF
@@ -236,12 +238,12 @@ for s=2 %1:ne zoom in on monetary policy shock
     GIR_k_cusum = zeros(h,T-h);
     GIR_k2 = zeros(h,T-h);
     for t=2:T-h
+        %         disp(num2str(t))
         % 1. create alternative simulations, adding the impulse always at a new time t
-        % Now let's shock our general learning code
-        [xs_d, ys_d, e_fcsts_d, m_fcsts_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP,free, t, x0);
-        [xs_a, ys_a, e_fcsts_a, m_fcsts_a, ~, ~,pibars_a(:,t), ks_a(:,t)] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
-        [xs_c, ys_c, e_fcsts_c, m_fcsts_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
-        [xs_a_cusum, ys_a_cusum,~,~, ~, ~,pibars_a_cusum(:,t), ks_a_cusum(:,t)] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM,free, t, x0);
+        [xs_d, ys_d, e_fcsts_d, m_fcsts_d, FA_ds, FB_ds] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP,free, t, x0);
+        [xs_a, ys_a, e_fcsts_a, m_fcsts_a, FA_as, FB_as, ~, ~,pibars_a(:,t), ks_a(:,t)] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCEMP,free, t, x0);
+        [xs_c, ys_c, e_fcsts_c, m_fcsts_c, FA_cs, FB_cs] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
+        [xs_a_cusum, ys_a_cusum,~,~,~,~, ~, ~,pibars_a_cusum(:,t), ks_a_cusum(:,t)] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, again, critCUSUM,free, t, x0);
         
         % 2. take differences between this and the standard simulation
         GIRd(:,:,t) = ys_d(:,t:t+h-1) - y_d(:,t:t+h-1);
@@ -251,12 +253,26 @@ for s=2 %1:ne zoom in on monetary policy shock
         GIR_fcst_d(:,t) = m_fcsts_d(t:t+h-1) - m_fcst_d(t:t+h-1);
         GIR_fcst_a(:,t) = m_fcsts_a(t:t+h-1) - m_fcst_a(t:t+h-1);
         GIR_fcst_c(:,t) = m_fcsts_c(t:t+h-1) - m_fcst_c(t:t+h-1);
+        GIR_fcst_d_e(:,t) = e_fcsts_d(t:t+h-1) - e_fcst_d(t:t+h-1); % % evening forecasts for decreasing learning
+        GIR_fcst_c_e(:,t) = e_fcsts_c(t:t+h-1) - e_fcst_c(t:t+h-1); % evening forecasts for constant learning
+        
+        %LH expectations
+        GIR_FA_d(:,:,t) = FA_ds(:,t:t+h-1) - FA_d(:,t:t+h-1);
+        GIR_FB_d(:,:,t) = FB_ds(:,t:t+h-1) - FB_d(:,t:t+h-1);
+        GIR_FA_c(:,:,t) = FA_cs(:,t:t+h-1) - FA_c(:,t:t+h-1);
+        GIR_FB_c(:,:,t) = FB_cs(:,t:t+h-1) - FB_c(:,t:t+h-1);
+        
+        
         % and for the gains
         GIR_k(:,t) = 1./ks_a(t:t+h-1,t)' - 1./k_a(t:t+h-1);
         GIR_k_cusum(:,t) = 1./ks_a_cusum(t:t+h-1,t)' - 1./k_cusum(t:t+h-1);
         
         GIR_k2(:,t) = ks_a(t:t+h-1,t)' - k_a(t:t+h-1);
+        %and for pibar
+        GIR_pibar(:,t) = pibars_a(t:t+h-1,t) - pibar_a(t:t+h-1);
     end
+    % find the number of times the shock leads to unanchoring:
+     numdev = size(find(GIR_k),1)/10
     
     % option 1: take simple averages
     RIRd = mean(GIRd,3);
@@ -266,36 +282,51 @@ for s=2 %1:ne zoom in on monetary policy shock
     RIRk = mean(GIR_k,2);
     RIRk_cusum = mean(GIR_k_cusum,2);
     
+    RIRpibar = mean(GIR_pibar,2);
+    RIRfa_d = mean(GIR_FA_d(1,:,:),3); % just take it for pi
+    RIRfb_d = mean(GIR_FB_d(1,:,:),3);
+    RIRfa_c = mean(GIR_FA_c(1,:,:),3); 
+    RIRfb_c = mean(GIR_FB_c(1,:,:),3);
+    
     % take averages of gains and drifts too
-    pibars_a_mean = mean(pibars_a,2);
-    pibars_a_cusum_mean = mean(pibars_a_cusum,2);
-    ks_a_mean = mean(ks_a,2);
-    ks_a_cusum_mean = mean(ks_a_cusum,2);
-    inv_ks_a_mean = 1./ks_a_mean;
-    inv_ks_a_cusum_mean = 1./ks_a_cusum_mean;
+%     pibars_a_mean = mean(pibars_a,2);
+%     pibars_a_cusum_mean = mean(pibars_a_cusum,2);
+%     ks_a_mean = mean(ks_a,2);
+%     ks_a_cusum_mean = mean(ks_a_cusum,2);
+%     inv_ks_a_mean = 1./ks_a_mean;
+%     inv_ks_a_cusum_mean = 1./ks_a_cusum_mean;
     
     % option 2: sort and take percentile bands
     [lbd, medd, ubd] = confi_bands(GIRd,0.1);
     [lba, meda, uba] = confi_bands(GIRa,0.1);
     [lbc, medc, ubc] = confi_bands(GIRc,0.1);
     
+
     % CI for k doesn't make a lot of sense because of the inverse which
-    % makes everything pretty darn small 
+    % makes everything pretty darn small
     [lb_k, med_k, ub_k] = confi_bands(1./ks_a,0.1);
     [lb_k_cusum, med_k_cusum, ub_k_cusum] = confi_bands(1./ks_a_cusum,0.1);
     
-    % ... or  you explode
-    [lb_k2, med_k2, ub_k2] = confi_bands(GIR_k2,0.01);
-    inv_lb_k2 = 1./lb_k2;
-    inv_ub_k2 = 1./ub_k2;
+%     % ... or you explode
+%     [lb_k2, med_k2, ub_k2] = confi_bands(GIR_k2,0.01);
+%     inv_lb_k2 = 1./lb_k2;
+%     inv_ub_k2 = 1./ub_k2;
+    
+    % let's try again with GIR_k
+    [lb_k3, med_k3, ub_k3] = confi_bands(GIR_k,0.1);
+    
+    % CI for pibar
+    [lb_pibar, med_pibar, ub_pibar] = confi_bands(GIR_pibar,0.1);
     
     % CI for forecasts
     [lb_mf_d, med_mf_d, ub_mf_d] = confi_bands(GIR_fcst_d,0.1);
     [lb_mf_a, med_mf_a, ub_mf_a] = confi_bands(GIR_fcst_a,0.1);
     [lb_mf_c, med_mf_c, ub_mf_c] = confi_bands(GIR_fcst_c,0.1);
+    [lb_ef_d, med_ef_d, ub_ef_d] = confi_bands(GIR_fcst_d_e,0.1);
+    [lb_ef_c, med_ef_c, ub_ef_c] = confi_bands(GIR_fcst_c_e,0.1);
     
     %% Plot IRFs
-    titles = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})'};
+    titles = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
     
     figure
     set(gcf,'color','w'); % sets white background color
@@ -359,6 +390,8 @@ for s=2 %1:ne zoom in on monetary policy shock
         close
     end
     
+    skip_this=1;
+    if skip_this==0
     % Plot gain conditional on shock
     figure
     set(gcf,'color','w'); % sets white background color
@@ -386,20 +419,40 @@ for s=2 %1:ne zoom in on monetary policy shock
         cd(current_dir)
         close
     end
-    
-    % IRF of the mean gain
+    end
+    % IRF of the mean gain and confibans for pibar
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    subplot(1,2,1)
     mk = plot(RIRk,'r','linewidth', 2); hold on
     mkc = plot(RIRk_cusum,'color', saddle_brown,'linewidth', 2);
+    % plot median and CI
+    medk3 = plot(med_k3,'r--','linewidth', 2);
+    fill_Xcoord2 = [1:h, fliplr(1:h)];
+    fillYcoord2 = [lb_k3', fliplr(ub_k3')];
+    f = fill(fill_Xcoord2, fillYcoord2, light_salmon,'LineStyle','none');
+    set(f,'facealpha',.5)
     ax = gca; % current axes
     ax.FontSize = fs_prop;
     grid on
     grid minor
     legend([mk, mkc],'CEMP criterion',  'CUSUM criterion','location', 'southoutside')
     legend('boxoff')
-    title('Inverse gain IRF (mean)')
+    title({'Inverse gain IRF',' (mean)'})
+    % pibar
+    subplot(1,2,2)
+    mk = plot(med_pibar,'r','linewidth', 2); hold on
+    fill_Xcoord = [1:h, fliplr(1:h)];
+    fillYcoord = [lb_pibar', fliplr(ub_pibar')];
+    f = fill(fill_Xcoord, fillYcoord, light_salmon,'LineStyle','none');
+    set(f,'facealpha',.5)
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    title({'Drift (median w/',' 99% CI)'}) % 2-line title with a cell array
+    
     if print_figs ==1
         figname = [this_code, '_', 'gain_IRF_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
         cd(figpath)
@@ -408,17 +461,25 @@ for s=2 %1:ne zoom in on monetary policy shock
         close
     end
     
+    % IRF constant gain learning only
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    for i=1:ny+1
-        if i>ny
-            subplot(1,ny+1,i)
+    for i=1:ny+2
+        if i==ny+1
+            subplot(1,ny+2,i)
             plot(zeros(1,h),'k--','linewidth', 2); hold on
-%             fcst_RE = plot(RE_fcsts(1,:),'k','linewidth', 2);
+            %             fcst_RE = plot(RE_fcsts(1,:),'k','linewidth', 2);
             mf_c = plot(med_mf_c,'color', dark_green,'linewidth', 2);
+            ylim([-0.15, 0])
+        elseif i==ny+2
+            subplot(1,ny+2,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            %             fcst_RE = plot(RE_fcsts(1,:),'k','linewidth', 2);
+            ef_c = plot(med_ef_c,'color', dark_green,'linewidth', 2);
+            ylim([-0.15, 0])
         else
-            subplot(1,ny+1,i)
+            subplot(1,ny+2,i)
             plot(zeros(1,h),'k--','linewidth', 2); hold on
             % Plot medians
             c_med = plot(medc(i,:),'color', dark_green,'linewidth', 2);
@@ -426,7 +487,7 @@ for s=2 %1:ne zoom in on monetary policy shock
             fill_Xcoord = [1:h, fliplr(1:h)];
             fillYcoord = [lbc(i,:), fliplr(ubc(i,:))];
             f = fill(fill_Xcoord, fillYcoord, light_green,'LineStyle','none');
-            set(f,'facealpha',.5) 
+            set(f,'facealpha',.5)
         end
         title(titles(i))
         ax = gca; % current axes
@@ -441,6 +502,86 @@ for s=2 %1:ne zoom in on monetary policy shock
         cd(current_dir)
         close
     end
+    
+    % Plot evening and morning forecasts for constant gain only, IRF
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen 
+    plot(zeros(1,h),'k--','linewidth', 2); hold on
+    mf_c = plot(med_mf_c,'linewidth', 2);
+    ef_c = plot(med_ef_c,'linewidth', 2);
+    ylim([-0.15, 0])
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
+    legend('boxoff')
+     if print_figs ==1
+        figname = [this_code, '_', 'IRFs_cgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+     end
+    
+     % Plot evening and morning forecasts for decreasing gain only, IRF
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen 
+    plot(zeros(1,h),'k--','linewidth', 2); hold on
+    mf_c = plot(med_mf_d,'linewidth', 2);
+    ef_c = plot(med_ef_d,'linewidth', 2);
+    ylim([-0.15, 0])
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
+    legend('boxoff')
+     if print_figs ==1
+        figname = [this_code, '_', 'IRFs_dgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+     end
+    
+     % Plot LH expectations for constant and decreasing gain learning (just for pi)
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen 
+    subplot(1,2,1)
+    plot(zeros(1,h),'k--','linewidth', 2); hold on
+    fa_d = plot(RIRfa_d,'linewidth', 2);
+    fa_c = plot(RIRfa_c,'linewidth', 2);
+%     ylim([-0.15, 0])
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend([fa_d, fa_c],'decreasing',  'constant','location', 'southoutside')
+    legend('boxoff')
+    title('fa')
+    subplot(1,2,2)
+    plot(zeros(1,h),'k--','linewidth', 2); hold on
+    fb_d = plot(RIRfb_d,'linewidth', 2);
+    fb_c = plot(RIRfb_c,'linewidth', 2);
+%     ylim([-0.15, 0])
+    ax = gca; % current axes
+    ax.FontSize = fs_prop;
+    grid on
+    grid minor
+    legend([fb_d, fb_c],'decreasing',  'constant','location', 'southoutside')
+    legend('boxoff')
+    title('fb')
+     if print_figs ==1
+        figname = [this_code, '_', 'IRFs_LH_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+     end
     
 end
 

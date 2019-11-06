@@ -10,7 +10,7 @@
 % anchored: % 1 denotes anchored, 0 denotes unanchored when shock hits
 % 19 Oct 2019
 
-function [xsim, ysim, evening_fcst, morning_fcst, shock, diff,pibar_seq, k, anchored] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, shock, diff,pibar_seq, k, anchored_when_shock] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
 if nargin < 18 %no shock specified
     dt = 0;
     x0 = 0;
@@ -18,7 +18,7 @@ end
 if nargin < 17
     free=1; % make using hx the default case instead of P.
 end
-anchored = nan; % in case you call it w/ exogenous gain
+anchored_when_shock = nan; % in case you call it w/ exogenous gain
 gbar = param.gbar;
 ny = size(gx,1);
 nx = size(hx,1);
@@ -46,6 +46,8 @@ thet = 0; % CEMP don't really help with this, but I think zero is ok.
 %%%
 evening_fcst = nan(T,1);
 morning_fcst = nan(T,1);
+FA = nan(ny,T);
+FB = nan(ny,T);
 %Simulate, with learning
 for t = 1:T-1
     
@@ -59,6 +61,8 @@ for t = 1:T-1
                 [fa, fb] = fafb_anal_constant(param, setp, [pibar;0;0], b, xsim(:,t)); %% old version with P
             elseif free==1
                 [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
+                FA(:,t) = fa; % save current LH expectations for output
+                FB(:,t) = fb;
             end
         else
             [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0], b, xsim(:,t), H);
@@ -91,10 +95,10 @@ for t = 1:T-1
         elseif gain==3
             k(:,t) = gbar^(-1);
         end
-        evening_fcst(t) = pibar + b1*xsim(:,t-1); % yesterday evening's one-step ahead forecast of today's state E(pi_{t} | I_{t-1}^e)
+        
         morning_fcst(t) = pibar + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
         pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
-        
+        evening_fcst(t) = pibar + b1*xsim(:,t); % today's evening's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^e)
         % check convergence
         diff(t) = max(max(abs(pibar - at_1)));
         
@@ -103,11 +107,12 @@ for t = 1:T-1
     %Simulate transition with shock
     %%% here is the addition of the impulse
     if t+1==dt
+%         disp(['shock imposed at ', num2str(dt)])
         % check if anchored or not when shock hits
         if k(:,t) == gbar^(-1)
-            anchored = 0;
+            anchored_when_shock = 0;
         elseif k(:,t) > gbar^(-1)
-            anchored = 1;
+            anchored_when_shock = 1;
         end
         e(:,t+1) = e(:,t+1)+x0';
     end

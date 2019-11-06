@@ -18,6 +18,14 @@
 \renewcommand{\ni}{\noindent}
 \usepackage{xr-hyper}
 \usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
 \usepackage[capposition=top]{floatrow}
 \usepackage{amssymb}
 \usepackage{relsize}
@@ -188,6 +196,30 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \end{align}
 
 \clearpage
+\section{Recap of timing}
+
+Define some objects: \emph{(I usually let t denote the time in which the variable is formed.)}
+\begin{align}
+f^j_t &= \hat{\E}_t(z_{t+1}) \quad \text{one-period-ahead forecast formed at time } t, \; j=m,e \; \text{(morning or evening)} \\
+FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at time } t+1 \\
+& = ALM(t+1) - PLM(t) \\
+\theta_t &=  \hat{\E}_{t-1}(z_{t}) - \E_{t-1}(z_{t}) \quad \text{CEMP's criterion} \\
+& = PLM(t-1) - \E_{t-1}ALM(t)
+\end{align}
+
+
+\begin{enumerate}
+\item[] $PLM(t): \hat{\E}_t z_{t+1} = \bar{z}_{\color{red}{t-1}} + bs_t$
+\item[] \textbf{Morning}: morning of time $t$ available: $\mathcal{I}_t^m = \{\bar{z}_{\color{red}{t-1}}, s_t, k_{t-1}, FE_{t-2}\}$
+\item Form all future expectations using $PLM(t) \text{(morning forecast)} \rightarrow z_t$ realized, $\rightarrow FE_{t-1}$ realized 
+\item Form $\theta_t \rightarrow k_t$ realized
+\item \textbf{Evening}: Update $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(FE^e_{t-1})$
+\item[] where $FE^e_{t-1} = z_{t}-f^e_{t-1} = z_{t}-(\bar{z}_{\color{red}{t-1}} + bs_{t-1})$ is the most recent realized FE, so:
+\item[] $\bar{z}_t = \bar{z}_{t-1} + k_t^{-1}(z_{t}-(\bar{z}_{\color{red}{t-1}} + bs_{t-1}))$
+\item[] $\rightarrow$ evening of time $t$ available: $\mathcal{I}_t^e = \{\bar{z}_{\color{red}{t}}, s_t, k_{t}, FE_{t-1}\}$
+\end{enumerate}
+
+\clearpage
 \section{Current set of baseline parameters}
 %\begin{center}
 \begin{tabular}{ c | c  | l | l}
@@ -221,7 +253,11 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \caption{RE: all shocks at a glance}
 \end{figure}
 
-\subsection{RE: monetary policy shock for various $\rho_i$}
+\subsection{RE: monetary policy shock for various $\rho_i$ $\blacktriangleleft$}
+
+\hyperlink{analysis_plots}{Go to learning analysis.} \\
+\hypertarget{RE_monpol}{Come back.}
+
 \begin{figure}[h!]
 \subfigure[\colorbox{yellow}{$\rho_i$ = 0}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5}} 
 \subfigure[\colorbox{yellow}{$\rho_i$ = 0.6}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5}} 
@@ -229,6 +265,8 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \subfigure[\colorbox{yellow}{$\rho_i$ = 0.9}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5} }
 \caption{Mon.pol. shock, moving $\rho_i$}
 \end{figure}
+
+
 
 \newpage
 \subsection{RE: monetary policy shock for various $\rho$ (keep $\rho_i = 0.7$)}
@@ -248,6 +286,58 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \subfigure[\colorbox{yellow}{$\alpha$ = 0.75, $\rho_i=0.78$}]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75} }
 \caption{Mon.pol. shock, moving $\alpha$}
 \end{figure}
+
+\newpage
+\section{Further analysis plots - what are expectations doing? $\blacktriangleleft$}	
+
+\hypertarget{analysis_plots}{Understand expectations.} \\
+\hyperlink{RE_monpol}{Go to back to RE mon. pol IRFs.}
+
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallFigScale]{\myFigPath materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5}
+\caption{A constant gain learning IRF for a monetary policy shock}
+\label{gain_irf}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain learning]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_dgain_fcsts_me_monpol_rho0_psi_pi_1_5}}
+\subfigure[Constant gain learning]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath materials8_IRFs_cgain_fcsts_me_monpol_rho0_psi_pi_1_5}}
+\caption{Morning and evening forecasts}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallFigScale]{\myFigPath materials8_IRFs_LH_monpol_rho0_psi_pi_1_5}
+\caption{Long-horizon expectations, mean IRF}
+\end{figure}
+
+\newpage
+\section{GE effects of long-horizon expectations $\blacktriangleleft$}
+Plugging in the interest rate rule into the equations for the output gap and inflation, equations (\ref{prestons18}) and (\ref{prestons19}), and ignoring the exogenous states, I can write the system as a function of discounted sums of expectations ($f_a, f_b$):
+\begin{align}
+x_t = \textcolor{red}{\frac{-\sigma\psi_{\pi}}{w}} \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{1}{w}\begin{bmatrix} \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b \\
+\pi_t = (1-\frac{\kappa\sigma\psi_{\pi}}{w}) \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{\kappa}{w}\begin{bmatrix}  \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b
+\end{align}
+Let's analyze the signs. Everything is positive, except for the red and blue stuff. 
+\begin{itemize}
+\item \textcolor{red}{$f_a$ appears in the $x_t$-equation because we plugged in the Taylor-rule, and with it, $\pi_t$. So this is saying that $x_t$ depends negatively on future expectations of itself and inflation because those lead to increased interest rates.}
+\item \textcolor{blue}{$-\beta\psi_{\pi}$ comes from plugging in the nominal interest rate. Thus, again, $x_t$ depends negatively on expected inflation through the anticipated interest rate response. This also introduces a negative dependence of $\pi_t$ on own future values via the expected interest rate's effect on $x_t$.}
+\item[] \textcolor{blue}{Note: $1-\beta\psi_{\pi} > 0 $ if $\quad \psi_{\pi} < 1/\beta$. For $\beta=0.99 \rightarrow \psi_{\pi} < 1.0101$, or for $\beta=0.98 \rightarrow \psi_{\pi} < 1.0204$. So monetary policy can only limit the ``GE effect long-horizon expectations'' by being more passive on inflation.} 
+\end{itemize}
+
+This explains the overshooting despite expectations moving in the right direction (down), and also why overshooting is more pronounced for the output gap. 
+
+The reason it's only happening for constant gain learning is because expectations are updated a lot more in that case.
+
+So this is suggesting that monetary policy wants to be aggressive on inflation in order to keep expectations anchored, but once they are unanchored, then being aggressive on inflation induces a lot of volatility because oscillatory belief updating becomes very volatile, and this emphasizes the counterintuitive GE effects from expectations. 
+
+\newpage
+\section{A note on shocks and anchoring $\blacktriangleleft$} 
+\begin{figure}[h!]
+\includegraphics[scale = \myMediumFigScale]{\myFigPath materials8_gain_IRF_monpol_rho0_psi_pi_1_5}
+\caption{An IRF of the endogenous gain and drift for a monetary policy shock}
+\end{figure}
+
+Not just this figure, but also previous ones of the gain indicate that even if a shock knocks expectations out of being anchored, this doesn't lead to huge deviations in the mean path of the gain or the drift. Partly this happens because this particular shock only unanchors very few times (only once - increasing $\delta$ increases this number), which is why the mean becomes tiny and the CIs are so tight. Note also that it's tough to compute CIs for the inverse gain because when there's no difference between the gain with the shock $\delta$ and without (which is the vast majority of cases), you end up with a bunch of zeros. The inverse doesn't help either because it makes deviations smaller.
 
 %%%%%%%%%%%  IRFs LEARNING
 \newpage
@@ -327,18 +417,6 @@ g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}
 \caption{Moving $\psi_{\pi}$}
 \end{figure}
 
-\newpage
-\subsection{Further analysis plots}	
-
-\begin{figure}[h!]
-\includegraphics[scale = \myMediumFigScale]{\myFigPath materials8_gain_IRF_monpol_rho0_psi_pi_1_5}
-\caption{An IRF of the endogenous gain for a monetary policy shock}
-\end{figure}
-
-\begin{figure}[h!]
-\includegraphics[scale = \myFigScale]{\myFigPath materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5}
-\caption{A constant gain learning IRF for a monetary policy shock}
-\end{figure}
 
 
 \end{document}

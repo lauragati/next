@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 NOV 2019 18:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 NOV 2019 16:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -461,6 +461,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip66
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+
 (/usr/local/texlive/2015/texmf-dist/tex/latex/floatrow/floatrow.sty
 Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
 \c@float@type=\count133
@@ -806,7 +808,7 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 53.
+Package hyperref Info: Option `colorlinks' set `true' on input line 61.
 \c@prop=\count159
 \c@definition=\count160
 \c@lemma=\count161
@@ -815,20 +817,20 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 53.
  (./materials8.aux)
 \openout1 = `materials8.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -900,7 +902,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 108.
+Package hyperref Info: Link coloring ON on input line 116.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -909,21 +911,21 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count170
 )
-LaTeX Info: Redefining \ref on input line 108.
-LaTeX Info: Redefining \pageref on input line 108.
-LaTeX Info: Redefining \nameref on input line 108.
+LaTeX Info: Redefining \ref on input line 116.
+LaTeX Info: Redefining \pageref on input line 116.
+LaTeX Info: Redefining \nameref on input line 116.
 
 (./materials8.out) (./materials8.out)
 \@outlinefile=\write4
 \openout4 = `materials8.out'.
 
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 116.
+LaTeX Font Info:    Try loading font information for U+msa on input line 124.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 116.
+LaTeX Font Info:    Try loading font information for U+msb on input line 124.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -937,19 +939,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 127.
+(hyperref)                removing `math shift' on input line 135.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 127.
+(hyperref)                removing `\rho' on input line 135.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 127.
+(hyperref)                removing `subscript' on input line 135.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 127.
+(hyperref)                removing `math shift' on input line 135.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -958,7 +960,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (34.84163pt too wide) in paragraph at lines 174--174
+Overfull \hbox (34.84163pt too wide) in paragraph at lines 182--182
 [] 
  []
 
@@ -969,10 +971,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3]
-Overfull \hbox (57.88667pt too wide) in paragraph at lines 193--212
-[] 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
@@ -982,267 +980,48 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [4
 
 ]
-<../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png, id=146, 113
+Overfull \hbox (57.88667pt too wide) in paragraph at lines 225--244
+[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5
+
+]
+<../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png, id=176, 113
 8.2525pt x 728.7225pt>
 File: ../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png Graphic
  file (type png)
 
 <use ../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_al
-pha_0_5.png used on input line 218.
+pha_0_5.png used on input line 250.
 (pdftex.def)             Requested size: 250.41632pt x 160.31944pt.
 
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png, id=147, 1175
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png, id=177, 1175
 .39125pt x 728.7225pt>
 File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png Graphic 
 file (type png)
 
 <use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alp
-ha_0_5.png used on input line 219.
+ha_0_5.png used on input line 251.
 (pdftex.def)             Requested size: 258.58687pt x 160.31944pt.
 
-<../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png, id=148, 11
+<../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png, id=178, 11
 38.2525pt x 728.7225pt>
 File: ../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png Graphi
 c file (type png)
 
 <use ../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_a
-lpha_0_5.png used on input line 220.
+lpha_0_5.png used on input line 252.
 (pdftex.def)             Requested size: 250.41632pt x 160.31944pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 224.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 224.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 224.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 224.
-
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png Graphic 
-file (type png)
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alp
-ha_0_5.png used on input line 226.
-(pdftex.def)             Requested size: 211.5613pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png, id=149, 11
-47.28625pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png Graphi
-c file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_a
-lpha_0_5.png used on input line 227.
-(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png, id=150, 11
-31.22626pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
-c file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
-lpha_0_5.png used on input line 228.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png, id=151, 11
-53.30875pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png Graphi
-c file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_a
-lpha_0_5.png used on input line 229.
-(pdftex.def)             Requested size: 207.58661pt x 131.16438pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5 <../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png (PNG copy
-)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png (PNG copy)
-> <../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png (PNG copy
-)>]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[6 <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png (PNG cop
-y)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png (PNG co
-py)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png (PNG c
-opy)>]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 234.
-
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
-c file (type png)
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
-lpha_0_5.png used on input line 236.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png, id=173, 
-1131.22626pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png Grap
-hic file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7
-_alpha_0_5.png used on input line 237.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png, id=174, 
-1131.22626pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png Grap
-hic file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7
-_alpha_0_5.png used on input line 238.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png, id=175, 
-1131.22626pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png Grap
-hic file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7
-_alpha_0_5.png used on input line 239.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7 <../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png (PNG c
-opy)> <../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png (PN
-G copy)> <../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png 
-(PNG copy)>]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 244.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 244.
-
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
-c file (type png)
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
-lpha_0_5.png used on input line 246.
-(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png, id=186, 11
-47.28625pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png Graphi
-c file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
-lpha_0_6.png used on input line 247.
-(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
-
-<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png, id=187, 
-1147.28625pt x 728.7225pt>
-File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png Grap
-hic file (type png)
-
-<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_
-alpha_0_75.png used on input line 248.
-(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[8 <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png (PNG cop
-y)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png (PNG 
-copy)>]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 254.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 254.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 254.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 254.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 254.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -1254,61 +1033,423 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 256.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 256.
 
 
-<../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png, id=196, 1152.305pt x 6
-63.47874pt>
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 256.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\blacktriangleleft' on input line 256.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 256.
+
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png Graphic 
+file (type png)
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alp
+ha_0_5.png used on input line 262.
+(pdftex.def)             Requested size: 211.5613pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png, id=180, 11
+47.28625pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png Graphi
+c file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_a
+lpha_0_5.png used on input line 263.
+(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png, id=181, 11
+31.22626pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
+c file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
+lpha_0_5.png used on input line 264.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png, id=182, 11
+53.30875pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png Graphi
+c file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_a
+lpha_0_5.png used on input line 265.
+(pdftex.def)             Requested size: 207.58661pt x 131.16438pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6 <../figures/materials8_IRFs_RE_natrate_rho_0_rho_i_0_alpha_0_5.png (PNG copy
+)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_alpha_0_5.png (PNG copy)
+> <../figures/materials8_IRFs_RE_costpush_rho_0_rho_i_0_alpha_0_5.png (PNG copy
+)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7 <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_6_alpha_0_5.png (PNG cop
+y)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png (PNG co
+py)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_9_alpha_0_5.png (PNG c
+opy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 272.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 272.
+
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
+c file (type png)
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
+lpha_0_5.png used on input line 274.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png, id=206, 
+1131.22626pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7
+_alpha_0_5.png used on input line 275.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png, id=207, 
+1131.22626pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7
+_alpha_0_5.png used on input line 276.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png, id=208, 
+1131.22626pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7
+_alpha_0_5.png used on input line 277.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8 <../figures/materials8_IRFs_RE_monpol_rho_0_6_rho_i_0_7_alpha_0_5.png (PNG c
+opy)> <../figures/materials8_IRFs_RE_monpol_rho_0_7_rho_i_0_7_alpha_0_5.png (PN
+G copy)> <../figures/materials8_IRFs_RE_monpol_rho_0_9_rho_i_0_7_alpha_0_5.png 
+(PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 282.
+
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png Graphi
+c file (type png)
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
+lpha_0_5.png used on input line 284.
+(pdftex.def)             Requested size: 203.61194pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png, id=218, 11
+47.28625pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png Graphi
+c file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_a
+lpha_0_6.png used on input line 285.
+(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
+
+<../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png, id=219, 
+1147.28625pt x 728.7225pt>
+File: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_
+alpha_0_75.png used on input line 286.
+(pdftex.def)             Requested size: 206.50261pt x 131.16438pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_7_alpha_0_6.png (PNG cop
+y)> <../figures/materials8_IRFs_RE_monpol_rho_0_rho_i_0_78_alpha_0_75.png (PNG 
+copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 291.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\blacktriangleleft' on input line 291.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 291.
+
+
+<../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png, id=229, 1123.1962
+4pt x 636.3775pt>
+File: ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png Graphic file 
+(type png)
+
+<use ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_
+5.png used on input line 297.
+(pdftex.def)             Requested size: 247.10393pt x 140.00348pt.
+
+<../figures/materials8_IRFs_dgain_fcsts_me_monpol_rho0_psi_pi_1_5.png, id=230, 
+1187.43625pt x 591.20876pt>
+File: ../figures/materials8_IRFs_dgain_fcsts_me_monpol_rho0_psi_pi_1_5.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_dgain_fcsts_me_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_dgain_fcsts_me_monpol_rho0_
+psi_pi_1_5.png used on input line 303.
+(pdftex.def)             Requested size: 213.7293pt x 106.41298pt.
+
+<../figures/materials8_IRFs_cgain_fcsts_me_monpol_rho0_psi_pi_1_5.png, id=231, 
+1187.43625pt x 591.20876pt>
+File: ../figures/materials8_IRFs_cgain_fcsts_me_monpol_rho0_psi_pi_1_5.png Grap
+hic file (type png)
+
+<use ../figures/materials8_IRFs_cgain_fcsts_me_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_cgain_fcsts_me_monpol_rho0_
+psi_pi_1_5.png used on input line 304.
+(pdftex.def)             Requested size: 213.7293pt x 106.41298pt.
+
+<../figures/materials8_IRFs_LH_monpol_rho0_psi_pi_1_5.png, id=232, 1187.43625pt
+ x 582.175pt>
+File: ../figures/materials8_IRFs_LH_monpol_rho0_psi_pi_1_5.png Graphic file (ty
+pe png)
+ <use ../figures/materials8_IRFs_LH_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials8_IRFs_LH_monpol_rho0_psi_pi_1_5.p
+ng used on input line 309.
+(pdftex.def)             Requested size: 261.23679pt x 128.07889pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10 <../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png (PNG copy)> <.
+./figures/materials8_IRFs_dgain_fcsts_me_monpol_rho0_psi_pi_1_5.png (PNG copy)>
+ <../figures/materials8_IRFs_cgain_fcsts_me_monpol_rho0_psi_pi_1_5.png (PNG cop
+y)> <../figures/materials8_IRFs_LH_monpol_rho0_psi_pi_1_5.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 314.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\blacktriangleleft' on input line 314.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 314.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 322.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 322.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 334.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\blacktriangleleft' on input line 334.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 334.
+
+
+<../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png, id=250, 1165.35374p
+t x 642.4pt>
+File: ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png Graphic file (t
+ype png)
+ <use ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png>
+Package pdftex.def Info: ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.
+png used on input line 336.
+(pdftex.def)             Requested size: 291.33772pt x 160.59961pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 344.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 344.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 344.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 344.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 344.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 346.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\rho' on input line 346.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 346.
+
+
+<../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png, id=256, 1152.305pt x 5
+78.16pt>
 File: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png Graphic file (type
  png)
  <use ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png
- used on input line 258.
-(pdftex.def)             Requested size: 288.07555pt x 165.86928pt.
+ used on input line 348.
+(pdftex.def)             Requested size: 288.07555pt x 144.53964pt.
 
-<../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png, id=197, 1183.42125pt x
+<../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png, id=257, 1183.42125pt x
  685.56125pt>
 File: ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png Graphic file (type
  png)
  <use ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png
- used on input line 259.
+ used on input line 349.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_natrate_rho0_6_psi_pi_1_5.png, id=198, 1129.21875pt
- x 663.47874pt>
+<../figures/materials8_IRFs_natrate_rho0_6_psi_pi_1_5.png, id=258, 1114.1625pt 
+x 578.16pt>
 File: ../figures/materials8_IRFs_natrate_rho0_6_psi_pi_1_5.png Graphic file (ty
 pe png)
  <use ../figures/materials8_IRFs_natrate_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_6_psi_pi_1_5.p
-ng used on input line 260.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+ng used on input line 350.
+(pdftex.def)             Requested size: 278.53995pt x 144.53964pt.
 
-<../figures/materials8_gain_natrate_rho0_6_psi_pi_1_5.png, id=199, 1183.42125pt
+<../figures/materials8_gain_natrate_rho0_6_psi_pi_1_5.png, id=259, 1183.42125pt
  x 685.56125pt>
 File: ../figures/materials8_gain_natrate_rho0_6_psi_pi_1_5.png Graphic file (ty
 pe png)
  <use ../figures/materials8_gain_natrate_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_6_psi_pi_1_5.p
-ng used on input line 261.
+ng used on input line 351.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_natrate_rho0_9_psi_pi_1_5.png, id=200, 1129.21875pt
- x 663.47874pt>
+<../figures/materials8_IRFs_natrate_rho0_9_psi_pi_1_5.png, id=260, 1114.1625pt 
+x 578.16pt>
 File: ../figures/materials8_IRFs_natrate_rho0_9_psi_pi_1_5.png Graphic file (ty
 pe png)
  <use ../figures/materials8_IRFs_natrate_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_9_psi_pi_1_5.p
-ng used on input line 262.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+ng used on input line 352.
+(pdftex.def)             Requested size: 278.53995pt x 144.53964pt.
 
-<../figures/materials8_gain_natrate_rho0_9_psi_pi_1_5.png, id=201, 1183.42125pt
+<../figures/materials8_gain_natrate_rho0_9_psi_pi_1_5.png, id=261, 1183.42125pt
  x 685.56125pt>
 File: ../figures/materials8_gain_natrate_rho0_9_psi_pi_1_5.png Graphic file (ty
 pe png)
  <use ../figures/materials8_gain_natrate_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_9_psi_pi_1_5.p
-ng used on input line 263.
+ng used on input line 353.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1317,81 +1458,81 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9 <../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figu
-res/materials8_gain_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materia
-ls8_IRFs_natrate_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials8_gain_
-natrate_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials8_IRFs_natrate_r
-ho0_9_psi_pi_1_5.png (PNG copy)> <../figures/materials8_gain_natrate_rho0_9_psi
-_pi_1_5.png (PNG copy)>]
+[13 <../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../fig
+ures/materials8_gain_natrate_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materi
+als8_IRFs_natrate_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials8_gain
+_natrate_rho0_6_psi_pi_1_5.png (PNG copy)> <../figures/materials8_IRFs_natrate_
+rho0_9_psi_pi_1_5.png (PNG copy)> <../figures/materials8_gain_natrate_rho0_9_ps
+i_pi_1_5.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 268.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 268.
+(hyperref)                removing `math shift' on input line 358.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 268.
+(hyperref)                removing `\psi' on input line 358.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 268.
+(hyperref)                removing `subscript' on input line 358.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 268.
+(hyperref)                removing `\pi' on input line 358.
 
 
-<../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png, id=213, 1130.2225pt x 
-663.47874pt>
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 358.
+
+
+<../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png, id=274, 1130.2225pt x 
+578.16pt>
 File: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png Graphic file (type
  png)
  <use ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png
- used on input line 270.
-(pdftex.def)             Requested size: 282.55493pt x 165.86928pt.
+ used on input line 360.
+(pdftex.def)             Requested size: 282.55493pt x 144.53964pt.
 
-<../figures/materials8_gain_natrate_rho0_psi_pi_1_1.png, id=214, 1183.42125pt x
+<../figures/materials8_gain_natrate_rho0_psi_pi_1_1.png, id=275, 1183.42125pt x
  685.56125pt>
 File: ../figures/materials8_gain_natrate_rho0_psi_pi_1_1.png Graphic file (type
  png)
  <use ../figures/materials8_gain_natrate_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_psi_pi_1_1.png
- used on input line 271.
+ used on input line 361.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 File: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png Graphic file (type
  png)
 
 <use ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_psi_pi_1_5.png
- used on input line 272.
-(pdftex.def)             Requested size: 288.07555pt x 165.86928pt.
+ used on input line 362.
+(pdftex.def)             Requested size: 288.07555pt x 144.53964pt.
 File: ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png Graphic file (type
  png)
 
 <use ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_psi_pi_1_5.png
- used on input line 273.
+ used on input line 363.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_natrate_rho0_psi_pi_2.png, id=215, 1152.305pt x 663
-.47874pt>
+<../figures/materials8_IRFs_natrate_rho0_psi_pi_2.png, id=276, 1152.305pt x 578
+.16pt>
 File: ../figures/materials8_IRFs_natrate_rho0_psi_pi_2.png Graphic file (type p
 ng)
  <use ../figures/materials8_IRFs_natrate_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_natrate_rho0_psi_pi_2.png u
-sed on input line 274.
-(pdftex.def)             Requested size: 288.07555pt x 165.86928pt.
+sed on input line 364.
+(pdftex.def)             Requested size: 288.07555pt x 144.53964pt.
 
-<../figures/materials8_gain_natrate_rho0_psi_pi_2.png, id=216, 1183.42125pt x 6
+<../figures/materials8_gain_natrate_rho0_psi_pi_2.png, id=277, 1183.42125pt x 6
 85.56125pt>
 File: ../figures/materials8_gain_natrate_rho0_psi_pi_2.png Graphic file (type p
 ng)
  <use ../figures/materials8_gain_natrate_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_gain_natrate_rho0_psi_pi_2.png u
-sed on input line 275.
+sed on input line 365.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1400,75 +1541,75 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../fig
+[14 <../figures/materials8_IRFs_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../fig
 ures/materials8_gain_natrate_rho0_psi_pi_1_1.png (PNG copy)> <../figures/materi
 als8_IRFs_natrate_rho0_psi_pi_2.png (PNG copy)> <../figures/materials8_gain_nat
 rate_rho0_psi_pi_2.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 281.
+(hyperref)                removing `math shift' on input line 371.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 281.
+(hyperref)                removing `\rho' on input line 371.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 281.
+(hyperref)                removing `math shift' on input line 371.
 
 
-<../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png, id=228, 1129.21875pt x 
-663.47874pt>
+<../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png, id=289, 1129.21875pt x 
+578.16pt>
 File: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png Graphic file (type 
 png)
  <use ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png 
-used on input line 283.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+used on input line 373.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png, id=229, 1183.42125pt x 
+<../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png, id=290, 1183.42125pt x 
 685.56125pt>
 File: ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png Graphic file (type 
 png)
  <use ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png 
-used on input line 284.
+used on input line 374.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_monpol_rho0_6_psi_pi_1_5.png, id=230, 1129.21875pt 
-x 663.47874pt>
+<../figures/materials8_IRFs_monpol_rho0_6_psi_pi_1_5.png, id=291, 1129.21875pt 
+x 578.16pt>
 File: ../figures/materials8_IRFs_monpol_rho0_6_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_IRFs_monpol_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_6_psi_pi_1_5.pn
-g used on input line 285.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+g used on input line 375.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_monpol_rho0_6_psi_pi_1_5.png, id=231, 1183.42125pt 
+<../figures/materials8_gain_monpol_rho0_6_psi_pi_1_5.png, id=292, 1183.42125pt 
 x 685.56125pt>
 File: ../figures/materials8_gain_monpol_rho0_6_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_gain_monpol_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_6_psi_pi_1_5.pn
-g used on input line 286.
+g used on input line 376.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_monpol_rho0_9_psi_pi_1_5.png, id=232, 1129.21875pt 
-x 663.47874pt>
+<../figures/materials8_IRFs_monpol_rho0_9_psi_pi_1_5.png, id=293, 1129.21875pt 
+x 578.16pt>
 File: ../figures/materials8_IRFs_monpol_rho0_9_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_IRFs_monpol_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_9_psi_pi_1_5.pn
-g used on input line 287.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+g used on input line 377.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.png, id=233, 1183.42125pt 
+<../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.png, id=294, 1183.42125pt 
 x 685.56125pt>
 File: ../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.pn
-g used on input line 288.
+g used on input line 378.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1477,7 +1618,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11
+[15
 
  <../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figures
 /materials8_gain_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materials8_
@@ -1487,73 +1628,73 @@ si_pi_1_5.png (PNG copy)> <../figures/materials8_gain_monpol_rho0_9_psi_pi_1_5.
 png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 293.
+(hyperref)                removing `math shift' on input line 383.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 293.
+(hyperref)                removing `\psi' on input line 383.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 293.
+(hyperref)                removing `subscript' on input line 383.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 293.
+(hyperref)                removing `\pi' on input line 383.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 293.
+(hyperref)                removing `math shift' on input line 383.
 
 
-<../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png, id=245, 1129.21875pt x 
-663.47874pt>
+<../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png, id=307, 1129.21875pt x 
+578.16pt>
 File: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png Graphic file (type 
 png)
  <use ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png 
-used on input line 295.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+used on input line 385.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_monpol_rho0_psi_pi_1_1.png, id=246, 1183.42125pt x 
+<../figures/materials8_gain_monpol_rho0_psi_pi_1_1.png, id=308, 1183.42125pt x 
 685.56125pt>
 File: ../figures/materials8_gain_monpol_rho0_psi_pi_1_1.png Graphic file (type 
 png)
  <use ../figures/materials8_gain_monpol_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_psi_pi_1_1.png 
-used on input line 296.
+used on input line 386.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 File: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png Graphic file (type 
 png)
 
 <use ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_psi_pi_1_5.png 
-used on input line 297.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+used on input line 387.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 File: ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png Graphic file (type 
 png)
 
 <use ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_psi_pi_1_5.png 
-used on input line 298.
+used on input line 388.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_monpol_rho0_psi_pi_2.png, id=247, 1129.21875pt x 66
-3.47874pt>
+<../figures/materials8_IRFs_monpol_rho0_psi_pi_2.png, id=309, 1129.21875pt x 57
+8.16pt>
 File: ../figures/materials8_IRFs_monpol_rho0_psi_pi_2.png Graphic file (type pn
 g)
  <use ../figures/materials8_IRFs_monpol_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_monpol_rho0_psi_pi_2.png us
-ed on input line 299.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+ed on input line 389.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_monpol_rho0_psi_pi_2.png, id=248, 1183.42125pt x 68
+<../figures/materials8_gain_monpol_rho0_psi_pi_2.png, id=310, 1183.42125pt x 68
 5.56125pt>
 File: ../figures/materials8_gain_monpol_rho0_psi_pi_2.png Graphic file (type pn
 g)
  <use ../figures/materials8_gain_monpol_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_gain_monpol_rho0_psi_pi_2.png us
-ed on input line 300.
+ed on input line 390.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1562,78 +1703,77 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figu
+[16 <../figures/materials8_IRFs_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figu
 res/materials8_gain_monpol_rho0_psi_pi_1_1.png (PNG copy)> <../figures/material
 s8_IRFs_monpol_rho0_psi_pi_2.png (PNG copy)> <../figures/materials8_gain_monpol
 _rho0_psi_pi_2.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 307.
+(hyperref)                removing `math shift' on input line 397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 307.
+(hyperref)                removing `\rho' on input line 397.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 307.
+(hyperref)                removing `math shift' on input line 397.
 
 
-<../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png, id=260, 1108.14pt x 6
-63.47874pt>
+<../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png, id=322, 1108.14pt x 5
+78.16pt>
 File: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.pn
-g used on input line 309.
-(pdftex.def)             Requested size: 277.03432pt x 165.86928pt.
+g used on input line 399.
+(pdftex.def)             Requested size: 277.03432pt x 144.53964pt.
 
-<../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png, id=261, 1183.42125pt 
+<../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png, id=323, 1183.42125pt 
 x 685.56125pt>
 File: ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png Graphic file (typ
 e png)
  <use ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.pn
-g used on input line 310.
+g used on input line 400.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_costpush_rho0_6_psi_pi_1_5.png, id=262, 1092.08pt x
- 663.47874pt>
+<../figures/materials8_IRFs_costpush_rho0_6_psi_pi_1_5.png, id=324, 1092.08pt x
+ 578.16pt>
 File: ../figures/materials8_IRFs_costpush_rho0_6_psi_pi_1_5.png Graphic file (t
 ype png)
  <use ../figures/materials8_IRFs_costpush_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_6_psi_pi_1_5.
-png used on input line 311.
-(pdftex.def)             Requested size: 273.01933pt x 165.86928pt.
+png used on input line 401.
+(pdftex.def)             Requested size: 273.01933pt x 144.53964pt.
 
-<../figures/materials8_gain_costpush_rho0_6_psi_pi_1_5.png, id=263, 1183.42125p
+<../figures/materials8_gain_costpush_rho0_6_psi_pi_1_5.png, id=325, 1183.42125p
 t x 685.56125pt>
 File: ../figures/materials8_gain_costpush_rho0_6_psi_pi_1_5.png Graphic file (t
 ype png)
 
 <use ../figures/materials8_gain_costpush_rho0_6_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_6_psi_pi_1_5.
-png used on input line 312.
+png used on input line 402.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.png, id=264, 1129.21875p
-t x 663.47874pt>
+<../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.png, id=326, 1129.21875p
+t x 578.16pt>
 File: ../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.png Graphic file (t
 ype png)
-
-<use ../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.png>
+ <use ../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_9_psi_pi_1_5.
-png used on input line 313.
-(pdftex.def)             Requested size: 282.304pt x 165.86928pt.
+png used on input line 403.
+(pdftex.def)             Requested size: 282.304pt x 144.53964pt.
 
-<../figures/materials8_gain_costpush_rho0_9_psi_pi_1_5.png, id=265, 1183.42125p
+<../figures/materials8_gain_costpush_rho0_9_psi_pi_1_5.png, id=327, 1183.42125p
 t x 685.56125pt>
 File: ../figures/materials8_gain_costpush_rho0_9_psi_pi_1_5.png Graphic file (t
 ype png)
 
 <use ../figures/materials8_gain_costpush_rho0_9_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_9_psi_pi_1_5.
-png used on input line 314.
+png used on input line 404.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1642,7 +1782,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13
+[17
 
  <../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../figur
 es/materials8_gain_costpush_rho0_psi_pi_1_5.png (PNG copy)> <../figures/materia
@@ -1652,73 +1792,73 @@ h_rho0_9_psi_pi_1_5.png (PNG copy)> <../figures/materials8_gain_costpush_rho0_9
 _psi_pi_1_5.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 319.
+(hyperref)                removing `math shift' on input line 409.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\psi' on input line 319.
+(hyperref)                removing `\psi' on input line 409.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 319.
+(hyperref)                removing `subscript' on input line 409.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 319.
+(hyperref)                removing `\pi' on input line 409.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 319.
+(hyperref)                removing `math shift' on input line 409.
 
 
-<../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png, id=278, 1108.14pt x 6
-63.47874pt>
+<../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png, id=339, 1108.14pt x 5
+78.16pt>
 File: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png Graphic file (typ
 e png)
  <use ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.pn
-g used on input line 321.
-(pdftex.def)             Requested size: 277.03432pt x 165.86928pt.
+g used on input line 411.
+(pdftex.def)             Requested size: 277.03432pt x 144.53964pt.
 
-<../figures/materials8_gain_costpush_rho0_psi_pi_1_1.png, id=279, 1183.42125pt 
+<../figures/materials8_gain_costpush_rho0_psi_pi_1_1.png, id=340, 1183.42125pt 
 x 685.56125pt>
 File: ../figures/materials8_gain_costpush_rho0_psi_pi_1_1.png Graphic file (typ
 e png)
  <use ../figures/materials8_gain_costpush_rho0_psi_pi_1_1.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_psi_pi_1_1.pn
-g used on input line 322.
+g used on input line 412.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 File: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png Graphic file (typ
 e png)
 
 <use ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_psi_pi_1_5.pn
-g used on input line 323.
-(pdftex.def)             Requested size: 277.03432pt x 165.86928pt.
+g used on input line 413.
+(pdftex.def)             Requested size: 277.03432pt x 144.53964pt.
 File: ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png Graphic file (typ
 e png)
 
 <use ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_psi_pi_1_5.pn
-g used on input line 324.
+g used on input line 414.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
-<../figures/materials8_IRFs_costpush_rho0_psi_pi_2.png, id=280, 1107.13625pt x 
-663.47874pt>
+<../figures/materials8_IRFs_costpush_rho0_psi_pi_2.png, id=341, 1092.08pt x 578
+.16pt>
 File: ../figures/materials8_IRFs_costpush_rho0_psi_pi_2.png Graphic file (type 
 png)
  <use ../figures/materials8_IRFs_costpush_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_IRFs_costpush_rho0_psi_pi_2.png 
-used on input line 325.
-(pdftex.def)             Requested size: 276.78339pt x 165.86928pt.
+used on input line 415.
+(pdftex.def)             Requested size: 273.01933pt x 144.53964pt.
 
-<../figures/materials8_gain_costpush_rho0_psi_pi_2.png, id=281, 1183.42125pt x 
+<../figures/materials8_gain_costpush_rho0_psi_pi_2.png, id=342, 1183.42125pt x 
 685.56125pt>
 File: ../figures/materials8_gain_costpush_rho0_psi_pi_2.png Graphic file (type 
 png)
  <use ../figures/materials8_gain_costpush_rho0_psi_pi_2.png>
 Package pdftex.def Info: ../figures/materials8_gain_costpush_rho0_psi_pi_2.png 
-used on input line 326.
+used on input line 416.
 (pdftex.def)             Requested size: 189.35126pt x 109.69203pt.
 
 
@@ -1727,55 +1867,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14 <../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../fi
+[18 <../figures/materials8_IRFs_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../fi
 gures/materials8_gain_costpush_rho0_psi_pi_1_1.png (PNG copy)> <../figures/mate
 rials8_IRFs_costpush_rho0_psi_pi_2.png (PNG copy)> <../figures/materials8_gain_
 costpush_rho0_psi_pi_2.png (PNG copy)>]
-<../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png, id=293, 1150.2975pt
- x 686.565pt>
-File: ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png Graphic file (t
-ype png)
- <use ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png>
-Package pdftex.def Info: ../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.
-png used on input line 334.
-(pdftex.def)             Requested size: 287.57367pt x 171.64082pt.
-
-<../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png, id=294, 1129.2187
-5pt x 722.7pt>
-File: ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png Graphic file 
-(type png)
-
-<use ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png>
-Package pdftex.def Info: ../figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_
-5.png used on input line 339.
-(pdftex.def)             Requested size: 338.76823pt x 216.81166pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[15 <../figures/materials8_gain_IRF_monpol_rho0_psi_pi_1_5.png (PNG copy)> <../
-figures/materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 344.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 344.
-
-(./materials8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 344.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 344.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 422.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 422.
+ (./materials8.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 422.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 422.
 Package rerunfilecheck Info: File `materials8.out' has not changed.
-(rerunfilecheck)             Checksum: 5386D84A67CEACF839EAA43F937CB869;1273.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 344.
+(rerunfilecheck)             Checksum: B99651A9A9F17E8A28BF3D7D50397FAE;1486.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 422.
  ) 
 Here is how much of TeX's memory you used:
- 20309 strings out of 493089
- 375967 string characters out of 6134842
- 457762 words of memory out of 5000000
- 23259 multiletter control sequences out of 15000+600000
- 16151 words of font info for 63 fonts, out of 8000000 for 9000
+ 20369 strings out of 493089
+ 377577 string characters out of 6134842
+ 457850 words of memory out of 5000000
+ 23290 multiletter control sequences out of 15000+600000
+ 16497 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,22n,54p,391b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,54p,735b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -1792,11 +1904,13 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials8.pdf (15 pages, 2748160 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials8.pdf (18 pages, 2827161 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
- 300 compressed objects within 3 object streams
- 118 named destinations out of 1000 (max. 500000)
- 356 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 354 compressed objects within 4 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 395 words of extra memory for PDF output out of 10000 (max. 10000000)
 
