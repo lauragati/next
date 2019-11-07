@@ -109,9 +109,11 @@ rho_i_val_raw = num2str(rho_i);
 rho_i_val = replace(rho_i_val_raw,'.','_');
 alph_val_raw = num2str(alph);
 alph_val = replace(alph_val_raw,'.','_');
+sig_val_raw = num2str(sig);
+sig_val = replace(sig_val_raw,'.','_');
 
-current_param_values = [rho, rho_i, alph, kapp, psi_pi]
-current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}']
+current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig]
+current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma']
 % Solve RE model
 % First old version w/o int rate smoothing
 % [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -383,7 +385,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         %         end
     end
     if print_figs ==1
-        figname = [this_code, '_', 'IRFs_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'IRFs_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -413,7 +415,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
     legend('boxoff')
     title('Inverse gain')
     if print_figs ==1
-        figname = [this_code, '_', 'gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'gain_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -454,7 +456,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
     title({'Drift (median w/',' 99% CI)'}) % 2-line title with a cell array
     
     if print_figs ==1
-        figname = [this_code, '_', 'gain_IRF_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'gain_IRF_',shocknames{s}, '_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -496,7 +498,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         grid minor
     end
     if print_figs ==1
-        figname = [this_code, '_', 'IRFs_cgain_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'IRFs_cgain_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -518,7 +520,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
     legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
     legend('boxoff')
      if print_figs ==1
-        figname = [this_code, '_', 'IRFs_cgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'IRFs_cgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -540,7 +542,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
     legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
     legend('boxoff')
      if print_figs ==1
-        figname = [this_code, '_', 'IRFs_dgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'IRFs_dgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -576,7 +578,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
     legend('boxoff')
     title('fb')
      if print_figs ==1
-        figname = [this_code, '_', 'IRFs_LH_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val]
+        figname = [this_code, '_', 'IRFs_LH_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val]
         cd(figpath)
         export_fig(figname)
         cd(current_dir)
@@ -586,5 +588,5 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
 end
 
 
-disp(['(psi_x, psi_pi, rho)=   ', num2str([psi_x, psi_pi, rho])])
+disp(['(psi_x, psi_pi, rho, sig)=   ', num2str([psi_x, psi_pi, rho, sig])])
 toc

@@ -331,6 +331,18 @@ The reason it's only happening for constant gain learning is because expectation
 So this is suggesting that monetary policy wants to be aggressive on inflation in order to keep expectations anchored, but once they are unanchored, then being aggressive on inflation induces a lot of volatility because oscillatory belief updating becomes very volatile, and this emphasizes the counterintuitive GE effects from expectations. 
 
 \newpage
+\section{Decreasing $\sigma$ $\blacktriangleleft$} 
+\begin{figure}[h!]
+\subfigure[$\sigma=1$]{\includegraphics[scale = \mySmallFigScale]{\myFigPath materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5_sig_1}}
+\subfigure[$\sigma=0.5$]{\includegraphics[scale = \mySmallFigScale]{\myFigPath materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5_sig_0_5}}
+\subfigure[$\sigma=0.05$]{\includegraphics[scale = \mySmallFigScale]{\myFigPath materials8_IRFs_cgain_monpol_rho0_psi_pi_1_5_sig_0_05}}
+\caption{A constant gain learning IRF for a monetary policy shock}
+\label{gain_irf}
+\end{figure}
+
+Note: if I set $\beta = 0.98$ instead of 0.99, I can get rid of the period 2 spike in $x$. 
+
+\newpage
 \section{A note on shocks and anchoring $\blacktriangleleft$} 
 \begin{figure}[h!]
 \includegraphics[scale = \myMediumFigScale]{\myFigPath materials8_gain_IRF_monpol_rho0_psi_pi_1_5}
