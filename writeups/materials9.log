@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 NOV 2019 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 NOV 2019 17:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1086,25 +1086,89 @@ Package pdftex.def Info: ../figures/materials9_RIR_F_c_monpol_rho0_psi_pi_1_5_s
 ig_1_dt_25.png used on input line 260.
 (pdftex.def)             Requested size: 169.43646pt x 107.12238pt.
 
-<../figures/placeholder.png, id=113, 1165.35374pt x 727.71875pt>
-File: ../figures/placeholder.png Graphic file (type png)
+<../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=113, 
+1106.1325pt x 668.4975pt>
+File: ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Grap
+hic file (type png)
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 266.
-(pdftex.def)             Requested size: 139.83641pt x 87.32248pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 267.
-(pdftex.def)             Requested size: 139.83641pt x 87.32248pt.
-File: ../figures/placeholder.png Graphic file (type png)
+<use ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_
+sig_1_dt_5.png used on input line 266.
+(pdftex.def)             Requested size: 176.98482pt x 106.96178pt.
 
-<use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 268.
-(pdftex.def)             Requested size: 139.83641pt x 87.32248pt.
-File: ../figures/placeholder.png Graphic file (type png)
- <use ../figures/placeholder.png>
-Package pdftex.def Info: ../figures/placeholder.png used on input line 269.
-(pdftex.def)             Requested size: 139.83641pt x 87.32248pt.
+<../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=114, 
+1106.1325pt x 669.50125pt>
+File: ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Grap
+hic file (type png)
+
+<use ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_
+sig_1_dt_5.png used on input line 267.
+(pdftex.def)             Requested size: 176.98482pt x 107.12238pt.
+
+<../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=115,
+ 1106.1325pt x 668.4975pt>
+File: ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png Gra
+phic file (type png)
+
+<use ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_
+sig_1_dt_25.png used on input line 268.
+(pdftex.def)             Requested size: 176.98482pt x 106.96178pt.
+
+<../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=116,
+ 1106.1325pt x 669.50125pt>
+File: ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png Gra
+phic file (type png)
+
+<use ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_
+sig_1_dt_25.png used on input line 269.
+(pdftex.def)             Requested size: 176.98482pt x 107.12238pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=117
+, 1121.18875pt x 617.30624pt>
+File: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Gr
+aphic file (type png)
+
+<use ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
+Package pdftex.def Info: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_
+5_sig_1_dt_5.png used on input line 274.
+(pdftex.def)             Requested size: 179.39386pt x 98.77101pt.
+
+<../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=11
+8, 1099.10625pt x 617.30624pt>
+File: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png G
+raphic file (type png)
+
+<use ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1
+_5_sig_1_dt_5.png used on input line 275.
+(pdftex.def)             Requested size: 175.86058pt x 98.77101pt.
+
+<../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=11
+9, 1121.18875pt x 617.30624pt>
+File: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png G
+raphic file (type png)
+
+<use ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_
+5_sig_1_dt_25.png used on input line 276.
+(pdftex.def)             Requested size: 179.39386pt x 98.77101pt.
+
+<../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=1
+20, 1099.10625pt x 617.30624pt>
+File: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png 
+Graphic file (type png)
+
+<use ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1
+_5_sig_1_dt_25.png used on input line 277.
+(pdftex.def)             Requested size: 175.86058pt x 98.77101pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1124,7 +1188,7 @@ ng (PNG copy)> <../figures/materials9_RIR_F_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5
 .png (PNG copy)> <../figures/materials9_RIR_F_d_monpol_rho0_psi_pi_1_5_sig_1_dt
 _25.png (PNG copy)> <../figures/materials9_RIR_F_c_monpol_rho0_psi_pi_1_5_sig_1
 _dt_25.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 290.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 297.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1132,20 +1196,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7 <../figures/placeholder.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 290.
+[7 <../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png (PNG c
+opy)> <../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png (PN
+G copy)> <../figures/materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png
+ (PNG copy)> <../figures/materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25
+.png (PNG copy)> <../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1
+_dt_5.png (PNG copy)> <../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5
+_sig_1_dt_5.png (PNG copy)> <../figures/materials9_RIR_F_both_monpol_rho0_psi_p
+i_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials9_RIR_FE_both_monpol_rho
+0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 297.
  (./materials9.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 290.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 290.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 297.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 297.
 Package rerunfilecheck Info: File `materials9.out' has not changed.
-(rerunfilecheck)             Checksum: 57ED2407791E3DD27254698EF494EBA9;388.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 290.
+(rerunfilecheck)             Checksum: 673EBB8884643EF00A6577BD069ED1B2;391.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 297.
  ) 
 Here is how much of TeX's memory you used:
- 20071 strings out of 493089
- 365185 string characters out of 6134842
+ 20111 strings out of 493089
+ 367970 string characters out of 6134842
  457761 words of memory out of 5000000
- 23112 multiletter control sequences out of 15000+600000
+ 23140 multiletter control sequences out of 15000+600000
  16190 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,54p,717b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1168,10 +1240,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials9.pdf (7 pages, 684647 bytes).
+Output written on materials9.pdf (7 pages, 1046139 bytes).
 PDF statistics:
- 217 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 98 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 230 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

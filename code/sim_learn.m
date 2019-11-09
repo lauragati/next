@@ -10,7 +10,7 @@
 % anchored: % 1 denotes anchored, 0 denotes unanchored when shock hits
 % 19 Oct 2019
 
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, shock, diff,pibar_seq, k, anchored_when_shock] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, dgain_at50, shock, diff,pibar_seq, k, anchored_when_shock] = sim_learn(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, setp,H, anal, constant, gain, criterion, free, dt, x0)
 if nargin < 18 %no shock specified
     dt = 0;
     x0 = 0;
@@ -48,6 +48,7 @@ evening_fcst = nan(T,1);
 morning_fcst = nan(T,1);
 FA = nan(ny,T);
 FB = nan(ny,T);
+FEt_1 = nan(T,1); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 %Simulate, with learning
 for t = 1:T-1
     
@@ -88,8 +89,8 @@ for t = 1:T-1
             elseif criterion == 2 % CUSUM
                 % Cusum doesn't depend on P or n, so we need no difference
                 % between free or not.
-                f = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % short-run FE
-                [kt, om, thet] = fk_cusum(param,k(:,t-1),omt_1, thett_1,f);
+                fe = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % short-run FE
+                [kt, om, thet] = fk_cusum(param,k(:,t-1),omt_1, thett_1,fe);
             end
             k(:,t) = kt;
         elseif gain==3
@@ -97,6 +98,7 @@ for t = 1:T-1
         end
         
         morning_fcst(t) = pibar + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
+        FEt_1(t) = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % yesterday evening's forecast error, realized today
         pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
         evening_fcst(t) = pibar + b1*xsim(:,t); % today's evening's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^e)
         % check convergence
@@ -107,7 +109,7 @@ for t = 1:T-1
     %Simulate transition with shock
     %%% here is the addition of the impulse
     if t+1==dt
-%         disp(['shock imposed at ', num2str(dt)])
+        %         disp(['shock imposed at ', num2str(dt)])
         % check if anchored or not when shock hits
         if k(:,t) == gbar^(-1)
             anchored_when_shock = 0;
@@ -125,6 +127,13 @@ for t = 1:T-1
     %%% update CUSUM parameters
     omt_1 = om;
     thett_1 = thet;
+    
+    %%% check value of decreasing gain after 50 periods
+    if gain==1
+        dgain_at50 = k(:,50);
+    else
+        dgain_at50 =nan;
+    end
 end
 
 %Last period observables.
