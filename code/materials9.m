@@ -1,10 +1,7 @@
 % materials 8
-% pretty much a copy of materials7 - i just want to be able to compare
-% figures.
 % Goals:
-% 1. understand how to get i to go up on impact in RE
-% 2. understand learning responses using expectation responses
-% 1 Nov 2019
+% 1. understand overshooting better - constant vs decreasing gain
+% 8 Nov 2019
 clearvars
 close all
 clc
@@ -32,7 +29,7 @@ addpath(datapath)
 this_code = mfilename;
 
 % Variable stuff ---
-print_figs    = 0;
+print_figs    = 1;
 do_old_plots  = 0;
 if print_figs ==1
     output_table  = 1;
@@ -137,18 +134,24 @@ critCUSUM=2;
 free=1; % use versions of the code that are n-free (use hx instead of P)
 not_free=0;
 
-
-
 % Params specific to this cross-section exercise
-N = 10; % size of cross-section
+N = 500; % size of cross-section
 dt_vals = [5,25]; % time of imposing innovation
 d = 1; % the innovation, delta
+h = 10; % h-period IRFs
+nf = 4; % number of fcsts (morning, evening, fa and fb)
 Y_d = zeros(ny,T,N); % the unshocked observables  (ny x length of sim x size of cross-section)
-Y_c = zeros(ny,T,N); 
-F_d = zeros(4,T,N); % unshocked forecasts in this order: morning, evening, Fa, Fb
-F_c = zeros(4,T,N);
+Y_c = zeros(ny,T,N);
+F_d = zeros(nf,T,N); % unshocked forecasts in this order: morning, evening, Fa, Fb
+F_c = zeros(nf,T,N);
 YS_d = zeros(ny,T,N,2); % the shocked observables. The 4th dim reflects the different timing of imposing the shock.
-YS_c = zeros(ny,T,N,2); 
+YS_c = zeros(ny,T,N,2);
+FS_d = zeros(nf,T,N,2); % the shocked forecasts in the same order; 4th dim is the two different impact times of shock.
+FS_c = zeros(nf,T,N,2);
+GIR_y_d = zeros(ny,h,N,2);
+GIR_y_c = zeros(ny,h,N,2);
+GIR_F_d = zeros(nf,h,N,2);
+GIR_F_c = zeros(nf,h,N,2);
 
 for s=2 %1:ne  %2->zoom in on monetary policy shock
     x0 = zeros(1,nx);
@@ -168,8 +171,8 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         
         % Gather unshocked observables - let big Y denote the the whole
         % cross-section, big F unshocked forecasts of inflation
-        Y_d(:,:,n) =y_d;
-        Y_c(:,:,n) =y_c;
+        Y_d(:,:,n) = y_d;
+        Y_c(:,:,n) = y_c;
         F_d(1,:,n) = m_fcst_d;
         F_d(2,:,n) = e_fcst_d;
         F_d(3,:,n) = FA_d(1,:);
@@ -186,221 +189,135 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
             [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, dt, x0);
             
             % Gather shocked observables
-            YS_d(:,:,n,t) =ys_d;
-            YS_c(:,:,n,t) =ys_c;
+            YS_d(:,:,n,t) = ys_d;
+            YS_c(:,:,n,t) = ys_c;
+            FS_d(1,:,n,t) = m_fcsts_d;
+            FS_d(2,:,n,t) = e_fcsts_d;
+            FS_d(3,:,n,t) = FAs_d(1,:);
+            FS_d(4,:,n,t) = FBs_d(1,:);
+            FS_c(1,:,n,t) = m_fcsts_c;
+            FS_c(2,:,n,t) = e_fcsts_c;
+            FS_c(3,:,n,t) = FAs_c(1,:);
+            FS_c(4,:,n,t) = FBs_c(1,:);
+            
+            % Construct GIRs
+            GIR_y_d(:,:,n,t) = YS_d(:,dt:dt+h-1,n,t) - Y_d(:,dt:dt+h-1,n);
+            GIR_y_c(:,:,n,t) = YS_c(:,dt:dt+h-1,n,t) - Y_c(:,dt:dt+h-1,n);
+            GIR_F_d(:,:,n,t) = FS_d(:,dt:dt+h-1,n,t) - F_d(:,dt:dt+h-1,n);
+            GIR_F_c(:,:,n,t) = FS_c(:,dt:dt+h-1,n,t) - F_c(:,dt:dt+h-1,n);
         end
     end
 end
+
+% Construct RIRs by simple method: means (Option 1)
+RIR_y_d = squeeze(mean(GIR_y_d,3));
+RIR_y_c = squeeze(mean(GIR_y_c,3));
+RIR_F_d = squeeze(mean(GIR_F_d,3));
+RIR_F_c = squeeze(mean(GIR_F_c,3));
+
 disp(['(psi_x, psi_pi, rho, sig)=   ', num2str([psi_x, psi_pi, rho, sig])])
 toc
 
-return
-%% GIRs for interest rate smoothing
-d = 1; % the innovation, delta
+
+%% Plot 'em
 shocknames = {'natrate', 'monpol','costpush'};
-dt = 5; % when to impose shock
-dt_vals = [5,25];
-% cycle thru the shocks of the model
-for s=2 %1:ne  %2->zoom in on monetary policy shock
-    x0 = zeros(1,nx);
-    x0(s) = d;
-    h = 10; % horizon of IRF
-    [IR, iry, irx]=ir(gx,hx,x0,h);
-    iry = iry';
-    RE_fcsts = gx*hx*irx';
-    
-    % For learning, the approach I take is resimulate everything and for each
-    % period t, expose the econ to this same shock. Then take an average.
-    GIRd = zeros(ny,h,T-h); % decreasing gain
-    GIRc = zeros(ny,h,T-h); % constant gain
-    GIR_fcst_d_m = zeros(h,T-h);
-    GIR_fcst_c_m = zeros(h,T-h);
-    GIR_fcst_d_e = zeros(h,T-h);
-    GIR_fcst_c_e = zeros(h,T-h);
-    for i=1:2
-        t = dt_vals(i);
-        % 1. create alternative simulations, adding the impulse always at either 5 or 25
-        [~, ys_d, e_fcsts_d, m_fcsts_d, FA_ds, FB_ds] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP,free, t, x0);
-        [~, ys_c, e_fcsts_c, m_fcsts_c, FA_cs, FB_cs] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
+titles_obs = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})'};
+titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})', 'fa', 'fb'};
+
+for s=2 % for all the shocks (right now only monpol)
+    for t=1:2 % for the two diff times of imposing the shock
+        dt = dt_vals(t);
+        % 1) Observables for decreasing gain
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        sgtitle(['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs_prop )
+        for i=1:ny
+            subplot(1,ny,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            h1 = plot(RIR_y_d(i,:,t),'linewidth', 2);
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            title(titles_obs(i))
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'RIR_y_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
         
-        % 2. take differences between this and the standard simulation
-        GIRd(:,:,t) = ys_d(:,t:t+h-1) - y_d(:,t:t+h-1);
-        GIRc(:,:,t) = ys_c(:,t:t+h-1) - y_c(:,t:t+h-1);
-        % do the same for expectations (just morning fcsts)
-        GIR_fcst_d_m(:,t) = m_fcsts_d(t:t+h-1) - m_fcst_d(t:t+h-1);
-        GIR_fcst_c_m(:,t) = m_fcsts_c(t:t+h-1) - m_fcst_c(t:t+h-1);
-        GIR_fcst_d_e(:,t) = e_fcsts_d(t:t+h-1) - e_fcst_d(t:t+h-1); % % evening forecasts for decreasing learning
-        GIR_fcst_c_e(:,t) = e_fcsts_c(t:t+h-1) - e_fcst_c(t:t+h-1); % evening forecasts for constant learning
+        % 2.) Observables for constant gain
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        sgtitle(['Constant gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs_prop )
+        for i=1:ny
+            subplot(1,ny,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            h1 = plot(RIR_y_c(i,:,t),'linewidth', 2);
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            title(titles_obs(i))
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'RIR_y_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
         
-        %LH expectations
-        GIR_FA_d(:,:,t) = FA_ds(:,t:t+h-1) - FA_d(:,t:t+h-1);
-        GIR_FB_d(:,:,t) = FB_ds(:,t:t+h-1) - FB_d(:,t:t+h-1);
-        GIR_FA_c(:,:,t) = FA_cs(:,t:t+h-1) - FA_c(:,t:t+h-1);
-        GIR_FB_c(:,:,t) = FB_cs(:,t:t+h-1) - FB_c(:,t:t+h-1);
+        % Forecasts for decreasing gain
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        sgtitle(['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs_prop )
+        for i=1:nf
+            subplot(1,nf,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            h1 = plot(RIR_F_d(i,:,t),'linewidth', 2);
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            title(titles_fcsts(i))
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'RIR_F_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        
+        % Forecasts for decreasing gain
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        sgtitle(['Constant gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs_prop )
+        for i=1:nf
+            subplot(1,nf,i)
+            plot(zeros(1,h),'k--','linewidth', 2); hold on
+            h1 = plot(RIR_F_c(i,:,t),'linewidth', 2);
+            ax = gca; % current axes
+            ax.FontSize = fs_prop;
+            grid on
+            grid minor
+            title(titles_fcsts(i))
+        end
+        if print_figs ==1
+            figname = [this_code, '_', 'RIR_F_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        
     end
-    
-    
-    % option 1: take simple averages
-    RIRd = mean(GIRd,3);
-    RIRc = mean(GIRc,3);
-    
-    RIRfa_d = mean(GIR_FA_d(1,:,:),3); % just take it for pi
-    RIRfb_d = mean(GIR_FB_d(1,:,:),3);
-    RIRfa_c = mean(GIR_FA_c(1,:,:),3);
-    RIRfb_c = mean(GIR_FB_c(1,:,:),3);
-    
-    
-    %     % option 2: sort and take percentile bands
-    %     [lbd, medd, ubd] = confi_bands(GIRd,0.1);
-    %     [lbc, medc, ubc] = confi_bands(GIRc,0.1);
-    %
-    %     % CI for forecasts
-    %     [lb_mf_d, med_mf_d, ub_mf_d] = confi_bands(GIR_fcst_d,0.1);
-    %     [lb_mf_c, med_mf_c, ub_mf_c] = confi_bands(GIR_fcst_c,0.1);
-    %     [lb_ef_d, med_ef_d, ub_ef_d] = confi_bands(GIR_fcst_d_e,0.1);
-    %     [lb_ef_c, med_ef_c, ub_ef_c] = confi_bands(GIR_fcst_c_e,0.1);
-    
-    return
-    %% Plot IRFs
-    titles = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
-    
-    % IRF observables constant gain learning only
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    for i=1:ny
-        subplot(1,ny,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        % Plot medians
-        med = plot(medc(i,:),'color', dark_green,'linewidth', 2);
-        % Plot CIs
-        fill_Xcoord = [1:h, fliplr(1:h)];
-        fillYcoord = [lbc(i,:), fliplr(ubc(i,:))];
-        f = fill(fill_Xcoord, fillYcoord, light_green,'LineStyle','none');
-        set(f,'facealpha',.5)
-        title(titles(i))
-        ax = gca; % current axes
-        ax.FontSize = fs_prop;
-        grid on
-        grid minor
-    end
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_cgain_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
-    % IRF observables decreasing gain learning only
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    for i=1:ny
-        subplot(1,ny,i)
-        plot(zeros(1,h),'k--','linewidth', 2); hold on
-        % Plot medians
-        med = plot(medd(i,:),'b','linewidth', 2);
-        % Plot CIs
-        fill_Xcoord = [1:h, fliplr(1:h)];
-        fillYcoord = [lbc(i,:), fliplr(ubc(i,:))];
-        f = fill(fill_Xcoord, fillYcoord, light_green,'LineStyle','none');
-        set(f,'facealpha',.5)
-        title(titles(i))
-        ax = gca; % current axes
-        ax.FontSize = fs_prop;
-        grid on
-        grid minor
-    end
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_dgain_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
-    % Plot evening and morning forecasts for constant gain only, IRF
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    plot(zeros(1,h),'k--','linewidth', 2); hold on
-    mf_c = plot(med_mf_c,'linewidth', 2);
-    ef_c = plot(med_ef_c,'linewidth', 2);
-    ylim([-0.15, 0])
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
-    legend('boxoff')
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_cgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
-    % Plot evening and morning forecasts for decreasing gain only, IRF
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    plot(zeros(1,h),'k--','linewidth', 2); hold on
-    mf_c = plot(med_mf_d,'linewidth', 2);
-    ef_c = plot(med_ef_d,'linewidth', 2);
-    ylim([-0.15, 0])
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend([mf_c, ef_c],'morning fcst',  'evening fcst','location', 'southoutside')
-    legend('boxoff')
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_dgain_fcsts_me_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
-    % Plot LH expectations for constant and decreasing gain learning (just for pi)
-    figure
-    set(gcf,'color','w'); % sets white background color
-    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    subplot(1,2,1)
-    plot(zeros(1,h),'k--','linewidth', 2); hold on
-    fa_d = plot(RIRfa_d,'linewidth', 2);
-    fa_c = plot(RIRfa_c,'linewidth', 2);
-    %     ylim([-0.15, 0])
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend([fa_d, fa_c],'decreasing',  'constant','location', 'southoutside')
-    legend('boxoff')
-    title('fa')
-    subplot(1,2,2)
-    plot(zeros(1,h),'k--','linewidth', 2); hold on
-    fb_d = plot(RIRfb_d,'linewidth', 2);
-    fb_c = plot(RIRfb_c,'linewidth', 2);
-    %     ylim([-0.15, 0])
-    ax = gca; % current axes
-    ax.FontSize = fs_prop;
-    grid on
-    grid minor
-    legend([fb_d, fb_c],'decreasing',  'constant','location', 'southoutside')
-    legend('boxoff')
-    title('fb')
-    if print_figs ==1
-        figname = [this_code, '_', 'IRFs_LH_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-        cd(figpath)
-        export_fig(figname)
-        cd(current_dir)
-        close
-    end
-    
 end
-
-
-
