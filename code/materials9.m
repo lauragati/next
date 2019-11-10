@@ -11,17 +11,15 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 1;
 output_table = print_figs;
 
-% Plot configs
-[fs, lw] = plot_configs;
 
 %% Simulation
 tic
-T = 400
+T = 400 % 400
 burnin = 0;
 
 [param, setp] = parameters_next;
@@ -92,7 +90,7 @@ free=1; % use versions of the code that are n-free (use hx instead of P)
 not_free=0;
 
 % Params specific to this cross-section exercise
-N = 500; % size of cross-section
+N = 500; %500 size of cross-section
 dt_vals = [5,25]; % time of imposing innovation
 nd = size(dt_vals,2);
 d = 1; % the innovation, delta
@@ -153,9 +151,9 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         F_c(4,:,n) = FB_c(1,:);
         % construct unshocked forecast errors, for pi only
         FE_d(1,:,n) = Y_d(1,2:end,n) - F_d(1,1:end-1,n); % morning FE
-        FE_d(2,:,n) = Y_d(2,2:end,n) - F_d(2,1:end-1,n); % evening FE
+        FE_d(2,:,n) = Y_d(1,2:end,n) - F_d(2,1:end-1,n); % evening FE
         FE_c(1,:,n) = Y_c(1,2:end,n) - F_c(1,1:end-1,n); % morning FE
-        FE_c(2,:,n) = Y_c(2,2:end,n) - F_c(2,1:end-1,n); % evening FE
+        FE_c(2,:,n) = Y_c(1,2:end,n) - F_c(2,1:end-1,n); % evening FE
         % note: FEs go from t+1 ... T b/c the first one isn't defined since
         % they are realized at t+1.
         % Construct unshocked yesterday's evening FEs, for pi only
@@ -181,12 +179,12 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
             FS_c(4,:,n,t) = FBs_c(1,:);
             % construct shocked forecast errors, for pi only
             FEs_d(1,:,n,t) = YS_d(1,2:end,n,t) - FS_d(1,1:end-1,n,t);
-            FEs_d(2,:,n,t) = YS_d(2,2:end,n,t) - FS_d(2,1:end-1,n,t);
+            FEs_d(2,:,n,t) = YS_d(1,2:end,n,t) - FS_d(2,1:end-1,n,t);
             FEs_c(1,:,n,t) = YS_c(1,2:end,n,t) - FS_c(1,1:end-1,n,t);
-            FEs_c(2,:,n,t) = YS_c(2,2:end,n,t) - FS_c(2,1:end-1,n,t);
+            FEs_c(2,:,n,t) = YS_c(1,2:end,n,t) - FS_c(2,1:end-1,n,t);
             % Construct shocked yesterday's evening FEs, for pi only
-            FELs_d(:,n) = FEst_1_d;
-            FELs_c(:,n) = FEst_1_c;
+            FELs_d(:,n,t) = FEst_1_d;
+            FELs_c(:,n,t) = FEst_1_c;
             
             % Construct GIRs
             GIR_y_d(:,:,n,t) = YS_d(:,dt:dt+h-1,n,t) - Y_d(:,dt:dt+h-1,n);
@@ -194,20 +192,19 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
             GIR_F_d(:,:,n,t) = FS_d(:,dt:dt+h-1,n,t) - F_d(:,dt:dt+h-1,n);
             GIR_F_c(:,:,n,t) = FS_c(:,dt:dt+h-1,n,t) - F_c(:,dt:dt+h-1,n);
             % think hard: FE_t realized at t+1
-            GIR_FE_d(:,:,n,t) = FEs_d(:,dt-1:dt+h-2,n,t) - FE_d(:,dt-1:dt+h-2,n); % IRF of morning fcst starting period dt
-            GIR_FE_c(:,:,n,t) = FEs_c(:,dt-1:dt+h-2,n,t) - FE_c(:,dt-1:dt+h-2,n); % IRF of evening fcst starting period dt
+            GIR_FE_d(:,:,n,t) = FEs_d(:,dt:dt+h-1,n,t) - FE_d(:,dt:dt+h-1,n); % IRF of morning fcst starting period dt
+            GIR_FE_c(:,:,n,t) = FEs_c(:,dt:dt+h-1,n,t) - FE_c(:,dt:dt+h-1,n); % IRF of evening fcst starting period dt
             % yesterday's FE_{t-1}, realized at t and used to update at t
             GIR_FEL_d(:,n,t) = FELs_d(dt:dt+h-1,n,t) - FEL_d(dt:dt+h-1,n);
             GIR_FEL_c(:,n,t) = FELs_c(dt:dt+h-1,n,t) - FEL_c(dt:dt+h-1,n);
         end
     end
 end
-print_figs=0;
 % Construct RIRs by simple method: means (Option 1)
 RIR_y_d = squeeze(mean(GIR_y_d,3));
 RIR_y_c = squeeze(mean(GIR_y_c,3));
-RIR_F_d = squeeze(mean(GIR_F_d,3));
-RIR_F_c = squeeze(mean(GIR_F_c,3));
+RIR_F_d = squeeze(nanmean(GIR_F_d,3));
+RIR_F_c = squeeze(nanmean(GIR_F_c,3));
 RIR_FE_d = squeeze(nanmean(GIR_FE_d,3));
 RIR_FE_c = squeeze(nanmean(GIR_FE_c,3));
 RIR_FEL_d = squeeze(nanmean(GIR_FEL_d,2));
@@ -224,233 +221,67 @@ toc
 if stop_before_plots==1
     return
 end
-%% Plot 'em
+%% Plot 'em with new plot commands
 shocknames = {'natrate', 'monpol','costpush'};
-titles_obs = {'Inflation','Output gap','Int. rate', 'E^m_t(\pi_{t+1})'};
-titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})', 'fa', 'fb'};
+titles_obs = {'Inflation','Output gap','Int. rate'};
+titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
+titles_LH = {'fa', 'fb'};
 titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
+
 
 for s=2 % for all the shocks (right now only monpol)
     for t=1:nd % for the two diff times of imposing the shock
         dt = dt_vals(t);
         
         if skip_old_plots==0
-        % 1) Observables for decreasing gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:ny
-            subplot(1,ny,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_y_d(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_obs(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_y_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 1) OBSERVABLES DECREASING GAIN
+        series = RIR_y_d(:,:,t);
+        figname = [this_code, '_', 'RIR_y_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = titles_obs;
+        figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs, figtitle)
         
-        % 2.) Observables for constant gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Constant gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:ny
-            subplot(1,ny,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_y_c(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_obs(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_y_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 2) OBSERVABLES CONSTANT GAIN
+        series = RIR_y_c(:,:,t);
+        figname = [this_code, '_', 'RIR_y_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = titles_obs;
+        figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs, figtitle)
         
-        % 3.) Forecasts for decreasing gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:nf
-            subplot(1,nf,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_F_d(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_fcsts(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_F_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 3) LH FORECASTS DECREASING GAIN
+        series = RIR_F_d(3:end,:,t);
+        figname = [this_code, '_', 'RIR_fafb_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = titles_LH;
+        figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs, figtitle)
         
-        % 4.) Forecasts for constant gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Constant gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:nf
-            subplot(1,nf,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_F_c(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_fcsts(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_F_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 4) LH FORECASTS CONSTANT GAIN
+        series = RIR_F_c(3:end,:,t);
+        figname = [this_code, '_', 'RIR_fafb_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = titles_LH;
+        figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs, figtitle)
         
-        % 5.) Forecast errors for decreasing gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:nf-2
-            subplot(1,nf-2,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_FE_d(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_FEs(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_FE_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 5) FORECASTS
+        subplot1 = [RIR_F_d(1,:,t); RIR_F_d(2,:,t)];
+        subplot2 = [RIR_F_c(1,:,t); RIR_F_c(2,:,t)];
+        series = cat(3,subplot1, subplot2);
+        figname = [this_code, '_', 'RIR_F_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = {'Decreasing gain', 'Constant gain'};
+        legend_entries = {'Morning', 'Evening'};
+        figtitle = ['1-period ahead fcsts, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs,figtitle,legend_entries)
+        end % skip old plots
         
-        % 6.) Forecast errors for constant gain
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['Constant gain, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:nf-2
-            subplot(1,nf-2,i)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_FE_c(i,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title(titles_FEs(i))
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_FE_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
-        
-        % 7.) Another plot showing forecasts, but side-by-side
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['1-period ahead fcsts, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:2
-            subplot(1,2,1)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_F_d(1,:,t),'linewidth', 2);
-            h2 = plot(RIR_F_d(2,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title('Decreasing gain')
-            legend([h1, h2],'Morning', 'Evening','location', 'southoutside')
-            legend('boxoff')
-            
-            subplot(1,2,2)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_F_c(1,:,t),'linewidth', 2);
-            h2 = plot(RIR_F_c(2,:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title('Constant gain')
-            legend([h1, h2],'Morning', 'Evening','location', 'southoutside')
-            legend('boxoff')
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_F_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
-        
-        end % end skipping plots
-        % 8.) Another plot showing FEs, but side-by-side
-        figure
-        set(gcf,'color','w'); % sets white background color
-        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-        sgtitle(['1-period ahead FEs, shock imposed at t=', num2str(dt_vals(t))], 'FontSize',fs )
-        for i=1:2
-            subplot(1,2,1)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_FE_d(1,:,t),'linewidth', 2);
-            h2 = plot(RIR_FE_d(2,:,t),'linewidth', 2);
-            h3 = plot(RIR_FEL_d(:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title('Decreasing gain')
-            legend([h1, h2, h3],'Morning', 'Evening', 'Yesterday evening','location', 'southoutside')
-            legend('boxoff')
-            
-            subplot(1,2,2)
-            plot(zeros(1,h),'k--','linewidth', 2); hold on
-            h1 = plot(RIR_FE_c(1,:,t),'linewidth', 2);
-            h2 = plot(RIR_FE_c(2,:,t),'linewidth', 2);
-            h3 = plot(RIR_FEL_c(:,t),'linewidth', 2);
-            ax = gca; % current axes
-            ax.FontSize = fs;
-            grid on
-            grid minor
-            title('Constant gain')
-            legend([h1, h2, h3],'Morning', 'Evening', 'Yesterday evening','location', 'southoutside')
-            legend('boxoff')
-        end
-        if print_figs ==1
-            figname = [this_code, '_', 'RIR_FE_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)]
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
-        end
+        % 6) FORECAST ERRORS
+        subplot1 = [RIR_FE_d(1,:,t); RIR_FE_d(2,:,t);RIR_FEL_d(:,t)'];
+        subplot2 = [RIR_FE_c(1,:,t); RIR_FE_c(2,:,t);RIR_FEL_c(:,t)'];
+        series = cat(3,subplot1, subplot2);
+        figname = [this_code, '_', 'RIR_FE_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        subplot_names = {'Decreasing gain', 'Constant gain'};
+        legend_entries = {'Morning', 'Evening', 'Yesterday evening'};
+        figtitle = ['1-period ahead FEs, shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs,figtitle,legend_entries)
         
     end
 end

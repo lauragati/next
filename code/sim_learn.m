@@ -129,7 +129,7 @@ for t = 1:T-1
     thett_1 = thet;
     
     %%% check value of decreasing gain after 50 periods
-    if gain==1
+    if gain==1 && T>= 50
         dgain_at50 = k(:,50);
     else
         dgain_at50 =nan;
