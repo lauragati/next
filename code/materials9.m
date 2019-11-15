@@ -11,9 +11,9 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
-skip_old_plots    = 1;
+skip_old_plots    = 0;
 output_table = print_figs;
 
 
@@ -59,9 +59,11 @@ alph_val_raw = num2str(alph);
 alph_val = replace(alph_val_raw,'.','_');
 sig_val_raw = num2str(sig);
 sig_val = replace(sig_val_raw,'.','_');
+gbar_val_raw = num2str(gbar);
+gbar_val = replace(gbar_val_raw,'.','_');
 
-current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig]
-current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma']
+current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig, gbar]
+current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma', '\bar{g}']
 
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -87,7 +89,6 @@ cgain = 3;
 critCEMP=1;
 critCUSUM=2;
 free=1; % use versions of the code that are n-free (use hx instead of P)
-not_free=0;
 
 % Params specific to this cross-section exercise
 N = 500; %500 size of cross-section
@@ -133,7 +134,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         % Sequence of innovations
         e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
         
-        % Unshocked - let y denote unshocked
+        % Unshocked - let y denote unshocked                            
         [~, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d, FEt_1_d,dgain_at50] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP, free);
         [~, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c, FEt_1_c, dgain_at50check] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP, free);
         
@@ -162,7 +163,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         
         for t=1:nd
             dt = dt_vals(t);
-            % Shocked = let ys denote shocked
+            % Shocked = let ys denote shocked                          
             [~, ys_d, e_fcsts_d, m_fcsts_d, FAs_d, FBs_d, FEst_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP,free, dt, x0);
             [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c, FEst_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, dt, x0);
             
@@ -261,7 +262,8 @@ for s=2 % for all the shocks (right now only monpol)
         subplot_names = titles_LH;
         figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
         create_subplot(series,subplot_names,figname,print_figs, figtitle)
-        
+         end % skip old plots
+         
         % 5) FORECASTS
         subplot1 = [RIR_F_d(1,:,t); RIR_F_d(2,:,t)];
         subplot2 = [RIR_F_c(1,:,t); RIR_F_c(2,:,t)];
@@ -271,7 +273,7 @@ for s=2 % for all the shocks (right now only monpol)
         legend_entries = {'Morning', 'Evening'};
         figtitle = ['1-period ahead fcsts, shock imposed at t=', num2str(dt_vals(t))];
         create_subplot(series,subplot_names,figname,print_figs,figtitle,legend_entries)
-        end % skip old plots
+       
         
         % 6) FORECAST ERRORS
         subplot1 = [RIR_FE_d(1,:,t); RIR_FE_d(2,:,t);RIR_FEL_d(:,t)'];
