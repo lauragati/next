@@ -56,9 +56,13 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
+%         if anal ==1
                 [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
                 FA(:,t) = fa; % save current LH expectations for output
                 FB(:,t) = fb;
+%         else
+%             [fa, fb] = fafb_trunc_constant(param, setp, [pibar;0;0], b, xsim(:,t), H);
+%         end
         
         %Solve for current states
         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
