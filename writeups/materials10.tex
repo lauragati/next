@@ -104,6 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.18}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -253,90 +254,46 @@ FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at tim
 %\end{center}
 
 \newpage
-\section{Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only $\blacktriangleleft$}	
+\section{Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``mean-only'' PLM $\blacktriangleleft$}	
 
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Constant gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for observables, shock imposed at $t$}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[Forecasts, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Forecast errors, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Forecasts, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Forecast errors, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Forecasts, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Forecast errors, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for 1-period ahead forecasts and FEs, together, morning and evening, shock imposed at $t$}
 \end{figure}
 
-
-
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Constant gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for LH forecasts, shock imposed at $t$}
 \end{figure}
 
-4 puzzling things, 4 attempts to explain them:
-\begin{enumerate}
-\item Criss-crossing of expectations
-\item [] If the gain is high enough, expectations overupdate, FE switch signs. (Can make extremely small with lower gain, e.g. $\bar{g} = 0.02$, the value of the dgain after 50 periods.)
-\item[] Note also that $f_a, f_b$ are mainly driven by the intercept, not the slope. The intercept term is $\frac{\bar{\pi}}{1-\alpha\beta}$ and $\frac{\bar{\pi}}{1- \beta}$. So when $\alpha$ is far from 1, $f_b$ is much bigger
-	\begin{itemize}
-	\item both in absolute terms,
-	\item as well as relatively to $f_a$.
-	\end{itemize}
+\newpage
+\section{Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``slope and constant'' PLM $\blacktriangleleft$}	
 
-\item $i \uparrow$ at $t=2$ after shock
-\item [] $i = \pi \downarrow + \rho_i^{t-1}\delta \uparrow$. So b/c of correction in $\pi$ at $t=2, |\rho_i^{t-1}\delta| - |\pi| $ becomes larger.
-\item Overshooting later than $t=2$
-\item[] IR decomposed into two effects pulling opposite ways: $ IR \approx \E(\pi) + \delta$. Overshooting happens when the expectation effect is larger. As the shock recedes faster than the expectation, $x, \pi$ overshoot. Testable implication: if shock iid, overshooting should happen at $t=2$, and indeed it does. 
-\item Responses to expectations in RE vs learning (recursive vs. LH-horizon) 
-\item[] Here's the stylized representation of how endogenous variables respond to expectations in the two formulations (once you've plugged in the interest rate):
-\begin{align*}
-& RE \\
-x_t & = \overset{-}{\E(\pi)} + \overset{+}{\E(x)} \\  
-\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
-& Learning \\
-x_t & = \overset{-}{\E(\pi)} + \overset{\textcolor{red}{-}}{\E(x)} \\  
-\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
-\end{align*}
-The difference, marked in red, comes from the fact in learning, expectations are more explicit.
-Ignoring shocks and setting $\psi_x = 0$, so the Taylor rule is just $i_t =  \psi_{\pi}\pi_t$, the two systems are
-\begin{align*}
-RE& \\
-x_t &= - \sigma i_t + \E_t x_{t+1}   + \sigma \E_t \pi_{t+1}  \\
-\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
-Learning & \\
-x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma\beta i_{T+1} +\sigma \pi_{T+1}) \big)  \\
-\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
-\end{align*}
-When you plug in the interest rate, you see that the recursive representation hides the negative part of $x_t$'s dependance on its own future values into current inflation and its dependance on future inflation:
-\begin{align*}
-RE& \\
-x_t &= - \sigma \psi_{\pi} \pi_t+  \overset{\textcolor{red}{+}}{\E_t x_{t+1}}   + \sigma \E_t \pi_{t+1}  \\
-\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
-Learning & \\
-x_t &=  -\sigma \psi_{\pi}  \overset{\textcolor{red}{-}}{\pi_t} +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta) \overset{\textcolor{red}{+}}{x_{T+1}} + \sigma(1- \beta \psi_{\pi})\pi_{T+1} \big)  \\
-\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
-\end{align*}
-To align with this interpretation, it must be the case that $\pi_t$'s dependance on future inflation is stronger under RE than learning. Comparing coefficients for my baseline parameterization, this is true. 
-\end{enumerate}
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{IRF for observables, shock imposed at $t$}
+\end{figure}
 
+\begin{figure}[h!]
+\subfigure[Forecasts, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Forecast errors, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{IRF for 1-period ahead forecasts and FEs, together, morning and evening, shock imposed at $t$}
+\end{figure}
 
-%\begin{figure}[h!]
-%\subfigure[Decreasing gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-%\subfigure[Constant gain, $t=5$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5}}
-%\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
-%\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials9_RIR_FE_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25}}
-%\caption{IRF for 1-period ahead forecasts errors, morning and evening, shock imposed at $t$}
-%\end{figure}
-
-
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{IRF for LH forecasts, shock imposed at $t$}
+\end{figure}
 
 
 

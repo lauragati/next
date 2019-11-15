@@ -2,4 +2,5 @@
 \contentsline {section}{\numberline {2}Compact notation}{3}{section.2}
 \contentsline {section}{\numberline {3}Recap of timing}{4}{section.3}
 \contentsline {section}{\numberline {4}Current set of baseline parameters}{5}{section.4}
-\contentsline {section}{\numberline {5}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only $\blacktriangleleft $}{6}{section.5}
+\contentsline {section}{\numberline {5}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``mean-only'' PLM $\blacktriangleleft $}{6}{section.5}
+\contentsline {section}{\numberline {6}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``slope and constant'' PLM $\blacktriangleleft $}{7}{section.6}

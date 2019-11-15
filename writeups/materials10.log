@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 NOV 2019 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 NOV 2019 18:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -817,20 +817,20 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 61.
  (./materials10.aux)
 \openout1 = `materials10.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -902,7 +902,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 116.
+Package hyperref Info: Link coloring ON on input line 117.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -911,21 +911,21 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count170
 )
-LaTeX Info: Redefining \ref on input line 116.
-LaTeX Info: Redefining \pageref on input line 116.
-LaTeX Info: Redefining \nameref on input line 116.
+LaTeX Info: Redefining \ref on input line 117.
+LaTeX Info: Redefining \pageref on input line 117.
+LaTeX Info: Redefining \nameref on input line 117.
 
 (./materials10.out) (./materials10.out)
 \@outlinefile=\write4
 \openout4 = `materials10.out'.
 
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 124.
+LaTeX Font Info:    Try loading font information for U+msa on input line 125.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 124.
+LaTeX Font Info:    Try loading font information for U+msb on input line 125.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -944,7 +944,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (34.84163pt too wide) in paragraph at lines 194--194
+Overfull \hbox (34.84163pt too wide) in paragraph at lines 195--195
 [] 
  []
 
@@ -964,7 +964,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [4
 
 ]
-Overfull \hbox (57.88667pt too wide) in paragraph at lines 235--254
+Overfull \hbox (57.88667pt too wide) in paragraph at lines 236--255
 [] 
  []
 
@@ -979,139 +979,82 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 256.
+(hyperref)                removing `math shift' on input line 257.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\blacktriangleleft' on input line 256.
+(hyperref)                removing `\blacktriangleleft' on input line 257.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 256.
+(hyperref)                removing `math shift' on input line 257.
 
 
-<../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=102, 1
-097.09875pt x 668.4975pt>
-File: ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Graph
-ic file (type png)
+<../figures/materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25
+.png, id=109, 1123.19624pt x 674.52pt>
+File: ../figures/materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_
+dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_s
-ig_1_dt_5.png used on input line 259.
-(pdftex.def)             Requested size: 175.53938pt x 106.96178pt.
+<use ../figures/materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_d
+t_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_y_d_monpolconstant_only_rho
+0_psi_pi_1_5_sig_1_dt_25.png used on input line 260.
+(pdftex.def)             Requested size: 202.1666pt x 121.40836pt.
 
-<../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=103, 1
-104.125pt x 669.50125pt>
-File: ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Graph
-ic file (type png)
+<../figures/materials10_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25
+.png, id=110, 1135.24126pt x 675.52374pt>
+File: ../figures/materials10_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_
+dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_s
-ig_1_dt_5.png used on input line 260.
-(pdftex.def)             Requested size: 176.6636pt x 107.12238pt.
+<use ../figures/materials10_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_d
+t_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_y_c_monpolconstant_only_rho
+0_psi_pi_1_5_sig_1_dt_25.png used on input line 261.
+(pdftex.def)             Requested size: 204.33461pt x 121.58902pt.
 
-<../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=104, 
-1097.09875pt x 668.4975pt>
-File: ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png Grap
-hic file (type png)
+<../figures/materials10_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt
+_25.png, id=111, 1157.32375pt x 674.52pt>
+File: ../figures/materials10_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig
+_1_dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_s
-ig_1_dt_25.png used on input line 261.
-(pdftex.def)             Requested size: 175.53938pt x 106.96178pt.
+<use ../figures/materials10_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_
+1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_F_both_monpolconstant_only_
+rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 266.
+(pdftex.def)             Requested size: 208.30928pt x 121.40836pt.
 
-<../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=105, 
-1104.125pt x 669.50125pt>
-File: ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png Grap
-hic file (type png)
+<../figures/materials10_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_d
+t_25.png, id=112, 1113.15875pt x 674.52pt>
+File: ../figures/materials10_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_si
+g_1_dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_s
-ig_1_dt_25.png used on input line 262.
-(pdftex.def)             Requested size: 176.6636pt x 107.12238pt.
+<use ../figures/materials10_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig
+_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_FE_both_monpolconstant_only
+_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 267.
+(pdftex.def)             Requested size: 200.35992pt x 121.40836pt.
 
-<../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=106
-, 1121.18875pt x 617.30624pt>
-File: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Gr
-aphic file (type png)
+<../figures/materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt
+_25.png, id=113, 1157.32375pt x 674.52pt>
+File: ../figures/materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig
+_1_dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_
-5_sig_1_dt_5.png used on input line 267.
-(pdftex.def)             Requested size: 179.39386pt x 98.77101pt.
+<use ../figures/materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_
+1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_fafb_d_monpolconstant_only_
+rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 272.
+(pdftex.def)             Requested size: 208.30928pt x 121.40836pt.
 
-<../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=10
-7, 1165.35374pt x 677.53125pt>
-File: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png G
-raphic file (type png)
+<../figures/materials10_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt
+_25.png, id=114, 1157.32375pt x 675.52374pt>
+File: ../figures/materials10_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig
+_1_dt_25.png Graphic file (type png)
 
-<use ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1
-_5_sig_1_dt_5.png used on input line 268.
-(pdftex.def)             Requested size: 186.4604pt x 108.40721pt.
-
-<../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=10
-8, 1121.18875pt x 617.30624pt>
-File: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png G
-raphic file (type png)
-
-<use ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_
-5_sig_1_dt_25.png used on input line 269.
-(pdftex.def)             Requested size: 179.39386pt x 98.77101pt.
-
-<../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=1
-09, 1165.35374pt x 677.53125pt>
-File: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png 
-Graphic file (type png)
-
-<use ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1
-_5_sig_1_dt_25.png used on input line 270.
-(pdftex.def)             Requested size: 186.4604pt x 108.40721pt.
-
-<../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=110
-, 1121.18875pt x 668.4975pt>
-File: ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Gr
-aphic file (type png)
-
-<use ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_
-5_sig_1_dt_5.png used on input line 277.
-(pdftex.def)             Requested size: 179.39386pt x 106.96178pt.
-
-<../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png, id=111
-, 1121.18875pt x 669.50125pt>
-File: ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png Gr
-aphic file (type png)
-
-<use ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png>
-Package pdftex.def Info: ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_
-5_sig_1_dt_5.png used on input line 278.
-(pdftex.def)             Requested size: 179.39386pt x 107.12238pt.
-
-<../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=11
-2, 1121.18875pt x 668.4975pt>
-File: ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png G
-raphic file (type png)
-
-<use ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_
-5_sig_1_dt_25.png used on input line 279.
-(pdftex.def)             Requested size: 179.39386pt x 106.96178pt.
-
-<../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png, id=11
-3, 1121.18875pt x 669.50125pt>
-File: ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png G
-raphic file (type png)
-
-<use ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png>
-Package pdftex.def Info: ../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_
-5_sig_1_dt_25.png used on input line 280.
-(pdftex.def)             Requested size: 179.39386pt x 107.12238pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<use ../figures/materials10_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_
+1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_fafb_c_monpolconstant_only_
+rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 273.
+(pdftex.def)             Requested size: 208.30928pt x 121.58902pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1119,23 +1062,92 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6 <../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png (PNG co
-py)> <../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png (PNG 
-copy)> <../figures/materials9_RIR_y_d_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png (P
-NG copy)> <../figures/materials9_RIR_y_c_monpol_rho0_psi_pi_1_5_sig_1_dt_25.png
- (PNG copy)> <../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_5_sig_1_dt_
-5.png (PNG copy)> <../figures/materials9_RIR_FE_both_monpol_rho0_psi_pi_1_5_sig
-_1_dt_5.png (PNG copy)> <../figures/materials9_RIR_F_both_monpol_rho0_psi_pi_1_
-5_sig_1_dt_25.png (PNG copy)> <../figures/materials9_RIR_FE_both_monpol_rho0_ps
-i_pi_1_5_sig_1_dt_25.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 290.
+[6 <../figures/materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt
+_25.png (PNG copy)> <../figures/materials10_RIR_y_c_monpolconstant_only_rho0_ps
+i_pi_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials10_RIR_F_both_monpolc
+onstant_only_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials1
+0_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <
+../figures/materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_
+25.png (PNG copy)> <../figures/materials10_RIR_fafb_c_monpolconstant_only_rho0_
+psi_pi_1_5_sig_1_dt_25.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 278.
 
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 290.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\blacktriangleleft' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 278.
+
+
+<../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_
+dt_25.png, id=131, 1123.19624pt x 674.52pt>
+File: ../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_s
+ig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_si
+g_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_y_d_monpolslope_and_constan
+t_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 281.
+(pdftex.def)             Requested size: 202.1666pt x 121.40836pt.
+
+<../figures/materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_
+dt_25.png, id=132, 1135.24126pt x 675.52374pt>
+File: ../figures/materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_s
+ig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_si
+g_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_y_c_monpolslope_and_constan
+t_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 282.
+(pdftex.def)             Requested size: 204.33461pt x 121.58902pt.
+
+<../figures/materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig
+_1_dt_25.png, id=133, 1157.32375pt x 674.52pt>
+File: ../figures/materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_
+5_sig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_5
+_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_F_both_monpolslope_and_cons
+tant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 287.
+(pdftex.def)             Requested size: 208.30928pt x 121.40836pt.
+
+<../figures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_5_si
+g_1_dt_25.png, id=134, 1113.15875pt x 674.52pt>
+File: ../figures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1
+_5_sig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_
+5_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_FE_both_monpolslope_and_con
+stant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 288.
+(pdftex.def)             Requested size: 200.35992pt x 121.40836pt.
+
+<../figures/materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig
+_1_dt_25.png, id=135, 1157.32375pt x 674.52pt>
+File: ../figures/materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_
+5_sig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5
+_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_fafb_d_monpolslope_and_cons
+tant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 293.
+(pdftex.def)             Requested size: 208.30928pt x 121.40836pt.
+
+<../figures/materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig
+_1_dt_25.png, id=136, 1157.32375pt x 675.52374pt>
+File: ../figures/materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_
+5_sig_1_dt_25.png Graphic file (type png)
+
+<use ../figures/materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5
+_sig_1_dt_25.png>
+Package pdftex.def Info: ../figures/materials10_RIR_fafb_c_monpolslope_and_cons
+tant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 294.
+(pdftex.def)             Requested size: 208.30928pt x 121.58902pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1143,39 +1155,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7 <../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png (PNG
- copy)> <../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig_1_dt_5.png
- (PNG copy)> <../figures/materials9_RIR_fafb_d_monpol_rho0_psi_pi_1_5_sig_1_dt_
-25.png (PNG copy)> <../figures/materials9_RIR_fafb_c_monpol_rho0_psi_pi_1_5_sig
-_1_dt_25.png (PNG copy)>]
+[7 <../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig
+_1_dt_25.png (PNG copy)> <../figures/materials10_RIR_y_c_monpolslope_and_consta
+nt_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials10_RIR_F_bo
+th_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <../fig
+ures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_
+25.png (PNG copy)> <../figures/materials10_RIR_fafb_d_monpolslope_and_constant_
+rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials10_RIR_fafb_c_
+monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 314.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 314.
 
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[8]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 357.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 357.
- (./materials10.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 357.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 357.
+(./materials10.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 314.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 314.
 Package rerunfilecheck Info: File `materials10.out' has not changed.
-(rerunfilecheck)             Checksum: BE92CA0A5B88CAF37B5C00A0ABC10112;318.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 357.
+(rerunfilecheck)             Checksum: 3EBD9069BCF075D41FB71167E60CF776;465.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 314.
  ) 
 Here is how much of TeX's memory you used:
- 20102 strings out of 493089
- 366868 string characters out of 6134842
- 457391 words of memory out of 5000000
- 23137 multiletter control sequences out of 15000+600000
+ 20085 strings out of 493089
+ 367635 string characters out of 6134842
+ 457397 words of memory out of 5000000
+ 23125 multiletter control sequences out of 15000+600000
  16190 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,54p,718b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1197,10 +1199,10 @@ ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
 texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials10.pdf (9 pages, 828359 bytes).
+Output written on materials10.pdf (7 pages, 672825 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
+ 224 PDF objects out of 1000 (max. 8388607)
  177 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 named destinations out of 1000 (max. 500000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,6 @@
 % materials 10
 % Goals:
-% 1. understand whether overshooting is endemic to constant gain learning. 
+% 1. understand whether overshooting is endemic to constant gain learning.
 % --> implement the ``mean-only'' PLM vs. ``slope-too''
 % 15 Nov 2019
 clearvars
@@ -79,11 +79,19 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
 
 % Params for the general learning code
-anal = 1; % take analytical LR exp
-H=0;
-criterion = 2; % 1= CEMP's, 2 = CUSUM
-% dt = 0; % when shock imposed. If zero or not specified, then no shock
 constant_only = 1; % learning constant only
+mean_only_PLM = -1;
+slope_and_constant = 2;
+% lets alternate between these
+PLM = slope_and_constant;
+if  PLM == constant_only
+    PLM_name = 'constant_only';
+elseif PLM == mean_only_PLM
+    PLM_name = 'mean_only_PLM';
+elseif PLM == slope_and_constant
+    PLM_name = 'slope_and_constant';
+end
+
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
 cgain = 3;
@@ -134,9 +142,9 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         % Sequence of innovations
         e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
         
-        % Unshocked - let y denote unshocked                            
-        [~, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d, FEt_1_d,dgain_at50] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, constant_only, dgain, critCEMP);
-        [~, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c, FEt_1_c, dgain_at50check] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, constant_only, cgain, critCEMP);
+        % Unshocked - let y denote unshocked
+        [~, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d, FEt_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, PLM, dgain, critCEMP);
+        [~, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c, FEt_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, PLM, cgain, critCEMP);
         
         % Gather unshocked observables - let big Y denote the the whole
         % cross-section, big F unshocked forecasts of inflation
@@ -163,9 +171,9 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         
         for t=1:nd
             dt = dt_vals(t);
-            % Shocked = let ys denote shocked                          
-            [~, ys_d, e_fcsts_d, m_fcsts_d, FAs_d, FBs_d, FEst_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, constant_only, dgain, critCEMP, dt, x0);
-            [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c, FEst_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, constant_only, cgain, critCEMP, dt, x0);
+            % Shocked = let ys denote shocked
+            [~, ys_d, e_fcsts_d, m_fcsts_d, FAs_d, FBs_d, FEst_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, PLM, dgain, critCEMP, dt, x0);
+            [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c, FEst_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, PLM, cgain, critCEMP, dt, x0);
             
             % Gather shocked observables
             YS_d(:,:,n,t) = ys_d;
@@ -211,10 +219,10 @@ RIR_FE_c = squeeze(nanmean(GIR_FE_c,3));
 RIR_FEL_d = squeeze(nanmean(GIR_FEL_d,2));
 RIR_FEL_c = squeeze(nanmean(GIR_FEL_c,2));
 
-% suggested value for gbar based on where decreasing gain is after 50 periods
-gbar_sugg = 1/dgain_at50;
-% Note that gbar_sugg - 50^(-1) (the std dgain algorithm) suggest very
-% close values
+% % suggested value for gbar based on where decreasing gain is after 50 periods
+% gbar_sugg = 1/dgain_at50;
+% % Note that gbar_sugg - 50^(-1) (the std dgain algorithm) suggest very
+% % close values
 
 disp(['(psi_x, psi_pi, rho, sig)=   ', num2str([psi_x, psi_pi, rho, sig])])
 toc
@@ -235,51 +243,51 @@ for s=2 % for all the shocks (right now only monpol)
         dt = dt_vals(t);
         
         if skip_old_plots==0
-        % 1) OBSERVABLES DECREASING GAIN
-        series = RIR_y_d(:,:,t);
-        figname = [this_code, '_', 'RIR_y_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
-        subplot_names = titles_obs;
-        figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
-        create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            % 1) OBSERVABLES DECREASING GAIN
+            series = RIR_y_d(:,:,t);
+            figname = [this_code, '_', 'RIR_y_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            subplot_names = titles_obs;
+            figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
+            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            
+            % 2) OBSERVABLES CONSTANT GAIN
+            series = RIR_y_c(:,:,t);
+            figname = [this_code, '_', 'RIR_y_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            subplot_names = titles_obs;
+            figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
+            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            
+            % 3) LH FORECASTS DECREASING GAIN
+            series = RIR_F_d(3:end,:,t);
+            figname = [this_code, '_', 'RIR_fafb_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            subplot_names = titles_LH;
+            figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
+            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            
+            % 4) LH FORECASTS CONSTANT GAIN
+            series = RIR_F_c(3:end,:,t);
+            figname = [this_code, '_', 'RIR_fafb_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            subplot_names = titles_LH;
+            figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
+            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+        end % skip old plots
         
-        % 2) OBSERVABLES CONSTANT GAIN
-        series = RIR_y_c(:,:,t);
-        figname = [this_code, '_', 'RIR_y_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
-        subplot_names = titles_obs;
-        figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
-        create_subplot(series,subplot_names,figname,print_figs, figtitle)
-        
-        % 3) LH FORECASTS DECREASING GAIN
-        series = RIR_F_d(3:end,:,t);
-        figname = [this_code, '_', 'RIR_fafb_d_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
-        subplot_names = titles_LH;
-        figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
-        create_subplot(series,subplot_names,figname,print_figs, figtitle)
-        
-        % 4) LH FORECASTS CONSTANT GAIN
-        series = RIR_F_c(3:end,:,t);
-        figname = [this_code, '_', 'RIR_fafb_c_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
-        subplot_names = titles_LH;
-        figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
-        create_subplot(series,subplot_names,figname,print_figs, figtitle)
-         end % skip old plots
-         
         % 5) FORECASTS
         subplot1 = [RIR_F_d(1,:,t); RIR_F_d(2,:,t)];
         subplot2 = [RIR_F_c(1,:,t); RIR_F_c(2,:,t)];
         series = cat(3,subplot1, subplot2);
-        figname = [this_code, '_', 'RIR_F_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        figname = [this_code, '_', 'RIR_F_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
         subplot_names = {'Decreasing gain', 'Constant gain'};
         legend_entries = {'Morning', 'Evening'};
         figtitle = ['1-period ahead fcsts, shock imposed at t=', num2str(dt_vals(t))];
         create_subplot(series,subplot_names,figname,print_figs,figtitle,legend_entries)
-       
+        
         
         % 6) FORECAST ERRORS
         subplot1 = [RIR_FE_d(1,:,t); RIR_FE_d(2,:,t);RIR_FEL_d(:,t)'];
         subplot2 = [RIR_FE_c(1,:,t); RIR_FE_c(2,:,t);RIR_FEL_c(:,t)'];
         series = cat(3,subplot1, subplot2);
-        figname = [this_code, '_', 'RIR_FE_both_' shocknames{s},'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        figname = [this_code, '_', 'RIR_FE_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
         subplot_names = {'Decreasing gain', 'Constant gain'};
         legend_entries = {'Morning', 'Evening', 'Yesterday evening'};
         figtitle = ['1-period ahead FEs, shock imposed at t=', num2str(dt_vals(t))];

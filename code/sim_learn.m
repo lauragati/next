@@ -1,7 +1,6 @@
 % simulate data from long-horizon learning model
 % general code, with lots of subcases
-% constant = 1 if learn constant only - right now just give warning if you
-% input something else
+% constant = 1 if learn constant only, -1 if "only-mean" learning, 2 if both constant and slope.
 % gain: 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 % criterion: 1= CEMP's, 2 = CUSUM
 % dt = timing of shock. If 0 or not specified, then no shock.
@@ -30,9 +29,22 @@ if constant==1
     pibar = 0;
     b = gx*hx;
     b1 = b(1,:);
+elseif constant == -1
+    % "only-mean" PLM
+    % - ain't even using gx*hx for the forecast of inflation, only pibar
+    pibar = 0;
+    b = gx*hx;
+    b(1,:) = zeros(1,size(b,2)); % <-- strike out loading on shocks for the inflation PLM
+    b1 = b(1,:);
+elseif constant == 2
+    % learning slope and constant (only for inflation though)
+    pibar = 0;
+    b = gx*hx;
+    b1 = b(1,:);
 else
-    warning('Requested slope learning, but only learning constant is implemented.')
+    warning('I don''t know what you requested.')
 end
+phi = [pibar b1]; % new
 
 pibar_seq = zeros(T,1);
 diff = zeros(T,1);
@@ -50,15 +62,14 @@ FB = nan(ny,T);
 FEt_1 = nan(T,1); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 %Simulate, with learning
 for t = 1:T-1
-    
     if t == 1
         ysim(:,t) = gx*xsim(:,t);
         xesim = hx*xsim(:,t);
     else
         %Form Expectations using last period's estimates
-                [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
-                FA(:,t) = fa; % save current LH expectations for output
-                FB(:,t) = fb;
+        [fa, fb] = fafb_anal_constant_free(param, setp, [pibar;0;0], b, xsim(:,t),hx); % new hx version
+        FA(:,t) = fa; % save current LH expectations for output
+        FB(:,t) = fb;
         
         %Solve for current states
         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
@@ -72,7 +83,7 @@ for t = 1:T-1
         elseif gain==2
             % now choose the criterion
             if criterion == 1 % CEMP's
-                    kt = fk_pidrift_free([pibar;0;0], b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As, hx);  % new hx version
+                kt = fk_pidrift_free([pibar;0;0], b, xsim(:,t-1), k(:,t-1), param, setp, Aa, Ab, As, hx);  % new hx version
             elseif criterion == 2 % CUSUM
                 % Cusum doesn't depend on P or n, so we need no difference
                 % between free or not.
@@ -84,10 +95,23 @@ for t = 1:T-1
             k(:,t) = gbar^(-1);
         end
         
-        morning_fcst(t) = pibar + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
-        FEt_1(t) = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % yesterday evening's forecast error, realized today
-        pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
-        evening_fcst(t) = pibar + b1*xsim(:,t); % today's evening's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^e)
+        % Create forecasts, FE and do the updating
+        if constant == 1 || -1 % when learning constant only, or "mean-only" PLM
+            morning_fcst(t) = pibar + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
+            FEt_1(t) = ysim(1,t)-(pibar + b1*xsim(:,t-1)); % yesterday evening's forecast error, realized today
+            pibar = pibar + k(:,t).^(-1).*(ysim(1,t)-(pibar + b1*xsim(:,t-1)) );
+            evening_fcst(t) = pibar + b1*xsim(:,t); % today's evening's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^e)
+            
+        elseif constant == 2 % constant and slope learning
+            morning_fcst(t) = phi*[1 xsim(:,t)]'; 
+            FEt_1(t) = ysim(1,t)-(phi*[1 xsim(:,t-1)]');
+            phi = (phi + k(:,t).^(-1).*(ysim(1,t)-(phi*[1 xsim(:,t-1)]')) )';
+            evening_fcst(t) = phi*[1 xsim(:,t)]; 
+            % split phi into a and b once you've updated phi
+            pibar = phi(1,1);
+            b1 = phi(1,2:end);
+        end
+        
         % check convergence
         diff(t) = max(max(abs(pibar - at_1)));
         
