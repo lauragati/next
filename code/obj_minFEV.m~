@@ -1,0 +1,29 @@
+function FEV = obj_minFEV(param,gx,hx,SIG,T,burnin,e,Aa,Ab,As)
+
+[~, paramset] = parameters_next;
+fn = fieldnames(paramset);
+make_index(fn);
+
+% create one struct with all the stuff for sim_learn and its children
+paramset.(fn{gbar_idx}) = param; % in this struct, replace gbar
+
+PLM      = 1; % constant only
+cgain    = 3; % constant gain
+critCEMP = 1; % this doesn't matter
+
+[~, ~, ~, ~, ~, ~, FEt_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, paramset, PLM, cgain, critCEMP);
+
+FEL2 = nan(T,N); % (FE_{t-1})^2 (squared FE of yesterday, realized today)
+for n=1:N
+    % Sequence of innovations
+    e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
+    
+    % Unshocked 
+    [~, ~, ~, ~, ~, ~, FEt_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, paramset, PLM, cgain, critCEMP);
+    
+    % Focus on yesterday evening's FE^2
+    FEL2(:,n) = FEt_1_c.^2;
+end
+FEV = nanmean(FEL2,1); %FEV is integrating over the cross-section
+FEValt = nanmean(FEL2,2); % alternative measure of FEV that takes the mean across time
+FEV = 0;

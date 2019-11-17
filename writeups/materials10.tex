@@ -257,20 +257,20 @@ FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at tim
 \section{Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``mean-only'' PLM $\blacktriangleleft$}	
 
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_y_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for observables, shock imposed at $t$}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[Forecasts, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Forecast errors, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Forecasts, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_F_both_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Forecast errors, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_FE_both_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for 1-period ahead forecasts and FEs, together, morning and evening, shock imposed at $t$}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for LH forecasts, shock imposed at $t$}
 \end{figure}
 
@@ -294,6 +294,10 @@ FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at tim
 \subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
 \caption{IRF for LH forecasts, shock imposed at $t$}
 \end{figure}
+
+\begin{itemize}
+\item is almost identical to constant-only learning b/c 1) they're only learning the slope of inflation 2) $f_a, f_b$ are still driven mainly by the constant.
+\end{itemize}
 
 
 

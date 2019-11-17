@@ -22,30 +22,15 @@ param.sig_u = 0.277; % 0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.80; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
 param.thettilde = 1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 
+% Set is just a copy of param as of 16 Nov 2019
+fn = fieldnames(param);
+for k=1:numel(fn)
+    if( isnumeric(param.(fn{k})) )
+        % do stuff
+        set.(fn{k}) = param.(fn{k}); % assign set the same value as param
+%         fn{k} % this prints the name of the field
+    end
+end
 
-
-
-set.bet  = 0.98;
-set.sig  = 0.5; 
-set.alph = 0.5;
-set.kapp =(1-set.alph)*(1-set.alph*set.bet)/set.alph;
-set.psi_x  = 0; 
-set.psi_pi = 1.5; 
-set.w = 1+set.sig*set.psi_x +set.kapp*set.sig*set.psi_pi;
-set.gbar    = 0.145; 
-set.thetbar = 0.029;
-set.rho_r = 0;
-set.rho_i = 0;
-set.rho_u = 0; 
-set.rho = 0;
-set.sig_r = 0.1; 
-set.sig_i = 0.359; 
-set.sig_u = 0.277; 
-set.kap =  0.80; 
-set.thettilde = 1.60; 
-set.ne = 3; % the number of shocks
-set.nxnl = 3; % the number of nonlinear states (k + zbar, at 3 each -- > 3x2)
-set.nxl = 3; % the number of linear states (z)
-set.ny = 3;  % number of observables (also z for now)
-set.nxnl_2 = 2; % the second dimension of the nonlinear states (2)
-
+% % create indexes for the positions of the parameters
+% make_index(fn)
