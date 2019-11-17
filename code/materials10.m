@@ -314,12 +314,15 @@ gbar0 = gbar; % start at CEMP's value
 gbar_opt = nan(N,1);
 ub = 0.2;
 lb = 0.00001;
-for n=1fro:100
+for n=1:N
+    if mod(n,100)==0
+    disp([num2str(n) ,' out of ', num2str(N)])
+    end
     % Sequence of innovations
     e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
     
     %Compute the objective function one time with some values
-    loss = obj_minFEV(gbar,gx,hx,SIG,T,burnin,e,Aa,Ab,As);
+%     loss = obj_minFEV(gbar,gx,hx,SIG,T,burnin,e,Aa,Ab,As);
     %Declare a function handle for optimization problem
     objh = @(gbar) obj_minFEV(gbar,gx,hx,SIG,T,burnin,e,Aa,Ab,As); % solve objective for variables given params
     gbar_opt(n) = fmincon(objh, gbar0, [],[],[],[],lb,ub,[],options);

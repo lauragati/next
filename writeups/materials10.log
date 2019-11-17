@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 NOV 2019 09:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 NOV 2019 17:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -991,7 +991,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials10_RIR_y_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25
-.png, id=109, 1097.09875pt x 668.4975pt>
+.png, id=119, 1097.09875pt x 668.4975pt>
 File: ../figures/materials10_RIR_y_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_
 dt_25.png Graphic file (type png)
 
@@ -1002,7 +1002,7 @@ Package pdftex.def Info: ../figures/materials10_RIR_y_d_monpolmean_only_PLM_rho
 (pdftex.def)             Requested size: 197.46925pt x 120.32436pt.
 
 <../figures/materials10_RIR_y_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt_25
-.png, id=110, 1104.125pt x 669.50125pt>
+.png, id=120, 1104.125pt x 669.50125pt>
 File: ../figures/materials10_RIR_y_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_
 dt_25.png Graphic file (type png)
 
@@ -1013,7 +1013,7 @@ Package pdftex.def Info: ../figures/materials10_RIR_y_c_monpolmean_only_PLM_rho
 (pdftex.def)             Requested size: 198.73392pt x 120.50502pt.
 
 <../figures/materials10_RIR_F_both_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt
-_25.png, id=111, 1050.92625pt x 617.30624pt>
+_25.png, id=121, 1050.92625pt x 617.30624pt>
 File: ../figures/materials10_RIR_F_both_monpolmean_only_PLM_rho0_psi_pi_1_5_sig
 _1_dt_25.png Graphic file (type png)
 
@@ -1024,7 +1024,7 @@ rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 266.
 (pdftex.def)             Requested size: 189.15857pt x 111.11032pt.
 
 <../figures/materials10_RIR_FE_both_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_d
-t_25.png, id=112, 1121.18875pt x 617.30624pt>
+t_25.png, id=122, 1121.18875pt x 617.30624pt>
 File: ../figures/materials10_RIR_FE_both_monpolmean_only_PLM_rho0_psi_pi_1_5_si
 g_1_dt_25.png Graphic file (type png)
 
@@ -1035,7 +1035,7 @@ _rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 267.
 (pdftex.def)             Requested size: 201.80527pt x 111.11032pt.
 
 <../figures/materials10_RIR_fafb_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt
-_25.png, id=113, 1143.27126pt x 668.4975pt>
+_25.png, id=123, 1143.27126pt x 668.4975pt>
 File: ../figures/materials10_RIR_fafb_d_monpolmean_only_PLM_rho0_psi_pi_1_5_sig
 _1_dt_25.png Graphic file (type png)
 
@@ -1046,7 +1046,7 @@ rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 272.
 (pdftex.def)             Requested size: 205.77994pt x 120.32436pt.
 
 <../figures/materials10_RIR_fafb_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig_1_dt
-_25.png, id=114, 1121.18875pt x 669.50125pt>
+_25.png, id=124, 1121.18875pt x 669.50125pt>
 File: ../figures/materials10_RIR_fafb_c_monpolmean_only_PLM_rho0_psi_pi_1_5_sig
 _1_dt_25.png Graphic file (type png)
 
@@ -1084,7 +1084,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_
-dt_25.png, id=131, 1097.09875pt x 668.4975pt>
+dt_25.png, id=141, 1097.09875pt x 668.4975pt>
 File: ../figures/materials10_RIR_y_d_monpolslope_and_constant_rho0_psi_pi_1_5_s
 ig_1_dt_25.png Graphic file (type png)
 
@@ -1095,7 +1095,7 @@ t_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 281.
 (pdftex.def)             Requested size: 197.46925pt x 120.32436pt.
 
 <../figures/materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_
-dt_25.png, id=132, 1104.125pt x 669.50125pt>
+dt_25.png, id=142, 1104.125pt x 669.50125pt>
 File: ../figures/materials10_RIR_y_c_monpolslope_and_constant_rho0_psi_pi_1_5_s
 ig_1_dt_25.png Graphic file (type png)
 
@@ -1106,7 +1106,7 @@ t_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 282.
 (pdftex.def)             Requested size: 198.73392pt x 120.50502pt.
 
 <../figures/materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig
-_1_dt_25.png, id=133, 1121.18875pt x 617.30624pt>
+_1_dt_25.png, id=143, 1121.18875pt x 617.30624pt>
 File: ../figures/materials10_RIR_F_both_monpolslope_and_constant_rho0_psi_pi_1_
 5_sig_1_dt_25.png Graphic file (type png)
 
@@ -1117,7 +1117,7 @@ tant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 287.
 (pdftex.def)             Requested size: 201.80527pt x 111.11032pt.
 
 <../figures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_5_si
-g_1_dt_25.png, id=134, 1099.10625pt x 617.30624pt>
+g_1_dt_25.png, id=144, 1099.10625pt x 617.30624pt>
 File: ../figures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1
 _5_sig_1_dt_25.png Graphic file (type png)
 
@@ -1128,7 +1128,7 @@ stant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 288.
 (pdftex.def)             Requested size: 197.83058pt x 111.11032pt.
 
 <../figures/materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig
-_1_dt_25.png, id=135, 1121.18875pt x 668.4975pt>
+_1_dt_25.png, id=145, 1121.18875pt x 668.4975pt>
 File: ../figures/materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_
 5_sig_1_dt_25.png Graphic file (type png)
 
@@ -1139,7 +1139,7 @@ tant_rho0_psi_pi_1_5_sig_1_dt_25.png used on input line 293.
 (pdftex.def)             Requested size: 201.80527pt x 120.32436pt.
 
 <../figures/materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig
-_1_dt_25.png, id=136, 1121.18875pt x 669.50125pt>
+_1_dt_25.png, id=146, 1121.18875pt x 669.50125pt>
 File: ../figures/materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_
 5_sig_1_dt_25.png Graphic file (type png)
 
@@ -1169,46 +1169,79 @@ ures/materials10_RIR_FE_both_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_
 25.png (PNG copy)> <../figures/materials10_RIR_fafb_d_monpolslope_and_constant_
 rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)> <../figures/materials10_RIR_fafb_c_
 monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 318.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 318.
 
-(./materials10.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 318.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 318.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 303.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 303.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8]
+Overfull \hbox (44.98848pt too wide) in paragraph at lines 350--350
+[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 376.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 376.
+ (./materials10.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 376.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 376.
 Package rerunfilecheck Info: File `materials10.out' has not changed.
-(rerunfilecheck)             Checksum: 3EBD9069BCF075D41FB71167E60CF776;465.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
+(rerunfilecheck)             Checksum: 4E96FC8A2AF7D780BAAFA9A7B0CC85CC;635.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 376.
  ) 
 Here is how much of TeX's memory you used:
- 20102 strings out of 493089
- 367940 string characters out of 6134842
+ 20109 strings out of 493089
+ 367999 string characters out of 6134842
  457397 words of memory out of 5000000
- 23139 multiletter control sequences out of 15000+600000
+ 23141 multiletter control sequences out of 15000+600000
  16190 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,22n,54p,718b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,22n,54p,824b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials10.pdf (7 pages, 850079 bytes).
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials10.pdf (10 pages, 872665 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 58 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 200 compressed objects within 2 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -299,8 +299,66 @@ FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at tim
 \item is almost identical to constant-only learning b/c 1) they're only learning the slope of inflation 2) $f_a, f_b$ are still driven mainly by the constant.
 \end{itemize}
 
+\newpage
+\section{Choosing $\bar{g}$ to minimize the FEV}
+Currently what I do is:
+\begin{itemize}
+\item For each simulated sequence of shocks $n$
+\item calculate the FEV across time for that particular history as a function of $\bar{g}$
+\item choose $\bar{g}^*_n$ to minimize the FEV
+\item take an average across the simulations
+\end{itemize}
+For 500 simulated sequences, I obtain an average $\bar{g}^* = 2.5715 \times 10^{-4} \approx 0.0003$ . The maximum value for $\bar{g}^*_n$ is 0.0049, and I constrain $\bar{g}^*_n$ to lie between $[ 0.00001, 0.2]$. (Somewhat troubling is that without the constraint, $\bar{g}^*_n$ is often negative, although small.)
 
+With a $\bar{g}^* = 0.0003$, the overshooting is completely killed and decreasing and constant gain learning look identical. FEs still switch sign one time, but barely because, after impact, they are extremely small. 
 
+A note: Ideally, I wanted to take the FEV over the cross-section instead of across time. This is however much more computationally intensive because it requires for each history $n$ and each time period $t$ to resimulate all sequences $1,\dots, N$ up to time $t$ to compute the most recent, period $t$ FEV across the cross-section, and then for every proposed value of $\bar{g}$, to repeat this process until $\bar{g}^*_t$ is found. Thus I expect this to take at least $T$ times longer than the first approach (and likely more because fmincon will also take at least $N$ times longer). Considering that the ``across-time'' approach takes a little above 5 minutes to run, this second, ``cross-section'' approach would need \emph{at least} 50 minutes for a modest simulation length of 100. 
+
+\newpage
+\section{How observables respond to expectations - connecting RE and learning}
+
+For this section, disregard the difference in the expectation operator in the two models. Pretend like it was the same operator. With this assumption, the RE model is just a recursive formulation of the learning model. My aim here is to show that both ways of writing the \emph{same} system embody the same channels of how observables respond to expectations, only these channels are more explicit in the non-recursive formulation.
+
+Ignoring shocks and setting $\psi_x = 0$, so the Taylor rule is just $i_t =  \psi_{\pi}\pi_t$, the two systems are
+\begin{align*}
+RE& \\
+x_t &= - \sigma i_t + \E_t x_{t+1}   + \sigma \E_t \pi_{t+1}  \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
+Learning & \\
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma\beta i_{T+1} +\sigma \pi_{T+1}) \big)  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
+\end{align*}
+When you plug in the interest rate, you see that the recursive representation hides the contractionary effect of future positive values on current $x_t$ (and thereby on inflation) coming from the anticipated interest rate effect. (Throughout I'm using blue to denote negative values.)
+\begin{align*}
+RE& \\
+x_t &= \textcolor{blue}{- \sigma \psi_{\pi}} \pi_t+  \E_t x_{t+1}   + \sigma \E_t \pi_{t+1}  \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
+Learning & \\
+x_t &= \textcolor{blue}{ -\sigma \psi_{\pi}} \pi_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta) x_{T+1} + \textcolor{blue}{\sigma(1- \beta \psi_{\pi})}\pi_{T+1} \big)  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
+\end{align*}
+This gives
+\begin{align*}
+RE& \\
+x_t &=  \textcolor{blue}{ \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\E_t \pi_{t+1}   +   \frac{1}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1}  \\
+\pi_t &=   \overbrace{\bigg( \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}+\beta\bigg)}^{+}\E_t \pi_{t+1} +   \frac{\kappa}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1} \\
+Learning & \\
+x_t & =  \bigg( \textcolor{blue}{-\frac{\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa}(1-\alpha)\beta + \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\bigg) \E^{\alpha,\beta}_t \pi_{\infty} 
++\overbrace{\bigg( \textcolor{blue}{-\frac{\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa}\kappa\alpha\beta} + \frac{1-\beta}{1+\sigma\psi_{\pi}\kappa}\bigg)}^{\textcolor{blue}{-}} \E^{\alpha,\beta}_t x_{\infty} \\
+\pi_t & =  \bigg( \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big)(1-\alpha)\beta + \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\bigg) \E^{\alpha,\beta}_t \pi_{\infty} 
++\overbrace{\bigg(   \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big) \kappa\alpha\beta + \frac{\kappa(1-\beta)}{1+\sigma\psi_{\pi}\kappa}\bigg)}^{+} \E^{\alpha,\beta}_t x_{\infty} 
+\end{align*}
+where I write $\E^{\alpha,\beta}_t x_{\infty}$ for $\E_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t}x_{T+1} + \E_t\sum_{T=t}^{\infty} (\beta)^{T-t} x_{T+1}$
+This yields the stylized representation of how endogenous variables respond to expectations in the two formulations:
+\begin{align*}
+& RE \\
+x_t & = \overset{\textcolor{blue}{-}}{\E(\pi)} + \overset{+}{\E(x)} \\  
+\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
+& Learning \\
+x_t & = \overset{\textcolor{blue}{-}}{\E(\pi)} + \textcolor{blue}{\overset{\textcolor{blue}{-}}{\E(x)} }\\  
+\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
+\end{align*}
+The difference, marked in blue, comes from the fact high future $x$ leads to high future $\pi$, which in both worlds is contractionary for current $x$. The non-recursive representation distinguishes between these expectations, while the recursive formulation wraps everything into a single expectation. It must then be that when future $x\uparrow$, then inflation responds strongly enough in RE so that the overall effect on current $x$ is negative. In other words, it must be the case that $\pi_t$'s dependance on future inflation is stronger under RE than learning. Comparing coefficients for my baseline parameterization, this is true. 
 
 
 %  A NOTE ON SHOCKS AND ANCHORING
