@@ -134,7 +134,7 @@ GIR_FEL_c = zeros(h,N,nd);
 eN = randn(ne,T,N); % gen all the N sequences of shocks at once.
 if skip_old_stuff==0
     %     param = struct2array(setp);
-    fn = fieldnames(setp);
+%     fn = fieldnames(setp);
     for s=2 %1:ne  %2->zoom in on monetary policy shock
         x0 = zeros(1,nx);
         x0(s) = d;
