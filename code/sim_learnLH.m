@@ -6,7 +6,7 @@
 % x0 = the shock.
 % 18 Nov 2019
 
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,a_seq, k] = sim_learnLH(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
 
 max_no_inputs = nargin('sim_learn');
 if nargin < max_no_inputs %no shock specified
@@ -21,7 +21,7 @@ nx = size(hx,1);
 ysim = zeros(ny,T);
 xsim = zeros(nx,T);
 
-if PLM==1 
+if PLM==1
     %Learning PLM matrices, just a constant. Using RE as default starting point.
     a = zeros(ny,1);
     b = gx*hx;
@@ -38,29 +38,32 @@ else
     warning('I don''t know what you requested.')
 end
 
-phi_seq = nan(T,nx+1);
-a_seq = zeros(T,1);
+phi = [a,b];
+phi_seq = nan(ny,nx+1,T);
+phi_seq(:,:,1) = phi;
+
+[~,sigx] = mom(gx,hx,eta*eta');
+R = eye(nx+1); R(2:end,2:end) = sigx;
+
 diff = zeros(T,1);
 diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
-%%% initialize CUSUM variables: FEV om and criterion theta
-om = 0;
-thet = 0; % CEMP don't really help with this, but I think zero is ok.
-%%%
-evening_fcst = nan(T,1);
-morning_fcst = nan(T,1);
+
+evening_fcst = nan(ny,T);
+morning_fcst = nan(ny,T);
 FA = nan(ny,T);
 FB = nan(ny,T);
-FEt_1 = nan(T,1); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
+FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 %Simulate, with learning
 for t = 1:T-1
     if t == 1
         ysim(:,t) = gx*xsim(:,t);
         xesim = hx*xsim(:,t);
     else
+        
         %Form Expectations using last period's estimates
-        [fa, fb] = fafb_anal_constant_free(param,[a;0;0], b, xsim(:,t),hx); % new hx version
+        [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx); % new hx version
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         
@@ -69,45 +72,35 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
         
         %Update coefficients
-        % Here the code differentiates between decreasing, endogenous or constant gain
+        % Here the code differentiates between decreasing or constant gain
         if gain ==1 % decreasing gain
             k(:,t) = k(:,t-1)+1;
-        elseif gain==2 % endogenous gain
-            % now choose the criterion
-            if criterion == 1 % CEMP's
-                kt = fk_pidrift_free([a;0;0], b, xsim(:,t-1), k(:,t-1), param, Aa, Ab, As, hx);  % new hx version
-            elseif criterion == 2 % CUSUM
-                % Cusum doesn't depend on P or n, so we need no difference
-                % between free or not.
-                fe = ysim(1,t)-(a + b1*xsim(:,t-1)); % short-run FE
-                [kt, om, thet] = fk_cusum(param,k(:,t-1),omt_1, thett_1,fe);
-            end
-            k(:,t) = kt;
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end
         
         % Create forecasts, FE and do the updating
         if PLM == 1 || PLM == -1 % when learning constant only, or "mean-only" PLM
-            morning_fcst(t) = a + b1*xsim(:,t); % this morning's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^m)
-            FEt_1(t) = ysim(1,t)-(a + b1*xsim(:,t-1)); % yesterday evening's forecast error, realized today
-            a = a + k(:,t).^(-1).*(ysim(1,t)-(a + b1*xsim(:,t-1)) );
-            evening_fcst(t) = a + b1*xsim(:,t); % today's evening's one-step ahead forecast of tomorrow's state E(pi_{t+1} | I_{t}^e)
-            
+            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
+            a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) );
+            evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            phi = [a,b];
         elseif PLM == 2 % constant and slope learning
-            phi = [a b1]; % gather constant and slope
-            morning_fcst(t) = phi*[1 xsim(:,t)']'; 
-            FEt_1(t) = ysim(1,t)-(phi*[1 xsim(:,t-1)']');
-            phi = phi + k(:,t).^(-1).*(ysim(1,t)-(phi*[1 xsim(:,t-1)']')) ;
-            evening_fcst(t) = phi*[1 xsim(:,t)']'; 
-            % split phi into a and b once you've updated phi
-            a = phi(1,1);
-            b1 = phi(1,2:end);
-            phi_seq(t,:) = phi; % store phis in case you wanna look at them
+            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
+            R = R + t^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);
+            phi = (phi' + k(:,t).^(-1).*  (R\[1;xsim(:,t-1)] *(ysim(:,t)-phi*[1;xsim(:,t-1)])'))';
+            evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            
+            % split phi into a and b
+            a = phi(:,1);
+            b = phi(:,2:end);
         end
         
+        phi_seq(:,:,t) = phi; % store phis
         % check convergence
-        diff(t) = max(max(abs(a - at_1)));
+        diff(t) = max(max(abs(phi - squeeze(phi_seq(:,:,t-1)))));
         
     end
     
@@ -118,13 +111,6 @@ for t = 1:T-1
     end
     %%%
     xsim(:,t+1) = xesim + eta*e(:,t+1);
-    
-    % generate an old constant, to check convergence
-    at_1 = a;
-    a_seq(t)= a;
-    %%% update CUSUM parameters
-    omt_1 = om;
-    thett_1 = thet;
     
 end
 

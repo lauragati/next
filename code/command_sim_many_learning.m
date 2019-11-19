@@ -69,7 +69,7 @@ cgain = 3;
 critCEMP=1;
 critCUSUM=2;
 
-T = 40 % 400
+T = 100 % 400
 % Size of cross-section
 N = 1; %500
 eN = randn(ne,T,N); % gen all the N sequences of shocks at once.
@@ -82,7 +82,7 @@ for n=1:N
     [~, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
     
     % LH learning (learning both slope and constant of a vector)
-    [~, y_LH] = sim_learn_LH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, dgain);
+    [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, dgain);
     
     % Euler equation learning (learning both slope and constant). Only this
     % is from materials3.m.
@@ -97,12 +97,12 @@ toc
 
 % only plot last 100 obs
 rearranged = permute(Y,[3,2,1]); % swap 3rd and 1st dim for plotting
-series = rearranged;
-% series = rearranged(:,end-19:end,:); % last 20 obs
+% series = rearranged;
+series = rearranged(:,end-19:end,:); % last 20 obs
 
 figtitle = '';
 seriesnames = {'RE', 'LH', 'EE'};
-titles_obs = {'Inflation','Output gap','Int. rate'};
+titles_obs = {'Inflation','Output gap','Interest rate'};
 figname = [this_code, '_simulatedseries_T', num2str(T)];
 subplot_names = titles_obs;
 create_subplot(series,subplot_names,figname,print_figs,figtitle,seriesnames)

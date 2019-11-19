@@ -309,60 +309,27 @@ Alternatively I can evaluate each $h$-period ahead forecast individually using (
 % need more results and more discussion of them
 Now I turn to the simulations of the NK model under the three specifications of expectation formation: rational expectations, Euler-equation learning and long-horizon learning. The main question of interest is whether the long-horizon specification of the model yields different dynamics than the Euler-equation counterpart for identical expectation formation. 
 
-Fig. \ref{main} presents the main results. This figure shows the evolution of the observables inflation, output gap and nominal interest rate over time conditional on the same sequence of shocks. As the top panel makes clear, the dynamics of Euler-equation learning (abbreviated as EE) is extremely different from that of long-horizon learning (abbreviated as LR for ``long-run'' expectations). In particular, the latter produces much more volatile dynamics and takes considerably longer to converge to rational expectations than EE.\footnote{This runs counter to the results obtained by \cite{graham2011individual}.} As the bottom panel illustrates, after 600 periods, the EE dynamics are fairly close to rational expectations. By contrast, the long-horizon expectation dynamics remain distinct from rational expectations even after 100000 periods (Fig. \ref{last}).
+Fig. \ref{main} presents the main results. This figure shows the evolution of the observables inflation, output gap and nominal interest rate over time conditional on the same sequence of shocks. The top panel depicts a simulation length of $T=20$ periods, while the bottom panel shows the last 20 observations of a simulation with length $T=200$. 
 
-\
+The figure carries two main messages. Firstly, as the top panel makes clear, the dynamics of Euler-equation learning (abbreviated as EE) is different from that of long-horizon learning (abbreviated as LH). This is a direct consequence of EE forecasts being suboptimal given the information structure agents in the model are endowed with. Using suboptimal forecasts that ignore long-horizon considerations relevant to agents' choices feeds back into observables, causing these variables to differ across the two learning models. The policy implication is that the same specification of monetary policy entails different economic outcomes depending on the modeling choice between EE and LH learning. Taking the mathematically more straightforward modeling route thus does not appear to be an innocent simplification.
 
-\
+Secondly, as the bottom panel indicates, Euler-equation learning takes considerably longer to converge to rational expectations (RE) than long-horizon learning.\footnote{This confirms the results by \cite{graham2011individual}, which finds that the horizon of forecasts considered is the main determinant of the speed of convergence.} After 200 periods, the long-horizon dynamics are fairly close to rational expectations. By contrast, the Euler-equation expectation dynamics remain distinct from rational expectations for an extended period after LH has converged. 
 
-\
+This is a significant difference because decreasing gain learning only yields dynamics distinct from rational expectations in the transition; that is, as long as expectations have not converged to rational expectations.\footnote{This is not in general true of constant or endogenous gain learning.} Once converged, the model's predictions are identical with those of rational expectations. From a policy standpoint, then, it is crucial to determine from what point in time the RE dynamics takes over. 
 
-\hspace{5cm} \{ FIG 1 Panel a HERE \}
-
-\
-
-\
 \begin{figure}[h!]
-%\subfigure[All models]{\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables1}}
-\subfigure[Rational expectations and Euler-equation learning only]{
-\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_EE_only}}
+\subfigure[All models, $T=20$]{\includegraphics[scale = \myFigScale]{\myFigPath command_sim_many_learning_simulatedseries_T20}}
+\subfigure[All models, $T=200$, last 20 periods]{
+\includegraphics[scale = \myFigScale]{\myFigPath command_sim_many_learning_simulatedseries_T200}}
 \caption{Comparing models}
 \label{main}
 \end{figure}
 
-\begin{figure}[h!]
-\includegraphics[scale = \myFigScale]{\myFigPath materials3_observables_RE_LR_last100_millionperiods}
-\caption{Rational expectations and long-horizon learning, $T = 100000$, last 100 periods}
-\label{last}
-\end{figure}
 
-One might think that the Euler-equation and long-horizon learning models only differ in terms of the horizon of forecasts that show up in the expectations of agents. To investigate this, I next plot simulations for the same sequence of shocks of the long-horizon learning model where I evaluate each $h$-period ahead forecast separately and add up $H$ of these forecasts, discounting each as needed. Fig. \ref{horizons} presents the results. The top panels show the observables for the long-horizon learning model. The blue lines are long-horizon model observables for long-horizon expectations evaluated analytically (Equation (\ref{fafb_analytical_general})), while the red dashed and yellow lines are for the alternative evaluation of long-horizon expectations, using $H=10000$ and $H = 100$ respectively. It is clear that $H=10000$ is a good approximation in the sense that observables behave exactly as if analytical expectations had been used. The opposite is true for $H=100$; this evaluation of long-horizon expectations leads to drastically different dynamics. 
-
-Are these the dynamics of Euler-equation learning? The bottom panel of Fig. \ref{horizons} gives a stark answer: no. Even if I set $H=1$, thus considering only one-period ahead forecasts, as in Euler-equation learning, I still do not obtain the Euler-equation learning dynamics (in red here). In particular, the output gap and the nominal interest rate are considerably more volatile in the long-horizon model, even if $H=1$. This is because the long-horizon forecast approach does not only differ from the Euler-equation approach in the amount and horizon of forecasts that figure into period $t$ expectations. Instead, the presence of infinite $h$-period ahead forecasts is just one consequence of the fact that this approach does not endow agents with information the expectational assumptions imply they do not know. Therefore even a one-period ahead forecast version of the long-horizon approach yields different dynamics than the Euler-equation approach.
-
-The conclusions from these simulations can be summed up as follows. The main result is that Preston's argument matters not only conceptually, but also quantitatively: the long-horizon version of the model behaves differently from the Euler-equation version along two important dimensions: i) it converges much slower to rational expectations, ii) it is much more volatile in the transition. Thus adopting the Euler-equation approach is not just an innocent shortcut. Instead, it distorts the predictions of the model with learning and will thus generate misleading policy conclusions.
+The conclusions from these simulations can be summed up as follows. The main result is that Preston's argument matters not only conceptually, but also quantitatively: the long-horizon version of the model behaves differently from the Euler-equation version along two important dimensions: i) it converges much faster to rational expectations, ii) observables are different, so identical monetary policy achieves different outcomes. Thus adopting the Euler-equation approach is not just an innocent shortcut. Instead, it distorts the predictions of the model with learning and will thus generate misleading policy conclusions.
 
 Another conclusion concerns the overarching focus of the learning literature on E-stability. My analysis reveals that this also may be misleading. The reason is that for the same parameter values and same sequence of shocks, both the EE and LH model are E-stable. Focusing on E-stability alone, then, masks the enormous differences in dynamics between the two models. Surely a policy-maker concerned with stabilizing the economy would be interested in discriminating between specifications of the Taylor rule that are both E-stable yet yield vastly different volatilities and lengths of transition. 
 
-\
-
-\
-
-\
-
-\hspace{5cm} \{ FIG 3 HERE \}
-
-\
-
-\
-
-
-
-\begin{figure}[h!]
-%\includegraphics[scale = \myBiggerFigScale]{\myFigPath materials3_horizons}
-\caption{Comparing horizons}
-\label{horizons}
-\end{figure}
 
 \clearpage
 \section{Conclusion}\label{conclusion}
