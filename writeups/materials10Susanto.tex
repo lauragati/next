@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.18}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials for Susanto - IRFs for learning}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+%\newpage
+
+
+\newpage
+
+
+\newpage
+\section{Observables for 3 shocks}	
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{Natural rate shock}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{Monetary policy shock}
+\end{figure}
+
+ \begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\caption{Cost-push shock}
+\end{figure}
+
+\newpage
+\section{How observables respond to expectations - RE vs. learning}
+Ignoring shocks and setting $\psi_x = 0$, so the Taylor rule is just $i_t =  \psi_{\pi}\pi_t$, the two systems are
+(throughout I'm using blue to denote negative values).
+\begin{align*}
+RE& \\
+x_t &= \textcolor{blue}{- \sigma \psi_{\pi}} \pi_t+  \E_t x_{t+1}   + \sigma \E_t \pi_{t+1}  \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
+Learning & \\
+x_t &= \textcolor{blue}{ -\sigma \psi_{\pi}} \pi_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta) x_{T+1} + \textcolor{blue}{\sigma(1- \beta \psi_{\pi})}\pi_{T+1} \big)  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
+\end{align*}
+Expressing $x, \pi$ as functions of expectations alone, this gives:
+\begin{align*}
+RE& \\
+x_t &=  \textcolor{blue}{ \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\E_t \pi_{t+1}   +   \frac{1}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1}  \\
+\pi_t &=   \overbrace{\bigg( \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}+\beta\bigg)}^{+}\E_t \pi_{t+1} +   \frac{\kappa}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1} \\
+Learning & \\
+x_t & = \textcolor{blue}{\frac{-\sigma\psi_{\pi}}{w}} \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{1}{w}\begin{bmatrix} \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b \\
+\pi_t & = (1-\frac{\kappa\sigma\psi_{\pi}}{w}) \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{\kappa}{w}\begin{bmatrix}  \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b
+\end{align*}
+This yields the stylized representation of how endogenous variables respond to expectations in the two formulations:
+
+\vspace{-0.9cm}
+
+\begin{multicols}{2}
+\begin{align*}
+& RE \\
+x_t & = \overset{\textcolor{blue}{-}}{\E(\pi)} + \overset{+}{\E(x)} \\  
+\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} 
+\end{align*}
+\columnbreak
+
+\vspace{0.1cm}
+
+\begin{align*}
+& Learning \\
+x_t & = \overset{\textcolor{blue}{-}}{\E_a(\pi)}  + \overset{\textcolor{blue}{-}}{\E_b(\pi)}  
++ \overbrace{\overset{\textcolor{blue}{-}}{\E_a(x)}   + \overset{+}{\E_b(x)}}^{+ \; \text{since} \; f_a < f_b}   \\  
+\pi_t & = \underbrace{\overset{+}{\E_a(\pi)} + \overset{\textcolor{blue}{-}}{\E_b(\pi)}}_{+ \; \text{since} \; \kappa \; \text{tiny}} 
++ \overset{+}{\E_a(x)} + \overset{+}{\E_b(x)}
+\end{align*}
+\end{multicols}
+
+Where $f_a$ and $f_b$ denote long-horizon expectations and are given by
+\begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix}
+\end{align}
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix} + b(I_4 - \alpha\beta h_x)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix}  + b(I_4 - \beta h_x)^{-1}s_t  \label{fafb_obvious}
+\end{equation}
+
+(And $b = g_x h_x$, where $h_x$ is the state transition matrix and $g_x$ is the observation matrix from the RE model solution.)
+
+
+\end{document}
+
+
+
+
+

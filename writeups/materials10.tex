@@ -206,6 +206,14 @@ g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 & \text
 g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1& \textcolor{blue}{0} \end{bmatrix}(I_{\textcolor{blue}{4}} - \alpha\beta \textcolor{blue}{hx})^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 & \textcolor{blue}{\rho}\end{bmatrix}(I_{\textcolor{blue}{4}} -\beta \textcolor{blue}{hx})^{-1}
 \end{align}
 
+And long-horizon expectations are
+\begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix}\label{fafb}
+\end{align}
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix} + b(I_4 - \alpha\beta h_x)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix}  + b(I_4 - \beta h_x)^{-1}s_t  \label{fafb_analytical}
+\end{equation}
+
 \clearpage
 \section{Recap of timing}
 
@@ -300,7 +308,7 @@ FE_t & = z_{t+1}-f_t \quad \text{one-period-ahead forecast error realized at tim
 \end{itemize}
 
 \newpage
-\section{Choosing $\bar{g}$ to minimize the FEV}
+\section{Choosing $\bar{g}$ to minimize the FEV $\blacktriangleleft$}
 Currently what I do is:
 \begin{itemize}
 \item For each simulated sequence of shocks $n$
@@ -345,20 +353,66 @@ x_t &=  \textcolor{blue}{ \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\ka
 Learning & \\
 x_t & =  \bigg( \textcolor{blue}{-\frac{\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa}(1-\alpha)\beta + \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\bigg) \E^{\alpha,\beta}_t \pi_{\infty} 
 +\overbrace{\bigg( \textcolor{blue}{-\frac{\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa}\kappa\alpha\beta} + \frac{1-\beta}{1+\sigma\psi_{\pi}\kappa}\bigg)}^{\textcolor{blue}{-}} \E^{\alpha,\beta}_t x_{\infty} \\
-\pi_t & =  \bigg( \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big)(1-\alpha)\beta + \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\bigg) \E^{\alpha,\beta}_t \pi_{\infty} 
-+\overbrace{\bigg(   \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big) \kappa\alpha\beta + \frac{\kappa(1-\beta)}{1+\sigma\psi_{\pi}\kappa}\bigg)}^{+} \E^{\alpha,\beta}_t x_{\infty} 
+\pi_t & =  \overbrace{\bigg( \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big)(1-\alpha)\beta + \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\bigg)}^{+}  \E^{\alpha,\beta}_t \pi_{\infty} 
++\bigg(   \big(1-\frac{\kappa\sigma\psi_{\pi}}{1+\sigma\psi_{\pi}\kappa} \big) \kappa\alpha\beta + \frac{\kappa(1-\beta)}{1+\sigma\psi_{\pi}\kappa}\bigg)\E^{\alpha,\beta}_t x_{\infty} 
 \end{align*}
 where I write $\E^{\alpha,\beta}_t x_{\infty}$ for $\E_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t}x_{T+1} + \E_t\sum_{T=t}^{\infty} (\beta)^{T-t} x_{T+1}$
+
+\newpage
+\subsection{A more concise rephrasing $\blacktriangleleft$}
+Ignoring shocks and setting $\psi_x = 0$, so the Taylor rule is just $i_t =  \psi_{\pi}\pi_t$, the two systems are
+(throughout I'm using blue to denote negative values).
+\begin{align*}
+RE& \\
+x_t &= \textcolor{blue}{- \sigma \psi_{\pi}} \pi_t+  \E_t x_{t+1}   + \sigma \E_t \pi_{t+1}  \\
+\pi_t &= \kappa x_t +\beta \E_t \pi_{t+1} \\
+Learning & \\
+x_t &= \textcolor{blue}{ -\sigma \psi_{\pi}} \pi_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta) x_{T+1} + \textcolor{blue}{\sigma(1- \beta \psi_{\pi})}\pi_{T+1} \big)  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} \big)
+\end{align*}
+Expressing $x, \pi$ as functions of expectations alone, this gives:
+\begin{align*}
+RE& \\
+x_t &=  \textcolor{blue}{ \frac{\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}\E_t \pi_{t+1}   +   \frac{1}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1}  \\
+\pi_t &=   \overbrace{\bigg( \textcolor{blue}{\frac{\kappa\sigma(1-\beta\psi_{\pi})}{1+\sigma\psi_{\pi}\kappa}}+\beta\bigg)}^{+}\E_t \pi_{t+1} +   \frac{\kappa}{1+\sigma\psi_{\pi}\kappa}\E_t x_{t+1} \\
+Learning & \\
+x_t & = \textcolor{blue}{\frac{-\sigma\psi_{\pi}}{w}} \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{1}{w}\begin{bmatrix} \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b \\
+\pi_t & = (1-\frac{\kappa\sigma\psi_{\pi}}{w}) \begin{bmatrix} (1-\alpha)\beta&\kappa\alpha\beta & 0 \end{bmatrix} f_a + \frac{\kappa}{w}\begin{bmatrix}  \textcolor{blue}{\sigma(1-\beta\psi_{\pi})}&1-\beta & 0\end{bmatrix} f_b
+\end{align*}
 This yields the stylized representation of how endogenous variables respond to expectations in the two formulations:
+
+\vspace{-0.9cm}
+
+\begin{multicols}{2}
 \begin{align*}
 & RE \\
 x_t & = \overset{\textcolor{blue}{-}}{\E(\pi)} + \overset{+}{\E(x)} \\  
-\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
-& Learning \\
-x_t & = \overset{\textcolor{blue}{-}}{\E(\pi)} + \textcolor{blue}{\overset{\textcolor{blue}{-}}{\E(x)} }\\  
-\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} \\
+\pi_t & = \overset{+}{\E(\pi)} + \overset{+}{\E(x)} 
 \end{align*}
-The difference, marked in blue, comes from the fact high future $x$ leads to high future $\pi$, which in both worlds is contractionary for current $x$. The non-recursive representation distinguishes between these expectations, while the recursive formulation wraps everything into a single expectation. It must then be that when future $x\uparrow$, then inflation responds strongly enough in RE so that the overall effect on current $x$ is negative. In other words, it must be the case that $\pi_t$'s dependance on future inflation is stronger under RE than learning. Comparing coefficients for my baseline parameterization, this is true. 
+\columnbreak
+
+\vspace{0.1cm}
+
+\begin{align*}
+& Learning \\
+x_t & = \overset{\textcolor{blue}{-}}{\E_a(\pi)}  + \overset{\textcolor{blue}{-}}{\E_b(\pi)}  
++ \overbrace{\overset{\textcolor{blue}{-}}{\E_a(x)}   + \overset{+}{\E_b(x)}}^{+ \; \text{since} \; f_a < f_b}   \\  
+\pi_t & = \underbrace{\overset{+}{\E_a(\pi)} + \overset{\textcolor{blue}{-}}{\E_b(\pi)}}_{+ \; \text{since} \; \kappa \; \text{tiny}} 
++ \overset{+}{\E_a(x)} + \overset{+}{\E_b(x)}
+\end{align*}
+\end{multicols}
+
+As a reminder, I restate the definition of the long-horizon expectations $f_a$ and $f_b$ from Equations (\ref{fafb}) and (\ref{fafb_analytical}):
+\begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } \begin{bmatrix} \pi_{T+1} \\ x_{T+1} \\ i_{T+1} \end{bmatrix}
+\end{align}
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix} + b(I_4 - \alpha\beta h_x)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatrix}  + b(I_4 - \beta h_x)^{-1}s_t  \label{fafb_obvious}
+\end{equation}
+
+(And $b = g_x h_x$, where $h_x$ is the state transition matrix and $g_x$ is the observation matrix from the RE model solution.)
+
+Looking at (\ref{fafb_obvious}), it's obvious that a) learning will show up in the intercept, as the second part will load the same on the shocks in each period; b) because of much heavier discounting of the intercept, $f_a$ will fluctuate a lot less than $f_b$. Therefore the effects coming from $f_b$ overweigh those from $f_a$, which is why the blue difference in the stylized representation goes away. 
 
 
 %  A NOTE ON SHOCKS AND ANCHORING

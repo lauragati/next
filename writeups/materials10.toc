@@ -4,5 +4,6 @@
 \contentsline {section}{\numberline {4}Current set of baseline parameters}{5}{section.4}
 \contentsline {section}{\numberline {5}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``mean-only'' PLM $\blacktriangleleft $}{6}{section.5}
 \contentsline {section}{\numberline {6}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only, ``slope and constant'' PLM $\blacktriangleleft $}{7}{section.6}
-\contentsline {section}{\numberline {7}Choosing $\mathaccentV {bar}016{g}$ to minimize the FEV}{8}{section.7}
+\contentsline {section}{\numberline {7}Choosing $\mathaccentV {bar}016{g}$ to minimize the FEV $\blacktriangleleft $}{8}{section.7}
 \contentsline {section}{\numberline {8}How observables respond to expectations - connecting RE and learning}{9}{section.8}
+\contentsline {subsection}{\numberline {8.1}A more concise rephrasing $\blacktriangleleft $}{11}{subsection.8.1}
