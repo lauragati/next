@@ -129,34 +129,90 @@ bottom=1in}
 
 %\listoffigures
 
-%\newpage
+
+\newpage
+\section{Model summary}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \rho i_{t-1} + \bar{i}_t \label{TR}
+\end{align}
+\begin{equation}
+\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\ 0 \end{bmatrix}+ bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x \; h_x \quad \quad \text{PLM} \label{PLM}
+\end{equation}
+\begin{equation}
+\bar{\pi}_{t} = \bar{\pi}_{t-1} +k_t^{-1}\underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM})} } \quad \quad  \text{($b_1$ is the first row of $b$)}
+\end{equation}
+ \begin{align*}
+k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \bar{g}^{-1}  \quad \text{for constant gain learning.}\numberthis
+\end{cases} 
+\end{align*}
 
 
 \newpage
-
-
-\newpage
-\section{Observables for 3 shocks}	
+\section{IRFs for 3 shocks - persistence and overshooting}	
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_natrateconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_natrateconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
 \caption{Natural rate shock}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
 \caption{Monetary policy shock}
 \end{figure}
 
  \begin{figure}[h!]
-\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_d_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
-\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials10_RIR_fafb_c_monpolslope_and_constant_rho0_psi_pi_1_5_sig_1_dt_25}}
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_costpushconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_costpushconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
 \caption{Cost-push shock}
 \end{figure}
 
 \newpage
-\section{How observables respond to expectations - RE vs. learning}
+\section{Observables and expectations for monetary policy shock \\ - overshooting happens because of overadjustment of expectations}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - observables}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - long-horizon expectations}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - 1-period ahead forecasts and forecast errors}
+\end{figure}
+
+\newpage
+\section{Observables and expectations for monetary policy shock - a lower gain ($\bar{g}=0.02$) mitigates the overadjustment}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\caption{Monetary policy shock - observables}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\caption{Monetary policy shock - long-horizon expectations}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_02}}
+\caption{Monetary policy shock - 1-period ahead forecasts and forecast errors}
+\end{figure}
+
+\newpage
+\section{Why is overshooting happening for learning and not for RE?}
 Ignoring shocks and setting $\psi_x = 0$, so the Taylor rule is just $i_t =  \psi_{\pi}\pi_t$, the two systems are
 (throughout I'm using blue to denote negative values).
 \begin{align*}
@@ -208,6 +264,14 @@ f_a(t) = \frac{1}{1-\alpha\beta}\begin{bmatrix} \bar{\pi}_t \\ 0 \\ 0 \end{bmatr
 \end{equation}
 
 (And $b = g_x h_x$, where $h_x$ is the state transition matrix and $g_x$ is the observation matrix from the RE model solution.)
+
+\section{Coefficient on inflation in the Taylor rule ($\psi_{\pi}$)}
+Current variables depend negatively on expected future ones through $1-\beta\psi_{\pi}$ and $-\sigma\psi_{\pi}$. \\
+
+$-\sigma\psi_{\pi}$ is always negative, though smaller in absolute value as $\psi_{\pi} \downarrow$. \\
+
+$1-\beta\psi_{\pi} > 0 $ if $\quad \psi_{\pi} < 1/\beta$. For $\beta=0.99 \rightarrow \psi_{\pi} < 1.0101$, or for $\beta=0.98 \rightarrow \psi_{\pi} < 1.0204$. \\ $\rightarrow$ Monetary policy needs to be more passive on inflation in order to limit overshooting.
+
 
 
 \end{document}

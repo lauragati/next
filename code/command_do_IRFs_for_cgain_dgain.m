@@ -19,8 +19,6 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-skip_old_stuff = 1;
-
 %% Simulation
 tic
 T = 400 % 400
@@ -136,7 +134,7 @@ GIR_FEL_c = zeros(h,N,nd);
 eN = randn(ne,T,N); % gen all the N sequences of shocks at once.
 %     param = struct2array(setp);
 %     fn = fieldnames(setp);
-for s=2 %1:ne  %2->zoom in on monetary policy shock
+for s=2  %2->zoom in on monetary policy shock
     x0 = zeros(1,nx);
     x0(s) = d;
     h = 10; % horizon of IRF
@@ -213,7 +211,7 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
             GIR_FEL_c(:,n,t) = FELs_c(dt:dt+h-1,n,t) - FEL_c(dt:dt+h-1,n);
         end
     end
-end
+
 % Construct RIRs by simple method: means (Option 1)
 RIR_y_d = squeeze(mean(GIR_y_d,3));
 RIR_y_c = squeeze(mean(GIR_y_c,3));
@@ -243,35 +241,40 @@ titles_LH = {'fa', 'fb'};
 titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
 
 
-for s=2 % for all the shocks (right now only monpol)
     for t=1:nd % for the two diff times of imposing the shock
         dt = dt_vals(t);
         
         if skip_old_plots==0
+            clear series
             % 1) OBSERVABLES DECREASING GAIN
-            series = RIR_y_d(:,:,t);
-            figname = [this_code, '_', 'RIR_y_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            series(1,:,:) = RIR_y_d(:,:,t)';
+            series(2,:,:) = iry';
+            figname = [this_code, '_', 'RIR_y_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
             subplot_names = titles_obs;
+            legendnames = {'Learning', 'RE'};
             figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
-            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
             
             % 2) OBSERVABLES CONSTANT GAIN
-            series = RIR_y_c(:,:,t);
-            figname = [this_code, '_', 'RIR_y_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            %             series = RIR_y_c(:,:,t);
+            series(1,:,:) = RIR_y_c(:,:,t)';
+            series(2,:,:) = iry';
+            figname = [this_code, '_', 'RIR_y_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
             subplot_names = titles_obs;
+            legendnames = {'Learning', 'RE'};
             figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
-            create_subplot(series,subplot_names,figname,print_figs, figtitle)
+            create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
             
             % 3) LH FORECASTS DECREASING GAIN
             series = RIR_F_d(3:end,:,t);
-            figname = [this_code, '_', 'RIR_fafb_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            figname = [this_code, '_', 'RIR_fafb_d_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
             subplot_names = titles_LH;
             figtitle = ['Decreasing gain, shock imposed at t=', num2str(dt_vals(t))];
             create_subplot(series,subplot_names,figname,print_figs, figtitle)
             
             % 4) LH FORECASTS CONSTANT GAIN
             series = RIR_F_c(3:end,:,t);
-            figname = [this_code, '_', 'RIR_fafb_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+            figname = [this_code, '_', 'RIR_fafb_c_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
             subplot_names = titles_LH;
             figtitle = ['Constant gain, shock imposed at t=', num2str(dt_vals(t))];
             create_subplot(series,subplot_names,figname,print_figs, figtitle)
@@ -281,7 +284,7 @@ for s=2 % for all the shocks (right now only monpol)
         subplot1 = [RIR_F_d(1,:,t); RIR_F_d(2,:,t)];
         subplot2 = [RIR_F_c(1,:,t); RIR_F_c(2,:,t)];
         series = cat(3,subplot1, subplot2);
-        figname = [this_code, '_', 'RIR_F_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        figname = [this_code, '_', 'RIR_F_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
         subplot_names = {'Decreasing gain', 'Constant gain'};
         legend_entries = {'Morning', 'Evening'};
         figtitle = ['1-period ahead fcsts, shock imposed at t=', num2str(dt_vals(t))];
@@ -292,7 +295,7 @@ for s=2 % for all the shocks (right now only monpol)
         subplot1 = [RIR_FE_d(1,:,t); RIR_FE_d(2,:,t);RIR_FEL_d(:,t)'];
         subplot2 = [RIR_FE_c(1,:,t); RIR_FE_c(2,:,t);RIR_FEL_c(:,t)'];
         series = cat(3,subplot1, subplot2);
-        figname = [this_code, '_', 'RIR_FE_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt)];
+        figname = [this_code, '_', 'RIR_FE_both_' shocknames{s}, PLM_name,'_rho',rho_val, '_psi_pi_', psi_pi_val, '_sig_', sig_val, '_dt_', num2str(dt), '_gbar_', gbar_val];
         subplot_names = {'Decreasing gain', 'Constant gain'};
         legend_entries = {'Morning', 'Evening', 'Yesterday evening'};
         figtitle = ['1-period ahead FEs, shock imposed at t=', num2str(dt_vals(t))];

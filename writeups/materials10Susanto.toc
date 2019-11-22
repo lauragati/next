@@ -1,2 +1,6 @@
-\contentsline {section}{\numberline {1}Observables for 3 shocks}{2}{section.1}
-\contentsline {section}{\numberline {2}How observables respond to expectations - RE vs. learning}{3}{section.2}
+\contentsline {section}{\numberline {1}Model summary}{2}{section.1}
+\contentsline {section}{\numberline {2}IRFs for 3 shocks - persistence and overshooting}{3}{section.2}
+\contentsline {section}{\numberline {3}Observables and expectations for monetary policy shock \\ - overshooting happens because of overadjustment of expectations}{4}{section.3}
+\contentsline {section}{\numberline {4}Observables and expectations for monetary policy shock - a lower gain ($\mathaccentV {bar}016{g}=0.02$) mitigates the overadjustment}{5}{section.4}
+\contentsline {section}{\numberline {5}Why is overshooting happening for learning and not for RE?}{6}{section.5}
+\contentsline {section}{\numberline {6}Coefficient on inflation in the Taylor rule ($\psi _{\pi }$)}{7}{section.6}
