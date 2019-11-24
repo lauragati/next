@@ -1,4 +1,4 @@
-function [Ap_RE, As_RE, Aa_LR, Ab_LR, As_LR] = matrices_A_intrate_smoothing(param, set,hx)
+function [Ap_RE, As_RE, Aa_LR, Ab_LR, As_LR] = matrices_A_intrate_smoothing(param,hx)
 
 bet = param.bet;  
 sig = param.sig;
