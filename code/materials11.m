@@ -41,7 +41,7 @@ rho = param.rho;
 ne = 3;
 nx = 4;% now n becomes 4
 P = eye(ne).*[rho_r, rho_i, rho_u]';
-SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
+SIG = eye(nx).*[sig_r, 0, 0, 0]';
 
 % Model with interest rate smoothing
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
@@ -50,11 +50,12 @@ SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
 [Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 
 % Time
-T = 400 % 400
+T = 5*400 % 400
 burnin = 0;
 % Cross-section
 N = 100 %500 size of cross-section
 
+% rng('shuffle');
 eN = randn(ne,T,N); % gen all the N sequences of shocks at once.
 %% min FEVs by choice of gain gbar -- obsolete b/c this isnt a good notion of gbar_opt
 skip_this=1;
@@ -95,12 +96,14 @@ PLM      = 1; % constant only
 cgain    = 3; % constant gain
 critCEMP = 1; % this doesn't matter
 gbar0 = gbar;
-ub = 1.2;
-lb = -0.02;
+ub = 0.2;
+lb = -0.2;
 gbar_o = nan(N,1);
 for n=1:N
-    e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
-%         [xsim, ysim] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP);
+    e = squeeze(eN(:,:,n));
+    %     e = randn(ne,T);
+    e = [e; zeros(1,T)]; % adding zero shocks to interest rate lag
+    %         [xsim, ysim] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP);
     
     % suppose the DGP was RE
     [xsim, ysim] = sim_model(gx,hx,SIG,T,burnin,e);
@@ -120,7 +123,9 @@ ng = 1000;
 gbar_vals = linspace(-0.002, 0.002, ng);
 mse_Ryan = zeros(1,ng);
 
-e = [squeeze(eN(:,:,1)); zeros(1,T)];
+e = squeeze(eN(:,:,n));
+% e = randn(ne,T);
+e = [e; zeros(1,T)];
 % DGP for Ryan's FEVmin method
 % [xsim, ysim] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP);
 % suppose the DGP was RE
@@ -131,16 +136,16 @@ for i=1:ng
 end
 
 if skip_this==0 % not plottin cause i know it's monotonic
-% MSE as a function of gbar for one sequence of errors
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(gbar_vals,mse_Ryan, 'linewidth', lw)
-title('MSE(gen data given gbar, min FEV) for the 1st shock sequence')
-ax = gca; % current axes
-ax.FontSize = fs;
-grid on
-grid minor
+    % MSE as a function of gbar for one sequence of errors
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    plot(gbar_vals,mse_Ryan, 'linewidth', lw)
+    title('MSE(gen data given gbar, min FEV) for the 1st shock sequence')
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    grid on
+    grid minor
 end
 
 % all optimal gbars across the cross-section
