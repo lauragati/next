@@ -1,3 +1,4 @@
 \contentsline {section}{\numberline {1}Model summary}{2}{section.1}
 \contentsline {section}{\numberline {2}Recap of timing}{2}{section.2}
 \contentsline {section}{\numberline {3}Trying to get an optimal gain}{3}{section.3}
+\contentsline {section}{\numberline {4}Susanto's points and big picture}{4}{section.4}

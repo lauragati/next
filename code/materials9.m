@@ -68,7 +68,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, setp, hx);
+[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 
 
 %% Simulate models w/ and w/o shocks for a cross-section
@@ -89,6 +89,20 @@ cgain = 3;
 critCEMP=1;
 critCUSUM=2;
 free=1; % use versions of the code that are n-free (use hx instead of P)
+
+% Params for the general learning code
+constant_only = 1; % learning constant only
+mean_only_PLM = -1;
+slope_and_constant = 2;
+% lets alternate between these
+PLM = constant_only;
+if  PLM == constant_only
+    PLM_name = 'constant_only';
+elseif PLM == mean_only_PLM
+    PLM_name = 'mean_only_PLM';
+elseif PLM == slope_and_constant
+    PLM_name = 'slope_and_constant';
+end
 
 % Params specific to this cross-section exercise
 N = 500; %500 size of cross-section
@@ -135,8 +149,8 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
         
         % Unshocked - let y denote unshocked                            
-        [~, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d, FEt_1_d,dgain_at50] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP, free);
-        [~, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c, FEt_1_c, dgain_at50check] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP, free);
+        [~, y_d, e_fcst_d, m_fcst_d, FA_d, FB_d, FEt_1_d,dgain_at50] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param,PLM, dgain, critCEMP);
+        [~, y_c, e_fcst_c, m_fcst_c, FA_c, FB_c, FEt_1_c, dgain_at50check] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param,PLM, cgain, critCEMP);
         
         % Gather unshocked observables - let big Y denote the the whole
         % cross-section, big F unshocked forecasts of inflation
@@ -164,8 +178,8 @@ for s=2 %1:ne  %2->zoom in on monetary policy shock
         for t=1:nd
             dt = dt_vals(t);
             % Shocked = let ys denote shocked                          
-            [~, ys_d, e_fcsts_d, m_fcsts_d, FAs_d, FBs_d, FEst_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, dgain, critCEMP,free, dt, x0);
-            [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c, FEst_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, setp, H, anal, constant_only, cgain, critCEMP,free, dt, x0);
+            [~, ys_d, e_fcsts_d, m_fcsts_d, FAs_d, FBs_d, FEst_1_d] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, dgain, critCEMP, dt, x0);
+            [~, ys_c, e_fcsts_c, m_fcsts_c, FAs_c, FBs_c, FEst_1_c] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP, dt, x0);
             
             % Gather shocked observables
             YS_d(:,:,n,t) = ys_d;

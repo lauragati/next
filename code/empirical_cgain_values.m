@@ -1,18 +1,28 @@
 % empirical_cgain_values.m
 % just summarizes values for the constant gain kappa found in the literature:
 
+
+% estimated
+estim.eusepi_giannoni_preston2019limits = 0.05;
+estim.CEMP = 0.145;
+estim.milani2007 = 0.0183;
+estim.branch_evans2006 = 0.062;
+% estim.malmendier_nagel2016 = 3.044; % but their def may not be compatible
+% with the others
+
+
 % calibrated
 calib.eusepi_preston2011 = 0.002; 
 calib.williams2003_1 = 0.1;
 calib.williams2003_2 = 0.05;
 calib.williams2003_3 = 0.03;
 calib.orphanides_williams2005 = 0.02;
-
-% estimate
-estim.eusepi_giannoni_preston2019limits = 0.05;
-estim.CEMP = 0.145;
-estim.milani2007 = 0.0183;
-estim.branch_evans2006 = 0.062;
+% calib.gerko2019_1 = estim.malmendier_nagel2016; This is for symmetric
+% gains. It's strange though because it's an order of magnitude larger than
+% the numbers she otherwise takes.
+calib.gerko2019_2 = 0.01; % but Gerko considers "asymmetric gains:" one gain on inflation, one on the output gap.
+calib.gerko2019_3 = 0.02;
+calib.gerko2019_1 = 0.05;
 
 % avg estimate
 sum_calib=0;

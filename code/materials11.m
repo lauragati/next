@@ -127,9 +127,9 @@ e = squeeze(eN(:,:,n));
 % e = randn(ne,T);
 e = [e; zeros(1,T)];
 % DGP for Ryan's FEVmin method
-% [xsim, ysim] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP);
+[xsim, ysim] = sim_learn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, cgain, critCEMP);
 % suppose the DGP was RE
-[xsim, ysim] = sim_model(gx,hx,SIG,T,burnin,e);
+% [xsim, ysim] = sim_model(gx,hx,SIG,T,burnin,e);
 for i=1:ng
     gbar_i = gbar_vals(i);
     mse_Ryan(i) = obj_minFEV_Ryan(gbar_i, xsim,ysim, gx, hx,T);
@@ -160,4 +160,43 @@ ax.FontSize = fs;
 grid on
 grid minor
 
+figname = [this_code, '_', 'gbar_opt_distrib'];
+% figname = [this_code, '_', 'gbar_opt_distrib_RE'];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
+%% some stability analysis
+M = 100;
+ul = 0.05;
+k_vals = linspace(-ul,ul,M);
+for ki=1:M
+    k = k_vals(ki);
+    x1(ki) = (-1+sqrt(1-4*k))/(2*k);
+    x2(ki) = (-1-sqrt(1-4*k))/(2*k);
+end
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+subplot(1,2,1)
+plot(k_vals,x1, 'linewidth', lw); hold on
+plot(k_vals,zeros(size(gbar_o)), '--', 'linewidth', lw)
+% ylim([-1,1])
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+subplot(1,2,2)
+plot(k_vals,x2,'linewidth', lw); hold on
+plot(k_vals,zeros(size(gbar_o)), '--', 'linewidth', lw)
+% ylim([-1,1])
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+sgtitle('Roots of characteristic eq. of FE difference eq., w/ 2 lags', 'fontsize',fs)

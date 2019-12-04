@@ -171,6 +171,43 @@ FE_{t-1} & = z_{t}-\hat{\E}_{t-1}(z_{t})\quad \text{one-period-ahead forecast er
 \newpage
 \section{Trying to get an optimal gain}
 
+$T = 2000, N=100$. Note: MSE as a function of gain is convex. Stats:
+
+\begin{multicols}{2}
+DGP is learning with constant gain $\bar{g} = 0.1450$. 
+\begin{itemize}
+\item $Mean(\bar{g}^*_n) = -0.00028929$
+\item $Var(\bar{g}^*_n) = 1.4561e-06$
+\item \% of $\bar{g}^*_n < 0$ is 68\%.
+\end{itemize}
+
+\columnbreak
+DGP is RE.
+\begin{itemize}
+\item $Mean(\bar{g}^*_n) = -0.00021913$
+\item $Var(\bar{g}^*_n) = 1.0134e-06$
+\item \% of $\bar{g}^*_n < 0$ is 67\%.
+\end{itemize}
+
+\end{multicols}
+
+\begin{figure}[h!]
+\subfigure[Learning]{
+\includegraphics[scale=\mySmallFigScale]{\myFigPath materials11_gbar_opt_distrib}}
+\subfigure[RE]{
+\includegraphics[scale=\mySmallFigScale]{\myFigPath materials11_gbar_opt_distrib_RE}}
+\caption{Optimal gains across the histories}
+\end{figure}
+
+\section{Susanto's points and big picture}
+
+\begin{itemize}
+\item L. Ball: credible disinflation causes booms in NK model (1994)
+\item instrument instability (Holbrook 1972, Sims 1974, Lane 1984)
+\end{itemize}
+
+
+
 
 
 \end{document}
