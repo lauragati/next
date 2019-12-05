@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.18}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials for Peter - Where we stand now}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+
+%\newpage
+\section{Model summary - constant vs. decreasing gains \\ (no anchoring here)}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \rho i_{t-1} + \bar{i}_t \label{TR}
+\end{align}
+\begin{equation}
+\hat{\E}_t z_{t+h} =  \begin{bmatrix}\bar{\pi}_{t-1} \\ 0 \\ 0 \end{bmatrix}+ bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x \; h_x \quad \quad \text{PLM} \label{PLM}
+\end{equation}
+\begin{equation}
+\bar{\pi}_{t} = \bar{\pi}_{t-1} +k_t^{-1}\underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1s_{t-1}) \big)}_{\text{fcst error using (\ref{PLM})} } \quad \quad  \text{($b_1$ is the first row of $b$)}
+\end{equation}
+ \begin{align*}
+k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \bar{g}^{-1}  \quad \text{for constant gain learning.}\numberthis
+\end{cases} 
+\end{align*}
+
+
+\newpage
+\section{IRFs for monetary policy shock - dampening, persistence and overshooting (oscillations)}	
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_y_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - observables}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_d_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_fafb_c_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - long-horizon expectations}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_F_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\subfigure[Constant gain, $t=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_do_IRFs_for_cgain_dgain_RIR_FE_both_monpolconstant_only_rho0_psi_pi_1_5_sig_1_dt_25_gbar_0_145}}
+\caption{Monetary policy shock - 1-period ahead forecasts and forecast errors}
+\end{figure}
+
+\newpage
+\section{Implications of learning models for IRFs}
+\begin{enumerate}
+\item Intuitive: \textbf{dampening} and  \textbf{persistence}, both due to timing of expectations 
+\item Counterintuitive: overshooting (convergent  \textbf{oscillations})
+\begin{enumerate}
+\item Mathematical intuition: the difference equation for forecast errors must have negative roots.
+\item Economic intuition (Susanto): Ball's `` \textbf{disinflationary boom}''-effect (Ball 1994): in the NK model (RE or learning) an expansionary monetary policy shock has an expansionary effect via contemporaneous variables but a contractionary one due to movements in expectations. Expectations need to move sufficiently for the contractionary effect to dominate.
+\item[] A note: Ball argued that we don't see disinflationary booms in the data, so central banks must have credibility issues (expectations don't move enough in data). The learning alternative however goes the wrong way here b/c it makes expectations move more, not less.
+\item What parameters are responsible for this?
+\item The  \textbf{gain} ($\bar{g}$) is responsible for the extent of adjustment of expectations.
+\item The  \textbf{coefficient on inflation} in the Taylor rule ($\psi_{\pi}$) governs the policy response and thus also the direction and size of adjustment in expectations. Needs to be $<1/\beta$ to shut off oscillations, and if exceeds a threshold value, oscillations become divergent. 
+\item[] $\rightarrow$ Related to the notion of \textbf{instrument instability} (Holbrook, 1972): ``with a feedback-type policy rule with lags, the policy instrument may need to exhibit larger and larger fluctuations to keep the target variable stable to offset the effect of its own lags.'' 
+\item[] You can think of expectations as the policy instrument (which indeed exhibit a lag structure) but it's not the case that fluctuating expectations can stabilize observables; on the contrary. 
+\item IES parameter ($\sigma$) mitigates but does not qualitatively change the situation. Ryan also seemed quite opposed to changing $\sigma$.
+\end{enumerate}
+\item Direction to go (based on my conversation with Ryan)
+\begin{enumerate}
+\item Either: take model seriously and explore policy implications
+\item Or: change something about the model
+\begin{enumerate}
+\item Change expectation formation
+\item or change policy (e.g. add $\E(\pi)$ instead of $\pi$ to Taylor rule)
+\end{enumerate}
+
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
+
+
+

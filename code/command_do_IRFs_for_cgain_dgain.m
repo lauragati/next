@@ -70,7 +70,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, setp, hx);
+[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 
 
 %% Simulate models w/ and w/o shocks for a cross-section
