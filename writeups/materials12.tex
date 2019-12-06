@@ -161,15 +161,41 @@ k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \b
 \end{enumerate}
 \end{enumerate}
 
+Some reasoning why:
+\begin{enumerate}
+\item Townsend (1983) investigates ``forecasting the forecasts of others" and finds damped oscillations $\rightarrow$ do higher-order beliefs play a role for causing oscillations in learning? If so, EE learning IRFs should exhibit no oscillations (and indeed they do not!)
+\item Vector learning: are model implications different when agents learn the LOM of not only inflation but also of the other variables? $\rightarrow$ No. (Note: I'm using the same gain for all variables.)
+\item Does learning both slope and constant make a difference? $\rightarrow$ Not for decreasing gain learning, but for constant gain learning yes. % CONT HERE
+\end{enumerate}
 
 
-%\begin{figure}[h!]
-%\subfigure[Learning]{
-%\includegraphics[scale=\mySmallFigScale]{\myFigPath materials11_gbar_opt_distrib}}
-%\subfigure[RE]{
-%\includegraphics[scale=\mySmallFigScale]{\myFigPath materials11_gbar_opt_distrib_RE}}
-%\caption{Optimal gains across the histories}
-%\end{figure}
+\newpage
+\section{IRFs from vector learning: EE and LH, $T=400, N=100$}
+\begin{figure}[h!]
+\subfigure[EE, dgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_EE_monpolconstant_onlydgain_gbar_0_145}}
+\subfigure[LH, dgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpolconstant_onlydgain_gbar_0_145}}
+\subfigure[EE, cgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_EE_monpolconstant_onlycgain_gbar_0_145}}
+\subfigure[LH, cgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpolconstant_onlycgain_gbar_0_145}}
+\caption{Learning constant only}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[EE, dgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_EE_monpolslope_and_constantdgain_gbar_0_145}}
+\subfigure[LH, dgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpolslope_and_constantdgain_gbar_0_145}}
+\subfigure[EE, cgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_EE_monpolslope_and_constantcgain_gbar_0_145}}
+\subfigure[LH, cgain]{
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpolslope_and_constantcgain_gbar_0_145}}
+\caption{Learning slope and constant}
+\end{figure}
+
+
 
 
 

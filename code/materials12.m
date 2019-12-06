@@ -60,3 +60,5 @@ N = 100 %500 size of cross-section
 % rng('shuffle');
 eN = randn(ne,T,N); % gen all the N sequences of shocks at once.
 
+%% Do IRFs for vector learning and EE learning
+command_IRFs_many_learning

@@ -89,7 +89,7 @@ for t = 1:T-1
         elseif PLM == 2 % constant and slope learning
             morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
             FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
-            R = R + t^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);
+            R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here
             phi = (phi' + k(:,t).^(-1).*  (R\[1;xsim(:,t-1)] *(ysim(:,t)-phi*[1;xsim(:,t-1)])'))';
             evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
             

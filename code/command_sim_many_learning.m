@@ -86,7 +86,7 @@ for n=1:N
     
     % Euler equation learning (learning both slope and constant). Only this
     % is from materials3.m.
-    [~, y_EE] = sim_learn_EE(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e);
+    [~, y_EE] = sim_learn_EE(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e,param, PLM, dgain);
 end
 
 Y(:,:,1) = y_RE;

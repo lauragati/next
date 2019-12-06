@@ -3,13 +3,7 @@
 % slope
 % 14 sept 2019
 
-function [xsim, ysim, shock] = sim_learn_EE(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e, dt,x0)
-
-ny = size(gx,1);
-nx = size(hx,1);
-
-ysim = zeros(ny,T);
-xsim = zeros(nx,T);
+function [xsim, ysim, shock] = sim_learn_EE(gx,hx,fxp,fx,fyp,fy,eta,T,ndrop,e,param,PLM, gain, dt,x0)
 
 max_no_inputs = nargin('sim_learn_EE');
 if nargin < max_no_inputs %no shock specified
@@ -17,13 +11,32 @@ if nargin < max_no_inputs %no shock specified
     x0 = 0;
 end
 
-%Learning PLM matrices, include a constant. Using RE as default starting point. 
+gbar = param.gbar;
+ny = size(gx,1);
+nx = size(hx,1);
+
+ysim = zeros(ny,T);
+xsim = zeros(nx,T);
+
+%Learning PLM matrices, include a constant. Using RE as default starting point.
 gl = [zeros(ny,1) gx*hx];
 [~,sigx] = mom(gx,hx,eta*eta');
 R = eye(nx+1); R(2:end,2:end) = sigx;
 
+a = zeros(ny,1);
+b = gx*hx;
+
+k = zeros(1,T);
+k(:,1) = gbar^(-1);
+
 detR=4*ones(T-1,1);
 detR(1) = det(R);
+gl_seq = gl;
+R_seq  = R;
+fake_eigs = eig((gl*gl').^(1/2));
+fake_eigs_seq = fake_eigs;
+max_mod = max(abs(fake_eigs));
+max_mod_seq = max_mod;
 %Simulate, with learning
 for t = 1:T-1
     
@@ -38,14 +51,40 @@ for t = 1:T-1
         %Solve for current states
         ysim(:,t) = yx(1:ny);
         xesim     = yx(ny+1:end);
-      
+        
         %Update coefficients
+        % Here the code differentiates between decreasing or constant gain
+        if gain ==1 % decreasing gain
+            k(:,t) = k(:,t-1)+1;
+        elseif gain==3 % constant gain
+            k(:,t) = gbar^(-1);
+        end
+        
         detR(t) = det(R);
-        if isnan(det(R))==1 || det(R) == 0
+        if isnan(sum(sum(gl)))==1 || isinf(sum(sum(gl)))==1
             disp(['t=', num2str(t)])
         end
-        R = R + t^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);
-        gl = (gl' + t^(-1)*(R\([1;xsim(:,t-1)]*(ysim(:,t)-gl*[1;xsim(:,t-1)])')))';
+        glt_1 = gl;
+        Rt_1 = R;
+        if PLM==1
+            a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) );
+            gl = [a,b];
+        elseif PLM==2
+            R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R);
+            gl = (gl' + k(:,t).^(-1)*(R\([1;xsim(:,t-1)]*(ysim(:,t)-gl*[1;xsim(:,t-1)])')))';
+        end
+        % here I do a fake projection facility b/c can't take eig(gl) since
+        % gl not square
+        fake_eigs = eig((gl*gl').^(1/2));
+        max_mod = max(abs(fake_eigs));
+        if max_mod >= 1
+            R = Rt_1;
+            gl = glt_1;
+        end
+        fake_eigs_seq(:,:,t) = fake_eigs;
+        max_mod_seq(t) = max_mod;
+        gl_seq(:,:,t) = gl;
+        R_seq(:,:,t) = R;
         
     end
     
