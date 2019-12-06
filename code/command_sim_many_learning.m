@@ -51,7 +51,7 @@ SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, setp, hx);
+[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 
 
 %% Simulate models

@@ -8,7 +8,7 @@
 
 function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
 
-max_no_inputs = nargin('sim_learn');
+max_no_inputs = nargin('sim_learnLH');
 if nargin < max_no_inputs %no shock specified
     dt = 0;
     x0 = 0;

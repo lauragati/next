@@ -19,7 +19,7 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-%% Simulation
+%% Parameters
 tic
 T = 400 % 400
 burnin = 0;
@@ -47,9 +47,6 @@ nx = 4;% now n becomes 4
 P = eye(ne).*[rho_r, rho_i, rho_u]';
 SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
 
-
-%% Model with interest rate smoothing
-
 % introduce adaptive names depending on the value of rho
 rho_val_raw = num2str(rho);
 rho_val = replace(rho_val_raw,'.','_');
@@ -67,6 +64,8 @@ gbar_val = replace(gbar_val_raw,'.','_');
 current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig, gbar]
 current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma', '\bar{g}']
 
+%% Model with interest rate smoothing
+
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
@@ -74,10 +73,6 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 
 
 %% Simulate models w/ and w/o shocks for a cross-section
-
-% Simulate models
-% Use Ryan's code to simulate from the RE model
-% [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
 
 % Params for the general learning code
 constant_only = 1; % learning constant only
