@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 DEC 2019 18:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 DEC 2019 21:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -946,99 +946,99 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 173.
+(hyperref)                removing `math shift' on input line 180.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 173.
+(hyperref)                removing `math shift' on input line 180.
 
 
 <../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlydgain_gbar_0_1
-45.png, id=63, 1075.01625pt x 610.28pt>
+45.png, id=66, 1075.01625pt x 610.28pt>
 File: ../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlydgain_gba
 r_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlydgain_gbar
 _0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_EE_monpolcon
-stant_onlydgain_gbar_0_145.png used on input line 176.
+stant_onlydgain_gbar_0_145.png used on input line 183.
 (pdftex.def)             Requested size: 193.49457pt x 109.84566pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlydgain_gbar_0_1
-45.png, id=64, 1075.01625pt x 609.27625pt>
+45.png, id=67, 1075.01625pt x 609.27625pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlydgain_gba
 r_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlydgain_gbar
 _0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpolcon
-stant_onlydgain_gbar_0_145.png used on input line 178.
+stant_onlydgain_gbar_0_145.png used on input line 185.
 (pdftex.def)             Requested size: 193.49457pt x 109.66498pt.
 
 <../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlycgain_gbar_0_1
-45.png, id=65, 1075.01625pt x 610.28pt>
+45.png, id=68, 1075.01625pt x 610.28pt>
 File: ../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlycgain_gba
 r_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_EE_monpolconstant_onlycgain_gbar
 _0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_EE_monpolcon
-stant_onlycgain_gbar_0_145.png used on input line 180.
+stant_onlycgain_gbar_0_145.png used on input line 187.
 (pdftex.def)             Requested size: 193.49457pt x 109.84566pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlycgain_gbar_0_1
-45.png, id=66, 1082.0425pt x 609.27625pt>
+45.png, id=69, 1082.0425pt x 609.27625pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlycgain_gba
 r_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_LH_monpolconstant_onlycgain_gbar
 _0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpolcon
-stant_onlycgain_gbar_0_145.png used on input line 182.
+stant_onlycgain_gbar_0_145.png used on input line 189.
 (pdftex.def)             Requested size: 194.75925pt x 109.66498pt.
 
 <../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantdgain_gba
-r_0_145.png, id=67, 1075.01625pt x 610.28pt>
+r_0_145.png, id=70, 1075.01625pt x 610.28pt>
 File: ../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantdgai
 n_gbar_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantdgain
 _gbar_0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_EE_monpolslo
-pe_and_constantdgain_gbar_0_145.png used on input line 188.
+pe_and_constantdgain_gbar_0_145.png used on input line 195.
 (pdftex.def)             Requested size: 193.49457pt x 109.84566pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantdgain_gba
-r_0_145.png, id=68, 1075.01625pt x 609.27625pt>
+r_0_145.png, id=71, 1075.01625pt x 609.27625pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantdgai
 n_gbar_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantdgain
 _gbar_0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpolslo
-pe_and_constantdgain_gbar_0_145.png used on input line 190.
+pe_and_constantdgain_gbar_0_145.png used on input line 197.
 (pdftex.def)             Requested size: 193.49457pt x 109.66498pt.
 
 <../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantcgain_gba
-r_0_145.png, id=69, 1075.01625pt x 610.28pt>
+r_0_145.png, id=72, 1075.01625pt x 610.28pt>
 File: ../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantcgai
 n_gbar_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_EE_monpolslope_and_constantcgain
 _gbar_0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_EE_monpolslo
-pe_and_constantcgain_gbar_0_145.png used on input line 192.
+pe_and_constantcgain_gbar_0_145.png used on input line 199.
 (pdftex.def)             Requested size: 193.49457pt x 109.84566pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantcgain_gba
-r_0_145.png, id=70, 1075.01625pt x 610.28pt>
+r_0_145.png, id=73, 1075.01625pt x 610.28pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantcgai
 n_gbar_0_145.png Graphic file (type png)
 
 <use ../figures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantcgain
 _gbar_0_145.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpolslo
-pe_and_constantcgain_gbar_0_145.png used on input line 194.
+pe_and_constantcgain_gbar_0_145.png used on input line 201.
 (pdftex.def)             Requested size: 193.49457pt x 109.84566pt.
 
 
@@ -1058,23 +1058,37 @@ pe_and_constantdgain_gbar_0_145.png (PNG copy)> <../figures/command_IRFs_many_l
 earning_RIR_EE_monpolslope_and_constantcgain_gbar_0_145.png (PNG copy)> <../fig
 ures/command_IRFs_many_learning_RIR_LH_monpolslope_and_constantcgain_gbar_0_145
 .png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 216.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 216.
  (./materials12.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
-Package rerunfilecheck Info: File `materials12.out' has not changed.
-(rerunfilecheck)             Checksum: 148038E7C42B71909FF0A9E9136D8805;175.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 216.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 216.
+
+
+Package rerunfilecheck Warning: File `materials12.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `materials12.out':
+(rerunfilecheck)             Before: 148038E7C42B71909FF0A9E9136D8805;175
+(rerunfilecheck)             After:  2820A2EE37B27BC2164EDA51DBD6FDF5;394.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 216.
  ) 
 Here is how much of TeX's memory you used:
- 20023 strings out of 493089
- 365355 string characters out of 6134842
+ 20029 strings out of 493089
+ 365400 string characters out of 6134842
  448397 words of memory out of 5000000
  23096 multiletter control sequences out of 15000+600000
  14598 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,392b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,485b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -1090,10 +1104,10 @@ ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials12.pdf (3 pages, 632805 bytes).
+Output written on materials12.pdf (4 pages, 638749 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 157 PDF objects out of 1000 (max. 8388607)
+ 123 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

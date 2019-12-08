@@ -152,6 +152,7 @@ k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \b
 \item To policy
 \begin{enumerate}
 \item $\E(\pi)$ instead of $\pi$ in TR
+\item Check the fake $\psi_{\pi} < 1$ exercise.
 \end{enumerate}
 \item To expectation formation
 \begin{enumerate}
@@ -161,11 +162,17 @@ k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \b
 \end{enumerate}
 \end{enumerate}
 
-Some reasoning why:
+Some reasoning (motivation and results):
 \begin{enumerate}
+\item $\E(\pi)$ instead of $\pi$ in TR: indeed makes overshooting larger in magnitude b/c policy is reacting to something that moves more.
+\item $\psi_{\pi} \leq 1$: indeed kills the overshooting, but - no surprise - makes observables unstable (IRFs don't return to steady state). Why does it work to kill the overshooting? B/c the Ball-effect of anticipated interest rate reactions no longer overweighs.
 \item Townsend (1983) investigates ``forecasting the forecasts of others" and finds damped oscillations $\rightarrow$ do higher-order beliefs play a role for causing oscillations in learning? If so, EE learning IRFs should exhibit no oscillations (and indeed they do not!)
 \item Vector learning: are model implications different when agents learn the LOM of not only inflation but also of the other variables? $\rightarrow$ No. (Note: I'm using the same gain for all variables.)
-\item Does learning both slope and constant make a difference? $\rightarrow$ Not for decreasing gain learning, but for constant gain learning yes. % CONT HERE
+\item Does learning both slope and constant make a difference? $\rightarrow$ Yes, in particular for constant gain learning. 2 effects: 1) less foresight, so $i$ needs to be less expansionary 2) more bumpy IRFs.
+\begin{itemize}
+\item[] 1) I think what might be going on here is that the only thing agents now know is $h_x$. Therefore the Ball-type ``disinflationary boom"-effect happens to a lesser extent b/c agents do not internalize movements in the interest rate in response to future inflation as much as they would otherwise.
+\item[] 2) More bumpy because since you're learning $b$, the loading on shocks, the specific sequence of shocks matters. Increasing the size of the cross-section, $N$, mitigates this somewhat. 
+\end{itemize}
 \end{enumerate}
 
 
@@ -196,6 +203,10 @@ Some reasoning why:
 \end{figure}
 
 
+\section{A technical note on the projection facility}
+Contrary to Liam Graham, I never have explosive path issues for long-horizon learning, but I do sometimes for Euler-equation learning (Graham claims this is never an issue for EE learning). Graham's solution for the projection facility is to check the eigenvalues of the learning matrix $\phi$. My silly issue is that $\phi$ is not square. Therefore what I do is I check the eigenvalues of the following cheating matrix $\phi\phi'^{1/2}$. Thoughts?
+
+\section{Investigating IRFs in the data - Valerie Ramey's handbook chapter and the more bumpy local projection IRFs}
 
 
 

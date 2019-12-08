@@ -13,7 +13,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -66,10 +66,20 @@ current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig, gbar]
 current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma', '\bar{g}']
 
 %% RE model
+
+% Standard model with lag of interest rate in TR
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+% param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
+% observables unstable
+[~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+
+% % Model with E(pi) in TR instead of pi
+% [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
+% [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+% [ny, nx] = size(gx);
+% [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
 
 
 %% Simulate models
@@ -79,13 +89,13 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = slope_and_constant;
+PLM = constant_only;
 if  PLM == constant_only
-    PLM_name = 'constant_only';
+    PLM_name = 'constant_only'
 elseif PLM == mean_only_PLM
     PLM_name = 'mean_only_PLM';
 elseif PLM == slope_and_constant
-    PLM_name = 'slope_and_constant';
+    PLM_name = 'slope_and_constant'
 end
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
