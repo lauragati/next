@@ -26,5 +26,5 @@ skip_old_stuff = 1;
 %  E(pi) in TR instead of pi also implemented in the same code
 command_IRFs_many_learning
 
-%% Other stuff: Bayesian learning?
+%% lagged inflation in Taylor rule
 

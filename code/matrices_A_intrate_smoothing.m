@@ -18,8 +18,6 @@ sig_u = param.sig_u;
 rho = param.rho;
 nx= size(hx,1); % need to figure this out later
 
-% P = eye(n).*[rho_r, rho_i, rho_u, rho]';
-C = hx; % for now
 
 % LR model
 g_pia = (1-kapp*sig*psi_pi/w)*[(1-alph)*bet, kapp*alph*bet, 0];

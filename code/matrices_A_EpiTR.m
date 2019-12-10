@@ -19,16 +19,27 @@ rho = param.rho;
 nx= size(hx,1); % need to figure this out later
 
 % LR model
-% only the next four are different compared to the pi-in-TR models
-g_pia = [(1-alph)*bet, kapp*alph*bet, 0];
-g_xa  = [0, 0, 0];
-g_xb = 1/(1+sig*psi_x)*[sig-sig*psi_pi, 1-bet, 0];
-g_pib = kapp*g_xb;
+% the first is unchanged from the interest rate smoothing model, the second
+% is changed
+coeffa = [(1-alph)*bet, kapp*alph*bet, 0];
+coeffb = [sig-sig*psi_pi, 1-bet-sig*bet*psi_x, 0];
 
-g_pis = (1-kapp*sig*psi_pi/w)*[0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1) - kapp*sig/w*[-1 1 0 rho]*(eye(nx)-bet*hx)^(-1);
-g_xs = -sig*psi_pi/w*[0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1) - sig/w*[-1 1 0 rho]*(eye(nx)-bet*hx)^(-1);
+% the next four are correct (verified in Mathematica, materials12.nb)
+g_pia = coeffa;
+g_xa  = 0*coeffa;
+g_pib = kapp/(1+sig*psi_x)*coeffb;
+g_xb = 1/(1+sig*psi_x)*coeffb;
+
+% the next three are unchanged from the interest rate smoothing model
+coefsa = [0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1);
+coefsb = [-1 1 0 rho]*(eye(nx)-bet*hx)^(-1);
+coefss = [0 1 0 rho];
+
+% the next two are correct (verified in Mathematica, materials12.nb)
+g_pis = coefsa - kapp*sig/(1+sig*psi_x) *coefsb;
+g_xs = -sig/(1+sig*psi_x)* coefsb;
 
 Aa_LR = vertcat(g_pia, g_xa, psi_pi*g_pia + psi_x*g_xa);
 Ab_LR = vertcat(g_pib, g_xb, psi_pi*g_pib + psi_x*g_xb);
-As_LR = vertcat(g_pis, g_xs, psi_pi*g_pis + psi_x*g_xs + [0 1 0 rho]);
+As_LR = vertcat(g_pis, g_xs, psi_pi*g_pis + psi_x*g_xs + coefss);
 

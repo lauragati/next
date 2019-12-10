@@ -1,6 +1,7 @@
 \contentsline {section}{\numberline {1}Model summary}{1}{section.1}
-\contentsline {section}{\numberline {2}Some initial quick changes}{2}{section.2}
-\contentsline {section}{\numberline {3}IRFs from vector learning: EE and LH, $T=400, N=100$}{3}{section.3}
-\contentsline {section}{\numberline {4}A technical note on the projection facility}{4}{section.4}
-\contentsline {section}{\numberline {5}A note on the empirical counterpart: IRFs in the data}{4}{section.5}
-\contentsline {section}{\numberline {6}Changes to expectation formation}{4}{section.6}
+\contentsline {section}{\numberline {2}Some initial quick changes}{3}{section.2}
+\contentsline {section}{\numberline {3}IRFs from vector learning: EE and LH, $T=400, N=100$}{4}{section.3}
+\contentsline {section}{\numberline {4}A technical note on the projection facility}{5}{section.4}
+\contentsline {section}{\numberline {5}A note on the empirical counterpart: IRFs in the data}{5}{section.5}
+\contentsline {section}{\numberline {6}Changes to expectation formation}{5}{section.6}
+\contentsline {section}{\numberline {7}$\pi _{t-1}$ instead of $\pi _t$ in the Taylor rule}{7}{section.7}

@@ -74,7 +74,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
 % observables unstable
 [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-
+% 
 % % Model with E(pi) in TR instead of pi
 % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
 % [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);

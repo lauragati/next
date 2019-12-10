@@ -1,8 +1,7 @@
-% command_IRFs_many_learning
-% Do IRFs for many learning models (for the LH expectations side-project,
-% but not only)
-% adapted from command_sim_many_learning.m
-% 6 Dec 2019
+% command_pilTR
+% copy of command_IRFs_many_learning.m but changed to ivnestigate what
+% happens when we replace pi with pi_{t-1} in TR
+% 10 Dec 2019
 
 clearvars
 close all
@@ -43,9 +42,9 @@ sig_i = param.sig_i;
 sig_u = param.sig_u;
 rho = param.rho;
 ne = 3;
-nx = 4;% now n becomes 4
+nx = 5;% with pil n becomes 5
 P = eye(ne).*[rho_r, rho_i, rho_u]';
-SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
+SIG = eye(nx).*[sig_r, sig_i, sig_u, 0 0]';
 
 
 % introduce adaptive names depending on the value of rho
@@ -66,12 +65,62 @@ current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig, gbar]
 current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma', '\bar{g}']
 
 %% RE model
+
+% % Standard model with lag of interest rate in TR
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Ap_RE, As_RE, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+% Plot
+x0 = zeros(1,nx); x0(2) = 1;
+[IR, iry, irx]=ir(gx,hx,x0);
+iry = iry';
+RE_fcsts = gx*hx*irx';
+[fs, lw] = plot_configs;
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+subplot(1,2,1)
+plot(iry(1,:), 'linewidth', lw); hold on
+plot(RE_fcsts(1,:), 'linewidth', lw);
+legend('\pi', 'E\pi')
+title('RE, \pi_t in TR')
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+% [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+%
+% Model with piL in TR instead of pi
+[fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[ny, nx] = size(gx);
+[Aa, Ab, As] = matrices_A_pilTR(param, hx);
 
+% Check wtf is going on with RE
+% RE
+x0 = zeros(1,nx); x0(2) = 1;
+[IR, iry, irx]=ir(gx,hx,x0);
+iry = iry';
+RE_fcsts = gx*hx*irx';
+subplot(1,2,2)
+plot(iry(1,:), 'linewidth', lw); hold on
+plot(RE_fcsts(1,:), 'linewidth', lw);
+legend('\pi', 'E\pi')
+title('RE, \pi_{t-1} in TR')
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+figname = [this_code, '_', 'RE_pil_in_TR'];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
+return
 %% Simulate models
 
 % Params for the general learning code
@@ -81,23 +130,21 @@ slope_and_constant = 2;
 % lets alternate between these
 PLM = constant_only;
 if  PLM == constant_only
-    PLM_name = 'constant_only';
+    PLM_name = 'constant_only'
 elseif PLM == mean_only_PLM
     PLM_name = 'mean_only_PLM';
 elseif PLM == slope_and_constant
-    PLM_name = 'slope_and_constant';
+    PLM_name = 'slope_and_constant'
 end
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
 cgain = 3;
-gain = dgain;
+gain = cgain;
 if  gain == dgain
-    gain_name = 'd';
-elseif PLM == mean_only_PLM
-    PLM_name = 'mean_only_PLM';
-elseif PLM == slope_and_constant
-    PLM_name = 'slope_and_constant';
+    gain_name = 'dgain';
+elseif gain == cgain
+    gain_name = 'cgain';
 end
 
 
@@ -123,7 +170,7 @@ for s=2  %2->zoom in on monetary policy shock
     
     for n=1:N
         % Sequence of innovations
-        e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
+        e = [squeeze(eN(:,:,n)); zeros(nx-ne,T)]; % adding zero shocks to all states that aren't shocks of the model
         
         % Unshocked
         dbstop if warning
@@ -195,6 +242,6 @@ for t=1:nd % for the two diff times of imposing the shock
     subplot_names = titles_obs;
     legendnames = {'Learning', 'RE'};
     figtitle = ['LH, shock imposed at t=', num2str(dt_vals(t))];
-    create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames) 
+    create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
     
 end
