@@ -1,4 +1,4 @@
-\contentsline {section}{\numberline {1}Model summary}{1}{section.1}
+\contentsline {section}{\numberline {1}Model summary}{2}{section.1}
 \contentsline {section}{\numberline {2}Some initial quick changes}{3}{section.2}
 \contentsline {section}{\numberline {3}IRFs from vector learning: EE and LH, $T=400, N=100$}{4}{section.3}
 \contentsline {section}{\numberline {4}A technical note on the projection facility}{5}{section.4}

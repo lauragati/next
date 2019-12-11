@@ -91,8 +91,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
 Aa - Aa2
-Ab - Ab2
-As - As2
+A
 
 return
 %

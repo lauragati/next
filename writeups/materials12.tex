@@ -129,6 +129,7 @@ bottom=1in}
 
 %\listoffigures
 
+\newpage
 \section{Model summary}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
@@ -259,12 +260,42 @@ What I've looked into:
 \section{$\pi_{t-1}$ instead of $\pi_t$ in the Taylor rule}
 
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallFigScale]{\myFigPath command_pilTR_RE_pil_in_TR}
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_pilTR_RE_pil_in_TR}
 \caption{Inflation and inflation expectations in RE for the two Taylor rules}
 \end{figure}
 
-Well, the only thing that makes sense to me here is the fact that inflation jumps up in period 2 more under lagged inflation than $\pi_t$. But otherwise I struggle to explain why inflation doesn't fall more on impact when the CB doesn't react to it. 
+Why does inflation fall less on impact for the lagged inflation TR?
+\begin{itemize}
+\item The CB doesn't respond on impact to the shock
+\item b/c of the ``late start," it responds very strongly in the 2nd period
+\item agents with RE internalize this and understand that the cumulative fall in output gaps will be smaller
+\item inflation is a purely forward-looking sum of future output gaps and thus drops less
+\end{itemize}
 
+
+\begin{figure}[h!]
+\subfigure[EE, dgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_EE_monpol_constant_only_dgain_gbar_0_145_11-Dec-2019}}
+\subfigure[LH, dgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_LH_monpol_constant_only_dgain_gbar_0_145_11-Dec-2019}}
+\subfigure[EE, cgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_EE_monpol_constant_only_cgain_gbar_0_145_11-Dec-2019}}
+\subfigure[LH, cgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_LH_monpol_constant_only_cgain_gbar_0_145_11-Dec-2019}}
+\caption{Learning constant only}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[EE, dgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_EE_monpol_slope_and_constant_dgain_gbar_0_145_11-Dec-2019}}
+\subfigure[LH, dgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_LH_monpol_slope_and_constant_dgain_gbar_0_145_11-Dec-2019}}
+\subfigure[EE, cgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_EE_monpol_slope_and_constant_cgain_gbar_0_145_11-Dec-2019}}
+\subfigure[LH, cgain]{
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath command_pilTR_RIR_LH_monpol_slope_and_constant_cgain_gbar_0_145_11-Dec-2019}}
+\caption{Learning slope and constant}
+\end{figure}
 
 
 \end{document}

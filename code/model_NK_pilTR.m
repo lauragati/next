@@ -46,7 +46,7 @@ f(4) = IB_p - rho_i*IB;
 f(5) = RN_p - rho_r*RN;
 f(6) = U_p - rho_u*U;
 f(7) = I - IL_p;
-f(8) = PIL_p - PI;
+f(8) = PI - PIL_p;
 
 %Check Computation of Steady-State Numerically
 fnum = double(subs(f, [Y X YP XP], [ss, ss]));

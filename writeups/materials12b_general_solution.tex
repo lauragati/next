@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.18}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 12b - A general solution method for the learning model \\
+- 
+\\
+\small{The goal is to have a flexible, automated method so one can tweak the model and avoid errors. \\See Notes 11 Dec 2019}}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+%\tableofcontents
+
+%\listoffigures
+
+\section{Model equations and goal}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \rho i_{t-1} + \bar{i}_t \label{TR}
+\end{align}
+Goal: obtain endogenous stuff as a function of expectations and states:
+\begin{equation}
+z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t
+\end{equation}
+where I already have expectations $f_a, f_b$ and the state vector can vary by model, but in this default case it is \begin{equation}
+s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \\ i_{t-1} \end{bmatrix}
+\end{equation}
+That is,  we want the matrices $A_a, A_b$ and $A_s$.
+\section{Step 1 - introduce LH expectations for observables and states}
+\begin{align*}
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma, &1-\beta ,& -\sigma\beta \end{bmatrix}f_b + \sigma\begin{bmatrix} 1 &0 & 0 & 0 \end{bmatrix}(I_{nx}-\beta h_x)^{-1} s_t \numberthis \\
+\pi_t &= \kappa x_t +  \begin{bmatrix} (1-\alpha)\beta, &\kappa\alpha\beta ,& 0 \end{bmatrix}f_a  + \begin{bmatrix} 0&0 & 1 & 0 \end{bmatrix}(I_{nx}-\alpha\beta h_x)^{-1} s_t \numberthis \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \begin{bmatrix} 0 &1 & 0 & \rho \end{bmatrix}s_t  \numberthis \\
+\Leftrightarrow & \\
+x_t &=  -\sigma i_t + c_{x,b}f_b +c_{x,s} s_t \numberthis  \label{rf1}\\
+\pi_t &= \kappa x_t + c_{\pi,a}f_a +c_{\pi,s} s_t \numberthis \label{rf2} \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + c_{i,s} s_t \numberthis \label{rf3} \\
+\text{where} & \\
+ c_{x,b} & =  \begin{bmatrix} \sigma, &1-\beta ,& -\sigma\beta \end{bmatrix} \numberthis\\
+ c_{x,s} & =  \sigma\begin{bmatrix} 1 &0 & 0 & 0 \end{bmatrix}(I_{nx}-\beta h_x)^{-1} \numberthis \\
+ c_{\pi,a} & =  \begin{bmatrix} (1-\alpha)\beta, &\kappa\alpha\beta ,& 0 \end{bmatrix} \numberthis \\
+ c_{\pi,s} & =  \begin{bmatrix} 0&0 & 1 & 0 \end{bmatrix}(I_{nx}-\alpha\beta h_x)^{-1} \numberthis \\
+  c_{i,s} & =  \begin{bmatrix} 0 &1 & 0 & \rho \end{bmatrix}
+\end{align*}
+
+\section{Step 2 - solve for observables as a function of $c$s, expectations and states}
+Now the cool thing is you can unleash Mathematica (\texttt{materials12.nb}, bottom) to solve (\ref{rf1})-(\ref{rf3}) as a function of the $c$-matrices. The result will take the following form:
+\begin{align}
+x_t & = g_{x,a}f_a + g_{x,b}f_b + g_{x,s}s_t \\
+\pi_t & = g_{\pi,a}f_a + g_{\pi,b}f_b + g_{\pi,s}s_t \\
+i_t & = g_{i,a}f_a + g_{i,b}f_b + g_{i,s}s_t \\
+\end{align}
+where Mathematica will output the $g$-matrices, which can be copied directly into Matlab \\(\texttt{matrices\_A\_intrate\_smoothing2.m}).
+
+The $A$-matrices will just be a stacking of the $g$-vectors:
+\begin{equation}
+\underbrace{A_a}_{ny \times ny} = \begin{pmatrix} g_{\pi,a} \\ g_{x,a} \\ g_{i,a}\end{pmatrix} \quad 
+\underbrace{A_b}_{ny \times ny} = \begin{pmatrix} g_{\pi,b} \\ g_{x,b} \\ g_{i,b}\end{pmatrix} \quad 
+\underbrace{A_s}_{ny \times nx} = \begin{pmatrix} g_{\pi,s} \\ g_{x,s} \\ g_{i,s}\end{pmatrix}
+\end{equation}
+
+
+\end{document}
+
+
+
+
+
