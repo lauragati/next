@@ -73,8 +73,17 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [ny, nx] = size(gx);
 % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
 % observables unstable
-[~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-% 
+% Original
+% [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+% Alternative, general A-matrices
+% [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
+[Aa, Ab, As] = matrices_A_intrate_smoothing3(param, hx);
+% Aa - Aa2
+% Ab - Ab2
+% As - As2
+% % oh yeah finally this works
+
+
 % % Model with E(pi) in TR instead of pi
 % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
 % [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -103,9 +112,9 @@ again = 2;
 cgain = 3;
 gain = cgain;
 if  gain == dgain
-    gain_name = 'dgain';
+    gain_name = 'dgain'
 elseif gain == cgain
-    gain_name = 'cgain';
+    gain_name = 'cgain'
 end
 
 

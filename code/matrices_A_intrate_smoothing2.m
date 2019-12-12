@@ -26,13 +26,13 @@ psix = psi_x;
 
 % The c-coefficient matrices are model-specific and need to be specified by
 % hand:
-cxb = [sig, 1-bet,-sig*bet];
-cxs = sig*[1 0 0 0]*(eye(nx)-bet*hx)^(-1);
+cxb = [sig, 1-bet,-sig*bet];  % correct (12 Dec 2019)
+cxs = sig*[1 0 0 0]*(eye(nx)-bet*hx)^(-1);  % correct (12 Dec 2019)
 
-cpa = [(1-alph)*bet, kapp*alph*bet,0];
-cps = [0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1);
+cpa = [(1-alph)*bet, kapp*alph*bet,0];  % correct (12 Dec 2019)
+cps = [0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1);  % correct (12 Dec 2019)
 
-cis = [0 1 0 rho];
+cis = [0 1 0 rho];  % correct (12 Dec 2019)
 
 % The below is copied from Mathematica, materials12.m (bottom)
 w = (1+kapp.*psipi.*sig+psix.*sig);
@@ -43,9 +43,9 @@ g_pia = (cpa+cpa.*psix.*sig).*w.^(-1);
 g_pib = cxb.*kapp.*w.^(-1);
 g_pis = (cps+cxs.*kapp+(-1).*cis.*kapp.*sig+cps.*psix.*sig).*w.^(-1);
 
-g_xa = (-1).*cpa.*psipi.*sig.*w.^(-1);
-g_xb = cxb.*w.^(-1);
-g_xs = (cxs+(-1).*cis.*sig+(-1).*cps.*psipi.*sig).*w.^(-1);
+g_xa = (-1).*cpa.*psipi.*sig.*w.^(-1);  % correct (12 Dec 2019)
+g_xb = cxb.*w.^(-1); % correct (12 Dec 2019)
+g_xs = (cxs+(-1).*cis.*sig+(-1).*cps.*psipi.*sig).*w.^(-1);  % correct (12 Dec 2019)
 
 g_ia = cpa.*psipi.*w.^(-1);
 g_ib = cxb.*(kapp.*psipi+psix).*w.^(-1);

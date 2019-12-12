@@ -22,17 +22,17 @@ nx= size(hx,1); % need to figure this out later
 
 % transform these two to be compatible with Mathematica
 psipi = psi_pi;
-psix = pis_x;
+psix = psi_x;
 
 % The c-coefficient matrices are model-specific and need to be specified by
 % hand:
-c_pia = [sig, 1-bet,-sig*bet];
-c_pis =
+cxb = [sig, 1-bet,-sig*bet];  % correct (12 Dec 2019)
+cxs = sig*[1 0 0 0]*(eye(nx)-bet*hx)^(-1);  % correct (12 Dec 2019)
 
-c_xb =
-c_xs =
+cpa = [(1-alph)*bet, kapp*alph*bet,0];  % correct (12 Dec 2019)
+cps = [0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1);  % correct (12 Dec 2019)
 
-c_is =
+cis = [0 1 0 rho];  % correct (12 Dec 2019)
 
 % The below is copied from Mathematica, materials12.m (bottom)
 w = (1+kapp.*psipi.*sig+psix.*sig);
@@ -43,14 +43,15 @@ g_pia = (cpa+cpa.*psix.*sig).*w.^(-1);
 g_pib = cxb.*kapp.*w.^(-1);
 g_pis = (cps+cxs.*kapp+(-1).*cis.*kapp.*sig+cps.*psix.*sig).*w.^(-1);
 
-g_xa = (-1).*cpa.*psipi.*sig.*w.^(-1);
-g_xb = cxb.*w.^(-1);
-g_xs = (cxs+(-1).*cis.*sig+(-1).*cps.*psipi.*sig).*w.^(-1);
+g_xa = (-1).*cpa.*psipi.*sig.*w.^(-1);  % correct (12 Dec 2019)
+g_xb = cxb.*w.^(-1); % correct (12 Dec 2019)
+g_xs = (cxs+(-1).*cis.*sig+(-1).*cps.*psipi.*sig).*w.^(-1);  % correct (12 Dec 2019)
 
 g_ia = cpa.*psipi.*w.^(-1);
 g_ib = cxb.*(kapp.*psipi+psix).*w.^(-1);
 g_is = (cis+cps.*psipi+cxs.*kapp.*psipi+cxs.*psix).*w.^(-1);
 
+% Now assemble everything you input and got from Mathematica
 Aa = vertcat(g_pia, g_xa, g_ia);
 Ab = vertcat(g_pib, g_xb, g_ib);
 As = vertcat(g_pis, g_xs, g_is);
