@@ -34,22 +34,16 @@ cps = [0 0 1 0]*(eye(nx)-alph*bet*hx)^(-1);
 
 cis = [0 1 0 rho];  % correct (12 Dec 2019)
 
-% The g-coefficient matrices are the elements of the A matrices and come
-% from the model solution in Mathematica, materials12.m (bottom)
-g_pia = cpa.*(1+psix.*sig).*(1+kapp.*psipi.*sig+psix.*sig).^(-1);
-g_pib = cxb.*kapp.*(1+(kapp.*psipi+psix).*sig).^(-1);
-g_pis = (1+kapp.*psipi.*sig+psix.*sig).^(-1).*(cps+cxs.*kapp+cps.*psix.*sig);
-
-g_xa = (-1).*cpa.*psipi.*sig.*(1+(kapp.*psipi+psix).*sig).^(-1);
-g_xb = cxb.*(1+(kapp.*psipi+psix).*sig).^(-1);
-g_xs = (cxs+(-1).*cps.*psipi.*sig).*(1+kapp.*psipi.*sig+psix.*sig).^(-1);
-
-g_ia = cpa.*psipi.*(1+(kapp.*psipi+psix).*sig).^(-1);
-g_ib = cxb.*(kapp.*psipi+psix).*(1+(kapp.*psipi+psix).*sig).^(-1);
-g_is = (1+(kapp.*psipi+psix).*sig).^(-1).*(cis+cps.*psipi+cxs.*(kapp.*psipi+psix)+cis.*(kapp.*psipi+psix).*sig);
-
-% Now assemble everything you input and got from Mathematica
-Aa = vertcat(g_pia, g_xa, g_ia);
-Ab = vertcat(g_pib, g_xb, g_ib);
-As = vertcat(g_pis, g_xs, g_is);
+% Given the c-matrices, the solution is calculated in Mathematica and
+% copied from there:
+Aa = [cpa.*(1+psix.*sig).*(1+kapp.*psipi.*sig+psix.*sig).^(-1);(-1).* ...
+ cpa.*psipi.*sig.*(1+(kapp.*psipi+psix).*sig).^(-1);cpa.*psipi.*(1+ ...
+  (kapp.*psipi+psix).*sig).^(-1)];
+Ab = [cxb.*kapp.*(1+(kapp.*psipi+psix).*sig).^(-1);cxb.*(1+(kapp.* ...
+psipi+psix).*sig).^(-1);cxb.*(kapp.*psipi+psix).*(1+(kapp.*psipi+ ...
+  psix).*sig).^(-1)];
+As = [(1+kapp.*psipi.*sig+psix.*sig).^(-1).*(cps+cxs.*kapp+cps.*psix.* ...
+  sig);(cxs+(-1).*cps.*psipi.*sig).*(1+kapp.*psipi.*sig+psix.*sig) ...
+  .^(-1);(1+(kapp.*psipi+psix).*sig).^(-1).*(cis+cps.*psipi+cxs.*( ...
+  kapp.*psipi+psix)+cis.*(kapp.*psipi+psix).*sig)];
 

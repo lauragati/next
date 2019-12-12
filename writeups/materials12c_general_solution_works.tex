@@ -161,17 +161,19 @@ where $M$ and the $c$ are model-specific. In the baseline model they are given b
 
 \section{Step 2 - solve for observables as a function of $c$s, expectations and states}
 Now unleash Mathematica (\texttt{materials12.nb}, after ``Restart 12 Dec 2019") to solve for $x$ and $\pi$ as \begin{equation}
-\begin{bmatrix} \pi_t \\ x_t \end{bmatrix} = M^{-1}N
+\begin{bmatrix} \pi_t^* \\ x_t^* \end{bmatrix} = M^{-1}N
 \end{equation}
-where Mathematica will output the $g$-matrices, which can be copied directly into Matlab \\(\texttt{matrices\_A\_intrate\_smoothing3.m}).
-
-The $A$-matrices will just be a stacking of the $g$-vectors:
+Then the solution for the interest rate will just be
+\begin{equation}
+i_t = \psi_{\pi}\pi_t^* + \psi_{x} x_t^*  +c_{is} s_t
+\end{equation}
+The last step is to gather the matrices $g_{i,j}$, the coefficients of $i$ on $j$, $i=x,\pi,i, j=f_a,f_b,s$. Mathematica will output these $g$-matrices and stack them appropriately to give the $A$-matrices:
 \begin{equation}
 \underbrace{A_a}_{ny \times ny} = \begin{pmatrix} g_{\pi,a} \\ g_{x,a} \\ g_{i,a}\end{pmatrix} \quad 
 \underbrace{A_b}_{ny \times ny} = \begin{pmatrix} g_{\pi,b} \\ g_{x,b} \\ g_{i,b}\end{pmatrix} \quad 
 \underbrace{A_s}_{ny \times nx} = \begin{pmatrix} g_{\pi,s} \\ g_{x,s} \\ g_{i,s}\end{pmatrix}
 \end{equation}
-
+which can be copied directly into Matlab (for the default model \texttt{matrices\_A\_intrate\_smoothing3.m}).
 
 \end{document}
 

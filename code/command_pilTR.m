@@ -88,20 +88,23 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % ax.FontSize = fs;
 % grid on
 % grid minor
-[~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-[Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
-Aa - Aa2
-Ab - Ab2
-As - As2
+% [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+% [Aa, Ab, As] = matrices_A_intrate_smoothing3(param, hx); % < -- use this
 
-return
 %
 % Model with piL in TR instead of pi
 [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
+param.psi_pi = 0; % cheat --> psi_pi < 1 makes expectations stable but observables unstable
+% [Aa, Ab, As] = matrices_A_pilTR3(param, hx);
 [Aa, Ab, As] = matrices_A_pilTR(param, hx);
-
+[Aa2, Ab2, As2] = matrices_A_pilTR3(param, hx);
+Aa - Aa2
+Ab - Ab2
+As - As2
+% return
+return
 % % Check wtf is going on with RE
 % % RE
 % x0 = zeros(1,nx); x0(2) = 1;
