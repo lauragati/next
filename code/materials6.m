@@ -38,7 +38,7 @@ if print_figs ==1
 else
     output_table =0;
 end
-skip_old_plots =1;
+skip_old_plots =0;
 
 fs=20; % fontsize
 lw=2; % linewidth
@@ -97,7 +97,7 @@ e = randn(n,T);
 [fyn, fxn, fypn, fxpn] = model_NK(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn)
 [ny, nx] = size(gx);
-[~, ~, Aa_LH, Ab_LH, As_LH] = matrices_A(param, setp);
+[~, ~, Aa_LH, Ab_LH, As_LH] = matrices_A(param, hx);
 
 % Simulate models
 % Use Ryan's code to simulate from the RE model
@@ -134,7 +134,7 @@ critCEMP=1;
 critCUSUM=2;
 free=1; % use versions of the code that are n-free (use hx instead of P)
 not_free=0;
-[x, y] = sim_learn(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, constant_only, dgain, critCEMP, not_free);
+[x, y] = sim_learn(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, constant_only, dgain, critCEMP);
 % cool - I've verified that I'm getting the same things as before
 
 % Gather observables
@@ -229,7 +229,7 @@ for s=1:n
         [x_LR_anchor_shockd, y_LR_anchor_shockd] = sim_learn_LR_anchoring_pidrift_shockd(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, t, x0);
         [x_LR_perp_shockd, y_LR_perp_shockd] = sim_learn_LR_constant_pidrift_perpetual_shockd(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, t, x0);
         % Now let's shock our general learning code
-        [xs, ys] = sim_learn(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, setp, H, anal, constant_only, cgain, critCEMP,free, t, x0);
+        [xs, ys] = sim_learn(gx,hx,SIG,T,burnin,e, Aa_LH, Ab_LH, As_LH, param, constant_only, cgain, critCEMP, t, x0);
         %         y_LR_perp_shockd - y; % perfect - all of these are the same!
         % 2. take differences between this and the standard simulation
         GIRd(:,:,t) = y_LR_shockd(:,t:t+h-1) - y_LR(:,t:t+h-1);
@@ -280,7 +280,7 @@ for s=1:n
         end
     end
 end
-
+return
 %% compare the two anchoring mechanisms
 % close all
 if skip_old_plots==0
@@ -344,7 +344,9 @@ if skip_old_plots==0
     end
     
 end
+
 close all
+
 
 %% New approach:  implement interest rate smoothing AFTER you've done the rest
 % This way I'm hoping to preserve things intact

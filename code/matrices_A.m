@@ -1,4 +1,4 @@
-function [Ap_RE, As_RE, Aa_LR, Ab_LR, As_LR, B1, B2] = matrices_A(param, set)
+function [Ap_RE, As_RE, Aa_LR, Ab_LR, As_LR, B1, B2] = matrices_A(param, hx)
 
 bet = param.bet;  
 sig = param.sig;
@@ -15,7 +15,7 @@ rho_u = param.rho_u;
 sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
-n = set.ne;
+n= size(hx,1);
 
 P = eye(n).*[rho_r, rho_i, rho_u]';
 C = P; % for now
