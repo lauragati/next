@@ -95,9 +95,13 @@ e = randn(n,T);
 
 % Solve RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn)
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
 [~, ~, Aa_LH, Ab_LH, As_LH] = matrices_A(param, hx);
+[Aa, Ab, As] = matrices_A2(param, hx); % try with 3 Jan 2020 general method (MN) - you get the exact same matrices
+% Aa_LH = Aa;
+% Ab_LH = Ab;
+% As_LH = As;
 
 % Simulate models
 % Use Ryan's code to simulate from the RE model
