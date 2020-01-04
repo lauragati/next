@@ -74,14 +74,22 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
 % observables unstable
 % Original
-% [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
+[~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
 % Alternative, general A-matrices
-% [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
-[Aa, Ab, As] = matrices_A_intrate_smoothing3(param, hx);
+[Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
+[Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
 % Aa - Aa2
 % Ab - Ab2
 % As - As2
-% % oh yeah finally this works
+% % these aren't equal, and they shouldn't either because this is the wrong
+% % PQ method, not using condition (*)
+% Aa - Aa3
+% Ab - Ab3
+% As - As3
+% % they equal - perfect - they should b/c 3 uses the MN method.
+% Aa = Aa3;
+% Ab = Ab3;
+% As = As3;
 
 
 % % Model with E(pi) in TR instead of pi
