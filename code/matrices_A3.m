@@ -1,6 +1,6 @@
 function [Aa, Ab, As] = matrices_A3(param,hx)
 % Mathematica, materials12e.m 
-% 5 jan 2020
+% 6 jan 2020
 
 bet = param.bet;  
 sig = param.sig;
