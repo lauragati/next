@@ -71,6 +71,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
+return
 % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
 % observables unstable
 % Original

@@ -102,6 +102,11 @@ e = randn(n,T);
 % Aa_LH = Aa;
 % Ab_LH = Ab;
 % As_LH = As;
+[Aa3, Ab3, As3] = matrices_A3(param, hx); % try with 5 Jan 2020 general method (PQ) - great! they are the same too!
+% Aa_LH - Aa3
+% Ab_LH - Ab3
+% As_LH - As3
+
 
 % Simulate models
 % Use Ryan's code to simulate from the RE model
