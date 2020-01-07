@@ -5,7 +5,8 @@
 function [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param)
 
 %Steady State
-[ss, param] = model_NK_intrate_smoothing_ss(param);
+% [ss, param] = model_NK_intrate_smoothing_ss(param);
+[ss, param] = model_NK_ss(param); % w/o intrate smoothing
 
 %Declare parameters
 bet = param.bet;  
@@ -29,22 +30,38 @@ rho = param.rho;
 syms RN RN_p IB IB_p U_p U
 syms PI PI_p XX XX_p I I_p IL IL_p
 
+% %Declare X and Y vectors
+% X  = [RN IB U IL]; 
+% XP = [RN_p IB_p U_p IL_p];
+% 
+% Y  = [PI XX I  ];
+% YP = [PI_p XX_p I_p ] ;
+% 
+% %Model Equations (materials2 and 3 and 6)
+% f(1) = -XX + XX_p - sig*(I - PI_p)+ sig*RN;
+% f(2) = -PI + kapp*XX +bet*PI_p +U; 
+% f(3) = -I + psi_pi*PI_p + psi_x*XX + IB + rho*IL; %<----
+% f(4) = IB_p - rho_i*IB;
+% f(5) = RN_p - rho_r*RN;
+% f(6) = U_p - rho_u*U;
+% f(7) = I - IL_p;
+
+% Model w/o intrate smoothing
 %Declare X and Y vectors
-X  = [RN IB U IL]; 
-XP = [RN_p IB_p U_p IL_p];
+X  = [RN IB U ]; 
+XP = [RN_p IB_p U_p ];
 
 Y  = [PI XX I  ];
 YP = [PI_p XX_p I_p ] ;
 
-
-%Model Equations (materials2 and 3 and 6)
+%Model Equations (7 Jan 2020)
 f(1) = -XX + XX_p - sig*(I - PI_p)+ sig*RN;
 f(2) = -PI + kapp*XX +bet*PI_p +U; 
-f(3) = -I + psi_pi*PI_p + psi_x*XX + IB + rho*IL; %<----
+f(3) = -I + psi_pi*PI_p + psi_x*XX + IB ; %<----
 f(4) = IB_p - rho_i*IB;
 f(5) = RN_p - rho_r*RN;
 f(6) = U_p - rho_u*U;
-f(7) = I - IL_p;
+
 
 %Check Computation of Steady-State Numerically
 fnum = double(subs(f, [Y X YP XP], [ss, ss]));

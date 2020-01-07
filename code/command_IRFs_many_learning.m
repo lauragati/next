@@ -46,7 +46,7 @@ ne = 3;
 nx = 4;% now n becomes 4
 P = eye(ne).*[rho_r, rho_i, rho_u]';
 SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
-
+% SIG = eye(3).*[sig_r, sig_i, sig_u]'; % <-- EPI
 
 % introduce adaptive names depending on the value of rho
 rho_val_raw = num2str(rho);
@@ -71,35 +71,59 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-return
+
 % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
 % observables unstable
 % Original
 [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-% Alternative, general A-matrices
-[Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
-[Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
+
+% % Alternative, general A-matrices
+% [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
+% [Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
+% % Aa - Aa2
+% % Ab - Ab2
+% % As - As2
+% % these aren't equal, and they shouldn't either because this is the wrong
+% % PQ method, not using condition (*)
 % Aa - Aa2
 % Ab - Ab2
 % As - As2
-% % these aren't equal, and they shouldn't either because this is the wrong
-% % PQ method, not using condition (*)
+% % they equal - perfect - they should b/c 3 uses the MN method.
 % Aa - Aa3
 % Ab - Ab3
 % As - As3
-% % they equal - perfect - they should b/c 3 uses the MN method.
-% Aa = Aa3;
-% Ab = Ab3;
-% As = As3;
+% % But they are likely still not yet the correct intrate-smoothing model (il)
+%
+% % % Model with E(pi) in TR instead of pi
+% % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
+% % [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+% % [ny, nx] = size(gx);
+% [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
+% [Aa2, Ab2, As2, Ae2] = matrices_A_12f1(param, hx); % with the new Epi-matrices, they are clearly not equal, so the old was indeed wrong.
 
+%% New correct matrices
 
-% % Model with E(pi) in TR instead of pi
+% % Epi-model (expected inflation in Taylor rule)
 % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
 % [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 % [ny, nx] = size(gx);
-% [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
+% [Aa, Ab, As, Ae] = matrices_A_12f1(param, hx); % Note: you don't actually
+% need Ae because it's just psi_pi anyway, so I've let the learning code
+% sim_learnLH_12f1.m simply use param.psi_pi for it.
 
+% % pil-model (lagged inflation in Taylor rule)
+% [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
+% [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+% [ny, nx] = size(gx);
+% [Aa, Ab, As] = matrices_A_12f2(param, hx);
 
+% il-model (interest rate smoothing)
+% [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
+% [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+% [ny, nx] = size(gx);
+% [Aa, Ab, As] = matrices_A_12f3(param, hx);
+
+return
 %% Simulate models
 
 % Params for the general learning code
@@ -149,12 +173,16 @@ for s=2  %2->zoom in on monetary policy shock
     
     for n=1:N
         % Sequence of innovations
+        %         e = squeeze(eN(:,:,n)); % <-- EPI
         e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to interest rate lag
         
         % Unshocked
         dbstop if warning
         % LH learning (learning both slope and constant of a vector)
         [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
+        % Epi-version
+        %         [~, y_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa,
+        %         Ab, As, param, PLM, gain); % <-- EPI
         
         % Euler equation learning (learning both slope and constant). Only this
         % is from materials3.m.
@@ -170,6 +198,9 @@ for s=2  %2->zoom in on monetary policy shock
             dt = dt_vals(t);
             % Shocked
             [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            % Epi-version
+            %             [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,
+            %             As, param, PLM, gain, dt, x0); % <-- EPI
             [~, ys_EE] = sim_learn_EE(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e,param, PLM, gain, dt, x0);
             
             % Construct GIRs
@@ -221,6 +252,6 @@ for t=1:nd % for the two diff times of imposing the shock
     subplot_names = titles_obs;
     legendnames = {'Learning', 'RE'};
     figtitle = ['LH, shock imposed at t=', num2str(dt_vals(t))];
-    create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames) 
+    create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
     
 end

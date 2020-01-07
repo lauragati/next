@@ -118,10 +118,10 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 12e - PQ solution\\
-- works for the default model
+\title{Materials 12f - ``pil"-extension of baseline model\\
+- Lagged inflation in TR
 \\
-\small{See Notes 6 Jan 2020}}
+\small{See Notes 7 Jan 2020}}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -132,46 +132,34 @@ bottom=1in}
 
 %\listoffigures
 
+Compare Mathematica (\texttt{materials12f2.nb}).
+
+\textcolor{red}{Red} stuff are changes compared to the baseline model.
 \section{Model equations and goal}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
 \pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
-i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR}
+i_t &= \psi_{\pi}\textcolor{red}{\pi_{t-1}}+ \psi_{x} x_t  + \bar{i}_t \label{TR}
 \end{align}
-Goal: obtain endogenous stuff as a function of expectations and states:
+Compact notation
 \begin{equation}
-z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t
+z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t \quad \text{with} \quad  s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix}
 \end{equation}
-where I already have expectations $f_a, f_b$ and the state vector can vary by model, but in this default case with $\rho=0$ it is \begin{equation}
-s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix}
-\end{equation}
-That is,  we want the matrices $A_a, A_b$ and $A_s$.
-\section{Method 1 - MN method (old method) - this is done to check the PQ method}
-This follows the notation I use in Mathematica (\texttt{materials12e.nb})
+
+\section{MN matrices}
 \begin{equation}
-\underbrace{\begin{bmatrix} \sigma\psi_{\pi}&  1+\sigma\psi_x\\ 1& -\kappa \end{bmatrix}}_{\equiv M}\begin{bmatrix} \pi_t \\ x_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix} \sigma(1-\beta\psi_{\pi}), &1-\beta-\sigma\beta\psi_x ,&0 \end{bmatrix}f_b +d_{x,s} s_t \\ \begin{bmatrix} (1-\alpha)\beta, &\kappa\alpha\beta ,& 0 \end{bmatrix} f_a +d_{\pi,s} s_t \end{bmatrix}}_{\equiv N}
+\underbrace{\begin{bmatrix} \sigma\psi_{\pi}\textcolor{red}{\beta} &  1+\sigma\psi_x\\ 1& -\kappa \end{bmatrix}}_{\equiv M}\begin{bmatrix} \pi_t \\ x_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix} \sigma(1-\textcolor{red}{\beta^2}\psi_{\pi}), &1-\beta-\sigma\beta\psi_x ,&0 \end{bmatrix}f_b +d_{x,s} s_t + \textcolor{red}{\begin{bmatrix} 0, &0, &0, & -\sigma\psi_{\pi}\end{bmatrix}s_t}\\ \begin{bmatrix} (1-\alpha)\beta, &\kappa\alpha\beta ,& 0 \end{bmatrix} f_a +d_{\pi,s} s_t \end{bmatrix}}_{\equiv N}
 \end{equation}
 where 
 \begin{align*}
- d_{x,s} & =  -\sigma\begin{bmatrix} -1 &1 & 0 \end{bmatrix}InxBhx \quad \quad InxBhx \equiv (I_{nx}-\beta h_x)^{-1} \numberthis \\
- d_{\pi,s} & =  \begin{bmatrix} 0&0 & 1  \end{bmatrix}InxABhx \quad \quad InxABhx \equiv (I_{nx}-\alpha\beta h_x)^{-1} \numberthis \\
-  d_{i,s} & =  \begin{bmatrix} 0 &1 & 0  \end{bmatrix} \numberthis
+ d_{x,s} & =  -\sigma\begin{bmatrix} -1 &1 & 0 & \textcolor{red}{0}  \end{bmatrix}InxBhx \quad \quad InxBhx \equiv (I_{nx}-\beta h_x)^{-1} \numberthis \\
+ d_{\pi,s} & =  \begin{bmatrix} 0&0 & 1 & \textcolor{red}{0}  \end{bmatrix}InxABhx \quad \quad InxABhx \equiv (I_{nx}-\alpha\beta h_x)^{-1} \numberthis \\
+  d_{i,s} & =  \begin{bmatrix} 0 &1 & 0 & \textcolor{red}{\psi_{\pi}}  \end{bmatrix} \numberthis
 \end{align*}
 
-where I only specify $InxABhx, InxBhx$ in Matlab, leaving them parametric in Mathematica. Then Mathematica solves for $x$ and $\pi$ as \begin{equation}
-\begin{bmatrix} \pi_t^* \\ x_t^* \end{bmatrix} = M^{-1}N \label{MN}
-\end{equation}
-Then the solution for the interest rate will just be
+\section{PQ matrices}
 \begin{equation}
-i_t = \psi_{\pi}\pi_t^* + \psi_{x} x_t^*  +d_{is} s_t
-\end{equation}
-but I don't solve for it here since I only compare $\pi^*_{MN}$ to $\pi^*_{PQ}$.
-
-
-\section{Method 2 - PQ method (new method)}
-Instead of subbing out the interest rate in the original equations, write the system as:
-\begin{equation}
-\underbrace{\begin{bmatrix} 0& 1&  \sigma \\ 1& -\kappa & 0 \\ -\psi_{\pi} & -\psi_{x} & 1 \end{bmatrix}}_{\equiv P}\begin{bmatrix} \pi_t \\ x_t \\i_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix}\sigma, &1-\beta, &\beta  (-\sigma )\end{bmatrix}f_b +c_{x,s} s_t \\ \begin{bmatrix}(1-\alpha ) \beta ,&\alpha  \beta  \kappa ,&0\end{bmatrix}f_a +c_{\pi,s} s_t \\ c_{i,s} s_t \end{bmatrix}}_{\equiv Q}
+\underbrace{\begin{bmatrix} \textcolor{red}{\sigma\beta\psi_{\pi}} & 1&  \sigma \\ 1& -\kappa & 0 \\ \textcolor{red}{0}  & -\psi_{x} & 1 \end{bmatrix}}_{\equiv P}\begin{bmatrix} \pi_t \\ x_t \\i_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix}\sigma, &1-\beta, &\beta  (-\sigma )\end{bmatrix}f_b +c_{x,s} s_t \\ \begin{bmatrix}(1-\alpha ) \beta ,&\alpha  \beta  \kappa ,&0\end{bmatrix}f_a +c_{\pi,s} s_t \\ c_{i,s} s_t \end{bmatrix}}_{\equiv Q}
 \end{equation}
 where 
 \begin{align}
@@ -186,29 +174,19 @@ c_{\pi,s} & = \left(
 \end{array}
 \right).\text{InxABhx}\\
 c_{i,s} & = \left(
-\begin{array}{ccc}
- 0 & 1 & 0 \\
+\begin{array}{cccc}
+ 0 & 1 & 0 &\textcolor{red}{\psi_{\pi}} \\
 \end{array}
 \right) = d_{i,s}
 \end{align}
 where $\text{InxABhx}$ and $\text{InxBhx}$ are the same as before.
-Then (\ref{MN}) is replaced by 
+The (*)-relation is
 \begin{equation}
-\begin{bmatrix} \pi_t^* \\ x_t^* \\ i_t^* \end{bmatrix} = P^{-1}Q \label{PQ}
+f_b(3) = \textcolor{red}{\beta}\psi_{\pi}f_b(1) + \psi_{x}f_b(2) + \frac{1}{\beta}\{ \begin{bmatrix} 0 &1 & 0 & \textcolor{red}{0}  \end{bmatrix}(I_{nx}-\beta h_x)^{-1} s_t - \begin{bmatrix} 0&1 & 0 & \textcolor{red}{0} \end{bmatrix}s_t  \} \tag{*}
 \end{equation}
-where you also have to impose the relation
-\begin{equation}
-f_b(3) = \psi_{\pi}f_b(1) + \psi_{x}f_b(2) + \frac{1}{\beta}\{ \begin{bmatrix} 0 &1 & 0  \end{bmatrix}(I_{nx}-\beta h_x)^{-1} s_t - \begin{bmatrix} 0 &1 & 0  \end{bmatrix}s_t  \} \tag{*}
-\end{equation}
-so that Mathematica recognizes that the interest rate expectations are just a function of those of $\pi$ and $x$. 
+where in (*) there was a $\psi_{\pi}\pi_t$ term that I moved to the LHS of the PQ equation ($P(1,1)$).
 
-The last step is to gather the matrices $g_{i,j}$, the coefficients of $i$ on $j$, $i=x,\pi,i, j=f_a,f_b,s$. Mathematica will output these $g$-matrices and stack them appropriately to give the $A$-matrices:
-\begin{equation}
-\underbrace{A_a}_{ny \times ny} = \begin{pmatrix} g_{\pi,a} \\ g_{x,a} \\ g_{i,a}\end{pmatrix} \quad 
-\underbrace{A_b}_{ny \times ny} = \begin{pmatrix} g_{\pi,b} \\ g_{x,b} \\ g_{i,b}\end{pmatrix} \quad 
-\underbrace{A_s}_{ny \times nx} = \begin{pmatrix} g_{\pi,s} \\ g_{x,s} \\ g_{i,s}\end{pmatrix}
-\end{equation} 
-Now you can be copy this directly into Matlab (for the default model \texttt{matrices\_A3.m}), specifying only $InxABhx, InxBhx$ in Matlab.
+The Matlab code that uses this is \texttt{matrices\_A\_12f2.m}.
 
 
 \end{document}

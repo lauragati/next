@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 JAN 2020 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 JAN 2020 16:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**materials12e_PQ_solution_working.tex
-(./materials12e_PQ_solution_working.tex
+**materials12f2.tex
+(./materials12f2.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -814,8 +814,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 61.
 \c@lemma=\count161
 \c@corollary=\count162
 \c@conjecture=\count163
- (./materials12e_PQ_solution_working.aux)
-\openout1 = `materials12e_PQ_solution_working.aux'.
+ (./materials12f2.aux)
+\openout1 = `materials12f2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
@@ -915,12 +915,12 @@ LaTeX Info: Redefining \ref on input line 117.
 LaTeX Info: Redefining \pageref on input line 117.
 LaTeX Info: Redefining \nameref on input line 117.
 
-(./materials12e_PQ_solution_working.out)
-(./materials12e_PQ_solution_working.out)
+(./materials12f2.out) (./materials12f2.out)
 \@outlinefile=\write4
-\openout4 = `materials12e_PQ_solution_working.out'.
+\openout4 = `materials12f2.out'.
 
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 LaTeX Font Info:    Try loading font information for U+msa on input line 128.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -940,37 +940,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3pdfTeX warning (ext4): destination with the same identifier (name{equation.3.
-17}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.214 \end{document}
-                    ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 214.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
- (./materials12e_PQ_solution_working.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
-Package rerunfilecheck Info: File `materials12e_PQ_solution_working.out' has no
-t changed.
-(rerunfilecheck)             Checksum: 809C915919E1A1FE7DAA3369479F32E8;237.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 214.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 192.
+ (./materials12f2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 192.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 192.
+Package rerunfilecheck Info: File `materials12f2.out' has not changed.
+(rerunfilecheck)             Checksum: 86DB33AEF12E420D647F2BC9B5BE1263;151.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 192.
  ) 
 Here is how much of TeX's memory you used:
- 19948 strings out of 493089
- 361706 string characters out of 6134842
- 454418 words of memory out of 5000000
- 23046 multiletter control sequences out of 15000+600000
+ 19941 strings out of 493089
+ 361393 string characters out of 6134842
+ 452399 words of memory out of 5000000
+ 23044 multiletter control sequences out of 15000+600000
  10905 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,22n,54p,463b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,23n,54p,551b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -983,11 +969,10 @@ texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials12e_PQ_solution_working.pdf (3 pages, 133014 bytes).
-
+Output written on materials12f2.pdf (2 pages, 126926 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 25 named destinations out of 1000 (max. 500000)
+ 99 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
  37 words of extra memory for PDF output out of 10000 (max. 10000000)
 
