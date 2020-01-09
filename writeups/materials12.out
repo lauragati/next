@@ -1,7 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Model summary}{}% 1
-\BOOKMARK [1][-]{section.2}{Some initial quick changes}{}% 2
-\BOOKMARK [1][-]{section.3}{IRFs from vector learning: EE and LH, T=400, N=100}{}% 3
-\BOOKMARK [1][-]{section.4}{A technical note on the projection facility}{}% 4
-\BOOKMARK [1][-]{section.5}{A note on the empirical counterpart: IRFs in the data}{}% 5
-\BOOKMARK [1][-]{section.6}{Changes to expectation formation}{}% 6
-\BOOKMARK [1][-]{section.7}{t-1 instead of t in the Taylor rule}{}% 7
+\BOOKMARK [1][-]{section.2}{Four quick changes}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Quick overview }{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{IRFs from vector learning: EE and LH, T=400, N=100}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{A technical note on the projection facility }{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{A note on the empirical counterpart: IRFs in the data}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Bigger changes to expectation formation - so far only thoughts}{}% 7
+\BOOKMARK [1][-]{section.4}{Changes to policy - a challenge for informational assumptions \040}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{The big-picture issue}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{How the issue arises in the extensions }{section.4}% 10

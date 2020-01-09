@@ -3,7 +3,9 @@ function [Aa, Ab, As] = matrices_A_intrate_smoothing3(param,hx)
 % Mathematica, materials12.m (very bottom, section after "Restart 12 Dec 2019")
 % Update 4 Jan 2020: I've checked that this is the correct MN method and
 % indeed gives the same thing as the old A-matrices before I started using
-% a general method. 
+% a general method for any value of rho -> matrices_A_intrate_smoothing.m =
+% matrices_A_intrate_smoothing3.m b/c both are the MN method, except that 3
+% is more explicit about that.
 
 bet = param.bet;  
 sig = param.sig;

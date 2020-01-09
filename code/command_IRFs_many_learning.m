@@ -76,23 +76,30 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % observables unstable
 % Original
 [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-
 % % Alternative, general A-matrices
-% [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
-% [Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
-% % Aa - Aa2
-% % Ab - Ab2
-% % As - As2
-% % these aren't equal, and they shouldn't either because this is the wrong
+[Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
+[Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
+[Aa4, Ab4, As4] = matrices_A_12f3(param, hx);
+return
+Aa - Aa2
+Ab - Ab2
+As - As2
+% % these aren't equal ever, and they shouldn't either because this is the wrong
 % % PQ method, not using condition (*)
-% Aa - Aa2
-% Ab - Ab2
-% As - As2
-% % they equal - perfect - they should b/c 3 uses the MN method.
-% Aa - Aa3
-% Ab - Ab3
-% As - As3
+Aa - Aa3
+Ab - Ab3
+As - As3
+% % they equal - perfect - they should b/c 3 uses the MN method. (even if
+% rho !=0)
 % % But they are likely still not yet the correct intrate-smoothing model (il)
+Aa - Aa4
+Ab - Ab4
+As - As4
+% actually, these last ones, done with (presumably) correct PQ equal the
+% original ones as long as rho=0, but no longer if rho unequal to 0.
+% Actually that makes sense to me because they should embody a different
+% informational assumption than the MN method.
+return
 %
 % % % Model with E(pi) in TR instead of pi
 % % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
@@ -101,7 +108,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
 % [Aa2, Ab2, As2, Ae2] = matrices_A_12f1(param, hx); % with the new Epi-matrices, they are clearly not equal, so the old was indeed wrong.
 
-%% New correct matrices
+%% New January 2020 matrices
 
 % % Epi-model (expected inflation in Taylor rule)
 % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);

@@ -15,7 +15,7 @@ param.thetbar = 1;%1 or 0.029; % param_correct CEMP
 param.rho_r = 0; %0
 param.rho_i = 0.6; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
 param.rho_u = 0; %0
-param.rho = 0; % persistence of lag of interest rate
+param.rho = 0.6; % persistence of lag of interest rate
 param.sig_r = 0.1;%0.1; %?
 param.sig_i = 0.359; % 0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 0.277; % 0.277 = sig_mu from CEMP, the cost-push shock
