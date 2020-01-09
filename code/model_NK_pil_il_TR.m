@@ -3,10 +3,10 @@
 % 10 Dec 2019
 % adapted from model_preston.m
 
-function [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param)
+function [fyn, fxn, fypn, fxpn] = model_NK_pil_il_TR(param)
 
 %Steady State
-[ss, param] = model_NK_pilTR_ss(param);
+[ss, param] = model_NK_pil_il_TR_ss(param);
 
 %Declare parameters
 bet = param.bet;  
@@ -28,11 +28,11 @@ rho = param.rho;
 
 %Declare Needed Symbols
 syms RN RN_p IB IB_p U_p U PIL PIL_p
-syms PI PI_p XX XX_p I I_p 
+syms PI PI_p XX XX_p I I_p IL IL_p
 
 %Declare X and Y vectors
-X  = [RN IB U PIL]; 
-XP = [RN_p IB_p U_p PIL_p];
+X  = [RN IB U IL PIL]; 
+XP = [RN_p IB_p U_p IL_p PIL_p];
 
 Y  = [PI XX I  ];
 YP = [PI_p XX_p I_p ] ;
@@ -41,11 +41,12 @@ YP = [PI_p XX_p I_p ] ;
 %Model Equations (materials2 and 3 and 6)
 f(1) = -XX + XX_p - sig*(I - PI_p)+ sig*RN;
 f(2) = -PI + kapp*XX +bet*PI_p +U; 
-f(3) = -I + psi_pi*PIL + psi_x*XX + IB;
+f(3) = -I + psi_pi*PIL + psi_x*XX + IB + rho*IL;
 f(4) = IB_p - rho_i*IB;
 f(5) = RN_p - rho_r*RN;
 f(6) = U_p - rho_u*U;
-f(7) = PI - PIL_p;
+f(7) = I - IL_p;
+f(8) = PI - PIL_p;
 
 %Check Computation of Steady-State Numerically
 fnum = double(subs(f, [Y X YP XP], [ss, ss]));

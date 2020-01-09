@@ -2,6 +2,9 @@ function [Aa, Ab, As,  Ae] = matrices_A_12f1(param,hx)
 % Mathematica, materials12f1.nb
 % 7 jan 2020
 % A-matrices for Epi-model.
+% Update 9 Jan 2020: info assumptions I discuss on 9 Jan 2020 don't matter
+% here b/c no lagged jump becomes a state in the Epi-extension.
+
 bet = param.bet;  
 sig = param.sig;
 alph = param.alph;

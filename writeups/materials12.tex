@@ -284,7 +284,7 @@ Agents know $h_x$ and estimate $\hat{g}_x$. In terms of the model equations NKIS
 \begin{equation}
 Y_t = A_a f_a + A_b f_b + A_s X_t ? \label{compact}
 \end{equation}
-I tend to think that they do \emph{not} know the NKIS and NKPC and thus cannot impute (\ref{compact}) b/c in that case they would internalize that they are identical, which we've assumed away. But they can still know the TR (which is realistic too b/c the CB might announce it publicly), I just don't know how exactly it matters then for them individually (it's clear that it matters for aggregate dynamics, but HHs may not think that that's relevant for them individually).
+I tend to think that they do \emph{not} know the NKIS and NKPC and thus cannot impute (\ref{compact}) b/c in that case they would internalize that they are identical, which we've assumed away. But they can still know the TR, in fact I think they do know the TR b/c the CB might announce it publicly.
 \subsection{How the issue arises in the extensions }
 The question reemerges when the extension involves introducing an endogenous state. (So the $\hat{\E}_t\pi_{t+1}$-extension is not problematic in this regard. That extension just requires rewriting the compact notation as $Y_t = A_a f_a + A_b f_b + A_s X_t +A_e\hat{\E}_t\pi_{t+1}$, where $A_e = \psi_{\pi}$, and the learning code needs to be altered to take this into account, but otherwise no drastic changes are required.)
 When you introduce an endogenous state, however, like lagged inflation or lagged interest rate, then the problem emerges. 
@@ -302,7 +302,7 @@ The reason this becomes important is because it has consequences for how they fo
 \item No: they treat $i$ and $il$ as two separate variables and use $h_x$ (which they know) to forecast $ il $.
 \begin{itemize}
 \item Advantage: Easy to solve because this means that agents do not realize that \\ \texttt{gx(end,:) = hx(end,:)}.
-\item Disadvantage: Unrealistic and also has undesirable implications for dynamics b/c now you've just added another exogenous shock to the Taylor-rule that happens to have the same law of motion as $i$; no wonder I found that it didn't make a difference! (This is the approach I have taken so far w/o realizing it.)
+\item Disadvantage: Unrealistic and also has undesirable implications for dynamics b/c now you've just added another exogenous shock to the Taylor-rule that happens to have the same law of motion as $i$; no wonder I found that it didn't make a difference! (This is the approach I have taken so far from materials6 onwards for interest rate smoothing w/o realizing it.)
 \end{itemize}
 \item Yes: Now you're in for a curious modeling difficulty: What should agents now use to forecast $il$ and in particular $i$?
 \begin{itemize}

@@ -2,6 +2,8 @@ function [Aa, Ab, As] = matrices_A_12f2(param,hx)
 % Mathematica, materials12f2.nb
 % 7 jan 2020
 % A-matrices for pil-model.
+% Update 9 Jan 2020: with "suboptimal forecaster" info assumption.
+
 bet = param.bet;  
 sig = param.sig;
 alph = param.alph;

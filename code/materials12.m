@@ -23,8 +23,10 @@ skip_old_stuff = 1;
 
 
 %% Do IRFs for vector learning and EE learning
-%  E(pi) in TR instead of pi also implemented in the same code
+% Three extensions with various info assumptions
+%  E(pi) in TR instead of pi 
+% lagged inflation in Taylor rule (pil)
+% interest rate smoothing (il)
 command_IRFs_many_learning
 
-%% lagged inflation in Taylor rule
 

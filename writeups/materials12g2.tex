@@ -1,0 +1,205 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.18}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 12f - ``pil"-extension of baseline model\\
+- Lagged inflation in TR using the ``optimal forecaster'' info assumption
+\\
+\small{See Notes 9 Jan 2020}}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+%\tableofcontents
+
+%\listoffigures
+
+Compare Mathematica (\texttt{materials12g2.nb}).
+
+\section{Model equations and goal}
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_{t-1}+ \psi_{x} x_t  + \bar{i}_t \label{TR}
+\end{align}
+Compact notation
+\begin{equation}
+z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t \quad \text{with} \quad  s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix}
+\end{equation}
+
+\section{MN matrices}
+\begin{equation}
+\underbrace{\begin{bmatrix}\frac{\sigma}{\beta} &  1+\sigma\psi_x\\ \frac{1}{\alpha}& -\kappa \end{bmatrix}}_{\equiv M}\begin{bmatrix} \pi_t \\ x_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix} \sigma, &1-\beta-\sigma\beta\psi_x ,&0 \end{bmatrix}f_b +d_{x,s} s_t \\ \begin{bmatrix} (1-\alpha)\beta, &\kappa\alpha\beta ,& 0 \end{bmatrix} f_a +d_{\pi,s} s_t \end{bmatrix}}_{\equiv N}
+\end{equation}
+where 
+\begin{align*}
+ d_{x,s} & =  \sigma\begin{bmatrix} 1 &-1 & 0 &\psi_{\pi}  \end{bmatrix}InxBhx \quad \quad InxBhx \equiv (I_{nx}-\beta h_x)^{-1} \numberthis \\
+ d_{\pi,s} & =  \begin{bmatrix} 0&0 & 1 & 0  \end{bmatrix}InxABhx \quad \quad InxABhx \equiv (I_{nx}-\alpha\beta h_x)^{-1} \numberthis \\
+  d_{i,s} & =  \begin{bmatrix} 0 &1 & 0 & \psi_{\pi}  \end{bmatrix} \numberthis
+\end{align*}
+
+The new thing is the pair of linking equations that tell agents to use $h_x$ to forecast $\pi$ (they establish a relationship between $f_b(1), f_a(1)$ and the sum of errors):
+\begin{align}
+L1' &= \frac{1}{(\beta)^2}\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix}InxBhx. s_t - \frac{1}{(\beta)^2}\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} s_t
+\\
+L2' &= \frac{1}{(\alpha\beta)^2}\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix}InxABhx. s_t - \frac{1}{(\alpha\beta)^2}\begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} s_t
+\end{align}
+
+
+\section{PQ matrices}
+\begin{equation}
+\underbrace{\begin{bmatrix} \frac{\sigma}{\beta}& 1&  \sigma \\ \frac{1}{\alpha}& -\kappa & 0 \\ 0 & -\psi_{x} & 1 \end{bmatrix}}_{\equiv P}\begin{bmatrix} \pi_t \\ x_t \\i_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix}\sigma, &1-\beta, &\beta  (-\sigma )\end{bmatrix}f_b +c_{x,s} s_t \\ \begin{bmatrix}(1-\alpha ) \beta ,&\alpha  \beta  \kappa ,&0\end{bmatrix}f_a +c_{\pi,s} s_t \\ c_{i,s} s_t \end{bmatrix}}_{\equiv Q}
+\end{equation}
+where 
+\begin{align}
+c_{x,s} & = \sigma  \left(
+\begin{array}{cccc}
+ 1 & 0 & 0 & 0 \\
+\end{array}
+\right).\text{InxBhx};\\
+c_{\pi,s} & = \left(
+\begin{array}{cccc}
+ 0 & 0 & 1 & 0\\
+\end{array}
+\right).\text{InxABhx}\\
+c_{i,s} & = \left(
+\begin{array}{cccc}
+ 0 & 1 & 0 &\psi_{\pi} \\
+\end{array}
+\right) = d_{i,s}
+\end{align}
+where $\text{InxABhx}$ and $\text{InxBhx}$ are the same as before.
+
+The (*)-relation needs to be rewritten as
+\begin{equation}
+f_b(3) = \psi_{x}f_b(2) + \frac{1}{\beta}\{ \begin{bmatrix} 0 &1 & 0 & \psi_{\pi}  \end{bmatrix}(I_{nx}-\beta h_x)^{-1} s_t - \begin{bmatrix} 0&1 & 0 & \psi_{\pi}  \end{bmatrix}s_t  \} \tag{*}
+\end{equation}
+and the PQ-solution is subject to the same linking equations $L1'$ and $L2'$.
+
+The Matlab code that uses this is \texttt{matrices\_A\_12g2.m}.
+
+
+\end{document}
+
+
+
+
+
