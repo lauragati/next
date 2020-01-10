@@ -60,7 +60,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = constant_only;
+PLM = slope_and_constant;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
@@ -71,7 +71,7 @@ T = 400 % 400
 % Size of cross-section
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
-h = 10; % h-period IRFs
+h = 100; % h-period IRFs
 
 
 % Check what you mean by "baseline":
