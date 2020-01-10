@@ -1,0 +1,31 @@
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {EE, dgain}}}{5}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {LH, dgain}}}{5}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {EE, cgain}}}{5}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {LH, cgain}}}{5}{figure.caption.5}
+\contentsline {figure}{\numberline {1}{\ignorespaces Learning constant only\relax }}{5}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {EE, dgain}}}{5}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {LH, dgain}}}{5}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {EE, cgain}}}{5}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {LH, cgain}}}{5}{figure.caption.6}
+\contentsline {figure}{\numberline {2}{\ignorespaces Learning slope and constant\relax }}{5}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{12}{figure.caption.7}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{12}{figure.caption.7}
+\contentsline {figure}{\numberline {3}{\ignorespaces Baseline\relax }}{12}{figure.caption.7}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{12}{figure.caption.8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{12}{figure.caption.8}
+\contentsline {figure}{\numberline {4}{\ignorespaces $\mathaccentV {hat}05E{\E }_t\pi _{t+1}$ in TR\relax }}{12}{figure.caption.8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{13}{figure.caption.9}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{13}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces $\pi _{t-1}$ in TR, forecasting using $g_x$ for both\relax }}{13}{figure.caption.9}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{13}{figure.caption.10}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{13}{figure.caption.10}
+\contentsline {figure}{\numberline {6}{\ignorespaces $\pi _{t-1}$ in TR, forecasting using $h_x$ for both\relax }}{13}{figure.caption.10}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{14}{figure.caption.11}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{14}{figure.caption.11}
+\contentsline {figure}{\numberline {7}{\ignorespaces $\rho i_{t-1}$ in TR, forecasting using $g_x$ for jump, $h_x$ for state\relax }}{14}{figure.caption.11}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{14}{figure.caption.12}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{14}{figure.caption.12}
+\contentsline {figure}{\numberline {8}{\ignorespaces $\rho i_{t-1}$ in TR, forecasting using $g_x$ for both\relax }}{14}{figure.caption.12}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Learning constant only}}}{14}{figure.caption.13}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Learning slope and constant}}}{14}{figure.caption.13}
+\contentsline {figure}{\numberline {9}{\ignorespaces $\rho i_{t-1}$ in TR, forecasting using $h_x$ for both\relax }}{14}{figure.caption.13}

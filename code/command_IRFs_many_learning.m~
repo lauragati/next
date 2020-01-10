@@ -51,9 +51,18 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'optimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g)
+info_ass= 'suboptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g)
 extension = 'Epi'; % Epi, pil or il or baseline
 %%%%%%%%%%%%%%%%
+
+% These are the possible combos:
+% 1. myopic & baseline (this is the old interest rate smoothing, but can set rho=0)
+% 2. suboptimal & Epi
+% 3. suboptimal & pil
+% 4. suboptimal & il
+% 5. optimal & Epi = 2.
+% 6. optimal & pil
+% 7. optimal & il
 
 % Params for the general learning code
 constant_only = 1; % learning constant only
