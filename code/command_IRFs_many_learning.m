@@ -18,7 +18,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -51,8 +51,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'optimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g)
-extension = 'pil'; % Epi, pil or il or baseline
+info_ass= 'dont_know_TR'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'true_baseline'; % Epi, pil or il or baseline or true_baseline (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -60,7 +60,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = slope_and_constant;
+PLM = constant_only;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
@@ -77,6 +77,7 @@ h = 10; % h-period IRFs
 % Check what you mean by "baseline":
 % if rho = 0, baseline really is baseline
 % if rho > 0, baseline is the old intrate-smoothing (myopic info ass).
+% true_baseline is the baseline where nx=3, not 4 with rho=0
 if strcmp(extension,'baseline') && rho==0
     disp('Really doing baseline model, rho=0.')
 elseif strcmp(extension,'baseline') && rho ~= 0
@@ -84,9 +85,9 @@ elseif strcmp(extension,'baseline') && rho ~= 0
     extension = 'old_intrate_smoothing';
 end
 
-if strcmp(extension,'pil')==1 || strcmp(extension,'il')==1 || strcmp(extension,'old_intrate_smoothing')==1 || strcmp(extension,'baseline')==1
+if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_intrate_smoothing') || strcmp(extension,'baseline')
     nx=4;
-elseif strcmp(extension,'Epi')==1
+elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline')
     nx=3;
 else
     error('Unclear which model, check nx!')
@@ -163,14 +164,14 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 
 %% Old info approach for comparison
 if strcmp(info_ass,'myopic')==1
-    if strcmp(extension,'baseline')==1
+    if strcmp(extension,'baseline') || strcmp(extension,'old_intrate_smoothing')
         % Standard model with lag of interest rate in TR
         [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
         
-    elseif strcmp(extension,'pil')==1
+    elseif strcmp(extension,'pil')
         [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
@@ -178,22 +179,22 @@ if strcmp(info_ass,'myopic')==1
     end
     
     
-elseif strcmp(info_ass,'suboptimal_fcst')==1
+elseif strcmp(info_ass,'suboptimal_fcst')
     %% New January 2020 matrices, "suboptimal forecasters" info assumption
     
-    if strcmp(extension,'pil')==1
+    if strcmp(extension,'pil')
         % pil-model (lagged inflation in Taylor rule)
         [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [Aa, Ab, As] = matrices_A_12f2(param, hx);
-    elseif strcmp(extension,'il')==1
+    elseif strcmp(extension,'il')
         % il-model (interest rate smoothing)
         [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [Aa, Ab, As] = matrices_A_12f3(param, hx);
-    elseif strcmp(extension,'Epi')==1
+    elseif strcmp(extension,'Epi')
         % Epi-model (expected inflation in Taylor rule)
         [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -203,22 +204,22 @@ elseif strcmp(info_ass,'suboptimal_fcst')==1
         %         sim_learnLH_12f1.m simply use param.psi_pi for it.
     end
     
-elseif strcmp(info_ass,'optimal_fcst')==1
+elseif strcmp(info_ass,'optimal_fcst')
     %% New January 2020 matrices, "optimal forecasters" info assumption
     
-    if strcmp(extension,'pil')==1
+    if strcmp(extension,'pil')
         % pil-model (lagged inflation in Taylor rule)
         [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [Aa, Ab, As] = matrices_A_12g2(param, hx);
-    elseif strcmp(extension,'il')==1
+    elseif strcmp(extension,'il')
         % il-model (interest rate smoothing)
         [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [Aa, Ab, As] = matrices_A_12g3(param, hx);
-    elseif strcmp(extension,'Epi')==1
+    elseif strcmp(extension,'Epi')
         % Epi-model (expected inflation in Taylor rule) - this one is the same
         % regardless of info assumption
         [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
@@ -228,6 +229,13 @@ elseif strcmp(info_ass,'optimal_fcst')==1
         %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
         %         sim_learnLH_12f1.m simply use param.psi_pi for it.
     end
+    
+elseif strcmp(info_ass,'dont_know_TR')
+    % so far only baseline case is implemented ("true_baseline")
+    [fyn, fxn, fypn, fxpn] = model_NK(param);
+    [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+    [ny, nx] = size(gx);
+    [Aa, Ab, As] = matrices_A_12i(param, hx);
 else
     error('Don''t know which info assumption requested.')
 end
@@ -255,7 +263,7 @@ end
 % % critCUSUM=2;
 
 % gen all the N sequences of shocks at once.
-eN = randn(ne,T,N); 
+eN = randn(ne,T,N);
 
 % Preallocate
 nd = size(dt_vals,2);

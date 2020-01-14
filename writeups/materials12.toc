@@ -12,3 +12,4 @@
 \contentsline {subsection}{\numberline {5.1}Baseline and $\mathaccentV {hat}05E{\E }_t\pi _{t+1}$ in TR figures}{11}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}$\pi _{t-1}$ in TR figures}{12}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}$\rho i_{t-1}$ in TR figures}{13}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Baseline with agents NOT knowing the Taylor-rule}{14}{subsection.5.4}

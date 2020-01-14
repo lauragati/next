@@ -51,8 +51,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'suoptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g)
-extension = 'pil'; % Epi, pil or il or baseline
+info_ass= 'myopic'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'baseline'; % Epi, pil or il or baseline
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -163,7 +163,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 
 %% Old info approach for comparison
 if strcmp(info_ass,'myopic')==1
-    if strcmp(extension,'baseline')==1
+    if strcmp(extension,'baseline')==1 || strcmp(extension,'old_intrate_smoothing')==1
         % Standard model with lag of interest rate in TR
         [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -228,6 +228,8 @@ elseif strcmp(info_ass,'optimal_fcst')==1
         %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
         %         sim_learnLH_12f1.m simply use param.psi_pi for it.
     end
+    
+elseif strcmp(info_ass,'dont_know_TR')    
 else
     error('Don''t know which info assumption requested.')
 end
