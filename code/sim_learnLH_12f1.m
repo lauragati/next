@@ -14,7 +14,7 @@ if nargin < max_no_inputs %no shock specified
     x0 = 0;
 end
 
-Ae = param.psi_pi; % NEW
+Ae = [0,0,param.psi_pi]; % NEW
 
 gbar = param.gbar;
 ny = size(gx,1);

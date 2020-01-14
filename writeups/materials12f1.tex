@@ -119,7 +119,7 @@ bottom=1in}
 \linespread{1.0}
 
 \title{Materials 12f1 - ``Epi''-extension of the baseline model\\
-- $\hat{\E}_t\pi_{t+1}$ in TR using MN and PQ methods and the ``suboptimal forecaster'' info assumption
+- $\hat{\E}_t\pi_{t+1}$ in TR using MN and PQ methods (same for all info assumptions)
 \\
 \small{See Notes 7 \& 8 Jan 2020}}
 \author{Laura G\'ati} 
@@ -143,7 +143,7 @@ i_t &= \psi_{\pi}\textcolor{mygreen}{\hat{\E}_t\pi_{t+1}} + \psi_{x} x_t  + \bar
 \end{align}
 Compact notation will be:
 \begin{equation}
-z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t + \textcolor{mygreen}{A_e\hat{\E}_t\pi_{t+1}} \quad \text{with} \quad s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix}
+z_t = \begin{bmatrix} \pi_t \\ x_t \\ i_t \end{bmatrix} = A_a f_{a} + A_b f_{b} + A_s s_t + \textcolor{mygreen}{A_e\hat{\E}_t\pi_{t+1}} \quad \text{with} \quad s_t = \begin{bmatrix} r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix} \quad \text{and} \quad A_e = \begin{bmatrix} 0 \\ 0\\ \psi_{\pi} \end{bmatrix}
 \end{equation}
 
 \section{MN matrices}
@@ -159,7 +159,7 @@ where
 
 \section{PQ matrices and (*) equation}
 \begin{equation}
-\underbrace{\begin{bmatrix} 0& 1&  \sigma \\ 1& -\kappa & 0 \\ -\psi_{\pi} & -\psi_{x} & 1 \end{bmatrix}}_{\equiv P}\begin{bmatrix} \pi_t \\ x_t \\i_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix}\sigma, &1-\beta, &\beta  (-\sigma )\end{bmatrix}f_b +c_{x,s} s_t \\ \begin{bmatrix}(1-\alpha ) \beta ,&\alpha  \beta  \kappa ,&0\end{bmatrix}f_a +c_{\pi,s} s_t \\ c_{i,s} s_t + \textcolor{mygreen}{\psi_{\pi}\hat{\E}_t\pi_{t+1}}\end{bmatrix}}_{\equiv Q}
+\underbrace{\begin{bmatrix} 0& 1&  \sigma \\ 1& -\kappa & 0 \\ & -\psi_{x} & 1 \end{bmatrix}}_{\equiv P}\begin{bmatrix} \pi_t \\ x_t \\i_t \end{bmatrix} = \underbrace{\begin{bmatrix} \begin{bmatrix}\sigma, &1-\beta, &\beta  (-\sigma )\end{bmatrix}f_b +c_{x,s} s_t \\ \begin{bmatrix}(1-\alpha ) \beta ,&\alpha  \beta  \kappa ,&0\end{bmatrix}f_a +c_{\pi,s} s_t \\ c_{i,s} s_t + \textcolor{mygreen}{\psi_{\pi}\hat{\E}_t\pi_{t+1}}\end{bmatrix}}_{\equiv Q}
 \end{equation}
 where 
 \begin{align}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 JAN 2020 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 JAN 2020 10:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1205,28 +1205,27 @@ Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_baseline_myopic_slope_and_constant.png used on input line 392.
 (pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
 
-<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_subop
-timal_fcst_constant_only.png, id=224, 1595.9625pt x 844.15375pt>
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_optim
+al_fcst_constant_only.png, id=224, 1407.2575pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_
-suboptimal_fcst_constant_only.png Graphic file (type png)
+optimal_fcst_constant_only.png Graphic file (type png)
 
-<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_s
-uboptimal_fcst_constant_only.png>
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_o
+ptimal_fcst_constant_only.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
-ain_gbar_0_145_Epi_suboptimal_fcst_constant_only.png used on input line 397.
-(pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
+ain_gbar_0_145_Epi_optimal_fcst_constant_only.png used on input line 397.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
 
-<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_subop
-timal_fcst_slope_and_constant.png, id=225, 1595.9625pt x 844.15375pt>
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_optim
+al_fcst_slope_and_constant.png, id=225, 1407.2575pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_
-suboptimal_fcst_slope_and_constant.png Graphic file (type png)
+optimal_fcst_slope_and_constant.png Graphic file (type png)
 
-<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_s
-uboptimal_fcst_slope_and_constant.png>
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_o
+ptimal_fcst_slope_and_constant.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
-ain_gbar_0_145_Epi_suboptimal_fcst_slope_and_constant.png used on input line 39
-8.
-(pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
+ain_gbar_0_145_Epi_optimal_fcst_slope_and_constant.png used on input line 398.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1237,10 +1236,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [11 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_basel
 ine_myopic_constant_only.png (PNG copy)> <../figures/command_IRFs_many_learning
 _RIR_LH_monpol_cgain_gbar_0_145_baseline_myopic_slope_and_constant.png (PNG cop
-y)> <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_s
-uboptimal_fcst_constant_only.png (PNG copy)> <../figures/command_IRFs_many_lear
-ning_RIR_LH_monpol_cgain_gbar_0_145_Epi_suboptimal_fcst_slope_and_constant.png 
-(PNG copy)>]
+y)> <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_Epi_o
+ptimal_fcst_constant_only.png (PNG copy)> <../figures/command_IRFs_many_learnin
+g_RIR_LH_monpol_cgain_gbar_0_145_Epi_optimal_fcst_slope_and_constant.png (PNG c
+opy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 405.
@@ -1259,7 +1258,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_myopi
-c_constant_only.png, id=239, 1651.16875pt x 844.15375pt>
+c_constant_only.png, id=239, 1462.46375pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_
 myopic_constant_only.png Graphic file (type png)
 
@@ -1267,10 +1266,10 @@ myopic_constant_only.png Graphic file (type png)
 yopic_constant_only.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_pil_myopic_constant_only.png used on input line 408.
-(pdftex.def)             Requested size: 231.16205pt x 118.18071pt.
+(pdftex.def)             Requested size: 204.74353pt x 114.66762pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_myopi
-c_slope_and_constant.png, id=240, 1561.835pt x 844.15375pt>
+c_slope_and_constant.png, id=240, 1379.1525pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_
 myopic_slope_and_constant.png Graphic file (type png)
 
@@ -1278,7 +1277,7 @@ myopic_slope_and_constant.png Graphic file (type png)
 yopic_slope_and_constant.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_pil_myopic_slope_and_constant.png used on input line 409.
-(pdftex.def)             Requested size: 218.65541pt x 118.18071pt.
+(pdftex.def)             Requested size: 193.08003pt x 114.66762pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_subop
 timal_fcst_constant_only.png, id=241, 1595.9625pt x 844.15375pt>
@@ -1304,7 +1303,7 @@ ain_gbar_0_145_pil_suboptimal_fcst_slope_and_constant.png used on input line 41
 (pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_optim
-al_fcst_constant_only.png, id=243, 1595.9625pt x 844.15375pt>
+al_fcst_constant_only.png, id=243, 1407.2575pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_
 optimal_fcst_constant_only.png Graphic file (type png)
 
@@ -1312,10 +1311,10 @@ optimal_fcst_constant_only.png Graphic file (type png)
 ptimal_fcst_constant_only.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_pil_optimal_fcst_constant_only.png used on input line 420.
-(pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_optim
-al_fcst_slope_and_constant.png, id=244, 1595.9625pt x 844.15375pt>
+al_fcst_slope_and_constant.png, id=244, 1407.2575pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_pil_
 optimal_fcst_slope_and_constant.png Graphic file (type png)
 
@@ -1323,7 +1322,7 @@ optimal_fcst_slope_and_constant.png Graphic file (type png)
 ptimal_fcst_slope_and_constant.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_pil_optimal_fcst_slope_and_constant.png used on input line 421.
-(pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1408,7 +1407,7 @@ ain_gbar_0_145_il_suboptimal_fcst_slope_and_constant.png used on input line 438
 (pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_il_optima
-l_fcst_constant_only.png, id=263, 1584.92125pt x 844.15375pt>
+l_fcst_constant_only.png, id=263, 1407.2575pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_il_o
 ptimal_fcst_constant_only.png Graphic file (type png)
 
@@ -1416,10 +1415,10 @@ ptimal_fcst_constant_only.png Graphic file (type png)
 timal_fcst_constant_only.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_il_optimal_fcst_constant_only.png used on input line 443.
-(pdftex.def)             Requested size: 221.88747pt x 118.18071pt.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
 
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_il_optima
-l_fcst_slope_and_constant.png, id=264, 1548.78625pt x 844.15375pt>
+l_fcst_slope_and_constant.png, id=264, 1360.08125pt x 819.06pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_il_o
 ptimal_fcst_slope_and_constant.png Graphic file (type png)
 
@@ -1427,7 +1426,7 @@ ptimal_fcst_slope_and_constant.png Graphic file (type png)
 timal_fcst_slope_and_constant.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_il_optimal_fcst_slope_and_constant.png used on input line 444.
-(pdftex.def)             Requested size: 216.8286pt x 118.18071pt.
+(pdftex.def)             Requested size: 190.41008pt x 114.66762pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1458,7 +1457,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 448.
  ) 
 Here is how much of TeX's memory you used:
  20238 strings out of 493089
- 375573 string characters out of 6134842
+ 375543 string characters out of 6134842
  450397 words of memory out of 5000000
  23198 multiletter control sequences out of 15000+600000
  16665 words of font info for 65 fonts, out of 8000000 for 9000
@@ -1486,7 +1485,7 @@ dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials12.pdf (13 pages, 2070834 bytes).
+Output written on materials12.pdf (13 pages, 2040407 bytes).
 PDF statistics:
  378 PDF objects out of 1000 (max. 8388607)
  310 compressed objects within 4 object streams

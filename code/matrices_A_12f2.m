@@ -69,3 +69,12 @@ As = [(1+bet.*kapp.*psipi.*sig+psix.*sig).^(-1).*((1+psix.*sig).*ia(3, ...
   ib(2,3)),(1+bet.*kapp.*psipi.*sig+psix.*sig).^(-1).*(psipi+bet.* ...
   kapp.*psipi.^2.*sig+(-1).*bet.*psipi.*psix.*sig.*ia(3,4)+psix.* ...
   sig.*(ib(1,4)+(-1).*ib(2,4)))];
+
+mathematica_code = "/Users/lauragati/Dropbox/BC_Research/next/code/materials12f2.nb";
+this_code = mfilename;
+mname = strrep(this_code,'matrices_A_','')
+mmcaname = extractBetween(mathematica_code,"/Users/lauragati/Dropbox/BC_Research/next/code/materials",".nb")
+
+if strcmp(mname,mmcaname) ~=1
+    error('not using the correct A-matrices from Mathematica!')
+end
