@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.14}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 12 for Peter -
+Current stance just in words: How to get around the oscillations }
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+%\tableofcontents
+
+%\listoffigures
+\begin{itemize}
+\item Quick organization: Josephine de Karman application
+\end{itemize}
+
+
+The overshooting is a damped oscillation coming from the Ball disinflationary boom effect: if agents anticipate the endogenous interest rate reaction to future inflation, then disinflationary expectations have a expansionary effect via falling interest rate expectations. So to get around it, I need either (inflation) expectations not to move as much, so as not to trigger the Ball effect, or I need the nominal interest rate to not react as much, or the agents not be aware of future interest rate responses. Thus: \\
+Two possible objects to change:
+\begin{enumerate}
+\item Expectations
+\begin{enumerate}
+\item Looked into Bayesian learning, but that seems to only change the mechanics, not the dynamics
+\item ``Vector learning'' - make agents learn $x$ and $i$ as well using the same gain. Didn't seem to change things at all.
+\item Learning constant \emph{and} slope - seems to work better because it dampens the effects of shocks. Side effect: ``choppy" IRFs which makes me think of local projection \`a la Jorda.
+\item Impose that agents don't know the Taylor rule - fascinating ``opposite" IRFs where you can see how the overshooting emerges as the agents are learning the Taylor rule.
+\item Make agents learn the state transition matrix as well - haven't done and could imagine effects going two ways: slow things down further or the opposite: induce further oscillations.
+\item Lower the gain - this works, quantitatively, but not qualitatively.
+\item Can't imagine what else to do!
+\end{enumerate}
+
+\item Policy rule
+\begin{enumerate}
+\item Expected inflation $\hat{E}_t\pi_{t+1}$ in Taylor rule instead of $\pi_t$
+\begin{itemize}
+\item Doesn't look E-stable - I think it's because having expected inflation in the TR ties the ALM too strongly to the PLM: even as expectations are beginning to converge, the interest rate responds to them, drawing the ALM away.
+\end{itemize}
+
+\item Note on lagged stuff in the Taylor rule:
+\begin{itemize}
+\item Introduces a modeling difficulty because of the distinction between how agents forecast jumps and states (the former using the state transition matrix, which is known, and the latter using the observation matrix, which they are learning).
+\item The lagged observable is a state and can thus be forecast using either $\rightarrow$ need to take a stance on how this is done, and whether agents realize that the new state variable is actually a lagged observable. 3 options:
+\begin{enumerate}
+\item Don't realize that state $=$ observable, forecast the former using the transition matrix, the latter using the observation matrix (``myopic").
+\item Realize that state $=$ observable, forecast both using the observation matrix (``suboptimal").
+\item Realize that state $=$ observable, forecast both using the transition matrix (``optimal") $\rightarrow$ does away with learning!
+\end{enumerate}
+
+\end{itemize}
+\item Lagged inflation $\pi_{t-1}$ in Taylor rule instead of $\pi_t$
+\begin{itemize}
+\item With myopic info assumption, not E-stable because the TR de facto only depends on exogenous stuff (Preston found this too).
+\item With suboptimal info assumption, similar to the baseline but a bit dampened because the nominal interest rate response is slower.
+\item With optimal info assumption you get rid of the oscillations, but this is happening because we got rid of learning.
+\end{itemize}
+
+\item Interest rate smoothing (a $\rho i_{t-1}$ term in Taylor rule)
+\begin{itemize}
+\item With myopic info assumption, similar to baseline because the lagged term is perceived to be just an additional exogenous disturbance in the Taylor rule.
+\item With suboptimal info assumption, explosive oscillations.
+\item With optimal info assumption, not E-stable either.  \\
+For the last two: when agents internalize that the new state is just the lagged interest rate, the TR becomes recursive. This renders the interest rate unable to move sufficiently to stabilize endogenous observables. The dynamics of divergence just depends on whether expectations oscillate or not; when forecasting using the matrix that is learned, they oscillate, otherwise they do not. 
+\end{itemize}
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
+
+
+
