@@ -134,7 +134,7 @@ Current stance just in words: How to get around the oscillations }
 \end{itemize}
 
 
-The overshooting is a damped oscillation coming from the Ball disinflationary boom effect: if agents anticipate the endogenous interest rate reaction to future inflation, then disinflationary expectations have a expansionary effect via falling interest rate expectations. So to get around it, I need either (inflation) expectations not to move as much, so as not to trigger the Ball effect, or I need the nominal interest rate to not react as much, or the agents not be aware of future interest rate responses. Thus: \\
+The overshooting is a damped oscillation coming from the Ball disinflationary boom effect: if agents anticipate the endogenous interest rate reaction to future inflation, then disinflationary expectations have an expansionary effect via falling interest rate expectations. So to get around it, I need either (inflation) expectations not to move as much, so as not to trigger the Ball effect, or I need the nominal interest rate to not react as much, or the agents not be aware of future interest rate responses. Thus: \\
 Two possible objects to change:
 \begin{enumerate}
 \item Expectations
@@ -181,8 +181,18 @@ Two possible objects to change:
 For the last two: when agents internalize that the new state is just the lagged interest rate, the TR becomes recursive. This renders the interest rate unable to move sufficiently to stabilize endogenous observables. The dynamics of divergence just depends on whether expectations oscillate or not; when forecasting using the matrix that is learned, they oscillate, otherwise they do not. 
 \end{itemize}
 \end{enumerate}
-
 \end{enumerate}
+
+Things I'm thinking of to do:
+\begin{itemize}
+\item Make agents learn the state transition matrix too. How?
+\item A different interest-rate smoothing: $i_t = \rho i_{t-1} + (1-\rho)(\psi_{\pi}\pi_t + \psi_x x_t) + \bar{i}_t$.
+\item A Davig-Leeper-style switching Taylor rule that only satisfies the generalized Taylor principle.
+\item Indexation in NKPC.
+\item Initialize beliefs away from RE somehow.
+\item Find optimal gain as analog to Kalman gain.
+\end{itemize}
+
 
 
 
