@@ -51,8 +51,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'dont_know_TR'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'true_baseline'; % Epi, pil or il or baseline or true_baseline (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'suboptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'il'; % Epi, pil or il or baseline or true_baseline (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -95,7 +95,7 @@ end
 
 
 if nx==3
-    SIG = eye(3).*[sig_r, sig_i, sig_u]';
+    SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 elseif nx==4
     SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
 else
@@ -303,7 +303,9 @@ for s=2  %2->zoom in on monetary policy shock
         end
         % Shocked
         % RE
-        [IR, iry, irx]=ir(gx,hx,x0,h);
+        % make RE shock the same scale as learning:
+        x0RE = (SIG*x0')';
+        [IR, iry, irx]=ir(gx,hx,x0RE,h);
         iry = iry';
         RE_fcsts = gx*hx*irx';
         % Learning
@@ -315,7 +317,7 @@ for s=2  %2->zoom in on monetary policy shock
                 [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             elseif strcmp(extension,'Epi')==1
                 % Epi-version
-                [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0); %
+                [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0); 
             else
                 warning('Model selection wasn''t clear and should''ve thrown an error before.')
             end
