@@ -21,6 +21,7 @@ param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in fo
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.80; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
 param.thettilde = 1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
+param.gam = 0.128; % indexation in NKPC. Posterior mean CEMP.
 
 % % "weighted il" extension
 % param.psi_x  = param.psi_x*param.rho; 

@@ -51,8 +51,9 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'suboptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'il'; % Epi, pil or il or baseline or true_baseline (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'optimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'indexation'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+% or 'indexation' (baseline w/ indexation in NKPC)
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -71,7 +72,7 @@ T = 400 % 400
 % Size of cross-section
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
-h = 10; % h-period IRFs
+h = 50; % h-period IRFs
 
 
 % Check what you mean by "baseline":
@@ -85,7 +86,8 @@ elseif strcmp(extension,'baseline') && rho ~= 0
     extension = 'old_intrate_smoothing';
 end
 
-if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_intrate_smoothing') || strcmp(extension,'baseline')
+if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_intrate_smoothing') || strcmp(extension,'baseline') ...
+        || strcmp(extension,'indexation')
     nx=4;
 elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline')
     nx=3;
@@ -176,6 +178,12 @@ if strcmp(info_ass,'myopic')==1
         [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
         [ny, nx] = size(gx);
         [Aa, Ab, As] = matrices_A_12h2(param, hx);
+        
+    elseif strcmp(extension,'indexation')
+        [fyn, fxn, fypn, fxpn] = model_NK_indexation(param);
+        [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+        [ny, nx] = size(gx);
+        [Aa, Ab, As] = matrices_A_13indexation_myopic(param, hx);
     end
     
     
@@ -202,6 +210,12 @@ elseif strcmp(info_ass,'suboptimal_fcst')
         [Aa, Ab, As, Ae] = matrices_A_12f1(param, hx); % Note: you don't actually
         %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
         %         sim_learnLH_12f1.m simply use param.psi_pi for it.
+    elseif strcmp(extension,'indexation')
+        [fyn, fxn, fypn, fxpn] = model_NK_indexation(param);
+        [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+        [ny, nx] = size(gx);
+        [Aa, Ab, As] = matrices_A_13indexation_subopt(param, hx);
+        
     end
     
 elseif strcmp(info_ass,'optimal_fcst')
@@ -228,6 +242,12 @@ elseif strcmp(info_ass,'optimal_fcst')
         [Aa, Ab, As, Ae] = matrices_A_12f1(param, hx); % Note: you don't actually
         %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
         %         sim_learnLH_12f1.m simply use param.psi_pi for it.
+    elseif strcmp(extension,'indexation')
+        [fyn, fxn, fypn, fxpn] = model_NK_indexation(param);
+        [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+        [ny, nx] = size(gx);
+        [Aa, Ab, As] = matrices_A_13indexation_opt(param, hx);
+        
     end
     
 elseif strcmp(info_ass,'dont_know_TR')
@@ -317,7 +337,7 @@ for s=2  %2->zoom in on monetary policy shock
                 [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             elseif strcmp(extension,'Epi')==1
                 % Epi-version
-                [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0); 
+                [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0);
             else
                 warning('Model selection wasn''t clear and should''ve thrown an error before.')
             end
