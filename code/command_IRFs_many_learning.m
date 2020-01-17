@@ -51,7 +51,7 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'optimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+info_ass= 'suboptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
 extension = 'indexation'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC)
 %%%%%%%%%%%%%%%%
@@ -72,7 +72,7 @@ T = 400 % 400
 % Size of cross-section
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
-h = 50; % h-period IRFs
+h = 20; % h-period IRFs
 
 
 % Check what you mean by "baseline":
