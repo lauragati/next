@@ -51,9 +51,10 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'suboptimal_fcst'; % 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+info_ass= 'suboptimal_fcst'; % 'none', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
 extension = 'indexation'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC)
+learning = 'learn_hx'; %'default' or 'learn_hx'
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -164,6 +165,7 @@ current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sig
 % [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
 % [Aa2, Ab2, As2, Ae2] = matrices_A_12f1(param, hx); % with the new Epi-matrices, they are clearly not equal, so the old was indeed wrong.
 
+if strcmp(learning,'default')
 %% Old info approach for comparison
 if strcmp(info_ass,'myopic')==1
     if strcmp(extension,'baseline') || strcmp(extension,'old_intrate_smoothing')
@@ -262,6 +264,16 @@ end
 
 disp(['Model version: ', extension,'; ' ,info_ass])
 
+elseif strcmp(learning,'learn_hx')
+
+    disp(learning)
+    
+    [fyn, fxn, fypn, fxpn] = model_NK(param);
+    [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+    [ny, nx] = size(gx);
+    [Aa, Ab, As, Ba, Bb] = matrices_A_13_learnhx_baseline(param,hx); % CONT HERE
+    return
+end
 %% Simulate models
 
 % Give names
