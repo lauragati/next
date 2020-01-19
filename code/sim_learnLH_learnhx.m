@@ -73,7 +73,7 @@ for t = 1:T-1
     else
         
         %Form Expectations using last period's estimates
-        [fa, fb, ga, gb] = fafb_gagb(param, a, b, c, d, s, hx); % NEW
+        [fa, fb, ga, gb] = fafb_gagb(param, a, b, c, d, xsim(:,t), hx); % NEW
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         GA(:,t) = ga;

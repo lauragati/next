@@ -18,7 +18,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = ;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -54,7 +54,7 @@ ne = 3;
 info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
 extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC)
-learning = 'default_learning'; %'default_learning' or 'learn_hx'
+learning = 'learn_hx'; %'default_learning' or 'learn_hx'
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -71,7 +71,7 @@ gain = cgain;
 
 T = 400 % 400
 % Size of cross-section
-N = 500 %500
+N = 100 %500
 dt_vals = 25; % time of imposing innovation
 h = 20; % h-period IRFs
 
@@ -176,12 +176,6 @@ if strcmp(learning,'default_learning')
             [ny, nx] = size(gx);
             [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
             
-        elseif strcmp(extension,'il')
-            [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
-            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-            [ny, nx] = size(gx);
-            [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-            
         elseif strcmp(extension,'pil')
             [fyn, fxn, fypn, fxpn] = model_NK_pilTR(param);
             [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
@@ -242,15 +236,7 @@ if strcmp(learning,'default_learning')
             
         end
     elseif strcmp(info_ass,'no_info_ass')
-        
-        % Finally: the plain vanilla baseline
-        if strcmp(extension,'true_baseline')
-            [fyn, fxn, fypn, fxpn] = model_NK(param);
-            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-            [ny, nx] = size(gx);
-            [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
-            
-        elseif strcmp(extension,'Epi')
+        if strcmp(extension,'Epi')
             % Epi-model (expected inflation in Taylor rule) - this one is the same
             % regardless of info assumption
             [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
