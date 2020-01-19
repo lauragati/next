@@ -52,8 +52,8 @@ ne = 3;
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
 info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
-% or 'indexation' (baseline w/ indexation in NKPC)
+extension = 'Epi_CB'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+% or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB'
 learning = 'default_learning'; %'default_learning' or 'learn_hx'
 %%%%%%%%%%%%%%%%
 
@@ -71,7 +71,7 @@ gain = cgain;
 
 T = 400 % 400
 % Size of cross-section
-N = 500 %500
+N = 100 %500
 dt_vals = 25; % time of imposing innovation
 h = 20; % h-period IRFs
 
@@ -91,7 +91,7 @@ end
 if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_intrate_smoothing') || strcmp(extension,'baseline') ...
         || strcmp(extension,'indexation')
     nx=4;
-elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline')
+elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline') || strcmp(extension, 'Epi_CB')
     nx=3;
 else
     error('Unclear which model, check nx!')
@@ -259,6 +259,17 @@ if strcmp(learning,'default_learning')
             [Aa, Ab, As, Ae] = matrices_A_12f1(param, hx); % Note: you don't actually
             %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
             %         sim_learnLH_12f1.m simply use param.psi_pi for it.
+        elseif strcmp(extension,'Epi_CB')
+            % Epi_CB-model (CB's expected inflation in Taylor rule) - this one is the same
+            % regardless of info assumption
+            [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
+            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+            [ny, nx] = size(gx);
+            [Aa, Ab, As, Ae] = matrices_A_12f1(param, hx); % Note: you don't actually
+            %         need Ae because it's just [0,0,psi_pi] anyway, so I've let the learning code
+            %         sim_learnLH_Epi_CB.m simply use param.psi_pi for it.
+            %         The matrices of the Epi-extension are still valid
+            %         here.
         end
     elseif strcmp(info_ass,'dont_know_TR')
         % so far only baseline case is implemented ("true_baseline")
@@ -334,12 +345,15 @@ for s=2  %2->zoom in on monetary policy shock
         
         % Differentiate between learning models
         if strcmp(learning,'default_learning')
-            if strcmp(extension,'Epi')==0
+            if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0
                 % LH learning (learning both slope and constant of a vector)
-                [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
-            elseif strcmp(extension,'Epi')==1
+                [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain); 
+            elseif strcmp(extension,'Epi')
                 % Epi-version, needs a separate learning code
                 [~, y_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
+            elseif strcmp(extension,'Epi_CB')
+                % Epi_CB-version, needs yet another separate learning code
+                [~, y_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);     
             else
                 warning('Model selection wasn''t clear and should''ve thrown an error before.')
             end
@@ -367,11 +381,14 @@ for s=2  %2->zoom in on monetary policy shock
             % Shocked
             % Differentiate between learning models
             if strcmp(learning,'default_learning')
-                if strcmp(extension,'Epi')==0
+                if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0
                     [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
                 elseif strcmp(extension,'Epi')==1
                     % Epi-version
                     [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0);
+                elseif strcmp(extension,'Epi_CB')
+                % Epi_CB-version, needs yet another separate learning code
+                [~, ys_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0); 
                 else
                     warning('Model selection wasn''t clear and should''ve thrown an error before.')
                 end

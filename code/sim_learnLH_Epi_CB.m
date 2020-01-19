@@ -1,12 +1,12 @@
 % simulate data from long-horizon learning model, no anchoring, but vector
-% learning, EPI-model only!!
+% learning, EPI-model with CB-expectations.
 % constant = 1 if learn constant only, -1 if "only-mean" learning, 2 if both constant and slope.
 % gain: 1 = decreasing gain, 3 = constant gain
 % dt = timing of shock. If 0 or not specified, then no shock.
 % x0 = the shock.
 % 7 Jan 2020
 
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH_12f1(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH_Epi_CB(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
 
 max_no_inputs = nargin('sim_learnLH_12f1');
 if nargin < max_no_inputs %no shock specified
@@ -69,10 +69,10 @@ for t = 1:T-1
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         % One period-ahead expectations
-        Epi = phi*[1;xsim(:,t-1)]; % NEW
+        EpiCB = Epi_CB(param, a, b, xsim(:,t), hx, Aa, Ab, As); % NEW
         
         %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t) + Ae'.*Epi(1,1); % last term is NEW
+        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t) + Ae'.*EpiCB; % last term is NEW
         xesim = hx*xsim(:,t);
         
         %Update coefficients
