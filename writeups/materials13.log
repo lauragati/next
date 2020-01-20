@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 JAN 2020 12:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 JAN 2020 13:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,8 +937,36 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
+earning_true_baseline_no_info_ass_constant_only.png, id=45, 1407.2575pt x 819.0
+6pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
+ult_learning_true_baseline_no_info_ass_constant_only.png Graphic file (type png
+)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
+lt_learning_true_baseline_no_info_ass_constant_only.png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_default_learning_true_baseline_no_info_ass_constant_only.png use
+d on input line 152.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
+
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
+earning_true_baseline_no_info_ass_slope_and_constant.png, id=46, 1407.2575pt x 
+819.06pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
+ult_learning_true_baseline_no_info_ass_slope_and_constant.png Graphic file (typ
+e png)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
+lt_learning_true_baseline_no_info_ass_slope_and_constant.png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_default_learning_true_baseline_no_info_ass_slope_and_constant.pn
+g used on input line 153.
+(pdftex.def)             Requested size: 197.01471pt x 114.66762pt.
+
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_hx_
-true_baseline_no_info_ass_constant_only.png, id=45, 1595.9625pt x 844.15375pt>
+true_baseline_no_info_ass_constant_only.png, id=47, 1595.9625pt x 844.15375pt>
 File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_lear
 n_hx_true_baseline_no_info_ass_constant_only.png Graphic file (type png)
 
@@ -946,8 +974,20 @@ n_hx_true_baseline_no_info_ass_constant_only.png Graphic file (type png)
 _hx_true_baseline_no_info_ass_constant_only.png>
 Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
 ain_gbar_0_145_learn_hx_true_baseline_no_info_ass_constant_only.png used on inp
-ut line 165.
-(pdftex.def)             Requested size: 351.11284pt x 185.7144pt.
+ut line 172.
+(pdftex.def)             Requested size: 223.43323pt x 118.18071pt.
+
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_hx_
+true_baseline_no_info_ass_slope_and_constant.png, id=48, 1389.19pt x 819.06pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_lear
+n_hx_true_baseline_no_info_ass_slope_and_constant.png Graphic file (type png)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn
+_hx_true_baseline_no_info_ass_slope_and_constant.png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_learn_hx_true_baseline_no_info_ass_slope_and_constant.png used o
+n input line 173.
+(pdftex.def)             Requested size: 194.48528pt x 114.66762pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -955,32 +995,51 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_
-hx_true_baseline_no_info_ass_constant_only.png (PNG copy)>]
+[2 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defaul
+t_learning_true_baseline_no_info_ass_constant_only.png (PNG copy)> <../figures/
+command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_true
+_baseline_no_info_ass_slope_and_constant.png (PNG copy)> <../figures/command_IR
+Fs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_hx_true_baseline_no_info_
+ass_constant_only.png (PNG copy)> <../figures/command_IRFs_many_learning_RIR_LH
+_monpol_cgain_gbar_0_145_learn_hx_true_baseline_no_info_ass_slope_and_constant.
+png (PNG copy)>]
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARlearn_
+true_baseline_no_info_ass_constant_only.png, id=68, 1407.2575pt x 819.06pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARl
+earn_true_baseline_no_info_ass_constant_only.png Graphic file (type png)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARle
+arn_true_baseline_no_info_ass_constant_only.png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_VARlearn_true_baseline_no_info_ass_constant_only.png used on inp
+ut line 184.
+(pdftex.def)             Requested size: 309.59761pt x 180.19376pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 187.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 187.
+[3 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARlea
+rn_true_baseline_no_info_ass_constant_only.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
  (./materials13.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 187.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 187.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
 Package rerunfilecheck Info: File `materials13.out' has not changed.
 (rerunfilecheck)             Checksum: 71163A4C86D2E88582B88E986522AEA2;88.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 187.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 19977 strings out of 493089
- 362268 string characters out of 6134842
+ 20004 strings out of 493089
+ 364941 string characters out of 6134842
  448397 words of memory out of 5000000
- 23063 multiletter control sequences out of 15000+600000
+ 23079 multiletter control sequences out of 15000+600000
  13711 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,392b,555s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,392b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -998,10 +1057,10 @@ ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials13.pdf (3 pages, 246956 bytes).
+Output written on materials13.pdf (3 pages, 568656 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 142 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

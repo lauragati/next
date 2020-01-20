@@ -52,9 +52,9 @@ ne = 3;
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
 info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'Epi_CB'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
-% or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB'
-learning = 'default_learning'; %'default_learning' or 'learn_hx'
+extension = 'Markov_switchingTR_true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+% or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB', 'Markov_switchingTR_true_baseline'
+learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'
 %%%%%%%%%%%%%%%%
 
 % Params for the general learning code
@@ -62,7 +62,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = constant_only;
+PLM = slope_and_constant;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
@@ -270,7 +270,13 @@ if strcmp(learning,'default_learning')
             %         sim_learnLH_Epi_CB.m simply use param.psi_pi for it.
             %         The matrices of the Epi-extension are still valid
             %         here.
+        elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
+            [fyn, fxn, fypn, fxpn] = model_NK(param); % ignore for a moment that gx is also regime-switching
+            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+            [ny, nx] = size(gx);
+            [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
         end
+        
     elseif strcmp(info_ass,'dont_know_TR')
         % so far only baseline case is implemented ("true_baseline")
         [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -284,6 +290,21 @@ if strcmp(learning,'default_learning')
     disp([learning, '! Model version: ', extension,'; ' ,info_ass])
     
 elseif strcmp(learning,'learn_hx')
+    
+    if strcmp(info_ass,'no_info_ass')
+        if strcmp(extension, 'true_baseline')
+            % Learn hx, baseline
+            [fyn, fxn, fypn, fxpn] = model_NK(param);
+            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+            [ny, nx] = size(gx);
+            [Aa, Ab, As, Ba, Bb] = matrices_A_13_learnhx_baseline(param,hx);
+        end
+    end
+    
+    disp([learning, '! Model version: ', extension,'; ' ,info_ass])
+    
+elseif strcmp(learning, 'VARlearn')
+    
     if strcmp(info_ass,'no_info_ass')
         if strcmp(extension, 'true_baseline')
             % Learn hx, baseline
@@ -347,18 +368,22 @@ for s=2  %2->zoom in on monetary policy shock
         if strcmp(learning,'default_learning')
             if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0
                 % LH learning (learning both slope and constant of a vector)
-                [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain); 
+                [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
             elseif strcmp(extension,'Epi')
                 % Epi-version, needs a separate learning code
                 [~, y_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
             elseif strcmp(extension,'Epi_CB')
                 % Epi_CB-version, needs yet another separate learning code
-                [~, y_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);     
+                [~, y_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
+            elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
+                [~, y_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
             else
                 warning('Model selection wasn''t clear and should''ve thrown an error before.')
             end
         elseif strcmp(learning,'learn_hx')
             [~, y_LH] = sim_learnLH_learnhx(gx,hx,SIG,T,burnin,e, Aa, Ab, As,Ba, Bb, param, PLM, gain);
+        elseif strcmp(learning, 'VARlearn')
+            [~, y_LH] = sim_learnLH_VARlearn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
         end
         
         
@@ -387,13 +412,17 @@ for s=2  %2->zoom in on monetary policy shock
                     % Epi-version
                     [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0);
                 elseif strcmp(extension,'Epi_CB')
-                % Epi_CB-version, needs yet another separate learning code
-                [~, ys_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0); 
+                    % Epi_CB-version, needs yet another separate learning code
+                    [~, ys_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0);
                 else
                     warning('Model selection wasn''t clear and should''ve thrown an error before.')
                 end
             elseif strcmp(learning,'learn_hx')
                 [~, ys_LH] = sim_learnLH_learnhx(gx,hx,SIG,T,burnin,e, Aa, Ab, As,Ba, Bb, param, PLM, gain, dt, x0);
+            elseif strcmp(learning, 'VARlearn')
+                [~, ys_LH] = sim_learnLH_VARlearn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
+                [~, y_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0);
             end
             
             if doEE==1

@@ -54,3 +54,24 @@ SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG;
 [~,sigx] = mom(gx,hx,eta*eta');
 kapp_star = sigx*gx'*(gx*sigx*gx')^(-1)
+
+%% A simple LOM of regime r
+% P = [p11, p12; p21, p22];
+% Follow Davig and Leeper's transition probabilities:
+% and their notation of 1 being the active regime (psi_pi = 2.19)
+% and 2 the passive regime (psi_pi = 0.89).
+p11 = 0.95; %0.95
+p21 = 1-p11;
+p22 = 0.93; % 0.93
+p12 = 1-p22;
+
+r = nan(1,10);
+r(1) = 1; % initialize in the active regime
+for t=2:20
+    if r(t-1)==1 % active regime
+    r(t) = randsample([1,2],1,'true',[p11, p21]);
+    elseif r(t-1)==2 % passive regime
+    r(t) = randsample([1,2],1,'true',[p12, p22]);
+    end
+end
+r % it works, tho a little messy
