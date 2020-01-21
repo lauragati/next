@@ -26,6 +26,9 @@ param.p11 = 0.95; % Follow Davig and Leeper's transition probabilities (Prob act
 param.p22 = 0.93;
 param.p21 = 1-param.p11;
 param.p12 = 1-param.p22;
+param.psi1 = 2.19; % 2.19 Taylor-coefficient on inflation in acctive regime (Slobodyan & Wouters)
+param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Slobodyan & Wouters)
+
 
 % % "weighted il" extension
 % param.psi_x  = param.psi_x*param.rho; 

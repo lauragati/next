@@ -47,6 +47,8 @@ sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
 rho = param.rho;
+p11 = param.p11;
+p22 = param.p22;
 ne = 3;
 
 % Model selection and informational assumption
@@ -73,7 +75,7 @@ T = 400 % 400
 % Size of cross-section
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
-h = 20; % h-period IRFs
+h = 5; % h-period IRFs
 
 
 % Check what you mean by "baseline":
@@ -91,7 +93,7 @@ end
 if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_intrate_smoothing') || strcmp(extension,'baseline') ...
         || strcmp(extension,'indexation')
     nx=4;
-elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline') || strcmp(extension, 'Epi_CB')
+elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline') || strcmp(extension, 'Epi_CB') || strcmp(extension, 'Markov_switchingTR_true_baseline')
     nx=3;
 else
     error('Unclear which model, check nx!')
@@ -271,10 +273,13 @@ if strcmp(learning,'default_learning')
             %         The matrices of the Epi-extension are still valid
             %         here.
         elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
-            [fyn, fxn, fypn, fxpn] = model_NK(param); % ignore for a moment that gx is also regime-switching
+            [fyn, fxn, fypn, fxpn] = model_NK_Markov_switchingTR(param);
             [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
             [ny, nx] = size(gx);
-            [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+            ny = ny/2; % 2 regimes leads to 2*ny observables
+            [Aa1, Ab1, As1, Aa2, Ab2, As2] = matrices_A_13_Markov_switching_true_baseline(param, hx);
+            rng(0)
+            r = generate_regime_sequence(p11,p22,T); % use this regime sequence for everything
         end
         
     elseif strcmp(info_ass,'dont_know_TR')
@@ -366,7 +371,7 @@ for s=2  %2->zoom in on monetary policy shock
         
         % Differentiate between learning models
         if strcmp(learning,'default_learning')
-            if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0
+            if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0 && strcmp(extension,'Markov_switchingTR_true_baseline')==0
                 % LH learning (learning both slope and constant of a vector)
                 [~, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
             elseif strcmp(extension,'Epi')
@@ -376,7 +381,7 @@ for s=2  %2->zoom in on monetary policy shock
                 % Epi_CB-version, needs yet another separate learning code
                 [~, y_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
             elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
-                [~, y_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain);
+                [~, y_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e,Aa1, Ab1, As1, Aa2, Ab2, As2, r, param, PLM, gain);
             else
                 warning('Model selection wasn''t clear and should''ve thrown an error before.')
             end
@@ -392,13 +397,22 @@ for s=2  %2->zoom in on monetary policy shock
             % is from materials3.m.
             [~, y_EE] = sim_learn_EE(gx,hx,fxpn,fxn,fypn,fyn,SIG,T,burnin,e,param, PLM, gain);
         end
+        
         % Shocked
+        
         % RE
         % make RE shock the same scale as learning:
         x0RE = (SIG*x0')';
-        [IR, iry, irx]=ir(gx,hx,x0RE,h);
-        iry = iry';
-        RE_fcsts = gx*hx*irx';
+        if strcmp(extension, 'Markov_switchingTR_true_baseline')==0
+            [IR, iry, irx]=ir(gx,hx,x0RE,h);
+            iry = iry';
+            RE_fcsts = gx*hx*irx';
+        elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
+            [IR, iry, irx]=ir_RE_Markov_switching(gx,hx,r,x0RE,h);
+            iry = iry';
+            % haven't implemented RE fcsts for the markov switching world
+            % b/c they are state contingent
+        end
         % Learning
         for t=1:nd
             dt = dt_vals(t);
@@ -406,7 +420,7 @@ for s=2  %2->zoom in on monetary policy shock
             % Shocked
             % Differentiate between learning models
             if strcmp(learning,'default_learning')
-                if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0
+                if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0 && strcmp(extension,'Markov_switchingTR_true_baseline')==0
                     [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
                 elseif strcmp(extension,'Epi')==1
                     % Epi-version
@@ -414,6 +428,8 @@ for s=2  %2->zoom in on monetary policy shock
                 elseif strcmp(extension,'Epi_CB')
                     % Epi_CB-version, needs yet another separate learning code
                     [~, ys_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0);
+                elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
+                    [~, ys_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa1, Ab1, As1, Aa2, Ab2, As2, r, param, PLM, gain, dt, x0);
                 else
                     warning('Model selection wasn''t clear and should''ve thrown an error before.')
                 end
@@ -421,8 +437,7 @@ for s=2  %2->zoom in on monetary policy shock
                 [~, ys_LH] = sim_learnLH_learnhx(gx,hx,SIG,T,burnin,e, Aa, Ab, As,Ba, Bb, param, PLM, gain, dt, x0);
             elseif strcmp(learning, 'VARlearn')
                 [~, ys_LH] = sim_learnLH_VARlearn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
-            elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
-                [~, y_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0);
+                
             end
             
             if doEE==1

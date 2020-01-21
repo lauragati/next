@@ -6,9 +6,7 @@
 % x0 = the shock.
 % 20 Jan 2020
 
-% haven't done anything yet! CONT HERE
-
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH_Markov_switchingTR(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH_Markov_switchingTR(gx,hx,eta,T,ndrop,e, Aa1, Ab1, As1, Aa2, Ab2, As2,r, param, PLM, gain, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -18,12 +16,20 @@ if nargin < max_no_inputs %no shock specified
 end
 
 gbar = param.gbar;
-ny = size(gx,1);
+% regime transition probability matrix
+p11  = param.p11;
+p12  = param.p12;
+p21  = param.p21;
+p22  = param.p22;
+
+ny = size(gx,1)/2; % b/c 2 regimes
 nx = size(hx,1);
 
 ysim = zeros(ny,T);
 xsim = zeros(nx,T);
 
+% Use active regime to initialize
+gx = gx(1:ny,:);
 if PLM==1
     %Learning PLM matrices, just a constant. Using RE as default starting point.
     a = zeros(ny,1);
@@ -58,6 +64,7 @@ morning_fcst = nan(ny,T);
 FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
+
 %Simulate, with learning
 for t = 1:T-1
     if t == 1
@@ -70,8 +77,12 @@ for t = 1:T-1
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         
-        %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        %Solve for current states conditional on regime
+        if r(t)==1 % active regime
+            ysim(:,t) = p11 * (Aa1*fa + Ab1*fb + As1*xsim(:,t)) + p21 * (Aa2*fa + Ab2*fb + As2*xsim(:,t));
+        elseif r(t)==2 % passive regime
+            ysim(:,t) = p12 * (Aa1*fa + Ab1*fb + As1*xsim(:,t)) + p22 * (Aa2*fa + Ab2*fb + As2*xsim(:,t));
+        end
         xesim = hx*xsim(:,t);
         
         %Update coefficients

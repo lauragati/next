@@ -1,4 +1,4 @@
-function [Aa, Ab, As, Ba, Bb] = matrices_A_13_true_baseline(param,hx)
+function [Aa, Ab, As] = matrices_A_13_true_baseline(param,hx)
 % Mathematica, materials13_true_baseline.nb
 % 19 jan 2020
 % A-matrices for the plain vanilla baseline model.
