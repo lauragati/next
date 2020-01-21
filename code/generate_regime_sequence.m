@@ -4,7 +4,7 @@ this_code = mfilename;
 max_no_inputs = nargin(this_code);
 if nargin ==0
     T = 100;
-    p11 = 0.95; %0.95 (Slobodyan and Wouters values)
+    p11 = 0.95; %0.95 (Davig and Leeper 2007 values)
     p22 = 0.93; % 0.93
 elseif nargin < max_no_inputs
     T = 100;

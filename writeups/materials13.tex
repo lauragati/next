@@ -175,24 +175,62 @@ Doesn't work either - same model dynamics.
 \end{figure} \\
 Like learning the Taylor rule b/c agents initially don't know if the shock will continue.
 \item Central bank's $\E\pi_{t+1}$ in TR? \\
-Done a correction for $\hat{\E}\pi_{t+1}$ in TR, now both are stable, but overshooting is still there in both.
+Done a correction for $\hat{\E}\pi_{t+1}$ in TR, now both are stable, but overshooting is still there in both. Not so dissimilar to baseline except that the periods are shifted.
 
 \item Initialize beliefs away from RE somehow\\
 Slobodyan \& Wouters do this, but in an estimation context, which I think is necessary because you need pre-sample data to condition priors on.
 \item Slobodyan \& Wouters' ``VAR-learning": use lagged observables to learn from, not from states.  \\
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARlearn_true_baseline_no_info_ass_constant_only}
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_VARlearn_true_baseline_no_info_ass_constant_only}
 \caption{ VAR learning, baseline, learning only constant}
 \end{figure} \\
 For learning both slope and constant, not E-stable. Kind of makes sense since I'd think that this amplifies positive feedback.
-\item Davig \& Leeper-style switching Taylor rule where only generalized Taylor principle holds?
+\item Davig \& Leeper-style switching Taylor rule where only long-run Taylor principle holds?
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only}
+\caption{ Markov-switching Taylor rule, baseline, learning only constant (slope learning unstable, why?)}
+\end{figure}
 \item Some kind of moving average of inflation (or average) in the TR?
 \end{enumerate}
 
-A quick question on projection facility: checking \texttt{eig(phi)} when $\phi$ isn't square?
+A quick question on projection facility: checking \texttt{eig(phi)} when $\phi$ isn't square? \\
+Right now I'm splitting up $\phi$ as \texttt{a = phi(:,1), b = phi(:, 2:end)} and then checking \texttt{eig(b)} and \texttt{eig(diag(a))}.
 
+\section{Details on the Markov-switching setup}
+Model equations remain the same, except the Taylor rule now is:
+\begin{align}
+i_t & = \psi_{\pi}(r_t) \pi_t + \psi_x x_t + \bar{i}_t \\
+r_t & = \begin{cases} 1 \quad \text{active regime} \quad  \psi_{\pi} = \psi_1 = 2.19  \\  2 \quad \text{passive regime} \quad  \psi_{\pi} = \psi_2= 0.89 \end{cases} \\
+r_{t+1} &= \begin{cases} p_{11} 1 + (1-p_{11}) 2 \quad \text{if} \quad r_t = 1\\ (1-p_{22}) 1 + p_{22} 2 \quad \text{if} \quad r_t = 2\end{cases} \quad \text{where} \quad p_{ji}\equiv Prob(s_{t+1}=j | s_t = i)
+\end{align}
 
+So I solve the RE model by introducing the new jump variables $\pi_{it}, x_{it}, i_{it}, \; i =1,2$ and writing the model equations as
+\begin{align}
+x_{it} &=  (p_{1i}\E_t x_{1t+1} +p_{2i}\E_t x_{2t+1})  - \sigma(i_{it} - (p_{1i}\E_t \pi_{1t+1} +p_{2i}\E_t \pi_{2t+1})) +\sigma r_t^n   \\
+\pi_{it} &= \kappa x_{it} +\beta (p_{1i}\E_t \pi_{1t+1} +p_{2i}\E_t \pi_{2t+1})) + u_t   \\
+i_{it} &= \psi_{i}\pi_{it} + \psi_{x} x_{it}  + \bar{i}_t \label{TR}
+\end{align}
 
+Now I unleash the usual method of solving for the observable and state transition matrix $g_x, h_x$. The only difference will be that since the number of jumps now is double the old number, $g_x$ will be $2n_y \times n_x$. Is it correct to interpret $g_{x}(1) \equiv$ \texttt{gx(1:ny,:)} as pertaining to regime 1, and $g_{x}(2) \equiv$ \texttt{gx(ny+1:end,:)} to regime 2?
+
+Then, generating an exogenous regime sequence $r$, I compute RE IRFs as usual for the state block, but depending on the state, I use the corresponding block of $g_x$. With $x_0$ being the impulse, so that $IR^x_1 = x_0$, I do the following:
+\begin{align}
+IR^y_t & = \begin{cases} g_{x}(1) x_t \quad \text{if} \quad r_t =1 \\ g_{x}(2) x_t \quad \text{if} \quad r_t =2 \end{cases} \\
+IR^x_{t+1} & = h_x x_t 
+\end{align}
+
+As for the learning model, the compact notation for the model was:
+\begin{equation}
+z_t  = A_a f_a(t) + A_b f_b(t) + A_s s_t \label{LOM_LR} 
+\end{equation}
+
+where the $A$-matrices are functions of the parameters, including $\psi_{\pi}$. The LH expectations $f_a$ and $f_b$ are only functions of the learning coefficients $a,b$ and of the state transition matrix $h_x$. So the only salient difference is that agents react to expectations differently depending on the regime: the $A$-matrices become state-dependent.
+
+Is it correct then to simulate the model as
+\begin{equation}
+z_t  = A_a(i) f_a(t) + A_b(i) f_b(t) + A_s(i) s_t \quad \text{for} \quad  i=1,2 
+\end{equation}
+?
 
 \end{document}
 
