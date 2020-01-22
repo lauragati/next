@@ -22,8 +22,9 @@ nx = size(hx,1);
 ysim = zeros(ny,T);
 xsim = zeros(nx,T);
 
-if PLM==1
-    %Learning PLM matrices, just a constant. Using RE as default starting point.
+if PLM==1 || PLM == 2
+    % 1 = Learning PLM matrices, just a constant. Using RE as default starting point.
+    % 2 = learning slope and constant (HERE for entire vector of observables)
     a = zeros(ny,1);
     b = gx*hx;
 elseif PLM == -1
@@ -31,10 +32,6 @@ elseif PLM == -1
     % - ain't even using gx*hx for the forecast of inflation, only pibar
     a = zeros(ny,1);
     b = zeros(size(gx*hx));
-elseif PLM == 2
-    % learning slope and constant (HERE for entire vector of observables)
-    a = zeros(ny,1);
-    b = gx*hx;
 else
     warning('I don''t know what you requested.')
 end
@@ -70,7 +67,28 @@ for t = 1:T-1
         
         %Solve for current states
         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+%         if nx == 4
+%             % Check if there are endogenous states, and if so, which ones
+%             lag_what = 0;
+%             for i=1:ny
+%                 if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
+%                     lag_what = i;
+%                 end
+%             end
+%             xsim(4,1) = ysim(i,t-1);
+%         end
         xesim = hx*xsim(:,t);
+        
+%         if nx == 4
+%             % Check if there are endogenous states, and if so, which ones
+%             lag_what = 0;
+%             for i=1:ny
+%                 if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
+%                     lag_what = i;
+%                 end
+%             end
+%             xesim(4,1) = ysim(i,t-1);
+%         end
         
         %Update coefficients
         % Here the code differentiates between decreasing or constant gain
