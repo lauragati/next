@@ -19,7 +19,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -55,8 +55,9 @@ ne = 3;
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
 info_ass= 'suboptimal_fcst'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'pil'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
-% or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB', 'Markov_switchingTR_true_baseline'
+extension = 'pill'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+% or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB',
+% 'Markov_switchingTR_true_baseline', 'pill'
 learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'
 %%%%%%%%%%%%%%%%
 
@@ -96,6 +97,8 @@ if strcmp(extension,'pil') || strcmp(extension,'il') || strcmp(extension,'old_in
     nx=4;
 elseif strcmp(extension,'Epi') || strcmp(extension, 'true_baseline') || strcmp(extension, 'Epi_CB') || strcmp(extension, 'Markov_switchingTR_true_baseline')
     nx=3;
+elseif strcmp(extension, 'pill')
+    nx=5;
 else
     error('Unclear which model, check nx!')
 end
@@ -105,6 +108,8 @@ if nx==3
     SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 elseif nx==4
     SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
+elseif nx==5
+    SIG = eye(nx).*[sig_r, sig_i, sig_u, 0, 0]';
 else
     error(['nx = ', num2str(nx),', adjust SIG!'])
 end
@@ -219,6 +224,11 @@ if strcmp(learning,'default_learning')
             [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
             [ny, nx] = size(gx);
             [Aa, Ab, As] = matrices_A_13indexation_subopt(param, hx);
+        elseif strcmp(extension,'pill')
+            [fyn, fxn, fypn, fxpn] = model_NK_pill(param);
+            [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+            [ny, nx] = size(gx);
+            [Aa, Ab, As] = matrices_A_13_pill_subopt_fcst(param, hx);
             
         end
         
@@ -363,6 +373,8 @@ for s=2  %2->zoom in on monetary policy shock
             e = squeeze(eN(:,:,n)); % <-- EPI
         elseif nx==4
             e = [squeeze(eN(:,:,n)); zeros(1,T)]; % adding zero shocks to lagged jumps become states
+        elseif nx==5
+            e = [squeeze(eN(:,:,n)); zeros(1,T); zeros(1,T)]; % more padding zeros
         else
             warning('nx = ', num2str(nx),', adjust shocks e!')
         end
@@ -390,6 +402,8 @@ for s=2  %2->zoom in on monetary policy shock
             [~, y_LH] = sim_learnLH_learnhx(gx,hx,SIG,T,burnin,e, Aa, Ab, As,Ba, Bb, param, PLM, gain);
         elseif strcmp(learning, 'VARlearn')
             [~, y_LH] = sim_learnLH_VARlearn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
+        else
+                warning('Learning selection wasn''t clear and should''ve thrown an error before.')
         end
         
         
@@ -438,6 +452,8 @@ for s=2  %2->zoom in on monetary policy shock
                 [~, ys_LH] = sim_learnLH_learnhx(gx,hx,SIG,T,burnin,e, Aa, Ab, As,Ba, Bb, param, PLM, gain, dt, x0);
             elseif strcmp(learning, 'VARlearn')
                 [~, ys_LH] = sim_learnLH_VARlearn(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            else
+                warning('Learning selection wasn''t clear and should''ve thrown an error before.')
                 
             end
             

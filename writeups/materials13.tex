@@ -241,6 +241,14 @@ z_t  = A_a(i) f_a(t) + A_b(i) f_b(t) + A_s(i) s_t \quad \text{for} \quad  i=1,2
 
 Why can this work? Because the entire issue comes from two channels, one of which is the fact that in the NKIS relation, future inflation enters with the coefficient $1-\beta\psi_{\pi}$. This is what can be shut off if $\psi_{\pi} < 1/\beta$. For the lagged inflation extension, this coefficient is modified to $1-\beta^2\psi_{\pi}$. Thus the non-overshooting condition becomes $\psi_{\pi} < 1/\beta^2$. So one can either lower $\beta$, or one can have the Taylor rule feature more lags For example, for 2 lags we'd get $1-\beta^3\psi_{\pi}$, having the condition modify to  $\psi_{\pi} < 1/\beta^3$.
 
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_pill_suboptimal_fcst_constant_only}
+\caption{ Twice lagged inflation in TR, ``suboptimal forecasters" info assumption, $\beta = 0.96$ instead of 0.99}
+\label{pill}
+\end{figure}
+
+The problem with twice lagged inflation though is that because of the sluggishness of the Taylor rule, even RE exhibits some fluctuations, so I'm not sure if this is quite desirable. See Fig. \ref{pill}.
+
 \end{document}
 
 
