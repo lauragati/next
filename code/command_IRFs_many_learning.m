@@ -291,6 +291,10 @@ if strcmp(learning,'default_learning')
             [Aa1, Ab1, As1, Aa2, Ab2, As2] = matrices_A_13_Markov_switching_true_baseline(param, hx);
             rng(0)
             r = generate_regime_sequence(p11,p22,T); % use this regime sequence for everything
+            r1 = ones(1,T); % an only active regime
+            r2 = 2*ones(1,T); % an only passive regime
+            
+            r = r2; % choose which regime sequence to use
         end
         
     elseif strcmp(info_ass,'dont_know_TR')
@@ -514,6 +518,15 @@ for t=1:nd % for the two diff times of imposing the shock
     %     figname = [this_code, '_', 'RIR_LH_' shocknames{s}, PLM_name, gain_name, '_gbar_', gbar_val];
     figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_gbar_', gbar_val, ...
         '_', learning,'_', extension, '_', info_ass, '_', PLM_name ];
+    if strcmp(extension, 'Markov_switchingTR_true_baseline')
+        if min(r==r1)
+            regime='active';
+        elseif min(r==r2)
+            regime='passive';
+        else regime='mixed_regime';
+        end
+        figname = [figname, '_', regime];
+    end
     subplot_names = titles_obs;
     legendnames = {'Learning', 'RE'};
     figtitle = ['LH, shock imposed at t=', num2str(dt_vals(t))];

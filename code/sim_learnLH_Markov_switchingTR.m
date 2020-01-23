@@ -28,8 +28,10 @@ nx = size(hx,1);
 ysim = zeros(ny,T);
 xsim = zeros(nx,T);
 
-% Use active regime to initialize
-gx = gx(1:ny,:);
+% % Use active regime to initialize
+% gx = gx(1:ny,:);
+% Use passive regime to initialize
+gx = gx(ny+1:end,:); %(default)
 if PLM==1
     %Learning PLM matrices, just a constant. Using RE as default starting point.
     a = zeros(ny,1);

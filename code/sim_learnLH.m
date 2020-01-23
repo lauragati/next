@@ -26,7 +26,8 @@ if PLM==1 || PLM == 2
     % 1 = Learning PLM matrices, just a constant. Using RE as default starting point.
     % 2 = learning slope and constant (HERE for entire vector of observables)
     a = zeros(ny,1);
-    b = gx*hx;
+%     b = gx*hx;
+    b = gx;
 elseif PLM == -1
     % "only-mean" PLM
     % - ain't even using gx*hx for the forecast of inflation, only pibar
@@ -53,6 +54,26 @@ morning_fcst = nan(ny,T);
 FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
+
+% Do an initial check to see whether we have endogenous states that are
+% lagged jumps
+% If there are endogenous states...
+if nx == 4
+    endog_states=1;
+    % ... check which ones
+    lag_what = 0;
+    for i=1:ny
+        if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
+            lag_what = i;
+        end
+    end
+    if lag_what==0
+        warning('Couldn''t identify the lagged jump.')
+    end
+else
+    endog_states=0;
+end
+
 %Simulate, with learning
 for t = 1:T-1
     if t == 1
@@ -67,28 +88,15 @@ for t = 1:T-1
         
         %Solve for current states
         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
-%         if nx == 4
-%             % Check if there are endogenous states, and if so, which ones
-%             lag_what = 0;
-%             for i=1:ny
-%                 if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
-%                     lag_what = i;
-%                 end
-%             end
-%             xsim(4,1) = ysim(i,t-1);
-%         end
         xesim = hx*xsim(:,t);
+        % If there are endogenous states...
+        if endog_states==1
+            % ...replace the last row of hx with the respective row of the estimated gx
+            xesim(4,1) = phi(lag_what,:)*[1;xsim(:,t)];
+%             hx(4,:) = b(lag_what,:);
+        end
         
-%         if nx == 4
-%             % Check if there are endogenous states, and if so, which ones
-%             lag_what = 0;
-%             for i=1:ny
-%                 if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
-%                     lag_what = i;
-%                 end
-%             end
-%             xesim(4,1) = ysim(i,t-1);
-%         end
+        
         
         %Update coefficients
         % Here the code differentiates between decreasing or constant gain

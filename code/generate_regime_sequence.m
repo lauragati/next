@@ -15,6 +15,7 @@ p12 = 1-p22;
 
 r = nan(1,T);
 r(1) = 1; % initialize in the active regime
+% r(1) = 2; % initialize in the passive regime
 for t=2:T
     if r(t-1)==1 % active regime
     r(t) = randsample([1,2],1,'true',[p11, p21]);
