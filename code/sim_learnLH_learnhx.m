@@ -25,7 +25,8 @@ xsim = zeros(nx,T);
 if PLM==1
     %Learning PLM matrices, just a constant. Using RE as default starting point.
     a = zeros(ny,1);
-    b = gx*hx;
+%     b = gx*hx;
+    b = gx; % 24 Jan 2020 version
 elseif PLM == -1
     % "only-mean" PLM
     % - ain't even using gx*hx for the forecast of inflation, only pibar
@@ -34,7 +35,8 @@ elseif PLM == -1
 elseif PLM == 2
     % learning slope and constant (HERE for entire vector of observables)
     a = zeros(ny,1);
-    b = gx*hx;
+%     b = gx*hx;
+    b = gx; % 24 Jan 2020 version 
 else
     warning('I don''t know what you requested.')
 end
@@ -93,21 +95,21 @@ for t = 1:T-1
         
         % Create forecasts, FE and do the updating
         if PLM == 1 || PLM == -1 % when learning constant only, or "mean-only" PLM
-            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
-            FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
-            a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) );
-            evening_fcst(:,t) = a + b*xsim(:,t-1);
+%             morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+%             FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
+            a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*Gam*[1;xsim(:,t-1)]) ); % 24 Jan 2020 version
+%             evening_fcst(:,t) = a + b*xsim(:,t-1);
             phi = [a,b];
             
             % update the hx-learning coefficients
             c = c + k(:,t).^(-1).*( xsim(:,t)-(c + d*xsim(:,t-1)) ); % NEW
             Gam = [c,d]; % NEW
         elseif PLM == 2 % constant and slope learning
-            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
-            FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
+%             morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+%             FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here
             phi = (phi' + k(:,t).^(-1).*  (R\[1;xsim(:,t-1)] *(ysim(:,t)-phi*[1;xsim(:,t-1)])'))';
-            evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
+%             evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
             
             % split phi into a and b
             a = phi(:,1);

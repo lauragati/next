@@ -3,7 +3,7 @@ function keep = projection_facility(phi,q)
 % will be 1, reflecting that the macroeconomy is stationary.
 
 max_no_inputs = nargin('projection_facility');
-if nargin < max_no_inputs %no shock specified
+if nargin < max_no_inputs 
     q=1; % default case
 end
 

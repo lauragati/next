@@ -21,7 +21,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -57,8 +57,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'suboptimal_fcst'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'indexation'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB',
 % 'Markov_switchingTR_true_baseline', 'pill'
 learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'
@@ -69,7 +69,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = slope_and_constant;
+PLM = constant_only;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
@@ -443,7 +443,7 @@ for s=2  %2->zoom in on monetary policy shock
             % Differentiate between learning models
             if strcmp(learning,'default_learning')
                 if strcmp(extension,'Epi')==0 && strcmp(extension,'Epi_CB')==0 && strcmp(extension,'Markov_switchingTR_true_baseline')==0
-                    [~, ys_LH,evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+                    [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
                 elseif strcmp(extension,'Epi')==1
                     % Epi-version
                     [~, ys_LH] = sim_learnLH_12f1(gx,hx,SIG,T,burnin,e, Aa, Ab,As, param, PLM, gain, dt, x0);
@@ -451,7 +451,7 @@ for s=2  %2->zoom in on monetary policy shock
                     % Epi_CB-version, needs yet another separate learning code
                     [~, ys_LH] = sim_learnLH_Epi_CB(gx,hx,SIG,T,burnin,e, Aa,Ab, As, param, PLM, gain, dt, x0);
                 elseif strcmp(extension, 'Markov_switchingTR_true_baseline')
-                    [~, ys_LH,evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa1, Ab1, As1, Aa2, Ab2, As2, r, param, PLM, gain, dt, x0);
+                    [~, ys_LH] = sim_learnLH_Markov_switchingTR(gx,hx,SIG,T,burnin,e, Aa1, Ab1, As1, Aa2, Ab2, As2, r, param, PLM, gain, dt, x0);
                 else
                     warning('Model selection wasn''t clear and should''ve thrown an error before.')
                 end

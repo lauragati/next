@@ -137,7 +137,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR}
 \end{align}
 \begin{equation}
-\hat{\E}_t z_{t+h} =  \bar{z}_{t-1} + bh_x^{h}s_t  \quad \forall h\geq 1 \quad \quad b = g_x \quad \quad \text{PLM} \label{PLM}
+\hat{\E}_t z_{t+h} =  \bar{z}_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad \text{PLM} \label{PLM}
 \end{equation}
 \begin{equation}
 \bar{z}_{t} = \bar{z}_{t-1} +k_t^{-1}\underbrace{\big(z_{t} -(\bar{z}_{t-1}+bs_{t-1}) \big)}_{\text{fcst error using (\ref{PLM})} } 
@@ -188,23 +188,89 @@ k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \b
 \end{figure}
 
 \begin{itemize}
-\item I'm surprised that the all-passive state is unstable.
+\item I'm surprised that the all-passive state is unstable. I've checked and it's not E-stable: the difference in the learning matrix $\phi$ grows over time, even with decreasing gain learning.
 \item The all-active is very volatile. 
 \end{itemize}
 
 \clearpage
 \section{Projection facility: checking \texttt{eig(phi)} when $\phi$ isn't square?}
+What I do now is I check \texttt{eig(R)} because that is always square, and when $\phi$ explodes, usually R does too.  Of course I can't do this for learning the constant only, but according to my experience, that's where the projection facility is least likely to ever be needed. Of course, this doesn't always work - for interest rate smoothing, it doesn't.
 
 \section{Endogenous states don't evolve as they should}
 
 \begin{figure}[h!]
 \subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_pil_suboptimal_fcst_constant_only}}
 \subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_pil_suboptimal_fcst_slope_and_constant}}
-\caption{ Lagged inflation in TR, ``suboptimal forecasters" info assumption, $\beta = 0.96$ instead of 0.99}
+\caption{ Lagged inflation in TR, ``suboptimal forecasters" info assumption}
 \end{figure}
 
-Look at the interest rate: it doesn't move differently from the RE model. The code doesn't realize that the 4th state is the lagged 1st jump; my attempts to do the replacement have only lead to instability.
+Let an $e$ superscript denote the position of the endogenous state in the jump and state transition matrices. (So it will be a different number for the two.) What I want to do is to replace $h_x^e$ with $\hat{g}^e_x$. So let me call the thus created state transition matrix $H$:
+\begin{equation}
+H = \begin{bmatrix} h_x  & \mathbf{0}  \\  \hat{g}^e_x & 
+\end{bmatrix}
+\end{equation}
+There are several issues with this. Ideally I want to move the states forward as:
+\begin{equation}
+s_{t+1} = H s_{t}
+\end{equation}
+But that doesn't take into account that:
+\begin{itemize}
+\item Agents' estimate of $g_x$ is misspecified: $\phi$ has one higher row dimension than $g_x$. For this reason, what I'm trying is to replace the last element in $s_{t+1}$ with $a^e + b^e s_{t}$.
+\item But $b$ doesn't correspond to $\hat{g}_x$ either; it corresponds to $\hat{g}_x h_x$. Ok, so take $bh_x^{-1}$. But $h_x^{-1}$ doesn't exist. So I take the pseudo inverse. But now I'm very far from where I want to be. I can also force $h_x^{-1}$ to exist by simply assuming that no exogenous process is iid.
+\item Another thing I try is simply to set $s^e_{t+1} = y^e_t$. But for some reason that's not giving me the same thing. I'm relying on this one for now because this is the only one that results in the simulated endogenous state equaling the respective jump. (The figures correspond to this version.)
+\end{itemize}
 
+
+
+\newpage
+\section{Reference plots}
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_true_baseline_no_info_ass_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_true_baseline_no_info_ass_slope_and_constant_2020_01_24}}
+\caption{Baseline}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_pil_suboptimal_fcst_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_pil_suboptimal_fcst_slope_and_constant_2020_01_24}}
+\caption{Lagged inflation in Taylor rule, ``suboptimal forecasters" info assumption}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_il_suboptimal_fcst_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant - no projection facility in the world can make this not explode]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Interest rate smoothing, ``suboptimal forecasters" info assumption}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_Epi_no_info_ass_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_Epi_no_info_ass_slope_and_constant_2020_01_24}}
+\caption{Expected inflation in Taylor rule}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_indexation_suboptimal_fcst_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_indexation_suboptimal_fcst_slope_and_constant_2020_01_24}}
+\caption{Indexation in NKPC, ``suboptimal forecasters" info assumption}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_true_baseline_dont_know_TR_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_true_baseline_dont_know_TR_slope_and_constant_2020_01_24}}
+\caption{Learn Taylor rule}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_hx_true_baseline_no_info_ass_constant_only_2020_01_24}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_learn_hx_true_baseline_no_info_ass_slope_and_constant_2020_01_24}}
+\caption{Learn $h_x$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Learning constant only]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_2020_01_24_passive}}
+\subfigure[Learning slope and constant]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_2020_01_24_passive}}
+\caption{Markov-switching Taylor rule, conditional on passive regime only, learning initialized at passive regime}
+\end{figure}
 
 
 \end{document}
