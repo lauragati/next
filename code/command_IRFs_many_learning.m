@@ -26,6 +26,7 @@ output_table = print_figs;
 
 skip_old_stuff = 1;
 doEE    = 0;
+
 %% Parameters
 tic
 burnin = 0;
@@ -54,8 +55,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'suboptimal_fcst'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'pil'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB',
 % 'Markov_switchingTR_true_baseline', 'pill'
 learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'

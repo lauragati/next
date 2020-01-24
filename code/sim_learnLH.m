@@ -26,8 +26,8 @@ if PLM==1 || PLM == 2
     % 1 = Learning PLM matrices, just a constant. Using RE as default starting point.
     % 2 = learning slope and constant (HERE for entire vector of observables)
     a = zeros(ny,1);
-%     b = gx*hx;
-    b = gx;
+    b = gx*hx; 
+%     b = gx; % 23 Jan 2020 version
 elseif PLM == -1
     % "only-mean" PLM
     % - ain't even using gx*hx for the forecast of inflation, only pibar
@@ -83,6 +83,7 @@ for t = 1:T-1
         
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx); % new hx version
+%         [fa, fb] = fafb_materials14(param,a, b, xsim(:,t),hx); % 23 Jan 2020 version
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         
@@ -92,12 +93,11 @@ for t = 1:T-1
         % If there are endogenous states...
         if endog_states==1
             % ...replace the last row of hx with the respective row of the estimated gx
-            xesim(4,1) = phi(lag_what,:)*[1;xsim(:,t)];
+            xesim(4,1) = phi(lag_what,:)*[1;xsim(:,t)]; % 23 Jan 2020 version
 %             hx(4,:) = b(lag_what,:);
         end
         
-        
-        
+
         %Update coefficients
         % Here the code differentiates between decreasing or constant gain
         if gain ==1 % decreasing gain
@@ -107,23 +107,25 @@ for t = 1:T-1
         end
         
         % Create forecasts, FE and do the updating
+        morning_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
         if PLM == 1 || PLM == -1 % when learning constant only, or "mean-only" PLM
-            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            morning_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t)
             FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
             a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) );
-            evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            evening_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t) 
             phi = [a,b];
         elseif PLM == 2 % constant and slope learning
-            morning_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            morning_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t) 
             FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here
             phi = (phi' + k(:,t).^(-1).*  (R\[1;xsim(:,t-1)] *(ysim(:,t)-phi*[1;xsim(:,t-1)])'))';
-            evening_fcst(:,t) = phi*[1;xsim(:,t-1)];
+            evening_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t) 
             
             % split phi into a and b
             a = phi(:,1);
             b = phi(:,2:end);
         end
+         evening_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
         
         phi_seq(:,:,t) = phi; % store phis
         % check convergence
