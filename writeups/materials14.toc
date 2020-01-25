@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Model summary}{1}{section.1}
 \contentsline {section}{\numberline {2}Regime-switching}{2}{section.2}
-\contentsline {section}{\numberline {3}Projection facility: checking \texttt {eig(phi)} when $\phi $ isn't square?}{4}{section.3}
-\contentsline {section}{\numberline {4}Endogenous states don't evolve as they should}{4}{section.4}
-\contentsline {section}{\numberline {5}Reference plots}{6}{section.5}
+\contentsline {section}{\numberline {3}Projection facility: checking \texttt {eig(phi)} when $\phi $ isn't square?}{3}{section.3}
+\contentsline {section}{\numberline {4}Endogenous states don't evolve as they should}{3}{section.4}
+\contentsline {section}{\numberline {5}Reference plots}{4}{section.5}

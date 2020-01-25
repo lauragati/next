@@ -57,8 +57,8 @@ ne = 3;
 
 % Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'suboptimal_fcst'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'pil'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB',
 % 'Markov_switchingTR_true_baseline', 'pill'
 learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'
@@ -69,7 +69,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = slope_and_constant;
+PLM = constant_only;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;
