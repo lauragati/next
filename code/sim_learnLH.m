@@ -37,6 +37,13 @@ else
     warning('I don''t know what you requested.')
 end
 
+% If endog gain, choose criterion
+if gain == 21
+    crit = 1; % CEMP's criterion
+elseif gain == 22
+    crit = 2; % CUSUM criterion
+end
+
 phi = [a,b];
 phi_seq = nan(ny,nx+1,T);
 phi_seq(:,:,1) = phi;
@@ -56,6 +63,11 @@ morning_fcst = nan(ny,T);
 FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
+
+%%% initialize CUSUM variables: FEV om and criterion theta
+om = 0;
+thet = 0; % CEMP don't really help with this, but I think zero is ok.
+%%%
 
 % Do an initial check to see whether we have endogenous states that are
 % lagged jumps
@@ -108,14 +120,7 @@ for t = 1:T-1
             phx = pinv(hx);
             ghat = b*phx;
 %             ghat = inv(hx);
-            xesim(4,1) = a(lag_what) + ghat(lag_what,:)*xsim(:,t); % 24 Jan 2020 version: need hx^-1
-
-%             xesim(4,1) = ysim(lag_what,t); % final version for now, 24 Jan 2020
-            
-            % HX = [[hx(1:3, 1:3), [0;0;0]] ; ghat(lag_what,:)];
-            % max(abs(eig(HX)));
-            % Projection facility following Ryan would be
-            % keep_phi = projection_facility(HX,1);
+            xesim(4,1) = a(lag_what) + ghat(lag_what,:)*xsim(:,t); % 24 Jan 2020 version: I've checked and this works (corresponds to replacing xsim(e,t+1) with ysim(e,t))
         end
         
         
@@ -123,6 +128,14 @@ for t = 1:T-1
         % Here the code differentiates between decreasing or constant gain
         if gain ==1 % decreasing gain
             k(:,t) = k(:,t-1)+1;
+        elseif gain==21 || gain == 22 % endogenous gain
+            if crit == 1 % CEMP's criterion
+                k = fk_CEMP(a, b, xsim(:,t), k(:,t-1), param, Aa, Ab, As,hx);
+            elseif crit==2 % CUSUM criterion
+                fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
+                [k, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
+            end
+            k(:,t) = fk;
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end

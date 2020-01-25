@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 JAN 2020 13:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 JAN 2020 15:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1022,36 +1022,6 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 173.
 
-<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
-earning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive.png,
- id=67, 1373.13pt x 819.06pt>
-File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
-ult_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive
-.png Graphic file (type png)
-
-<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
-lt_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive.
-png>
-Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
-ain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_co
-nstant_only_passive.png used on input line 179.
-(pdftex.def)             Requested size: 192.2369pt x 114.66762pt.
-
-<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
-earning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_passive
-.png, id=68, 1396.21625pt x 819.06pt>
-File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
-ult_learning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_pa
-ssive.png Graphic file (type png)
-
-<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
-lt_learning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_pas
-sive.png>
-Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
-ain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_sl
-ope_and_constant_passive.png used on input line 180.
-(pdftex.def)             Requested size: 195.46893pt x 114.66762pt.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
@@ -1068,6 +1038,36 @@ _monpol_cgain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_i
 nfo_ass_constant_only.png (PNG copy)> <../figures/command_IRFs_many_learning_RI
 R_LH_monpol_cgain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_
 no_info_ass_slope_and_constant.png (PNG copy)>]
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
+earning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive.png,
+ id=82, 1373.13pt x 819.06pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
+ult_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive
+.png Graphic file (type png)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
+lt_learning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_passive.
+png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_co
+nstant_only_passive.png used on input line 179.
+(pdftex.def)             Requested size: 192.2369pt x 114.66762pt.
+
+<../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
+earning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_passive
+.png, id=83, 1396.21625pt x 819.06pt>
+File: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defa
+ult_learning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_pa
+ssive.png Graphic file (type png)
+
+<use ../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_defau
+lt_learning_Markov_switchingTR_true_baseline_no_info_ass_slope_and_constant_pas
+sive.png>
+Package pdftex.def Info: ../figures/command_IRFs_many_learning_RIR_LH_monpol_cg
+ain_gbar_0_145_default_learning_Markov_switchingTR_true_baseline_no_info_ass_sl
+ope_and_constant_passive.png used on input line 180.
+(pdftex.def)             Requested size: 195.46893pt x 114.66762pt.
+
 <../figures/command_IRFs_many_learning_RIR_LH_monpol_cgain_gbar_0_145_default_l
 earning_Markov_switchingTR_true_baseline_no_info_ass_constant_only_active.png, 
 id=84, 1407.2575pt x 819.06pt>
@@ -1452,7 +1452,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials14.pdf (6 pages, 2256099 bytes).
+Output written on materials14.pdf (6 pages, 2256384 bytes).
 PDF statistics:
  227 PDF objects out of 1000 (max. 8388607)
  169 compressed objects within 2 object streams

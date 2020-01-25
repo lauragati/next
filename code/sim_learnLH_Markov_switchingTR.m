@@ -79,12 +79,6 @@ for t = 1:T-1
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         
-%         %Solve for current states conditional on regime
-%         if r(t)==1 % active regime
-%             ysim(:,t) = p11 * (Aa1*fa + Ab1*fb + As1*xsim(:,t)) + p21 * (Aa2*fa + Ab2*fb + As2*xsim(:,t));
-%         elseif r(t)==2 % passive regime
-%             ysim(:,t) = p12 * (Aa1*fa + Ab1*fb + As1*xsim(:,t)) + p22 * (Aa2*fa + Ab2*fb + As2*xsim(:,t));
-%         end
         %Solve for current states conditional on regime
         if r(t)==1 % active regime
             ysim(:,t) = Aa1*fa + Ab1*fb + As1*xsim(:,t);

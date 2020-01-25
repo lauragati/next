@@ -55,10 +55,10 @@ p11 = param.p11;
 p22 = param.p22;
 ne = 3;
 
-% Model selection and informational assumption
+%% Model selection and informational assumption
 %%%%%%%%%%%%%%%%
-info_ass= 'suboptimal_fcst'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
-extension = 'pil'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
+info_ass= 'no_info_ass'; % 'no_info_ass', 'myopic' (old), 'suboptimal_fcst' (materials12f), 'optimal_fcst' (materials12g) 'dont_know_TR' (materials12i)
+extension = 'true_baseline'; % 'Epi', 'pil', 'il', 'baseline' or 'true_baseline' (% true_baseline is the baseline where nx=3, not 4 with rho=0)
 % or 'indexation' (baseline w/ indexation in NKPC), or 'Epi_CB',
 % 'Markov_switchingTR_true_baseline', 'pill'
 learning = 'default_learning'; %'default_learning', 'learn_hx', 'VARlearn'
@@ -82,7 +82,16 @@ N = 100 %500
 dt_vals = 25; % time of imposing innovation
 h = 10; % h-period IRFs
 
+if strcmp(extension,'Markov_switchingTR_true_baseline') 
+rng(0)
+r = generate_regime_sequence(p11,p22,T); % use this regime sequence for everything
+r1 = ones(1,T); % an only active regime
+r2 = 2*ones(1,T); % an only passive regime
 
+r = r2; % choose which regime sequence to use
+end
+
+%% Some checks
 % Check what you mean by "baseline":
 % if rho = 0, baseline really is baseline
 % if rho > 0, baseline is the old intrate-smoothing (myopic info ass).
@@ -106,76 +115,6 @@ else
     error('Unclear which model, check nx!')
 end
 
-
-if nx==3
-    SIG = eye(nx).*[sig_r, sig_i, sig_u]';
-elseif nx==4
-    SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
-elseif nx==5
-    SIG = eye(nx).*[sig_r, sig_i, sig_u, 0, 0]';
-else
-    error(['nx = ', num2str(nx),', adjust SIG!'])
-end
-
-% introduce adaptive names depending on the value of rho
-rho_val_raw = num2str(rho);
-rho_val = replace(rho_val_raw,'.','_');
-psi_pi_val_raw = num2str(psi_pi);
-psi_pi_val = replace(psi_pi_val_raw,'.','_');
-rho_i_val_raw = num2str(rho_i);
-rho_i_val = replace(rho_i_val_raw,'.','_');
-alph_val_raw = num2str(alph);
-alph_val = replace(alph_val_raw,'.','_');
-sig_val_raw = num2str(sig);
-sig_val = replace(sig_val_raw,'.','_');
-gbar_val_raw = num2str(gbar);
-gbar_val = replace(gbar_val_raw,'.','_');
-
-current_param_values = [rho, rho_i, alph, kapp, psi_pi, sig, gbar]
-current_param_names = ['\rho', '\rho_i', '\alpha', '\kappa', '\psi_{\pi}', '\sigma', '\bar{g}']
-
-% %% RE model
-%
-% % Standard model with lag of interest rate in TR
-% [fyn, fxn, fypn, fxpn] = model_NK_intrate_smoothing(param);
-% [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-% [ny, nx] = size(gx);
-%
-% % param.psi_pi = 1; % cheat --> psi_pi < 1 makes expectations stable but
-% % observables unstable
-% % Original
-% [~, ~, Aa, Ab, As] = matrices_A_intrate_smoothing(param, hx);
-% % % Alternative, general A-matrices
-% [Aa2, Ab2, As2] = matrices_A_intrate_smoothing2(param, hx);
-% [Aa3, Ab3, As3] = matrices_A_intrate_smoothing3(param, hx);
-% [Aa4, Ab4, As4] = matrices_A_12f3(param, hx);
-% return
-% Aa - Aa2
-% Ab - Ab2
-% As - As2
-% % % these aren't equal ever, and they shouldn't either because this is the wrong
-% % % PQ method, not using condition (*)
-% Aa - Aa3
-% Ab - Ab3
-% As - As3
-% % % they equal - perfect - they should b/c 3 uses the MN method. (even if
-% % rho !=0)
-% % % But they are likely still not yet the correct intrate-smoothing model (il)
-% Aa - Aa4
-% Ab - Ab4
-% As - As4
-% % actually, these last ones, done with (presumably) correct PQ equal the
-% % original ones as long as rho=0, but no longer if rho unequal to 0.
-% % Actually that makes sense to me because they should embody a different
-% % informational assumption than the MN method.
-% return
-%
-% % % Model with E(pi) in TR instead of pi
-% % [fyn, fxn, fypn, fxpn] = model_NK_EpiTR(param);
-% % [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-% % [ny, nx] = size(gx);
-% [Aa, Ab, As] = matrices_A_EpiTR(param, hx);
-% [Aa2, Ab2, As2, Ae2] = matrices_A_12f1(param, hx); % with the new Epi-matrices, they are clearly not equal, so the old was indeed wrong.
 
 if strcmp(learning,'default_learning')
     %% Old info approach for comparison
@@ -292,12 +231,7 @@ if strcmp(learning,'default_learning')
             [ny, nx] = size(gx);
             ny = ny/2; % 2 regimes leads to 2*ny observables
             [Aa1, Ab1, As1, Aa2, Ab2, As2] = matrices_A_13_Markov_switching_true_baseline(param, hx);
-            rng(0)
-            r = generate_regime_sequence(p11,p22,T); % use this regime sequence for everything
-            r1 = ones(1,T); % an only active regime
-            r2 = 2*ones(1,T); % an only passive regime
             
-            r = r2; % choose which regime sequence to use
         end
         
     elseif strcmp(info_ass,'dont_know_TR')
@@ -340,7 +274,22 @@ elseif strcmp(learning, 'VARlearn')
     
     disp([learning, '! Model version: ', extension,'; ' ,info_ass])
 end
+
+
+
 %% Simulate models
+
+% Create VC-matrix of shocks
+if nx==3
+    SIG = eye(nx).*[sig_r, sig_i, sig_u]';
+elseif nx==4
+    SIG = eye(nx).*[sig_r, sig_i, sig_u, 0]';
+elseif nx==5
+    SIG = eye(nx).*[sig_r, sig_i, sig_u, 0, 0]';
+else
+    error(['nx = ', num2str(nx),', adjust SIG!'])
+end
+eta = SIG; %just so you know
 
 % Give names
 if  PLM == constant_only
@@ -508,7 +457,7 @@ for t=1:nd % for the two diff times of imposing the shock
         % 1) OBSERVABLES EE against RE
         series(1,:,:) = RIR_Y_EE(:,:,t)';
         series(2,:,:) = iry';
-        figname = [this_code, '_', 'RIR_EE_' shocknames{s}, PLM_name, gain_name, '_gbar_', gbar_val];
+        figname = [this_code, '_', 'RIR_EE_' shocknames{s}, PLM_name, gain_name];
         subplot_names = titles_obs;
         legendnames = {'Learning', 'RE'};
         figtitle = ['EE, shock imposed at t=', num2str(dt_vals(t))];
@@ -519,7 +468,7 @@ for t=1:nd % for the two diff times of imposing the shock
     series(1,:,:) = RIR_Y_LH(:,:,t)';
     series(2,:,:) = iry';
     %     figname = [this_code, '_', 'RIR_LH_' shocknames{s}, PLM_name, gain_name, '_gbar_', gbar_val];
-    figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_gbar_', gbar_val, ...
+    figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, ...
         '_', learning,'_', extension, '_', info_ass, '_', PLM_name , '_', date_today];
     if strcmp(extension, 'Markov_switchingTR_true_baseline')
         if min(r==r1)
