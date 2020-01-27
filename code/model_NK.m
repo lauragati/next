@@ -47,8 +47,8 @@ f(6) = U_p - rho_u*U;
 
 %Check Computation of Steady-State Numerically
 fnum = double(subs(f, [Y X YP XP], [ss, ss]));
-disp('Checking steady-state equations:')
-disp(fnum);
+% disp('Checking steady-state equations:')
+% disp(fnum);
 
 %Log-linear approx
 log_var = [];

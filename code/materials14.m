@@ -3,7 +3,8 @@
 % 1.) maybe a last attempt at getting rid of the overshooting
 % 2.) a correct way of dealing with endogenous states
 % 3.) a correct way of doing the projection facility
-% 4.) a correction for PLM that leads to new fa & fb
+% 4.) a correction for PLM that leads to new fa & fb - but is actually
+% equivalent with the old ones, I've verified.
 % 23 Jan 2020
 clearvars
 close all
@@ -71,6 +72,9 @@ skip_old_stuff = 1;
 if skip_old_stuff==0
     %% Do IRFs for extensions - same code as before
     command_IRFs_many_learning
+    
+    %% DO IRFs for anchoring model (baseline)
+    command_IRFs_anchoring
 end
 
 %% Check the b -> gx version

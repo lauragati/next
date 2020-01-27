@@ -19,8 +19,8 @@ param.rho = 0; % persistence of lag of interest rate
 param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
 param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
-param.kap =  0.80; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
-param.thettilde = 1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
+param.kap =  0.8; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
+param.thettilde = 0.2;%1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 param.gam = 0.128; % indexation in NKPC. Posterior mean CEMP.
 param.p11 = 0.95; % Follow Davig and Leeper's transition probabilities (Prob active|active = 0.95, Prob(passive|passive)=0.93)
 param.p22 = 0.93;
@@ -28,6 +28,7 @@ param.p21 = 1-param.p11;
 param.p12 = 1-param.p22;
 param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
+param.alph_CB = 0.5;
 
 
 % % "weighted il" extension

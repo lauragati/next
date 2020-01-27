@@ -66,8 +66,8 @@ As = [(1+kapp.*psipi.*sig+psix.*sig).^(-1).*((1+psix.*sig).*ia(3,1)+ ...
 
 mathematica_code = "/Users/lauragati/Dropbox/BC_Research/next/code/materials13_true_baseline.nb";
 this_code = mfilename;
-mname = strrep(this_code,'matrices_A_','')
-mmcaname = extractBetween(mathematica_code,"/Users/lauragati/Dropbox/BC_Research/next/code/materials",".nb")
+mname = strrep(this_code,'matrices_A_','');
+mmcaname = extractBetween(mathematica_code,"/Users/lauragati/Dropbox/BC_Research/next/code/materials",".nb");
 
 if strcmp(mname,mmcaname) ~=1
     error('not using the correct A-matrices from Mathematica!')

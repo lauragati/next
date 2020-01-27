@@ -129,7 +129,7 @@ bottom=1in}
 
 %\listoffigures
 
-%\newpage
+\newpage
 \section{Model summary}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
@@ -192,13 +192,112 @@ k_t & = \begin{cases} k_{t-1}+1 \quad \text{for decreasing gain learning}  \\ \b
 \item The all-active is very volatile. 
 \end{itemize}
 
-%\clearpage
+
 \section{Projection facility: checking \texttt{eig(phi)} when $\phi$ isn't square?}
 What I do now is I check \texttt{eig(R)} because that is always square, and when $\phi$ explodes, usually R does too.  Of course I can't do this for learning the constant only, but according to my experience, that's where the projection facility is least likely to ever be needed. Of course, this doesn't always work - for interest rate smoothing, it doesn't.
 
 \section{Endogenous states don't evolve as they should}
 Now they do!
 
+\newpage
+\section{Bringing anchoring back}
+I've reworked the choice functions for the endogenous gain, CEMP's criterion and the CUSUM test, to better incorporate vector learning (``out of the difference between PLM and E(ALM) or out of forecast error variances respectively, pick the largest (or the mean) and test whether that's bigger than the threshold value''). 
+
+CEMP's criterion was 
+\begin{align}
+\theta_t & = |\hat{\E}_{t-1}\pi_t - \E_{t-1}\pi_t | / (\text{Var(shocks)}) \\
+\text{i.e.} \quad &\text{PLM- E[ALM], scaled by shocks}
+\end{align}
+
+To extend this to vector learning and in general to a model with a vector of observables I first rewrite the ALM
+\begin{align}
+z_t & = A_a f_a + A_b f_b + A_s s_t \\
+\text{as} \quad & z_t =  F  +Gs_t  \\
+\Leftrightarrow \quad & z_t = \begin{bmatrix} F & G \end{bmatrix} \begin{bmatrix} 1 \\ s_t\end{bmatrix}
+\end{align}
+Then, since the PLM is $z_t = \phi  \begin{bmatrix} 1 \\ s_t\end{bmatrix}$, the generalized CEMP criterion becomes
+\begin{equation}
+\theta_t = \max | \Sigma^{-1} ( \phi - \begin{bmatrix} F & G \end{bmatrix}) |
+\end{equation}
+where $\Sigma$ is the VC matrix of shocks.
+As for the CUSUM criterion, what I did in Materials 5 was
+\begin{align}
+ \omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2 -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}(FE_t^2/\omega_t -\theta_{t-1})\
+\end{align}
+where $FE_t$ is the most recent short-run forecast error ($ny\times 1$), and $\omega_t$ is the agents' estimate of the forecast error variance ($ny \times ny$). To take into account that these are now matrices, I now write
+\begin{align}
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}^{-1}(FE_t FE_t' -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \kappa k_{t-1}^{-1}\text{mean}((\omega_t^{-1}FE_t FE_t' -\theta_{t-1}))
+\end{align}
+
+Both work but require quite different threshold parameters to behave similarly.
+
+%\newpage
+\section{The central bank's loss function}
+Relying on Clarida, Gali and Gertler (1999), I start with the simple quadratic loss:
+\begin{equation}
+\mathcal{L} = \frac{1}{2} \E_t\sum_{T=t}^{\infty} \bigg( \alpha^{CB} x_T^2 + \pi_T^2\bigg)
+\end{equation}
+
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath grid_search_loss_again_critCEMP_constant_only_2020_01_26}
+\caption{Central bank loss for $\psi_x=0, \alpha^{CB} = 0.5$, computed as a cross-sectional average, $N=100, T=400$.}
+\end{figure}
+
+Fmincon says $\psi_{\pi}^* = 1.0724, \psi_x^* =    0.0490$.
+
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath grid_search_loss_again_critCUSUM_constant_only_2020_01_26}
+\caption{Central bank loss for $\psi_x=0, \alpha^{CB} = 0.5$, computed as a cross-sectional average, $N=100, T=400$.}
+\end{figure}
+
+Fmincon says $\psi_{\pi}^* = 1.0646, \psi_x^* =    0.0451$.
+     
+An issue with CUSUM: $\omega$ often becomes singular, so for fmincon to be able to run, I took the average element value of $\omega$. But this seems to really matter: it never produces anchoring for anything.
+
+Striking is that these optimal values do not produce anchored sequences. But of course this is super-sensitive to threshold criterion values which are completely arbitrary!
+
+
+
+\newpage
+\section{Anchoring as a function of $\psi_{\pi}$}
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =1.01, \psi_x=0$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =1.1, \psi_x=0$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =1.2, \psi_x=0$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =1.5, \psi_x=0$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =1.8, \psi_x=0$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath placeholder}}
+\caption{Inverse gains, $\psi_{\pi} =2, \psi_x=0$}
+\end{figure}
+\clearpage
 
 \newpage
 \section{Reference plots}

@@ -1,4 +1,5 @@
 function [F,G] = FG_materials14(param,hx,Aa,Ab,As,a,b)
+% FG with extra hx
 % See Notes 25 Jan 2020
 alph = param.alph;
 bet=param.bet;

@@ -19,7 +19,7 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_simulated_sequence = 0;
+plot_simulated_sequence = 1;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -58,15 +58,13 @@ again_critCEMP  = 21;
 again_critCUSUM = 22;
 cgain = 3;
 
-critCEMP=1;
-critCUSUM=2;
 
 %% Model selection and informational assumption
 
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCEMP;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
@@ -74,6 +72,13 @@ T = 400 % 400
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
 h = 10; % h-period IRFs
+
+% Take optimal values from fmincon exercise in grid_search.m
+% param.psi_pi = 1.0724; % CEMP
+% param.psi_x = 0.0490; % CEMP
+% param.psi_pi = 1.0646; % CUSUM
+% param.psi_x = 0.0451; % CUSUM
+
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -83,32 +88,13 @@ h = 10; % h-period IRFs
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
-% Give names
-if  PLM == constant_only
-    PLM_name = 'constant_only'
-elseif PLM == mean_only_PLM
-    PLM_name = 'mean_only_PLM';
-elseif PLM == slope_and_constant
-    PLM_name = 'slope_and_constant'
-end
+[PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
-if  gain == dgain
-    gain_name = 'dgain'
-    gain_title = 'Decreasing gain';
-elseif gain == cgain
-    gain_name = 'cgain'
-    gain_title = 'Constant gain';
-elseif gain == again_critCEMP
-    gain_name = 'again_critCEMP';
-    gain_title = 'Endogenous gain, CEMP''s criterion';
-elseif gain == again_critCUSUM
-    gain_name = 'again_critCUSUM';
-    gain_title = 'Endogenous gain, CUSUM criterion';
-end
 
 %% Simulate models
 
 % gen all the N sequences of shocks at once.
+rng(0)
 eN = randn(ne,T,N);
 
 % Preallocate
@@ -116,14 +102,14 @@ nd = size(dt_vals,2);
 d = 1; % the innovation, delta
 GIR_Y_EE = zeros(ny,h,N,nd);
 GIR_Y_LH = zeros(ny,h,N,nd);
-
+k = zeros(T,N);
 % warning off
 for s=2  %2->zoom in on monetary policy shock
     x0 = zeros(1,nx);
     x0(s) = d;
     
     for n=1:N
-        % Sequence of innovationsß
+        % Sequence of innovations
         e = squeeze(eN(:,:,n));
         
         % Unshocked
@@ -131,7 +117,7 @@ for s=2  %2->zoom in on monetary policy shock
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
-        [x_LH, y_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
+        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
         
         % Shocked
         % RE
@@ -146,7 +132,7 @@ for s=2  %2->zoom in on monetary policy shock
             dt = dt_vals(t);
             
             % Shocked
-            [~, ys_LH,evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
         end
@@ -201,3 +187,12 @@ legendnames = {'Learning', 'RE'};
 figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
 create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
 end
+
+
+% 3) Average inverse gains
+yseries=mean(1./k,2)';
+xseries=[1:T];
+seriesnames = '1/k';
+figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_', date_today];
+figtitle = ['Inverse gains ; ' , gain_title]; 
+create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)

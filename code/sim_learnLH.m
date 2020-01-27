@@ -16,6 +16,7 @@ if nargin < max_no_inputs %no shock specified
 end
 
 gbar = param.gbar;
+thettilde = param.thettilde;
 ny = size(gx,1);
 nx = size(hx,1);
 
@@ -48,7 +49,7 @@ phi = [a,b];
 phi_seq = nan(ny,nx+1,T);
 phi_seq(:,:,1) = phi;
 
-[~,sigx] = mom(gx,hx,eta*eta');
+[sigy,sigx] = mom(gx,hx,eta*eta');
 R = eye(nx+1); R(2:end,2:end) = sigx;
 R_seq = repmat(R,[1,1,T]);
 R_seq(:,:,1) = R;
@@ -65,7 +66,8 @@ FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 %%% initialize CUSUM variables: FEV om and criterion theta
-om = 0;
+om = sigy; %eye(ny);
+% om = om(1,1);
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
 %%%
 
@@ -130,10 +132,12 @@ for t = 1:T-1
             k(:,t) = k(:,t-1)+1;
         elseif gain==21 || gain == 22 % endogenous gain
             if crit == 1 % CEMP's criterion
-                k = fk_CEMP(a, b, xsim(:,t), k(:,t-1), param, Aa, Ab, As,hx);
+                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-                [k, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
+%                 fe = fe(1,1);
+                [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
+%                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain
