@@ -19,33 +19,35 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_simulated_sequence = 1;
+plot_IRFs=0;
+plot_simulated_sequence = 0;
+plot_gains=1;
 skip_old_stuff = 1;
 
 %% Parameters
 tic
 burnin = 0;
 
-[param, setp] = parameters_next;
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
 
-bet = param.bet;
+% bet = param.bet;
 sig = param.sig;
-alph = param.alph;
-kapp = param.kapp;
+% alph = param.alph;
+% kapp = param.kapp;
 psi_x = param.psi_x;
 psi_pi = param.psi_pi;
-w = param.w;
-gbar = param.gbar;
-thetbar = param.thetbar;
-rho_r = param.rho_r;
-rho_i = param.rho_i;
-rho_u = param.rho_u;
+% w = param.w;
+% gbar = param.gbar;
+% thetbar = param.thetbar;
+% rho_r = param.rho_r;
+% rho_i = param.rho_i;
+% rho_u = param.rho_u;
 sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
 rho = param.rho;
-p11 = param.p11;
-p22 = param.p22;
+% p11 = param.p11;
+% p22 = param.p22;
 ne = 3;
 
 % Params for the general learning code
@@ -72,13 +74,6 @@ T = 400 % 400
 N = 100 %500
 dt_vals = 25; % time of imposing innovation
 h = 10; % h-period IRFs
-
-% Take optimal values from fmincon exercise in grid_search.m
-% param.psi_pi = 1.0724; % CEMP
-% param.psi_x = 0.0490; % CEMP
-% param.psi_pi = 1.0646; % CUSUM
-% param.psi_x = 0.0451; % CUSUM
-
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -159,40 +154,53 @@ titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
 titles_LH = {'fa', 'fb'};
 titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
 
+% create indexes for the positions of the parameters
+fn = fieldnames(param);
+make_index(fn)
+interesting_param_names = param_names([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
+interesting_param_vals = param_values_str([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
+param_names_vals = cell(size(interesting_param_vals));
+relevant_params = 'params';
+for i=1:size(param_names_vals,2)
+    param_names_vals{i} = [interesting_param_names{i},'_',interesting_param_vals{i}];
+    relevant_params = [relevant_params, '_', param_names_vals{i}];
+end
 
-for t=1:nd % for the two diff times of imposing the shock
-    dt = dt_vals(t);
-    
+if plot_IRFs==1
+    for t=1:nd % for the two diff times of imposing the shock
+        dt = dt_vals(t);
+        
+        clear series
+        % 1) IRF: OBSERVABLES LH against RE
+        series(1,:,:) = RIR_Y_LH(:,:,t)';
+        series(2,:,:) = iry';
+        figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+        subplot_names = titles_obs;
+        legendnames = {'Learning', 'RE'};
+        figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
+        create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
+    end
+end
+
+if plot_simulated_sequence==1
     clear series
-    % 1) IRF: OBSERVABLES LH against RE
-    series(1,:,:) = RIR_Y_LH(:,:,t)';
-    series(2,:,:) = iry';
-    figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+    T_t = 100;
+    % 2) SIMULATED HISTORY: OBSERVABLES LH against RE
+    series(1,:,:) = y_LH(:,end-T_t:end)';
+    series(2,:,:) = y_RE(:,end-T_t:end)';
+    figname = [this_code, '_', 'sim' shocknames{s}, '_', gain_name, '_', PLM_name , '_', relevant_params, '_', date_today];
     subplot_names = titles_obs;
     legendnames = {'Learning', 'RE'};
     figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
     create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
-    
 end
 
-if plot_simulated_sequence==1
-clear series
-T_t = 100;
-% 2) SIMULATED HISTORY: OBSERVABLES LH against RE
-series(1,:,:) = y_LH(:,end-T_t:end)';
-series(2,:,:) = y_RE(:,end-T_t:end)';
-figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
-subplot_names = titles_obs;
-legendnames = {'Learning', 'RE'};
-figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
-create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
+if plot_gains==1
+    % 3) Average inverse gains
+    yseries=mean(1./k,2)';
+    xseries=1:T;
+    seriesnames = '1/k';
+    figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
+    figtitle = ['Inverse gains ; ' , gain_title];
+    create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end
-
-
-% 3) Average inverse gains
-yseries=mean(1./k,2)';
-xseries=[1:T];
-seriesnames = '1/k';
-figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_', date_today];
-figtitle = ['Inverse gains ; ' , gain_title]; 
-create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)

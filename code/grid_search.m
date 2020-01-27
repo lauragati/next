@@ -20,6 +20,7 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 plot_simulated_sequence = 1;
+do_fmincon =0;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -60,9 +61,12 @@ eN = randn(ne,T,N);
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
-varp0 = [1.19,0];
-ub = [1.2,1];
-lb = [1.01,-.01];
+% varp0 = [1.19,0];
+% ub = [1.2,1];
+% lb = [1.01,-.01];
+varp0 = 1.19;
+ub = 1.5;
+lb = 1.01;
 %Compute the objective function one time with some values
 loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
 
@@ -73,26 +77,39 @@ objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
 toc
 
 %% Compute loss as a function of psi_pi and psi_x=0
-% takes a little more than a min
-tic
-disp('Computing loss for psi_x=0 and various values of psi_pi...')
-M = 30;
-loss = zeros(1,M);
-psi_pi_vals = linspace(1,1.1,M);
-pis_x_here = 0;
-for m=1:M
-    if mod(m,10)==0
-        disp(['Iteration ', num2str(m), ' out of ', num2str(M)])
+if do_fmincon==1
+    % takes a little more than a min
+    tic
+    disp('Computing loss for psi_x=0 and various values of psi_pi...')
+    M = 30;
+    loss = zeros(1,M);
+    psi_pi_vals = linspace(1,1.1,M);
+    pis_x_here = 0;
+    for m=1:M
+        if mod(m,10)==0
+            disp(['Iteration ', num2str(m), ' out of ', num2str(M)])
+        end
+        psi_pi = psi_pi_vals(m);
+        loss(m) = objective_CB([psi_pi,pis_x_here],setp,eN,burnin,PLM,gain);
     end
-    psi_pi = psi_pi_vals(m);
-    loss(m) = objective_CB([psi_pi,pis_x_here],setp,eN,burnin,PLM,gain);
+    toc
 end
-toc
-
 %% Plot loss
+% create indexes for the positions of the parameters
+fn = fieldnames(param);
+make_index(fn)
+interesting_param_names = param_names([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
+interesting_param_vals = param_values_str([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
+param_names_vals = cell(size(interesting_param_vals));
+relevant_params = 'params';
+for i=1:size(param_names_vals,2)
+    param_names_vals{i} = [interesting_param_names{i},'_',interesting_param_vals{i}];
+    relevant_params = [relevant_params, '_', param_names_vals{i}];
+end
+
 yseries=loss;
 xseries=psi_pi_vals;
 seriesnames = 'Loss';
-figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_', date_today];
-figtitle = ['CB loss as a function of \psi_{\pi} ; ' , gain_title]; 
+figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+figtitle = ['CB loss as a function of \psi_{\pi} ; ' , gain_title];
 create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)

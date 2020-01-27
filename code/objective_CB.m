@@ -7,7 +7,7 @@ sig_u = setp.sig_u;
 
 % an admittedly awkward structure to sub in the variable params
  setp.('psi_pi') = varp(1);
- setp.('psi_x') = varp(2);
+%  setp.('psi_x') = varp(2); % only optimize over psi_pi for now
 
 param = setp;
 

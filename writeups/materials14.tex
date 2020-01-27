@@ -259,7 +259,32 @@ An issue with CUSUM: $\omega$ often becomes singular, so for fmincon to be able 
 Striking is that these optimal values do not produce anchored sequences. But of course this is super-sensitive to threshold criterion values which are completely arbitrary!
 
 
+\newpage
+\section{Behavior of CEMP and CUSUM criteria as functions of their parameters}
 
+$\psi_{\pi}=1.5, \psi_x = 0$.
+
+\begin{figure}[h!]
+\subfigure[$\tilde{\theta} = 0.1, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_1_kap_0_2_alph_CB_0_2020_01_27}}
+\subfigure[$\tilde{\theta} = 0.1, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_27}}
+\subfigure[$\tilde{\theta} = 0.2, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_2_alph_CB_0_2020_01_27}}
+\subfigure[$\tilde{\theta} = 0.2, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_27}}
+\subfigure[$\tilde{\theta} = 0.4, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_4_kap_0_2_alph_CB_0_2020_01_27}}
+\subfigure[$\tilde{\theta} = 1, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_4_kap_0_8_alph_CB_0_2020_01_27}}
+\caption{Inverse gains CUSUM, learning the constant only}
+\end{figure}
+
+A higher $\tilde{\kappa}$ just increases the action.
+
+\begin{figure}[h!]
+\subfigure[$\bar{\theta} = 1$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
+\subfigure[$\bar{\theta} = 3$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_3_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
+\subfigure[$\bar{\theta} = 4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
+\subfigure[$\bar{\theta} = 5$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_5_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
+\caption{Inverse gains CEMP, learning the constant only}
+\end{figure}
+
+\clearpage
 \newpage
 \section{Anchoring as a function of $\psi_{\pi}$}
 \begin{figure}[h!]

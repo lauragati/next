@@ -1,4 +1,4 @@
-function [param, set] = parameters_next
+function [param, set, param_names, param_values_str, param_titles] = parameters_next
 param.bet  = 0.99;%0.99
 param.sig  = 1; %1 IES=1 (log utility, consistent with balanced growth) Peter: micro estimates= 1/4 or 1/5, asset pricing lit finds 1/100.
 param.alph = 0.5; %0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 months)
@@ -20,7 +20,7 @@ param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
 param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.8; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
-param.thettilde = 0.2;%1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
+param.thettilde = 0.1;%1.60; % 1.6 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 param.gam = 0.128; % indexation in NKPC. Posterior mean CEMP.
 param.p11 = 0.95; % Follow Davig and Leeper's transition probabilities (Prob active|active = 0.95, Prob(passive|passive)=0.93)
 param.p22 = 0.93;
@@ -28,22 +28,32 @@ param.p21 = 1-param.p11;
 param.p12 = 1-param.p22;
 param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
-param.alph_CB = 0.5;
+param.alph_CB = 0;
 
 
 % % "weighted il" extension
-% param.psi_x  = param.psi_x*param.rho; 
+% param.psi_x  = param.psi_x*param.rho;
 % param.psi_pi = param.psi_pi*param.rho;
 
 % Set is just a copy of param as of 16 Nov 2019
+param_values = struct2array(param);
+param_values_str = cell(size(param_values));
+param_names = cell(size(param_values));
 fn = fieldnames(param);
 for k=1:numel(fn)
     if( isnumeric(param.(fn{k})) )
         % do stuff
         set.(fn{k}) = param.(fn{k}); % assign set the same value as param
-%         fn{k} % this prints the name of the field
+        %         fn{k} % this prints the name of the field
+        param_names{k} = fn{k};
+        param_values_str{k} = replace(num2str(param_values(k)), '.','_');
     end
 end
 
+param_titles = {'\beta', '\sigma', '\alpha','\eta', '\omega', '\theta','\zeta','\kappa','\psi_x', '\psi_{\pi}',...
+    'w', '\bar{g}', '\bar{\theta}','\rho_r', '\rho_i', '\rho_u','\rho','\sigma_r', '\sigma_i',...
+    '\sigma_u', '\tilde{kappa}', '\tilde{\theta}','\gamma', 'p_{11}', 'p_{22}','p_{21}','p_{12}', '\psi_{1}',...
+    '\psi_2','\alpha^{CB}'};
 % % create indexes for the positions of the parameters
 % make_index(fn)
+
