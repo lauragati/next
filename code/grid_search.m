@@ -20,11 +20,12 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 plot_simulated_sequence = 1;
-do_fmincon =0;
+do_fmincon =1;
+compute_loss=1;
 skip_old_stuff = 1;
 
 %% Parameters
-[param, setp] = parameters_next;
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
 
 burnin = 0;
@@ -45,45 +46,46 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCUSUM;
+gain = again_critCEMP;
 %%%%%%%%%%%%%%%%%%%
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 
 %% Fmincon
 % takes about 9 min
-tic
-% gen all the N sequences of shocks at once.
-rng(0)
-eN = randn(ne,T,N);
-
-%Optimization Parameters
-options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
-
-% varp0 = [1.19,0];
-% ub = [1.2,1];
-% lb = [1.01,-.01];
-varp0 = 1.19;
-ub = 1.5;
-lb = 1.01;
-%Compute the objective function one time with some values
-loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
-
-%Declare a function handle for optimization problem
-objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
-[par_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
-% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-toc
-
+if do_fmincon
+    tic
+    % gen all the N sequences of shocks at once.
+    rng(0)
+    eN = randn(ne,T,N);
+    
+    %Optimization Parameters
+    options = optimset('fmincon');
+    options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+    
+    % varp0 = [1.19,0];
+    % ub = [1.2,1];
+    % lb = [1.01,-.01];
+    varp0 = 1.01;
+    ub = 1.5;
+    lb = 1.01;
+    %Compute the objective function one time with some values
+    loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
+    
+    %Declare a function handle for optimization problem
+    objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
+    [par_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+    % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+    toc
+end
 %% Compute loss as a function of psi_pi and psi_x=0
-if do_fmincon==1
+if compute_loss==1
     % takes a little more than a min
     tic
     disp('Computing loss for psi_x=0 and various values of psi_pi...')
     M = 30;
     loss = zeros(1,M);
-    psi_pi_vals = linspace(1,1.1,M);
+    psi_pi_vals = linspace(1,1.5,M);
     pis_x_here = 0;
     for m=1:M
         if mod(m,10)==0

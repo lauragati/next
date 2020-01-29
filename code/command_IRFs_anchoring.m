@@ -66,7 +66,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCUSUM;
+gain = again_critCEMP;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
