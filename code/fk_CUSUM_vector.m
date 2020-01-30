@@ -13,14 +13,33 @@ gbar = param.gbar;
 kap = param.kap; % 0.80; allows the test-statistic to be revised at a different rate than the estimate of the mean. 0 < kap < 1.
 thettilde = param.thettilde; %1.60; the new thetbar. I just set both to match CEMP's criterion approx.
 
+% estimate of FEV
 om = omt_1 + kap*kt_1^(-1)*(f*f' - omt_1);
-thet = thett_1 + mean(mean(kap*kt_1^(-1)*(om^(-1)*(f*f')- thett_1)));
 
+%% Updating step - this is the issue
+
+% my old approach: pre-29 Jan 2020
+thet = thett_1 + mean(mean(kap*kt_1^(-1)*(om^(-1)*(f*f')- thett_1))); % <--- still fave
+
+% for scalar CUSUM: try srqt of the square (actually works for vector case too)
+% thet = thett_1 + mean(mean(kap*kt_1^(-1)*(om^(-1)*(f)- thett_1)));
+
+
+% Ryan, 29 Jan 2020
+% thet = thett_1 + kap*kt_1^(-1)*(det(om^(-1)*(f*f'))- thett_1); % % det is tiny!!
+
+
+
+
+
+
+% an approach I wanna avoid (29 Jan 2020)
 % % a projection facility..? --> om is exploding and need to deal with this!
 % if max(abs(eig(om))) >1
 %     om = omt_1;
 %     thet = thett_1;
 % end
 
+%% Compare to threshold
 I = thet <= thettilde;
 k = I.*(kt_1+1)+(1-I).*gbar^(-1);

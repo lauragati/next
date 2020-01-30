@@ -30,24 +30,15 @@ burnin = 0;
 
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 
-% bet = param.bet;
-sig = param.sig;
-% alph = param.alph;
-% kapp = param.kapp;
+
 psi_x = param.psi_x;
 psi_pi = param.psi_pi;
-% w = param.w;
-% gbar = param.gbar;
-% thetbar = param.thetbar;
-% rho_r = param.rho_r;
-% rho_i = param.rho_i;
-% rho_u = param.rho_u;
+thetbar =param.thetbar;
+thettilde = param.thettilde;
+
 sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
-rho = param.rho;
-% p11 = param.p11;
-% p22 = param.p22;
 ne = 3;
 
 % Params for the general learning code
@@ -66,7 +57,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCEMP;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
@@ -108,7 +99,7 @@ for s=2  %2->zoom in on monetary policy shock
         e = squeeze(eN(:,:,n));
         
         % Unshocked
-        dbstop if warning
+%         dbstop if warning
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
@@ -138,7 +129,7 @@ end
 % Construct RIRs by simple method: means (Option 1)
 RIR_Y_LH = squeeze(mean(GIR_Y_LH,3));
 
-disp(['(psi_x, psi_pi, rho, sig)=   ', num2str([psi_x, psi_pi, rho, sig])])
+disp(['(psi_x, psi_pi, thetbar, thettilde)=   ', num2str([psi_x, psi_pi, thetbar, thettilde])])
 toc
 
 if stop_before_plots==1

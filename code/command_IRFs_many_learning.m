@@ -69,7 +69,7 @@ constant_only = 1; % learning constant only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 % lets alternate between these
-PLM = constant_only;
+PLM = slope_and_constant;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again = 2;

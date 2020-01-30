@@ -97,14 +97,15 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         
-        % A mini-projection facility for slope-and-constant learning
-        if PLM==2
-            keep_R = projection_facility(R,0.995);
-            if keep_R ~=1
-                R = R_seq(:,:,t-1);
-                phi = phi_seq(:,:,t-1);
-            end
-        end
+%         % A mini-projection facility for slope-and-constant learning
+%         if PLM==2
+%             keep_R = projection_facility(R,0.995);
+%             if keep_R ~=1
+%                 R = R_seq(:,:,t-1);
+%                 phi = phi_seq(:,:,t-1);
+%                 warning(['Projection facility invoked at t=', num2str(t) ])
+%             end
+%         end
         
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx); % new hx version
