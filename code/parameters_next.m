@@ -8,7 +8,7 @@ param.thet = 10; %10. price elasticity of demand, Woodford, taken from Chari Keh
 param.zeta = (param.om + 1/param.sig)/(1+param.om*param.thet); % parameter of strategic complementarity. If < 1, strat comp in price setting. If >1, strt subs.
 param.kapp = param.zeta * (1-param.alph*param.bet)/param.alph; % Woodford. Interest and Prices, p. 187.
 param.psi_x  = 0; %0
-param.psi_pi = 1.001; %1.5
+param.psi_pi = 2; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % 0.145 param_correct CEMP. 0.02 is the value a dgain algorithm gets after 50 periods.
 param.thetbar = 4;%1 or 4 or 0.029; % param_correct CEMP
@@ -20,7 +20,7 @@ param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
 param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.8; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
-param.thettilde = 0.2;%1.6 or 0.2 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
+param.thettilde = 2.5;%1.6 or 0.2 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 param.gam = 0.128; %0.128 indexation in NKPC. Posterior mean CEMP.
 param.p11 = 0.95; %0.95 Follow Davig and Leeper's transition probabilities (Prob active|active = 0.95, Prob(passive|passive)=0.93)
 param.p22 = 0.93;%0.93

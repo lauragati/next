@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Model summary}{2}{section.1}
 \contentsline {section}{\numberline {2}The CEMP vs. the CUSUM criterion}{3}{section.2}
-\contentsline {section}{\numberline {3}Behavior of CEMP and CUSUM criteria as functions of their parameters}{4}{section.3}
-\contentsline {section}{\numberline {4}Anchoring as a function of $\psi _{\pi }$}{6}{section.4}
-\contentsline {section}{\numberline {5}The central bank's loss function}{8}{section.5}
+\contentsline {section}{\numberline {3}Investigating the behavior of CEMP and CUSUM criteria}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Anchoring as a function of $\psi _{\pi }$, fixing $\psi _x = 0, \mathaccentV {bar}016{\theta }=4, \mathaccentV {tilde}07E{\theta }=0.2$}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Why do the two criteria behave opposite ways?}{5}{subsection.3.2}

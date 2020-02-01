@@ -20,7 +20,11 @@ kap = param.kap; % 0.80; allows the test-statistic to be revised at a different 
 thettilde = param.thettilde; %1.60; the new thetbar. I just set both to match CEMP's criterion approx.
 
 om = omt_1 + kap*kt_1^(-1)*(f^2 - omt_1);
-thet = thett_1 + kap*kt_1^(-1)*(f^2/om - thett_1);
+thet = thett_1 + kap*kt_1^(-1)*(f^2/om - thett_1); % original version
+% thet = thett_1 + kap*kt_1^(-1)*(f/om - thett_1); % check w/o squaring
+% thet = thett_1 + kap*kt_1^(-1)*(sqrt(f^2)/om - thett_1); % check w/
+% squaring and taking the square root (preserves positive sign)
+
 I = thet <= thettilde;
 k = I.*(kt_1+1)+(1-I).*gbar^(-1);
 

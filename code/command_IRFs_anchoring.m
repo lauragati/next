@@ -22,6 +22,7 @@ output_table = print_figs;
 plot_IRFs=0;
 plot_simulated_sequence = 0;
 plot_gains=1;
+plot_gain_IRF = 0;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -86,9 +87,11 @@ eN = randn(ne,T,N);
 % Preallocate
 nd = size(dt_vals,2);
 d = 1; % the innovation, delta
-GIR_Y_EE = zeros(ny,h,N,nd);
 GIR_Y_LH = zeros(ny,h,N,nd);
+GIR_k = zeros(h,N,nd);
 k = zeros(T,N);
+ks= zeros(T,N);
+
 % warning off
 for s=2  %2->zoom in on monetary policy shock
     x0 = zeros(1,nx);
@@ -118,9 +121,10 @@ for s=2  %2->zoom in on monetary policy shock
             dt = dt_vals(t);
             
             % Shocked
-            [~, ys_LH] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n)] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
+            GIR_k(:,n,t) = ks(dt:dt+h-1,n) - k(dt:dt+h-1,n);
         end
         
     end
@@ -128,6 +132,10 @@ end
 % warning on
 % Construct RIRs by simple method: means (Option 1)
 RIR_Y_LH = squeeze(mean(GIR_Y_LH,3));
+RIR_k = squeeze(mean(GIR_k,2));
+RIR_kinv = RIR_k;
+% only invert for nonzero elements 
+RIR_kinv(abs(RIR_k) > 0) = 1./RIR_k(abs(RIR_k) > 0);
 
 disp(['(psi_x, psi_pi, thetbar, thettilde)=   ', num2str([psi_x, psi_pi, thetbar, thettilde])])
 toc
@@ -193,5 +201,16 @@ if plot_gains==1
     seriesnames = '1/k';
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
     figtitle = ['Inverse gains ; ' , gain_title];
+    create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
+end
+
+if plot_gain_IRF==1
+    % 4) Inverse gain IRF
+    clear yseries xseries
+    yseries=RIR_kinv';
+    xseries=1:h;
+    seriesnames = '1/k';
+    figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
+    figtitle = ['IRF Inverse gains ; ' , gain_title];
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end

@@ -192,99 +192,40 @@ where $FE_t$ is the most recent short-run forecast error ($ny\times 1$), and $\o
 
 
 \newpage
-\section{Behavior of CEMP and CUSUM criteria as functions of their parameters}
+\section{Investigating the behavior of CEMP and CUSUM criteria}
 
-$\psi_{\pi}=1.5, \psi_x = 0$.
-
+\subsection{Anchoring as a function of $\psi_{\pi}$, fixing $\psi_x = 0, \bar{\theta}=4, \tilde{\theta}=0.2$}
 \begin{figure}[h!]
-\subfigure[$\tilde{\theta} = 0.1, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_1_kap_0_2_alph_CB_0_2020_01_27}}
-\subfigure[$\tilde{\theta} = 0.1, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_27}}
-\subfigure[$\tilde{\theta} = 0.2, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_2_alph_CB_0_2020_01_27}}
-\subfigure[$\tilde{\theta} = 0.2, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_27}}
-\subfigure[$\tilde{\theta} = 0.4, \tilde{\kappa} = 0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_4_kap_0_2_alph_CB_0_2020_01_27}}
-\subfigure[$\tilde{\theta} = 0.4, \tilde{\kappa} = 0.8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_4_kap_0_8_alph_CB_0_2020_01_27}}
-\caption{Inverse gains CUSUM, learning the constant only}
-\end{figure}
-
-A higher $\tilde{\kappa}$ just increases the action.
-
-\begin{figure}[h!]
-\subfigure[$\bar{\theta} = 1$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
-\subfigure[$\bar{\theta} = 3$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_3_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
-\subfigure[$\bar{\theta} = 4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
-\subfigure[$\bar{\theta} = 5$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_5_thettilde_1_6_kap_0_8_alph_CB_0_2020_01_27}}
-\caption{Inverse gains CEMP, learning the constant only}
-\end{figure}
-
-\clearpage
-\newpage
-\section{Anchoring as a function of $\psi_{\pi}$}
-\begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =1.01, \psi_x=0$}
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\caption{Inverse gains, $\psi_{\pi} =1.01$}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_1_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_1_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =1.1, \psi_x=0$}
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\caption{Inverse gains, $\psi_{\pi} =1.5$}
 \end{figure}
 
 \begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_2_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =1.2, \psi_x=0$}
+\subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_8_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\caption{Inverse gains, $\psi_{\pi} =2$}
 \end{figure}
 
-\begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =1.5, \psi_x=0$}
-\end{figure}
+\subsection{Why do the two criteria behave opposite ways?}
 
-\begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_8_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_8_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =1.8, \psi_x=0$}
-\end{figure}
-
-\begin{figure}[h!]
-\subfigure[CEMP's criterion, $\bar{\theta}=4$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion, $\tilde{\theta}=0.2$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_8_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Inverse gains, $\psi_{\pi} =2, \psi_x=0$}
-\end{figure}
-
-%Really the opposite idea, why?
-
-\clearpage
-
-\newpage
-\section{The central bank's loss function}
-Relying on Clarida, Gali and Gertler (1999), I start with the simple quadratic loss:
+A rough restatement of the two criteria: you get unanchored expectations if:
 \begin{equation}
-\mathcal{L} = \frac{1}{2} \E_t\sum_{T=t}^{\infty} \bigg( \alpha^{CB} x_T^2 + \pi_T^2\bigg)
+\theta_t^{CEMP} = | ( \phi - \begin{bmatrix} F & G \end{bmatrix}) | > \bar{\theta} \quad \quad \text{vs.} \quad \quad  \theta_t^{CUSUM} = f' \omega^{-1}f > \tilde{\theta}
 \end{equation}
+where $\phi$ is the agents' estimated matrix, $F,G$ are the ALM matrices that incorporate long-horizon expectations, $f$ is the one-period ahead forecast error and $\omega$ is the estimated forecast error variance matrix. (Note: I'm using L\"utkepohl's \emph{Introduction to Multiple Time Series Analysis}, p. 160 to reformulate the CUSUM criterion as a statistic that has a $\chi^2$ distribution.)
 
-\begin{figure}[h!]
-\subfigure[Loss]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath grid_search_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[Inverse gains associated with $\psi_{\pi}^*$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_365_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Central bank loss for $\psi_x=0, \alpha^{CB} = 0, \bar{\theta}=4$, computed as a cross-sectional average, $N=100, T=400$.}
-\end{figure}
-
-Fmincon says $\psi_{\pi}^* = 1.3650$.
-
-\begin{figure}[h!]
-\subfigure[Loss]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath grid_search_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[Inverse gains associated with $\psi_{\pi}^*$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_3_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
-\caption{Central bank loss for $\psi_x=0, \alpha^{CB} = 0, \tilde{\theta}=0.2$, computed as a cross-sectional average, $N=100, T=400$.}
-\end{figure}
-
-Fmincon says $\psi_{\pi}^* = 1.3$.
-     
-An issue with CUSUM: $\omega$ often becomes singular, so for fmincon to be able to run, I took the average element value of $\omega$. 
-
-A potential problem is that these optimal values are super-sensitive to threshold criterion values which are completely arbitrary!
+Here's the key difference between the two criteria:
+\begin{itemize}
+\item $F,G$ incorporate LH expectations. Thus when $\psi_{\pi}$ is large, $F,G$ move a lot, opening up the gap between $\phi$ and itself, leading to unanchored expectations.
+\item $f$ doesn't incorporate long-horizon expectations and thus doesn't move as much. In fact, when $\psi_{\pi}$ is large, current inflation responds less, and thus one-period ahead forecast errors are \emph{smaller}; you get more anchoring. 
+\end{itemize}
 
 
 \end{document}

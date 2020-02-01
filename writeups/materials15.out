@@ -1,5 +1,5 @@
 \BOOKMARK [1][-]{section.1}{Model summary}{}% 1
 \BOOKMARK [1][-]{section.2}{The CEMP vs. the CUSUM criterion}{}% 2
-\BOOKMARK [1][-]{section.3}{Behavior of CEMP and CUSUM criteria as functions of their parameters}{}% 3
-\BOOKMARK [1][-]{section.4}{Anchoring as a function of }{}% 4
-\BOOKMARK [1][-]{section.5}{The central bank's loss function}{}% 5
+\BOOKMARK [1][-]{section.3}{Investigating the behavior of CEMP and CUSUM criteria}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Anchoring as a function of , fixing x = 0, =4, =0.2}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Why do the two criteria behave opposite ways?}{section.3}% 5
