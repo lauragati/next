@@ -227,6 +227,72 @@ Here's the key difference between the two criteria:
 \item $f$ doesn't incorporate long-horizon expectations and thus doesn't move as much. In fact, when $\psi_{\pi}$ is large, current inflation responds less, and thus one-period ahead forecast errors are \emph{smaller}; you get more anchoring. 
 \end{itemize}
 
+\newpage
+\section{Analytical expressions for optimal Taylor rule coefficients}
+Following Woodford's \emph{Interest and Prices}, here's a procedure to obtain optimal Taylor rule coefficients. In Woodford's terminology, this consists of solving for the \emph{optimal noninertial plan} (oni) for the endogenous variables,  and then doing coefficient comparison between the Taylor rule and the \emph{oni}.
+\subsection{In-a-nutshell algorithm for optimal Taylor rule coefficients}
+\begin{enumerate}
+\item Postulate conjectures $z_t = \bar{z} +f_ju_t + g_j \hat{r}_t^n, \quad j=\pi,x,i \quad z=(\pi,x,i)'$ for the model consisting of an NKPC and NKIS relation and the AR(1) shocks $u, \hat{r}^n$, where $\hat{r}_t^n = r^n_t - \bar{r}$ (so that the natural rate has a drift, but $\hat{r}^n$ is detrended).
+\item Plug the conjectures into the two model equations to derive 2 constraints on the 3 deterministic components $(\bar{\pi}, \bar{x}, \bar{i})$ and 4 constraints on the 6 coefficients on disturbances, $f_j, g_j, \quad j=\pi,x,i$. (Use the known LOMs of shocks to write everything in terms of time $t$ shocks.)
+\item Solve 3 sets of optimizations
+\begin{enumerate}
+\item $(\bar{\pi}, \bar{x}, \bar{i}) = \argmin L^{det} \quad s.t.\quad  \text{the 2 constraints on deterministic components}$
+\item $f_j = \argmin L^{stab,u} \quad s.t.\quad  \text{ 2 out of 4 constraints on shock-coefficients}$, $j=\pi,x,i$. 
+\item $g_j = \argmin L^{stab,r} \quad s.t.\quad  \text{ the last 2 out of 4 constraints on shock-coefficients}$, $j=\pi,x,i$. 
+\end{enumerate}
+\item Compare coefficients of Taylor rule to \emph{oni}-solution of $i_t$.
+\end{enumerate}
+
+\subsection{Details}
+\begin{enumerate}
+\item The optimal noninertial plan (oni)\\
+A purely forward-looking set of optimal policies that specifies a LOM for each endogenous variable as the sum of a deterministic component (a long-run average, denoted above by ``bar") and a state-contingent component with an optimal response to state $t$ disturbances (the $f_j$ and $g_j$ above). Moreover, the deterministic components are optimal from a timeless perspective (i.e. they minimize $L^{det}$), and the state-contingent components minimize fluctuations coming from shocks ($L^{stab,u}, L^{stab,r}$). 
+\item The loss function of the monetary authority and its decomposition into deterministic and shock-contingent parts \\
+Following Woodford, I augment my loss function with some concern for interest rate stabilization:
+\begin{equation}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\}
+\end{equation}
+Woodford decomposes this as $L^{CB}= L^{det} + L^{stab}$ where the former only depends on the ``deterministic component of the equilibrium paths of the target variables,'' while the latter ``depends only on the equilibrium responses to unexpected shocks'' (p. 509). In particular:
+\begin{align}
+L^{det} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\E_t{\pi_T^2} +\lambda_x(\E_tx_T -x^*)^2 + \lambda_i(\E_ti_T -i^*)^2 \}\\
+L^{stab} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\text{var}_t(\pi_T)+\lambda_x\text{var}_t(x_T) + \lambda_i\text{var}_t(i_T) \}
+\end{align}
+Woodford then further decomposes $L^{stab}$ into an element conditional on each shock, but this is only for algebraic convenience.
+\item The Taylor rule \\
+Woodford postulates a Taylor rule of the form
+\begin{equation}
+i_t = \bar{i} + \phi_{\pi}(\pi_t - \bar{\pi}) + \phi_x(x_t -\bar{x})/4 
+\end{equation}
+(He divides by 4 to make the output gap quarterly.) Substituting in the conjectured and solved for \emph{oni}-solutions for the endogenous variables, one obtains:
+\begin{align}
+i_t & = \bar{i} + \phi_{\pi}(f_{\pi}u_t + g_{\pi}\hat{r}_t^n) + \phi_x(f_{x}u_t + g_{x}\hat{r}_t^n)/4 \\
+i_t & = \bar{i} + f_i u_t + g_i \hat{r}^n_t
+\end{align}
+allowing one to solve for $(\phi_{\pi}^*, \phi_x^*)$ as the solution to
+\begin{align}
+f_i & = \phi_{\pi}f_{\pi} + \phi_xf_{x} \\
+g_i & = \phi_{\pi}g_{\pi} + \phi_xg_{x}
+\end{align}
+\end{enumerate}
+
+\newpage
+\subsection{Optimal Taylor rule coefficients for RE model, with the simplifying assumption $\rho_u = \rho_r = \rho$}
+\begin{align}
+\phi_{\pi}^* & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma }
+\\
+\phi_{x}^* & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma }
+\end{align}
+which is - fabulously enough - exactly what Woodford obtains.
+\subsection{Optimal Taylor rule coefficients for the learning model, with the simplifying assumption $\rho_u = \rho_r = \rho$}
+\begin{align}
+\psi_{\pi}^* & =
+\frac{\kappa  \sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)-1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)} \\
+\psi_{x}^* & = 
+\frac{\lambda_x\sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)+\beta -1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)}
+\end{align}
+
+For a simple calibration like my model of $\lambda_i =1$ and $\lambda_x=0$ and
+$\{\beta \to 0.99,\sigma \to 1,\kappa \to 0.16,\rho \to 0.3,\alpha \to 0.5\}$, I get $\phi_{\pi}^*=0.360279$ and $\psi_{\pi}^*=11.5371$.
 
 \end{document}
 
