@@ -13,6 +13,8 @@ max_no_inputs = nargin(this_code);
 if nargin < max_no_inputs %no shock specified
     dt = 0;
     x0 = 0;
+else
+    dt= dt+ndrop;
 end
 
 gbar = param.gbar;
@@ -69,6 +71,7 @@ FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realize
 om = sigy; %eye(ny);
 % om = om(1,1);
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
+% thet = thettilde; % actually it's quite sensitive to where you initialize it.
 %%%
 
 % Do an initial check to see whether we have endogenous states that are
@@ -190,3 +193,4 @@ ysim(:,t+1) = gx*xsim(:,t+1);
 xsim = xsim(:,ndrop+1:end);
 ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
+k = k(:,ndrop+1:end);

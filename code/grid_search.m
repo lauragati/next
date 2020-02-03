@@ -21,7 +21,7 @@ output_table = print_figs;
 
 plot_simulated_sequence = 1;
 do_fmincon =1;
-compute_loss=1;
+compute_loss=0;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -46,13 +46,13 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCEMP;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 
 %% Fmincon
-% takes about 9 min
+% takes about 4 min
 if do_fmincon
     tic
     % gen all the N sequences of shocks at once.
@@ -67,7 +67,7 @@ if do_fmincon
     % ub = [1.2,1];
     % lb = [1.01,-.01];
     varp0 = 1.01;
-    ub = 1.5;
+    ub = 5; % 1.5
     lb = 1.01;
     %Compute the objective function one time with some values
     loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);

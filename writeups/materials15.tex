@@ -118,7 +118,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 15 - More on the CEMP vs. CUSUM criteria}
+\title{Materials 15 - More on the CEMP vs. CUSUM criteria and optimal Taylor rule coefficients}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -194,22 +194,22 @@ where $FE_t$ is the most recent short-run forecast error ($ny\times 1$), and $\o
 \newpage
 \section{Investigating the behavior of CEMP and CUSUM criteria}
 
-\subsection{Anchoring as a function of $\psi_{\pi}$, fixing $\psi_x = 0, \bar{\theta}=4, \tilde{\theta}=0.2$}
+\subsection{Anchoring as a function of $\psi_{\pi}$, fixing $\psi_x = 0, \bar{\theta}=4, \tilde{\theta}=2.5$}
 \begin{figure}[h!]
 \subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_03}}
 \caption{Inverse gains, $\psi_{\pi} =1.01$}
 \end{figure}
 
 \begin{figure}[h!]
 \subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_03}}
 \caption{Inverse gains, $\psi_{\pi} =1.5$}
 \end{figure}
 
 \begin{figure}[h!]
 \subfigure[CEMP's criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_0_1_kap_0_8_alph_CB_0_2020_01_28}}
-\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_8_psi_x_0_gbar_0_145_thetbar_1_thettilde_0_2_kap_0_8_alph_CB_0_2020_01_28}}
+\subfigure[CUSUM criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_03}}
 \caption{Inverse gains, $\psi_{\pi} =2$}
 \end{figure}
 
@@ -225,6 +225,15 @@ Here's the key difference between the two criteria:
 \begin{itemize}
 \item $F,G$ incorporate LH expectations. Thus when $\psi_{\pi}$ is large, $F,G$ move a lot, opening up the gap between $\phi$ and itself, leading to unanchored expectations.
 \item $f$ doesn't incorporate long-horizon expectations and thus doesn't move as much. In fact, when $\psi_{\pi}$ is large, current inflation responds less, and thus one-period ahead forecast errors are \emph{smaller}; you get more anchoring. 
+\end{itemize}
+
+This is equivalent to saying that the CEMP criterion encompasses the sum of forecast errors at all horizons, while the CUSUM criterion essentially depends on a single, one-period ahead forecast error. 
+
+Other differences:
+\begin{itemize}
+\item the CEMP-criterion is not (directly) affected by noise.
+\item the CUSUM-criterion is very sensitive to initialization: \\
+Especially the choice of $\theta_0$ matters a lot for initial dynamics which is why on these graphs you initially have anchoring b/c I initialize $\theta_0$ as zero. If, on the contrary, I initialize it as $\tilde{\theta}$ or higher, you don't get the initial anchored period. The same effect is achieved by setting a burn-in period of 100 or so.
 \end{itemize}
 
 \newpage
@@ -263,7 +272,7 @@ Woodford postulates a Taylor rule of the form
 \begin{equation}
 i_t = \bar{i} + \phi_{\pi}(\pi_t - \bar{\pi}) + \phi_x(x_t -\bar{x})/4 
 \end{equation}
-(He divides by 4 to make the output gap quarterly.) Substituting in the conjectured and solved for \emph{oni}-solutions for the endogenous variables, one obtains:
+(He divides by 4 to make the output gap quarterly.) Substituting in the conjectured and solved-for \emph{oni}-solutions for the endogenous variables, one obtains:
 \begin{align}
 i_t & = \bar{i} + \phi_{\pi}(f_{\pi}u_t + g_{\pi}\hat{r}_t^n) + \phi_x(f_{x}u_t + g_{x}\hat{r}_t^n)/4 \\
 i_t & = \bar{i} + f_i u_t + g_i \hat{r}^n_t
@@ -278,21 +287,28 @@ g_i & = \phi_{\pi}g_{\pi} + \phi_xg_{x}
 \newpage
 \subsection{Optimal Taylor rule coefficients for RE model, with the simplifying assumption $\rho_u = \rho_r = \rho$}
 \begin{align}
-\phi_{\pi}^* & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma }
+\phi_{\pi}^* & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_phipi_RE}
 \\
-\phi_{x}^* & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma }
+\phi_{x}^* & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma } \label{opt_phix_RE}
 \end{align}
 which is - fabulously enough - exactly what Woodford obtains.
 \subsection{Optimal Taylor rule coefficients for the learning model, with the simplifying assumption $\rho_u = \rho_r = \rho$}
 \begin{align}
 \psi_{\pi}^* & =
-\frac{\kappa  \sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)-1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)} \\
+\frac{\kappa  \sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)-1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)} \label{opt_psipi_learn} \\
 \psi_{x}^* & = 
-\frac{\lambda_x\sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)+\beta -1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)}
+\frac{\lambda_x\sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)+\beta -1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)} \label{opt_psix_learn}
 \end{align}
 
 For a simple calibration like my model of $\lambda_i =1$ and $\lambda_x=0$ and
-$\{\beta \to 0.99,\sigma \to 1,\kappa \to 0.16,\rho \to 0.3,\alpha \to 0.5\}$, I get $\phi_{\pi}^*=0.360279$ and $\psi_{\pi}^*=11.5371$.
+$\{\beta \to 0.99,\sigma \to 1,\kappa \to 0.16,\rho \to 0.3,\alpha \to 0.5\}$, I get $\phi_{\pi}^*=0.360279$ and $\psi_{\pi}^*=18.7714$.
+
+\begin{figure}[h!]
+\includegraphics[scale=1]{\myFigPath materials15_opt_coeffs}
+\caption{Optimal Taylor rule coefficients for $\lambda_i = 1$ as a function of $\rho$}
+\end{figure}
+
+Like Woodford observes, equations (\ref{opt_phipi_RE})-(\ref{opt_psix_learn}) impose certain bounds on $\rho$: this bound is higher for RE than for learning. Another point to note is that decreasing $\lambda_i$ just scales the optimal coefficients as a function of $\rho$ up, but preserving the functional form.
 
 \end{document}
 

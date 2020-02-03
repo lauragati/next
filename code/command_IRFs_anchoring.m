@@ -19,7 +19,7 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_IRFs=0;
+plot_IRFs=1;
 plot_simulated_sequence = 0;
 plot_gains=1;
 plot_gain_IRF = 0;
@@ -27,8 +27,6 @@ skip_old_stuff = 1;
 
 %% Parameters
 tic
-burnin = 0;
-
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 
 
@@ -63,8 +61,9 @@ gain = again_critCUSUM;
 
 T = 400 % 400
 % Size of cross-section
-N = 100 %500
-dt_vals = 25; % time of imposing innovation
+N = 100 %100, 500
+burnin = 0;
+dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 
 % RE model
@@ -82,7 +81,7 @@ eta = SIG; %just so you know
 
 % gen all the N sequences of shocks at once.
 rng(0)
-eN = randn(ne,T,N);
+eN = randn(ne,T+burnin,N);
 
 % Preallocate
 nd = size(dt_vals,2);
@@ -106,7 +105,7 @@ for s=2  %2->zoom in on monetary policy shock
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
-        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain);
+        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         
         % Shocked
         % RE
@@ -121,7 +120,7 @@ for s=2  %2->zoom in on monetary policy shock
             dt = dt_vals(t);
             
             % Shocked
-            [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n)] = sim_learnLH(gx,hx,SIG,T,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
             GIR_k(:,n,t) = ks(dt:dt+h-1,n) - k(dt:dt+h-1,n);
