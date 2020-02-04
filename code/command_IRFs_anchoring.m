@@ -19,7 +19,7 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_IRFs=1;
+plot_IRFs=0;
 plot_simulated_sequence = 0;
 plot_gains=1;
 plot_gain_IRF = 0;

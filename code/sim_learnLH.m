@@ -68,7 +68,8 @@ FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 %%% initialize CUSUM variables: FEV om and criterion theta
-om = sigy; %eye(ny);
+% om = sigy; %eye(ny);
+om = eta*eta';
 % om = om(1,1);
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
 % thet = thettilde; % actually it's quite sensitive to where you initialize it.

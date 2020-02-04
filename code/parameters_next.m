@@ -20,7 +20,7 @@ param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
 param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.8; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
-param.thettilde = 2.5;%1.6 or 0.2 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
+param.thettilde = 2.5;%1.6 or 2.5 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.
 param.gam = 0.128; %0.128 indexation in NKPC. Posterior mean CEMP.
 param.p11 = 0.95; %0.95 Follow Davig and Leeper's transition probabilities (Prob active|active = 0.95, Prob(passive|passive)=0.93)
 param.p22 = 0.93;%0.93
