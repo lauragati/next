@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {3}Investigating the behavior of CEMP and CUSUM criteria}{4}{section.3}
 \contentsline {subsection}{\numberline {3.1}Anchoring as a function of $\psi _{\pi }$, fixing $\psi _x = 0, \mathaccentV {bar}016{\theta }=4, \mathaccentV {tilde}07E{\theta }=2.5$}{4}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Why do the two criteria behave opposite ways?}{5}{subsection.3.2}
-\contentsline {section}{\numberline {4}Analytical expressions for optimal Taylor rule coefficients}{6}{section.4}
-\contentsline {subsection}{\numberline {4.1}In-a-nutshell algorithm for optimal Taylor rule coefficients}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Details}{6}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Optimal Taylor rule coefficients for RE model, with the simplifying assumption $\rho _u = \rho _r = \rho $}{8}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Optimal Taylor rule coefficients for the learning model, with the simplifying assumption $\rho _u = \rho _r = \rho $}{8}{subsection.4.4}
+\contentsline {section}{\numberline {4}Analytical expressions for optimal Taylor rule coefficients}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}In-a-nutshell algorithm for optimal Taylor rule coefficients}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Details}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Optimal Taylor rule coefficients for RE model, with the simplifying assumption $\rho _u = \rho _r = \rho $}{9}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Optimal Taylor rule coefficients for the learning model, with the simplifying assumption $\rho _u = \rho _r = \rho $}{9}{subsection.4.4}

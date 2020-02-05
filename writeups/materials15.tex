@@ -232,12 +232,37 @@ Sloppily, we can write the two criteria as:
 \item The big difference in the two is the way they treat noise: CEMP integrates it out, while CUSUM tries to cancel it out by dividing by the estimated FEV.
 \item Squaring the numerator in the CEMP criterion doesn't change its behavior. 
 \item Trying various ways of not squaring or taking the square root of the CUSUM criterion doesn't change its behavior.
-\item Inputting Var(noise) instead of $\hat{FEV}$ in the CUSUM denominator changes its behavior! You obtain the CEMP-criterion behavior: little anchoring for high $\psi_{\pi}$, much anchoring for low $\psi_{\pi}$.
+\item Inputting Var(noise) instead of $\hat{FEV}$ in the CUSUM denominator, or simply using the CUSUM numerator only changes its behavior! You obtain the CEMP-criterion behavior: little anchoring for high $\psi_{\pi}$, much anchoring for low $\psi_{\pi}$.
 \item[$\rightarrow$] Is the difference due to using the $FEV$ instead of Var(noise) or does it come from using an \emph{estimated} FEV?
-\item Here it is: Can decompose forecast errors as $FE = $ part due to learning + noise. CEMP's criterion is only moved by the former, while the CUSUM criterion moves in response to both. So imagine now a situation that introduces errors due to learning (high $\psi_{\pi}$): CEMP's criterion goes up. But CUSUM-agents can't distinguish between the two types of errors, so not only does FE go up, but also the estimate of the FEV. So the criterion doesn't move as much. 
+\item Decompose forecast errors as $FE = $ part due to learning + noise. CEMP's criterion is able to distinguish between those two and responds only to the part due to learning. The CUSUM criterion cannot. To see this, write the CUSUM criterion as a function of the CEMP criterion:
+\begin{align*}
+FE & = \phi s_{t-1}-[F,G]s_t  \\ 
+&=  \phi s_{t-1}-[F,G]s_{t-1} -[F,G]\varepsilon_{t} \\
+& = (\phi-{F,G})s_{t-1} -[F,G]\varepsilon_{t} \quad \quad | \text{ignoring} \; \Sigma^{-1} \; \text{and $s_{t-1}$, this is}\\
+& = \theta^{CEMP} - [F,G]\varepsilon_{t}  \numberthis \quad \quad | \text{Nb.: 2nd component conflates learning \& noise} \\
+FE^2 & = (\theta^{CEMP})^2 + [F,G]^2\varepsilon_{t}^2 -2 \theta^{CEMP} [F,G]\varepsilon_{t} \numberthis \\
+FEV & = \E(FE^2) = (\theta^{CEMP})^2 + [F,G]^2\Sigma
+\end{align*}
+
+\begin{align*}
+\rightarrow \hat{FEV} & = \E(FE^2) = (\theta^{CEMP})^2 + [F,G]^2\hat{\Sigma} \numberthis \\
+\Rightarrow \theta^{CUSUM} & = \frac{(\theta^{CEMP})^2 + [F,G]^2\varepsilon_{t}^2 -2 \theta^{CEMP} [F,G]\varepsilon_{t}}{ (\theta^{CEMP})^2 + [F,G]^2\hat{\Sigma}} \quad \quad | \text{Supposing that $\hat{\Sigma}\approx \varepsilon_t^2$} \\
+ \theta^{CUSUM} & = 1- 2\frac{ \theta^{CEMP} [F,G]\varepsilon_{t}}{(\theta^{CEMP})^2 + [F,G]^2\hat{\Sigma}}\numberthis \label{thetcusum}
+\end{align*}
 \end{itemize}
+$\Rightarrow$ Suggests that the difference comes from dividing the CUSUM-criterion by the FEV (doesn't matter if it's estimated or not). The reason this division is not innocent is because the CUSUM-criterion doesn't integrate out shocks - it relies on forecast errors, \emph{not expected forecast errors}, as the CEMP criterion does. Thus the cross-term $-2 \theta^{CEMP} [F,G]\varepsilon_{t}$ is not cancelled out, introducing movement in the opposite direction as the CEMP-criterion.
 
+What's the intuition? \\
+In absence of knowing the model, CUSUM-agents aren't able to evaluate the expectations $\E(FE)$ and $\E(FE^2)=FEV$. Thus they are not able to distinguish between forecast errors coming from learning or from noise. In particular, to evaluate the forecast error variance, ideally they'd want to compute it as
+\begin{equation}
+FEV = \text{variation coming from learning} +  \text{variation coming from noise} - 2\text{cov(learn, noise)}
+\end{equation}
+But since they are not able to distinguish between these components, the cross-term cov(learn, noise) contaminates their $FE^2$ expression, leading to a discrepancy between $FE^2$ and their estimated $\hat{FEV}$.
 
+In a sense this is like omitted variable bias, which biases their estimate $\theta^{CUSUM}$. % Whenever learning errors go the same way as errors from noise, we get a downward (upward?) bias, while if the errors go in opposite ways we get an upward (downward?) bias. 
+In particular, I'd suggest that errors from learning and noise are likely to go in the same direction, which means that $\theta^{CUSUM}$ will move in the opposite direction as $\theta^{CEMP}$.
+
+\vspace{1cm}
 
 \emph{A small side-note:
 \begin{itemize}
@@ -309,7 +334,7 @@ which is - fabulously enough - exactly what Woodford obtains.
 \frac{\lambda_x\sigma  (\beta  (\rho -1)-1) (\alpha  \beta  (\rho -1)+\beta -1)}{\kappa  \lambda_i \sigma  (\alpha  \beta  (\rho -1)-1)+\beta  \lambda_i (\rho -1) (\alpha  \beta  (\rho -1)+\beta -1)} \label{opt_psix_learn}
 \end{align}
 
-For a simple calibration like my model of $\lambda_i =1$ and $\lambda_x=0$ and
+For a simple calibration of $\lambda_i =1$ and $\lambda_x=0$ and
 $\{\beta \to 0.99,\sigma \to 1,\kappa \to 0.16,\rho \to 0.3,\alpha \to 0.5\}$, I get $\phi_{\pi}^*=0.360279$ and $\psi_{\pi}^*=18.7714$.
 
 \begin{figure}[h!]
@@ -317,7 +342,7 @@ $\{\beta \to 0.99,\sigma \to 1,\kappa \to 0.16,\rho \to 0.3,\alpha \to 0.5\}$, I
 \caption{Optimal Taylor rule coefficients for $\lambda_i = 1$ as a function of $\rho$}
 \end{figure}
 
-Like Woodford observes, equations (\ref{opt_phipi_RE})-(\ref{opt_psix_learn}) impose certain bounds on $\rho$: this bound is higher for RE than for learning. Another point to note is that decreasing $\lambda_i$ just scales the optimal coefficients as a function of $\rho$ up, but preserving the functional form.
+Like Woodford observes, equations (\ref{opt_phipi_RE})-(\ref{opt_psix_learn}) impose certain bounds on $\rho$: these bounds are higher for RE than for learning. Another point to note is that decreasing $\lambda_i$ just scales the optimal coefficients as a function of $\rho$ up, but preserves the functional form.
 
 \end{document}
 
