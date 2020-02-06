@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft_Feb2020.aux
+The style file: chicago.bst
+Database file #1: ref_next1.bib
+Warning--entry type for "outspoken" isn't style-file defined
+--line 826 of file ref_next1.bib
+Warning--entry type for "top" isn't style-file defined
+--line 838 of file ref_next1.bib
+Warning--empty volume in auerbach_goro2013's crossref of NBERales11-1
+Warning--need editor, key, or series for auerbach_goro2013 to crossref NBERales11-1
+Warning--no number and no volume in branch2014perpetual
+Warning--page numbers missing in branch2014perpetual
+Warning--no journal in eusepi2018limits
+Warning--no number and no volume in eusepi2018limits
+Warning--page numbers missing in eusepi2018limits
+Warning--can't use both author and editor fields in evans2013bayesian
+Warning--no number and no volume in ireland1997stopping
+Warning--no journal in whittle1983
+Warning--no number and no volume in whittle1983
+Warning--page numbers missing in whittle1983
+Warning--no number and no volume in WINKLER2019
+Warning--page numbers missing in WINKLER2019
+You've used 74 entries,
+            2861 wiz_defined-function locations,
+            1042 strings with 15493 characters,
+and the built_in function-call counts, 49586 in all, are:
+= -- 4301
+> -- 3355
+< -- 16
++ -- 994
+- -- 1197
+* -- 4317
+:= -- 9026
+add.period$ -- 225
+call.type$ -- 74
+change.case$ -- 508
+chr.to.int$ -- 72
+cite$ -- 88
+duplicate$ -- 1363
+empty$ -- 3084
+format.name$ -- 1387
+if$ -- 9181
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 68
+newline$ -- 371
+num.names$ -- 736
+pop$ -- 352
+preamble$ -- 1
+purify$ -- 951
+quote$ -- 0
+skip$ -- 1475
+stack$ -- 0
+substring$ -- 2792
+swap$ -- 456
+text.length$ -- 16
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 1412
+warning$ -- 14
+while$ -- 767
+width$ -- 0
+write$ -- 984
+(There were 16 warnings)

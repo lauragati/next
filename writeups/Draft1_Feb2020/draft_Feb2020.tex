@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+
+\def \myFigPath {../../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../../tables/} 
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\linespread{2.0}
+
+\title{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model \\
+\vspace{0.8cm}
+\small{Preliminary and Incomplete}}
+\author{Laura G\'ati} 
+\date{February 25, 2020} %\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\abstract{This paper investigates optimal monetary policy when expectation formation is characterized by potential anchoring of expectations. As in the adaptive learning literature, firms and households do not know the correct model of the economy and thus form expectations using a forecasting rule that they update in light of incoming data. Within this framework, the anchoring mechanism corresponds to an endogenous learning gain. Expectations are said to be anchored when forecasting performance is sufficiently good such that a decreasing gain is chosen. Expectations thus become a state variable from the viewpoint of monetary policy that requires proper monitoring and management. In particular, optimal policy will find it desirable to anchor expectations. \\
+
+For the Clough Graduate Workshop: \\
+As this project involves a certain level of technicality, I invite you to focus on the Introduction and the other descriptive sections. What I am looking to see is if the motivation of the project makes sense to you. Moreover, since it is a work in progress, at this stage I can only present suggestive results.}
+
+%\tableofcontents
+
+%\listoffigures
+
+ %%%%%%%%%%%%%%%%%%           INTRO            %%%%%%%%%%%%%%%%%% 
+\newpage
+\section{Introduction}\label{introduction}
+
+The current stance of the United States business cycle is boldly defiant of mainstream macroeconomic theory. The historically low unemployment level, portrayed on panel (a) of Fig. \ref{urate_FFR}, has not resulted in rising inflation. On the contrary, personal consumption expenditures (PCE) inflation has persistently undershot the Federal Reserve's 2\% target, prompting the Fed to be expansionary despite the economy experiencing a boom (panel (b)  of Fig. \ref{urate_FFR}).
+
+% should show PCE inflation
+
+\begin{figure}[h!]
+\subfigure[Unemployment rate, \%]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath dw_urate}}
+\subfigure[Fed funds rate target, upper limit, \%]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath dw_ffr}}
+\caption{}
+\label{urate_FFR}
+\end{figure}
+
+In this paper I argue that the key to understanding both the puzzling behavior of inflation as well as the Fed's response to it is the time series of long-run inflation expectations. As Fig. \ref{LRinflexp} shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. This indicates that the public has doubts whether the Fed desires or is able to restore inflation to the target. Confronted with a changing environment, the public therefore revises its predictions about the future course of the economy.
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath dw_Epi10}
+\caption{Market-based inflation expectations, 10 year, average, \%}
+\label{LRinflexp}
+\end{figure}
+
+Macroeconomic theory that seeks to understand this phenomenon thus needs to account for expectation formation that features a notion of stability of forecasting behavior. I propose a model in the adaptive learning tradition where the public sector's choice of learning gain is endogenous. This captures the idea that in normal times, when firms and households observe economic data that confirms their previous predictions, agents choose a decreasing gain and thus do not change their forecasting rules by much. By contrast, when incoming data suggests that the current forecasting rule is incorrect, agents switch to a constant gain, updating their forecasting rule strongly. I refer to the former case as \emph{anchored} and to the latter as \emph{unanchored expectations}.
+
+I embed the anchoring mechanism in an otherwise standard New Keynesian model of the type widely used for monetary policy analysis in academia and at central banks. This allows a crisp comparison between optimal monetary policy in the standard model with rational expectations and the model with the expectation anchoring mechanism. As is well known in the adaptive learning literature, the evolution of beliefs enters the model as an endogenous state variable. Since expectations about the future determine current outcomes, the model exhibits positive feedback effects.
+
+The contribution of this paper is to investigate how this affects the optimal conduct of monetary policy. It turns out that optimal monetary policy takes the stance of expectations explicitly into account. In particular, the central bank finds it optimal to anchor expectations whenever it is possible to do so. The desirability to anchor expectations may also introduce tradeoffs in the conduct of monetary policy, presenting a novel case for violations of the divine coincidence. This insight allows us to interpret the Fed's fall 2019 decision to lower interest rates despite a strong economy as an attempt to anchor expectations or to keep them from becoming unanchored. 
+
+ %%%%%%%%%%%%%%%%%%           RELATED LITERATURE            %%%%%%%%%%%%%%%%%% 
+\subsection{Related literature}
+My work draws on two strands of macroeconomic research. The first is the extensive literature on optimal monetary policy. Most of this literature, such as \cite{clarida1999science} or \cite{woodford2011interest}, analyzes optimal monetary policy in the New Keynesian (NK) model. As a result, the nature of optimal monetary policy in the NK model is well understood, which is the reason I adopt this framework as my benchmark. Optimal monetary in the NK model stabilizes the price level and, in the absence of shocks to desired markups (cost-push shocks), the divine coincidence holds. That is, stabilizing the price level coincides with stabilizing output around potential output. Moreover, if monetary policy is characterized using a rule of the form advocated by \cite{Taylor1993discretion}, the condition for determinacy in the NK model is that the Taylor principle is satisfied. My work revisits these principles from the lens of an NK model with anchoring replacing rational expectations.
+
+A branch of the optimal monetary policy literature has stressed the importance of commitment to the policy rule. \cite{kydland1977rules} shows that a discretionary policy leads to inflationary bias: the central bank engineers suboptimally high average levels of inflation because it ignores the effect of its policy on expectations altogether. As \cite{woodford2011interest} points out, some elements of inflationary bias survive in optimal commitment starting at a particular date $t_0$ (he refers to this as $t_0$-optimal commitment). This leads Woodford to develop an optimality concept he entitles ``timelessly optimal'' policy. As it turns out, within the class of purely forward-looking policy rules such as the Taylor rule, the learning model with anchoring has implications for the optimal policy from a timeless perspective as well.
+
+Since the seminal work by \cite{barro1983rules}, the discussion around discretion versus commitment has also been connected to the idea of central bank credibility, or, in the case of discretion, the lack thereof. This ties in with my work in two ways. First, in a provocative paper, \cite{ball1994credible} suggests an anomaly with the NK model. He demonstrates that a contemporaneous disinflation in the NK model causes a boom, contrary to common wisdom and empirical evidence. If one wishes the model responses to align with data, then, it has to be the case that expectations about future inflation do not move. Ball concludes from this that it must be the case that central banks have a credibility problem: how else could expectations not budge upon the announcement of disinflation? My work uncovers that in the absence of anchoring, the NK model behaves exactly in the way Ball describes: disinflations are expansionary due to the future monetary policy responses internalized by households and firms. My conclusion is however different: impulse responses align with data if expectations do not move because they are anchored. 
+
+The paper is also connected to the idea of credibility via the second branch of related work: the adaptive learning literature. Following the book by \cite{evans_honkapohja2001}, this literature replaces the rational expectations assumption by postulating an ad-hoc forecasting rule, the perceived law of motion (PLM), as the expectation-formation process. Agents use the PLM to form expectations and update it in every period using recursive estimation techniques. The intuition behind adaptive learning models is the idea that firms and households do not know the laws that govern the evolution of economic variables. Therefore they use the PLM to forecast instead, but as their sample of observed data grows, they refine to PLM and thus learn the true underlying laws of motion. 
+
+
+ %%%%%%%%%%%%%%%%%%           CONCLUSION            %%%%%%%%%%%%%%%%%% 
+\newpage
+\section{Conclusion}\label{conclusion}
+% CB independence not addressed but would be exciting
+
+ %%%%%%%%%%%%%%%%%%           BIBLIOGRAPHY            %%%%%%%%%%%%%%%%%% 
+\newpage
+\bibliographystyle{chicago}
+\bibliography{ref_next1}
+\nocite{*}
+
+\end{document}
+
+
+
+
+

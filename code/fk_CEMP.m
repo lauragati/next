@@ -12,8 +12,8 @@ phi = [a,b];
 
 thet = max(max(abs(SIG^-1 * (phi - [F,G]))));
 
-% An analogue of Lutkepohl's chi2-statistic:
-taubar = (phi - [F,G])' * SIG^-1 *(phi - [F,G]);
+% % An analogue of Lutkepohl's chi2-statistic:
+% taubar = (phi - [F,G])' * SIG^-1 *(phi - [F,G]);
 
 I = thet <= thetbar;
 k = I.*(kt_1+1)+(1-I).*gbar^(-1);
