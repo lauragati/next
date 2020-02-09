@@ -144,7 +144,7 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR}
 \end{equation}
 (Vector learning. For scalar learning, $\bar{z}= \begin{pmatrix} \bar{\pi} & 0 & 0\end{pmatrix}' $. I'm also not writing the case where the slope $b$ is also learned.)
  \begin{align*}
-k_t & = \begin{cases} k_{t-1}+1 \quad \text{when} \quad \theta^{CEMP} < \bar{\theta} \quad \text{or}  \quad  \theta^{CUSUM} < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis
+k_t & = \begin{cases} k_{t-1}+1 \quad \text{when} \quad \theta^{CEMP} < \bar{\theta} \quad \text{or}  \quad  \theta_t < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis
 \end{cases} 
 \end{align*}
 

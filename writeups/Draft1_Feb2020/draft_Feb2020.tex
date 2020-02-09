@@ -131,24 +131,271 @@ In this paper I argue that the key to understanding both the puzzling behavior o
 
 Macroeconomic theory that seeks to understand this phenomenon thus needs to account for expectation formation that features a notion of stability of forecasting behavior. I propose a model in the adaptive learning tradition where the public sector's choice of learning gain is endogenous. This captures the idea that in normal times, when firms and households observe economic data that confirms their previous predictions, agents choose a decreasing gain and thus do not change their forecasting rules by much. By contrast, when incoming data suggests that the current forecasting rule is incorrect, agents switch to a constant gain, updating their forecasting rule strongly. I refer to the former case as \emph{anchored} and to the latter as \emph{unanchored expectations}.
 
-I embed the anchoring mechanism in an otherwise standard New Keynesian model of the type widely used for monetary policy analysis in academia and at central banks. This allows a crisp comparison between optimal monetary policy in the standard model with rational expectations and the model with the expectation anchoring mechanism. As is well known in the adaptive learning literature, the evolution of beliefs enters the model as an endogenous state variable. Since expectations about the future determine current outcomes, the model exhibits positive feedback effects.
+I embed the anchoring mechanism in an otherwise standard New Keynesian model of the type widely used for monetary policy analysis in academia and at central banks. This allows a crisp comparison between optimal monetary policy in the standard rational expectations model and the model with the expectation-anchoring mechanism. As is well known in the adaptive learning literature, learning models turn the evolution of beliefs into an endogenous state variable. Since expectations about the future determine current outcomes, learning models exhibit positive feedback effects.
 
 The contribution of this paper is to investigate how this affects the optimal conduct of monetary policy. It turns out that optimal monetary policy takes the stance of expectations explicitly into account. In particular, the central bank finds it optimal to anchor expectations whenever it is possible to do so. The desirability to anchor expectations may also introduce tradeoffs in the conduct of monetary policy, presenting a novel case for violations of the divine coincidence. This insight allows us to interpret the Fed's fall 2019 decision to lower interest rates despite a strong economy as an attempt to anchor expectations or to keep them from becoming unanchored. 
 
  %%%%%%%%%%%%%%%%%%           RELATED LITERATURE            %%%%%%%%%%%%%%%%%% 
 \subsection{Related literature}
-My work draws on two strands of macroeconomic research. The first is the extensive literature on optimal monetary policy. Most of this literature, such as \cite{clarida1999science} or \cite{woodford2011interest}, analyzes optimal monetary policy in the New Keynesian (NK) model. As a result, the nature of optimal monetary policy in the NK model is well understood, which is the reason I adopt this framework as my benchmark. Optimal monetary in the NK model stabilizes the price level and, in the absence of shocks to desired markups (cost-push shocks), the divine coincidence holds. That is, stabilizing the price level coincides with stabilizing output around potential output. Moreover, if monetary policy is characterized using a rule of the form advocated by \cite{Taylor1993discretion}, the condition for determinacy in the NK model is that the Taylor principle is satisfied. My work revisits these principles from the lens of an NK model with anchoring replacing rational expectations.
+My work draws on two strands of macroeconomic research. The first is the extensive literature on optimal monetary policy. Most of this literature, such as \cite{clarida1999science} or \cite{woodford2011interest}, analyzes optimal monetary policy in the rational expectations New Keynesian (NK) model. As a result, the nature of optimal monetary policy in the NK model is well understood, which is the reason I adopt this framework as my benchmark of comparison. Optimal monetary policy in the NK model stabilizes the price level and, in the absence of shocks to desired markups (cost-push shocks), the divine coincidence holds. That is, stabilizing the price level coincides with stabilizing output around potential output. Moreover, if monetary policy is characterized using a rule of the form advocated by \cite{Taylor1993discretion}, the condition for determinacy in the NK model is that the Taylor principle is satisfied. My work revisits these principles from the lens of an NK model with anchoring replacing rational expectations.
 
-A branch of the optimal monetary policy literature has stressed the importance of commitment to the policy rule. \cite{kydland1977rules} shows that a discretionary policy leads to inflationary bias: the central bank engineers suboptimally high average levels of inflation because it ignores the effect of its policy on expectations altogether. As \cite{woodford2011interest} points out, some elements of inflationary bias survive in optimal commitment starting at a particular date $t_0$ (he refers to this as $t_0$-optimal commitment). This leads Woodford to develop an optimality concept he entitles ``timelessly optimal'' policy. As it turns out, within the class of purely forward-looking policy rules such as the Taylor rule, the learning model with anchoring has implications for the optimal policy from a timeless perspective as well.
+A branch of the optimal monetary policy literature has stressed the importance of commitment to the policy rule. \cite{kydland1977rules} shows that a discretionary policy leads to inflationary bias: the central bank engineers suboptimally high average levels of inflation because it ignores the effect of its policy on expectations altogether. As \cite{woodford2011interest} points out, some elements of inflationary bias survive in optimal commitment starting at a particular date $t_0$ (he refers to this as ``$t_0$-optimal commitment''). This leads Woodford to develop an optimality concept he entitles ``timelessly optimal'' policy. As it turns out, within the class of purely forward-looking policy rules such as the Taylor rule, the learning model with anchoring has implications for the optimal policy from a timeless perspective as well.
 
-Since the seminal work by \cite{barro1983rules}, the discussion around discretion versus commitment has also been connected to the idea of central bank credibility, or, in the case of discretion, the lack thereof. This ties in with my work in two ways. First, in a provocative paper, \cite{ball1994credible} suggests an anomaly with the NK model. He demonstrates that a contemporaneous disinflation in the NK model causes a boom, contrary to common wisdom and empirical evidence. If one wishes the model responses to align with data, then, it has to be the case that expectations about future inflation do not move. Ball concludes from this that it must be the case that central banks have a credibility problem: how else could expectations not budge upon the announcement of disinflation? My work uncovers that in the absence of anchoring, the NK model behaves exactly in the way Ball describes: disinflations are expansionary due to the future monetary policy responses internalized by households and firms. My conclusion is however different: impulse responses align with data if expectations do not move because they are anchored. 
+Since the seminal work by \cite{barro1983rules}, the discussion around discretion versus commitment has also been connected to the idea of central bank credibility, or, in the case of discretion, the lack thereof. This ties in with my work in two ways. First, in a provocative paper, \cite{ball1994credible} suggests an anomaly with the NK model. He demonstrates that a contemporaneous disinflation in the NK model causes a boom, contrary to conventional wisdom and empirical evidence. If one wishes the model responses to align with data, then, it has to be the case that expectations about future inflation do not move. Ball concludes from this that it must be the case that central banks have a credibility problem: how else could expectations not budge upon the announcement of disinflation? My work uncovers that in the absence of anchoring, the NK model behaves exactly in the way Ball describes: disinflations are expansionary due to the fact that future monetary policy responses are internalized by households and firms. My conclusion is however different: the reason expectations do not move is not because of credibility problems but because they are anchored. 
 
-The paper is also connected to the idea of credibility via the second branch of related work: the adaptive learning literature. Following the book by \cite{evans_honkapohja2001}, this literature replaces the rational expectations assumption by postulating an ad-hoc forecasting rule, the perceived law of motion (PLM), as the expectation-formation process. Agents use the PLM to form expectations and update it in every period using recursive estimation techniques. The intuition behind adaptive learning models is the idea that firms and households do not know the laws that govern the evolution of economic variables. Therefore they use the PLM to forecast instead, but as their sample of observed data grows, they refine to PLM and thus learn the true underlying laws of motion. 
+The issue of credibility is also a main theme in the second branch of related work: the adaptive learning literature. Following the book by \cite{evans_honkapohja2001}, this literature replaces the rational expectations assumption by postulating an ad-hoc forecasting rule, the perceived law of motion (PLM), as the expectation-formation process. Agents use the PLM to form expectations and update it in every period using recursive estimation techniques. The intuition behind adaptive learning models is the idea that firms and households do not know the laws that govern the evolution of economic variables. Therefore they use the PLM to forecast instead, but as their sample of observed data grows, they refine the PLM and thus learn the true underlying laws of motion. 
 
+The early learning literature concentrated on the question of under what conditions learning converges to rational expectations. Put another way, starting with an ad-hoc forecasting rule, under what conditions does the true data-generating process the PLM converges to correspond to the rational expectations equilibrium (REE)? Indeed, much of \cite{evans_honkapohja2001} is devoted to this question. As they show, the question can be answered by studying the map between the PLM and the data-generating process under learning, the actual law of motion (ALM). In their terminology, a REE is expectationally stable (E-stable) if the differential equation obtained by differentiating the map between PLM and ALM is stable. The latter can be examined using standard methods to determine the stability of dynamic systems.
+
+The vast majority of the learning literature still focuses on E-stability and various aspects related to it such as the speed of convergence. Examples are \cite{evans2003expectations}, \cite{marcet1989convergence}, \cite{ferrero2007monetary} or \cite{eusepi2018science}. In the context of the New Keynesian model, \cite{bullard2002learning} and \cite{preston2005} both investigate the conditions for an E-stable REE. Perhaps surprisingly, despite the methodological divide between the so-called Euler-equation learning approach advocated by the former and the long-horizon learning approach advanced by the latter, the two papers obtain the same result: the REE in the NK model is E-stable if the Taylor principle holds.  
+
+The quantitative dynamics of models with learning has received less attention in the literature. One reason may be that quantitative studies such as \cite{williams2003adaptive}, \cite{eusepi2011expectations}, \cite{LUBIK201685} or \cite{WINKLER2019} need to assign an appropriate value to the learning gain. And since only a handful of studies have estimated the gain (\cite{branch2006simple}, \cite{milani2007expectations}, \cite{eusepi2018limits} and \cite{carvalho2019anchored} appears to be an exhaustive list), calibration of this parameter is difficult.
+
+Another potential reason is that learning models with a sufficiently high constant gain exhibit oscillatory impulse responses. Since this is at odds with empirical studies of impulse responses obtained from structural vector autoregressions (SVAR), the tendency of learning models to produce oscillations in response to shocks has not been widely discussed. Yet oscillations show up in nearly all of the quantitative studies cited above (except for \cite{williams2003adaptive}). In fact, an early precursor to the learning literature, \cite{townsend1983}, is the first to observe that higher-order expectations can result in oscillatory dynamics. \cite{evans_honkapohja2001} and \cite{evans2013bayesian} therefore acknowledge oscillations as a potential problem of learning but do not attempt to reconcile it with data or to provide an economic interpretation of the phenomenon.
+
+% Endogenous gains, CEMP, credibility
+A small subset of the learning literature has reevaluated optimal monetary policy from the lens of a learning model (\cite{orphanides2004imperfect}, \cite{ferrero2007monetary}, \cite{molnar2014optimal}, \cite{eusepi2018science} and \cite{eusepi2018limits} are some examples). An even smaller subset consisting of \cite{marcet2003recurrent}, \cite{milani2014learning}, and \cite{carvalho2019anchored} has considered learning models with an endogenous gain. My paper is at the intersection of these two literatures as it analyzes optimal monetary policy in a learning model with an endogenous gain. 
+
+There doesn't appear to be a consensus on how learning - even in the absence of endogenous gains - affects optimal monetary policy. In the case of the New Keynesian model, for example, \cite{eusepi2018science} and \cite{molnar2014optimal} conclude that optimal monetary policy is more aggressive on inflation than under rational expectations, yet \cite{eusepi2018limits} find the exact opposite.
+
+Having an endogenous gain can alleviate this issue because it allows the modeler to capture an essential element of learning: the public's confidence that it has found the correct model of the economy. Choosing a decreasing gain corresponds neatly to the notion that firms and households no longer see the need to update their forecasting models because current models are performing sufficiently well. Choosing a constant gain, by contrast, captures the opposite case where agents, dissatisfied with the forecasting performance of their current model, rely on recent data very strongly to update their PLM. 
+
+This is the sense in which \cite{LUBIK201685} and \cite{carvalho2019anchored} interpret the choice of gain as a metric for the credibility of policy authorities in the eye of the public. In fact, \cite{carvalho2019anchored} interpret the choice of a decreasing gain as the public's trust in the central bank's inflation target and they are the first to label this trust \emph{anchored expectations}. My work takes the \cite{carvalho2019anchored} model of anchored expectations as a starting point and asks what the implications for optimal monetary policy are in a full-fledged New Keynesian model with an anchoring mechanism. 
+
+The paper is structured as follows. Section \ref{NK} contains a concise refresher of the New Keynesian model, both under rational expectations and in a learning version with proper microfoundations. Section \ref{learning} introduces the learning framework and spells out the anchoring mechanism. Section \ref{monpol} lays out the problem of the central bank. Section \ref{results_sim} presents initial, simulation-based results and provides intuition. Section \ref{results_anal} provides the main results of the paper. Section \ref{conclusion} concludes.
+
+ %%%%%%%%%%%%%%%%%%           NK MODEL            %%%%%%%%%%%%%%%%%% 
+\newpage
+\section{The underlying New Keynesian model}\label{NK}
+Apart from expectation formation, the model is a standard New Keynesian model where the rational expectations (RE) assumption is replaced by the expectation-anchoring mechanism. The advantage of having a standard NK backbone to the model is that one can neatly isolate the way the anchoring mechanism alters the behavior of the model. Since the mechanics of the rational expectations version of this model are well understood, I only lay out the model and pinpoint the few places where the assumption of nonrational expectations matters.\footnote{For the specifics of the NK model the reader is referred to \cite{woodford2011interest}.} To ease comparison, I follow the notation in \cite{woodford2011interest}. 
+
+\subsection{Households}
+The representative household is infinitely-lived and maximizes expected discounted lifetime utility from consumption net of the disutility of supplying labor hours:
+\begin{equation}
+\hat{\E}_t\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\label{lifetime_U}
+\end{equation}
+Here $U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor, respectively, and $\beta$ is the discount factor of the household. $h^i_T(j)$ denotes the supply of labor hours of household $i$ at time $T$ to the production of good $j$ and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $T$,  $C_T^i$, is a Dixit-Stiglitz composite of all goods in the economy:
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+As usual, $\theta>1$ denotes the elasticity of substitution between the varieties of consumption goods. Denoting by $p_T(j)$ the time-$T$ price of good $j$, the aggregate price level in the economy can then be written as
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+
+The budget constraint of household $i$ is given by
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + \int_0^1 w_t(j)h^i_t(j) + \Pi_t^i(j)  dj-T_t -P_tC^i_t
+ \label{BC}
+\end{equation}
+where $\Pi_t^i(j)$ denotes profits from firm $j$ remitted to household $i$, $T_t$ taxes, and $B^i_t$ the riskless bond purchases at time $t$.\footnote{For ease of exposition I have suppressed potential money assets here. This has no bearing on the model implications since it represents the cashless limit of an economy with explicit money balances.}
+
+The only difference to the standard New Keynesian model thus far is the expectation operator, $\hat{\E}$. This is the subjective expectation operator that differs from its rational expectations counterpart, $\E$, in that it does not encompass knowledge of the model. In particular, households have no knowledge of the fact that they are identical and by extension they also do not internalize that they hold identical beliefs about the evolution of the economy. As we will see in Section \ref{FOCs}, this has implications for their forecasting behavior and will result in decision rules that differ from those of the rational expectations version of the model.
+
+\subsection{Firms}
+
+Firms are monopolistically competitive producers of the differentiated varieties $y_t(j)$. The production technology of firm $j$ is $y_t(j)=A_tf(h_t(j))$, whose inverse, $f^{-1}(\cdot)$, signifies the amount of labor input. Noting that $A_t$ is the level of technology and that $w_t(j)$ is the wage per labor hour, firm $j$ profits at time $t$ can be written as
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+
+Firm $j$'s problem then is to set the price of the variety it produces, $p_t(j)$, to maximize the present discounted value of profit streams
+\begin{equation}
+\hat{\E}_t\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\label{lifetime_profits}
+\end{equation}
+subject to the downward-sloping demand curve
+\begin{equation}
+y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
+\end{equation}
+where 
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+is the stochastic discount factor from households. Nominal frictions enter the model through the parameter $\alpha$ in Equation (\ref{lifetime_profits}). This is the Calvo probability that firm $j$ is not able to adjust its price in a given period. 
+
+Analogously to households, the setup of the production side of the economy is standard up to the expectation operator. Also here the rational expectations operator $\E$ has been replaced by the subjective expectations operator $\hat{\E}$. This implies that firms, like households, do not know the model equations and fail to internalize that they are identical. Thus their decision rules, just like those of the households, will be distinct from their rational expectations counterparts. 
+
+\subsection{Aggregate laws of motion}\label{FOCs}
+The model solution procedure entails deriving first order conditions, taking a loglinear approximation around the nonstochastic steady state and imposing market clearing conditions to reduce the system to two equations, the New Keynesian Phillips curve (NKPC) and IS curve (NKIS). The presence of subjective expectations, however, implies that firms and households are not aware of the fact that they are identical. Thus, as \cite{preston2005} takes pains to point out, imposing market clearing conditions in the expectations of agents is inconsistent with the assumed information structure.\footnote{The target of \cite{preston2005}'s critique is the Euler-equation approach as exemplified for example by \cite{bullard2002learning}. This approach involves writing down the loglinearized first order conditions of the model, and simply replacing the rational expectations operators with subjective ones. In a separate paper, I demonstrate that the Euler-equation approach is not only inconsistent on conceptual grounds, but also delivers substantially different quantitative dynamics in a simulated New Keynesian model. Thus relying on the Euler-equation approach when investigating the role of learning can be misleading.} 
+
+Instead, I follow \cite{preston2005} in preventing firms and households from internalizing market clearing conditions. As \cite{preston2005} shows, this leads to long-horizon forecasts showing up in firms' and households' first order conditions. As a consequence, instead of the familiar expressions, the NKIS and NKPC take the following form:
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+Here $x_t$, $\pi_t$ and $i_t$ are the log-deviations of the output gap, inflation and the nominal interest rate from their steady state values, and $\sigma$ is the intertemporal elasticity of substitution. The variables $r_T^n$ and $u_T$ are exogenous disturbances representing a natural rate shock and a cost-push shock respectively. 
+
+The laws of motion (\ref{NKIS}) and (\ref{NKPC}) are obtained by deriving individual firms' and households' decision rules, which involve long-horizon expectations, and aggregating across the cross-section. Importantly, agents in the economy have no knowledge of these relations since they don't know that they are identical and thus are not able to impose market clearing conditions required to arrive at (\ref{NKIS}) and (\ref{NKPC}). Thus, although the evolution of the observables $(\pi,x)$ is governed by the exogenous state variables $(r^n, u)$ and long-horizon expectations via these two equations, agents in the economy are unaware of this. As I will spell out more formally in Section \ref{learning}, it is indeed the equilibrium mapping between states and jump variables the agents are attempting to learn.\footnote{The learning of (\ref{NKIS}) and (\ref{NKPC}) is complicated by the fact that the current stance of expectations figures into the equations, resulting in the well-known positive feedback effects of learning.} 
+
+The model is closed by the standard specification of monetary policy as a Taylor rule:
+\begin{equation}
+i_t = \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t  \label{TR}
+\end{equation}
+where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively and $\bar{i}_t$ is a monetary policy shock. I assume that the central bank publicly announces the Taylor rule. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning. 
+
+Next, to simplify notation,  I gather the exogenous state variables in the vector $s_t$ and jump variables in the vector $z_t$ as
+\begin{equation}
+s_t =  \begin{bmatrix}r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix} \quad \quad \quad \quad  z_t = \begin{bmatrix}\pi_t \\ x_t \\ i_t \end{bmatrix}
+\end{equation}
+Then, denoting long-horizon expectations as 
+ \begin{align}
+f_a(t)  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_b(t)  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+I write the laws of motion of jump variables (Equations (\ref{NKIS}), (\ref{NKPC}) and (\ref{TR})) compactly as
+\begin{equation}
+z_t  = A_af_a(t) + A_b f_b(t) + A_s s_t \label{LOM_LR} \\
+\end{equation}
+where the matrices $A_i, \; i=\{a,b,s\}$ gather coefficients and are given in App. \ref{app_A_matrices}. Assuming that exogenous variables evolve according to independent AR(1) processes, I write the state transition matrix equation as
+ \begin{equation}
+ s_t  = h s_{t-1} + \epsilon_t  \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0}, \Sigma) \label{exog}
+ \end{equation}
+where $h$ gathers the autoregressive coefficients $\rho_j$, $\epsilon_t$ the Gaussian innovations $\varepsilon_t^j$ and $\eta$ the standard deviations $\sigma_t^j$, for $j=\{r,i,u\}$. $\Sigma = \eta \eta'$  is the variance-covariance matrix of shocks.
+ \begin{align}
+ h  & \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \eta  =  \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
+ \end{pmatrix} 
+ \end{align}
+ 
+ Thus, while the state-space form of the solution for the rational expectations version of the model takes the form
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \label{state} \\
+ z_t & = g^{RE} s_t \label{obs_RE}
+ \end{align}
+ the model with learning leaves the state transition equation (\ref{state}) unchanged, but replaces (\ref{obs_RE}) with the law of motion for observables (\ref{LOM_LR}). Once I have specified expectation formation, I will revisit this formulation to highlight the difference between the rational expectations and learning versions of the model. 
+
+ 
+ 
+ %%%%%%%%%%%%%%%%%%           LEARNING            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Learning with anchored expectations}\label{learning}
+The main informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Therefore they are not able to form rational expectations forecasts. To see this, observe that an agent with rational expectations would internalize the rational expectations state-space system (\ref{state}) - (\ref{obs_RE}) and would therefore forecast future jumps as $\E_t z_{t+h} = g^{RE}\E_ts_{t+h} = g^{RE}h^{h}s_t$. Agents in the learning model however don't know $g^{RE}$ and are thus indeed unable to form the rational expectations forecast.
+
+How do they then form expectations about future values of jumps? Assuming that agents know the evolution of states, that is they have knowledge of Equation (\ref{state}), they postulate an ad-hoc relationship between states and jumps and seek to refine it in light of incoming data.\footnote{Allowing agents to know the state transition equation is a common assumption in the learning literature. In an extension, I relax this assumption and find that it has no substantial bearing on the results.}
+
+\subsection{Perceived law of motion}
+I assume agents consider a forecasting model for jumps of the form
+\begin{equation}
+\hat{\E}_{t}z_{t+1} = a_{t-1} + b_{t-1} s_{t} \label{PLM}  
+\end{equation}
+where $a$ and $b$ are estimated coefficients of dimensions $3\times1$ and $3\times3$ respectively. This perceived law of motion (PLM) reflects the assumption that agents forecast jumps using a linear function of current states and a constant, with last period's estimated coefficients. I also assume that 
+\begin{equation}
+\hat{\E}_{t}{\phi_{t+h}} = \phi_{t} \quad \forall \; h\geq0 
+\end{equation}
+This assumption, known in the learning literature as anticipated utility, means that agents fail to internalize that they will update the forecasting rule in the future.\footnote{This is a conventional assumption in the learning literature and serves to simplify the algebra. As \cite{sargent1999} shows, similar results obtain upon relaxing anticipated utility.} The PLM together with anticipated utility implies that $h$-period ahead forecasts are constructed as
+\begin{equation}
+\hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}h^{h}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
+\end{equation}
+Summarizing the estimated coefficients as $\phi_{t-1} \equiv \begin{bmatrix}a_{t-1} & b_{t-1}\end{bmatrix}$, here $3\times 4$, I can rewrite Equation (\ref{PLM}) as 
+\begin{equation} 
+\hat{\E}_t z_{t+1} = \phi_{t}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} \label{PLMcompact}
+\end{equation}
+The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $f_{t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t^{-1} R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi$. A low gain, by contrast, means that the current forecast error only has a small effect on $\phi_t$.
+
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time so that $k_t^{-1} = (k_{t-1}+1)^{-1}$. Instead, I allow firms and households in the model to choose whether to use a constant or a decreasing gain using the following endogenous gain specification: let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
+\begin{align}
+\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(f_{t-1} f_{t-1}'  -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(f_{t-1}'\omega_t^{-1}f_{t-1} -\theta_{t-1}) \label{cusum_crit}
+\end{align}
+where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $f_{t-1}$ is the most recent forecast error, realized at time $t$. Then for a specified threshold $\tilde{\theta}$, the gain is determined endogenously as
+\begin{align*}
+k_t & = \begin{cases} k_{t-1}+1 \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis \label{anchoring}
+\end{cases} 
+\end{align*}
+In other words, agents choose a decreasing gain when the criterion $\theta_t$ is lower than the threshold $\tilde{\theta}$; otherwise they choose a constant gain. This framework, which I refer to as an anchoring mechanism, captures the intuition that when current squared forecast errors are large compared to agents' estimated forecast error variance, agents conclude that the forecasting performance of their current PLM $\phi_{t-1}$ is poor. Since $\phi_{t-1}$ appears to provide an inaccurate description of the evolution of observables, agents choose a constant gain, reflecting their desire to update $\phi$ strongly using the most recent data. By contrast, if $\theta_t <\tilde{\theta}$, current squared forecast errors are not sizable compared the estimated forecast error variance; it seems that $\phi_{t-1}$ is close to the data-generating process and so agents see no need to change it, thus opting for a decreasing gain.
+
+Moreover, I refer to the situation when $\theta_t <\tilde{\theta}$ as anchored expectations. As outlined above, choosing a decreasing gain reflects that firms and households believe that they have found the correct model of the economy. In other words, they have confidence that the PLM $\phi_{t-1}$ is the true underlying mapping between states and jumps in the economy. 
+
+Now recall that $\phi = \begin{bmatrix} a & b \end{bmatrix}$, where $a$ is the estimate of the constant and $b$ the estimate of the slope in the law of motion of jumps. Believing the estimate $b$ to be the correct one means that agents think they know how the observables respond to shocks. Analogously, thinking  the estimate $a$ to be correct has the interpretation of agents being confident about the long-run average values of the observables. But that is equivalent to agents thinking that they know the long-run target values of the monetary authority for the endogenous variables. In fact, not only does the public sector in this case have knowledge of the central bank's targets, it also has confidence that the central bank is able to implement the targets in the long run. In this way, anchored expectations has a natural interpretation as trust in the central bank's long-run target. 
+
+Having thus established anchored expectations as a metric of credibility of the central bank, it becomes intuitive why a monetary authority would want make sure that expectations do not become unanchored. Clearly, unanchored expectations have the opposite interpretation to anchored ones: they reflect that the public has doubts about what the long-run target of the central bank is, or, if the public still believes the announced target, it then questions the central bank's ability to achieve it. And due to the feedback from expectations to observables (recall Equation (\ref{LOM_LR})), unanchored expectations can indeed lead to observables drifting away from the central bank's desired path. 
+
+\subsection{Actual law of motion}
+Having laid out the expectation formation, I can now characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
+\begin{equation}
+f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta h)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta h)^{-1}s_t  \label{fafb}
+\end{equation}
+Substituting these into the law of motion of observables (Equation (\ref{LOM_LR})) yields the actual law of motion (ALM):
+\begin{equation}
+z_t = g^l \begin{bmatrix} 1 \\ s_t
+\end{bmatrix}
+\label{ALM}
+\end{equation}
+where $g^l$ is a $3\times4$ matrix given in App. \ref{app_FG}. Thus, instead of the state-space solution of the RE version of the model (Equations (\ref{state}) and (\ref{obs_RE})), the state-space solution for the learning model is characterized by the pair of equations (\ref{state}) and (\ref{ALM}). 
+
+ %%%%%%%%%%%%%%%%%%           MON.POL. PROBLEM            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{The monetary policy problem}\label{monpol}
+I assume the monetary authority seeks to maximize welfare of the representative household under commitment. As shown in \cite{woodford2011interest}, a second-oder Taylor approximation of household utility delivers a central bank loss function of the form
+\begin{equation}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
+\end{equation}
+where $\lambda_j \; j=\{x,i\}$ is the weight the central bank assigns to stabilizing variable $j$ and $j^*$ is its target value. Given the postulated Taylor rule of Equation (\ref{TR}) as policy function of the central bank, the central bank's problem then becomes to choose the values of $(\psi_{\pi}, \psi_x)$ that minimize its loss in Equation (\ref{CBloss}).
+
+My solution procedure for this problem follows the approach laid out in \cite{woodford2011interest}. Since this is an optimal commitment problem subject to a purely forward-looking policy rule, I restrict my attention to a solution class \cite{woodford2011interest} refers to as the ``optimal noninertial plan.'' The noninertial solution involves splitting the problem into a deterministic part and a part that specifies optimal responses to unexpected shocks. One thus conjectures a solution for the observables of the form $z_t = \bar{z} + F s_t$ where $\bar{z}$ is the vector of optimal long-run average values and the elements of the matrix $F$ specify the optimal responses of the observables to shocks. Analogously, one can decompose (\ref{CBloss}) as $L^{CB}= L^{d} + L^{s}$, where
+\begin{align}
+L^{d} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\E_t{\pi_T^2} +\lambda_x(\E_tx_T -x^*)^2 + \lambda_i(\E_ti_T -i^*)^2 \}\\
+L^{s} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\text{var}_t(\pi_T)+\lambda_x\text{var}_t(x_T) + \lambda_i\text{var}_t(i_T) \}
+\end{align}
+One then solves for $\bar{z}$ as the value that minimizes the deterministic part of the loss, $L^d$, subject to the constraints that the conjecture is compatible with the model equations. Similarly, $F$ is the solution to the minimization of $L^s$ subject to the compatibility constraints. Having in this way obtained an optimal path for the observables $(\pi,x,i)$, one can then perform coefficient comparison on the Taylor rule to determine the optimal values of $(\psi_{\pi}, \psi_x)$.
+
+Abstracting from monetary policy shocks and imposing the simplifying assumption that $\rho_r = \rho_u \equiv \rho$, the optimal Taylor rule coefficients for the rational expectation version of the model are:
+\begin{align}
+\psi_{\pi}^{*,RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_phipi_RE}
+\\
+\psi_{x}^{*,RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma } \label{opt_phix_RE}
+\end{align}
+
+The noninertial solution for the anchoring version of the model is not obvious, however. The reason is that because of the learning mechanism, the stance of expectations augments the number of endogenous states by one. Therefore optimal noninertial policy needs to condition on the stance of expectations. As this is what I am currently working on, I do not yet have results to present here. I therefore turn to simulation-based solutions to the central bank's problem.
+
+
+ %%%%%%%%%%%%%%%%%%           SIMULATION RESULTS            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Simulations}\label{results_sim}
+In this section I simulate the rational expectations and learning versions of the model and compute the optimal Taylor rule coefficients numerically. Table \ref{calibration} summarizes the calibrated parameter values.
+
+% CONT HERE
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+ $\beta$ & 0.99 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+% $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule \\\hline
+% $\psi_x$ & 1.5   & coefficient of the output gap in Taylor rule  \\\hline
+ $\bar{g}$ & $0.145$  & value of the constant gain \\\hline
+& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+ $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline
+  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline
+    $\rho_i$ & 0.877 &  persistence of monetary policy shock  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+    $\sigma_i$ & 0.359 & standard deviation of natural rate shock  \\ \hline
+    $\sigma_r$ &  0.1  &standard deviation of monetary policy shock  \\ \hline
+    $\sigma_u$ & 0.277 & standard deviation of cost-push shock   \\ \hline  
+\end{tabular}     
+      \caption{Calibrated parameters}  \label{calibration}
+ \end{table}
+\end{center}
+
+ %%%%%%%%%%%%%%%%%%           ANALYTICAL RESULTS            %%%%%%%%%%%%%%%%%% 
+\newpage
+\section{Results}\label{results_anal}
+[TO BE ADDED]
 
  %%%%%%%%%%%%%%%%%%           CONCLUSION            %%%%%%%%%%%%%%%%%% 
-\newpage
+%\newpage
 \section{Conclusion}\label{conclusion}
+[TO BE ADDED]
 % CB independence not addressed but would be exciting
 
  %%%%%%%%%%%%%%%%%%           BIBLIOGRAPHY            %%%%%%%%%%%%%%%%%% 
@@ -156,6 +403,44 @@ The paper is also connected to the idea of credibility via the second branch of 
 \bibliographystyle{chicago}
 \bibliography{ref_next1}
 \nocite{*}
+
+ %%%%%%%%%%%%%%%%%%           APPENDIX            %%%%%%%%%%%%%%%%%% 
+\newpage
+\appendix
+\section{Coefficient matrices in NK model}\label{app_A_matrices}
+\begin{align}
+%A_p^{RE} & = \begin{pmatrix} \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) & \frac{\kappa}{w} & 0\\
+% \frac{\sigma}{w} (1-\psi_{\pi}\beta) & \frac{1}{w}& 0\\ 
+%\psi_{\pi}\big( \beta + \frac{\kappa\sigma}{w} (1-\psi_{\pi}\beta) \big) +\psi_x\frac{\sigma}{w} (1-\psi_{\pi}\beta)&  \psi_x (\frac{1}{w})+ \psi_{\pi} (\frac{\kappa}{w})& 0\end{pmatrix} \quad \\
+%A_s^{RE} &= \begin{pmatrix}   \frac{\kappa\sigma}{w}  &-\frac{\kappa\sigma}{w}  & 1-\frac{\kappa\sigma\psi_{\pi}}{w}\\
+% \frac{ \sigma}{w} &  -\frac{\sigma}{w} & -\frac{\sigma\psi_{\pi}}{w}\\ 
+% \psi_x( \frac{\sigma}{w}) + \psi_{\pi}( \frac{\kappa\sigma}{w}) & \psi_x(- \frac{\sigma}{w}) + \psi_{\pi}(- \frac{\kappa\sigma}{w}) +1 &  \psi_x(-\frac{\sigma\psi_{\pi}}{w}) + \psi_{\pi}( 1-\frac{\kappa\sigma\psi_{\pi}}{w})\end{pmatrix}  
+%\\
+A_a & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_b = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_s = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta P)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta P)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta P)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta P)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+
+\section{The observation matrix for learning}\label{app_FG}
+\begin{equation}
+g^l = \begin{bmatrix} F & G \end{bmatrix}
+\end{equation}
+with
+\begin{align}
+F & = \bigg(A_a \frac{1}{1-\alpha\beta} + A_b\frac{1}{1-\beta} \bigg)a_{t-1}\\
+G & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(I_3 - \beta h \bigg)^{-1} + A_s
+\end{align}
+
 
 \end{document}
 

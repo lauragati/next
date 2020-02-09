@@ -1,11 +1,5 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\citeauthoryear{Alesina and Giavazzi}{Alesina and
-  Giavazzi}{2013}]{NBERales11-1}
-Alesina, A. and F.~Giavazzi (2013).
-\newblock {\em Fiscal Policy after the Financial Crisis}.
-\newblock University of Chicago Press.
-
 \bibitem[\protect\citeauthoryear{Appelbaum}{Appelbaum}{2016}]{outspoken}
 Appelbaum, B. (2016, May).
 \newblock Outspoken fed official frets about following japan's path.
@@ -14,7 +8,7 @@ Appelbaum, B. (2016, May).
   Gorodnichenko}{2012}]{auerbach_goro2013}
 Auerbach, A.~J. and Y.~Gorodnichenko (2012, February).
 \newblock {\em Fiscal Multipliers in Recession and Expansion}, pp.\  63--98.
-\newblock In  \citeN{NBERales11-1}.
+\newblock University of Chicago Press.
 
 \bibitem[\protect\citeauthoryear{Bai, Lumsdaine, and Stock}{Bai
   et~al.}{1998}]{bai1998testing}
@@ -96,6 +90,18 @@ Brown, R.~L., J.~Durbin, and J.~M. Evans (1975).
   time.
 \newblock {\em Journal of the Royal Statistical Society: Series B
   (Methodological)\/}~{\em 37\/}(2), 149--163.
+
+\bibitem[\protect\citeauthoryear{Bullard and Mitra}{Bullard and
+  Mitra}{2002}]{bullard2002learning}
+Bullard, J. and K.~Mitra (2002).
+\newblock Learning about monetary policy rules.
+\newblock {\em Journal of Monetary Economics\/}~{\em 49\/}(6), 1105--1129.
+
+\bibitem[\protect\citeauthoryear{Carvalho, Eusepi, Moench, and
+  Preston}{Carvalho et~al.}{2019}]{carvalho2019anchored}
+Carvalho, C., S.~Eusepi, E.~Moench, and B.~Preston (2019).
+\newblock Anchored inflation expectations.
+\newblock {\em Available at SSRN 3018198\/}.
 
 \bibitem[\protect\citeauthoryear{Chiang and Wainwright}{Chiang and
   Wainwright}{2005}]{chiang}
@@ -184,6 +190,24 @@ Eusepi, S. and B.~Preston (2010, July).
 \newblock {\em American Economic Journal: Macroeconomics\/}~{\em 2\/}(3),
   235--71.
 
+\bibitem[\protect\citeauthoryear{Eusepi and Preston}{Eusepi and
+  Preston}{2011}]{eusepi2011expectations}
+Eusepi, S. and B.~Preston (2011).
+\newblock Expectations, learning, and business cycle fluctuations.
+\newblock {\em American Economic Review\/}~{\em 101\/}(6), 2844--72.
+
+\bibitem[\protect\citeauthoryear{Eusepi and Preston}{Eusepi and
+  Preston}{2018}]{eusepi2018science}
+Eusepi, S. and B.~Preston (2018).
+\newblock The science of monetary policy: An imperfect knowledge perspective.
+\newblock {\em Journal of Economic Literature\/}~{\em 56\/}(1), 3--59.
+
+\bibitem[\protect\citeauthoryear{Evans and Honkapohja}{Evans and
+  Honkapohja}{2001}]{evans_honkapohja2001}
+Evans, G.~W. and S.~Honkapohja (2001).
+\newblock {\em Learning and Expectations in Macroeconomics}.
+\newblock Princeton University Press.
+
 \bibitem[\protect\citeauthoryear{Evans and Honkapohja}{Evans and
   Honkapohja}{2003}]{evans2003expectations}
 Evans, G.~W. and S.~Honkapohja (2003).
@@ -225,12 +249,6 @@ Ferrero, G. (2007).
 \newblock {\em Journal of Economic dynamics and control\/}~{\em 31\/}(9),
   3006--3041.
 
-\bibitem[\protect\citeauthoryear{Frankel and Kartik}{Frankel and
-  Kartik}{2016}]{frankel_kartik}
-Frankel, A. and N.~Kartik (2016).
-\newblock What kind of central bank competence?
-\newblock Technical report, Working Paper, Columbia.
-
 \bibitem[\protect\citeauthoryear{Fuster, Perez-Truglia, and Zafar}{Fuster
   et~al.}{2018}]{fuster_etal2018wp}
 Fuster, A., R.~Perez-Truglia, and B.~Zafar (2018, June).
@@ -265,12 +283,6 @@ Ireland, P.~N. (1997).
 Jord{\`a}, {\`O}. (2005, March).
 \newblock Estimation and inference of impulse responses by local projections.
 \newblock {\em American Economic Review\/}~{\em 95\/}(1), 161--182.
-
-\bibitem[\protect\citeauthoryear{Jord{\`a} and Taylor}{Jord{\`a} and
-  Taylor}{2019}]{NBERw26262}
-Jord{\`a}, {\`O}. and A.~M. Taylor (2019, September).
-\newblock Riders on the storm.
-\newblock Working Paper 26262, National Bureau of Economic Research.
 
 \bibitem[\protect\citeauthoryear{Kilian and L{\"u}tkepohl}{Kilian and
   L{\"u}tkepohl}{2017}]{kilian2017structural}
@@ -321,6 +333,13 @@ Marcet, A. and J.~P. Nicolini (2003).
 \newblock Recurrent hyperinflations and learning.
 \newblock {\em American Economic Review\/}~{\em 93\/}(5), 1476--1498.
 
+\bibitem[\protect\citeauthoryear{Marcet and Sargent}{Marcet and
+  Sargent}{1989}]{marcet1989convergence}
+Marcet, A. and T.~J. Sargent (1989).
+\newblock Convergence of least squares learning mechanisms in self-referential
+  linear stochastic models.
+\newblock {\em Journal of Economic Theory\/}~{\em 48\/}(2), 337--368.
+
 \bibitem[\protect\citeauthoryear{Milani}{Milani}{2007}]{milani2007expectations}
 Milani, F. (2007).
 \newblock Expectations, learning and macroeconomic persistence.
@@ -337,10 +356,11 @@ Molavi, P. (2019).
   and applications.
 \newblock 2019 Meeting Papers 1584, Society for Economic Dynamics.
 
-\bibitem[\protect\citeauthoryear{Moscarini}{Moscarini}{2007}]{moscarini}
-Moscarini, G. (2007).
-\newblock Competence implies credibility.
-\newblock {\em The American Economic Review\/}~{\em 97\/}(1), 37--63.
+\bibitem[\protect\citeauthoryear{Moln{\'a}r and Santoro}{Moln{\'a}r and
+  Santoro}{2014}]{molnar2014optimal}
+Moln{\'a}r, K. and S.~Santoro (2014).
+\newblock Optimal monetary policy when agents are learning.
+\newblock {\em European Economic Review\/}~{\em 66}, 39--62.
 
 \bibitem[\protect\citeauthoryear{Orlik and Veldkamp}{Orlik and
   Veldkamp}{2014}]{orlik2014understanding}
@@ -369,6 +389,12 @@ Orphanides, A. and J.~C. Williams (2007).
 \newblock Robust monetary policy with imperfect knowledge.
 \newblock {\em Journal of monetary Economics\/}~{\em 54\/}(5), 1406--1435.
 
+\bibitem[\protect\citeauthoryear{Preston}{Preston}{2005}]{preston2005}
+Preston, B. (2005).
+\newblock Learning about monetary policy rules when long-horizon expectations
+  matter.
+\newblock Mpra paper, University Library of Munich, Germany.
+
 \bibitem[\protect\citeauthoryear{Preston}{Preston}{2008}]{PRESTON2008}
 Preston, B. (2008).
 \newblock Adaptive learning and the use of forecasts in monetary policy.
@@ -387,6 +413,11 @@ Ramey, V.~A. and S.~Zubairy (2018).
 \newblock Government spending multipliers in good times and in bad: Evidence
   from us historical data.
 \newblock {\em Journal of Political Economy\/}~{\em 126\/}(2), 850--901.
+
+\bibitem[\protect\citeauthoryear{Sargent}{Sargent}{1999}]{sargent1999}
+Sargent, T.~J. (1999).
+\newblock {\em The Conquest of American Inflation}.
+\newblock Princeton University Press.
 
 \bibitem[\protect\citeauthoryear{Sato}{Sato}{1970}]{sato1970further}
 Sato, R. (1970).
@@ -437,6 +468,11 @@ Whittle, P. (1983).
 Williams, J.~C. (2006).
 \newblock The phillips curve in an era of well-anchored inflation expectations.
 \newblock In {\em Federal Reserve Bank of San Francisco}. Citeseer.
+
+\bibitem[\protect\citeauthoryear{Williams}{Williams}{2003}]{williams2003adaptive}
+Williams, N. (2003).
+\newblock Adaptive learning and business cycles.
+\newblock {\em Manuscript, Princeton University\/}.
 
 \bibitem[\protect\citeauthoryear{Winkler}{Winkler}{2019}]{WINKLER2019}
 Winkler, F. (2019).
