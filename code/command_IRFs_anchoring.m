@@ -56,13 +56,13 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCEMP;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
 % Size of cross-section
 N = 100 %100, 500
-burnin = 0;
+burnin = 100;
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 
@@ -155,8 +155,8 @@ titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
 % create indexes for the positions of the parameters
 fn = fieldnames(param);
 make_index(fn)
-interesting_param_names = param_names([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
-interesting_param_vals = param_values_str([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, alph_cb_idx]);
+interesting_param_names = param_names([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx, lamx_idx, lami_idx]);
+interesting_param_vals = param_values_str([psi_pi_idx, psi_x_idx, gbar_idx, thetbar_idx, thettilde_idx, kap_idx,  lamx_idx, lami_idx]);
 param_names_vals = cell(size(interesting_param_vals));
 relevant_params = 'params';
 for i=1:size(param_names_vals,2)
@@ -197,9 +197,10 @@ if plot_gains==1
     % 3) Average inverse gains
     yseries=mean(1./k,2)';
     xseries=1:T;
-    seriesnames = '1/k';
+    seriesnames = 'k^{-1}';
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
     figtitle = ['Inverse gains ; ' , gain_title];
+%     figtitle = '';
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end
 

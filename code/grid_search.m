@@ -43,37 +43,59 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCEMP;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 disp(['(psi_x, thetbar, thettilde)=   ', num2str([param.psi_x, param.thetbar, param.thettilde])])
 
+% gen all the N sequences of shocks at once.
+rng(0)
+eN = randn(ne,T,N);
+
+%Optimization Parameters
+options = optimset('fmincon');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+
 %% Fmincon
 % takes about 4 min
-    tic
-    % gen all the N sequences of shocks at once.
-    rng(0)
-    eN = randn(ne,T,N);
-    
-    %Optimization Parameters
-    options = optimset('fmincon');
-    options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
-    
-    % varp0 = [1.19,0];
-    % ub = [1.2,1];
-    % lb = [1.01,-.01];
-    varp0 = 1.01;
-    ub = 5; % 1.5
-    lb = 1.01;
-    %Compute the objective function one time with some values
-    loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
-    
-    %Declare a function handle for optimization problem
-    objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
-    [par_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
-    % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-    toc
+tic
+% varp0 = [1.19,0];
+% ub = [1.2,1];
+% lb = [1.01,-.01];
+varp0 = 1.5;
+ub = 2; % 1.5
+lb = 1.001;
+%Compute the objective function one time with some values
+loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
+
+%Declare a function handle for optimization problem
+objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
+[par_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+toc
 
 
 par_opt
+
+%% Fmincon RE
+% takes about 4 min
+tic
+
+% varp0 = [1.19,0];
+% ub = [1.2,1];
+% lb = [1.01,-.01];
+varp0 = 1.01;
+ub = 10; % 1.5
+lb = 1.001;
+%Compute the objective function one time with some values
+loss = objective_CB_RE(varp0,setp,eN,burnin);
+
+%Declare a function handle for optimization problem
+objh = @(varp) objective_CB_RE(varp,setp,eN,burnin);
+[par_opt_RE] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+toc
+
+
+par_opt_RE

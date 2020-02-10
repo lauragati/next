@@ -2,6 +2,8 @@
 
 % Goals:
 % 1.) Prepare simulated loss plots for Clough prezi
+% 2.) Replicate DW plots for Clough paper (Draft 1) - generate paper
+% settings
 
 clearvars
 close all
@@ -25,5 +27,8 @@ plot_sim_loss
 %% Do IRFs, simulation and gains for anchoring model, CEMP or CUSUM criterion
 command_IRFs_anchoring
 
-%% Do fmincon for psi_pi in the anchoring model
+%% Do fmincon for psi_pi in the anchoring model, now also RE
 grid_search
+
+%% Replicate DW plots urate, FFR, inflation and Epi
+create_motivation_plots

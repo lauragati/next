@@ -1,8 +1,6 @@
-% plot_sim_loss.m
-% plot simulated loss
-% a shortened version of grid_search.m that only does the loss-plotting
-% part to save time
-% 6 Feb 2020
+% plot_sim_loss_for_draft.m
+% a version of plot_sim_loss.m that does the loss-plotting in a pretty way
+% 9 Feb 2020
 
 clearvars
 close all
@@ -90,15 +88,42 @@ for i=1:size(param_names_vals,2)
     relevant_params = [relevant_params, '_', param_names_vals{i}];
 end
 
-yseries=loss;
-xseries=psi_pi_vals;
-seriesnames = 'Loss';
-figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
-figtitle = ['CB loss as a function of \psi_{\pi} ; ' , gain_title];
-create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
+[fs, lw] = plot_configs;
 
-yseries=loss_RE;
-seriesnames = 'Loss RE';
+% Learning
+figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(psi_pi_vals,loss,'k', 'linewidth',lw); hold on
+xlabel('\psi_{\pi}')
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% RE loss
 figname = [this_code, '_', 'loss','_', 'RE', '_',relevant_params, '_', date_today];
-figtitle = ['CB loss as a function of \psi_{\pi} ; ' , ' RE'];
-create_plot(xseries,yseries,figname,print_figs,figtitle)
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(psi_pi_vals,loss_RE,'k', 'linewidth',lw); hold on
+xlabel('\psi_{\pi}')
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
