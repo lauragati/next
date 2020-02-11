@@ -123,7 +123,7 @@ The current stance of the United States business cycle is boldly defiant of main
 \label{urate_pce_ffr}
 \end{figure}
 
-In this paper I argue that the key to understanding both the puzzling behavior of inflation as well as the Fed's response to it is the time series of long-run inflation expectations. As Fig. \ref{epi} shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. This indicates that the public has doubts whether the Fed desires or is able to restore inflation to the target. Confronted with what it sees as a changing environment, the public revises its predictions about the future course of the economy.
+In this paper I argue that the key to understanding both the puzzling behavior of inflation as well as the Fed's response to it is the time series of long-run inflation expectations. As Fig. \ref{epi} shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. This indicates that the public has doubts whether the Fed is able to restore inflation to the target. Confronted with what it sees as a changing environment, the public revises its predictions about the future course of the economy.
 
 \begin{figure}[h!]
 \subfigure[Market-based inflation expectations, 10 year, average, \%]{\includegraphics[scale = \mySmallFigScale]{\myFigPath epi10_2020_02_09}}
@@ -234,9 +234,9 @@ The laws of motion (\ref{NKIS}) and (\ref{NKPC}) are obtained by deriving indivi
 
 The model is closed by the standard specification of monetary policy as a Taylor rule:
 \begin{equation}
-i_t = \psi_{\pi}\pi_t + \psi_{x} x_t + \bar{i}_t  \label{TR}
+i_t = \psi_{\pi}(\pi_t -\bar{\pi}) + \psi_{x} (x_t -\bar{x}) + \bar{i}_t  \label{TR}
 \end{equation}
-where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively and $\bar{i}_t$ is a monetary policy shock. I assume that the central bank publicly announces the Taylor rule. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning. 
+where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively, $\bar{\pi}$ and $\bar{x}$ are the central bank's targets and $\bar{i}_t$ is a monetary policy shock. I assume that the central bank publicly announces the Taylor rule. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning. 
 
 Next, to simplify notation,  I gather the exogenous state variables in the vector $s_t$ and jump variables in the vector $z_t$ as
 \begin{equation}
@@ -360,7 +360,7 @@ One then solves for $\bar{z}$ as the value that minimizes the deterministic part
 \subsection{Simulations}\label{results_sim}
 \subsubsection{Calibration}
 
-In this section I simulate the rational expectations and learning versions of the model and compute the optimal Taylor rule coefficients numerically. Table \ref{calibration} summarizes the calibrated parameter values. For most of the parameters, I follow \cite{woodford2011interest} in assigning values commonly used in the macroeconomic literature. For this section, I shut off the monetary policy parameters $\lambda_i$, $\lambda_x$ and $\psi_x$ in order to focus on the role of inflation in the central bank's problem and the optimal choice of inflation aggressiveness, $\psi_{\pi}$.
+In this section I simulate the rational expectations and learning versions of the model and compute the optimal Taylor rule coefficients numerically.\footnote{For simplicity, in this section I implement the learning algorithm such that only the constant is learned. The general formulation has qualitatively similar features but is more impacted by small-sample concerns prevalent in simulations.} Table \ref{calibration} summarizes the calibrated parameter values. For most of the parameters, I follow \cite{woodford2011interest} in assigning values commonly used in the macroeconomic literature. For this section, I shut off the monetary policy parameters $\lambda_i$, $\lambda_x$ and $\psi_x$ in order to focus on the role of inflation in the central bank's problem and the optimal choice of inflation aggressiveness, $\psi_{\pi}$.
 
 The learning parameters $\bar{g}, \tilde{\theta}$ and $\tilde{\kappa}$ require some discussion. While the choice of $\tilde{\kappa}$ only matters for the smoothness of the endogenous gain choice and thus can be set relatively freely, the threshold $\tilde{\theta}$ has more bearing on the behavior of the model. Intuitively, the higher $\tilde{\theta}$, the more forecast error volatility agents in the economy are willing to tolerate before switching to a constant gain. Experimenting with different values reveals that once $\tilde{\theta}$ is higher than a particular threshold, expectations are anchored for any value of $\psi_{\pi}$. Analogously if $\tilde{\theta}$ is below a lower threshold, expectations are always unanchored regardless of the value of $\psi_{\pi}$. My choice of $\tilde{\theta}=2.5$ is thus motivated by assigning a value for which the choice of $\psi_{\pi}$ has an effect on the anchoring behavior of the model. 
 
@@ -425,10 +425,10 @@ The answer is that the anchoring mechanism introduces a novel tradeoff for the c
 \label{fig_loss}
 \end{figure}
 
-To understand what's going on in the model in detail, consider Fig. \ref{IRF}, portraying the impulse responses of the model after a contractionary monetary policy shock. The blue lines show the responses of the observables in the rational expectations version on the model. The black lines show the responses in the learning model, on panel (a) conditional on expectations being anchored when the shock hits, on panel (b) being unanchored upon the arrival of the shock. 
+To understand what's going on in the model in detail, consider Fig. \ref{IRF}, portraying the impulse responses of the model after a contractionary monetary policy shock. The red dashed lines show the responses of the observables in the rational expectations version on the model. The blue lines show the responses in the learning model, on panel (a) conditional on expectations being anchored when the shock hits, on panel (b) being unanchored upon the arrival of the shock. 
 \begin{figure}[h!]
-\subfigure[RE against learning, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath placeholder}}
-\subfigure[RE against learning, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath placeholder}}
+\subfigure[RE against learning, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constant_only_2020_02_10}}
+\subfigure[RE against learning, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10}}
 \caption{Impulse responses after a contractionary monetary policy shock}
 \floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 100 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$. For the rest of the paper, I keep these simulation values unless otherwise stated. For the learning model, the remark refers to whether expectations are anchored at the time the shock hits.}
 \label{IRF}
@@ -449,9 +449,9 @@ Therefore, to avoid the volatility that results from unanchored expectations, th
 But if unanchored expectations cause heightened volatility, and being hawkish on inflation is able to anchor expectations, why does the monetary authority optimally choose a lower value for $\psi_{\pi}$ than for rational expectations? The reason is that conditional on being unanchored, a higher $\psi_{\pi}$ actually causes higher volatility than a lower one. This can be seen on Fig. \ref{IRF_unanchored_psi} which depicts the same impulse responses to a contractionary monetary policy shock as Fig. \ref{IRF}, focusing however only on responses conditional on expectations being unanchored upon the shock. It shows these responses for three different values of $\psi_{\pi}$.
 
 \begin{figure}[h!]
-\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath placeholder}}
-\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath placeholder}}
-\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath placeholder}}
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_5_2020_02_10}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_2_2020_02_10}}
 \caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
 \floatfoot{}
 \label{IRF_unanchored_psi}
@@ -460,22 +460,22 @@ But if unanchored expectations cause heightened volatility, and being hawkish on
 Clearly, a high $\psi_{\pi}$ leads to more volatility than a low one does. The intuition is a little subtle. Since expectations are unanchored here, the time series of long-horizon expectations will exhibit a lot of volatility. That implies that inflation far ahead in the future is expected to fluctuate strongly. Since agents know the Taylor rule, this also means that they expect the nominal interest rate far in the future to respond. The more hawkish the central bank, the stronger an interest rate response will the agents expect. This however feeds back into current output gaps and thus inflation. Higher overall volatility is the result. 
 % this relates to Ball but I kinda can't be bothered to talk about it now
 
-Thus the presence of an expectation formation that allows for the anchoring and unanchoring of expectations introduces unexpected new features to the New Keynesian model. Unsurprisingly, it is desirable for the central bank to anchor expectations. It is also intuitive that being hawkish on inflation helps to anchor expectations. However, less intuitive is the fact that the optimal degree of aggressiveness on inflation is lower than under rational expectations. This has to do with the heightened volatility of the expectations process when $\psi_{\pi}$ is high. Thus the central bank has to trade off the cost with the benefit of anchoring expectations.
+Thus the presence of an expectation formation that allows for the anchoring and unanchoring of expectations introduces unexpected new features to the New Keynesian model. Unsurprisingly, it is desirable for the central bank to anchor expectations. It is also intuitive that being hawkish on inflation helps to anchor expectations. However, less intuitive is the fact that the optimal degree of aggressiveness on inflation is lower than under rational expectations. This has to do with the heightened volatility of the expectations process when $\psi_{\pi}$ is high. A higher $\psi_{\pi}$ increases the response of future nominal interest rate expectations, thus raising the feedback from expectations to current observables. Thus the central bank has to trade off the cost with the benefit of anchoring expectations.
 
 
 
- %%%%%%%%%%%%%%%%%%           ANALYTICAL RESULTS            %%%%%%%%%%%%%%%%%% 
-%\newpage
-\subsection{Analytical results}\label{results_anal}
-
-Abstracting from monetary policy shocks and imposing the simplifying assumption that $\rho_r = \rho_u \equiv \rho$, the optimal Taylor rule coefficients from the noninertial solution of the rational expectation version of the model are:
-\begin{align}
-\psi_{\pi}^{*,RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_phipi_RE}
-\\
-\psi_{x}^{*,RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma } \label{opt_phix_RE}
-\end{align}
-
-The noninertial solution for the anchoring version of the model is not obvious, however. The reason is that because of the learning mechanism, the stance of expectations augments the number of endogenous states by one. Therefore optimal noninertial policy needs to condition on the stance of expectations. As this is what I am currently working on, I do not yet have results to present here.
+% %%%%%%%%%%%%%%%%%%           ANALYTICAL RESULTS            %%%%%%%%%%%%%%%%%% 
+%%\newpage
+%\subsection{Analytical results}\label{results_anal}
+%
+%Abstracting from monetary policy shocks and imposing the simplifying assumption that $\rho_r = \rho_u \equiv \rho$, the optimal Taylor rule coefficients from the noninertial solution of the rational expectation version of the model are:
+%\begin{align}
+%\psi_{\pi}^{*,RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_phipi_RE}
+%\\
+%\psi_{x}^{*,RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma } \label{opt_phix_RE}
+%\end{align}
+%
+%The noninertial solution for the anchoring version of the model is not obvious, however. The reason is that because of the learning mechanism, the stance of expectations augments the number of endogenous states by one. Therefore optimal noninertial policy needs to condition on the stance of expectations. As this is what I am currently working on, I do not yet have results to present here.
 
 
  %%%%%%%%%%%%%%%%%%           CONCLUSION            %%%%%%%%%%%%%%%%%% 

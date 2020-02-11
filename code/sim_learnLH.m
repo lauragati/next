@@ -6,7 +6,7 @@
 % x0 = the shock.
 % 18 Nov 2019
 
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k] = sim_learnLH(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock] = sim_learnLH(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -101,16 +101,6 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
     else
         
-%         % A mini-projection facility for slope-and-constant learning
-%         if PLM==2
-%             keep_R = projection_facility(R,0.995);
-%             if keep_R ~=1
-%                 R = R_seq(:,:,t-1);
-%                 phi = phi_seq(:,:,t-1);
-%                 warning(['Projection facility invoked at t=', num2str(t) ])
-%             end
-%         end
-        
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx); % new hx version
         %         [fa, fb] = fafb_materials14(param,a, b, xsim(:,t),hx); % 23 Jan 2020 version
@@ -181,6 +171,12 @@ for t = 1:T-1
     %%% here is the addition of the impulse
     if t+1==dt
         e(:,t+1) = e(:,t+1)+x0';
+         % check if anchored or not when shock hits
+        if k(:,t) == gbar^(-1)
+            anchored_when_shock = 0;
+        elseif k(:,t) > gbar^(-1)
+            anchored_when_shock = 1;
+        end
     end
     %%%
     xsim(:,t+1) = xesim + eta*e(:,t+1);

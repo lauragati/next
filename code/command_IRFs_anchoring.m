@@ -21,8 +21,9 @@ output_table = print_figs;
 
 plot_IRFs=0;
 plot_simulated_sequence = 0;
-plot_gains=1;
+plot_gains=0;
 plot_gain_IRF = 0;
+plot_IRFs_anch = 1;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -90,6 +91,7 @@ GIR_Y_LH = zeros(ny,h,N,nd);
 GIR_k = zeros(h,N,nd);
 k = zeros(T,N);
 ks= zeros(T,N);
+anch = zeros(1,N); % indicator for whether that sequence was anchored when the shock hit
 
 % warning off
 for s=2  %2->zoom in on monetary policy shock
@@ -101,7 +103,7 @@ for s=2  %2->zoom in on monetary policy shock
         e = squeeze(eN(:,:,n));
         
         % Unshocked
-%         dbstop if warning
+        %         dbstop if warning
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
@@ -120,7 +122,7 @@ for s=2  %2->zoom in on monetary policy shock
             dt = dt_vals(t);
             
             % Shocked
-            [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+            [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n), anch(n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
             GIR_k(:,n,t) = ks(dt:dt+h-1,n) - k(dt:dt+h-1,n);
@@ -131,9 +133,11 @@ end
 % warning on
 % Construct RIRs by simple method: means (Option 1)
 RIR_Y_LH = squeeze(mean(GIR_Y_LH,3));
+RIR_anch = squeeze(mean(GIR_Y_LH(:,:,find(anch)),3));
+RIR_unanch = squeeze(mean(GIR_Y_LH(:,:,find(anch-1)),3));
 RIR_k = squeeze(mean(GIR_k,2));
 RIR_kinv = RIR_k;
-% only invert for nonzero elements 
+% only invert for nonzero elements
 RIR_kinv(abs(RIR_k) > 0) = 1./RIR_k(abs(RIR_k) > 0);
 
 disp(['(psi_x, psi_pi, thetbar, thettilde)=   ', num2str([psi_x, psi_pi, thetbar, thettilde])])
@@ -147,7 +151,7 @@ end
 %% Plots
 
 shocknames = {'natrate', 'monpol','costpush'};
-titles_obs = {'Inflation','Output gap','Int. rate'};
+titles_obs = {'Inflation','Output gap','Interest rate'};
 titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
 titles_LH = {'fa', 'fb'};
 titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
@@ -200,7 +204,7 @@ if plot_gains==1
     seriesnames = 'k^{-1}';
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
     figtitle = ['Inverse gains ; ' , gain_title];
-%     figtitle = '';
+    %     figtitle = '';
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end
 
@@ -213,4 +217,33 @@ if plot_gain_IRF==1
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
     figtitle = ['IRF Inverse gains ; ' , gain_title];
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
+end
+
+if plot_IRFs_anch==1
+    for t=1:nd % for the two diff times of imposing the shock
+        dt = dt_vals(t);
+        
+        clear series
+        % 5) IRF: OBSERVABLES LH against RE, anchored
+        series(1,:,:) = RIR_anch(:,:,t)';
+        series(2,:,:) = iry';
+        figname = [this_code, '_', 'RIR_LH_anch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+        subplot_names = titles_obs;
+        legendnames = {'Learning', 'RE'};
+        figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', anchored'];
+%         figtitle = '';
+        create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
+        
+        clear series
+        % 6) IRF: OBSERVABLES LH against RE, unanchored
+        series(1,:,:) = RIR_unanch(:,:,t)';
+        series(2,:,:) = iry';
+        figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+%         figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', param_names_vals{1}, '_', date_today];
+        subplot_names = titles_obs;
+        legendnames = {'Learning', 'RE'};
+        figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];
+%         figtitle = '';
+        create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
+    end
 end

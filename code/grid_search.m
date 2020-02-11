@@ -71,12 +71,13 @@ loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
 
 %Declare a function handle for optimization problem
 objh = @(varp) objective_CB(varp,setp,eN,burnin,PLM,gain);
-[par_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+[par_opt, loss_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
+disp(['Learning: psi_pi_opt = ', num2str(par_opt), ', L(psi_pi_opt) = ', num2str(loss_opt)])
 
-par_opt
+
 
 %% Fmincon RE
 % takes about 4 min
@@ -93,9 +94,10 @@ loss = objective_CB_RE(varp0,setp,eN,burnin);
 
 %Declare a function handle for optimization problem
 objh = @(varp) objective_CB_RE(varp,setp,eN,burnin);
-[par_opt_RE] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+[par_opt_RE, loss_opt_RE] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
-
-par_opt_RE
+disp(['RE: psi_pi_opt = ', num2str(par_opt_RE), ', L(psi_pi_opt) = ', num2str(loss_opt_RE)])
+loss_at_psi_learn = objective_CB_RE(par_opt,setp,eN,burnin);
+disp(['RE loss at learning-optimal psi_pi = ', num2str(loss_at_psi_learn)])
