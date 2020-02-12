@@ -95,15 +95,13 @@ An Endogenous Gain Learning Model \\
 \vspace{0.8cm}
 \small{Preliminary and Incomplete}}
 \author{Laura G\'ati} 
-\date{February 25, 2020} %\today}
+\date{\today}
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
 
 \abstract{This paper investigates optimal monetary policy when expectation formation is characterized by potential anchoring of expectations. Using the adaptive learning literature approach, firms and households do not know the correct model of the economy and thus form expectations using a forecasting rule that they update in light of incoming data. Within this framework, the anchoring mechanism corresponds to an endogenous learning gain in the spirit of \cite{carvalho2019anchored}. Expectations are said to be anchored when forecasting performance is sufficiently good such that a decreasing gain is chosen. Expectations thus become a state variable from the viewpoint of monetary policy that requires proper monitoring and management. In particular, optimal policy trades off the cost and benefit of anchoring expectations. \\
 
-For the Clough Graduate Workshop: \\
-Since this is a work in progress, no analytical results stand as of today. Therefore I only present simulation-based results here. Moreover, the project involves a certain level of technicality. For these reasons, I invite you to focus on the Introduction and the other descriptive sections. What I am looking to see is if the motivation of the project makes sense to you.}
 
 %\tableofcontents
 
@@ -286,11 +284,11 @@ where $a$ and $b$ are estimated coefficients of dimensions $3\times1$ and $3\tim
 \end{equation}
 This assumption, known in the learning literature as anticipated utility, means that agents fail to internalize that they will update the forecasting rule in the future.\footnote{This is a conventional assumption in the learning literature and serves to simplify the algebra. As \cite{sargent1999} shows, similar results obtain upon relaxing anticipated utility.} The PLM together with anticipated utility implies that $h$-period ahead forecasts are constructed as
 \begin{equation}
-\hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}h^{h}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
+\hat{\E}_t z_{t+h} = a_{t-1} + b_{t-1}h^{h-1}s_t  \quad \forall h\geq 1 \label{PLM_fcst_general}
 \end{equation}
 Summarizing the estimated coefficients as $\phi_{t-1} \equiv \begin{bmatrix}a_{t-1} & b_{t-1}\end{bmatrix}$, here $3\times 4$, I can rewrite Equation (\ref{PLM}) as 
 \begin{equation} 
-\hat{\E}_t z_{t+1} = \phi_{t}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} \label{PLMcompact}
+\hat{\E}_t z_{t+1} = \phi_{t-1}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} \label{PLMcompact}
 \end{equation}
 The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $f_{t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
 \begin{align}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 FEB 2020 14:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  12 FEB 2020 14:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -987,7 +987,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 <../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_1_5_p
 si_x_0_gbar_0_145_thetbar_2_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png, id=
-67, 1405.25pt x 843.15pt>
+77, 1405.25pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_2_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png
  Graphic file (type png)
@@ -1001,7 +1001,7 @@ CB_0_2020_02_06.png used on input line 174.
 
 <../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi
 _pi_1_3_psi_x_0_gbar_0_145_thetbar_2_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06
-.png, id=68, 1451.4225pt x 844.15375pt>
+.png, id=78, 1451.4225pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_param
 s_psi_pi_1_3_psi_x_0_gbar_0_145_thetbar_2_thettilde_2_5_kap_0_8_alph_CB_0_2020_
 02_06.png Graphic file (type png)
@@ -1016,7 +1016,7 @@ constant_only_params_psi_pi_1_3_psi_x_0_gbar_0_145_thetbar_2_thettilde_2_5_kap_
 
 <../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_1_5_p
 si_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png, id=
-69, 1402.23875pt x 843.15pt>
+79, 1402.23875pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png
  Graphic file (type png)
@@ -1030,7 +1030,7 @@ CB_0_2020_02_06.png used on input line 176.
 
 <../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi
 _pi_1_4_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06
-.png, id=70, 1428.33624pt x 844.15375pt>
+.png, id=80, 1428.33624pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_param
 s_psi_pi_1_4_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_
 02_06.png Graphic file (type png)
@@ -1045,7 +1045,7 @@ constant_only_params_psi_pi_1_4_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_
 
 <../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_1_5_p
 si_x_0_gbar_0_145_thetbar_6_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png, id=
-71, 1402.23875pt x 843.15pt>
+81, 1402.23875pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCEMP_constant_only_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_6_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png
  Graphic file (type png)
@@ -1059,7 +1059,7 @@ CB_0_2020_02_06.png used on input line 178.
 
 <../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi
 _pi_1_55_psi_x_0_gbar_0_145_thetbar_6_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_0
-6.png, id=72, 1428.33624pt x 844.15375pt>
+6.png, id=82, 1428.33624pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCEMP_constant_only_param
 s_psi_pi_1_55_psi_x_0_gbar_0_145_thetbar_6_thettilde_2_5_kap_0_8_alph_CB_0_2020
 _02_06.png Graphic file (type png)
@@ -1100,8 +1100,8 @@ d_IRFs_anchoring_loss_again_critCEMP_constant_only_params_psi_pi_1_55_psi_x_0_g
 bar_0_145_thetbar_6_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png (PNG copy)>]
 
 <../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_
-psi_x_0_gbar_0_145_thetbar_4_thettilde_1_kap_0_8_alph_CB_0_2020_02_06.png, id=9
-0, 1406.25375pt x 843.15pt>
+psi_x_0_gbar_0_145_thetbar_4_thettilde_1_kap_0_8_alph_CB_0_2020_02_06.png, id=1
+00, 1406.25375pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi
 _1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_1_kap_0_8_alph_CB_0_2020_02_06.png 
 Graphic file (type png)
@@ -1115,7 +1115,7 @@ B_0_2020_02_06.png used on input line 192.
 
 <../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_ps
 i_pi_1_3_psi_x_0_gbar_0_145_thetbar_4_thettilde_1_kap_0_8_alph_CB_0_2020_02_06.
-png, id=91, 1451.4225pt x 844.15375pt>
+png, id=101, 1451.4225pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_para
 ms_psi_pi_1_3_psi_x_0_gbar_0_145_thetbar_4_thettilde_1_kap_0_8_alph_CB_0_2020_0
 2_06.png Graphic file (type png)
@@ -1130,7 +1130,7 @@ _8_alph_CB_0_2020_02_06.png used on input line 193.
 
 <../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_
 psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.png, id
-=92, 1406.25375pt x 843.15pt>
+=102, 1406.25375pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi
 _1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_06.pn
 g Graphic file (type png)
@@ -1145,7 +1145,7 @@ _CB_0_2020_02_06.png used on input line 195.
 
 <../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_ps
 i_pi_1_6_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020_02_0
-6.png, id=93, 1428.33624pt x 844.15375pt>
+6.png, id=103, 1428.33624pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_para
 ms_psi_pi_1_6_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_alph_CB_0_2020
 _02_06.png Graphic file (type png)
@@ -1159,8 +1159,8 @@ _0_8_alph_CB_0_2020_02_06.png used on input line 196.
 (pdftex.def)             Requested size: 199.96571pt x 118.18071pt.
 
 <../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_
-psi_x_0_gbar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.png, id=9
-4, 1409.265pt x 843.15pt>
+psi_x_0_gbar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.png, id=1
+04, 1409.265pt x 843.15pt>
 File: ../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi
 _1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.png 
 Graphic file (type png)
@@ -1174,7 +1174,7 @@ B_0_2020_02_06.png used on input line 198.
 
 <../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_ps
 i_pi_1_3_psi_x_0_gbar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.
-png, id=95, 1428.33624pt x 844.15375pt>
+png, id=105, 1428.33624pt x 844.15375pt>
 File: ../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_para
 ms_psi_pi_1_3_psi_x_0_gbar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_0
 2_06.png Graphic file (type png)
@@ -1206,24 +1206,30 @@ loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar
 _4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.png (PNG copy)> <../figures/command
 _IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_3_psi_x_0_gb
 ar_0_145_thetbar_4_thettilde_4_kap_0_8_alph_CB_0_2020_02_06.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
 
-(./materials16.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+ (./materials16.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
 Package rerunfilecheck Info: File `materials16.out' has not changed.
-(rerunfilecheck)             Checksum: 14FF69E4A6A0D38C196070F4F7B46E9A;373.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
+(rerunfilecheck)             Checksum: 9CCCF97539BC539CBE41A3A1777B008D;479.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
  ) 
 Here is how much of TeX's memory you used:
- 20072 strings out of 493089
- 371821 string characters out of 6134842
+ 20080 strings out of 493089
+ 371894 string characters out of 6134842
  450397 words of memory out of 5000000
- 23134 multiletter control sequences out of 15000+600000
- 16151 words of font info for 63 fonts, out of 8000000 for 9000
+ 23137 multiletter control sequences out of 15000+600000
+ 16459 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,468b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,54p,978b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -1242,10 +1248,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials16.pdf (4 pages, 868187 bytes).
+Output written on materials16.pdf (5 pages, 874514 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 192 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

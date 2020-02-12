@@ -3,3 +3,5 @@
 \contentsline {section}{\numberline {2}Simulated $\psi _{\pi }^*$ and CB losses, RE against learning, fixing $\psi _x = 0$}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}RE against CEMP-criterion}{3}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}RE against CUSUM-criterion}{4}{subsection.2.2}
+\contentsline {section}{\numberline {3}``Best-case'' abstract}{5}{section.3}
+\contentsline {section}{\numberline {4}Optimal policy}{5}{section.4}
