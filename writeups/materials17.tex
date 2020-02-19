@@ -175,9 +175,11 @@ My understanding of Woodford is that commitment and time-consistency are two sep
 \text{commitment:} \; \max \text{expected lifetime utility, s.t. model equations \& initial condition}
 \end{cases} \\
 & \text{\emph{time-consistency}} = \begin{cases} \text{time-inconsistent:} \; \text{initial condition is that multiplier = 0}\\
-\text{time-consistent:} \; \max \text{initial condition is that endogenous stuff is at target initially}
+\text{time-consistent:} \;  \text{initial condition is that endogenous stuff is at target initially}
 \end{cases}
 \end{align*}
+So commitment is really the Ramsey problem, unconstrained if time-inconsistent, constrained if time-consistent. Responses to shocks are the same under $t_0$-optimal and timelessly optimal commitment policy, but the optimal path is initially not the same. 
+
 This gives rise to 3 different optimality concepts:
 \begin{align*}
 & \begin{cases} \text{optimal discretionary policy} \; \rightarrow \text{time-inconsistent}\\
@@ -185,16 +187,140 @@ This gives rise to 3 different optimality concepts:
 \text{timelessly optimal commitment } \; \rightarrow \text{time-consistent} 
 \end{cases}
 \end{align*}
-\item Constraints of the problem / endogenous variables of interest \\
-Mainly model equations. But why doesn't Woodford take the IS-relation of the NK model as a constraint? He says: ``if there is no welfare loss resulting from nominal interest-rate variation, one may omit the constraint terms corresponding to the IS relation, as these constraints never bind." \\
-$\rightarrow$ but what about fluctuations in the output gap? Gaspar et al 2011 at least claim to ignore the IS curve because they assume that the CB controls the output gap directly.\\
-And what about expectations? It seems like Gaspar et al 2011 treat those the same as jumps. 
+\item Constraints of the problem / endogenous variables of interest 
+\begin{itemize}
+\item Mainly model equations. \textbf{But why doesn't Woodford take the IS-relation of the NK model as a constraint?} He says: ``if there is no welfare loss resulting from nominal interest-rate variation, one may omit the constraint terms corresponding to the IS relation, as these constraints never bind." 
+\item $\rightarrow$ but what about fluctuations in the output gap? Gaspar et al 2011 at least claim to ignore the IS curve because they assume that the CB controls the output gap directly.
+\item \textbf{And how to treat expectations?} It seems like Gaspar et al 2011 treat those the same as jumps. 
+\end{itemize}
 \item Optimal plan vs. implementation \\
 My understanding is that solving the above policy problem just gives you the optimal plan: a time path for the endogenous variables that the policy maker wants to bring about. It's a separate question to ask how to implement that policy. 
+%What is confusing here is that - as Woodford also points out (p. 517) - if one has solved for the optimal path of observables including the interest rate, why not use that path as a policy rule? Because it specifies $i_t$ as a function of past shocks (and eigenvalues) only; RE is indeterminate. (Moreover, such a policy rule is also not robustly optimal, but that's a high-level concern right now.)
 \item Implementation of policy: ``simple rules," reaction functions and ``targeting rules" \\
-For me it gets generally confusing at this point. 
+I think the dichotomy is between whether you postulate a rule of a specific form first and seek to coefficient-compare to find the best among that class of rules (I think this, plus minus, is what ``simple rules'' refers to), or whether you use the optimal plan to infer what a rule should look like (I'll refer to this as the ``reaction function approach''). But what about the third class, ``targeting rules,'' that doesn't seem to fit any of the two previous ones?  \\
+Right now I see the issue thusly: 
+\begin{itemize}
+\item Contemporaneous (purely forward-looking) Taylor-rules are only optimal within the class of purely forward-looking policy rules. Why? Because the full optimal commitment solution (even $t_0$-optimal) is \emph{history-dependent}, which a forward-looking rule clearly isn't.
+\item The issue with the fully-wonderfully optimal time path though is that it's unsuitable as a policy rule because it conditions only on exogenous stuff and would imply indeterminacy.
+\item Therefore Woodford brings in the idea of targeting rules in as a potential solution to this problem: we need a policy rule to which the central bank can commit itself that 1) ideally implements the optimal time path, 2) isn't indeterminate and 3) doesn't depend on the shock specification (``robustly optimal"). 
+\item A target criterion can be derived as a unique, feasible, robustly optimal relationship between observables that the central bank can commit itself to. 
+\begin{itemize}
+\item  But that still leaves open the question of what interest rate rule such a criterion can be supported by. 
+\item This suggests that a target criterion is really just a restriction obtained from the features of the optimal commitment time path of observables.
+\item It is used, together with the model equations (NKIS \& NKPC) and laws of motion for shocks, to compute the expectations of the public and derive a reaction function for $i_t$.
+\end{itemize}
+\item  $\rightarrow $ Evans \& Honkapohja (2006): ``fundamentals-based reaction function.''  What I don't get though is 
+\begin{itemize}
+\item this can again be indeterminate
+\item \textbf{I don't think it's robustly optimal given that we need to assume LOMs of disturbances}. Are we going in circles? 
+\end{itemize}
+\item So find an alternative in which the CB doesn't evaluate private sector expectations as RE, but takes the observed ones as state variables (Evans \& Honkapohja call this the ``expectations-based reaction function.'')  Issues with this: 
+\begin{itemize}
+\item \textbf{How on all earth is this robustly optimal? (same issue as previously)}
+\item Preston (2008) argues that it's not E-stable (of course b/c it was derived with the wrong ALM in mind) 
+\item Woodford has argued elsewhere in the book (p. 516, and also in a paper) that a \textbf{TR with expectations does not improve on a contemporaneous one, in fact, it can lead to instability. Why is this one not doing that?} Woodford's claim is that it's only reacting to expectations to ``counteract them." That doesn't seem unique to this though.
+\end{itemize}
+\end{itemize}
 \end{enumerate}
 
+\section{A optimal commitment policy path for learning?}
+\begin{itemize}
+\item Gaspar et al 2011 and Moln\'ar \& Santoro (2016): min expected discounted loss subject to ALM and LOM(learning coefficients). Take FOCs wrt. expectations too. Shortcut: $\E\pi =$ learning coefficient.
+\item Preston (2008): take the timelessly optimal path for RE, with the relevant inflation-targeting or price-level targeting criteria, and ask what reaction function can implement it under learning. However, it's not clear to me that the optimal path under RE is also the optimal one under learning. In fact, it shouldn't be. 
+\end{itemize}
+
+This leads me to the following 3-step procedure to obtain not just the optimal paths, but also an interest rate rule that implements them:
+\begin{enumerate}
+\item $\min_{\pi_t, x_t, i_t, f_a(t), f_b(t),\mathbf{\phi_t?}} \quad \mathbf{L} \quad s.t. \quad  ALM(\pi,x), LOM(\text{beliefs})$
+\begin{itemize}
+\item I don't know if $i_t$ is an argmin here, but we sure don't postulate any interest rate rule. 
+\item I do think the NKIS is a constraint here. It turns out not to bind, as Woodford says... for which reason $i_t$ drops out... intuition?
+\item A problem is the nondifferentiability of the gain-switching. Maybe I can make it smooth by 1) assuming constant gains at first 2) assuming that the gain is somehow a smooth function of the criterion $\theta_t$.
+\item What expectations to take as an argmin? $f_a, f_b$? $\phi$? I take all.
+\item This gives me FOCs that I can (hopefully) combine to obtain a single (or multiple... :S) difference equations in the multipliers. Solving those will give me a time path for the multipliers, which allows me to plug them back in to obtain time paths for the observables and expectations (I hope...). 
+\item The assumption of initial conditions will differentiate the time paths between time-zero and timelessly optimal solutions.
+\end{itemize}
+\item Eliminating the multipliers from the FOCs gives me a relationship between $\pi$ and $x$ that I can use as a target criterion; an analogue of Woodford's equation (5.1), given below:
+\begin{equation}
+\pi_t = -\frac{\lambda}{\kappa}(x_t - x_{t-1})\tag{Woodford, eq. (5.1)}
+\end{equation}
+
+\item Confronting the target criterion with the ALMs (likely with the LOM(beliefs)) and NKIS allows the CB to evaluate what $i_t$ is required for the target criterion to hold $\rightarrow$ a reaction function for $i_t$. 
+	\begin{itemize}
+	\item How on all earth is that robustly optimal?
+	\item You bet that expectations will show up in this rule; how is that different from $k$-period forecasts in the Taylor rule, that Woodford showed was either no better than the contemporaneous Taylor rule, or even worse because unstable.
+	\end{itemize}
+
+\end{enumerate}
+
+Formally, but colloquially:
+\begin{enumerate}
+\item Lagrangian
+\begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg( \pi_t^2  + \lambda x_t^2 \bigg)  \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big)\bigg) \\
+ & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big) \bigg) \\
+ & + \begin{bmatrix} \varphi_{3,t} & \varphi_{4,t} & \varphi_{5,t} \end{bmatrix} \bigg(f_a(t) - \frac{1}{1-\alpha\beta}a_{t-1}  - b_{t-1}(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
+ & + \begin{bmatrix} \varphi_{6,t} & \varphi_{7,t} & \varphi_{8,t} \end{bmatrix} \bigg(f_b(t) - \frac{1}{1-\beta}a_{t-1}  - b_{t-1}(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
+  & + \begin{bmatrix} \varphi_{9,t} & \varphi_{10,t} & \varphi_{11,t} \end{bmatrix} \bigg( \phi_t   - \bigg( \phi_{t-1}' + k_t^{-1} \mathbf{R_t^{-1}}\begin{bmatrix} \mathbf{1} \\ \mathbf{s_{t-1}} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)'  \bigg)  \\
+  & + \begin{bmatrix} \varphi_{12,t} & \varphi_{13,t} & \varphi_{14,t} \end{bmatrix} \bigg( R_t - R_{t-1} -  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg) \bigg)  \\
+  & + \begin{bmatrix} \varphi_{15,t} & \varphi_{16,t} & \varphi_{17,t} \end{bmatrix} \bigg( \omega_t -  \omega_{t-1} - \kappa k_{t-1}^{-1}(f_t f_t'  -\omega_{t-1}) \bigg)  \\
+    & + \begin{bmatrix} \varphi_{18,t} & \varphi_{19,t} & \varphi_{20,t} \end{bmatrix} \bigg( \theta_t^{CUSUM} -  \theta_{t-1} - \kappa k_{t-1}^{-1}(f_t'\omega_t^{-1}f_t -\theta_{t-1}) \bigg)  \\
+  & + \varphi_{21,t} \bigg(k_t - \mathbb{I}(k_{t-1} +1) + (1-\mathbb{I})\bar{g}^{-1} \bigg)  
+\end{align}
+	Ugh... just to look at this is a nightmare. Several issues emerge:
+	
+	\begin{enumerate}
+	\item How to evaluate interest rate beliefs w/o a Taylor rule?
+	\item Non-differentiability of the last constraint. Idea: what if the gain was simply some function of $\theta_t$? E.g. $k_t(\theta_t) = \theta_t - \Sigma$ (so it goes to 0).
+	\item Otherwise just a giant system... so I have some ideas to simplify this, at least for a first pass attempt.
+		\begin{itemize}
+		\item Make it constant-only learning ($b_t = b^{RE}= g_x h_x$, and let $b_i$ denote the $i$th row of $b$).
+		\item Suppose expectations about $x,i$ are rational ($a_t = (\bar{\pi}_t, 0, 0)'$).
+		\item Assume constant gain learning for now ($k_t =\bar{g}^{-1}$), but then later some function of $\theta$.
+		\item[$\rightarrow$] Gets rid of not-differentiable stuff, solves the fact that I don't know how to evaluate interest rate beliefs, gets rid of the big and ugly matrices and significantly reduces the number of unknowns.
+		\end{itemize}
+	\end{enumerate}	
+	\begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg( \pi_t^2  + \lambda x_t^2 \bigg)  \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta \overbrace{\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\pi_{T+1}}^{=f_a(t)} - \E_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + u_T\big)\bigg) \\
+ & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma\overbrace{\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\pi_{T+1}}^{=f_b(t)} -\E_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma\beta i_{T+1} +\sigma r_T^n \big)\bigg) \\
+ & +  \varphi_{3,t}  \bigg(f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
+ & + \varphi_{4,t}  \bigg(f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
+  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - \bar{g}^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t-1}) \big)   \bigg)  
+\end{align}
+	Ok, cool, so now do I differentiate wrt. $f_a$ and $f_b$? Or $\bar{\pi}$ as well? I think all.
+
+I can write this even simpler as
+	\begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg( \pi_t^2  + \lambda x_t^2 \bigg)  \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_2(I_3 - \alpha\beta h_x)^{-1}s_t \bigg) \\
+ & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_2 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \alpha\beta h_x)^{-1}s_t  \big)\bigg) \\
+ & +  \varphi_{3,t}  \bigg(f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
+ & + \varphi_{4,t}  \bigg(f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
+  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - \bar{g}^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t-1}) \big)   \bigg)  
+\end{align}
+where $e_i$ is just a selector of row $i$. I wonder if this is the right way to treat the rational long-horizon expectations of $x$ and $i$. This actually allows me to derive Moln\'ar and Santoro's Result 1 (``learning introduces novel intertemporal tradeoffs''), which can be seen on the following equation (corresponding to Moln\'ar and Santoro's eq. 16, and Gaspar et al's eq. 24)
+\begin{equation}
+\pi_t = -\frac{\lambda}{\kappa}\big(x_t -\beta \bar{g}^{-1} \E_t \sum_{i=0}^{\infty}(1-\bar{g}^{-1}) x_{t+1+i}\big) \label{gaspar24}
+\end{equation}
+The neat interpretation you get from (\ref{gaspar24}) is that were the gain $\bar{g}^{-1} =0$, we'd obtain $\pi_t = -\frac{\lambda}{\kappa}x_t $, the RE solution under discretion familiar both from Clarida, Gali, Gertler and from Woodford. As Moln\'ar and Santoro put it, this is the familiar \emph{intra}temporal tradeoff between inflation and output gaps due to cost-push shocks. Their Result 1 says that when the gain is nonzero, the second term in (\ref{gaspar24}) presents a novel \emph{inter}temporal tradeoff due to the fact that the CB's actions today affect inflation expectations and thus affect tomorrow's tradeoff. Thus Moln\'ar and Santoro conclude that ``the optimal decision should be conditional on the current stance of expectations.'' (p. 44.) 
+
+\item Target criterion \\
+The good news is that (\ref{gaspar24}) is the target criterion (analogue of Woodford's (5.1)) because it's the relationship between endogenous variables that obtains from the FOCs. So under learning, this is what the CB should commit to fulfill in expectations in all future periods. 
+\begin{itemize}
+\item That's cool but I'm confused why RE with discretion is the alternative here? Is the expectation part of (\ref{gaspar24}) replacing $x_{t-1}$ (the history-dependent, that is, commitment) part of Woodford's RE target criterion?
+\item I see mathematically how discretion comes about as the alternative: it comes from the fact that I treat $f_a$ and $f_b$ as unknowns, and because the RE expectations for $x$ and $i$ are just functions of the disturbances.
+\item A propos disturbances: the mon. pol shock has been a pain all along, and I think I see why: because it doesn't arise naturally for an optimal interest rate rule.
+\end{itemize}
+\item Interest rate reaction function \\
+To my surprise, Moln\'ar and Santoro actually do this, and they do it like this: Plug the ALM for $\pi$ into the NKPC to get an implied ALM for $x$. Plug both into the NKIS and rearrange for the interest rate that makes it hold (what happened to the target criterion?).
+\begin{itemize}
+\item I'm wondering if they are implicitly evoking the target criterion here?
+\item I'm also wondering if the target criterion means that you don't have to solve for the optimal path?
+\end{itemize}
+
+\end{enumerate}
 
 \end{document}
 
