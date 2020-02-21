@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.14}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 18 - Optimal monpol under learning is an $\infty$ prisoner's dilemma w/o the grim trigger}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+%\tableofcontents
+
+%\listoffigures
+
+
+Take a very simple optimal policy problem where the planner chooses $\{\pi_t\}_{t=t_0}^{\infty}$ to minimize
+\begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \varphi_{t} (\pi_t - \beta \pi_{t+1} ) \bigg\} \label{commitment}
+ \end{align}
+ Consider this same problem under three cases:
+ \begin{enumerate}
+ \item \textbf{RE and commitment} \\
+ FOC:
+ \begin{equation}
+ 2\pi_t +\varphi_t - \varphi_{t-1} = 0 \label{FOCcommitment}
+ \end{equation}
+
+ \item \textbf{RE and discretion} \\
+ Write expected inflation as a variable $f_t$ that the authority takes as given:
+\begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \varphi_{t} (\pi_t - \beta f_t) \bigg\} \label{discretion}
+ \end{align}
+FOC:
+ \begin{equation}
+ 2\pi_t +\varphi_t = 0 \label{FOCdiscretion}
+ \end{equation}
+ \item \textbf{Learning and commitment} 
+ \begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \varphi_{1,t} (\pi_t - \beta f_t) + \varphi_{2,t}(f_t - f_{t-1} -k^{-1}(\pi_t - f_{t-1})) \bigg\} \label{learning}
+ \end{align}
+ FOCs:
+ \begin{align}
+  2\pi_t +\varphi_{1,t} -\varphi_{2,t}k^{-1} & = 0 \label{FOC1learn} \\
+  -\beta\varphi_{1,t} + \varphi_{2,t} + \E_{t}\varphi_{2,t+1}(-1 + k^{-1})  & = 0 \label{FOC2learn} 
+ \end{align}
+$\rightarrow$ no lagged multiplier despite taking formation of expectations into account!
+ \end{enumerate}
+ 
+ Mele, Moln\'ar \& Santoro (2019): optimal monetary policy w/ learning does not involve commitment! Indeed it cannot because the learning mechanism takes away the CB's commitment technology. (In their lingo, learning agents don't have ``off-equilibrium strategies.'') This is a Stackelberg infinitely repeated game where b/c of learning, the private sector is not strategic: it looses access to the grim trigger threat strategy. Therefore the CB will always play its best response and we land in the suboptimal Nash in the long-run!
+ 
+ In a sense, this was anticipated in the ``Ramsey policy is indeterminate under RE'' literature:
+ \begin{itemize}
+ \item Ramsey policy is time-inconsistent (Kydland \& Prescott, 1977, Barro \& Gordon, 1983). So invent RE to endow agents with threats for deviating $\rightarrow$ a commitment device.
+ \item Now the problem is that the commitment solution is a Nash, but it's indeterminate (b/c purely forward-looking).
+ \item Invent learning to introduce backward-lookingness: allows you to select the RE with commitment solution (focus of Evans \& Honkapohja 2001 on E-stability).
+ \item Problem: that solution is no longer optimal b/c the PS cannot enforce it! (``machine'')
+ \item Circumvent that by introducing backward-looking expectation formation that satisfies some sense of optimality (Cho and Matsui, 1995, ``inductive expectations'') so that the PS regains some of its strategic nature.
+ \end{itemize}
+ 
+ Here's a step of bold interpretation:
+ \begin{itemize}
+ \item Maybe Ramsey under RE is indeterminate because of the folk theorem: any feasible and individually rational payoff profile can be a Nash or a subgame perfect equilibrium of the infinitely repeated prisoner's dilemma.
+ \item Learning breaks the folk theorem b/c the assumption of credible threats is gone when one of the players is an automaton and in particular, it's not an optimal one. 
+ \end{itemize}
+
+
+
+ 
+
+
+\end{document}
+
+
+
+
+
