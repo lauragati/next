@@ -118,7 +118,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 18 - Optimal monpol under learning is an $\infty$ prisoner's dilemma w/o the grim trigger}
+\title{Materials 18 - Optimal monpol under learning is an infinitely repeated prisoner's dilemma without the grim trigger}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -163,7 +163,7 @@ FOC:
 $\rightarrow$ no lagged multiplier despite taking formation of expectations into account!
  \end{enumerate}
  
- Mele, Moln\'ar \& Santoro (2019): optimal monetary policy w/ learning does not involve commitment! Indeed it cannot because the learning mechanism takes away the CB's commitment technology. (In their lingo, learning agents don't have ``off-equilibrium strategies.'') This is a Stackelberg infinitely repeated game where b/c of learning, the private sector is not strategic: it looses access to the grim trigger threat strategy. Therefore the CB will always play its best response and we land in the suboptimal Nash in the long-run!
+ Mele, Moln\'ar \& Santoro (2019): optimal monetary policy w/ learning does not involve commitment! %Indeed it cannot because the learning mechanism takes away the CB's commitment technology. (In their lingo, learning agents don't have ``off-equilibrium strategies.'') This is a Stackelberg infinitely repeated game where b/c of learning, the private sector is not strategic: it looses access to the grim trigger threat strategy. Therefore the CB will always play its best response and we land in the suboptimal Nash in the long-run!
  
  In a sense, this was anticipated in the ``Ramsey policy is indeterminate under RE'' literature:
  \begin{itemize}
@@ -177,12 +177,55 @@ $\rightarrow$ no lagged multiplier despite taking formation of expectations into
  Here's a step of bold interpretation:
  \begin{itemize}
  \item Maybe Ramsey under RE is indeterminate because of the folk theorem: any feasible and individually rational payoff profile can be a Nash or a subgame perfect equilibrium of the infinitely repeated prisoner's dilemma.
- \item Learning breaks the folk theorem b/c the assumption of credible threats is gone when one of the players is an automaton and in particular, it's not an optimal one. 
+ \item Learning breaks the folk theorem b/c the assumption of credible threats is gone when one of the players is an automaton and in particular, not an optimal one. 
  \end{itemize}
 
+\newpage
+\section{Optimal policy problem under learning w/ a smooth gain function}
+%Postulate a gain function like $k_t =d\theta_t + c$. Note that since we're learning $\pi$ only here $f_t$ and $\omega_t$ are scalars. Moreover, to make matters simple, I shut off all shocks except for the cost-push shock.
+% \begin{align}
+%\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{  (\pi_t^2  + \lambda x_t^2 )  \\
+% & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_2(I_3 - \alpha\beta h_x)^{-1}s_t \bigg) \\
+% & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_2 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \alpha\beta h_x)^{-1}s_t  \big)\bigg) \\
+% & +  \varphi_{3,t}  \bigg(f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
+% & + \varphi_{4,t}  \bigg(f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
+%  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t-1}) \big)   \bigg)  \\
+%  & + \varphi_{6,t}  \bigg(k_t - d\theta_t - c  \bigg)\\
+%  & + \varphi_{7,t}  \bigg(\theta_t -  \theta_{t-1} - \tilde{\kappa} k_{t-1}^{-1}(f_t^2/\omega_t -\theta_{t-1})  \bigg)\\
+%  & + \varphi_{8,t}  \bigg(\omega_t -  \omega_{t-1} -\tilde{\kappa} k_{t-1}^{-1}(f_t^2 -\omega_{t-1})  \bigg)\\
+%  & + \varphi_{9,t}  \bigg(f_t - \pi_t + (\bar{\pi}_{t-1} + b_1s_{t-1})  \bigg)
+%  \bigg\}
+%\end{align}
+%
+%Yet this is actually quite unwieldy. 
 
 
- 
+A simpler version of the problem is: postulate an endogenous gain choice as some differentiable function of the forecast error: $k_t^{-1} = f(\pi_t - \bar{\pi}_{t-1}-b s_{t-1})$. I have the CUSUM-mechanism in mind, but am agnostic about it to simplify the math. (Treat $k_t^{-1}$ as a variable.)
+ \begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{  (\pi_t^2  + \lambda x_t^2 )  \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_2(I_3 - \alpha\beta h_x)^{-1}s_t \bigg) \\
+ & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_2 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \alpha\beta h_x)^{-1}s_t  \big)\bigg) \\
+ & +  \varphi_{3,t}  \bigg(f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
+ & + \varphi_{4,t}  \bigg(f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
+  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+bs_{t-1}) \big)   \bigg)  \\
+  & + \varphi_{6,t}  \bigg(k_t^{-1} - f(\pi_t - \bar{\pi}_{t-1}-b s_{t-1})  \bigg)
+  \bigg\}
+\end{align}
+where I denote by $f_i(t) \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time-varying derivatives of the anchoring function $f(t)$. After a little bit of simplifying, the FOCs boil down to the following three equations:
+\begin{align}
+& 2\pi_t + 2\frac{\lambda}{\kappa}x_t -\varphi_{5,t} k_t^{-1} - \varphi_{6,t} f_{\pi}(t) = 0 \label{gaspar22}\\
+& -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa}x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +f_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
+& \varphi_{6,t} = (\pi_t - \bar{\pi}_{t-1}-b s_{t-1}) \varphi_{5,t} \label{constraints}
+\end{align}
+Equation (\ref{gaspar22}) is the analogue of Gaspar et al's Equation (22) (= Moln\'ar \& Santoro's (16)), except that there's an additional multiplier, $\varphi_6$, reflecting the fact that learning involves the gain equation as an additional constraint here. Note that when learning has converged $(\varphi_{5,t}=\varphi_{6,t}=0)$, this boils down to the discretionary RE case. \\
+Equation (\ref{gaspar21}) is the analogue of Gaspar et al's Equation (21). The novelty in the system is (\ref{constraints}) which reflects the relationship between the constraints imposed on the system by learning. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} = 1$, I get what I will call the anchoring analogue of Gaspar et al's (24), the target criterion (ignoring $\E_t$):
+\begin{align}
+\pi_t  = -\frac{\lambda}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b s_{t-1}))f_{\pi}(t) \bigg) 
+\bigg(\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b s_{t+j})) \bigg)
+\bigg\} \label{target}
+\end{align}
+
+
 
 
 \end{document}
