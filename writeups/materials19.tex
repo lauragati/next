@@ -140,8 +140,15 @@ Take a very simple optimal policy problem where the planner chooses $\{\pi_t, x_
   2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{FOC1learn} \\
   -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{FOC2learn} 
  \end{align}
+Combining FOCs with the three model equations, I obtain the following system in $\{\pi_t, x_t, f_t,k_t^{-1}, \varphi_t\}_{t=0}^{\infty}$ where I've relabeled $\varphi \equiv \varphi_2$ for simplicity:
+ \begin{align}
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \\
+  \pi_t -\kappa x_t- \beta f_t +u_t & = 0 \\
+  f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1}) & = 0 \\
+  k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1}) & = 0 
+ \end{align}
 
- 
 
 
 
