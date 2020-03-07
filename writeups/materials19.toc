@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {1}A simplified optimal policy with anchoring problem}{1}{section.1}
+\contentsline {section}{\numberline {A}Procedure to obtain the optimal interest rate rule: NKIS vs. target criterion}{3}{appendix.A}
+\contentsline {section}{\numberline {B}Details}{3}{appendix.B}

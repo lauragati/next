@@ -118,7 +118,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 19}
+\title{Materials 19 - Limits on analytical results?}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -129,8 +129,8 @@ bottom=1in}
 
 %\listoffigures
 
-
-Take a very simple optimal policy problem where the planner chooses $\{\pi_t, x_t, f_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+\section{A simplified optimal policy with anchoring problem}
+Planner chooses $\{\pi_t, x_t, f_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
  \begin{align*}
 \mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
  \end{align*}
@@ -142,13 +142,78 @@ Take a very simple optimal policy problem where the planner chooses $\{\pi_t, x_
  \end{align}
 Combining FOCs with the three model equations, I obtain the following system in $\{\pi_t, x_t, f_t,k_t^{-1}, \varphi_t\}_{t=0}^{\infty}$ where I've relabeled $\varphi \equiv \varphi_2$ for simplicity:
  \begin{align}
-  2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \\
-  -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \\
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{t} -\varphi_{t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \\
   \pi_t -\kappa x_t- \beta f_t +u_t & = 0 \\
   f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1}) & = 0 \\
   k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1}) & = 0 
  \end{align}
 
+Unless I find some trick to convert this to a linear system, I can't solve it.
+
+\newpage
+So I see 3 options:
+\begin{enumerate}
+\item Find trick to linearize.
+\item Discuss optimal policy only up to target criterion, which can be derived even for the more complex (but simplified) model and is given by:
+\begin{align}
+\pi_t  = -\frac{\lambda}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b s_{t-1}))f_{\pi}(t) \bigg) 
+\bigg(\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b s_{t+j})) \bigg)
+\bigg\} \label{target}
+\end{align}
+One could also be ``Woodfordian'' and try to find simplifying expressions for this criterion that are approximately as good as this.
+\item Since no distinction between discretion and commitment, could investigate a purely forward-looking policy rule (Taylor rule), i.e. reexamine the noninertial plan. 
+\end{enumerate}
+
+
+\appendix
+\newpage
+\section{Procedure to obtain the optimal interest rate rule: NKIS vs. target criterion}
+``NKIS approach" (Woodford 2003 and Handbook chapter, Moln\'ar \& Santoro)
+\begin{enumerate}
+\item Combine all FOCs to a single difference equation (system) in one variable (vector), solve it for the time path of the variable as a function of forcing terms.
+\item Express optimal time paths for all endogenous variables, plug into NKIS.
+\item Obtain optimal time path for the nominal interest rate as a function pf disturbances only.
+\end{enumerate}
+
+\noindent ``Target criterion approach" (Woodford 2003 and Handbook chapter)
+\begin{enumerate}
+\item From FOCs, express a target criterion as a relationship between endogenous variables that is optimal.
+\item Derive the same (?) time paths for the endogenous variables, use NKIS and NKPC to express expectations for them.
+\item Plug everything into the target criterion, rearrange to obtain the nominal interest rate path.
+\end{enumerate}
+
+Why? The criterion is robust, but the rule isn't. Both result in a rule that delivers an indeterminate equilibrium. (In fact, they result in the same rule (Hbook, p. 19).)
+
+\section{Details}
+Woodford: 
+\begin{enumerate}
+\item Set up the above problem with RE. Get FOCs.
+\item Combine FOCs to get a relationship between $\pi, x$; the target criterion.
+\item Obtain the following 2nd order difference equation in the multiplier:
+\begin{equation}
+\beta \E_t\varphi_{t+1} - \big(1+\beta+\frac{\kappa^2}{\lambda}\big)\varphi_t + \varphi_{t-1} = \frac{\kappa}{\lambda} x^* + u_t
+\end{equation}
+\item Obtain the optimal time path as the solution of the above equation:
+\begin{equation}
+\varphi_t = -\frac{\lambda}{\kappa}x^*(1-\mu_1^{t+1}) -\beta^{-1}\sum_{j=0}^{\infty}\mu_2^{-j-1}\E_t u_{t+j} \quad \quad 0 < \mu_1 < 1 < \mu_2
+\end{equation}
+(where I think $\beta^{-j}$ is missing in the sum, and we know from the Vi\`ete formulas that $\mu_1 = \mu_2^{-1}\beta^{-1}$) \\
+Substitution into FOCs gives time path for $\pi,x$.
+\item Sub time paths into NKPC and NKIS to solve for agents' expectations as functions of shocks only.
+\item Evaluate target criterion at time $t$ by substituting in time paths and expectations of $\pi,x$. Rearrange to express $i_t$.
+\end{enumerate}
+
+
+\noindent Moln\'ar \& Santoro
+\begin{enumerate}
+\item Set up the above problem with learning. Get FOCs. 
+\item Express a target criterion, but don't think of it as such explicitly.
+\item Sub out $x$ from it using the NKIS to express $\E_t \pi_{t+1}$ as a function of current inflation, expectations and disturbances. 
+\item At this point they think of the economy as a trivariate system (inflation, inflation beliefs, output gap beliefs) where $t+1$ values depend on $t$ ones and disturbances. Solve for the evolution of inflation as a function of inflation beliefs and disturbances only using a guess-and-verify method.
+\item Once you have that for $\pi$, you can get the same for $x$.
+\item Plug time paths for $\pi,x$ into NKPC. Express $i_t$.
+\end{enumerate}
 
 
 
