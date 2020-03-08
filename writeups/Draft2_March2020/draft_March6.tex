@@ -559,18 +559,21 @@ By contrast, for the rational expectations version of the model with the assumpt
 \begin{align}
 \psi_{\pi}^{RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psipi_RE}
 \\
-\psi_{x}^{RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_x \rho  \sigma } \label{opt_psix_RE}
+\psi_{x}^{RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psix_RE}
 \end{align}
 See Appendix \ref{app_oni} for derivations.
 \label{result_TR}
 \end{result}
 
-This result has several interesting implications. First, focusing on the coefficient on inflation, $\psi_{\pi}$, one can write $\psi_{\pi}^{RE} = \psi_{\pi}^{anchor}\frac{1}{(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma }$. It is immediate that unless $\rho=0$, $\psi_{\pi}^{RE} >\psi_{\pi}^{anchor}$\footnote{The other exception is $\lambda_i \rightarrow 0$, discussed below.}. In words, under learning with an anchoring mechanism, monetary policy is optimally \emph{less} aggressive on inflation than under rational expectations.
+This result has several interesting implications. First, focusing on the coefficient on inflation, $\psi_{\pi}$, one can write $\psi_{\pi}^{RE} = \psi_{\pi}^{anchor}\frac{1}{(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma }$. It is immediate that unless $\rho=0$\footnote{The other exception is $\lambda_i \rightarrow 0$, discussed below. Note also that the same conclusions hold for the coefficient on the output gap.}, $|\psi_{\pi}^{RE}| >\psi_{\pi}^{anchor}\geq 0$\footnote{The absolute value on the RE coefficient signifies that for $\rho > \bar{\rho}$, the factor $\frac{1}{(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma }$ turns negative. I therefore exclude all $\rho \leq \bar{\rho}$. $\bar{\rho}$ is given by the smaller root of $(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma = 0$, which for my baseline calibration is 0.668021.}. In words, under learning with an anchoring mechanism, monetary policy is optimally \emph{less} aggressive on inflation than under rational expectations. Under my baseline calibration with $\rho=0.6$, the RE coefficient exceeds the one under anchoring by a factor of 15.06; with a lower $\rho$ of 0.3, the factor reduces to 2.25.
 
-This deserves some discussion, especially since it contradicts the findings of the majority of papers on optimal policy under learning. 
-% costs of anchoring, heightened volatility
+Given that most papers on optimal policy under learning emphasize the importance of heightened aggressiveness on inflation, this result may seem surprising. The conventional wisdom, as emphasized in for example \cite{assenza2019managing}, is that since adaptive learning introduces positive feedback in the model, an aggressive policy response to inflation can stabilize the system by adding negative feedback. In an anchoring setting, this relationship becomes non-monotonic due to the endogeneity of the gain. Moreover, this is a case where the choice of Euler-equation vs. long-horizon learning matters. When long-horizon expectations are present, a high inflation coefficient of the central bank leads to a much more volatility than under Euler-equation learning because the entire expectation profile responds to shocks due to anticipated interest rate responses. This additional volatility from long-horizon expectations is amplified if the gain is endogenous, since agents respond to heightened volatility by unanchoring their expectations. This however results in further movement in expectations, leading to a novel positive feedback loop.
 
-The second observation is that the rational expectations results for the central bank's weights $\lambda_x$ and $\lambda_i$ remain. In particular, a positive coefficient on the output gap is only optimal if $\lambda_x > 0$. Moreover
+In this sense, anchoring adds an additional intertemporal tradeoff compared to exogenous gain settings. To undermine additional long-run volatility caused by unanchored expectations, the central bank seeks to anchor them. This is however costly in the short run, as being more aggressive on inflation results in more volatility coming from intertemporal anticipation effects.
+
+The second observation is that the rational expectations results for the central bank's weights $\lambda_x$ and $\lambda_i$ continue to hold. In particular, a positive coefficient on the output gap is only optimal in either model if $\lambda_x > 0$. Moreover, as $\lambda_i \rightarrow 0, \psi_{\pi} \rightarrow \infty$ both for RE and for anchoring. This reflects that if the central bank is willing to allow excessive fluctuation in its policy instrument, then being infinitely aggressive on inflation can stifle all fluctuations away from the steady state. But as long as $\lambda_i$ is infinitesimally above zero, the central bank will be less aggressive on inflation under anchoring than under RE. 
+
+The third observation concerns the Taylor principle, which, as shown by \cite{bullard2002learning} and \cite{preston2005}, continues to hold under learning. Fulfillment of the Taylor principle requires that $\lambda_i < \kappa\sigma$. For log utility ($\sigma=1$) and reasonable price rigidity ($\kappa \approx 0.2$), this implies $\lambda_i < 0.2$. Interest rate stabilization concerns must thus be second order compared to inflation stabilization concerns in order for the equilibrium to be determinate and learnable.
 
 
 
@@ -636,13 +639,13 @@ Denote by $\mathbf{g}_i(t) \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time
 
  \begin{align}
 \mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{  (\pi_t^2  + \lambda x_t^2 )  \\
- & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_3(I_3 - \alpha\beta h_x)^{-1}s_t \bigg) \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_3(I_3 - \alpha\beta h_x)^{-1}s_t \bigg) \label{midsimple_first}\\
  & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_3 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \beta h_x)^{-1}s_t  \big)\bigg) \\
  & +  \varphi_{3,t}  \bigg(f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \bigg) \\
  & + \varphi_{4,t}  \bigg(f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t \bigg)  \\
   & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)   \bigg)  \\
   & + \varphi_{6,t}  \bigg(k_t^{-1} - f(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  \bigg)
-  \bigg\}
+  \bigg\} \label{midsimple_last}
 \end{align}
 After a little bit of simplifying, the FOCs boil down to the following three equations:
 \begin{align}
@@ -653,7 +656,13 @@ After a little bit of simplifying, the FOCs boil down to the following three equ
 Note that Equation (\ref{gaspar22}) is the analogue of \cite{gaspar2010inflation}'s Equation (22) (or, equivalently, of  \cite{molnar2014optimal}'s (16)), except that there's an additional multiplier, $\varphi_6$. This multiplier reflects the fact that in addition to the constraint coming from the expectation process itself, with shadow value $\varphi_5$, learning involves the gain equation as a constraint as well. One can also clearly read off Result 1: when the learning process has converged such that neither expectations nor the gain process are constraints ($\varphi_5 =\varphi_6 = 0$), the discretionary inflation-output gap tradeoff familiar from \cite{clarida1999science} obtains. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} = 1$, one obtains the target criterion (\ref{target}).
 
 \section{Optimal Taylor-rule coefficients in the anchoring model} \label{app_oni}
+I solve for the optimal Taylor-rule coefficients in the anchoring model by obtaining the optimal noninertial plan for the endogenous variables and performing coefficient-comparison on (\ref{TR}).\footnote{For the specifics of the optimal noninertial plan, see \cite{woodford2011interest}.} The noninertial plan entails linear responses to exogenous disturbances of the form $z_t = \bar{z} + f_z u_t + g_z r_t^n$ where $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$. I obtain the optimal responses to disturbances $f_z, g_z$ by having them minimize the part of the central bank's loss function, Equation (\ref{CBloss}), that pertains to losses from variance in the endogenous variables, subject to the conjectures satisfying the model equations (\ref{midsimple_first}) - (\ref{midsimple_last}). 
 
+One remark is in order. As for the inertial plan in App. \ref{app_midsimple_problem} and the main text, interaction terms between endogenous terms show up upon plugging the conjectures into the model equations. Restricting these to vanish implies setting $f_i = g_i=0$ for $i = \bar{\pi}, k^{-1}$. The economic interpretation for this is that in the optimal evolution of endogenous variables, the gain and the expectation of mean inflation do not fluctuate in response to shocks. In other words, optimally, expectations should be anchored. From this follows that 
+\begin{align}
+f_{f_a} = \frac{b_{13}}{1-\alpha  \beta  \rho _u}\quad \quad  f_{f_b}=  \frac{b_{13}}{1-\beta  \rho _u} \quad \quad g_{f_a}  = \frac{b_{11}}{1-\alpha  \beta  \rho _r} \quad \quad g_{f_b} = \frac{b_{11}}{1-\beta  \rho _r}
+\end{align}
+which simply has the interpretation that long-horizon expectations should correspond to the rational expectation of the respective shock in the infinite future.
 
 \end{document}
 
