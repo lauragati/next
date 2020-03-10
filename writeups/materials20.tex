@@ -125,13 +125,42 @@ bottom=1in}
 
 %%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
 
-%\tableofcontents
+\tableofcontents
 
 %\listoffigures
 
+\section{Procedure}
+\begin{enumerate}
+\item obtain the optimal noninertial plan for the endogenous variables,
+\item  perform coefficient-comparison on the Taylor rule.
+\end{enumerate}
 
-I solve for the optimal Taylor-rule coefficients in the anchoring model by obtaining the optimal noninertial plan for the endogenous variables and performing coefficient-comparison on (\ref{TR}).\footnote{For the specifics of the optimal noninertial plan, see \cite{woodford2011interest}.} The noninertial plan entails linear responses to exogenous disturbances of the form $z_t = \bar{z} + f_z u_t + g_z r_t^n$ where $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$. I obtain the optimal responses to disturbances $f_z, g_z$ by having them minimize the part of the central bank's loss function, Equation (\ref{CBloss}), that pertains to losses from variance in the endogenous variables, subject to the conjectures satisfying the model equations (\ref{midsimple_first}) - (\ref{midsimple_last}). 
+Details:
 
+\noindent Given optimal noninertial paths of the form $z_t = \bar{z} + f_zu_t + g_z r_t^n, \; z = {\pi,x,i}$, the Taylor rule
+\begin{equation}
+i_t = \psi_{\pi}(\pi_t -\bar{\pi}) + \psi_{x} (x_t -\bar{x}) + \bar{i}_t  \label{TR}
+\end{equation}
+can be written as
+\begin{align}
+i_t & = \bar{i} + \psi_{\pi}(f_{\pi}u_t + g_{\pi}r_t^n) + \psi_x(f_{x}u_t + g_{x}r_t^n)
+\end{align}
+which has to satisfy
+\begin{align}
+i_t & = \bar{i} + f_i u_t + g_i r^n_t
+\end{align}
+allowing one to solve for $(\psi_{\pi}^*, \psi_x^*)$ as the solution to
+\begin{align}
+f_i & = \psi_{\pi}f_{\pi} + \psi_xf_{x} \\
+g_i & = \psi_{\pi}g_{\pi} + \psi_xg_{x}
+\end{align}
+
+
+\newpage
+\noindent Details on obtaining the coefficients $f_z, g_z$ of the optimal noninertial plan $z_t = \bar{z} + f_z u_t + g_z r_t^n$ for the anchoring model 
+\begin{enumerate}
+\item Conjecture $z_t = \bar{z} + f_z u_t + g_z r_t^n$ where $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$
+\item Plug conjecture into model equations (\ref{midsimple_first}) - (\ref{midsimple_last}) (the simplified version of the baseline model):
  \begin{align}
  &  \pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_3(I_3 - \alpha\beta h_x)^{-1}s_t = 0 \label{midsimple_first}\\
  & x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_3 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \beta h_x)^{-1}s_t  \big)=0 \\
@@ -139,6 +168,59 @@ I solve for the optimal Taylor-rule coefficients in the anchoring model by obtai
  &  f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t =0  \\
   &  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)  =0 \\
   &   k_t^{-1} - f(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  =0 \label{midsimple_last}
+\end{align}
+\item Note that there are $n_y$ deterministic components $\bar{z}$, $n_y$ $f_z$-terms and $n_y$ $g_z$-terms. Imposing that the conjecture fulfills the model equations (\ref{midsimple_first}) - (\ref{midsimple_last}) yields $n_y -1$ constraints \emph{separately} for $\bar{z}$, $f_z$ and $g_z$. That is, I have three non-interacting equation systems, each consisting of $n_y -1$ equations in $n_y$ variables.
+\item Solve 3 minimizations:
+\begin{align}
+\bar{z} & = \argmin L^{det} \quad s.t \quad \text{the 1st set of } \; n_y -1 \; \text{constraints from step 3}. \\
+f_z & = \argmin L^{stab,u} \quad s.t \quad \text{the 2nd set of } \; n_y -1 \; \text{constraints from step 3}. \\
+g_z & = \argmin L^{stab,r} \quad s.t \quad \text{the 3rd set of } \; n_y -1 \; \text{constraints from step 3}.
+\end{align}
+where I'm using the following decomposition of the central bank's loss:
+The central bank's loss function
+\begin{equation}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
+\end{equation}
+can be decomposed into a component coming from the long-run means, and a component from fluctuations  of the endogenous variables:
+\begin{align}
+L^{det} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\E_t{\pi_T^2} +\lambda_x(\E_tx_T -x^*)^2 + \lambda_i(\E_ti_T -i^*)^2 \}\\
+L^{stab} & = \sum_{T=t}^{\infty}\beta^{T-t}\{\text{var}_t(\pi_T)+\lambda_x\text{var}_t(x_T) + \lambda_i\text{var}_t(i_T) \} \\
+L^{stab,u} & \propto f_{\pi}^2 + \lambda_{x}f_x^2 + \lambda_i f_i^2\\
+L^{stab,r} & \propto g_{\pi}^2 + \lambda_{x}g_x^2 + \lambda_i g_i^2
+\end{align}
+\item Solve the three decoupled $n_y \times n_y$ equation systems for $\bar{z}$, $f_z$ and $g_z$. \end{enumerate}
+(I didn't solve for $\bar{z}$ because the TR-coefficients only depend on $f_z$ and $g_z$.)
+
+\section{Remarks on the noninertial plan for the anchoring model}
+\begin{enumerate}
+\item Treat long-run expectations $f_a, f_b$, the gain $k^{-1}$ and expected mean inflation $\bar{\pi}$ as endogenous variables (part of the vector $z$).
+\item Postulate a gain function 
+\begin{equation}
+k_t^{-1} -k_{t-1}^{-1} = c + d(\pi_t -\bar{\pi}_{t-1} - b_{11}r_t^n - b_{13}u_t)
+\end{equation}
+\item Step 2 yields interaction terms between $f_k,f_{\bar{\pi}}$ and $g_k, g_{\bar{\pi}}$, as well as between the shocks (of the form $u_tr_t^n, u_t^2, (r_t^n)^2$) and these coefficients loading on lagged shocks $u_{t-1}, r_{t-1}^n$ (which also show up in interaction terms). 
+\begin{itemize}
+\item To keep the solution linear, I therefore impose $f_k = g_k = f_{\bar{\pi}} = g_{\bar{\pi}} = 0$. 
+\item[] Interpretation: in the optimal plan, the planner wants the gain and expected mean inflation not to fluctuate in response to shocks.
+\item A direct consequence of this is:
+\begin{align}
+f_{f_a} = \frac{b_{13}}{1-\alpha  \beta  \rho _u}\quad \quad  f_{f_b}=  \frac{b_{13}}{1-\beta  \rho _u} \quad \quad g_{f_a}  = \frac{b_{11}}{1-\alpha  \beta  \rho _r} \quad \quad g_{f_b} = \frac{b_{11}}{1-\beta  \rho _r}
+\end{align}
+i.e. long-run expectations are just the discounted sums of the rational expectation of disturbances.
+\end{itemize}
+\end{enumerate}
+
+\section{Optimal Taylor-rule coefficients}
+\begin{align}
+\psi_{\pi}^{anchor} & = \frac{\kappa  \sigma }{\lambda_i} \label{opt_psipi_anchor}
+\\
+\psi_{x}^{anchor} & =  \frac{\lambda_x\sigma }{\lambda_i } \label{opt_psix_anchor}
+\end{align}
+For the rational expectations version of the model with the assumption $\rho \equiv \rho_u = \rho_r$, the coefficients are
+\begin{align}
+\psi_{\pi}^{RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psipi_RE}
+\\
+\psi_{x}^{RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psix_RE}
 \end{align}
 
 
