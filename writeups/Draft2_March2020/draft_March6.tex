@@ -637,12 +637,12 @@ The matrices of the state transition equation (\ref{LOM_s}) are
 
 \section{The observation matrix for learning}\label{app_FG}
 \begin{equation}
-g^l = \begin{bmatrix} F & G \end{bmatrix}
+g_{t-1}^l = \begin{bmatrix} F_{t-1} & G_{t-1} \end{bmatrix}
 \end{equation}
 with
 \begin{align}
-F & = \bigg(A_a \frac{1}{1-\alpha\beta} + A_b\frac{1}{1-\beta} \bigg)a_{t-1}\\
-G & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(I_3 - \beta h \bigg)^{-1} + A_s
+F_{t-1} & = \bigg(A_a \frac{1}{1-\alpha\beta} + A_b\frac{1}{1-\beta} \bigg)a_{t-1}\\
+G_{t-1} & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(I_3 - \beta h \bigg)^{-1} + A_s
 \end{align}
 
 \section{The policy problem in the simplified baseline model }\label{app_midsimple_problem}
