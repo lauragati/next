@@ -1,5 +1,13 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Anufriev and Hommes}{Anufriev and
+  Hommes}{2012}]{anufriev2012evolutionary}
+Anufriev, M. and C.~Hommes (2012).
+\newblock Evolutionary selection of individual expectations and aggregate
+  outcomes in asset pricing experiments.
+\newblock {\em American Economic Journal: Microeconomics\/}~{\em 4\/}(4),
+  35--64.
+
 \bibitem[\protect\citeauthoryear{Assenza, Heemeijer, Hommes, and
   Massaro}{Assenza et~al.}{2019}]{assenza2019managing}
 Assenza, T., P.~Heemeijer, C.~Hommes, and D.~Massaro (2019).
@@ -171,6 +179,12 @@ Sargent, T.~J. (1999).
 \newblock {\em The Conquest of American Inflation}.
 \newblock Princeton University Press.
 
+\bibitem[\protect\citeauthoryear{Tversky and Kahneman}{Tversky and
+  Kahneman}{1974}]{tversky1974judgment}
+Tversky, A. and D.~Kahneman (1974).
+\newblock Judgment under uncertainty: Heuristics and biases.
+\newblock {\em science\/}~{\em 185\/}(4157), 1124--1131.
+
 \bibitem[\protect\citeauthoryear{Williams}{Williams}{2003}]{williams2003adaptive}
 Williams, N. (2003).
 \newblock Adaptive learning and business cycles.
@@ -181,5 +195,10 @@ Woodford, M. (2011).
 \newblock {\em Interest and Prices: Foundations of a Theory of Monetary
   Policy}.
 \newblock Princeton University Press.
+
+\bibitem[\protect\citeauthoryear{Woodford}{Woodford}{2019}]{woodford2019monetary}
+Woodford, M. (2019).
+\newblock Monetary policy analysis when planning horizons are finite.
+\newblock {\em NBER Macroeconomics Annual\/}~{\em 33\/}(1), 1--50.
 
 \end{thebibliography}

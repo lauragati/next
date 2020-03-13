@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 MAR 2020 15:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 MAR 2020 22:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**draft_March6.tex
-(./draft_March6.tex
+**favorite_result.tex
+(./favorite_result.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -461,6 +461,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip66
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+
 (/usr/local/texlive/2015/texmf-dist/tex/latex/floatrow/floatrow.sty
 Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
 \c@float@type=\count133
@@ -499,44 +501,350 @@ Package floatrow Info: Modified rotfloat package code loaded on input line 473.
 \LTright=\skip80
 \flrow@types=\toks32
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 43.
-\c@prop=\count140
-\c@definition=\count141
-\c@lemma=\count142
-\c@corollary=\count143
-\c@result=\count144
+(/usr/local/texlive/2015/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(./draft_March6.aux)
-\openout1 = `draft_March6.aux'.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip81
+\f@ncyO@elh=\skip82
+\f@ncyO@erh=\skip83
+\f@ncyO@olh=\skip84
+\f@ncyO@orh=\skip85
+\f@ncyO@elf=\skip86
+\f@ncyO@erf=\skip87
+\f@ncyO@olf=\skip88
+\f@ncyO@orf=\skip89
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks33
+\pgfutil@tempdima=\dimen162
+\pgfutil@tempdimb=\dimen163
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box59
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2013/12/20 v3.0.0 (rcs-revision 1.28)
+))
+Package: pgf 2013/12/18 v3.0.0 (rcs-revision 1.14)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks34
+\pgfkeys@temptoks=\toks35
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks36
+))
+\pgf@x=\dimen164
+\pgf@y=\dimen165
+\pgf@xa=\dimen166
+\pgf@ya=\dimen167
+\pgf@xb=\dimen168
+\pgf@yb=\dimen169
+\pgf@xc=\dimen170
+\pgf@yc=\dimen171
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count140
+\c@pgf@countb=\count141
+\c@pgf@countc=\count142
+\c@pgf@countd=\count143
+\t@pgf@toka=\toks37
+\t@pgf@tokb=\toks38
+\t@pgf@tokc=\toks39
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2013/07/18  (rcs-revision 1.33)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count144
+\pgfsyssoftpath@bigbuffer@items=\count145
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen172
+\pgfmath@count=\count146
+\pgfmath@box=\box60
+\pgfmath@toks=\toks40
+\pgfmath@stack@operand=\toks41
+\pgfmath@stack@operation=\toks42
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count147
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen173
+\pgf@picmaxx=\dimen174
+\pgf@picminy=\dimen175
+\pgf@picmaxy=\dimen176
+\pgf@pathminx=\dimen177
+\pgf@pathmaxx=\dimen178
+\pgf@pathminy=\dimen179
+\pgf@pathmaxy=\dimen180
+\pgf@xx=\dimen181
+\pgf@xy=\dimen182
+\pgf@yx=\dimen183
+\pgf@yy=\dimen184
+\pgf@zx=\dimen185
+\pgf@zy=\dimen186
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen187
+\pgf@path@lasty=\dimen188
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
+\pgf@shorten@end@additional=\dimen189
+\pgf@shorten@start@additional=\dimen190
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count148
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
+\pgflinewidth=\dimen191
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
+\pgf@pt@x=\dimen192
+\pgf@pt@y=\dimen193
+\pgf@pt@temp=\dimen194
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
+\pgfarrowsep=\dimen195
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen196
+\pgf@sys@shading@range@num=\count149
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2013/07/15  (rcs-revision 1.20)
+\pgfexternal@startupbox=\box64
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2013/10/31  (rcs-revision 1.34)
+\pgfnodeparttextbox=\box65
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2013/07/31  (rcs-revision 1.12)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.0 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen197
+\pgf@nodesepend=\dimen198
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.0 (rcs-revision 1.1)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen199
+\pgffor@skip=\dimen200
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
+))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
+\pgf@plot@mark@count=\count150
+\pgfplotmarksize=\dimen201
+)
+\tikz@lastx=\dimen202
+\tikz@lasty=\dimen203
+\tikz@lastxsaved=\dimen204
+\tikz@lastysaved=\dimen205
+\tikzleveldistance=\dimen206
+\tikzsiblingdistance=\dimen207
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count151
+\tikznumberofchildren=\count152
+\tikznumberofcurrentchild=\count153
+\tikz@fig@count=\count154
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count155
+\pgfmatrixcurrentcolumn=\count156
+\pgf@matrix@numberofcolumns=\count157
+)
+\tikz@expandcount=\count158
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
+)))
+Package hyperref Info: Option `colorlinks' set `true' on input line 61.
+\c@prop=\count159
+\c@definition=\count160
+\c@lemma=\count161
+\c@corollary=\count162
+\c@conjecture=\count163
+ (./favorite_result.aux)
+\openout1 = `favorite_result.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count145
-\scratchdimen=\dimen162
-\scratchbox=\box59
-\nofMPsegments=\count146
-\nofMParguments=\count147
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count148
-\MPscratchDim=\dimen163
-\MPnumerator=\count149
-\makeMPintoPDFobject=\count150
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count164
+\scratchdimen=\dimen208
+\scratchbox=\box70
+\nofMPsegments=\count165
+\nofMParguments=\count166
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count167
+\MPscratchDim=\dimen209
+\MPnumerator=\count168
+\makeMPintoPDFobject=\count169
+\everyMPtoPDFconversion=\toks46
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -558,7 +866,7 @@ Package caption Info: float package is loaded.
 Package caption Info: floatrow package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box60
+\AtBeginShipoutBox=\box71
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -594,285 +902,75 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 94.
+Package hyperref Info: Link coloring ON on input line 117.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count151
+\c@section@level=\count170
 )
-LaTeX Info: Redefining \ref on input line 94.
-LaTeX Info: Redefining \pageref on input line 94.
-LaTeX Info: Redefining \nameref on input line 94.
+LaTeX Info: Redefining \ref on input line 117.
+LaTeX Info: Redefining \pageref on input line 117.
+LaTeX Info: Redefining \nameref on input line 117.
 
-(./draft_March6.out) (./draft_March6.out)
-\@outlinefile=\write3
-\openout3 = `draft_March6.out'.
+(./favorite_result.out) (./favorite_result.out)
+\@outlinefile=\write4
+\openout4 = `favorite_result.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 105.
+
+ABD: EveryShipout initializing macros
+LaTeX Font Info:    Try loading font information for U+msa on input line 125.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 105.
+LaTeX Font Info:    Try loading font information for U+msb on input line 125.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../../figures/urate_2020_02_09.png, id=91, 1139.25626pt x 639.38875pt>
-File: ../../figures/urate_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/urate_2020_02_09.png>
-Package pdftex.def Info: ../../figures/urate_2020_02_09.png used on input line 
-123.
-(pdftex.def)             Requested size: 205.05728pt x 115.085pt.
-
-<../../figures/pce_2020_02_09.png, id=92, 1139.25626pt x 629.35126pt>
-File: ../../figures/pce_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/pce_2020_02_09.png>
-Package pdftex.def Info: ../../figures/pce_2020_02_09.png used on input line 12
-4.
-(pdftex.def)             Requested size: 205.05728pt x 113.27834pt.
-
-<../../figures/frr_2020_02_09.png, id=93, 1139.25626pt x 639.38875pt>
-File: ../../figures/frr_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/frr_2020_02_09.png>
-Package pdftex.def Info: ../../figures/frr_2020_02_09.png used on input line 12
-5.
-(pdftex.def)             Requested size: 205.05728pt x 115.085pt.
-
-<../../figures/epi10_2020_02_09.png, id=95, 1139.25626pt x 639.38875pt>
-File: ../../figures/epi10_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/epi10_2020_02_09.png>
-Package pdftex.def Info: ../../figures/epi10_2020_02_09.png used on input line 
-133.
-(pdftex.def)             Requested size: 250.63715pt x 140.66595pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2 <../../figures/urate_2020_02_09.png (PNG copy)> <../../figures/pce_2020_02_0
-9.png (PNG copy)> <../../figures/frr_2020_02_09.png (PNG copy)>] [3 <../../figu
-res/epi10_2020_02_09.png (PNG copy)>] [4] [5] [6] [7] [8] [9] [10] [11]
-[12] [13]
-Overfull \hbox (61.68275pt too wide) in paragraph at lines 382--382
+)
+Overfull \hbox (61.68275pt too wide) in paragraph at lines 137--137
 [] 
  []
 
-[14] [15] [16] [17] [18] [19]
-<../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetb
-ar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png, id=556, 1060.96375pt x
- 660.4675pt>
-File: ../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_
-thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png Graphic file (type
- png)
+[1
 
-<use ../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_t
-hetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png>
-Package pdftex.def Info: ../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_
-psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png
- used on input line 512.
-(pdftex.def)             Requested size: 190.96523pt x 118.87901pt.
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 144.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
 
-<../../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1
-_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.
-png, id=557, 1084.05pt x 660.4675pt>
-File: ../../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi
-_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_0
-2_09.png Graphic file (type png)
-
-<use ../../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_
-pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02
-_09.png>
-Package pdftex.def Info: ../../figures/plot_sim_loss_loss_again_critCUSUM_const
-ant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_l
-amx_0_lami_0_2020_02_09.png used on input line 513.
-(pdftex.def)             Requested size: 195.12057pt x 118.87901pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-<../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constan
-t_only_2020_02_10.png, id=559, 1407.2575pt x 769.87625pt>
-File: ../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_co
-nstant_only_2020_02_10.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_con
-stant_only_2020_02_10.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol
-_again_critCUSUM_constant_only_2020_02_10.png used on input line 521.
-(pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
-
-<../../figures/command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_const
-ant_only_2020_02_10.png, id=560, 1407.2575pt x 769.87625pt>
-File: ../../figures/command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_
-constant_only_2020_02_10.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_c
-onstant_only_2020_02_10.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_RIR_LH_unanchmonp
-ol_again_critCUSUM_constant_only_2020_02_10.png used on input line 522.
-(pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[20] [21 <../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_
-145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png (PNG copy)> <.
-./../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5
-_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.pn
-g (PNG copy)> <../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_cri
-tCUSUM_constant_only_2020_02_10.png (PNG copy)> <../../figures/command_IRFs_anc
-horing_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10.png (PNG co
-py)>]
-<../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
-_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2
-020_02_09.png, id=578, 1117.17375pt x 604.2575pt>
-File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
-arams_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lam
-i_0_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_pa
-rams_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami
-_0_2020_02_09.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_loss_again_critCU
-SUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5
-_kap_0_8_lamx_0_lami_0_2020_02_09.png used on input line 531.
-(pdftex.def)             Requested size: 201.0826pt x 108.76166pt.
-
-<../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
-_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_20
-20_02_09.png, id=579, 1117.17375pt x 604.2575pt>
-File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
-arams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami
-_0_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_pa
-rams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_
-0_2020_02_09.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_loss_again_critCU
-SUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_
-kap_0_8_lamx_0_lami_0_2020_02_09.png used on input line 532.
-(pdftex.def)             Requested size: 201.0826pt x 108.76166pt.
-
-<../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
-_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020
-_02_09.png, id=580, 1140.26pt x 604.2575pt>
-File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
-arams_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0
-_2020_02_09.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_pa
-rams_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_
-2020_02_09.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_loss_again_critCU
-SUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_ka
-p_0_8_lamx_0_lami_0_2020_02_09.png used on input line 533.
-(pdftex.def)             Requested size: 205.23795pt x 108.76166pt.
- [22 <../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
-arams_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lam
-i_0_2020_02_09.png (PNG copy)> <../../figures/command_IRFs_anchoring_loss_again
-_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettil
-de_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png (PNG copy)> <../../figures/command_
-IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_
-0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png (PNG copy)>]
-
-<../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_1_01_2020_02_10.png, id=596, 1407.2575pt x 769.87625pt>
-File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
-_constant_only_psi_pi_1_01_2020_02_10.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_
-constant_only_psi_pi_1_01_2020_02_10.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_mon
-pol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10.png used on input line
- 543.
-(pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
-
-<../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_1_5_2020_02_10.png, id=597, 1407.2575pt x 769.87625pt>
-File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
-_constant_only_psi_pi_1_5_2020_02_10.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_
-constant_only_psi_pi_1_5_2020_02_10.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_mon
-pol_again_critCUSUM_constant_only_psi_pi_1_5_2020_02_10.png used on input line 
-544.
-(pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
-
-<../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_2_2020_02_10.png, id=598, 1407.2575pt x 769.87625pt>
-File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
-_constant_only_psi_pi_2_2020_02_10.png Graphic file (type png)
-
-<use ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_
-constant_only_psi_pi_2_2020_02_10.png>
-Package pdftex.def Info: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_mon
-pol_again_critCUSUM_constant_only_psi_pi_2_2020_02_10.png used on input line 54
-5.
-(pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
- [23 <../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
-_constant_only_psi_pi_1_01_2020_02_10.png (PNG copy)> <../../figures/command_IR
-Fs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_5_2020
-_02_10.png (PNG copy)> <../../figures/command_IRFs_anchoring_RIR_LH_unanch_monp
-ol_again_critCUSUM_constant_only_psi_pi_2_2020_02_10.png (PNG copy)>] [24] [25]
- [26] (./draft_March6.bbl [27
-
-] [28])
-[29] [30] [31]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 684.
- [32]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 684.
- (./draft_March6.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 684.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 684.
-Package rerunfilecheck Info: File `draft_March6.out' has not changed.
-(rerunfilecheck)             Checksum: 03C98345C856FF5ABDCD95FA5E8554E5;1245.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 684.
+(./favorite_result.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
+Package rerunfilecheck Info: File `favorite_result.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 144.
  ) 
 Here is how much of TeX's memory you used:
- 10479 strings out of 493089
- 164162 string characters out of 6134842
- 273279 words of memory out of 5000000
- 13582 multiletter control sequences out of 15000+600000
- 15434 words of font info for 58 fonts, out of 8000000 for 9000
+ 19918 strings out of 493089
+ 361182 string characters out of 6134842
+ 446401 words of memory out of 5000000
+ 23037 multiletter control sequences out of 15000+600000
+ 11061 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,39p,1837b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,12n,54p,719b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_March6.pdf (32 pages, 1022646 bytes).
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on favorite_result.pdf (1 page, 101858 bytes).
 PDF statistics:
- 831 PDF objects out of 1000 (max. 8388607)
- 753 compressed objects within 8 object streams
- 209 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 62 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
+ 3 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
