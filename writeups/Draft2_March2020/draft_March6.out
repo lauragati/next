@@ -17,3 +17,4 @@
 \BOOKMARK [1][-]{appendix.B}{The observation matrix for learning}{}% 17
 \BOOKMARK [1][-]{appendix.C}{The policy problem in the simplified baseline model }{}% 18
 \BOOKMARK [1][-]{appendix.D}{Optimal Taylor-rule coefficients in the anchoring model}{}% 19
+\BOOKMARK [1][-]{appendix.E}{Oscillatory dynamics in learning models with sufficiently high gain}{}% 20

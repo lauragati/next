@@ -481,7 +481,7 @@ The learning parameters $\bar{g}, \tilde{\theta}$ and $\tilde{\kappa}$ require s
 
 \vspace{-1.4cm}
 
-The choice of $\bar{g}$ is far from innocent as it has considerable implications for model dynamics. In particular, as I address in the Introduction, constant gain learning models have a tendency to produce impulse responses that exhibit damped oscillations. The reason is that under an adaptive learning framework, forecast errors following an impulse are oscillatory. In fact, the higher the learning gain, the higher the amplitude of forecast error oscillations. If the gain is high enough, the oscillations become explosive. 
+The choice of $\bar{g}$ is far from innocent as it has considerable implications for model dynamics. In particular, as periodically noted in the adaptive learning literature, constant gain learning models have a tendency to produce impulse responses that exhibit damped oscillations.\footnote{Authors making explicit note of this phenomenon include \cite{evans_honkapohja2001}, \cite{evans2013bayesian} and \cite{anufriev2012evolutionary}. App. \ref{app_oscillations} presents a simple illustration for why this is the case.} The reason is that under an adaptive learning framework, forecast errors following an impulse are oscillatory. In fact, the higher the learning gain, the higher the amplitude of forecast error oscillations. If the gain is high enough, the oscillations become explosive. 
 % should write out the difference equation whose eigenvalue is the gain (diff eq of forecast errors)
 
 Unfortunately, the model gives no guidance on the appropriate value for $\bar{g}$.\footnote{The analogy of the Kalman gain from the Kalman filter does not prove helpful either because it requires a steady state forecast error variance matrix which is not available in a learning context.} I thus turn to the thin literature on estimating learning gains. I assign the value  0.145, obtained by \cite{carvalho2019anchored}, to my knowledge the only study to estimate the value of the constant gain for an endogenous gain model. It has to be observed, however, that this is a significantly higher value than what was found in the literature estimating gains for constant gain learning. \cite{branch2006simple}'s number of 0.062 is quite close to \cite{eusepi2018limits}'s estimate of 0.05, while \cite{milani2007expectations} finds an even lower number of 0.0183. Studies that use calibrated gains such as \cite{williams2003adaptive} or \cite{orphanides2005decline} tend to experiment with a range of values in the $[0.01,0.1]$ interval. The value of 0.05 seems to have attained particular prominence, but also much lower numbers have been used, such as 0.002 in \cite{eusepi2011expectations}. I speculate that \cite{carvalho2019anchored}'s estimate is so large relative to other estimates because they estimate a switching-gain model, while the rest of the estimates come from constant gain specifications. In an endogenous gain specification, data needs to assign a higher value to the constant gain parameter to rationalize the same average gain in the time series. With these caveats in mind, I adopt \cite{carvalho2019anchored}'s value.
@@ -680,6 +680,27 @@ As for the inertial plan in App. \ref{app_midsimple_problem} and the main text, 
 f_{f_a} = \frac{b_{13}}{1-\alpha  \beta  \rho _u}\quad \quad  f_{f_b}=  \frac{b_{13}}{1-\beta  \rho _u} \quad \quad g_{f_a}  = \frac{b_{11}}{1-\alpha  \beta  \rho _r} \quad \quad g_{f_b} = \frac{b_{11}}{1-\beta  \rho _r}
 \end{align}
 which simply has the interpretation that long-horizon expectations should correspond to the rational expectation of the respective shock in the infinite future.
+
+\section{Oscillatory dynamics in learning models with sufficiently high gain} \label{app_oscillations}
+Here I present an illustration for why adaptive learning models produce oscillatory impulse responses if the gain is high enough. Consider a stylized adaptive learning model in two equations:
+\begin{align}
+\pi_t & = \beta f_t + u_t \label{simple_NKPC} \\
+f_t & = f_{t-1} + k^{-1}(\pi_t - f_{t-1}) \label{simple_expectations}
+\end{align}
+The reader can recognize in (\ref{simple_NKPC}) a simplified Phillips curve in which I am abstracting from output gaps to keep the presentation as clear as possible. Like in the simple model of Section \ref{ramsey} in the main text, $f_t$ represents the one-period inflation expectation $\hat{\E}_t \pi_{t+1}$. (\ref{simple_expectations}), then, represents the simplest possible recursive updating of the expectations $f_t$. My notation of the gain as $k^{-1}$ indicates a constant gain specification, but the intuition remains unchanged for decreasing (or endogenous) gains. 
+
+Combining the two equations allows one to solve for the time series of expectations
+\begin{equation}
+f_t = \frac{1-k^{-1}}{1-k^{-1}\beta}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
+\end{equation}
+which, for $\beta$ close but smaller than 1, is a near-unit-root process. (In fact, if the gain were to go to zero, this would be a unit root process.) Defining the forecast error as $fe_t \equiv \pi_t - f_{t-1}$, one obtains
+\begin{equation}
+fe_t = -\frac{1-\beta}{1-k^{-1}\beta}f_{t-1} + \frac{1}{1-k^{-1}\beta}u_t \label{oscillating_fe}
+\end{equation}
+Equation (\ref{oscillating_fe}) shows that in this simple model, the forecast error loads on a near-unit-root process with a coefficient that is negative and less than one in absolute value. Damped oscillations are the result. 
+
+Note that even if the gain would converge to zero, the coefficient on $f_{t-1}$ would be negative and less than one in absolute value. Thus even for decreasing gain learning, one obtains oscillations, but the lower the gain, the more damped the oscillations become. This corroborates my findings in the impulse responses of Fig. \ref{IRF}. But importantly, the opposite extreme, when $k^{-1}\rightarrow 1$, results in a coefficient of exactly $-1$, giving perpetual oscillations. This clearly illustrates how the oscillatory behavior of impulse responses comes from the oscillations in the forecast error that obtain when the gain is sufficiently large. 
+
 
 \end{document}
 
