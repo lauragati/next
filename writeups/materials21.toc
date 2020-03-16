@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {1}Optimal Taylor-rule coefficients for the time-invariant noninertial plan}{1}{section.1}
+\contentsline {section}{\numberline {2}An attempt at a time-varying version}{2}{section.2}

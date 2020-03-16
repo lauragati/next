@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.14}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 21 - Trying to make the noninertial plan time-varying}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+\section{Optimal Taylor-rule coefficients for the time-invariant noninertial plan}
+Time invariant \emph{oni}: $z_t = \bar{z} + f_z u_t + g_z r_t^n$ for $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$
+\begin{align}
+\psi_{\pi}^{anchor} & = \frac{\kappa  \sigma }{\lambda_i} \label{opt_psipi_anchor}
+\\
+\psi_{x}^{anchor} & =  \frac{\lambda_x\sigma }{\lambda_i } \label{opt_psix_anchor}
+\end{align}
+For the rational expectations version of the model with the assumption $\rho \equiv \rho_u = \rho_r$, the coefficients are
+\begin{align}
+\psi_{\pi}^{RE} & = \frac{\kappa  \sigma }{\lambda_i}   \frac{1 }{(\rho -1) (\beta  \rho -1)-\kappa   \rho  \sigma } \label{opt_psipi_RE}
+\\
+\psi_{x}^{RE} & =  \frac{\lambda_x\sigma }{\lambda_i }   \frac{ (1-\beta  \rho )}{ (\rho -1) (\beta  \rho -1)-\kappa   \rho  \sigma } \label{opt_psix_RE}
+\end{align}
+
+\section{An attempt at a time-varying version}
+I try: $z_t = \bar{z} + f_{z,t} u_t + g_{z,t} r_t^n$ for $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$.
+Plugging this conjecture into model equations (\ref{midsimple_first}) - (\ref{midsimple_last}) (the simplified version of the baseline model)
+ \begin{align}
+ &  \pi_t - \kappa x_t -(1-\alpha)\beta f_a(t) -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t - e_3(I_3 - \alpha\beta h_x)^{-1}s_t = 0 \label{midsimple_first}\\
+ & x_t + \sigma i_t -\sigma f_b(t)  -  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t + \sigma\beta b_3 (I_3 - \beta h_x)^{-1}s_t -\sigma e_1(I_3 - \beta h_x)^{-1}s_t  \big)=0 \\
+ &  f_a(t) - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h_x)^{-1}s_t  =0\\
+ &  f_b(t) - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h_x)^{-1}s_t =0  \\
+  &  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)  =0 \\
+  &   k_t^{-1} - k_{t-1}^{-1}  - d(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  = c \label{midsimple_last}
+\end{align}
+I get:
+\begin{align*}
+& \bigg(f_{\pi,t}-\kappa f_{x,t}-(1-\alpha)\beta f_{f_a,t}-(\kappa\alpha\beta b_{2,3}+1)(1-\alpha\beta\rho_u)^{-1}\bigg)u_t \\
+&+ \bigg( g_{\pi,t}-\kappa g_{x,t}-(1-\alpha)\beta g_{f_a,t}-\kappa\alpha\beta b_{2,1}(1-\alpha\beta\rho_r)^{-1} \bigg)r_t^n  = 0 \label{9} \numberthis \\
+& \bigg(f_{x,t} + \sigma f_{i,t} -\sigma f_{f_b,t} + (-(1-\beta)b_{2,3}+\sigma\beta b_{3,3})(1-\beta\rho_u)^{-1}\bigg)u_t \\
+&+ \bigg(g_{x,t} + \sigma g_{i,t} -\sigma g_{f_b,t} + (-(1-\beta)b_{2,1}+\sigma\beta b_{3,1}-\sigma)(1-\beta\rho_r)^{-1} \bigg)r_t^n   = 0 \label{10}\numberthis \\
+& \bigg(f_{f_a,t}-b_{1,3}(1-\alpha\beta\rho_u)^{-1}\bigg)u_t + \bigg(g_{f_a,t}-b_{1,1}(1-\alpha\beta\rho_r)^{-1} \bigg)r_t^n  -\frac{1}{1-\alpha\beta}f_{\bar{\pi}, t-1}u_{t-1} -\frac{1}{1-\alpha\beta}g_{\bar{\pi}, t-1} r_{t-1}^n = 0 \label{11} \numberthis \\
+& \bigg(f_{f_b,t}-b_{1,3}(1-\beta\rho_u)^{-1}\bigg)u_t + \bigg(g_{f_b,t}-b_{1,1}(1-\beta\rho_r)^{-1} \bigg)r_t^n  -\frac{1}{1-\beta}f_{\bar{\pi}, t-1}u_{t-1} -\frac{1}{1-\beta}g_{\bar{\pi}, t-1} r_{t-1}^n  = 0 \label{12}\numberthis \\
+& f_{\bar{\pi},t}u_t + g_{\bar{\pi},t}r_t^{n} -f_{\bar{\pi},t-1}u_{t-1} -g_{\bar{\pi},t-1}r_{t-1}^n + \bigg(-f_{k,t}f_{\pi,t} + f_{k,t}b_{1,3}\bigg)u_t^2 + \bigg(-g_{k,t}g_{\pi,t} + g_{k,t}b_{1,1}\bigg)(r_t^n)^2 \\
+& + \bigg(-f_{k,t}g_{\pi,t} + f_{k,t}g_{k,t} + f_{k,t}b_{1,1}-g_{k,t}f_{\pi,t}+g_{k,t}b_{1,3}\bigg)u_tr_t^n \\
+& + f_{k,t}f_{\bar{\pi},t-1}u_tu_{t-1} +  g_{k,t}g_{\bar{\pi},t-1}r_t^n r_{t-1}^n +  f_{k,t}g_{\bar{\pi},t-1}u_t r_{t-1}^n +  g_{k,t}f_{\bar{\pi},t-1}u_{t-1}r_t^n  = 0 \label{13} \numberthis \\
+& \bigg(f_{k,t} - df_{\pi,t} + db_{1,3}\bigg)u_t + \bigg( g_{k,t} - dg_{\pi,t} + db_{1,1} \bigg)r_t^n \\
+& + \bigg( -f_{k,t-1}+df_{\bar{\pi},t-1}\bigg)u_{t-1} +\bigg(-g_{k,t-1}+dg_{\bar{\pi},t-1} \bigg)r_{t-1}^n  = c \label{14} \numberthis
+\end{align*}
+As you can see, these equations fall in three groups:
+\begin{enumerate}
+\item[Group 1:] Regular.\\
+Equation (\ref{9}) \& (\ref{10}) are well-behaved, and the fact that these model equations should hold implies 1 constraint on f-coefficients and 1 on g-coefficients.
+\item[Group 2:] Past-shocks enter.\\
+Equations (\ref{11}), (\ref{12}) \& (\ref{14}) are almost well-behaved, except that lagged $u_{t-1}, r_{t-1}^n$ enter. Note that model equations holding in (\ref{11}) and (\ref{12}) requires $f_{\bar{\pi},t-1}\stackrel{!}{=}g_{\bar{\pi},t-1} \overset{!}{=} 0$.
+\item[Group 3:] Nonlinearities.\\
+(\ref{13}) is the real culprit here, since due to the nonlinear nature of the RLS equation with endogenous gain (9), squares and interactions are showing up all over the place. Model equations holding requires $f_{\bar{\pi},t}\stackrel{!}{=}g_{\bar{\pi},t} \overset{!}{=} 0$.
+\end{enumerate}
+
+I try to simplify step-by-step. 
+\begin{enumerate}
+\item We have $f_{\bar{\pi},t}\stackrel{!}{=}g_{\bar{\pi},t} \overset{!}{=} f_{\bar{\pi},t-1}\stackrel{!}{=}g_{\bar{\pi},t-1} \overset{!}{=} 0$. This has several implications. 
+\begin{itemize}
+\item First, equations (\ref{11})-(\ref{12}) pin down $f_{f_a}, g_{f_a}, f_{f_b}, g_{f_b}$ as i) time-invariant, ii) just equal to RE long-horizon expectations. 
+\item This implies (\ref{9})-(\ref{10}) just provide restrictions in $f_{\pi}, f_x, f_i, g_{\pi}, g_x, f_i$, which are i) independent of $f_{k,t}, g_{k,t}$ ii) also time-invariant $\rightarrow$ they are the solutions to exactly the same problem as the time-invariant case, so I should get the same Taylor-rule coefficients.
+\item (\ref{13}) and (\ref{14}) rewrite to
+\begin{align}
+& f_{k,t}(b_{1,3}-f_{\pi,t})u_t^2 + g_{k,t}(b_{1,1}-g_{\pi-t})(r_t^n)^n + \bigg(f_{k,t}(b_{1,3}-f_{\pi,t}) +  g_{k,t}(b_{1,1}-g_{\pi-t}) + f_{k,t}g_{k,t} \bigg)u_tr_t^n = 0 \tag{15'} \label{15'}\\
+& \bigg(f_{k,t} + d(b_{1,3}-f_{\pi,t}) \bigg)u_t + \bigg(g_{k,t} + d(b_{1,3}-f_{\pi,t})\bigg)r_t^n -f_{k,t-1}u_{t-1} - g_{k,t-1}r_{t-1}^n = c\tag{16'} \label{16'}
+\end{align} 
+\end{itemize}
+\item The issue is that since $f_{\pi,t}, g_{\pi,t}$ are already pinned down, (\ref{15'}) requires $f_{k,t}=g_{k,t} \overset{!}{=} 0$. But this kills (\ref{15'}), and (\ref{16'}) becomes:
+\begin{align}
+& d(b_{1,3}-f_{\pi,t}) u_t + d(b_{1,3}-f_{\pi,t})r_t^n -f_{k,t-1}u_{t-1} - g_{k,t-1}r_{t-1}^n = c\tag{16''} \label{16''}
+\end{align} 
+\item Now the joke is that (\ref{16''}), if $c \neq 0$, only gives one constraint, which is not sufficient to pin down both $f_{k,t-1}$ and $g_{k,t-1}$. If $c=0$, we get a contradiction though because $b_{1,3}-f_{\pi,t} \neq 0$, so we need $d \overset{!}{=}0$, which however means that the anchoring function isn't doing anything.  And in any case, these two coefficients are irrelevant for the Taylor-rule coefficients.
+\end{enumerate}
+
+So this doesn't work. One would have a natural inclination to try some form of conditioning on the gain, something like $z_t = \bar{z} + f_z u_t + g_z r_t^n + h_z k^{-1}_t$ and potentially on expectations. I've already tried that but I think it is conceptually wrong because the gain is an endogenous variable and thus has a model equation attached to it. So you either end up with the wrong number of equations to unknowns, or you have to assume that the central bank doesn't internalize the model equation governing the gain, which forecloses monetary policy interacting with anchoring. So that ain't cool either. 
+
+
+
+\end{document}
+
+
+
+
+
