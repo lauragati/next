@@ -171,7 +171,7 @@ I get:
 As you can see, these equations fall in three groups:
 \begin{enumerate}
 \item[Group 1:] Regular.\\
-Equation (\ref{9}) \& (\ref{10}) are well-behaved, and the fact that these model equations should hold implies 1 constraint on f-coefficients and 1 on g-coefficients.
+Equation (\ref{9}) \& (\ref{10}) are well-behaved, and the fact that these model equations should hold implies 1 constraint on $f$-coefficients and 1 on $g$-coefficients.
 \item[Group 2:] Past-shocks enter.\\
 Equations (\ref{11}), (\ref{12}) \& (\ref{14}) are almost well-behaved, except that lagged $u_{t-1}, r_{t-1}^n$ enter. Note that model equations holding in (\ref{11}) and (\ref{12}) requires $f_{\bar{\pi},t-1}\stackrel{!}{=}g_{\bar{\pi},t-1} \overset{!}{=} 0$.
 \item[Group 3:] Nonlinearities.\\
@@ -198,6 +198,23 @@ I try to simplify step-by-step.
 \end{enumerate}
 
 So this doesn't work. One would have a natural inclination to try some form of conditioning on the gain, something like $z_t = \bar{z} + f_z u_t + g_z r_t^n + h_z k^{-1}_t$ and potentially on expectations. I've already tried that but I think it is conceptually wrong because the gain is an endogenous variable and thus has a model equation attached to it. So you either end up with the wrong number of equations to unknowns, or you have to assume that the central bank doesn't internalize the model equation governing the gain, which forecloses monetary policy interacting with anchoring. So that ain't cool either. 
+
+\section{Estimation: nonlinearities there too}
+Start simple: I took the simple model of Equations (\ref{midsimple_first})-(\ref{midsimple_last}), augmented with the standard Taylor rule. Subbing out $i_t, f_a(t), f_{b}(t)$ and even $x_t$,  I can write the model as:
+\begin{align}
+\pi_t &= A \bar{\pi}_{t-1} + B s_t \\
+    \bar{\pi}_{t} & = \bar{\pi}_{t-1} + k_t^{-1} fe_{t-1}   \\
+     k_t^{-1} & = k_{t-1}^{-1}  + d fe_{t-1}  + c \\
+     fe_{t-1}&  = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
+\end{align}
+where $A,B$ gather the convolutions of parameters from subbing out. States $= \begin{bmatrix} \bar{\pi}_{t-1} \\ k_t^{-1} \\ s_t
+\end{bmatrix}. $ Problems:
+\begin{enumerate}
+\item $fe_{t-1}$ depends on $\pi_t$ too.
+\item Bigger problem: $ k_t^{-1}\big(\pi_{t} - fe_{t-1} \big)$ is nonlinear here too. \\	
+I was initially hoping to write a beautiful normal log-likelihood, calibrate all the parameters in $A, B$, evaluate using the Kalman filter, and do MLE to estimate $d$ and $c$.
+\end{enumerate}
+
 
 
 
