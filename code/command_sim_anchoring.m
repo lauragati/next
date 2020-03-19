@@ -62,10 +62,10 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
-T = 400 % 400
+T = 100 % 400
 % Size of cross-section
-N = 100 %100, 500
-burnin = 100;
+N = 1 %100, 500
+burnin = 0; % 100
 h = 10; % h-period IRFs
 
 % RE model
@@ -96,9 +96,10 @@ for n=1:N
     % RE
     [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
     % Learning
-    [x_LH, y_LH] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+    [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
     y(:,:,n) = y_LH;
 end
-
+k
+% y
 disp(['(psi_x, psi_pi, thetbar, thettilde)=   ', num2str([psi_x, psi_pi, thetbar, thettilde])])
 toc

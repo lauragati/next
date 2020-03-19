@@ -193,6 +193,8 @@ for t = 1:T-1
             anchored_when_shock = 0;
         elseif k(:,t) > gbar^(-1)
             anchored_when_shock = 1;
+        else
+            anchored_when_shock = nan; % need to deal with this for smooth anchoring function
         end
     end
     %%%
