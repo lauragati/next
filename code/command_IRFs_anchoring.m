@@ -1,5 +1,5 @@
 % command_IRFs_anchoring
-% Do IRFs for nachoring true-baseline learning models
+% Do IRFs for anchoring true-baseline learning models
 % adapted from command_IRFs_many_learning.m
 % 25 Jan 2020
 
@@ -19,11 +19,11 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_IRFs=0;
+plot_IRFs=1;
 plot_simulated_sequence = 0;
 plot_gains=0;
 plot_gain_IRF = 0;
-plot_IRFs_anch = 1;
+plot_IRFs_anch = 0;
 skip_old_stuff = 1;
 
 %% Parameters
@@ -43,12 +43,14 @@ ne = 3;
 
 % Params for the general learning code
 constant_only = 1; % learning constant only
+constant_only_pi_only = 11; % learning constant only, inflation only
 mean_only_PLM = -1;
 slope_and_constant = 2;
 
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again_critCEMP  = 21;
 again_critCUSUM = 22;
+again_critsmooth = 23;
 cgain = 3;
 
 
@@ -107,6 +109,7 @@ for s=2  %2->zoom in on monetary policy shock
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
+%         dbstop in sim_learnLH at 116 if t>=4
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         
         % Shocked

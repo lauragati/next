@@ -112,8 +112,7 @@ for t = 1:T-1
         ysim(:,t) = gx*xsim(:,t);
         xesim = hx*xsim(:,t);
     else
-        % Select the variable that's being learned:
-        a = el.*a;
+       
         
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx);
@@ -139,7 +138,7 @@ for t = 1:T-1
         % Here the code differentiates between decreasing or constant gain
         if gain ==1 % decreasing gain
             k(:,t) = k(:,t-1)+1;
-        elseif gain==21 || gain == 22 || gain == 23% endogenous gain
+        elseif gain==21 || gain == 22 % endogenous gain
             if crit == 1 % CEMP's criterion
                 fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
@@ -148,7 +147,6 @@ for t = 1:T-1
                 [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
 %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
-                fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1)); 
                 fk = fk_smooth_pi_only(param,fe,k(:,t-1));
             end
             k(:,t) = fk;
@@ -164,7 +162,9 @@ for t = 1:T-1
         
         % Do the updating
         if PLM == 1 || PLM == -1 || PLM == 11 % when learning constant only, or "mean-only" PLM, or "constant-only, pi-only"
-            a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )  );
+            a = a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) );
+             % Select the variable that's being learned:
+        a = el.*a;
             phi = [a,b];
         elseif PLM == 2 % constant and slope learning
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here, Ryan uses the same gain.
