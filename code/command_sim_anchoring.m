@@ -66,7 +66,6 @@ T = 100 % 400
 % Size of cross-section
 N = 1 %100, 500
 burnin = 0; % 100
-h = 10; % h-period IRFs
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -87,7 +86,7 @@ eN = randn(ne,T+burnin,N);
 
 % Preallocate
 y = zeros(ny,T,N);
-
+k = zeros(1,N);
 for n=1:N
     % Sequence of innovations
     e = squeeze(eN(:,:,n));
@@ -100,6 +99,7 @@ for n=1:N
     y(:,:,n) = y_LH;
 end
 k
+plot(1./k)
 % y
 disp(['(psi_x, psi_pi, thetbar, thettilde)=   ', num2str([psi_x, psi_pi, thetbar, thettilde])])
 toc
