@@ -53,17 +53,37 @@ burnin = 0; % 100
 
 % So the simulated data are:
 y = fun_sim_anchoring(param,T,N, burnin,ne,PLM,gain);
-pi_model = y(1,:);
-x_model = y(2,:);
-i_model = y(3,:);
-
-% Suppose we have real data
-data = randn(size(y));
-pi_data = data(1,:);
-x_data = data(2,:);
-i_data = data(3,:);
+ny = size(y,1);
+% Suppose we have real data (in logs)
+y_data = randn(size(y));
 
 % 2.) Filter both using the same filter
-[g_pi_,c] = HPfilter(pi_model);
+% 2.1) HP filter
+g = nan(size(y));
+c = nan(size(y));
+g_data = nan(size(y));
+c_data = nan(size(y));
+for i=1:ny
+[g(i,:),c(i,:)] = HPfilter(y(i,:)');
+[g_data(i,:),c_data(i,:)] = HPfilter(y_data(i,:)');
+end
+
+% 2.2) Hamilton filter
+v = nan(size(y));
+v_data = nan(size(y));
+for i=1:ny
+[v(i,:)] = HPfilter(y(i,:)');
+[v_data(i,:)] = HPfilter(y_data(i,:)');
+end
+
+% 2.3) BK filter
+K=12;
+ystar = nan(ny,T-2*K-1);
+ystar_data = nan(ny,T-2*K-1);
+for i=1:ny
+ystar(i,:) = BKfilter(y(i,:)');
+ystar_data(i,:) = BKfilter(y(i,:)');
+end
+
 % 3.) Get autocovariances
 % 4.) Do fmincon

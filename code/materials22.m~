@@ -24,7 +24,7 @@ output_table = print_figs;
 skip_old_stuff = 1;
 
 %% 1.) GMM
-% Simulate anchoring model
+% 1.) Simulate anchoring model
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
 
@@ -51,6 +51,25 @@ T = 100 % 400
 N = 1 %100, 500
 burnin = 0; % 100
 
+% So the simulated data are:
 y = fun_sim_anchoring(param,T,N, burnin,ne,PLM,gain);
+ny = size(y,1);
+% Suppose we have real data (in logs)
+y_data = randn(size(y));
 
-%
+% 2.) Filter both using the same filter
+% 2.1) HP filter
+for i=1:ny
+[g(i,:),c(i,:)] = HPfilter(y(i,:));
+[g_data,c_data] = HPfilter(y_data(i,:));
+end
+% 2.2) Hamilton filter
+for i=1:1%ny
+[v] = HPfilter(y(i,:));
+[v_data] = HPfilter(y_data(i,:));
+end
+% 2.3) BK filter
+
+
+% 3.) Get autocovariances
+% 4.) Do fmincon
