@@ -2,7 +2,7 @@
 % Generate data from anchoring model
 % A "function" copy of command_sim_anchoring.m
 % 20 March 2020
-function y = fun_sim_anchoring(param,T,N, burnin,ne,PLM,gain)
+function y = fun_sim_anchoring(param,T,N, burnin,eN,PLM,gain)
 sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
@@ -15,13 +15,8 @@ sig_u = param.sig_u;
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
-%% Simulate models
+%% Simulate model
 
-% gen all the N sequences of shocks at once.
-rng(0)
-eN = randn(ne,T+burnin,N);
-
-% Preallocate
 y = zeros(ny,T,N);
 for n=1:N
     % Sequence of innovations
