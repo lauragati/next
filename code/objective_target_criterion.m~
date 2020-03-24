@@ -1,0 +1,35 @@
+% Optimizing i_seq. Tricky with the time dimension b/c
+% if we choose T i-values optimally, for the last one we need the T...T+H
+% future values, where H itself is a truncation (ideally it should be infty)
+% Inputs
+% i_seq = the sequence of i(t), t=1,...,T we're optimizing over
+% i_future = the sequence of future i(t), t=T+1,...,T+H we'll take as exog.
+% (for now - can think of making them at least semi-optimal)
+% 24 March 2020
+
+function loss = objective_target_criterion(i_seq,i_future,param,s,T,N,burnin,PLM,gain)
+lamx = param.lamx;
+kapp = param.kapp;
+bet  = param.bet;
+alph = param.alph;
+
+% pi,x,k are (T+H x 1)
+[pi,x,k, pibar] = fun_sim_anchoring_given_i(param,T,N,burnin,s,PLM,gain,i_seq, i_future);
+
+for t=1:T
+sumprod(t,1) = x(t+1);
+for i=2:H
+    
+    for j=1:i
+        prod = (1-k(t+j)^(-1)*(pi(t+1+j)-pibar(t+j) -))
+    end
+end
+
+
+resid = pi(t) + lamx/kapp*x(t) ...
+    -lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k(t)^(-1) + (pi(t) - pibar(t-1) - b1*s(:,t-1))*g_pi(t))...
+    *sumprod;
+end
+
+loss = abs(resid);
+

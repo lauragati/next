@@ -162,8 +162,8 @@ toc
 
 par_opt
 
-param.d = par_opt;
 % 7). Simulate the model using the optimal d:
+param.d = par_opt;
 [y,k] = fun_sim_anchoring(param,T,N, burnin,eN,PLM,gain);
 
 if size(filt_data,2) == size(c_data,2)
@@ -174,5 +174,41 @@ elseif size(filt_data,2) == size(ystar_data,2)
     create_plot((1:numel(k)),1./k','k^{-1}',[this_code, '_gain_dhat_BK'],print_figs,'Inverse gain given estimated d')
 end
 
+%% 2.) Numerical optimal plan
+% Structure will be
+% 1.) Generate a guess exog interest rate sequence
+i_seq0 = gen_AR1;
+T = size(i_seq0,1);
 
+% 2.) Solve for optimal interest rate path using a target-criterion-based
+% loss.
+% I'll call this most optimal of plans the Ramsey plan. 
 
+%Optimization Parameters
+options = optimset('fmincon');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+
+ub = 40*ones(T,1);
+lb = 0.001*ones(T,1);
+% %Compute the objective function one time with some values
+loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+
+tic
+%Declare a function handle for optimization problem
+objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
+[i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+toc
+
+i_ramsey
+
+% 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
+% x and pi
+[pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T,N,burnin,eN,PLM,gain,i_seq);
+
+% see (plot) deviations between the Ramsey plan and the plans obtained when
+% using a Taylor rule
+[y_TR,k_TR] = fun_sim_anchoring(param,T,N, burnin,eN,PLM,gain);
+
+% 4.) Can even do search over TR parameters to see if they can implement
+% the Ramsey plan.
