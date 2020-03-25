@@ -202,6 +202,18 @@ Since I don't fit the data to a time series process, I create bootstrapped sampl
 \end{table}
 \end{center}
 
+\section{The other thing: numerical implementation of target criterion}
+The target criterion in the simplified model:
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})) \bigg)
+\bigg\} \numberthis \label{target}
+\end{align*}
+
+\begin{itemize}
+\item I think this is the highest priority.
+\end{itemize}
+
 
 \end{document}
 

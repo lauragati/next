@@ -2,3 +2,4 @@
 \contentsline {section}{\numberline {2}Estimation issues}{2}{section.2}
 \contentsline {section}{\numberline {3}Robustness to different filters}{2}{section.3}
 \contentsline {section}{\numberline {4}Estimates}{3}{section.4}
+\contentsline {section}{\numberline {5}The other thing: numerical implementation of target criterion}{3}{section.5}

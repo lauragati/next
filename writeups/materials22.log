@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 MAR 2020 11:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 MAR 2020 15:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -945,14 +945,14 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../figures/materials22_HP.png, id=48, 1387.1825pt x 854.19125pt>
+<../figures/materials22_HP.png, id=53, 1387.1825pt x 854.19125pt>
 File: ../figures/materials22_HP.png Graphic file (type png)
 
 <use ../figures/materials22_HP.png>
 Package pdftex.def Info: ../figures/materials22_HP.png used on input line 174.
 (pdftex.def)             Requested size: 180.34006pt x 111.04875pt.
 
-<../figures/materials22_Hamilton.png, id=49, 1410.26875pt x 854.19125pt>
+<../figures/materials22_Hamilton.png, id=54, 1410.26875pt x 854.19125pt>
 File: ../figures/materials22_Hamilton.png Graphic file (type png)
 
 <use ../figures/materials22_Hamilton.png>
@@ -960,7 +960,7 @@ Package pdftex.def Info: ../figures/materials22_Hamilton.png used on input line
  175.
 (pdftex.def)             Requested size: 183.34137pt x 111.04875pt.
 
-<../figures/materials22_BK.png, id=50, 1387.1825pt x 854.19125pt>
+<../figures/materials22_BK.png, id=55, 1387.1825pt x 854.19125pt>
 File: ../figures/materials22_BK.png Graphic file (type png)
 
 <use ../figures/materials22_BK.png>
@@ -975,7 +975,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2 <../figures/materials22_HP.png (PNG copy)> <../figures/materials22_Hamilton.
 png (PNG copy)> <../figures/materials22_BK.png (PNG copy)>]
-<../figures/materials22_gain_dhat_HP.png, id=65, 1451.4225pt x 847.165pt>
+<../figures/materials22_gain_dhat_HP.png, id=70, 1451.4225pt x 847.165pt>
 File: ../figures/materials22_gain_dhat_HP.png Graphic file (type png)
 
 <use ../figures/materials22_gain_dhat_HP.png>
@@ -983,14 +983,14 @@ Package pdftex.def Info: ../figures/materials22_gain_dhat_HP.png used on input
 line 184.
 (pdftex.def)             Requested size: 188.69154pt x 110.13531pt.
 
-<../figures/materials22_gain_dhat_Hamilton.png, id=66, 1451.4225pt x 847.165pt>
+<../figures/materials22_gain_dhat_Hamilton.png, id=71, 1451.4225pt x 847.165pt>
 File: ../figures/materials22_gain_dhat_Hamilton.png Graphic file (type png)
 <use ../figures/materials22_gain_dhat_Hamilton.png>
 Package pdftex.def Info: ../figures/materials22_gain_dhat_Hamilton.png used on 
 input line 185.
 (pdftex.def)             Requested size: 188.69154pt x 110.13531pt.
 
-<../figures/materials22_gain_dhat_BK.png, id=67, 1451.4225pt x 847.165pt>
+<../figures/materials22_gain_dhat_BK.png, id=72, 1451.4225pt x 847.165pt>
 File: ../figures/materials22_gain_dhat_BK.png Graphic file (type png)
 
 <use ../figures/materials22_gain_dhat_BK.png>
@@ -1007,21 +1007,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3 <../figures/materials22_gain_dhat_HP.png (PNG copy)> <../figures/materials22
 _gain_dhat_Hamilton.png (PNG copy)> <../figures/materials22_gain_dhat_BK.png (P
 NG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./materials22.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
 Package rerunfilecheck Info: File `materials22.out' has not changed.
-(rerunfilecheck)             Checksum: D0D259D417F6ADD8D356BB8DA214C80A;248.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
+(rerunfilecheck)             Checksum: 4738CF5F4FB55E8A237E58BFCFA65D56;344.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 20020 strings out of 493089
- 363183 string characters out of 6134842
- 448397 words of memory out of 5000000
- 23098 multiletter control sequences out of 15000+600000
- 13889 words of font info for 53 fonts, out of 8000000 for 9000
+ 20028 strings out of 493089
+ 363254 string characters out of 6134842
+ 449397 words of memory out of 5000000
+ 23102 multiletter control sequences out of 15000+600000
+ 14510 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,13n,54p,392b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1039,11 +1039,12 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on materials22.pdf (3 pages, 517047 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials22.pdf (3 pages, 525627 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 
