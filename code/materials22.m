@@ -175,36 +175,62 @@ elseif size(filt_data,2) == size(ystar_data,2)
 end
 
 %% 2.) Numerical optimal plan
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
+
 % Structure will be
 % 1.) Generate a guess exog interest rate sequence
-i_seq0 = gen_AR1;
-T = size(i_seq0,1);
+T = 100; H = 50; burnin = 0; N=1; ne=3;
+i_seq0 = gen_AR1(T+H,0.9,1);
 
-% 2.) Solve for optimal interest rate path using a target-criterion-based
-% loss.
-% I'll call this most optimal of plans the Ramsey plan. 
+% and gen shocks
+rng(0)
+eN = randn(ne,T+burnin,N);
 
-%Optimization Parameters
-options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+% Params for the general learning code
+constant_only = 1; % learning constant only
+constant_only_pi_only = 11; % learning constant only, inflation only
+mean_only_PLM = -1;
+slope_and_constant = 2;
 
-ub = 40*ones(T,1);
-lb = 0.001*ones(T,1);
-% %Compute the objective function one time with some values
-loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
+again_critCEMP  = 21;
+again_critCUSUM = 22;
+again_critsmooth = 23;
+cgain = 3;
 
-tic
-%Declare a function handle for optimization problem
-objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
-[i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
-% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-toc
+% Model selection
+%%%%%%%%%%%%%%%%%%%
+PLM = constant_only_pi_only;
+gain = again_critsmooth;
+%%%%%%%%%%%%%%%%%%%
 
-i_ramsey
+% % 2.) Solve for optimal interest rate path using a target-criterion-based
+% % loss.
+% % I'll call this most optimal of plans the Ramsey plan. 
+% 
+% %Optimization Parameters
+% options = optimset('fmincon');
+% options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+% 
+% ub = 40*ones(T,1);
+% lb = 0.001*ones(T,1);
+% % %Compute the objective function one time with some values
+% loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+% 
+% tic
+% %Declare a function handle for optimization problem
+% objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
+% [i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
+% % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+% toc
+% 
+% i_ramsey
 
 % 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
 % x and pi
+i_seq=i_seq0(1:T);
 [pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T,N,burnin,eN,PLM,gain,i_seq);
+
 
 % see (plot) deviations between the Ramsey plan and the plans obtained when
 % using a Taylor rule
