@@ -175,6 +175,8 @@ elseif size(filt_data,2) == size(ystar_data,2)
 end
 
 %% 2.) Numerical optimal plan
+clearvars
+clc
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 
 % Structure will be
@@ -184,7 +186,7 @@ i_seq0 = gen_AR1(T+H,0.9,1);
 
 % and gen shocks
 rng(0)
-eN = randn(ne,T+burnin,N);
+eN = randn(ne,T+H+burnin,N);
 
 % Params for the general learning code
 constant_only = 1; % learning constant only
@@ -204,37 +206,36 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
-% % 2.) Solve for optimal interest rate path using a target-criterion-based
-% % loss.
-% % I'll call this most optimal of plans the Ramsey plan. 
-% 
-% %Optimization Parameters
-% options = optimset('fmincon');
-% options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
-% 
-% ub = 40*ones(T,1);
-% lb = 0.001*ones(T,1);
-% % %Compute the objective function one time with some values
-% loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
-% 
-% tic
-% %Declare a function handle for optimization problem
-% objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
-% [i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
-% % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-% toc
-% 
-% i_ramsey
+% 2.) Solve for optimal interest rate path using a target-criterion-based
+% loss.
+% I'll call this most optimal of plans the Ramsey plan. 
+
+%Optimization Parameters
+options = optimset('fmincon');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+
+ub = 40*ones(T,1);
+lb = 0.001*ones(T,1);
+% %Compute the objective function one time with some values
+loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+
+tic
+%Declare a function handle for optimization problem
+objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
+[i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+toc
+
+i_ramsey
 
 % 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
 % x and pi
-i_seq=i_seq0(1:T);
-[pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T,N,burnin,eN,PLM,gain,i_seq);
+[pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T+H,N,burnin,eN,PLM,gain,i_ramsey);
 
 
 % see (plot) deviations between the Ramsey plan and the plans obtained when
 % using a Taylor rule
-[y_TR,k_TR] = fun_sim_anchoring(param,T,N, burnin,eN,PLM,gain);
+[y_TR,k_TR] = fun_sim_anchoring(param,T+H,N, burnin,eN,PLM,gain);
 
 % 4.) Can even do search over TR parameters to see if they can implement
 % the Ramsey plan.

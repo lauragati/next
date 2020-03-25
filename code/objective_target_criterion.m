@@ -18,12 +18,12 @@ H = capT - T;
 [pi,x,k,pibar,b,s,g_pi] = fun_sim_anchoring_given_i(param,capT,N,burnin,eN,PLM,gain,i_seq);
 
 resid = zeros(T,1);
-for t=1:T
+for t=2:T
 sumprod = x(t+1);
 for i=2:H
     prod = 1;
-    for j=1:i
-        prod = prod*(1-k(t+j)^(-1)*(pi(t+1+j)-pibar(t+j) -b*s(:,t+j)));
+    for j=1:i-1
+        prod = prod*(1-k(t+j)^(-1)*(pi(t+1+j)-pibar(t+j) -b(1,:)*s(:,t+j)));
     end
     sumprod = sumprod + x(t+i)*prod;
 end
