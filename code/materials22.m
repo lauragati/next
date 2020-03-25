@@ -214,17 +214,20 @@ gain = again_critsmooth;
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
-ub = 40*ones(T,1);
-lb = 0.001*ones(T,1);
+ub = 40*ones(T+H,1);
+lb = 0.001*ones(T+H,1);
 % %Compute the objective function one time with some values
-loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+loss = objective_target_criterion(i_seq0,param,eN,T+H,N,burnin,PLM,gain);
 
 tic
+
 %Declare a function handle for optimization problem
-objh = @(varp) objective_target_criterion(varp,param,eN,T,N,burnin,PLM,gain);
+objh = @(i_seq) objective_target_criterion(i_seq,param,eN,T,N,burnin,PLM,gain);
 [i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+
 toc
+
 
 i_ramsey
 
@@ -232,10 +235,11 @@ i_ramsey
 % x and pi
 [pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T+H,N,burnin,eN,PLM,gain,i_ramsey);
 
-
 % see (plot) deviations between the Ramsey plan and the plans obtained when
 % using a Taylor rule
 [y_TR,k_TR] = fun_sim_anchoring(param,T+H,N, burnin,eN,PLM,gain);
+
+[pi_ramsey, y_TR(1,:)']
 
 % 4.) Can even do search over TR parameters to see if they can implement
 % the Ramsey plan.

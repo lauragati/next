@@ -101,8 +101,8 @@ for t = 1:capT-1
         
         %Solve for current states
         % this step needs to change!
-%         ysim(1:2,t) = somefunction
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq(t));
+%         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
         xesim = hx*xsim(:,t);
         
         %Update coefficients

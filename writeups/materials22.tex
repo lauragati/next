@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.14}
+\def\myAdjustableFigScale{0.13}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -136,8 +136,11 @@ bottom=1in}
 \begin{equation}
 k_t = k_{t+1} + \frac{1}{(d \; fe)^2}
 \end{equation}
-Recall agents update their PLM using the inverse gain $k_t^{-1}$. This means that the bigger $ \frac{1}{(d \; fe)^2}$,  the more the gain is \emph{decreasing}. Thus higher forecast errors $fe$ or a higher $d$ means closer to constant gains.
-
+Agents update their PLM using the inverse gain $k_t^{-1}$. Thus the bigger $ \frac{1}{(d \; fe)^2}$,  the more the gain is \emph{decreasing}. Higher forecast errors $fe$ or a higher $d$ means closer to constant gains. I tried the inverse formulation with $h_t \equiv k_t^{-1}$ and
+\begin{equation}
+h_t = h_{t-1} + (d \; fe_{t-1})^2
+\end{equation}
+but it always led to explosive simulations.
 \item Target: I gather the time series of inflation, output gap and federal funds rate, filter them, and compute empirical autocovariances:
 \begin{equation}
 ac^{data}(h) \equiv \text{cov}(y_t, y_{t-h})
@@ -161,7 +164,7 @@ W = \begin{pmatrix} \hat{\sigma}^2_{ac(\pi,0)} & 0 &\dots &   & 0 \\
  0 & \dots &  & 0 & \hat{\sigma}^2_{ac(i,K)}
 \end{pmatrix}
 \end{equation}
-Since I haven't fitted the data to any time series process, I create bootstrapped samples from the original (filtered) data. This however results in tiny bootstrapped variances, so $W^{-1}$ is huge, wherefore the estimation doesn't move from my prior of $d_0$. 
+Since I don't fit the data to a time series process, I create bootstrapped samples from the original (filtered) data. This however results in tiny bootstrapped variances, so $W^{-1}$ is huge. 
 
 \end{itemize}
 
