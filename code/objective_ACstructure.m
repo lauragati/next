@@ -7,7 +7,8 @@ if nargin < max_no_inputs
 end
 
 % Replace the estimated parameters with the new guess
-param.('d') = varp;
+param.('d') = varp(1);
+param.('c') = varp(2);
 
 % Simulate data given the new params:
 y = fun_sim_anchoring(param,T,N, burnin,eN,PLM,gain);
@@ -23,20 +24,20 @@ ny = size(y,1);
 % end
 
 % 2) Hamilton filter
-h=8;
-v = nan(ny,T-4-h+1);
-for i=1:ny
-    [v(i,:)] = Hamiltonfilter(y(i,:)');
-end
-
-% % 3) BK filter
-% K=12;
-% ystar = nan(ny,T-2*K);
+% h=8;
+% v = nan(ny,T-4-h+1);
 % for i=1:ny
-%     ystar(i,:) = BKfilter(y(i,:)');
+%     [v(i,:)] = Hamiltonfilter(y(i,:)');
 % end
 
-filt=v;
+% 3) BK filter
+K=12;
+ystar = nan(ny,T-2*K);
+for i=1:ny
+    ystar(i,:) = BKfilter(y(i,:)');
+end
+
+filt=ystar;
 % Compute AC structure of the newly simulated, filtered data
 K=4;
 acf = zeros(ny,K+1);
