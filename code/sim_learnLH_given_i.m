@@ -101,6 +101,8 @@ for t = 1:capT-1
         
         %Solve for current states
         % this step needs to change!
+        disp(['t=',num2str(t)])
+%         dbstop in pi_x_given_i at 11 if t==33
         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq(t));
 %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
         xesim = hx*xsim(:,t);

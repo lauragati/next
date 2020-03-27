@@ -148,8 +148,8 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text
 
 This notation captures vector learning ($z$ learned) for intercept only. For scalar learning, $a_t= \begin{pmatrix} \bar{\pi}_t & 0 & 0\end{pmatrix}' $ and $b_1$ designates the first row of $b$. The learning setup allows me to evaluate the long-horizon expectations $f_a$, $f_b$, and then the observables $(\pi, x)$ are determined as:
 \begin{align}
-x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_a + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t\\
-\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_b + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t\\
+\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t
 \end{align}
 
 \section{Target criterion}

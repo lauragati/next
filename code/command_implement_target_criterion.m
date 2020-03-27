@@ -26,9 +26,9 @@ skip_old_stuff = 1;
 
 % Structure will be
 % 1.) Generate a guess exog interest rate sequence
+rng(0)
 T = 100; H = 50; burnin = 0; N=1; ne=3;
-i_seq0 = gen_AR1(T+H,0.9,1);
-
+i_seq0 = gen_AR1(T+H,0.3,1);
 % and gen shocks
 rng(0)
 eN = randn(ne,T+H+burnin,N);
