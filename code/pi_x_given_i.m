@@ -22,5 +22,6 @@ dbstop if warning
 if abs(sum(pi_x - [pit;x])) > 1e-4
     pi_x - pi_x2
     [pi_x(1) pit]
+    [pi_x(2), x]
     warning('error')
 end
