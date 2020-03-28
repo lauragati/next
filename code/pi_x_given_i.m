@@ -18,10 +18,10 @@ pi_x2 = [kapp, 1; 1, 0]      * [-sig*i + stuff1*fb + stuff2*s ; stuff3*fa + stuf
 
 x = -sig*i + stuff1*fb + stuff2*s;
 pit = kapp*x + stuff3*fa + stuff4*s;
-dbstop if warning
-if abs(sum(pi_x - [pit;x])) > 1e-4
-    pi_x - pi_x2
-    [pi_x(1) pit]
-    [pi_x(2), x]
-    warning('error')
+% dbstop if warning
+% if abs(sum(pi_x - [pit;x])) > 1e-4
+%     pi_x - pi_x2
+%     [pi_x(1) pit]
+%     [pi_x(2), x]
+%     warning('error')
 end

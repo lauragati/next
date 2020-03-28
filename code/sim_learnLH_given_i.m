@@ -1,11 +1,7 @@
 % simulate data from long-horizon learning model given exog i-sequence
-% based on sim_learnLH.m, but simplified:
-% 1. took out any reference to endogenous states
-% 2. took out any reference to forecasts and forecast errors
-% 3. took out reference to whether expectations are anchored when shock hits
-% 4. took out references to Jan 23-24 debate about how to write PLM-based forecasts
-% 25 March 2020
-function [pi,x,k,pibar,b,s,g_pi] = sim_learnLH_given_i(gx,hx,eta,capT,ndrop,e, Aa, Ab, As, param, PLM, gain, i_seq, dt, x0)
+% based on sim_learnLH.m, only changing i_seq and the determination of pi, x given i:
+% 28 March 2020
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock] = sim_learnLH_given_i(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,i_seq, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -21,19 +17,17 @@ thettilde = param.thettilde;
 ny = size(gx,1);
 nx = size(hx,1);
 
-ysim = zeros(ny,capT);
-xsim = zeros(nx,capT);
-
-% Begin forcing ysim(3,:) to be the exogenous i-sequence
-ysim(3,:) = i_seq;
+ysim = zeros(ny,T);
+xsim = zeros(nx,T);
 
 if PLM==1 || PLM == 2 || PLM==11 || PLM == 21
-    % 1 = Learning PLM matrices, just a constant.
+    % 1 = Learning PLM matrices, just a constant. Using RE as default starting point.
     % 2 = learning slope and constant (HERE for entire vector of observables)
     % 11 = learning only a constant, just for inflation (scalar learning)
     % 21 = learning slope and constant, jsut for inflation (not implemented)
     a = zeros(ny,1);
-    b = gx*hx; 
+    b = gx*hx; % keep old formulation, just make sure you're consistent, 24 Jan 2020
+    %     b = gx; % 23 Jan 2020 version
 elseif PLM == -1
     % "only-mean" PLM
     % - ain't even using gx*hx for the forecast of inflation, only pibar
@@ -59,23 +53,24 @@ elseif gain == 23
 end
 
 phi = [a,b];
-phi_seq = nan(ny,nx+1,capT);
+phi_seq = nan(ny,nx+1,T);
 phi_seq(:,:,1) = phi;
 
 [sigy,sigx] = mom(gx,hx,eta*eta');
 R = eye(nx+1); R(2:end,2:end) = sigx;
-R_seq = repmat(R,[1,1,capT]);
+R_seq = repmat(R,[1,1,T]);
 R_seq(:,:,1) = R;
 
-diff = zeros(capT,1);
+diff = zeros(T,1);
 diff(1) = nan;
-k = zeros(1,capT);
+k = zeros(1,T);
 k(:,1) = gbar^(-1);
-g_pi = zeros(1,capT);
 
-
-FA = nan(ny,capT);
-FB = nan(ny,capT);
+evening_fcst = nan(ny,T);
+morning_fcst = nan(ny,T);
+FA = nan(ny,T);
+FB = nan(ny,T);
+FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
@@ -85,8 +80,27 @@ thet = 0; % CEMP don't really help with this, but I think zero is ok.
 % thet = thettilde; % actually it's quite sensitive to where you initialize it.
 %%%
 
+% Do an initial check to see whether we have endogenous states that are
+% lagged jumps
+% If there are endogenous states...
+if nx == 4
+    endog_states=1;
+    % ... check which ones
+    lag_what = 0;
+    for i=1:ny
+        if max(abs((hx(4,:) - gx(i,:)))) < 1e-14
+            lag_what = i;
+        end
+    end
+    if lag_what==0
+        warning('Couldn''t identify the lagged jump.')
+    end
+else
+    endog_states=0;
+end
+
 %Simulate, with learning
-for t = 1:capT-1
+for t = 1:T-1
     if t == 1
         ysim(:,t) = gx*xsim(:,t);
         xesim = hx*xsim(:,t);
@@ -96,16 +110,26 @@ for t = 1:capT-1
         
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx);
+        %         [fa, fb] = fafb_materials14(param,a, b, xsim(:,t),hx); % 23 Jan 2020 version
         FA(:,t) = fa; % save current LH expectations for output
         FB(:,t) = fb;
         
         %Solve for current states
-        % this step needs to change!
-        disp(['t=',num2str(t)])
-%         dbstop in pi_x_given_i at 11 if t==33
-        ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq(t));
 %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        % Instead, 
+        ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq(t));
+        ysim(3,t) = i_seq(t);
         xesim = hx*xsim(:,t);
+        % If there are endogenous states...
+        if endog_states==1
+            % ...replace the last row of hx with the respective row of the estimated gx
+            % xesim(4,1) = phi(lag_what,:)*[1;xsim(:,t)]; % 23 Jan 2020 version
+            phx = pinv(hx);
+            ghat = b*phx;
+%             ghat = inv(hx);
+            xesim(4,1) = a(lag_what) + ghat(lag_what,:)*xsim(:,t); % 24 Jan 2020 version: I've checked and this works (corresponds to replacing xsim(e,t+1) with ysim(e,t))
+        end
+        
         
         %Update coefficients
         % Here the code differentiates between decreasing or constant gain
@@ -121,13 +145,18 @@ for t = 1:capT-1
 %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1)); 
-                [fk, g_pi(t)] = fk_smooth_pi_only(param,fe,k(:,t-1));
+                fk = fk_smooth_pi_only(param,fe,k(:,t-1));
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end
         
+        % Create forecasts and FE
+        morning_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
+        % morning_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t)
+        % Yesterday evening's forecast error
+        FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
         
         % Do the updating
         if PLM == 1 || PLM == -1 || PLM == 11 % when learning constant only, or "mean-only" PLM, or "constant-only, pi-only"
@@ -142,6 +171,8 @@ for t = 1:capT-1
             b = phi(:,2:end);
             
         end
+        evening_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
+        % evening_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t)
         
         phi_seq(:,:,t) = phi; % store phis
         % check convergence
@@ -153,6 +184,14 @@ for t = 1:capT-1
     %%% here is the addition of the impulse
     if t+1==dt
         e(:,t+1) = e(:,t+1)+x0';
+         % check if anchored or not when shock hits
+        if k(:,t) == gbar^(-1)
+            anchored_when_shock = 0;
+        elseif k(:,t) > gbar^(-1)
+            anchored_when_shock = 1;
+        else
+            anchored_when_shock = nan; % need to deal with this for smooth anchoring function
+        end
     end
     %%%
     xsim(:,t+1) = xesim + eta*e(:,t+1);
@@ -168,8 +207,3 @@ ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
 
-% Split outputs
-pi = ysim(1,:);
-x  = xsim(1,:);
-s = xsim;
-pibar = squeeze(phi_seq(1,1,:));

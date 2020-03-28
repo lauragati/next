@@ -51,10 +51,26 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
+% An initial check to see if simulation given i works
+sig_r=param.sig_r; sig_i=param.sig_i; sig_u=param.sig_u;
+[fyn, fxn, fypn, fxpn] = model_NK(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[ny, nx] = size(gx);
+[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+SIG = eye(nx).*[sig_r, sig_i, sig_u]';
+eta = SIG; %just so you know
+[~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,eN, Aa, Ab, As, param, PLM, gain);
+[~, yi, ~, ~, ~, ~, ~, ~, ~,~, k_i] = sim_learnLH_given_i(gx,hx,SIG,T+H+burnin,burnin,eN, Aa, Ab, As, param, PLM, gain, y(3,:));
+yi(3,:) - y(3,:)
+
+
+%%
+
 % 2.) Solve for optimal interest rate path using a target-criterion-based
 % loss.
 % I'll call this most optimal of plans the Ramsey plan. 
 
+disp('Begin fmincon... Takes about a minute.')
 %Optimization Parameters
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
@@ -72,9 +88,6 @@ objh = @(i_seq) objective_target_criterion(i_seq,param,eN,T,N,burnin,PLM,gain);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 
 toc
-
-
-i_ramsey
 
 % 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
 % x and pi
