@@ -13,11 +13,11 @@ param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % 0.145 param_correct CEMP. 0.02 is the value a dgain algorithm gets after 50 periods.
 param.thetbar = 4;%1 or 4 or 0.029; % param_correct CEMP
 param.rho_r = 0; %0
-param.rho_i = 0.6; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
+param.rho_i = 0; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
 param.rho_u = 0; %0
 param.rho = 0; % persistence of lag of interest rate
 param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
-param.sig_i = 1; %1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
+param.sig_i = 0; %0 to turn it off for optimal monpol. 1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock
 param.kap =  0.8; % 0.8 allows the CUSUM test-statistic to be revised at a different rate than the estimate of the mean.  0 < kap < 1.
 param.thettilde =2.5;%1.6 or 2.5 the new thetbar for CUSUM-test. I just set both to match CEMP's criterion approx.

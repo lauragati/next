@@ -1,6 +1,9 @@
 function [fa, fb] = fafb_anal_constant_free(param, a, b, s, hx)
 % with 'free' I mean that it's independent of n
 % 19 Oct 2019
+% Note: This code simply computes LH-expectations blindly - you need to
+% specify elsewhere (in the model A-matrices) whether this
+% learning-expectation is used for each of the observables. 
 
 bet = param.bet;  
 alph = param.alph;

@@ -1,7 +1,10 @@
 % simulate data from long-horizon learning model given exog i-sequence
-% based on sim_learnLH.m, only changing i_seq and the determination of pi, x given i:
+% based on sim_learnLH.m, only changing:
+% 1.) i_seq as new input
+% 2.) the determination of pi, x given i
+% 3.) and g_pi sequence is now an output
 % 28 March 2020
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock] = sim_learnLH_given_i(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,i_seq, dt, x0)
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock,g_pi] = sim_learnLH_given_i(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,i_seq, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -65,6 +68,7 @@ diff = zeros(T,1);
 diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
+g_pi = zeros(1,T);
 
 evening_fcst = nan(ny,T);
 morning_fcst = nan(ny,T);
@@ -117,7 +121,7 @@ for t = 1:T-1
         %Solve for current states
 %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
         % Instead, 
-        ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq(t));
+        ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),i_seq,t); % <----- 2)
         ysim(3,t) = i_seq(t);
         xesim = hx*xsim(:,t);
         % If there are endogenous states...
@@ -145,7 +149,7 @@ for t = 1:T-1
 %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1)); 
-                fk = fk_smooth_pi_only(param,fe,k(:,t-1));
+                [fk,g_pi(t)] = fk_smooth_pi_only(param,fe,k(:,t-1)); % <----- 3) but not essential
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain
@@ -161,6 +165,12 @@ for t = 1:T-1
         % Do the updating
         if PLM == 1 || PLM == -1 || PLM == 11 % when learning constant only, or "mean-only" PLM, or "constant-only, pi-only"
             a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )  );
+%             % projection facility...? <------- 4) 
+%             thres = 1;
+%             if max(abs(a)) > thres
+%                 a = phi_seq(:,1,t-1);
+%                 disp(['projection facility evoked at t = ', num2str(t)])
+%             end
             phi = [a,b];
         elseif PLM == 2 % constant and slope learning
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here, Ryan uses the same gain.
@@ -182,6 +192,7 @@ for t = 1:T-1
     
     %Simulate transition with shock
     %%% here is the addition of the impulse
+    anchored_when_shock = nan;
     if t+1==dt
         e(:,t+1) = e(:,t+1)+x0';
          % check if anchored or not when shock hits

@@ -20,18 +20,30 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 skip_old_stuff = 1;
-%%
+%% Initialize
 
-[param, set, param_names, param_values_str, param_titles] = parameters_next;
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+sig_r=param.sig_r; sig_i=param.sig_i; sig_u=param.sig_u;
+[fyn, fxn, fypn, fxpn] = model_NK(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[ny, nx] = size(gx);
+SIG = eye(nx).*[sig_r, sig_i, sig_u]';
+eta = SIG; %just so you know
+% Learning ALM matrices
+[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+
 
 % Structure will be
-% 1.) Generate a guess exog interest rate sequence
+% 1.) Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 100; H = 50; burnin = 0; N=1; ne=3;
-i_seq0 = gen_AR1(T+H,0.3,1);
-% and gen shocks
+T = 100
+H = 5 
+burnin = 0; N=1; ne=3;
+% sorry, burnin is not possible for this exercise.
 rng(0)
-eN = randn(ne,T+H+burnin,N);
+e = randn(ne,T+H+burnin);
+% turn off monpol shock
+e(2,:) = zeros(1,T+H+burnin);
 
 % Params for the general learning code
 constant_only = 1; % learning constant only
@@ -52,25 +64,21 @@ gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
 % An initial check to see if simulation given i works
-sig_r=param.sig_r; sig_i=param.sig_i; sig_u=param.sig_u;
-[fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-[ny, nx] = size(gx);
-[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
-SIG = eye(nx).*[sig_r, sig_i, sig_u]';
-eta = SIG; %just so you know
-[~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,eN, Aa, Ab, As, param, PLM, gain);
-[~, yi, ~, ~, ~, ~, ~, ~, ~,~, k_i] = sim_learnLH_given_i(gx,hx,SIG,T+H+burnin,burnin,eN, Aa, Ab, As, param, PLM, gain, y(3,:));
-yi(3,:) - y(3,:)
+[~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, yi, ~, ~, ~, ~, ~, ~, ~,~, k_i] = sim_learnLH_given_i(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, y(3,:));
+% yi(1,:) - y(1,:) % these two explode
+% yi(2,:) - y(2,:) % these two explode
+% yi(3,:) - y(3,:) % these are equal, thats good
 
-
+% Set the initial Taylor rule implied interest rate path as initial guess
+iseq0 = y(3,:);
+return
 %%
 
 % 2.) Solve for optimal interest rate path using a target-criterion-based
 % loss.
 % I'll call this most optimal of plans the Ramsey plan. 
 
-disp('Begin fmincon... Takes about a minute.')
 %Optimization Parameters
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
@@ -78,37 +86,64 @@ options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 ub = 40*ones(T+H,1);
 lb = -40*ones(T+H,1);
 % %Compute the objective function one time with some values
-loss = objective_target_criterion(i_seq0,param,eN,T,N,burnin,PLM,gain);
+loss = objective_target_criterion(iseq0,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As)
 
+
+
+disp('Begin fmincon... Takes about a minute.')
 tic
 
 %Declare a function handle for optimization problem
-objh = @(i_seq) objective_target_criterion(i_seq,param,eN,T,N,burnin,PLM,gain);
-[i_ramsey, loss_opt] = fmincon(objh, i_seq0, [],[],[],[],lb,ub,[],options);
+objh = @(iseq) objective_target_criterion(iseq,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As);
+[i_ramsey, loss_opt] = fmincon(objh, iseq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-
+loss
+loss_opt
 toc
 
-% 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
-% x and pi
-[pi_ramsey,x_ramsey,k] = fun_sim_anchoring_given_i(param,T+H,N,burnin,eN,PLM,gain,i_ramsey);
 
-% see (plot) deviations between the Ramsey plan and the plans obtained when
+
+% 3.) Simulate model given the Ramsey plan for i -> obtain Ramsey plans for
+% x and pi, and contrast with observables coming from a Taylor rule
+[~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y_ramsey, ~, ~, ~, ~, ~, ~, ~,~, k_i] = sim_learnLH_given_i(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, i_ramsey);
+
+
+%% Plot deviations between the Ramsey plan and the plans obtained when
 % using a Taylor rule
-[y_TR,k_TR] = fun_sim_anchoring(param,T+H,N, burnin,eN,PLM,gain);
+
+[fs, lw] = plot_configs;
 
 figure
-subplot(2,1,1)
-plot(pi_ramsey); hold on
-plot(y_TR(1,:))
-legend('Ramsey', 'Taylor rule')
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+subplot(3,1,1)
+plot(y_ramsey(1,:),'linewidth', lw); hold on
+plot(y_TR(1,:),'linewidth', lw)
+legend('Ramsey', 'Taylor rule', 'location', 'eastoutside')
 title('Inflation')
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
 
-subplot(2,1,2)
-plot(i_ramsey); hold on
-plot(y_TR(3,:))
-legend('Ramsey', 'Taylor rule')
+subplot(3,1,2)
+plot(y_ramsey(2,:),'linewidth', lw); hold on
+plot(y_TR(3,:),'linewidth', lw)
+legend('Ramsey', 'Taylor rule', 'location', 'eastoutside')
+title('Output gap')
+ax = gca; % current axes
+ax.FontSize = fs;grid on
+grid minor
+
+subplot(3,1,3)
+plot(i_ramsey,'linewidth', lw); hold on
+plot(y_TR(3,:),'linewidth', lw)
+legend('Ramsey', 'Taylor rule', 'location', 'eastoutside')
 title('Interest rate')
+ax = gca; % current axes
+ax.FontSize = fs;grid on
+grid minor
 
 % 4.) Can even do search over TR parameters to see if they can implement
 % the Ramsey plan.

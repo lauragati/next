@@ -130,9 +130,13 @@ bottom=1in}
 %\listoffigures
 
 
+\section{Implementation of target criterion}
+Problem: Model behaves as if Taylor rule was specified as just a function of exogenous process, i.e. is not E-stable. Need to trick it somehow. 
+
 \newpage
 \appendix
-
+% the following command make equation numbering include the section first, but just for what follows
+\numberwithin{equation}{section}
 \section{Model summary}
 \begin{align}
 x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
@@ -159,6 +163,7 @@ The target criterion in the simplified model (scalar learning of inflation inter
 \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})) \bigg)
 \bigg\} \numberthis \label{target}
 \end{align*}
+where I'm using the notation that $\prod_{j=1}^{0} = 1$.
 
 
 

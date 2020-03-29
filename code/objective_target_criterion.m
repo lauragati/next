@@ -6,16 +6,21 @@
 % (for now the t=T+1...T+H are only semi-optimal because we compute the target criterion only for t=1,...,T)
 % 24 March 2020
 
-function loss = objective_target_criterion(i_seq,param,eN,T,N,burnin,PLM,gain)
+function loss = objective_target_criterion(iseq,param,e,T,burnin,PLM,gain, gx,hx,SIG,Aa,Ab,As)
 lamx = param.lamx;
 kapp = param.kapp;
 bet  = param.bet;
 alph = param.alph;
 
-capT = size(i_seq,1);
+capT = length(iseq);
 H = capT - T;
 % pi,x,k, pibar,s, g_pi are (T+H x 1)
-[pi,x,k,pibar,b,s,g_pi] = fun_sim_anchoring_given_i(param,capT,N,burnin,eN,PLM,gain,i_seq);
+% [pi,x,k,pibar,b,s,g_pi] = fun_sim_anchoring_given_i(param,capT,N,burnin,e,PLM,gain,iseq);
+[s, y, ~, ~, ~, ~, ~, ~, ~, phi_seq, k, ~, g_pi] = sim_learnLH_given_i(gx,hx,SIG,capT+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, iseq);
+pi = y(1,:);
+x  = y(2,:);
+b = gx*hx;
+pibar = squeeze(phi_seq(:,1,:));
 
 resid = zeros(T,1);
 for t=2:T
@@ -28,10 +33,11 @@ for i=2:H
     sumprod = sumprod + x(t+i)*prod;
 end
 
-resid(t) = pi(t) + lamx/kapp*x(t) ...
-    -lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k(t)^(-1) + (pi(t) - pibar(t-1) - b(1,:)*s(:,t-1))*g_pi(t))...
+resid(t) = - pi(t) - lamx/kapp*x(t) ...
+    +lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k(t)^(-1) + (pi(t) - pibar(t-1) - b(1,:)*s(:,t-1))*g_pi(t))...
     *sumprod;
 end
 
-loss = max(abs(resid));
+loss = resid'*resid;
+% loss = max(abs(resid));
 

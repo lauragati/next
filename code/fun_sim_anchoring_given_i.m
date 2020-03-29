@@ -2,6 +2,11 @@
 % Generate data from anchoring model, given an exog i-sequence
 % A near-copy of fun_sim_anchoring.m
 % 25 March 2020
+%%%%%%%%%%%%%%%%%%%%
+% Update 29 March 2020: 
+% % DEPRECATED
+% Do not use
+%%%%%%%%%%%%%%%%%%%%
 function [pi,x,k,pibar,b,s,g_pi] = fun_sim_anchoring_given_i(param,capT,N,burnin,eN,PLM,gain,i_seq)
 sig_r = param.sig_r;
 sig_i = param.sig_i;
