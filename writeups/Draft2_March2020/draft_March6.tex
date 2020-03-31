@@ -378,11 +378,18 @@ Appendix \ref{app_midsimple_problem} lays out the policy problem for a simplifie
 
 \begin{result} Target criterion in the anchoring model \\
 The targeting rule in the simplified learning model with anchoring is given by
-\begin{align}
-\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) 
-\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})) \bigg)
-\bigg\} \label{target}
-\end{align}
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)
+\bigg\} \numberthis \label{target}
+\end{align*}
+% corrected 30 March 2020, materials23
+%\begin{align}
+%\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) 
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})) \bigg)
+%\bigg\} \label{target}
+%\end{align}
+
 For the derivation, see Appendix \ref{app_midsimple_problem}.
 \label{result_target_anchoring}
 \end{result}
@@ -398,7 +405,7 @@ Suppose now that the public updates inflation expectations with a constant gain 
 \begin{align}
 \pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} k^{-1}
 \bigg(\sum_{i=1}^{\infty}x_{t+i}(1-k^{-1})^i \bigg)
-\bigg\} \label{target_molnar}
+\bigg\} \label{target_molnar} % I think this is still correct, despite the corrections of March 30, 2020.
 \end{align}
 which now is the analogue of \cite{gaspar2010inflation}'s Equation (24).\footnote{In their Handbook chapter, \cite{gaspar2010inflation} provide a parsimonious treatment of \cite{molnar2014optimal}. I am referring to their expression for the target criterion because \cite{molnar2014optimal} do not provide one explicitly.} This result, due to \cite{molnar2014optimal}, suggests that the presence of learning introduces an intertemporal tradeoff between inflation and output gap stabilization, as surprise inflation today will result in a worsened tradeoff in the future.
 
@@ -410,7 +417,7 @@ Is the target criterion (\ref{target}) implementable in practice? Even in the ca
 \begin{align}
 \pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) 
 \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}(1-k_{t}^{-1})^{i} \bigg)
-\bigg\} \label{target_simplified}
+\bigg\} \label{target_simplified} % I guess this is wrong right now, see materials23
 \end{align} 
 While still a long expression, the interpretation of (\ref{target_simplified}) is straightforward. It instructs the policymaker to weigh the inflation-output gap tradeoff by the current output gap and an additional term that captures the effects of learning and anchoring. The learning-and-anchoring term corresponds exactly to expected future output gaps, discounted by future gains, assuming those to be equal to current ones, where the entire expression is weighted by the current gain and the extent of the change in the current gain times the forecast error.
 

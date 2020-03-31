@@ -143,6 +143,9 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
 i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text{if imposed})
 \end{align}
+
+\vspace{-1.2cm}
+
 \begin{align}
 \text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
 \text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
@@ -157,13 +160,19 @@ x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatr
 \end{align}
 
 \section{Target criterion}
-The target criterion in the simplified model (scalar learning of inflation intercept only):
+The target criterion in the simplified model (scalar learning of inflation intercept only, $k_t^{-1} = \mathbf{g}(fe_{t-1})$):
 \begin{align*}
 \pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
-\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=1}^{i-1}(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})) \bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)
 \bigg\} \numberthis \label{target}
 \end{align*}
-where I'm using the notation that $\prod_{j=1}^{0} = 1$.
+where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation purposes, let me rewrite this as follows:
+\begin{align*}
+\pi_t  = & \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)}
+\numberthis \label{target_interpretation}
+\end{align*}
+Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
 
 
 

@@ -20,3 +20,5 @@ g_pi = -2*(d*fe)^(-2)*fe^(-1);
 % % Alternative 5: 
 % k = kt_1 + 1/((d*fe)^2) - c;
 % g_pi = -2*(d*fe)^(-2)*fe^(-1);
+% Alternative 6 = compatible with target criterion
+% k = g(fe)
