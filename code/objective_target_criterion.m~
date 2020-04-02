@@ -28,7 +28,7 @@ sumprod = x(t+1);
 for i=2:H
     prod = 1;
     for j=1:i-1
-        prod = prod*(1-k(t+1+j)^(-1)-(pi(t+1+j)-pibar(t+j) -b(1,:)*s(:,t+j))*g_pi(t+j));
+        prod = prod*(1-k(t+1+j)^(-1)*(pi(t+1+j)-pibar(t+j) -b(1,:)*s(:,t+j)));
     end
     sumprod = sumprod + x(t+i)*prod;
 end

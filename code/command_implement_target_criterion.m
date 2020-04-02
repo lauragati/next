@@ -36,8 +36,8 @@ eta = SIG; %just so you know
 % Structure will be
 % 1.) Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 100
-H = 5 
+T = 10
+H = 1 
 burnin = 0; N=1; ne=3;
 % sorry, burnin is not possible for this exercise.
 rng(0)
@@ -87,7 +87,7 @@ ub = 40*ones(T+H,1);
 lb = -40*ones(T+H,1);
 % %Compute the objective function one time with some values
 loss = objective_target_criterion(iseq0,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As)
-
+return
 
 
 disp('Begin fmincon... Takes about a minute.')
