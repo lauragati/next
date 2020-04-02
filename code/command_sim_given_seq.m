@@ -52,7 +52,7 @@ gain = again_critsmooth;
 
 % Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 10
+T = 100
 burnin = 0; ne=3;
 rng(0)
 e = randn(ne,T+burnin);
@@ -80,7 +80,7 @@ lb = -40*ones(T,1);
 s_r = [1;1;1];
 
 %Compute the objective function one time with some values
-loss = objective_seq(yg(3,:),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As,y,s_r)
+loss = objective_seq(rand(1,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As,y,s_r)
 
 % return
 
@@ -100,10 +100,8 @@ toc
 
 y_opt-y
 
-seriesnames = {'\pi', 'x','i'};
-figtitle = 'Differences';
-create_plot_observables(y_opt-y, seriesnames, figtitle)
 figtitle = 'Taylor rule versus optimized';
+seriesnames = {'\pi', 'x','i'};
 comparisonnames = {'TR', 'optimized'}; 
-create_plot_observables_comparison(y_opt,y, seriesnames, figtitle, comparisonnames)
+create_plot_observables_comparison(y,y_opt, seriesnames, figtitle, comparisonnames)
 
