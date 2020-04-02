@@ -38,6 +38,6 @@ resid(t) = - pi(t) - lamx/kapp*x(t) ...
     *sumprod;
 end
 
-loss = resid'*resid;
-% loss = max(abs(resid));
+% loss = resid'*resid; % squared residuals
+loss = max(abs(resid)); % max norm of the residual
 

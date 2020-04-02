@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+ 
+\pagestyle{fancy} % customize header and footer
+\fancyhf{} % clear initial header and footer
+%\rhead{Overleaf}
+\lhead{\centering \rightmark} % this adds subsection number and name
+\lfoot{\centering \rightmark} 
+\rfoot{\thepage} % put page number (the centering command puts it in the middle, don't matter if you put it in right or left footer)
+
+\def \myFigPath {../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../tables/} 
+
+%\definecolor{mygreen}{RGB}{0, 100, 0}
+\definecolor{mygreen}{RGB}{0, 128, 0}
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\linespread{1.5}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\myMediumFigScale{0.25}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myAdjustableFigScale{0.13}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+
+% define a command to make a huge question mark (it works in math mode)
+\newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
+
+\begin{document}
+
+\linespread{1.0}
+
+\title{Materials 24}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\tableofcontents
+
+%\listoffigures
+
+
+\section{Implementation of target criterion}
+Problem: Model behaves as if Taylor rule was specified as just a function of exogenous process, i.e. is not E-stable. Need to trick it somehow. 
+
+
+
+
+
+\newpage
+\appendix
+% the following command make equation numbering include the section first, but just for what follows
+\numberwithin{equation}{section}
+\section{Model summary}
+
+\vspace{-0.5cm}
+
+\begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{prestons18}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{prestons19}  \\
+i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text{if imposed})
+\end{align}
+
+\vspace{-1.2cm}
+
+\begin{align}
+\text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
+\text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
+\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \\
+\text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1})\\
+\text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{fafb_anal}
+\end{align}
+
+\vspace{-0.5cm}
+
+This notation captures vector learning ($z$ learned) for intercept only. For scalar learning, $a_t= \begin{pmatrix} \bar{\pi}_t & 0 & 0\end{pmatrix}' $ and $b_1$ designates the first row of $b$. The observables $(\pi, x)$ are determined as:
+\begin{align}
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t\\
+\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t
+\end{align}
+
+\section{Target criterion}\label{target_crit_levels}
+The target criterion in the simplified model (scalar learning of inflation intercept only, $k_t^{-1} = \mathbf{g}(fe_{t-1})$):
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)
+\bigg\} \numberthis \label{target}
+\end{align*}
+where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation purposes, let me rewrite this as follows:
+\begin{align*}
+\pi_t  = & \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)}
+\numberthis \label{target_interpretation}
+\end{align*}
+Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+
+\section{Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}\label{target_crit_changes}
+\begin{equation}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
+\end{equation}
+Turns out the $k_{t-1}$ adds one $\varphi_{6,t+1}$ too many which makes the target criterion unwieldy. The FOCs of the Ramsey problem are
+\begin{align}
+& 2\pi_t + 2\frac{\lambda}{\kappa}x_t -k_t^{-1} \varphi_{5,t} - \mathbf{g}_{\pi}(t)\varphi_{6,t}  = 0 \label{gaspar22}\\
+& c x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
+& \varphi_{6,t} \; \textcolor{red}{+\; \varphi_{6,t+1}} = fe_t \varphi_{5,t} \label{constraints}
+\end{align}
+where the red multiplier is the new element vis-a-vis the case where the anchoring function is specified in levels ($k_t^{-1} = \mathbf{g}(fe_{t-1})$, as in App. \ref{target_crit_levels}), and I'm using the shorthand notation
+\begin{align}
+c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa} \\ 
+fe_t & = \pi_t - \bar{\pi}_{t-1}-b s_{t-1}
+\end{align}
+(\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi}(t)$).
+One can simplify this three-equation-system to:
+\begin{align}
+\varphi_{6,t} & = -c fe_t x_{t+1} + \bigg(1+ \frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1}) -fe_t \mathbf{g}_{\bar{\pi}}(t) \bigg) \varphi_{6,t+1} -\frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda}{\kappa}x_t   - \bigg( \frac{k_t^{-1}}{fe_t} + \mathbf{g}_{\pi}(t)\bigg)\varphi_{6,t} + \frac{k_t^{-1}}{fe_t}\varphi_{6,t+1}\label{1'}
+\end{align}
+Unfortunately, I haven't been able to solve (\ref{6'}) for $\varphi_{6,t}$ and therefore I can't express the target criterion so nicely as before. The only thing I can say is to direct the targeting rule-following central bank to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}^{-1}}{fe_{t+j}}}{\frac{k_{t+j}^{-1}}{fe_{t+j}} + \mathbf{g}_{\pi}(t+j)} \label{sol1'}
+\end{equation}
+Interpretation: the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the CB always hits the target (
+$\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0 \quad \forall i$); or expectations are always anchored ($k_{t+j}^{-1}=0 \quad \forall j$). 
+
+
+\end{document}
+
+%%%%%%%%%%%%%    SUBFIGURE  %%%%%%%%%%%
+%\begin{figure}[h!]
+%\subfigure[Hodrick-Prescott, $\lambda=1600$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_HP}}
+%\subfigure[Hamilton, 4 lags, $h=8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_Hamilton}}
+%\subfigure[Baxter-King, $(6,32)$ quarters, truncation at 12 lags]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_BK}}
+%\caption{Inverse gain for $\hat{d}$ for the different filters}
+%\end{figure}
+
+%%%%%%%%%%%%%    TABLE  %%%%%%%%%%%
+%\begin{center}
+%\begin{table}[h!]
+%\caption{$\hat{d}$}
+%\begin{tabular}{ c |c |c }
+%  & $W = I$ & $W = \text{diag}(\hat{\sigma}_{ac(0)}, \dots, \hat{\sigma}_{ac(K)})$ \\ 
+%  \hline
+% HP & 77.7899 & 10 \\  
+% \hline
+% Hamilton & 32.1649 & 10 \\  
+% \hline
+% BK & 90.3929 & 10    
+%\end{tabular}
+%\end{table}
+%\end{center}
+
+
+
+
+

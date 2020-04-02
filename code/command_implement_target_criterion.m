@@ -3,6 +3,8 @@
 % interest rate path
 % developed in materials22.m and replaces that file.
 % 26 March 2020
+% needs to be reworked once I have found a general way of obtaining
+% sequences that work for the model.
 
 clearvars
 close all
