@@ -52,7 +52,7 @@ gain = again_critsmooth;
 
 % Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 100 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
+T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
 burnin = 0; ne=3;
 rng(0)
 e = randn(ne,T+burnin);
@@ -69,10 +69,10 @@ e(2,:) = zeros(1,T+burnin);
 
 %Optimization Parameters
 options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 15000);
 
 %Select exogenous inputs
-s_inputs = [0;1;1];
+s_inputs = [1;1;1]; % pi, x, i
 i_inputs = find(s_inputs); % index of inputs series in y
 n_inputs = sum(s_inputs); % the number of input series
 
@@ -85,7 +85,7 @@ loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,
 
 
 seq0 = y(i_inputs,:);
-% seq0 = rand(size(seq0));
+seq0 = rand(size(seq0));
 % return
 
 disp('Begin fmincon... Takes about a minute.')
@@ -99,6 +99,9 @@ loss
 loss_opt
 toc
 
+[loss_opt_check, resids_opt] = objective_seq(seq_opt,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As);
+
+num_res = size(resids_opt,1);
 [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
 
 % y_opt-y
@@ -107,6 +110,27 @@ toc
 seriesnames = {'\pi', 'x','i'};
 figtitle = ['Feed in the following exogenous sequences: ', seriesnames{i_inputs}];
 comparisonnames = {'TR', 'min residuals'};
-figname = strrep([this_code, seriesnames{i_inputs}],'\','_');
+% Adapt figname based on whether you imposed TC or not
+if num_res==2 % no TC
+    % Choose whether you initialized at Taylor-rule sequences or at random
+    % sequence
+    if max(max(abs(seq0-y(i_inputs,:)))) ==0
+        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_initialized_atTR'],'\','_');
+    else
+        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_initalized_at_rand'],'\','_');
+    end
+elseif num_res==3 % impose TC
+    % Choose whether you initialized at Taylor-rule sequences or at random
+    % sequence
+    if max(max(abs(seq0-y(i_inputs,:)))) ==0
+        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_TC_initalized_atTR'],'\','_'); % with TC
+    else
+        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_TC_initalized_at_rand'],'\','_'); % with TC
+    end
+else
+    disp('wtf')
+end
+
 create_plot_observables_comparison(y,y_opt, seriesnames, figtitle, comparisonnames,figname,print_figs)
 
+disp('Done.')

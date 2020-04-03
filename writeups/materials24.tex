@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.18}
+\def\myAdjustableFigScale{0.16}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -130,17 +130,43 @@ bottom=1in}
 %\listoffigures
 
 \newpage
-\section{Implementation of target criterion}
+\section{Choosing exogenous sequences for the observables}
+
+\vspace{-0.2cm}
+
 \begin{figure}[h!]
-\subfigure[Inputs: $i$, residual eq.: none]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seqi}}
-\subfigure[Inputs: $x,i$, residual eq.: A9.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seqxi}}
-\subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_pixi}}
+\subfigure[Inputs: $i$, residual eq.: none; initialized at TR]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_iinitialized_atTR}}
+\hfill
+\subfigure[Same as (a), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_i_initalized_at_rand}}
+\subfigure[Inputs: $x,i$, residual eq.: A9; initialized at TR]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xiinitialized_atTR}}
+\hfill
+\subfigure[Same as (c), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xi_initalized_at_rand}}
+\subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10;  initialized at TR]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_initialized_atTR}}
+\hfill
+\subfigure[Same as (e), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_initalized_at_rand}}
 \caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals}
 \end{figure}
 $\rightarrow$ I can implement the Tayor-rule-outcome without using a Taylor rule. (Conditional on initial sequences being the Taylor-rule-sequences.)
 
+\newpage
+\section{Implementing the RE-discretion target criterion}
 
+\vspace{-0.2cm}
 
+\begin{figure}[h!]
+\subfigure[Inputs: $i$, residual eq.: TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_i_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (a), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_i_TC_initalized_at_rand}}
+\subfigure[Inputs: $x,i$, residual eq.: A9, TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xi_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (c), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xi_TC_initalized_at_rand}}
+\subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10, TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (e), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_TC_initalized_at_rand}}
+\caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals includng RE discretion target criterion, initialized at Taylor-rule sequences}
+\end{figure}
+
+I don't see a huge difference between imposing the TC or not, especially not if I initialize at the Taylor-rule sequences.
 
 \newpage
 \appendix
@@ -223,6 +249,7 @@ $\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0 \quad \forall i$); or expectation
 %%%%%%%%%%%%%    SUBFIGURE  %%%%%%%%%%%
 %\begin{figure}[h!]
 %\subfigure[Hodrick-Prescott, $\lambda=1600$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_HP}}
+%\hfill % this is great to intro dpace between subfigures
 %\subfigure[Hamilton, 4 lags, $h=8$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_Hamilton}}
 %\subfigure[Baxter-King, $(6,32)$ quarters, truncation at 12 lags]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials22_gain_dhat_BK}}
 %\caption{Inverse gain for $\hat{d}$ for the different filters}
