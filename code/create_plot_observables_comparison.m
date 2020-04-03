@@ -21,7 +21,7 @@ if nargin ==1
     for i=1:ny
         subplot(1,ny,i)
         plot(y1(i,:), 'linewidth', lw); hold on
-        plot(y2(i,:), 'linewidth', lw); hold on
+        plot(y2(i,:), 'linewidth', lw, 'linestyle', '--')
         plot(zeros(1,T), 'k--', 'linewidth',lw)
         ax = gca; % current axes
         ax.FontSize = fs;
@@ -35,7 +35,7 @@ elseif nargin > 1
     for i=1:ny
         subplot(1,ny,i)
         h(i) = plot(y1(i,:), 'linewidth', lw); hold on
-        h2(i) = plot(y2(i,:), 'linewidth', lw);
+        h2(i) = plot(y2(i,:), 'linewidth', lw,'linestyle', '--');
         plot(zeros(1,T), 'k--', 'linewidth',lw)
         ax = gca; % current axes
         ax.FontSize = fs;

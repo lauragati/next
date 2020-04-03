@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.13}
+\def\myAdjustableFigScale{0.18}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -129,10 +129,15 @@ bottom=1in}
 
 %\listoffigures
 
-
+\newpage
 \section{Implementation of target criterion}
-Problem: Model behaves as if Taylor rule was specified as just a function of exogenous process, i.e. is not E-stable. Need to trick it somehow. 
-
+\begin{figure}[h!]
+\subfigure[Inputs: $i$, residual eq.: none]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seqi}}
+\subfigure[Inputs: $x,i$, residual eq.: A9.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seqxi}}
+\subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_pixi}}
+\caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals}
+\end{figure}
+$\rightarrow$ I can implement the Tayor-rule-outcome without using a Taylor rule. (Conditional on initial sequences being the Taylor-rule-sequences.)
 
 
 

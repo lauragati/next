@@ -73,9 +73,6 @@ FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
-% Residuals from equations % <------ 2)
-resids = nan(ny-1,T);
-
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
 om = eta*eta';
@@ -123,7 +120,7 @@ for t = 1:T-1
         % Instead, 
 %         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
 %         ysim(3,t) = seq(t);
-        [ysim(:,t),resids(:,t)] = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
+        [ysim(:,t),resids(:,t)] = A9A10(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
        
         xesim = hx*xsim(:,t);
         % If there are endogenous states...

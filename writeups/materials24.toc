@@ -1,4 +1,4 @@
-\contentsline {section}{\numberline {1}Implementation of target criterion}{1}{section.1}
-\contentsline {section}{\numberline {A}Model summary}{2}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{2}{appendix.B}
-\contentsline {section}{\numberline {C}Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}{3}{appendix.C}
+\contentsline {section}{\numberline {1}Implementation of target criterion}{2}{section.1}
+\contentsline {section}{\numberline {A}Model summary}{4}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{4}{appendix.B}
+\contentsline {section}{\numberline {C}Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}{5}{appendix.C}

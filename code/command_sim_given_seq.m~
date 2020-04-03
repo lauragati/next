@@ -72,7 +72,7 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
 %Select exogenous inputs
-s_inputs = [0;1;1];
+s_inputs = [1;1;1];
 i_inputs = find(s_inputs); % index of inputs series in y
 n_inputs = sum(s_inputs); % the number of input series
 
@@ -83,9 +83,8 @@ lb = -40*ones(n_inputs,T);
 loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As)
 
 
-
 seq0 = y(i_inputs,:);
-% seq0 = rand(size(seq0));
+
 % return
 
 disp('Begin fmincon... Takes about a minute.')
@@ -101,12 +100,11 @@ toc
 
 [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
 
-% y_opt-y
+y_opt-y
 
-%%
+figtitle = 'Taylor rule versus optimized';
 seriesnames = {'\pi', 'x','i'};
-figtitle = ['Feed in the following exogenous sequences: ', seriesnames{i_inputs}];
-comparisonnames = {'TR', 'min residuals'};
-figname = strrep([this_code, seriesnames{i_inputs}],'\','_');
+comparisonnames = {'TR', 'optimized'};
+figname= [this_code, '_', ]
 create_plot_observables_comparison(y,y_opt, seriesnames, figtitle, comparisonnames,figname,print_figs)
 
