@@ -74,8 +74,8 @@ FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 % Residuals from equations % <------ 2)
-% resids = nan(ny-1,T);
-resids = nan(ny,T);
+resids = nan(ny-1,T);
+% resids = nan(ny,T);
 
 
 %%% initialize CUSUM variables: FEV om and criterion theta
@@ -125,8 +125,8 @@ for t = 1:T-1
         % Instead, 
 %         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
 %         ysim(3,t) = seq(t);
-%         [ysim(:,t),resids(:,t)] = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
-        [ysim(:,t),resids(:,t)] = A9A10_TC(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
+        [ysim(:,t),resids(:,t)] = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
+%         [ysim(:,t),resids(:,t)] = A9A10_TC(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
        
         xesim = hx*xsim(:,t);
         % If there are endogenous states...
@@ -223,3 +223,7 @@ ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
 
+% Evaluate the target criterion for the simple anchoring model
+H = 20;
+resTC = eval_resTC(param,ysim,k,phi_seq,xsim,g_pi, H);
+resids = [resids(:,1:T-H); resTC'];

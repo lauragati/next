@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 APR 2020 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 APR 2020 19:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,7 +937,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../figures/command_sim_given_seq_iinitialized_atTR.png, id=44, 1373.13pt x 880
+<../figures/command_sim_given_seq_iinitialized_atTR.png, id=49, 1373.13pt x 880
 .28876pt>
 File: ../figures/command_sim_given_seq_iinitialized_atTR.png Graphic file (type
  png)
@@ -946,7 +946,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_iinitialized_atTR.png
  used on input line 138.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_i_initalized_at_rand.png, id=45, 1373.13pt x 
+<../figures/command_sim_given_seq_i_initalized_at_rand.png, id=50, 1373.13pt x 
 880.28876pt>
 File: ../figures/command_sim_given_seq_i_initalized_at_rand.png Graphic file (t
 ype png)
@@ -955,7 +955,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_i_initalized_at_rand.
 png used on input line 140.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_xiinitialized_atTR.png, id=46, 1373.13pt x 88
+<../figures/command_sim_given_seq_xiinitialized_atTR.png, id=51, 1373.13pt x 88
 0.28876pt>
 File: ../figures/command_sim_given_seq_xiinitialized_atTR.png Graphic file (typ
 e png)
@@ -964,7 +964,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_xiinitialized_atTR.pn
 g used on input line 141.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_xi_initalized_at_rand.png, id=47, 1373.13pt x
+<../figures/command_sim_given_seq_xi_initalized_at_rand.png, id=52, 1373.13pt x
  880.28876pt>
 File: ../figures/command_sim_given_seq_xi_initalized_at_rand.png Graphic file (
 type png)
@@ -973,7 +973,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_xi_initalized_at_rand
 .png used on input line 143.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq__pixi_initialized_atTR.png, id=48, 1373.13pt 
+<../figures/command_sim_given_seq__pixi_initialized_atTR.png, id=53, 1373.13pt 
 x 880.28876pt>
 File: ../figures/command_sim_given_seq__pixi_initialized_atTR.png Graphic file 
 (type png)
@@ -983,7 +983,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq__pixi_initialized_atT
 R.png used on input line 144.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq__pixi_initalized_at_rand.png, id=49, 1373.13p
+<../figures/command_sim_given_seq__pixi_initalized_at_rand.png, id=54, 1373.13p
 t x 880.28876pt>
 File: ../figures/command_sim_given_seq__pixi_initalized_at_rand.png Graphic fil
 e (type png)
@@ -1005,7 +1005,7 @@ and_sim_given_seq_xiinitialized_atTR.png (PNG copy)> <../figures/command_sim_gi
 ven_seq_xi_initalized_at_rand.png (PNG copy)> <../figures/command_sim_given_seq
 __pixi_initialized_atTR.png (PNG copy)> <../figures/command_sim_given_seq__pixi
 _initalized_at_rand.png (PNG copy)>]
-<../figures/command_sim_given_seq_i_TC_initalized_atTR.png, id=65, 1373.13pt x 
+<../figures/command_sim_given_seq_i_TC_initalized_atTR.png, id=70, 1373.13pt x 
 880.28876pt>
 File: ../figures/command_sim_given_seq_i_TC_initalized_atTR.png Graphic file (t
 ype png)
@@ -1014,7 +1014,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_i_TC_initalized_atTR.
 png used on input line 157.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_i_TC_initalized_at_rand.png, id=66, 1396.2162
+<../figures/command_sim_given_seq_i_TC_initalized_at_rand.png, id=71, 1396.2162
 5pt x 880.28876pt>
 File: ../figures/command_sim_given_seq_i_TC_initalized_at_rand.png Graphic file
  (type png)
@@ -1024,7 +1024,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_i_TC_initalized_at_ra
 nd.png used on input line 159.
 (pdftex.def)             Requested size: 223.39917pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_xi_TC_initalized_atTR.png, id=67, 1373.13pt x
+<../figures/command_sim_given_seq_xi_TC_initalized_atTR.png, id=72, 1373.13pt x
  880.28876pt>
 File: ../figures/command_sim_given_seq_xi_TC_initalized_atTR.png Graphic file (
 type png)
@@ -1033,7 +1033,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_xi_TC_initalized_atTR
 .png used on input line 160.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq_xi_TC_initalized_at_rand.png, id=68, 1373.13p
+<../figures/command_sim_given_seq_xi_TC_initalized_at_rand.png, id=73, 1373.13p
 t x 880.28876pt>
 File: ../figures/command_sim_given_seq_xi_TC_initalized_at_rand.png Graphic fil
 e (type png)
@@ -1043,7 +1043,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_xi_TC_initalized_at_r
 and.png used on input line 162.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq__pixi_TC_initalized_atTR.png, id=69, 1373.13p
+<../figures/command_sim_given_seq__pixi_TC_initalized_atTR.png, id=74, 1373.13p
 t x 880.28876pt>
 File: ../figures/command_sim_given_seq__pixi_TC_initalized_atTR.png Graphic fil
 e (type png)
@@ -1053,7 +1053,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq__pixi_TC_initalized_a
 tTR.png used on input line 163.
 (pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
 
-<../figures/command_sim_given_seq__pixi_TC_initalized_at_rand.png, id=70, 1373.
+<../figures/command_sim_given_seq__pixi_TC_initalized_at_rand.png, id=75, 1373.
 13pt x 880.28876pt>
 File: ../figures/command_sim_given_seq__pixi_TC_initalized_at_rand.png Graphic 
 file (type png)
@@ -1075,7 +1075,80 @@ s/command_sim_given_seq_xi_TC_initalized_atTR.png (PNG copy)> <../figures/comma
 nd_sim_given_seq_xi_TC_initalized_at_rand.png (PNG copy)> <../figures/command_s
 im_given_seq__pixi_TC_initalized_atTR.png (PNG copy)> <../figures/command_sim_g
 iven_seq__pixi_TC_initalized_at_rand.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 193--193
+<../figures/command_sim_given_seq_i_anch_TC_initalized_atTR.png, id=87, 1396.21
+625pt x 880.28876pt>
+File: ../figures/command_sim_given_seq_i_anch_TC_initalized_atTR.png Graphic fi
+le (type png)
+
+<use ../figures/command_sim_given_seq_i_anch_TC_initalized_atTR.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq_i_anch_TC_initalized_
+atTR.png used on input line 178.
+(pdftex.def)             Requested size: 223.39917pt x 140.84908pt.
+
+<../figures/command_sim_given_seq_i_anch_TC_initalized_at_rand.png, id=88, 1379
+.1525pt x 880.28876pt>
+File: ../figures/command_sim_given_seq_i_anch_TC_initalized_at_rand.png Graphic
+ file (type png)
+
+<use ../figures/command_sim_given_seq_i_anch_TC_initalized_at_rand.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq_i_anch_TC_initalized_
+at_rand.png used on input line 180.
+(pdftex.def)             Requested size: 220.6689pt x 140.84908pt.
+
+<../figures/command_sim_given_seq_xi_anch_TC_initalized_atTR.png, id=89, 1373.1
+3pt x 880.28876pt>
+File: ../figures/command_sim_given_seq_xi_anch_TC_initalized_atTR.png Graphic f
+ile (type png)
+
+<use ../figures/command_sim_given_seq_xi_anch_TC_initalized_atTR.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq_xi_anch_TC_initalized
+_atTR.png used on input line 181.
+(pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
+
+<../figures/command_sim_given_seq_xi_anch_TC_initalized_at_rand.png, id=90, 137
+3.13pt x 880.28876pt>
+File: ../figures/command_sim_given_seq_xi_anch_TC_initalized_at_rand.png Graphi
+c file (type png)
+
+<use ../figures/command_sim_given_seq_xi_anch_TC_initalized_at_rand.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq_xi_anch_TC_initalized
+_at_rand.png used on input line 183.
+(pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
+
+<../figures/command_sim_given_seq__pixi_anch_TC_initalized_atTR.png, id=91, 137
+3.13pt x 880.28876pt>
+File: ../figures/command_sim_given_seq__pixi_anch_TC_initalized_atTR.png Graphi
+c file (type png)
+
+<use ../figures/command_sim_given_seq__pixi_anch_TC_initalized_atTR.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq__pixi_anch_TC_initali
+zed_atTR.png used on input line 184.
+(pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
+
+<../figures/command_sim_given_seq__pixi_anch_TC_initalized_at_rand.png, id=92, 
+1373.13pt x 880.28876pt>
+File: ../figures/command_sim_given_seq__pixi_anch_TC_initalized_at_rand.png Gra
+phic file (type png)
+
+<use ../figures/command_sim_given_seq__pixi_anch_TC_initalized_at_rand.png>
+Package pdftex.def Info: ../figures/command_sim_given_seq__pixi_anch_TC_initali
+zed_at_rand.png used on input line 186.
+(pdftex.def)             Requested size: 219.70529pt x 140.84908pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4 <../figures/command_sim_given_seq_i_anch_TC_initalized_atTR.png (PNG copy)> 
+<../figures/command_sim_given_seq_i_anch_TC_initalized_at_rand.png (PNG copy)> 
+<../figures/command_sim_given_seq_xi_anch_TC_initalized_atTR.png (PNG copy)> <.
+./figures/command_sim_given_seq_xi_anch_TC_initalized_at_rand.png (PNG copy)> <
+../figures/command_sim_given_seq__pixi_anch_TC_initalized_atTR.png (PNG copy)> 
+<../figures/command_sim_given_seq__pixi_anch_TC_initalized_at_rand.png (PNG cop
+y)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 212--212
 [] 
  []
 
@@ -1085,28 +1158,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4]
+[5]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
+[6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 266.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 266.
  (./materials24.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 266.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 266.
 Package rerunfilecheck Info: File `materials24.out' has not changed.
-(rerunfilecheck)             Checksum: 839F7C2AC18BAFD3D98F6EE0D915E594;422.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
+(rerunfilecheck)             Checksum: 3211F766EBB5DCBB8CF6BA4D32F9B830;507.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 266.
  ) 
 Here is how much of TeX's memory you used:
- 20072 strings out of 493089
- 365791 string characters out of 6134842
+ 20112 strings out of 493089
+ 367914 string characters out of 6134842
  457409 words of memory out of 5000000
- 23122 multiletter control sequences out of 15000+600000
+ 23147 multiletter control sequences out of 15000+600000
  14164 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,454b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1129,10 +1202,10 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials24.pdf (5 pages, 1534081 bytes).
+Output written on materials24.pdf (6 pages, 2218262 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 177 compressed objects within 2 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

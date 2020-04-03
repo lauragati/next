@@ -1,5 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Choosing exogenous sequences for the observables}{}% 1
 \BOOKMARK [1][-]{section.2}{Implementing the RE-discretion target criterion}{}% 2
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 3
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 4
-\BOOKMARK [1][-]{appendix.C}{Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}{}% 5
+\BOOKMARK [1][-]{section.3}{Implementing the simple anchoring target criterion}{}% 3
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 4
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 5
+\BOOKMARK [1][-]{appendix.C}{Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}{}% 6

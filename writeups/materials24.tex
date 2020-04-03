@@ -163,10 +163,29 @@ $\rightarrow$ I can implement the Tayor-rule-outcome without using a Taylor rule
 \subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10, TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_TC_initalized_atTR}}
 \hfill
 \subfigure[Same as (e), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_TC_initalized_at_rand}}
-\caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals includng RE discretion target criterion, initialized at Taylor-rule sequences}
+\caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals including RE discretion target criterion}
 \end{figure}
 
 I don't see a huge difference between imposing the TC or not, especially not if I initialize at the Taylor-rule sequences.
+
+
+\newpage
+\section{Implementing the simple anchoring target criterion}
+
+\vspace{-0.2cm}
+
+\begin{figure}[h!]
+\subfigure[Inputs: $i$, residual eq.: TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_i_anch_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (a), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_i_anch_TC_initalized_at_rand}}
+\subfigure[Inputs: $x,i$, residual eq.: A9, TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xi_anch_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (c), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq_xi_anch_TC_initalized_at_rand}}
+\subfigure[Inputs: $\pi,x,i$, residual eq. A9, A10, TC.]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_anch_TC_initalized_atTR}}
+\hfill
+\subfigure[Same as (e), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_anch_TC_initalized_at_rand}}
+\caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals including the simple anchoring target criterion}
+\end{figure}
 
 \newpage
 \appendix
@@ -210,7 +229,7 @@ The target criterion in the simplified model (scalar learning of inflation inter
 where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation purposes, let me rewrite this as follows:
 \begin{align*}
 \pi_t  = & \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)}
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j) \bigg)}
 \numberthis \label{target_interpretation}
 \end{align*}
 Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
