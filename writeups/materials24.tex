@@ -118,7 +118,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 24}
+\title{Materials 24 - Implementing the target criterion (TC)}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -128,6 +128,85 @@ bottom=1in}
 \tableofcontents
 
 %\listoffigures
+
+\section{Description of the three steps}
+\textbf{Overall goal}: find an exogenous sequence $\{i_t\}_{t=1}^{T}$ that replaces the Taylor rule as a DGP for $i$ and implements the target criterion in the simplified anchoring model, equation (\ref{target}).\\
+I proceed in 3 steps: \\
+1) \emph{find an exogenous sequence $\{i_t\}_{t=1}^{T}$ that replaces the Taylor rule as a DGP for $i$ and fulfills the other model equations, w/o a target criterion;} \\
+2) find an exogenous sequence $\{i_t\}_{t=1}^{T}$ that replaces the Taylor rule as a DGP for $i$ and fulfills the other model equations \emph{including a simple target criterion from the RE model with discretion;} \\
+3) find an exogenous sequence $\{i_t\}_{t=1}^{T}$ that replaces the Taylor rule as a DGP for $i$ and fulfills the other model equations, \emph{including the anchoring target criterion.} \\
+Variable dimensions in this exercise:
+\begin{itemize}
+\item The \# of exogenous sequences to feed in and optimize over: $\{i_t\}$, $\{i_t, x_t\}$ or $\{i_t, x_t, \pi_t\}$.
+\item The \# of equations to consider as residual: none, (\ref{A9}), (\ref{A9}) and (\ref{A10}) or (\ref{A9}), (\ref{A10}) \& TC.
+\end{itemize}
+
+\begin{enumerate}
+\item ``Choosing exogenous sequences for the observables'' - the main logic of the exercise
+\begin{itemize}
+\item The system we are trying to solve can be summarized as:
+\begin{align}
+x_t & = -\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states}) \tag{A9} \\
+\pi_t & = -\kappa x_t + f^3(\text{expectations}) + f^4(\text{exogenous states}) \tag{A10} \\
+i_t & = \mathcal{N}(0,\sigma^2) \tag{exog. DGP for $i$}
+\end{align}
+\item I'll mark the given stuff in blue. In all of this exercise I treat the expectations equations as exactly fulfilled, so the above is
+\begin{align}
+x_t & = \textcolor{blue}{-\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states})} \tag{A9} \\
+\pi_t & = -\kappa x_t + \textcolor{blue}{f^3(\text{expectations}) + f^4(\text{exogenous states})} \tag{A10} \\
+i_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_i^2)} \tag{exog. DGP for $i$}
+\end{align}
+\item What this shows is that if the i-DGP is exact, which it has to be, then A9 pins down $x_t$, and A10 pins down $\pi_t$, uniquely. I cannot treat anything as a residual equation, and since all $\{i_t\}$ fulfill this system, the initial guess is the solution, even if expectations blow up.
+\item So if I want to add ``wiggle-room," and make say A9 residual, I need something else to pin down $x_t$; in other words, I need to feed in (and optimize over) an exogenous sequence of $x$:
+\begin{align}
+res_{A9}& = \textcolor{blue}{- x_t -\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states})} \tag{A9} \\
+\pi_t & =   \textcolor{blue}{-\kappa x_t + f^3(\text{expectations}) + f^4(\text{exogenous states})} \tag{A10} \\
+i_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_i^2)} \tag{exog. DGP for $i$}\\
+x_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_x^2)} \tag{exog. DGP for $x$}
+\end{align}
+\item Similarly, the maximum I can do here is to feed in and optimize over $\pi$ as well:
+\begin{align}
+res_{A9}& = \textcolor{blue}{- x_t -\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states})} \tag{A9} \\
+res_{A10}& =   \textcolor{blue}{-\pi_t  -\kappa x_t + f^3(\text{expectations}) + f^4(\text{exogenous states})} \tag{A10} \\
+i_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_i^2)} \tag{exog. DGP for $i$}\\
+x_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_x^2)} \tag{exog. DGP for $x$} \\
+pi_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_{\pi}^2)} \tag{exog. DGP for $\pi$}
+\end{align}
+\end{itemize}
+\item ``Implementing the RE-discretion target criterion"
+\begin{itemize}
+\item The only thing that changes wrt. point 1 is that I add the TC as a model equation, with its own residual term. In terms of the first equation system above:
+\begin{align}
+x_t & = \textcolor{blue}{-\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states})} \tag{A9} \\
+\pi_t & = -\kappa x_t + \textcolor{blue}{f^3(\text{expectations}) + f^4(\text{exogenous states})} \tag{A10} \\
+i_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_i^2)} \tag{exog. DGP for $i$} \\
+\pi_t & = -\frac{\lambda_x}{\kappa} x_t \tag{RE-TC}
+\end{align}
+$\rightarrow$ the TC has to be a residual equation.
+\end{itemize}
+\item ``Implementing the simple anchoring target criterion''
+\begin{itemize}
+\item The only thing that changes wrt. point 1 is that I add the anchoring TC (eq. \ref{target}) as a model equation, with its own residual term. Since this requires a bunch of expected future terms, I evaluate its residual not at each simulation iteration $t$, but at the end, $T$. Also, I only evaluate $T-H$ residuals, so I can treat $H$ simulation periods as expectations.
+\begin{align}
+x_t & = \textcolor{blue}{-\sigma i_t + f^1(\text{expectations}) + f^2(\text{exogenous states})} \tag{A9} \\
+\pi_t & = -\kappa x_t + \textcolor{blue}{f^3(\text{expectations}) + f^4(\text{exogenous states})} \tag{A10} \\
+i_t & = \textcolor{blue}{\mathcal{N}(0,\sigma_i^2)} \tag{exog. DGP for $i$} \\
+\pi_t & = -\frac{\lambda_x}{\kappa}x_t +\text{stuff}\times \E_t \sum_{h=1}^{H}f(x_{t+h}, \pi_{t+h}, s_{t+h}, k_{t+h}, \bar{\pi}_{t+h}, \mathbf{g}_{\bar{\pi}}(t+h) ) \tag{anchoring TC}
+\end{align}
+\end{itemize}
+\end{enumerate}
+
+\textbf{Questions/notes:}
+\begin{enumerate}
+\item I choose $\lambda_x = 0.5$ for these figures.
+\item In order not to assume perfect foresight, I write $\E_t s_{t+h} = h_x^{h-1}s_t$ in the TC.
+\item Could one optimize $t$-by-$t$? Normally, I think yes, with anchoring TC, I think no.
+\item Solver stops prematurely (loss on order \texttt{e+03} or \texttt{e+08})
+\item ``Value function iteration-equivalent'' solution method?
+\item ``Spline-equivalent'' method of finding the optimal functional form that delivers the optimal sequence $\{i_t\}_{t=1}^T$? $\rightarrow$ a numerical approx to the optimal reaction function that replaces the TR.
+\end{enumerate}
+
+
 
 \newpage
 \section{Choosing exogenous sequences for the observables}
@@ -166,7 +245,7 @@ $\rightarrow$ I can implement the Tayor-rule-outcome without using a Taylor rule
 \caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals including RE discretion target criterion}
 \end{figure}
 
-I don't see a huge difference between imposing the TC or not, especially not if I initialize at the Taylor-rule sequences.
+
 
 
 \newpage
@@ -185,6 +264,17 @@ I don't see a huge difference between imposing the TC or not, especially not if 
 \hfill
 \subfigure[Same as (e), initialized at random sequence(s)]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_sim_given_seq__pixi_anch_TC_initalized_at_rand}}
 \caption{Simulation using Taylor rule against exogenous sequences that minimize equation residuals including the simple anchoring target criterion}
+\end{figure}
+
+\newpage
+\textbf{Comparison of the three exercises with favorite specification}
+\begin{figure}[h!]
+\subfigure[No TC]{\includegraphics[scale=0.2]{\myFigPath command_sim_given_seq__pixi_initalized_at_rand}}
+\hfill
+\subfigure[RE-discretion TC]{\includegraphics[scale=0.2]{\myFigPath command_sim_given_seq__pixi_TC_initalized_at_rand}}
+\hfill
+\subfigure[Anchoring TC]{\includegraphics[scale=0.2]{\myFigPath command_sim_given_seq__pixi_anch_TC_initalized_at_rand}}
+\caption{Optimizing over $\{\pi_t, x_t, i_t\}$, initialized at random sequences}
 \end{figure}
 
 \newpage
@@ -215,8 +305,8 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text
 
 This notation captures vector learning ($z$ learned) for intercept only. For scalar learning, $a_t= \begin{pmatrix} \bar{\pi}_t & 0 & 0\end{pmatrix}' $ and $b_1$ designates the first row of $b$. The observables $(\pi, x)$ are determined as:
 \begin{align}
-x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t\\
-\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t \label{A9} \\
+\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t \label{A10}
 \end{align}
 
 \section{Target criterion}\label{target_crit_levels}
@@ -234,7 +324,7 @@ where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation
 \end{align*}
 Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
 
-\section{Tried to derive a target criterion for the case when the anchoring function is specified in terms of changes in the gain}\label{target_crit_changes}
+\section{A target criterion system for an anchoring function specified for gain changes}\label{target_crit_changes}
 \begin{equation}
 k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
 \end{equation}

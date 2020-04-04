@@ -14,7 +14,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -52,7 +52,7 @@ gain = again_critsmooth;
 
 % Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 60 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
+T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
 % I'm taking T=40 as my benchmark. Since for the anchoring target
 % criterion, I cut off the last H=20 periods, if T=60, that means I'm using
 % the simple anchoring target criterion
@@ -107,8 +107,11 @@ toc
 
 num_res = size(resids_opt,1);
 if T==60
-[~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
-[~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+    [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
+    [~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+else
+    [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
+    [~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 end
 % y_opt-y
 
