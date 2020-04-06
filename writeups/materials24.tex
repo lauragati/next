@@ -129,6 +129,7 @@ bottom=1in}
 
 %\listoffigures
 
+\newpage
 \section{Description of the three steps}
 \textbf{Overall goal}: find an exogenous sequence $\{i_t\}_{t=1}^{T}$ that replaces the Taylor rule as a DGP for $i$ and implements the target criterion in the simplified anchoring model, equation (\ref{target}).\\
 I proceed in 3 steps: \\
@@ -278,8 +279,51 @@ $\rightarrow$ I can implement the Tayor-rule-outcome without using a Taylor rule
 \end{figure}
 
 \newpage
+\section{A value function iteration attempt at finding the optimal interest-rate-sequence}
+The planner chooses $\{\pi_t, x_t, i_t, f_{a,t},  f_{b,t}, \bar{\pi}_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+\begin{align}
+V(\mathbf{x}_t,t)& = \max -\bigg\{ (\pi_t^2 + \lambda_x x_t^2) + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \\
+& \text{s.t. to model equations}
+\end{align}
+Model equations are:
+ \begin{align}
+ \pi_t & = \kappa x_t +(1-\alpha)\beta f_a(t) +\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1}s_t +e_3(I_3 - \alpha\beta h_x)^{-1}s_t  \label{midsimple_first}\\
+ x_t & = -\sigma i_t +\sigma f_b(t)  +  (1-\beta)b_2 (I_3 - \beta h_x)^{-1}s_t - \sigma\beta b_3 (I_3 - \beta h_x)^{-1}s_t +\sigma e_1(I_3 - \beta h_x)^{-1}s_t  \big) \\
+ f_a(t) &= \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  + b_1(I_3 - \alpha\beta h_x)^{-1}s_t  \\
+ f_b(t) & = \frac{1}{1-\beta}\bar{\pi}_{t-1}  + b_1(I_3 - \beta h_x)^{-1}s_t  \\
+ \bar{\pi}_{t} & = \bar{\pi}_{t-1} + k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)     \\
+ k_t^{-1} & = k_{t-1}^{-1}+ \mathbf{g}(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  
+ \label{midsimple_last}
+\end{align}
+
+\newpage
+Let's substitute out $x_t, f_{a,t}$ and $f_{b,t}$, so that the state vector is simply $\mathbf{x}_t = (\bar{\pi}_t, k_t^{-1},r_t^n,u_t)'$.
+
+The problem becomes to choose $\{\pi_t, i_t, \bar{\pi}_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+\begin{align*}
+V(\mathbf{x}_t,t)& = \max -\bigg\{ \pi_t^2 +  \lambda_x\sigma^2 i_t^2 +\lambda_x\frac{\sigma^2}{(1-\beta)^2}\bar{\pi}_{t-1}^2 -\lambda_x\frac{\sigma^2}{1-\beta}i_t \bar{\pi}_{t-1} \\
+&-\lambda_x\sigma\bigg(\sigma b_1(I_3 - \beta h_x)^{-1}  +  (1-\beta)b_2 (I_3 - \beta h_x)^{-1} - \sigma\beta b_3 (I_3 - \beta h_x)^{-1} +\sigma e_1(I_3 - \beta h_x)^{-1}\bigg)i_ts_t\\
+& + \lambda_x \frac{\sigma}{1-\beta}\bigg(\sigma b_1(I_3 - \beta h_x)^{-1}  +  (1-\beta)b_2 (I_3 - \beta h_x)^{-1} - \sigma\beta b_3 (I_3 - \beta h_x)^{-1} +\sigma e_1(I_3 - \beta h_x)^{-1}\bigg)\bar{\pi}_{t-1}s_t\\
+& +\lambda_x\bigg(\sigma b_1(I_3 - \beta h_x)^{-1}  +  (1-\beta)b_2 (I_3 - \beta h_x)^{-1} - \sigma\beta b_3 (I_3 - \beta h_x)^{-1} +\sigma e_1(I_3 - \beta h_x)^{-1}\bigg)^2s_t \\
+& + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \numberthis \\
+& \text{s.t. to model equations}
+\end{align*}
+ \begin{align*}
+ \pi_t & = -\kappa\sigma i_t +\bigg(\kappa\sigma \frac{1}{1-\beta} +  \frac{(1-\alpha)\beta}{1-\alpha\beta}\bigg)\bar{\pi}_{t-1}  \\
+ & +\bigg(\kappa\sigma b_1(I_3 - \beta h_x)^{-1}   +  \kappa(1-\beta)b_2 (I_3 - \beta h_x)^{-1} - \kappa\sigma\beta b_3 (I_3 - \beta h_x)^{-1}+\kappa\sigma e_1(I_3 - \beta h_x)^{-1}   \\
+ &  + (1-\alpha)\beta b_1(I_3 - \alpha\beta h_x)^{-1}  +\kappa\alpha\beta b_2 (I_3 - \alpha\beta h_x)^{-1} +e_3(I_3 - \alpha\beta h_x)^{-1}\bigg)s_t \\
+ \bar{\pi}_{t} & = \bar{\pi}_{t-1} + k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)   \numberthis  \\
+ k_t^{-1} & = k_{t-1}^{-1}+ \mathbf{g}(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  \numberthis
+\end{align*}
+
+
+
+
+
+
+\newpage
 \appendix
-% the following command make equation numbering include the section first, but just for what follows
+% the following command makes equation numbering include the section first, but just for what follows
 \numberwithin{equation}{section}
 \section{Model summary}
 

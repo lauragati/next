@@ -24,3 +24,8 @@ skip_old_stuff = 1;
 %% 1) Simulate given a sequence - optimize over that sequence to satisfy model
 
 command_sim_given_seq
+% this needs to be corrected, there is an fsolve way to do it conceptually
+% better
+
+%% 2) Value function iteration to solve for optimal i-sequence
+command_valfun_iter

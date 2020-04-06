@@ -1,7 +1,8 @@
-\contentsline {section}{\numberline {1}Description of the three steps}{1}{section.1}
-\contentsline {section}{\numberline {2}Choosing exogenous sequences for the observables}{4}{section.2}
-\contentsline {section}{\numberline {3}Implementing the RE-discretion target criterion}{5}{section.3}
-\contentsline {section}{\numberline {4}Implementing the simple anchoring target criterion}{6}{section.4}
-\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
-\contentsline {section}{\numberline {C}A target criterion system for an anchoring function specified for gain changes}{9}{appendix.C}
+\contentsline {section}{\numberline {1}Description of the three steps}{2}{section.1}
+\contentsline {section}{\numberline {2}Choosing exogenous sequences for the observables}{5}{section.2}
+\contentsline {section}{\numberline {3}Implementing the RE-discretion target criterion}{6}{section.3}
+\contentsline {section}{\numberline {4}Implementing the simple anchoring target criterion}{7}{section.4}
+\contentsline {section}{\numberline {5}A value function iteration attempt at finding the optimal interest-rate-sequence}{9}{section.5}
+\contentsline {section}{\numberline {A}Model summary}{11}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{11}{appendix.B}
+\contentsline {section}{\numberline {C}A target criterion system for an anchoring function specified for gain changes}{12}{appendix.C}

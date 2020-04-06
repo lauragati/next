@@ -2,6 +2,7 @@
 \BOOKMARK [1][-]{section.2}{Choosing exogenous sequences for the observables}{}% 2
 \BOOKMARK [1][-]{section.3}{Implementing the RE-discretion target criterion}{}% 3
 \BOOKMARK [1][-]{section.4}{Implementing the simple anchoring target criterion}{}% 4
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 5
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 6
-\BOOKMARK [1][-]{appendix.C}{A target criterion system for an anchoring function specified for gain changes}{}% 7
+\BOOKMARK [1][-]{section.5}{A value function iteration attempt at finding the optimal interest-rate-sequence}{}% 5
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 6
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 7
+\BOOKMARK [1][-]{appendix.C}{A target criterion system for an anchoring function specified for gain changes}{}% 8
