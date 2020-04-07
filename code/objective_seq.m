@@ -4,3 +4,4 @@ function [loss, resids] = objective_seq(seq,param,e,T,burnin,PLM,gain,gx,hx,SIG,
 [~,~,~,~,~,~,~,~,~,~,~,~,~,resids] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq);
 
 loss = max(max(abs(resids)));
+% loss = norm(resids);

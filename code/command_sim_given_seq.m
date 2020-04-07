@@ -52,22 +52,28 @@ gain = again_critsmooth;
 
 % Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
-% I'm taking T=40 as my benchmark. Since for the anchoring target
-% criterion, I cut off the last H=20 periods, if T=60, that means I'm using
-% the simple anchoring target criterion
-if T==60
-    H = 20;
-    simple_anchoring_TC = 1;
-else
-    simple_anchoring_TC = 0;
-end
+T = 60 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
+
 burnin = 0; ne=3;
 rng(0)
 e = randn(ne,T+burnin);
 % turn off monpol shock
 e(2,:) = zeros(1,T+burnin);
 
+
+% I'm taking T=40 as my benchmark. Since for the anchoring target
+% criterion, I cut off the last H=20 periods, if T=60, that means I'm using
+% the simple anchoring target criterion
+if T==60
+    H = 20;
+    simple_anchoring_TC = 1;
+    % and also replace the last H shocks with the CB's expectation of them
+    % conditional on period t information; i.e. zero out innovations
+    t=T-H;
+    e(:,t:end) = 0;
+else
+    simple_anchoring_TC = 0;
+end
 
 %% Optimize over those sequences
 
@@ -90,7 +96,7 @@ loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,
 [~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 seq0 = y(i_inputs,:);
 seq0 = rand(size(seq0));
-% return
+
 
 disp('Begin fmincon... Takes about a minute.')
 tic

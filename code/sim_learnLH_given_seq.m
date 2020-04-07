@@ -1,3 +1,4 @@
+% sim_learnLH_given_i.m
 % simulate data from long-horizon learning model given exog sequence
 % based on sim_learnLH_given_i.m, should nest it too.
 % 2 April 2020
@@ -74,9 +75,8 @@ FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 % Residuals from equations % <------ 2)
-% resids = nan(ny-1,T);
-resids = nan(ny,T); % for A9A10_TC
-
+resids = nan(ny,T);
+H = 20; % this is gonna be my sufficient statistic that I'm using the anchoring TC  <-------
 
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
@@ -121,13 +121,19 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-%         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
-        % Instead, 
-%         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
-%         ysim(3,t) = seq(t);
-%         [ysim(:,t),resids(:,t)] = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
-        [ysim(:,t),resids(:,t)] = A9A10_TC(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
-       
+        %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        % Instead,
+        %         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
+        %         ysim(3,t) = seq(t);
+        % Evaluate observables given input sequences
+        if H == 20
+            ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t));
+        else
+            % Spit out residuals for the model w/o a target criterion...
+            [ysim(:,t),resids(:,t)] = A9A10_TR(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
+            % ... or one with an RE-discretion target criterion
+            %         [ysim(:,t),resids(:,t)] = A9A10_TC(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
+        end
         xesim = hx*xsim(:,t);
         % If there are endogenous states...
         if endog_states==1
@@ -135,7 +141,7 @@ for t = 1:T-1
             % xesim(4,1) = phi(lag_what,:)*[1;xsim(:,t)]; % 23 Jan 2020 version
             phx = pinv(hx);
             ghat = b*phx;
-%             ghat = inv(hx);
+            %             ghat = inv(hx);
             xesim(4,1) = a(lag_what) + ghat(lag_what,:)*xsim(:,t); % 24 Jan 2020 version: I've checked and this works (corresponds to replacing xsim(e,t+1) with ysim(e,t))
         end
         
@@ -149,11 +155,11 @@ for t = 1:T-1
                 fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-%                 fe = fe(1,1);
+                %                 fe = fe(1,1);
                 [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
-%                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
+                %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
-                fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1)); 
+                fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
                 [fk,g_pi(t)] = fk_smooth_pi_only(param,fe,k(:,t-1)); % <----- 3) but not essential
             end
             k(:,t) = fk;
@@ -170,12 +176,12 @@ for t = 1:T-1
         % Do the updating
         if PLM == 1 || PLM == -1 || PLM == 11 % when learning constant only, or "mean-only" PLM, or "constant-only, pi-only"
             a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )  );
-%             % projection facility...? <------- 4) 
-%             thres = 1;
-%             if max(abs(a)) > thres
-%                 a = phi_seq(:,1,t-1);
-%                 disp(['projection facility evoked at t = ', num2str(t)])
-%             end
+            %             % projection facility...? <------- 4)
+            %             thres = 1;
+            %             if max(abs(a)) > thres
+            %                 a = phi_seq(:,1,t-1);
+            %                 disp(['projection facility evoked at t = ', num2str(t)])
+            %             end
             phi = [a,b];
         elseif PLM == 2 % constant and slope learning
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here, Ryan uses the same gain.
@@ -200,7 +206,7 @@ for t = 1:T-1
     anchored_when_shock = nan;
     if t+1==dt
         e(:,t+1) = e(:,t+1)+x0';
-         % check if anchored or not when shock hits
+        % check if anchored or not when shock hits
         if k(:,t) == gbar^(-1)
             anchored_when_shock = 0;
         elseif k(:,t) > gbar^(-1)
@@ -223,7 +229,10 @@ ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
 
-% % Evaluate the target criterion for the simple anchoring model
-% H = 20;
-% resTC = eval_resTC(param,hx,ysim,k,phi_seq,xsim,g_pi, H);
-% resids = [resids(:,1:T-H); resTC'];
+% Evaluate residuals for the target criterion for the simple anchoring model
+if H==20
+    resids = eval_resTC(param,hx,ysim,k,phi_seq,xsim,g_pi, FA,FB, H);
+else
+    % cut off nans (comment this if you need)
+    resids = resids(:,2:end-1);
+end
