@@ -20,12 +20,14 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-skip_old_stuff = 1;
+skip = 1;
+if skip==0
 %% 1) Simulate given a sequence - optimize over that sequence to satisfy model
-
 command_sim_given_seq
 % this needs to be corrected, there is an fsolve way to do it conceptually
 % better
 
 %% 2) Value function iteration to solve for optimal i-sequence
 command_valfun_iter
+end
+%% Work thru Peter's VFI example here
