@@ -14,9 +14,6 @@ c=param.c;
 % Alternative 3: % best so far
 k = kt_1 + 1/((d*fe)^2);
 g_pi = -2*(d*fe)^(-2)*fe^(-1);
-g_pibar = 2*(d*fe)^(-2)*fe^(-1);
-g_pi =1/g_pi;
-g_pibar = 1/g_pibar;
 % % Alternative 4
 % k = kt_1 + d - c*(fe^2);
 % g_pi = -2*c*fe;

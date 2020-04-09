@@ -2,7 +2,7 @@
 % A general way to simulate the model given a sequence of something(s),
 % optimizing over input sequences to satisfy residual equations in the
 % model.
-% 2 April 2020s
+% 2 April 2020
 
 clearvars
 close all
@@ -63,11 +63,11 @@ initialize_rand = 2;
 
 % Specify which optimization to do
 %%%%%%%%%%%%%%%%%%%
-variant = implementTR;
-initialization = initializeTR;
-% initialization = initialize_rand;
+variant = implement_anchTC;
+% initialization = initializeTR;
+initialization = initialize_rand;
 %Select exogenous inputs
-s_inputs = [1;1;1]; % pi, x, i
+s_inputs = [0;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 
 H = 0;
@@ -146,6 +146,59 @@ tic
 
 %Declare a function handle for optimization problem
 objh = @(seq) objective_seq(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+[seq_opt, loss_opt, exitflag,output] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+loss
+loss_opt
+toc
+
+message = output.message(2:10); 
+if exitflag == 1
+    flag_title = 'FMINCON: found sol.';
+elseif exitflag == 0
+    flag_title = 'FMINCON: stopped prematurely.';
+elseif exitflag == -2
+    flag_title = 'FMINCON: no sol.';
+else
+    disp(['exitflag=',num2str(exitflag)])
+    flag_title = ['FMINCON: ', message ];
+end
+
+
+[~, y_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
+[~, y_TR] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+
+
+
+%% Figures
+seriesnames = {'\pi', 'x','i'};
+figtitle = [variant_title, 'feeding in: ' seriesnames{i_inputs}, '; \newline ' initialization_title, '; ', flag_title, ...
+    '\newline max(max(abs(residuals))) = ', num2str(loss_opt)]
+comparisonnames = {'TR', 'min residuals'};
+figname = strrep([this_code, '_', variant_name, '_',seriesnames{i_inputs},'_', initialization_name ],'\','_');
+
+create_plot_observables_comparison(y_TR,y_opt, seriesnames, figtitle, comparisonnames,figname,print_figs)
+
+disp('Done.')
+
+%% Use output of first optimization to reoptimize, now over i only
+
+seq0 = seq_opt(3,:); % now initialize i at old opt
+
+s_inputs = [0;0;1]; % now i only
+i_inputs = find(s_inputs); % index of inputs series in y
+n_inputs = sum(s_inputs); % the number of input series
+
+if n_inputs == 3
+    disp('Feeding in pi, x, i')
+elseif n_inputs==2
+    disp('Feeding in x, i')
+elseif n_inputs ==1
+    disp('Feeding in i')
+end
+
+
+
 [seq_opt, loss_opt, exitflag,output] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 loss

@@ -29,6 +29,7 @@ if skip==0
     command_sim_given_seq
     % this needs to be corrected, there is an fsolve way to do it conceptually
     % better
+    % 2)
     command_sim_given_seq_fsolve
     
     %%  Value function iteration to solve for optimal i-sequence  ain't workin yet
@@ -90,3 +91,8 @@ title('Consumption as a function of k_t')
 figure
 plot(kgrid,kp)
 title('k_{t+1} as a function of k_t')
+
+%% 4.) approximating the reaction function
+if skip==0
+    command_approx_reaction
+end
