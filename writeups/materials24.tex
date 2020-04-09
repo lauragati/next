@@ -145,7 +145,9 @@ I proceed in 3 steps: \\
 \section{Questions/notes}
 \begin{enumerate}
 \item I choose $\lambda_x = 0.5$ for these figures.
-\item Fmincon/fsolve stops prematurely (loss on order \texttt{e+03} or \texttt{e+08}), or fsolve finds no solution.
+\item Numerical instability: \texttt{fmincon/fsolve} stops prematurely or finds no solution.
+\item ``Overparameterized?'': for the anchoring TC, for $T+H$ periods, compute $T$ residuals.
+\item Solution conditional on sequence of innovations.
 \item ``Value function iteration-equivalent'' solution method?
 \item ``Spline-equivalent'' method of finding the optimal functional form that delivers the optimal sequence $\{i_t\}_{t=1}^T$? $\rightarrow$ a numerical approx to the optimal reaction function that replaces the TR.
 \end{enumerate}

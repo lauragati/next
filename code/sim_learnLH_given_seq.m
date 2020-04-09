@@ -223,9 +223,9 @@ k = k(:,ndrop+1:end);
 
 % Evaluate residuals for the target criterion for the simple anchoring model
 if variant == 1
-    resids = res_TR(param,hx,ysim,k,xsim, FA,FB);
+    resids = res_TR(param,hx,ysim,xsim, FA,FB);
 elseif variant == 2
-    resids = res_RE_TC(param,hx,ysim,k,xsim, FA,FB);
+    resids = res_RE_TC(param,hx,ysim,xsim, FA,FB);
 elseif variant==3
     resids = res_anchTC(param,hx,ysim,k,phi_seq,xsim,g_pi, FA,FB, H);
 end

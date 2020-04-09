@@ -14,7 +14,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -50,7 +50,8 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
-
+% Generate one sequence of shocks w/o monpol shock
+rng(0)
 T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
 
 % Options:
@@ -63,11 +64,10 @@ initialize_rand = 2;
 
 % Specify which optimization to do
 %%%%%%%%%%%%%%%%%%%
-variant = implementTR;
+variant = implement_anchTC;
 initialization = initializeTR;
-% initialization = initialize_rand;
 %Select exogenous inputs
-s_inputs = [1;1;1]; % pi, x, i
+s_inputs = [0;0;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 
 H = 0;
@@ -127,25 +127,25 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 10000);
 
 
-ub = 40*ones(n_inputs,T+H);
-lb = -40*ones(n_inputs,T+H);
+ub = 40*ones(n_inputs,T);
+lb = -40*ones(n_inputs,T);
 
 
 % A simulation using the Taylor rule to intialize
-[~, y] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 seq0 = y(i_inputs,:);
 if initialization == initialize_rand
     seq0 = rand(size(seq0));
 end
 
 %Compute the objective function one time with some values
-loss = objective_seq(seq0,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant)
+loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant)
 
 disp('Begin fmincon... Takes about a minute.')
 tic
 
 %Declare a function handle for optimization problem
-objh = @(seq) objective_seq(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+objh = @(seq) objective_seq(seq,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
 [seq_opt, loss_opt, exitflag,output] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 loss
@@ -165,8 +165,11 @@ else
 end
 
 
-[~, y_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
-[~, y_TR] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[loss_opt_check, resids_opt] = objective_seq(seq_opt,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+
+
+[~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
+[~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 
 
 

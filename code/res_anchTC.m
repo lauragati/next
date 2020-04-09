@@ -1,6 +1,7 @@
 % evaluate all residuals in the midsimple anchoring model
 % 3 April 2020
-% updated 4 April 2020 
+% updated 4 April 2020
+% checked thru 9 April 2020
 function resids = res_anchTC(param,hx,ysim,k,phi_seq,s,g_pi, fa,fb, H)
 lamx = param.lamx;
 kapp = param.kapp;
@@ -15,20 +16,20 @@ stuff2 = sig*[1,0,0]*(eye(nx)-bet*hx)^(-1);
 stuff3 = [(1-alph)*bet,kapp*alph*bet,0];
 stuff4 = [0,0,1]*(eye(nx)-alph*bet*hx)^(-1);
 
-T = length(k);
+T = length(k)-H;
 pi = ysim(1,:);
 x  = ysim(2,:);
 pibar = squeeze(phi_seq(1,1,:));
 b = squeeze(phi_seq(:,2:end,1));
 
-resTC = zeros(T-H,1);
-resA9 = zeros(T-H,1);
-resA10 = zeros(T-H,1);
+resTC = zeros(T,1);
+resA9 = zeros(T,1);
+resA10 = zeros(T,1);
 
-for t=2:T-H
+for t=2:T
     
     % 1.) evaluate target criterion residual
-    sumprod = x(t+1);
+    sumprod = x(t+1); % when i=1
     for i=2:H-1
         prod = 1;
         for j=1:i-1

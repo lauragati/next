@@ -1,6 +1,6 @@
 % command_sim_given_seq_fsolve.m
 % As the name says, a version of command_sim_given_seq.m for fsolve.
-% 2 April 2020s
+% 8 April 2020
 
 clearvars
 close all
@@ -48,9 +48,8 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
-% Generate one sequence of shocks w/o monpol shock
-rng(0)
-T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
+
+T = 40 
 
 implementTR = 1;
 implementRE_TC = 2;
@@ -61,8 +60,9 @@ initialize_rand = 2;
 
 % Specify which optimization to do
 %%%%%%%%%%%%%%%%%%%
-variant = implementRE_TC;
+variant = implementTR;
 initialization = initializeTR;
+initialization = initialize_rand;
 %Select exogenous inputs
 s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
@@ -89,8 +89,7 @@ elseif variant == implement_anchTC
     % conditional on period t information; i.e. zero out innovations
     rng(0)
     e = randn(ne,T+H+burnin);
-    t=T-H;
-    e(:,t:end) = 0;
+    e(:,T+1:end) = 0;
 end
 
 % turn off monpol shock
@@ -117,22 +116,24 @@ elseif n_inputs ==1
     disp('Feeding in i')
 end
 
+
 %% Optimize over those sequences
 
 % %Optimization Parameters
 options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 10000);
 
 % A simulation using the Taylor rule to intialize
-[~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 seq0 = y(i_inputs,:);
 if initialization == initialize_rand
     seq0 = rand(size(seq0));
 end
 
-loss = objective_seq_fsolve(seq0,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+%Compute the objective function one time with some values
+loss = objective_seq_fsolve(seq0,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
 
 
-objh = @(seq) objective_seq_fsolve(seq,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+objh = @(seq) objective_seq_fsolve(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
 [seq_opt,FVAL,EXITFLAG, OUTPUT] = fsolve(objh,seq0, options);
 
 % Exitflag values:
@@ -157,8 +158,8 @@ else
     flag_title = ['FSOLVE: ', message ];
 end
 
-[~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
-[~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
+[~, y_TR] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 
 %% Figures
 seriesnames = {'\pi', 'x','i'};
