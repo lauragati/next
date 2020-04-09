@@ -52,122 +52,134 @@ gain = again_critsmooth;
 
 % Generate one sequence of shocks w/o monpol shock
 rng(0)
-T = 60 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
+T = 40 % for T=100 it takes 16 sec; for T=1000 it takes 143 seconds (2.3 minutes)
 
+% Options:
+implementTR = 1;
+implementRE_TC = 2;
+implement_anchTC = 3;
+
+initializeTR = 1;
+initialize_rand = 2;
+
+% Specify which optimization to do
+%%%%%%%%%%%%%%%%%%%
+variant = implement_anchTC;
+initialization = initialize_rand;
+%Select exogenous inputs
+s_inputs = [1;1;1]; % pi, x, i
+%%%%%%%%%%%%%%%%%%%
+
+H = 0;
 burnin = 0; ne=3;
 rng(0)
 e = randn(ne,T+burnin);
-% turn off monpol shock
-e(2,:) = zeros(1,T+burnin);
-
-
-% I'm taking T=40 as my benchmark. Since for the anchoring target
-% criterion, I cut off the last H=20 periods, if T=60, that means I'm using
-% the simple anchoring target criterion
-if T==60
+% give names for figures
+if variant == implementTR
+    disp('Variant: Implement Taylor rule')
+    variant_title = 'Implement Taylor rule; ';
+    variant_name = 'implementTR';
+elseif variant == implementRE_TC
+    disp('Variant: Implement RE-TC')
+    variant_title = 'Implement RE-TC; ';
+    variant_name = 'implementRE_TC';
+elseif variant == implement_anchTC
+    disp('Variant: Implement anchoring-TC')
+    variant_title = 'Implement anchoring-TC; ';
+    variant_name = 'implement_anchTC';
     H = 20;
-    simple_anchoring_TC = 1;
-    % and also replace the last H shocks with the CB's expectation of them
+    %For the anchoring target criterion, I replace the last H shocks with the CB's expectation of them
     % conditional on period t information; i.e. zero out innovations
+    rng(0)
+    e = randn(ne,T+H+burnin);
     t=T-H;
     e(:,t:end) = 0;
-else
-    simple_anchoring_TC = 0;
 end
+
+% turn off monpol shock
+e(2,:) = zeros(1,T+H+burnin);
+
+if initialization==initializeTR
+    disp('Initialized at Taylor rule sequences')
+    initialization_title = 'initialized at Taylor rule sequences';
+    initialization_name = 'init_TR';
+elseif initialization == initialize_rand
+    disp('Initialized at random sequences')
+    initialization_title = 'initialized at random sequences';
+    initialization_name = 'init_rand';
+end
+
+i_inputs = find(s_inputs); % index of inputs series in y
+n_inputs = sum(s_inputs); % the number of input series
+
+if n_inputs == 3
+    disp('Feeding in pi, x, i')
+elseif n_inputs==2
+    disp('Feeding in x, i')
+elseif n_inputs ==1
+    disp('Feeding in i')
+end
+
 
 %% Optimize over those sequences
 
 %Optimization Parameters
 options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 15000);
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 10000);
 
-%Select exogenous inputs
-s_inputs = [1;1;1]; % pi, x, i
-i_inputs = find(s_inputs); % index of inputs series in y
-n_inputs = sum(s_inputs); % the number of input series
 
 ub = 40*ones(n_inputs,T);
 lb = -40*ones(n_inputs,T);
 
 %Compute the objective function one time with some values
-loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As)
+loss = objective_seq(rand(n_inputs,T),param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant)
 
 % A simulation using the Taylor rule to intialize
 [~, y, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
 seq0 = y(i_inputs,:);
-seq0 = rand(size(seq0));
+if initialization == initialize_rand
+    seq0 = rand(size(seq0));
+end
 
 
 disp('Begin fmincon... Takes about a minute.')
 tic
 
 %Declare a function handle for optimization problem
-objh = @(seq) objective_seq(seq,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As);
-[seq_opt, loss_opt] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
+objh = @(seq) objective_seq(seq,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+[seq_opt, loss_opt, exitflag,output] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 loss
 loss_opt
 toc
 
-[loss_opt_check, resids_opt] = objective_seq(seq_opt,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As);
-
-num_res = size(resids_opt,1);
-if T==60
-    [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
-    [~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T-H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+message = output.message(2:10); 
+if exitflag == 1
+    flag_title = 'FMINCON: found sol.';
+elseif exitflag == 0
+    flag_title = 'FMINCON: stopped prematurely.';
+elseif exitflag == -2
+    flag_title = 'FMINCON: no sol.';
 else
-    [~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt);
-    [~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+    disp(['exitflag=',num2str(exitflag)])
+    flag_title = ['FMINCON: ', message ];
 end
-% y_opt-y
 
-%%
+
+[loss_opt_check, resids_opt] = objective_seq(seq_opt,param,e,T,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+
+
+[~, y_opt, ~, ~, ~, ~, ~, ~, ~,~, k_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
+[~, y_TR, ~, ~, ~, ~, ~, ~, ~,~, k] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+
+
+
+%% Figures
 seriesnames = {'\pi', 'x','i'};
-figtitle = ['Feed in the following exogenous sequences: ', seriesnames{i_inputs}]
+figtitle = [variant_title, 'feeding in: ' seriesnames{i_inputs}, '; \newline ' initialization_title, '; ', flag_title, ...
+    '\newline max(max(abs(residuals))) = ', num2str(loss_opt)]
 comparisonnames = {'TR', 'min residuals'};
-% Adapt figname based on whether you imposed TC or not
-if num_res==2 % no TC
-    disp('No target criterion')
-    % Choose whether you initialized at Taylor-rule sequences or at random
-    % sequence
-    if max(max(abs(seq0-y(i_inputs,:)))) ==0
-        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_initialized_atTR'],'\','_');
-        disp('Initialized at TR')
-    else
-        figname = strrep([this_code,'_', seriesnames{i_inputs}, '_initalized_at_rand'],'\','_');
-        disp('Initialized at random sequence(s)')
-    end
-elseif num_res==3 % impose TC
-    disp('Imposing target criterion')
-    % Choose which target criterion you impose (RE or simple anchoring)
-    if simple_anchoring_TC == 0
-        disp('RE discretion TC')
-        % Choose whether you initialized at Taylor-rule sequences or at random
-        % sequence
-        if max(max(abs(seq0-y(i_inputs,:)))) ==0
-            figname = strrep([this_code,'_', seriesnames{i_inputs}, '_TC_initalized_atTR'],'\','_'); % with TC
-            disp('Initialized at TR')
-        else
-            figname = strrep([this_code,'_', seriesnames{i_inputs}, '_TC_initalized_at_rand'],'\','_'); % with TC
-            disp('Initialized at random sequence(s)')
-            
-        end
-    elseif simple_anchoring_TC==1
-        disp('simple anchoring TC')
-        % Choose whether you initialized at Taylor-rule sequences or at random
-        % sequence
-        if max(max(abs(seq0-y(i_inputs,:)))) ==0
-            figname = strrep([this_code,'_', seriesnames{i_inputs}, '_anch_TC_initalized_atTR'],'\','_'); % with TC
-            disp('Initialized at TR')
-        else
-            figname = strrep([this_code,'_', seriesnames{i_inputs}, '_anch_TC_initalized_at_rand'],'\','_'); % with TC
-            disp('Initialized at random sequence(s)')
-            
-        end
-    end
-else
-    disp('wtf')
-end
+figname = strrep([this_code, '_', variant_name, '_',seriesnames{i_inputs},'_', initialization_name ],'\','_');
 
 create_plot_observables_comparison(y_TR,y_opt, seriesnames, figtitle, comparisonnames,figname,print_figs)
 

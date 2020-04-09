@@ -1,8 +1,13 @@
-% sim_learnLH_given_i.m
+% sim_learnLH_given_seq.m
 % simulate data from long-horizon learning model given exog sequence
-% based on sim_learnLH_given_i.m, should nest it too.
+% based on sim_learnLH_given_i.m, but structure has changed, so no longer nests 1:1.
 % 2 April 2020
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock,g_pi,resids] = sim_learnLH_given_seq(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,seq, dt, x0)
+% NEW:
+% input H
+% input variant
+% Updated 8 April 2020
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock,g_pi,resids] ...
+    = sim_learnLH_given_seq(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,seq, H, variant, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -74,10 +79,6 @@ FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
-% Residuals from equations % <------ 2)
-resids = nan(ny,T);
-H = 20; % this is gonna be my sufficient statistic that I'm using the anchoring TC  <-------
-
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
 om = eta*eta';
@@ -123,17 +124,8 @@ for t = 1:T-1
         %Solve for current states
         %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
         % Instead,
-        %         ysim(1:2,t) = pi_x_given_i(param,hx,fa,fb,xsim(:,t),seq,t); % <----- 2)
-        %         ysim(3,t) = seq(t);
         % Evaluate observables given input sequences
-        if H == 20
-            ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t));
-        else
-            % Spit out residuals for the model w/o a target criterion...
-            [ysim(:,t),resids(:,t)] = A9A10_TR(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
-            % ... or one with an RE-discretion target criterion
-            %         [ysim(:,t),resids(:,t)] = A9A10_TC(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <----- 2)
-        end
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t));
         xesim = hx*xsim(:,t);
         % If there are endogenous states...
         if endog_states==1
@@ -230,9 +222,10 @@ shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
 
 % Evaluate residuals for the target criterion for the simple anchoring model
-if H==20
-    resids = eval_resTC(param,hx,ysim,k,phi_seq,xsim,g_pi, FA,FB, H);
-else
-    % cut off nans (comment this if you need)
-    resids = resids(:,2:end-1);
+if variant == 1
+    resids = res_TR(param,hx,ysim,k,xsim, FA,FB);
+elseif variant == 2
+    resids = res_RE_TC(param,hx,ysim,k,xsim, FA,FB);
+elseif variant==3
+    resids = res_anchTC(param,hx,ysim,k,phi_seq,xsim,g_pi, FA,FB, H);
 end

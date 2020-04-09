@@ -17,34 +17,57 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Description of the three steps}{2}{section.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Choosing exogenous sequences for the observables}{5}{section.2}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: none; initialized at TR}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9; initialized at TR}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10; initialized at TR}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{5}{figure.caption.48}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals\relax }}{5}{figure.caption.48}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Implementing the RE-discretion target criterion}{6}{section.3}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{6}{figure.caption.49}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including RE discretion target criterion\relax }}{6}{figure.caption.49}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementing the simple anchoring target criterion}{7}{section.4}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including the simple anchoring target criterion\relax }}{7}{figure.caption.50}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {No TC}}}{8}{figure.caption.51}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {RE-discretion TC}}}{8}{figure.caption.51}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Anchoring TC}}}{8}{figure.caption.51}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Optimizing over $\{\pi _t, x_t, i_t\}$, initialized at random sequences\relax }}{8}{figure.caption.51}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Questions/notes}{2}{section.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}FSOLVE}{3}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}FSOLVE: Implementing the Taylor-rule w/o using it}{3}{subsection.3.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TR; initialized at TR}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TR; initialized at TR}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TR; initialized at TR}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{3}{figure.caption.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals\relax }}{3}{figure.caption.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}FSOLVE: Implementing the RE-discretion target criterion}{4}{subsection.3.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{4}{figure.caption.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including RE discretion target criterion\relax }}{4}{figure.caption.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}FSOLVE: Implementing the simple anchoring target criterion}{5}{subsection.3.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{5}{figure.caption.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including the simple anchoring target criterion\relax }}{5}{figure.caption.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}FMINCON}{6}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}FMINCON: Implementing the Taylor-rule w/o using it}{6}{subsection.4.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TR; initialized at TR}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TR; initialized at TR}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TR; initialized at TR}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{6}{figure.caption.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals\relax }}{6}{figure.caption.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}FMINCON: Implementing the RE-discretion target criterion}{7}{subsection.4.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{7}{figure.caption.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including RE discretion target criterion\relax }}{7}{figure.caption.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}FMINCON: Implementing the simple anchoring target criterion}{8}{subsection.4.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Inputs: $i$, residual eq.: TC.}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Same as (a), initialized at random sequence(s)}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Inputs: $x,i$, residual eq.: A9, TC.}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Same as (c), initialized at random sequence(s)}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {Inputs: $\pi ,x,i$, residual eq. A9, A10, TC.}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Same as (e), initialized at random sequence(s)}}}{8}{figure.caption.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Simulation using Taylor rule against exogenous sequences that minimize equation residuals including the simple anchoring target criterion\relax }}{8}{figure.caption.7}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}A value function iteration attempt at finding the optimal interest-rate-sequence}{9}{section.5}}
 \newlabel{midsimple_first}{{3}{9}{A value function iteration attempt at finding the optimal interest-rate-sequence}{equation.5.3}{}}
 \newlabel{midsimple_last}{{8}{9}{A value function iteration attempt at finding the optimal interest-rate-sequence}{equation.5.8}{}}
@@ -58,8 +81,8 @@
 \newlabel{A10}{{A.10}{11}{Model summary}{equation.A.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {B}Target criterion}{11}{appendix.B}}
 \newlabel{target_crit_levels}{{B}{11}{Target criterion}{appendix.B}{}}
-\newlabel{target}{{{B.1}}{11}{Target criterion}{AMS.59}{}}
-\newlabel{target_interpretation}{{{B.2}}{11}{Target criterion}{AMS.61}{}}
+\newlabel{target}{{{B.1}}{11}{Target criterion}{AMS.15}{}}
+\newlabel{target_interpretation}{{{B.2}}{11}{Target criterion}{AMS.17}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {C}A target criterion system for an anchoring function specified for gain changes}{12}{appendix.C}}
 \newlabel{target_crit_changes}{{C}{12}{A target criterion system for an anchoring function specified for gain changes}{appendix.C}{}}
 \newlabel{gaspar22}{{C.2}{12}{A target criterion system for an anchoring function specified for gain changes}{equation.C.2}{}}
