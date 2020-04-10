@@ -20,7 +20,7 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 plot_IRFs=1;
-plot_simulated_sequence = 0;
+plot_simulated_sequence = 1;
 plot_gains=0;
 plot_gain_IRF = 0;
 plot_IRFs_anch = 0;
@@ -59,7 +59,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critsmooth;
+gain = dgain;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
@@ -110,7 +110,7 @@ for s=2  %2->zoom in on monetary policy shock
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
 %         dbstop in sim_learnLH at 116 if t>=4
-        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, ~,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         
         % Shocked
         % RE
@@ -250,3 +250,7 @@ if plot_IRFs_anch==1
         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
     end
 end
+
+figure
+plot(diff)
+title('Convergence')

@@ -1,4 +1,4 @@
-function [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths
+function [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path] = add_paths
 
 % Add all the relevant paths
 current_dir = pwd;
@@ -11,6 +11,7 @@ export_figpath = [toolpath '/Export_Fig'];
 figpath = [basepath '/figures'];
 tablepath = [basepath '/tables'];
 datapath = [basepath '/data'];
+tryouts_path = [toolpath '/tryouts'];
 
 cd(current_dir)
 
@@ -19,3 +20,4 @@ addpath(toolpath)
 addpath(export_figpath)
 addpath(figpath)
 addpath(datapath)
+addpath(tryouts_path)

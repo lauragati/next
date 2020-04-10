@@ -67,11 +67,11 @@ options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
 ub = [5,5];
 lb = [1.0001,0];
-coeffs0 = [1.5,0.01];
+coeffs0 = [1.2,4];
 
 %Compute the objective function one time with some values
 tic
-loss = objective_approx_reaction(coeffs0,param,eN,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As,H,N)
+loss = objective_approx_reaction(coeffs0,param,eN,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As,H,N) % 4 seconds!
 toc
 
 disp('Begin fmincon...')
@@ -83,3 +83,13 @@ objh = @(coeffs) objective_approx_reaction(coeffs,param,eN,T+H,burnin,PLM,gain,g
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 
 disp(['psi_pi, psi_x = ', num2str(coeffs_opt), '; for a loss of ', num2str(loss_opt)])
+
+%% Plot loss
+psi_x = 0;
+psi_pi_vals = linspace(1.001,2,2);
+loss = 0;
+tic
+for psi_pi = psi_pi_vals(1:end)
+    loss(end+1) = objective_approx_reaction([psi_pi, psi_x],param,eN,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As,H,N);
+end
+toc

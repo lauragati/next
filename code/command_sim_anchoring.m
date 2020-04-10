@@ -23,8 +23,8 @@ plot_IRFs=0;
 plot_simulated_sequence = 0;
 plot_gains=0;
 plot_gain_IRF = 0;
-plot_IRFs_anch = 1;
-skip_old_stuff = 1;
+plot_IRFs_anch = 0;
+skip_old_stuff = 0;
 
 %% Parameters
 tic
