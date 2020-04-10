@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 APR 2020 11:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 APR 2020 20:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -956,48 +956,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-<../figures/command_sim_given_seq_fsolve_implementTR_i_init_TR.png, id=106, 137
-3.13pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_fsolve_implementTR_i_init_TR.png Graphic
- file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementTR_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR_i_
-init_TR.png used on input line 163.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_fsolve_implementTR_i_init_rand.png, id=107, 1
-379.1525pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_fsolve_implementTR_i_init_rand.png Graph
-ic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementTR_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR_i_
-init_rand.png used on input line 165.
-(pdftex.def)             Requested size: 220.6689pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_fsolve_implementTR_xi_init_TR.png, id=108, 13
-73.13pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_fsolve_implementTR_xi_init_TR.png Graphi
-c file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementTR_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR_xi
-_init_TR.png used on input line 166.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_fsolve_implementTR_xi_init_rand.png, id=109, 
+<../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_TR.png, id=90, 
 1373.13pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_fsolve_implementTR_xi_init_rand.png Grap
-hic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementTR_xi_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR_xi
-_init_rand.png used on input line 168.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_TR.png, id=110,
- 1373.13pt x 904.37875pt>
 File: ../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_TR.png Gra
 phic file (type png)
 
@@ -1006,8 +966,8 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR__p
 ixi_init_TR.png used on input line 169.
 (pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
 
-<../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_rand.png, id=11
-1, 1373.13pt x 904.37875pt>
+<../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_rand.png, id=91
+, 1373.13pt x 904.37875pt>
 File: ../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_rand.png G
 raphic file (type png)
 
@@ -1016,210 +976,8 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementTR__p
 ixi_init_rand.png used on input line 171.
 (pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
 
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3 <../figures/command_sim_given_seq_fsolve_implementTR_i_init_TR.png (PNG copy
-)> <../figures/command_sim_given_seq_fsolve_implementTR_i_init_rand.png (PNG co
-py)> <../figures/command_sim_given_seq_fsolve_implementTR_xi_init_TR.png (PNG c
-opy)> <../figures/command_sim_given_seq_fsolve_implementTR_xi_init_rand.png (PN
-G copy)> <../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_TR.png
- (PNG copy)> <../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_ra
-nd.png (PNG copy)>]
-<../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_TR.png, id=126, 
-1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_TR.png Grap
-hic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-_i_init_TR.png used on input line 182.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_rand.png, id=127
-, 1397.22pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_rand.png Gr
-aphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-_i_init_rand.png used on input line 184.
-(pdftex.def)             Requested size: 223.55977pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_TR.png, id=128,
- 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_TR.png Gra
-phic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-_xi_init_TR.png used on input line 185.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_rand.png, id=12
-9, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_rand.png G
-raphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-_xi_init_rand.png used on input line 187.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_TR.png, id=1
-30, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_TR.png 
-Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-__pixi_init_TR.png used on input line 188.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_rand.png, id
-=131, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_rand.pn
-g Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implementRE_TC__pixi_init_rand.png
->
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implementRE_TC
-__pixi_init_rand.png used on input line 190.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4 <../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_TR.png (PNG c
-opy)> <../figures/command_sim_given_seq_fsolve_implementRE_TC_i_init_rand.png (
-PNG copy)> <../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_TR.p
-ng (PNG copy)> <../figures/command_sim_given_seq_fsolve_implementRE_TC_xi_init_
-rand.png (PNG copy)> <../figures/command_sim_given_seq_fsolve_implementRE_TC__p
-ixi_init_TR.png (PNG copy)> <../figures/command_sim_given_seq_fsolve_implementR
-E_TC__pixi_init_rand.png (PNG copy)>]
-<../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_TR.png, id=143
-, 1407.2575pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_TR.png Gr
-aphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC_i_init_TR.png used on input line 203.
-(pdftex.def)             Requested size: 225.1658pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_rand.png, id=1
-44, 1360.08125pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_rand.png 
-Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC_i_init_rand.png used on input line 205.
-(pdftex.def)             Requested size: 217.61745pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_TR.png, id=14
-5, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_TR.png G
-raphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC_xi_init_TR.png used on input line 206.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_rand.png, id=
-146, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_rand.png
- Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC_xi_init_rand.png used on input line 208.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_TR.png, id
-=147, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_TR.pn
-g Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_TR.png
->
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC__pixi_init_TR.png used on input line 209.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_rand.png, 
-id=148, 1373.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_rand.
-png Graphic file (type png)
-
-<use ../figures/command_sim_given_seq_fsolve_implement_anchTC__pixi_init_rand.p
-ng>
-Package pdftex.def Info: ../figures/command_sim_given_seq_fsolve_implement_anch
-TC__pixi_init_rand.png used on input line 211.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[5 <../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_TR.png (PNG
- copy)> <../figures/command_sim_given_seq_fsolve_implement_anchTC_i_init_rand.p
-ng (PNG copy)> <../figures/command_sim_given_seq_fsolve_implement_anchTC_xi_ini
-t_TR.png (PNG copy)> <../figures/command_sim_given_seq_fsolve_implement_anchTC_
-xi_init_rand.png (PNG copy)> <../figures/command_sim_given_seq_fsolve_implement
-_anchTC__pixi_init_TR.png (PNG copy)> <../figures/command_sim_given_seq_fsolve_
-implement_anchTC__pixi_init_rand.png (PNG copy)>]
-<../figures/command_sim_given_seq_implementTR_i_init_TR.png, id=160, 1373.13pt 
-x 904.37875pt>
-File: ../figures/command_sim_given_seq_implementTR_i_init_TR.png Graphic file (
-type png)
-
-<use ../figures/command_sim_given_seq_implementTR_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementTR_i_init_TR
-.png used on input line 223.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_implementTR_i_init_rand.png, id=161, 1396.216
-25pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_implementTR_i_init_rand.png Graphic file
- (type png)
-
-<use ../figures/command_sim_given_seq_implementTR_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementTR_i_init_ra
-nd.png used on input line 225.
-(pdftex.def)             Requested size: 223.39917pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_implementTR_xi_init_TR.png, id=162, 1373.13pt
- x 904.37875pt>
-File: ../figures/command_sim_given_seq_implementTR_xi_init_TR.png Graphic file 
-(type png)
-
-<use ../figures/command_sim_given_seq_implementTR_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementTR_xi_init_T
-R.png used on input line 226.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_implementTR_xi_init_rand.png, id=163, 1373.13
+<../figures/command_sim_given_seq_implementTR__pixi_init_TR.png, id=92, 1373.13
 pt x 904.37875pt>
-File: ../figures/command_sim_given_seq_implementTR_xi_init_rand.png Graphic fil
-e (type png)
-
-<use ../figures/command_sim_given_seq_implementTR_xi_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementTR_xi_init_r
-and.png used on input line 228.
-(pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
-
-<../figures/command_sim_given_seq_implementTR__pixi_init_TR.png, id=164, 1373.1
-3pt x 904.37875pt>
 File: ../figures/command_sim_given_seq_implementTR__pixi_init_TR.png Graphic fi
 le (type png)
 
@@ -1228,8 +986,8 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_implementTR__pixi_ini
 t_TR.png used on input line 229.
 (pdftex.def)             Requested size: 219.70529pt x 144.70355pt.
 
-<../figures/command_sim_given_seq_implementTR__pixi_init_rand.png, id=165, 1373
-.13pt x 904.37875pt>
+<../figures/command_sim_given_seq_implementTR__pixi_init_rand.png, id=93, 1373.
+13pt x 904.37875pt>
 File: ../figures/command_sim_given_seq_implementTR__pixi_init_rand.png Graphic 
 file (type png)
 
@@ -1244,53 +1002,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6 <../figures/command_sim_given_seq_implementTR_i_init_TR.png (PNG copy)> <../
-figures/command_sim_given_seq_implementTR_i_init_rand.png (PNG copy)> <../figur
-es/command_sim_given_seq_implementTR_xi_init_TR.png (PNG copy)> <../figures/com
-mand_sim_given_seq_implementTR_xi_init_rand.png (PNG copy)> <../figures/command
-_sim_given_seq_implementTR__pixi_init_TR.png (PNG copy)> <../figures/command_si
-m_given_seq_implementTR__pixi_init_rand.png (PNG copy)>]
-<../figures/command_sim_given_seq_implementRE_TC_i_init_TR.png, id=178, 1373.13
-pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implementRE_TC_i_init_TR.png Graphic fil
-e (type png)
-
-<use ../figures/command_sim_given_seq_implementRE_TC_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC_i_init
-_TR.png used on input line 242.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implementRE_TC_i_init_rand.png, id=179, 1373.
-13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implementRE_TC_i_init_rand.png Graphic f
-ile (type png)
-
-<use ../figures/command_sim_given_seq_implementRE_TC_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC_i_init
-_rand.png used on input line 244.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implementRE_TC_xi_init_TR.png, id=180, 1373.1
-3pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implementRE_TC_xi_init_TR.png Graphic fi
-le (type png)
-
-<use ../figures/command_sim_given_seq_implementRE_TC_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC_xi_ini
-t_TR.png used on input line 245.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implementRE_TC_xi_init_rand.png, id=181, 1373
-.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implementRE_TC_xi_init_rand.png Graphic 
-file (type png)
-
-<use ../figures/command_sim_given_seq_implementRE_TC_xi_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC_xi_ini
-t_rand.png used on input line 247.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implementRE_TC__pixi_init_TR.png, id=182, 137
+[3 <../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_TR.png (PNG 
+copy)> <../figures/command_sim_given_seq_fsolve_implementTR__pixi_init_rand.png
+ (PNG copy)> <../figures/command_sim_given_seq_implementTR__pixi_init_TR.png (P
+NG copy)> <../figures/command_sim_given_seq_implementTR__pixi_init_rand.png (PN
+G copy)>]
+<../figures/command_sim_given_seq_implementRE_TC__pixi_init_TR.png, id=107, 137
 3.13pt x 905.3825pt>
 File: ../figures/command_sim_given_seq_implementRE_TC__pixi_init_TR.png Graphic
  file (type png)
@@ -1300,7 +1017,7 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC__pixi_
 init_TR.png used on input line 248.
 (pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
 
-<../figures/command_sim_given_seq_implementRE_TC__pixi_init_rand.png, id=183, 1
+<../figures/command_sim_given_seq_implementRE_TC__pixi_init_rand.png, id=108, 1
 373.13pt x 905.3825pt>
 File: ../figures/command_sim_given_seq_implementRE_TC__pixi_init_rand.png Graph
 ic file (type png)
@@ -1310,77 +1027,25 @@ Package pdftex.def Info: ../figures/command_sim_given_seq_implementRE_TC__pixi_
 init_rand.png used on input line 250.
 (pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
 
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7 <../figures/command_sim_given_seq_implementRE_TC_i_init_TR.png (PNG copy)> <
-../figures/command_sim_given_seq_implementRE_TC_i_init_rand.png (PNG copy)> <..
-/figures/command_sim_given_seq_implementRE_TC_xi_init_TR.png (PNG copy)> <../fi
-gures/command_sim_given_seq_implementRE_TC_xi_init_rand.png (PNG copy)> <../fig
-ures/command_sim_given_seq_implementRE_TC__pixi_init_TR.png (PNG copy)> <../fig
-ures/command_sim_given_seq_implementRE_TC__pixi_init_rand.png (PNG copy)>]
-<../figures/command_sim_given_seq_implement_anchTC_i_init_TR.png, id=196, 1440.
-38126pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implement_anchTC_i_init_TR.png Graphic f
-ile (type png)
-
-<use ../figures/command_sim_given_seq_implement_anchTC_i_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC_i_in
-it_TR.png used on input line 263.
-(pdftex.def)             Requested size: 230.46571pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implement_anchTC_i_init_rand.png, id=197, 139
-6.21625pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implement_anchTC_i_init_rand.png Graphic
- file (type png)
-
-<use ../figures/command_sim_given_seq_implement_anchTC_i_init_rand.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC_i_in
-it_rand.png used on input line 265.
-(pdftex.def)             Requested size: 223.39917pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implement_anchTC_xi_init_TR.png, id=198, 1373
-.13pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implement_anchTC_xi_init_TR.png Graphic 
-file (type png)
-
-<use ../figures/command_sim_given_seq_implement_anchTC_xi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC_xi_i
-nit_TR.png used on input line 266.
-(pdftex.def)             Requested size: 219.70529pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png, id=199, 13
-96.21625pt x 905.3825pt>
+<../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png, id=109, 13
+73.13pt x 905.3825pt>
 File: ../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png Graphi
 c file (type png)
 
 <use ../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png>
 Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC_xi_i
 nit_rand.png used on input line 268.
-(pdftex.def)             Requested size: 223.39917pt x 144.86415pt.
+(pdftex.def)             Requested size: 233.42902pt x 153.91298pt.
 
-<../figures/command_sim_given_seq_implement_anchTC__pixi_init_TR.png, id=200, 1
-396.21625pt x 905.3825pt>
-File: ../figures/command_sim_given_seq_implement_anchTC__pixi_init_TR.png Graph
-ic file (type png)
-
-<use ../figures/command_sim_given_seq_implement_anchTC__pixi_init_TR.png>
-Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC__pix
-i_init_TR.png used on input line 269.
-(pdftex.def)             Requested size: 223.39917pt x 144.86415pt.
-
-<../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png, id=201,
- 1396.21625pt x 905.3825pt>
+<../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png, id=110,
+ 1373.13pt x 905.3825pt>
 File: ../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png Gra
 phic file (type png)
 
 <use ../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png>
 Package pdftex.def Info: ../figures/command_sim_given_seq_implement_anchTC__pix
 i_init_rand.png used on input line 271.
-(pdftex.def)             Requested size: 223.39917pt x 144.86415pt.
+(pdftex.def)             Requested size: 233.42902pt x 153.91298pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1388,31 +1053,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8 <../figures/command_sim_given_seq_implement_anchTC_i_init_TR.png (PNG copy)>
- <../figures/command_sim_given_seq_implement_anchTC_i_init_rand.png (PNG copy)>
- <../figures/command_sim_given_seq_implement_anchTC_xi_init_TR.png (PNG copy)> 
-<../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png (PNG copy)>
- <../figures/command_sim_given_seq_implement_anchTC__pixi_init_TR.png (PNG copy
-)> <../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png (PNG 
-copy)>]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[9]
-Overfull \hbox (28.93848pt too wide) in paragraph at lines 306--306
-[] 
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[10]
+[4 <../figures/command_sim_given_seq_implementRE_TC__pixi_init_TR.png (PNG copy
+)> <../figures/command_sim_given_seq_implementRE_TC__pixi_init_rand.png (PNG co
+py)> <../figures/command_sim_given_seq_implement_anchTC_xi_init_rand.png (PNG c
+opy)> <../figures/command_sim_given_seq_implement_anchTC__pixi_init_rand.png (P
+NG copy)>]
 Overfull \hbox (9.30092pt too wide) in paragraph at lines 342--342
 [] 
  []
@@ -1423,28 +1068,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11]
+[5]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12]
+[6]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 396.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 396.
  (./materials24.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 396.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 396.
 Package rerunfilecheck Info: File `materials24.out' has not changed.
-(rerunfilecheck)             Checksum: BCD81E483A8E70EDF2585461C02AE949;1154.
+(rerunfilecheck)             Checksum: B202CD9CAE30400100F113E08F591057;825.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 396.
  ) 
 Here is how much of TeX's memory you used:
- 20288 strings out of 493089
- 375710 string characters out of 6134842
- 457430 words of memory out of 5000000
- 23248 multiletter control sequences out of 15000+600000
+ 20092 strings out of 493089
+ 365452 string characters out of 6134842
+ 457199 words of memory out of 5000000
+ 23131 multiletter control sequences out of 15000+600000
  14985 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,454b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1469,10 +1114,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials24.pdf (12 pages, 4638954 bytes).
+Output written on materials24.pdf (6 pages, 1248205 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 290 compressed objects within 3 object streams
- 108 named destinations out of 1000 (max. 500000)
- 305 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

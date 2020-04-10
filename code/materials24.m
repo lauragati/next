@@ -38,6 +38,8 @@ end
 
 
 %% 3.) Work thru Peter's VFI example here, I'm also basing this on the Collard notes
+play_value_function_iter
+
 clc
 % params
 tol=0.01; maxiter =200; dif = tol+1000; iter=0;

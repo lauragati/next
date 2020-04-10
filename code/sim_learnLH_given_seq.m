@@ -6,7 +6,7 @@
 % input H
 % input variant
 % Updated 8 April 2020
-function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock,g_pi,resids] ...
+function [xsim, ysim, evening_fcst, morning_fcst, FA, FB, FEt_1, shock, diff,phi_seq, k,anchored_when_shock,g_pi, g_pibar, resids] ...
     = sim_learnLH_given_seq(gx,hx,eta,T,ndrop,e, Aa, Ab, As, param, PLM, gain,seq, H, variant, dt, x0)
 
 this_code = mfilename;
@@ -72,6 +72,7 @@ diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
 g_pi = zeros(1,T);
+g_pibar = zeros(1,T);
 
 evening_fcst = nan(ny,T);
 morning_fcst = nan(ny,T);
@@ -152,7 +153,7 @@ for t = 1:T-1
                 %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
-                [fk,g_pi(t)] = fk_smooth_pi_only(param,fe,k(:,t-1)); % <----- 3) but not essential
+                [fk,g_pi(t),g_pibar(t)] = fk_smooth_pi_only(param,fe,k(:,t-1)); % <----- 3) but not essential
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain

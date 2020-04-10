@@ -2,6 +2,7 @@
 % 3 April 2020
 % updated 4 April 2020
 % checked thru 9 April 2020
+% retired 9 April 2020 (later on)
 function resids = res_anchTC(param,hx,ysim,k,phi_seq,s,g_pi, fa,fb, H)
 lamx = param.lamx;
 kapp = param.kapp;

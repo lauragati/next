@@ -67,7 +67,7 @@ variant = implement_anchTC;
 % initialization = initializeTR;
 initialization = initialize_rand;
 %Select exogenous inputs
-s_inputs = [0;1;1]; % pi, x, i
+s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 
 H = 0;
@@ -141,11 +141,19 @@ end
 %Compute the objective function one time with some values
 loss = objective_seq(seq0,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant)
 
-disp('Begin fmincon... Takes about a minute.')
+
+disp('Begin fmincon... can take up to 30 min for anchoring TC!')
 tic
 
-%Declare a function handle for optimization problem
+% Use a different objective function for the anchoring TC
+if variant == implement_anchTC
+loss = objective_seq_anchTC(seq0,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H)
+objh = @(seq) objective_seq_anchTC(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H);
+else
 objh = @(seq) objective_seq(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+end
+
+% do it
 [seq_opt, loss_opt, exitflag,output] = fmincon(objh, seq0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 loss
@@ -182,8 +190,8 @@ create_plot_observables_comparison(y_TR,y_opt, seriesnames, figtitle, comparison
 disp('Done.')
 
 %% Use output of first optimization to reoptimize, now over i only
-
-seq0 = seq_opt(3,:); % now initialize i at old opt
+return
+seq0 = seq_opt(end,:); % now initialize i at old opt
 
 s_inputs = [0;0;1]; % now i only
 i_inputs = find(s_inputs); % index of inputs series in y

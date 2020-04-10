@@ -13,10 +13,10 @@ c=param.c;
 % k = kt_1 + 1/(d*fe^2);
 % Alternative 3: % best so far
 k = kt_1 + 1/((d*fe)^2);
-g_pi = -2*(d*fe)^(-2)*fe^(-1);
-g_pibar = 2*(d*fe)^(-2)*fe^(-1);
-g_pi =1/g_pi;
-g_pibar = 1/g_pibar;
+g_1_pi = -2*(d*fe)^(-2)*fe^(-1);
+g_1_pibar = 2*(d*fe)^(-2)*fe^(-1);
+g_pi =2*d*fe;
+g_pibar = -2*d*fe;
 % % Alternative 4
 % k = kt_1 + d - c*(fe^2);
 % g_pi = -2*c*fe;
@@ -25,4 +25,3 @@ g_pibar = 1/g_pibar;
 % g_pi = -2*(d*fe)^(-2)*fe^(-1);
 % Alternative 6 = compatible with target criterion (k_t = g(fe))
 % k = 1/((d*fe)^2);
-% g_pi = -2*(d*fe)^(-2)*fe^(-1);
