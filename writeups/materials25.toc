@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {A}Model summary}{2}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{2}{appendix.B}
+\contentsline {section}{\numberline {C}A target criterion system for an anchoring function specified for gain changes}{3}{appendix.C}

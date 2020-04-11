@@ -11,7 +11,7 @@ c=param.c;
 % Alternatives 2:
 % k = kt_1 + d*1/(fe^2);
 % k = kt_1 + 1/(d*fe^2);
-% Alternative 3: % best so far
+% Alternative 3: % best so far <---------
 k = kt_1 + 1/((d*fe)^2);
 g_1_pi = -2*(d*fe)^(-2)*fe^(-1);
 g_1_pibar = 2*(d*fe)^(-2)*fe^(-1);
@@ -25,3 +25,11 @@ g_pibar = -2*d*fe;
 % g_pi = -2*(d*fe)^(-2)*fe^(-1);
 % Alternative 6 = compatible with target criterion (k_t = g(fe))
 % k = 1/((d*fe)^2);
+
+
+
+% % try the following decreasing gain scheme
+% k = kt_1 +1;
+% 
+% % try the following constant gain scheme
+% k = kt_1;

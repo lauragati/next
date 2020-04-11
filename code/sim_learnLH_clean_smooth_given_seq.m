@@ -1,8 +1,8 @@
-% sim_learnLH_clean_smooth.m
+% sim_learnLH_clean_smooth_given_seq.m
 % a cleaned-up version of sim_learnLH.m, for the smooth anchoring criterion
-% only
+% only, given exogenous input sequences
 % 10 April 2020
-function [xsim, ysim, k, pibar, FA, FB, g_pi, g_pibar,fett_1eve, diff] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T,ndrop,e, dt, x0)
+function [xsim, ysim, k, pibar, FA, FB, g_pi, g_pibar,fett_1eve, diff] = sim_learnLH_clean_smooth_given_seq(param,gx,hx,eta,seq,T,ndrop,e, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -23,7 +23,7 @@ xsim = zeros(nx,T);
 a = zeros(ny,1);
 b = gx*hx;
 phi = [a,b];
-phi_seq = nan(ny,nx+1,T);
+phi_seq = zeros(ny,nx+1,T);
 phi_seq(:,:,1) = phi;
 
 learn_selector = [1,0,0]';
@@ -37,8 +37,8 @@ pibar = zeros(1,T);
 g_pi = zeros(1,T);
 g_pibar = zeros(1,T);
 
-FA = nan(ny,T);
-FB = nan(ny,T);
+FA = zeros(ny,T);
+FB = zeros(ny,T);
 fett_1eve = zeros(1,T);
 
 %Simulate, with learning
@@ -56,7 +56,7 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t));
         xesim = hx*xsim(:,t);
         
         %Update coefficients

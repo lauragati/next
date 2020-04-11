@@ -62,15 +62,15 @@ initialize_rand = 2;
 %%%%%%%%%%%%%%%%%%%
 variant = implementTR;
 initialization = initializeTR;
-initialization = initialize_rand;
+% initialization = initialize_rand;
 %Select exogenous inputs
-s_inputs = [1;1;1]; % pi, x, i
+s_inputs = [0;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 
 H = 0;
-burnin = 0; ne=3;
+ndrop = 0; ne=3;
 rng(0)
-e = randn(ne,T+burnin);
+e = randn(ne,T+ndrop);
 % give names for figures
 if variant == implementTR
     disp('Variant: Implement Taylor rule')
@@ -88,12 +88,12 @@ elseif variant == implement_anchTC
     %For the anchoring target criterion, I replace the last H shocks with the CB's expectation of them
     % conditional on period t information; i.e. zero out innovations
     rng(0)
-    e = randn(ne,T+H+burnin);
+    e = randn(ne,T+H+ndrop);
     e(:,T+1:end) = 0;
 end
 
 % turn off monpol shock
-e(2,:) = zeros(1,T+H+burnin);
+e(2,:) = zeros(1,T+H+ndrop);
 
 if initialization==initializeTR
     disp('Initialized at Taylor rule sequences')
@@ -123,19 +123,70 @@ end
 options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 10000);
 
 % A simulation using the Taylor rule to intialize
-[~, y] = sim_learnLH(gx,hx,SIG,T+H+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y, k_TR, pibar_TR, FA_TR, FB_TR, g_pi_TR, g_pibar_TR, fett_1eve_TR, diff_TR] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T+ndrop,ndrop,e);
 seq0 = y(i_inputs,:);
 if initialization == initialize_rand
     seq0 = rand(size(seq0));
 end
 
+[xsim, ysim, k, pibar, FA, FB, g_pi, g_pibar, fett_1eve, diff] = sim_learnLH_clean_smooth_given_seq(param,gx,hx,eta,seq0,T+ndrop,ndrop,e);
+
 %Compute the objective function one time with some values
-loss = objective_seq_fsolve(seq0,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+loss = objective_seq_fsolve(seq0,param,gx,hx,eta,T,ndrop,e);
+disp('Initial residuals are ')
+disp(num2str(loss))
+
+figure
+subplot(2,2,1)
+plot(loss(1,:)); hold on
+plot(loss(2,:))
+plot(loss(3,:))
+legend('Res TR (A3)', 'Res NKIS (A9)', 'Res NKPC (A10)')
+subplot(2,2,2)
+plot(diff)
+title('Convergence')
+subplot(2,2,3)
+plot(pibar)
+title('pibar')
+subplot(2,2,4)
+plot(1./k)
+title('k^{-1}')
+
+figure
+subplot(1,3,1)
+plot(pibar*1e2,'k--'); hold on
+plot(loss(2,:))
+legend('100*pibar', 'res(NKIS)')
+subplot(1,3,2)
+plot(0.9083*pibar,'k--'); hold on
+plot(loss(3,:))
+legend('0.9083*pibar', 'res(NKPC)')
+subplot(1,3,3)
+plot(pibar*1e1,'k--'); hold on
+plot(loss(1,:))
+legend('10*pibar', 'res(TR)')
+
+figure
+subplot(1,3,1)
+plot(pibar,'k'); hold on
+plot(pibar_TR, 'b--')
+legend('pibar', 'pibar TR')
+subplot(1,3,2)
+plot(1./k,'k'); hold on
+plot(1./k_TR, 'b--')
+legend('1/k', '1/k TR')
+subplot(1,3,3)
+plot(fett_1eve,'k'); hold on
+plot(fett_1eve_TR,'b--')
+legend('fe_{t|t-1}^{eve}', 'fe_{t|t-1}^{eve} TR')
 
 
-objh = @(seq) objective_seq_fsolve(seq,param,e,T+H,burnin,PLM,gain,gx,hx,SIG,Aa,Ab,As, H, variant);
+return
+
+tic
+objh = @(seq) objective_seq_fsolve(seq,param,gx,hx,eta,T,ndrop,e);
 [seq_opt,FVAL,EXITFLAG, OUTPUT] = fsolve(objh,seq0, options);
-
+toc
 % Exitflag values:
 % 1  fsolve converged to a root.
 % 2  Change in X too small.
@@ -158,8 +209,8 @@ else
     flag_title = ['FSOLVE: ', message ];
 end
 
-[~, y_opt] = sim_learnLH_given_seq(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, seq_opt, H, variant);
-[~, y_TR] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+[~, y_opt] = sim_learnLH_clean_smooth_given_seq(param,gx,hx,eta,seq_opt,T,ndrop,e);
+[~, y_TR] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T,ndrop,e);
 
 %% Figures
 seriesnames = {'\pi', 'x','i'};
