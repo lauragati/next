@@ -28,7 +28,8 @@ sig_r=param.sig_r; sig_i=param.sig_i; sig_u=param.sig_u;
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 % Learning ALM matrices
-[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+[Aa, Ab, As] = matrices_A_25_true_baseline(param,hx)
 
 % Params for the general learning code
 constant_only = 1; % learning constant only

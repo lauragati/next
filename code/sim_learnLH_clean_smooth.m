@@ -56,7 +56,8 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t); 
+%         ysim(:,t) = aleph_gimel(param,hx,fa,fb,xsim(:,t));
         xesim = hx*xsim(:,t);
         
         %Update coefficients

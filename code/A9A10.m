@@ -3,17 +3,9 @@ function [z] = A9A10(param,hx,fa,fb,s,seq)
 % 6 April 2020
 
 sig  = param.sig;
-alph = param.alph;
-bet  = param.bet;
 kapp = param.kapp;
-nx = size(hx,1);
 
-stuff1 = [sig,1-bet,-sig*bet]; % fa(3) I hope is rational
-% stuff1 = [sig,1-bet,0];
-
-stuff2 = sig*[1,0,0]*(eye(nx)-bet*hx)^(-1);
-stuff3 = [(1-alph)*bet,kapp*alph*bet,0];
-stuff4 = [0,0,1]*(eye(nx)-alph*bet*hx)^(-1);
+[stuff1, stuff2, stuff3, stuff4] = stuff(param,hx);
 
 
 if numel(seq)==1
