@@ -45,6 +45,7 @@ fett_1eve = zeros(1,T);
 for t = 1:T-1
     if t == 1
         ysim(:,t) = gx*xsim(:,t);
+        ysim(end-size(seq,1)+1:end,t) = seq(:,t);
         xesim = hx*xsim(:,t);
     else
         % Select the variable that's being learned:
@@ -86,6 +87,7 @@ end
 
 %Last period observables.
 ysim(:,t+1) = gx*xsim(:,t+1);
+ysim(end-size(seq,1)+1:end,t+1) = seq(:,t+1);
 
 %Drop ndrop periods from simulation
 xsim = xsim(:,ndrop+1:end);

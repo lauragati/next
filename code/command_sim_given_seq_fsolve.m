@@ -28,26 +28,30 @@ sig_r=param.sig_r; sig_i=param.sig_i; sig_u=param.sig_u;
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 % Learning ALM matrices
-% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
-[Aa, Ab, As] = matrices_A_25_true_baseline(param,hx)
+[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+[Aa_april, Ab_april, As_april] = matrices_A_25_true_baseline(param,hx);
 
-% Params for the general learning code
-constant_only = 1; % learning constant only
-constant_only_pi_only = 11; % learning constant only, inflation only
-mean_only_PLM = -1;
-slope_and_constant = 2;
+Aa = Aa_april;
+Ab = Ab_april;
+As = As_april;
 
-dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
-again_critCEMP  = 21;
-again_critCUSUM = 22;
-again_critsmooth = 23;
-cgain = 3;
+% % Params for the general learning code
+% constant_only = 1; % learning constant only
+% constant_only_pi_only = 11; % learning constant only, inflation only
+% mean_only_PLM = -1;
+% slope_and_constant = 2;
+% 
+% dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
+% again_critCEMP  = 21;
+% again_critCUSUM = 22;
+% again_critsmooth = 23;
+% cgain = 3;
 
-% Model selection
-%%%%%%%%%%%%%%%%%%%
-PLM = constant_only_pi_only;
-gain = again_critsmooth;
-%%%%%%%%%%%%%%%%%%%
+% % Model selection
+% %%%%%%%%%%%%%%%%%%%
+% PLM = constant_only_pi_only;
+% gain = again_critsmooth;
+% %%%%%%%%%%%%%%%%%%%
 
 
 T = 40 
@@ -65,7 +69,7 @@ variant = implementTR;
 initialization = initializeTR;
 % initialization = initialize_rand;
 %Select exogenous inputs
-s_inputs = [0;1;1]; % pi, x, i
+s_inputs = [0;0;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 
 H = 0;
@@ -127,6 +131,7 @@ options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals
 [~, y, k_TR, pibar_TR, FA_TR, FB_TR, g_pi_TR, g_pibar_TR, fett_1eve_TR, diff_TR] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T+ndrop,ndrop,e);
 seq0 = y(i_inputs,:);
 if initialization == initialize_rand
+%     rng(100)
     seq0 = rand(size(seq0));
 end
 
@@ -153,19 +158,6 @@ subplot(2,2,4)
 plot(1./k)
 title('k^{-1}')
 
-figure
-subplot(1,3,1)
-plot(pibar*1e2,'k--'); hold on
-plot(loss(2,:))
-legend('100*pibar', 'res(NKIS)')
-subplot(1,3,2)
-plot(0.9083*pibar,'k--'); hold on
-plot(loss(3,:))
-legend('0.9083*pibar', 'res(NKPC)')
-subplot(1,3,3)
-plot(pibar*1e1,'k--'); hold on
-plot(loss(1,:))
-legend('10*pibar', 'res(TR)')
 
 figure
 subplot(1,3,1)
@@ -219,7 +211,7 @@ figtitle = [variant_title, 'feeding in: ' seriesnames{i_inputs}, '; \newline ' i
     '\newline max(max(abs(residual))) = ', num2str(max(max(abs(FVAL))))]
 comparisonnames = {'TR', 'min residuals'};
 figname = strrep([this_code, '_', variant_name, '_',seriesnames{i_inputs},'_', initialization_name ],'\','_');
-
+% create_plot_observables(y_opt)
 create_plot_observables_comparison(y_TR,y_opt, seriesnames, figtitle, comparisonnames,figname,print_figs)
 
 disp('Done.')

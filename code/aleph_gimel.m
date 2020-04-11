@@ -11,12 +11,12 @@ kapp = param.kapp;
 psi_pi = param.psi_pi;
 psi_x  = param.psi_x;
 
-[stuff1, stuff2, stuff3, stuff4] = stuff(param,hx);
+[stuff1, stuff2, stuff3, stuff4,stuff5] = stuff(param,hx);
 
 aleph = [0,1,sig; 1,-kapp,0; -psi_pi,-psi_x,1];
 
 gimel = [stuff1*fb + stuff2*s; ...
     stuff3*fa + stuff4*s;...
-    0];
+    stuff5*s];
 
 z=aleph\gimel;
