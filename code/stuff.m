@@ -24,4 +24,4 @@ Ab_old = [kapp/w; 1/w; (psi_x+kapp*psi_pi)/w]*stuff1_old;
 
 % Impose condition (*): input stuff1_old for stuff1, which really is the
 % assumption of agents knowing the Taylor rule:
-stuff1 = stuff1_old;
+% stuff1 = stuff1_old;

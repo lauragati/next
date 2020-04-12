@@ -1,0 +1,393 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc} % don't know what this does: it sets font encoding
+%\usepackage{gfsartemisia} % this chooses the font
+%%\usepackage{txfonts}
+%% the above two seem to give the same, the below two as well
+%%\usepackage{accanthis} 
+%%\usepackage{concmath}
+% Another way to go is the following
+%  The available themes are: structurebold, structurebolditalic, structuresmallcapsserif, structureitalicsserif, serif and default.
+%\usefonttheme{default}
+%\usefonttheme{serif}
+%\usefonttheme{structurebold}
+%%\usefonttheme{structurebolditalic} % .sty wasn't found
+%\usefonttheme{structuresmallcaps}
+\usefonttheme{structuresmallcapsserif}
+%%%%%%\usefonttheme{structureitalicsserif} % .sty wasn't found
+%%%%%\usefonttheme{serif} % the font theme has to correspond to the font used
+%%%%\usefonttheme{structurebold} % it seems you can use a combo of these
+%%%%% Here comes the font command itself:
+%%%%% The available fonts depend on your LATEX installation, the most common are: mathptmx, helvet, avat, bookman, chancery, charter, culer, mathtime, mathptm, newcent, palatino, pifont and utopia.
+%%%%% I also have ccfonts
+%%%%\usepackage{helvet}
+%%%%\usepackage[T1]{fontenc}  % some fonts, like concrete math, require a specific font encoding (concrete math requires T1)
+\usepackage{subfigure}
+\usepackage[default]{lato}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+
+\def \myFigPath {../../figures/} 
+\def \myTablePath {../../tables/} 
+
+\beamertemplatenavigationsymbolsempty % this removes the blue navigation bar that used to be on the bottom right
+\setbeamersize{text margin left=5mm,text margin right=12mm} 
+%
+\font\reali=msbm10 at 12pt
+
+%
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{April 15, 2020}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%\usetheme{CambridgeUS} % CambridgeUS, Madrid
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Structure of talk}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% creating colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+% These are my colors -- there are many like them, but these ones are mine (Paul Goldsmith-Pinkham's)
+\definecolor{blue_PGP}{RGB}{0,114,178}
+\definecolor{red_PGP}{RGB}{213,94,0}
+\definecolor{yellow_PGP}{RGB}{240,228,66}
+\definecolor{green_PGP}{RGB}{0,158,115}
+%% I use a beige off white for my background 
+\definecolor{MyBackground}{RGB}{255,253,218}
+%% Uncomment this if you want to change the background color to something else 
+%\setbeamercolor{background canvas}{bg=MyBackground} % this is a very nice beige
+%% Change the bg color to adjust your transition slide background color! 
+%\newenvironment{transitionframe}{
+%\setbeamercolor{background canvas}{bg=yellow} \begin{frame}}{
+%\end{frame} }
+
+%\setbeamercolor{frametitle}{fg=blue_PGP} 
+%\setbeamercolor{title}{fg=black} 
+%\setbeamertemplate{footline}[frame number]  % this sets the footer the same color as the background
+%\setbeamertemplate{navigation symbols}{} % don't know what this does
+%\setbeamercolor{button}{bg=MyBackground,fg=blue_PGP}
+
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+\begin{frame}
+
+\maketitle
+
+
+\end{frame}
+
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Puzzling US business cycle fall 2019}
+
+\begin{figure}[h!]
+\subfigure[Unemployment rate]{\includegraphics[scale = 0.12]{\myFigPath dw_urate}}
+\hfil \subfigure[Fed funds rate target, upper limit]{\includegraphics[scale = 0.12]{\myFigPath dw_ffr}}
+\subfigure[Market-based inflation expectations, 10 year, average]{\includegraphics[scale = 0.12]{\myFigPath dw_Epi10}}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{This project}
+	
+	\begin{enumerate}
+	\item[] Model anchored expectations as an endogenous gain learning scheme
+	
+	\
+	
+	\
+	
+	\item[$\rightarrow$] How to conduct optimal monetary policy in interaction with the anchoring expectation formation?
+	%How does a concern to anchor expectations affect the conduct of monetary policy?
+	\end{enumerate}
+	\end{frame}
+	%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Preview of results}
+	
+	\begin{enumerate}
+	\item  intertemporal tradeoff: short-run costs vs. long-run benefits of anchoring expectations
+	
+	\
+	
+	\
+	
+	\item optimal monetary policy time-inconsistent
+	
+	\
+	
+	\
+	
+	
+	\item[$\rightarrow$] illustrate in special case: target criterion 
+	\end{enumerate}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Related literature}
+
+\begin{itemize}
+\item \textbf{Optimal monetary policy in New Keynesian models}
+\item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
+
+\
+
+\
+
+\item \textbf{Econometric learning}
+\item[] Evans \& Honkapohja (2001), Preston (2005), Moln\'ar \& Santoro (2014)
+
+\
+
+\
+
+\item \textbf{Anchoring / endogenous gain} 
+\item[] Carvalho et al (2019), Svensson (2015), Hooper et al (2019), Milani (2014)
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Special case}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+\vspace{-1cm}
+	
+\centering Thank you!
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%
+%         TEMPLATES
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Slide template}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%  	
+%\begin{frame}
+%	\frametitle{A beamer button template}
+%	\label{identification}
+%	
+%\hyperlink{Technicalities}{\beamergotobutton{Technicalities}}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\backupbegin
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Derivations}
+	\label{derivations}
+
+Household FOCs
+ \begin{align*}
+\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
+\\
+\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
+\end{align*}
+where a hat denotes log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+
+\begin{enumerate}
+\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
+\item Sub in (\ref{IBC})
+\item Aggregate over households $i$
+\item[$\rightarrow$] Obtain (\ref{prestons18})
+\end{enumerate}
+
+
+
+\hyperlink{NK}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Compact notation}
+	\label{compact}
+
+ \begin{align*}
+z_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = h s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
+
+\begin{equation}
+ z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} 
+\end{equation}
+and
+
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+
+\hyperlink{NK}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%\frametitle{A beamer button template, how to get back to main text}
+%\label{Steps}
+%
+%\begin{equation}
+%D = \begin{bmatrix}
+%d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
+%d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
+%\vdots & \vdots & \vdots & \ddots & \vdots 
+%\end{bmatrix}
+%\end{equation}
+%
+%\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\backupend
+
+
+\end{document}

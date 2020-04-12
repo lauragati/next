@@ -121,7 +121,7 @@ for s=2  %2->zoom in on monetary policy shock
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e);
         [x_smooth, y_smooth, k_smooth(:,n), pibar(:,n), FA, FB, g_pi, g_pibar, ~,diff_smooth(:,n)] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e);
-        [x_g, y_g, k_g(:,n),  phi_g, ~, ~, diff_g(:,n)] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e);
+        [x_g, y_g, k_g(:,n),  phi_g, ~, ~, diff_g(:,n)] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e);
         % Shocked
         % RE
         % make RE shock the same scale as learning:
@@ -138,7 +138,7 @@ for s=2  %2->zoom in on monetary policy shock
             [~, ys_LH] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
             [~, ys_clean] = sim_learnLH_clean(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e, dt, x0);
             [~, ys_smooth] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e,dt,x0);
-            [~, ys_g] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e, dt, x0);
+            [~, ys_g] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e, dt, x0);
         end
         
     end

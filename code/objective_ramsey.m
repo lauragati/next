@@ -3,12 +3,15 @@ function loss = objective_ramsey(seq,param,gx,hx,eta,ndrop,eN)
 bet = param.bet;
 lamx = param.lamx;
 lami = param.lami;
-
+PLM = 1; % constant-only vector learning
 [ny,T,N] = size(eN);
 ysim = zeros(ny,T,N);
 for n=1:N
     e = squeeze(eN(:,:,n));
-    [~, ysim(:,:,n)] = sim_learnLH_clean_smooth_given_seq(param,gx,hx,eta,seq,T,ndrop,e);
+    % scalar learning
+%     [~, ysim(:,:,n)] = sim_learnLH_clean_smooth_given_seq(param,gx,hx,eta,seq,T,ndrop,e);
+    % vector learning
+    [~, ysim(:,:,n)] = sim_learnLH_clean_g_given_seq(param,gx,hx,eta,seq,PLM, T,ndrop,e);
 end
 
 ysim2 = ysim.^2;

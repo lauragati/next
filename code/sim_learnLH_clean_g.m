@@ -3,7 +3,7 @@
 % also reverting to using inverse gains, k1, everywhere.
 % based on sim_learnLH_clean.m
 % 12 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, gain, T,ndrop,e, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -30,15 +30,6 @@ if PLM == 11 || PLM == 21
 end
 el = learn_selector;
 
-% If endog gain, choose criterion
-if gain == 21
-    crit = 1; % CEMP's criterion
-elseif gain == 22
-    crit = 2; % CUSUM criterion
-elseif gain == 23
-    crit = 3; % smooth criterion (this is implemented ONLY for the case that only pi is learned)
-end
-
 phi = [a,b];
 phi_seq = nan(ny,nx+1,T);
 phi_seq(:,:,1) = phi;
@@ -59,14 +50,6 @@ FA = nan(ny,T);
 FB = nan(ny,T);
 FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
-%%% initialize CUSUM variables: FEV om and criterion theta
-% om = sigy; %eye(ny);
-om = eta*eta';
-% om = om(1,1);
-thet = 0; % CEMP don't really help with this, but I think zero is ok.
-% thet = thettilde; % actually it's quite sensitive to where you initialize it.
-%%%
-
 %Simulate, with learning
 for t = 1:T-1
     if t == 1
@@ -86,29 +69,15 @@ for t = 1:T-1
         xesim = hx*xsim(:,t);
         
         %Update coefficients
-        % Here the code differentiates between decreasing or constant gain
-        if gain ==1 % decreasing gain
-            k(:,t) = k(:,t-1)+1;
-        elseif gain==21 || gain == 22 || gain == 23% endogenous gain
-            if crit == 1 % CEMP's criterion
-                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
-            elseif crit==2 % CUSUM criterion
-                fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-                %                 fe = fe(1,1);
-                [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
-                %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
-            elseif crit == 3 % smooth criterion
+        % Only smooth criterion here
                 % scalar:
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
                 fk = fk_smooth_pi_only(param,fe,k(:,t-1));
 %                 % vector: 
 %                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
 %                 fk = fk_smooth(param,fe,k(:,t-1));
-            end
             k(:,t) = fk;
-        elseif gain==3 % constant gain
-            k(:,t) = gbar^(-1);
-        end
+
         
         % Create forecasts and FE
         morning_fcst(:,t) = phi*[1;xsim(:,t)];
