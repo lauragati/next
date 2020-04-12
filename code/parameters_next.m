@@ -30,8 +30,8 @@ param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davi
 param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 param.lamx = 0.5; % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
 param.lami = 0;
-param.d = 10; % slope of anchoring function.
-param.c = 0;
+param.d = 10; % 10 slope of anchoring function.
+param.c = 0; % 0 intercept of anchoring function.
 
 
 % % "weighted il" extension

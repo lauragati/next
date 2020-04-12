@@ -67,7 +67,7 @@ initialize_rand = 2;
 %%%%%%%%%%%%%%%%%%%
 variant = implementTR;
 initialization = initializeTR;
-% initialization = initialize_rand;
+initialization = initialize_rand;
 %Select exogenous inputs
 s_inputs = [0;0;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
@@ -131,7 +131,7 @@ options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals
 [~, y, k_TR, pibar_TR, FA_TR, FB_TR, g_pi_TR, g_pibar_TR, fett_1eve_TR, diff_TR] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T+ndrop,ndrop,e);
 seq0 = y(i_inputs,:);
 if initialization == initialize_rand
-%     rng(100)
+    rng(100)
     seq0 = rand(size(seq0));
 end
 

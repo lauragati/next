@@ -1,7 +1,6 @@
 % Smooth anchoring function for the case that only pi is learned
 % 19 March 2020
 function [k, g_pi, g_pibar] = fk_smooth_pi_only(param,fe, kt_1)
-% need to figure out how to input c, d 
 d=param.d;
 c=param.c;
 % Alternative 1:

@@ -1,5 +1,5 @@
 % sim_learnLH_clean_smooth.m
-% a cleaned-up version of sim_learnLH.m, for the smooth anchoring criterion
+% a cleaned-up version of sim_learnLH.m, for the smooth (scalar) anchoring criterion
 % only
 % 10 April 2020
 function [xsim, ysim, k, pibar, FA, FB, g_pi, g_pibar,fett_1eve, diff] = sim_learnLH_clean_smooth(param,gx,hx,eta, Aa, Ab, As, T,ndrop,e, dt, x0)
