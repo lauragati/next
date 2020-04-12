@@ -106,6 +106,11 @@ An Endogenous Gain Learning Model}
 
 \newtheorem{prop}{Proposition}
 \newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+
+
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 
@@ -130,6 +135,7 @@ An Endogenous Gain Learning Model}
 \definecolor{red_PGP}{RGB}{213,94,0}
 \definecolor{yellow_PGP}{RGB}{240,228,66}
 \definecolor{green_PGP}{RGB}{0,158,115}
+\definecolor{mygreen}{RGB}{0, 128, 0} % this is Laura's green
 %% I use a beige off white for my background 
 \definecolor{MyBackground}{RGB}{255,253,218}
 %% Uncomment this if you want to change the background color to something else 
@@ -181,9 +187,9 @@ An Endogenous Gain Learning Model}
 	\frametitle{Puzzling US business cycle fall 2019}
 
 \begin{figure}[h!]
-\subfigure[Unemployment rate]{\includegraphics[scale = 0.12]{\myFigPath dw_urate}}
-\hfil \subfigure[Fed funds rate target, upper limit]{\includegraphics[scale = 0.12]{\myFigPath dw_ffr}}
-\subfigure[Market-based inflation expectations, 10 year, average]{\includegraphics[scale = 0.12]{\myFigPath dw_Epi10}}
+\subfigure[Unemployment rate]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
+\hfil \subfigure[Fed funds rate target, upper limit]{\includegraphics[scale = 0.12]{\myFigPath frr_2020_02_09}}
+\subfigure[Market-based inflation expectations, 10 year, average]{\includegraphics[scale = 0.12]{\myFigPath epi10_2020_02_09}}
 \end{figure}
 
 
@@ -265,12 +271,388 @@ An Endogenous Gain Learning Model}
 \section{Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Households - standard up to $\hat{\E}$}
+	\label{HH}
+
+Maximize lifetime expected utility
+\begin{equation}
+\textcolor{blue}{\hat{\E}_t}\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\label{lifetime_U}
+\end{equation}	
+
+Budget constraint
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + \int_0^1 w_t(j)h^i_t(j) + \Pi_t^i(j)  dj-T_t -P_tC^i_t
+ \label{BC}
+\end{equation}
+
+
+
+\vfill
+
+\hyperlink{details_HHs_firms}{\beamergotobutton{Consumption, price level}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Firms - standard up to $\hat{\E}$}
+
+Maximize present value of profits
+\begin{equation}
+\textcolor{blue}{\hat{\E}_t}\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\label{lifetime_profits}
+\end{equation}
+
+subject to demand
+\begin{equation}
+y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
+\end{equation}
+
+
+\vfill
+
+\hyperlink{details_HHs_firms}{\beamergotobutton{Profits, stochastic discount factor}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Expectations - $\hat{\E}$ instead of $\E$}
+
+\begin{itemize}
+\item If use $\E$ (rational expectations, RE) \\
+
+\
+
+Model solution 
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+$s_t \equiv (r^n_t, u_t)' \quad $  (states) \\
+$y_t \equiv (\pi_t, x_t, i_t)' \quad $ (jumps)
+
+\
+
+\item If use $\hat{\E} \rightarrow$ don't know $g$ \\
+$\rightarrow$ estimate using observed states \& knowledge of (\ref{state})
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Adaptive learning}
+	\label{adaptive_learning}
+
+\begin{itemize}
+\item Estimate $g$ using recursive least squares (RLS)
+  \\
+  
+  \
+  
+$\rightarrow$ nonrational expectations:
+\begin{equation} 
+\hat{\E}_t y_{t+1} = \phi_{t-1}\begin{bmatrix} \textcolor{blue}{1} \\ s_{t} \end{bmatrix} \label{PLMcompact}
+\end{equation}
+
+\item Note: \textcolor{blue}{misspecified}	\\
+
+\
+
+Can write:
+\begin{equation}
+\hat{\E}_t y_{t+1} = \textcolor{blue}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
+\end{equation}
+
+\
+
+In RE, $\textcolor{blue}{a_{t-1} = (0,0,0)'}, b_{t-1} = g \quad \forall t$
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Anchoring - endogenous gain}
+	\label{anchoring1}
+Special case: learn only intercept of inflation:
+
+\begin{equation}
+a_{t-1} = (\bar{\pi}_{t-1},0,0)', b_{t-1} = g \quad \forall 
+\end{equation}
+
+$\rightarrow$ RLS
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\textcolor{blue}{k_t} \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\end{equation}
+ 
+\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+
+\textcolor{blue}{Gain} in literature usually exogenous: 
+\begin{equation*}
+k_t = \begin{cases}\frac{1}{t} \quad \quad \text{decreasing}\\
+k \quad \quad \text{constant}
+\end{cases}
+\end{equation*}
+
+Here instead
+\begin{equation}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
+\end{equation}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Anchoring function - interpretation}
+	\label{anchoring_function}
+	
+\begin{equation*}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) 
+\end{equation*}
+
+\begin{figure}[h!]
+\caption{U Michigan inflation expectations (\%)}
+\includegraphics[scale = 0.14]{\myFigPath macrolunch_umich}
+\end{figure}
+
+\begin{itemize}
+\item If gain nondecreasing, $\bar{\pi}$ changes $\rightarrow$ \emph{unanchored expectations}
+
+\
+
+\item If gain decreasing, $\bar{\pi}$ stable $\rightarrow$ \emph{anchored expectations}
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Model summary}
+	\label{aggregate_LOMS}
+\begin{itemize}
+\item IS- and Phillips curve:	
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+\hfill \hyperlink{derivations}{\beamergotobutton{Derivations}}
+
+\
+
+\item  Expectations evolve according to RLS with the endogenous gain given by (\ref{gain})
+
+\
+
+\item[$\rightarrow$] How should $\{ i_t \}$ be set?
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Special case}
+\section{Ramsey problem for special case}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Ramsey problem}
+	
+	 \begin{align*}
+& \max_{ \{y_t, \phi_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \text{s.t. model equations}
+\end{align*}
 
+\
+
+\
+
+\begin{itemize}
+\item $\E$ is the central bank's (CB) expectation
+
+\
+
+\item Assumption: CB observes private expectations and knows the model
+\end{itemize}
+
+ 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Special case}
+
+\begin{itemize}
+\item Only inflation intercept learned
+
+\
+
+\item Anchoring function simplified to 
+\begin{equation}
+k_t = \mathbf{g}(fe_{t|t-1}) \label{gain_simple}
+\end{equation}
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Target criterion for special case}
+	\label{anchTC}
+	
+	\begin{result} 
+
+\
+
+In the simplified model with anchoring, monetary policy optimally brings about the following target relationship between inflation and the output gap
+	
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
+\\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\}  \label{target}
+\end{align*}
+
+\
+
+\
+
+where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, $\; \prod_{j=0}^{0} \equiv 1 \; $ and $b_1$ is the first row of $b$.
+	\end{result}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Interpretation - Intertemporal Tradeoffs}
+
+\begin{align*}
+& \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
+\end{align*}
+
+\
+
+\textcolor{red}{tradeoffs from discretion in RE} \\
+
+\
+
++ \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} \\
+
+\
+
++ \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+\begin{lemma} The commitment solution of the Ramsey problem does not exist. 
+\end{lemma}
+
+\
+
+\
+
+Let $\quad k_t \rightarrow 0, \quad \mathbf{g_{z,t}} \rightarrow 0$. 
+
+\
+
+Target criterion becomes
+
+\begin{align}
+& \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} 
+\end{align}
+
+\
+
+$=$ target criterion under RE discretion
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+\begin{corollary} Optimal policy is time-inconsistent. 
+\end{corollary}
+
+\
+
+Already true for exogenous gain learning!  
+
+\
+
+Constant gain specification:
+
+\begin{itemize}
+\item $k_t = k$
+\item $g_{z,t} = 0$ (still)
+\end{itemize}
+
+
+\begin{align}
+\pi_t  = -\frac{\lambda_x}{\kappa} x_t + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} k
+\bigg(\sum_{i=1}^{\infty}x_{t+i}(1-k)^i \bigg)
+ \label{target_molnar} % I think this is still correct, despite the corrections of March 30, 2020.
+\end{align}
+
+
+\
+
+$\rightarrow$ A first intertemporal tradeoff
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring as a Second Intertemporal Tradeoff}
+
+\begin{align*}
+& \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
+\end{align*}
+
+\
+
++ \textcolor{blue}{first intertemporal tradeoff from stance of learning} \\
+
+\
+
++ \textcolor{mygreen}{second intertemporal tradeoff from stance of anchoring}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
@@ -311,6 +693,67 @@ An Endogenous Gain Learning Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \backupbegin
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Details on households and firms}
+	\label{details_HHs_firms}
+
+\
+
+Consumption:	
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+$\theta>1$: elasticity of substitution between varieties
+
+\
+
+Aggregate price level:
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+
+Profits:
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+
+Stochastic discount factor
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+
+
+\hyperlink{HH}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Recursive least squares algorithm}
+	\label{RLS}
+
+
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t^{-1} R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Derivations}
@@ -322,18 +765,18 @@ Household FOCs
 \\
 \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
 \end{align*}
-where a hat denotes log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
 
 \begin{enumerate}
 \item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
 \item Sub in (\ref{IBC})
 \item Aggregate over households $i$
-\item[$\rightarrow$] Obtain (\ref{prestons18})
+\item[$\rightarrow$] Obtain (\ref{NKIS})
 \end{enumerate}
 
 
 
-\hyperlink{NK}{\beamerreturnbutton{Return}}	
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
 
 
 \end{frame}
