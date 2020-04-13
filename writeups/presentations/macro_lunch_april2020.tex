@@ -411,6 +411,7 @@ Here instead
 \begin{equation}
 k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
 \end{equation}
+\hfill \hyperlink{g}{\beamergotobutton{Functional forms}}
 
 
 
@@ -550,7 +551,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Interpretation - Intertemporal Tradeoffs}
+	\frametitle{Interpretation - intertemporal tradeoffs}
 
 \begin{align*}
 & \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
@@ -654,6 +655,80 @@ $\rightarrow$ A first intertemporal tradeoff
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{How to implement?}
+	
+	\begin{itemize}
+	\item Need reaction function to anchor beliefs
+	
+	\
+	
+	\item[] Recall IS-curve:
+	\begin{equation*}
+	x_t =  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor{blue}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big) 
+	\end{equation*}
+	
+	\
+	
+	\item E.g. Taylor rule disciplines $\; \hat{\E}_t i_T = \psi_{\pi}\hat{\E}_t\pi_{T}+\psi_{x}\hat{\E}_tx_{T}$
+	\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+
+\begin{itemize}
+\item Or: need to announce target criterion
+
+\
+
+\item Problem 1: private sector needs to back out reaction function
+
+\
+
+\item Problem 2: private sector cannot compute target criterion
+
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
+\\
+\bigg(\textcolor{blue}{\E_t}\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\}
+\end{align*}
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Form of reaction function?}
+	
+\begin{itemize}
+\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1})$
+
+\
+
+\item Preliminary results prefer the simple Taylor rule 
+\begin{align*}
+&i_t = \psi_{\pi}\pi_t \\
+& \text{over} \\
+& i_t = \psi_{\pi}\pi_t + \psi_k k_t + \psi_{\bar{\pi}}\bar{\pi}_{t-1}
+\end{align*}
+
+\
+
+\item Taylor rule better approximation of optimal policy than under RE?
+\end{itemize}
+	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
 %%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Conclusion}
@@ -732,6 +807,77 @@ $\rightarrow$ A first intertemporal tradeoff
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
+	\frametitle{Functional forms for $\mathbf{g}$}
+	\label{g}
+
+
+
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Recursive least squares algorithm}
+	\label{RLS}
+
+
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Compact notation}
+	\label{compact}
+
+ \begin{align*}
+y_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = h s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
+
+\begin{equation}
+ y_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} 
+\end{equation}
+and
+
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } y_{T+1} \quad \quad \quad \quad 
+f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb}
+\end{align}
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+\begin{frame}
 	\frametitle{Details on households and firms}
 	\label{details_HHs_firms}
 
@@ -767,28 +913,6 @@ Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Recursive least squares algorithm}
-	\label{RLS}
-
-
-\begin{align}
-\phi_t  & = \bigg( \phi_{t-1}' + k_t^{-1} R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
-R_t &= R_{t-1} +  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
-\end{align}
-
-
-\vfill
-
-\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Derivations}
@@ -812,37 +936,6 @@ where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{
 
 
 \hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Compact notation}
-	\label{compact}
-
- \begin{align*}
-z_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
-\\
-s_t & = h s_{t-1} + \epsilon_t \label{exog} \numberthis
-\end{align*}
-where
-
-\begin{equation}
- z_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
- \end{pmatrix} 
- \quad \quad \quad 
-  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
- \end{pmatrix} 
-\end{equation}
-and
-
-  \begin{align}
-f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
-\end{align}
-
-\hyperlink{NK}{\beamerreturnbutton{Return}}	
 
 
 \end{frame}

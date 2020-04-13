@@ -1,6 +1,6 @@
 % sim_learnLH_clean_g
 % vector learning for the smooth anchoring function g.
-% also reverting to using inverse gains, k1, everywhere.
+% also reverting to using inverse gains, k1, everywhere <- not yet working
 % based on sim_learnLH_clean.m
 % 12 April 2020
 function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e, dt, x0)
@@ -65,7 +65,8 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+%         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
         xesim = hx*xsim(:,t);
         
         %Update coefficients
