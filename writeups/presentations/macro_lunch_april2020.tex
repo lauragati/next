@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[11pt]{beamer}
 \usepackage[english]{babel}
 \usepackage[latin1]{inputenc}
 %\usepackage[T1]{fontenc} % don't know what this does: it sets font encoding
@@ -10,21 +10,22 @@
 % Another way to go is the following
 %  The available themes are: structurebold, structurebolditalic, structuresmallcapsserif, structureitalicsserif, serif and default.
 %\usefonttheme{default}
-%\usefonttheme{serif}
+\usefonttheme{serif}
 %\usefonttheme{structurebold}
 %%\usefonttheme{structurebolditalic} % .sty wasn't found
 %\usefonttheme{structuresmallcaps}
-\usefonttheme{structuresmallcapsserif}
+%\usefonttheme{structuresmallcapsserif} % <------
 %%%%%%\usefonttheme{structureitalicsserif} % .sty wasn't found
 %%%%%\usefonttheme{serif} % the font theme has to correspond to the font used
 %%%%\usefonttheme{structurebold} % it seems you can use a combo of these
 %%%%% Here comes the font command itself:
 %%%%% The available fonts depend on your LATEX installation, the most common are: mathptmx, helvet, avat, bookman, chancery, charter, culer, mathtime, mathptm, newcent, palatino, pifont and utopia.
 %%%%% I also have ccfonts
+\usepackage{bookman}
 %%%%\usepackage{helvet}
 %%%%\usepackage[T1]{fontenc}  % some fonts, like concrete math, require a specific font encoding (concrete math requires T1)
 \usepackage{subfigure}
-\usepackage[default]{lato}
+%\usepackage[default]{lato}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -187,9 +188,9 @@ An Endogenous Gain Learning Model}
 	\frametitle{Puzzling US business cycle fall 2019}
 
 \begin{figure}[h!]
-\subfigure[Unemployment rate]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
-\hfil \subfigure[Fed funds rate target, upper limit]{\includegraphics[scale = 0.12]{\myFigPath frr_2020_02_09}}
-\subfigure[Market-based inflation expectations, 10 year, average]{\includegraphics[scale = 0.12]{\myFigPath epi10_2020_02_09}}
+\subfigure[Unemployment rate, \%]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
+\hfil \subfigure[Fed funds rate target, upper limit, \%]{\includegraphics[scale = 0.12]{\myFigPath frr_2020_02_09}}
+\subfigure[Market-based inflation expectations, 10 year, \% average]{\includegraphics[scale = 0.12]{\myFigPath epi10_2020_02_09}}
 \end{figure}
 
 
@@ -376,7 +377,7 @@ Can write:
 
 \
 
-In RE, $\textcolor{blue}{a_{t-1} = (0,0,0)'}, b_{t-1} = g \quad \forall t$
+In RE, $\textcolor{blue}{a_{t-1} = (0,0,0)'}, b_{t-1} = g\;h \quad \forall t$
 \end{itemize}
 
 
@@ -385,33 +386,61 @@ In RE, $\textcolor{blue}{a_{t-1} = (0,0,0)'}, b_{t-1} = g \quad \forall t$
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Anchoring - endogenous gain}
-	\label{anchoring1}
+	\frametitle{Recursive least squares}
+	\label{RLS_special}
 Special case: learn only intercept of inflation:
 
 \begin{equation}
-a_{t-1} = (\bar{\pi}_{t-1},0,0)', b_{t-1} = g \quad \forall 
+a_{t-1} = (\bar{\pi}_{t-1},0,0)', \quad b_{t-1} = g\; h \quad \forall t
 \end{equation}
+
+\
 
 $\rightarrow$ RLS
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\textcolor{blue}{k_t} \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
 \end{equation}
  
-\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+ \
+ 
+ $k_t$ gain \\
+ $b_1$ first row of $b$
+\vfill 
 
-\textcolor{blue}{Gain} in literature usually exogenous: 
+\hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Anchoring - endogenous gain}
+	\label{anchoring1}
+
+
+Gain in literature usually exogenous: 
 \begin{equation*}
 k_t = \begin{cases}\frac{1}{t} \quad \quad \text{decreasing}\\
 k \quad \quad \text{constant}
 \end{cases}
 \end{equation*}
 
+\
+
+\
+
 Here instead
 \begin{equation}
 k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
 \end{equation}
-\hfill \hyperlink{g}{\beamergotobutton{Functional forms}}
+
+
+\vfill 
+
+\hyperlink{g}{\beamergotobutton{Functional forms}}
 
 
 
@@ -433,11 +462,12 @@ k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
 \end{figure}
 
 \begin{itemize}
-\item If gain nondecreasing, $\bar{\pi}$ changes $\rightarrow$ \emph{unanchored expectations}
+\item If gain nondecreasing, $\bar{\pi}$ changes \\
+$\rightarrow$ \emph{unanchored expectations}
 
 \
 
-\item If gain decreasing, $\bar{\pi}$ stable $\rightarrow$ \emph{anchored expectations}
+%\item If gain decreasing, $\bar{\pi}$ stable $\rightarrow$ \emph{anchored expectations}
 \end{itemize}
 
 
@@ -479,9 +509,8 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Ramsey problem}
-	
 	 \begin{align*}
-& \max_{ \{y_t, \phi_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \min_{ \{y_t, \phi_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
 & \text{s.t. model equations}
 \end{align*}
 
@@ -505,6 +534,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Special case}
+	\label{special_case}
 
 \begin{itemize}
 \item Only inflation intercept learned
@@ -516,6 +546,8 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 k_t = \mathbf{g}(fe_{t|t-1}) \label{gain_simple}
 \end{equation}
 \end{itemize}
+
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -544,7 +576,9 @@ In the simplified model with anchoring, monetary policy optimally brings about t
 
 where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, $\; \prod_{j=0}^{0} \equiv 1 \; $ and $b_1$ is the first row of $b$.
 	\end{result}
+\vfill 
 
+\hfill \hyperlink{generalTC}{\beamergotobutton{General case}}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -552,7 +586,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Interpretation - intertemporal tradeoffs}
-
+\small{
 \begin{align*}
 & \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
 & \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
@@ -560,7 +594,11 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
+\
+
 \textcolor{red}{tradeoffs from discretion in RE} \\
+
+\
 
 \
 
@@ -568,8 +606,10 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-+ \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+\
 
++ \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+}
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
@@ -584,7 +624,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-Let $\quad k_t \rightarrow 0, \quad \mathbf{g_{z,t}} \rightarrow 0$. 
+Let $\quad k_t \rightarrow 0, \quad \mathbf{g_{z,t}} \rightarrow 0$
 
 \
 
@@ -624,7 +664,7 @@ Constant gain specification:
 
 \begin{align}
 \pi_t  = -\frac{\lambda_x}{\kappa} x_t + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} k
-\bigg(\sum_{i=1}^{\infty}x_{t+i}(1-k)^i \bigg)
+\E_t\sum_{i=1}^{\infty}x_{t+i}(1-k)^i 
  \label{target_molnar} % I think this is still correct, despite the corrections of March 30, 2020.
 \end{align}
 
@@ -637,12 +677,14 @@ $\rightarrow$ A first intertemporal tradeoff
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring as a Second Intertemporal Tradeoff}
-
+	\frametitle{Anchoring as a second intertemporal tradeoff}
+\small{
 \begin{align*}
-& \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \pi_t  =  \; -\frac{\lambda_x}{\kappa} x_t \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
 & \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
 \end{align*}
+
+\
 
 \
 
@@ -650,8 +692,10 @@ $\rightarrow$ A first intertemporal tradeoff
 
 \
 
-+ \textcolor{mygreen}{second intertemporal tradeoff from stance of anchoring}
+\
 
++ \textcolor{mygreen}{second intertemporal tradeoff from stance of anchoring}
+}
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
@@ -709,7 +753,7 @@ $\rightarrow$ A first intertemporal tradeoff
 	\frametitle{Form of reaction function?}
 	
 \begin{itemize}
-\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1})$
+\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)$
 
 \
 
@@ -809,7 +853,57 @@ $\rightarrow$ A first intertemporal tradeoff
 \begin{frame}
 	\frametitle{Functional forms for $\mathbf{g}$}
 	\label{g}
+\begin{itemize}
+\item Smooth anchoring function
+\begin{equation}
+k_t = k_{t-1} - c + d fe_{t|t-1}^2
+\end{equation}
+$c,d > 0$
 
+\
+
+\item Kinked anchoring function
+ \begin{align*}
+k_t & = \begin{cases} \frac{1}{t} \quad \text{when} \quad \theta_t < \bar{\theta}  \\ k \quad \text{otherwise.}\numberthis
+\end{cases} 
+\end{align*}
+$\theta_t$ criterion, $\bar{\theta}$ threshold value
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{Choices for criterion $\theta_t$}
+	\label{g}
+\begin{itemize}
+\item Carvalho et al. (2019)'s criterion  
+\begin{equation}
+\theta_t^{CEMP} = \max | \Sigma^{-1} ( \phi_{t-1} - T(\phi_{t-1})) |
+\end{equation}
+
+
+$\Sigma$ variance-covariance matrix of shocks \\
+$T(\phi)$ mapping from PLM to ALM
+
+\
+
+\
+
+\item CUSUM-criterion
+\begin{align}
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
+\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1})
+\end{align}
+
+\
+
+$\omega_t$ estimated forecast-error variance
+\end{itemize}
 
 
 
@@ -843,8 +937,6 @@ R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{b
 %%%%%%%%%%%%%%%%%%
 
 
-
-
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Compact notation}
@@ -876,6 +968,34 @@ f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Target criterion system for anchoring function as changes of the gain}
+	\label{generalTC}
+
+\begin{align*}
+\varphi_{6,t} & = -c fe_{t|t-1} x_{t+1} + \bigg(1+ \frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}) -fe_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} \\
+& -\frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1})\varphi_{6,t+2} \numberthis \label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{fe_{t|t-1}}\varphi_{6,t+1}\numberthis \label{1'}
+\end{align*}
+$\varphi_{6,t}$ Lagrange multiplier on anchoring function
+
+\
+
+The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{fe_{t+j|t+j-1}}}{\frac{k_{t+j}}{fe_{t+j|t+j-1}} + \mathbf{g}_{\pi, t+j}} \label{sol1'}
+\end{equation}
+
+ 
+\hyperlink{anchTC}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Details on households and firms}

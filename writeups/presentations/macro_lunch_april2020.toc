@@ -1,4 +1,4 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {english}
 \beamer@sectionintoc {1}{Model}{6}{0}{1}
-\beamer@sectionintoc {2}{Ramsey problem for special case}{14}{0}{2}
+\beamer@sectionintoc {2}{Ramsey problem for special case}{15}{0}{2}
