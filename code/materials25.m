@@ -79,7 +79,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critsmooth;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 
 % RE model
@@ -97,10 +97,11 @@ eN(2,:,:) = zeros(T+ndrop,N);
 
 % an initial simulation
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
-[xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e);
+[xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, Aa, Ab, As,PLM, gain, T,ndrop,e);
 
-% create_plot_observables(ysim)
-% create_plot_observables(1./k)
+create_plot_observables(ysim)
+create_plot_observables(1./k)
+
 
 % Optimization Parameters
 options = optimoptions('fmincon', 'TolFun', 1e-12, 'display', 'iter', 'MaxFunEvals', 10000);
@@ -111,17 +112,17 @@ coeffs0 = [param.psi_pi, param.psi_x,param.psi_k,param.psi_pibar, param.psi_xbar
 
 ub = [5,0,0.9,0.5,0];
 % ub = [5,2,0,0,0];% a standard TR, yields coeffs_opt =  (  1.4912    0.0097         0         0         0) for a loss of   1.5981e+03
-% ub = [5,0,0,0,0];% a simple TR, yields coeffs_opt =  (1.5287         0         0         0         0) for a loss of   3.8385e+03
-ub = [5,0,0.9,0.5,0]; % add k and psibar -> coeffs_opt  (1.5639         0    0.0133    0.0000         0) for a loss of  5.4353e+03
+ub = [5,0,0,0,0];% a simple TR, yields coeffs_opt =  (1.5287         0         0         0         0) for a loss of   3.8385e+03
+% ub = [5,0,0.9,0.5,0]; % add k and psibar -> coeffs_opt  (1.5639         0    0.0133    0.0000         0) for a loss of  5.4353e+03
 % if you start this same one at lb, you get coeffs_opt  (1        0    0  0.0000         0) for a loss of  138.2685
 lb = [1,0,0,0,0];
 
 % let's start at other places
 coeffs0 = lb;
-loss = objective_ramsey_materials25(coeffs0,param,gx,hx,eta,ndrop,eN)
+loss = objective_ramsey_materials25(coeffs0,param,gx,hx,eta,ndrop,eN,PLM,gain)
 
 tic
-objh = @(coeffs) objective_ramsey_materials25(coeffs,param,gx,hx,eta,ndrop,eN);
+objh = @(coeffs) objective_ramsey_materials25(coeffs,param,gx,hx,eta,ndrop,eN,PLM,gain);
 [coeffs_opt, loss_opt] = fmincon(objh, coeffs0, [],[],[],[],lb,ub,[],options)
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
@@ -133,6 +134,6 @@ param.psi_pibar = coeffs_opt(4);
 param.psi_xbar  = coeffs_opt(5);
 
 % simulate again
-[xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e);
+[xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, Aa, Ab, As,PLM, gain, T,ndrop,e);
 create_plot_observables(ysim)
 create_plot_observables(1./k)

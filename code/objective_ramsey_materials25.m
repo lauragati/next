@@ -1,5 +1,5 @@
 % the Ramsey problem's loss function
-function loss = objective_ramsey_materials25(coeffs,param,gx,hx,eta,ndrop,eN)
+function loss = objective_ramsey_materials25(coeffs,param,gx,hx,eta,ndrop,eN,PLM,gain)
 bet = param.bet;
 lamx = param.lamx;
 lami = param.lami;
@@ -13,13 +13,13 @@ param.psi_xbar  = coeffs(5);
 % these are not really used, just too lazy to take 'em out
 [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
 
-PLM = 1; % constant-only vector learning
+
 [ny,T,N] = size(eN);
 ysim = zeros(ny,T,N);
 for n=1:N
     e = squeeze(eN(:,:,n));
-    [~, ysim(:,:,n)] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e);
-
+%     [~, ysim(:,:,n)] = sim_learnLH_clean_g(param,gx,hx,eta, Aa, Ab, As,PLM, T,ndrop,e);
+    [~, ysim(:,:,n)] = sim_learnLH_clean(param,gx,hx,eta, Aa, Ab, As,PLM, gain, T,ndrop,e);
 end
 
 ysim2 = ysim.^2;

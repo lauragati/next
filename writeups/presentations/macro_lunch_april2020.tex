@@ -616,6 +616,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{}
+	\label{no_commitment}
 
 \begin{lemma} The commitment solution of the Ramsey problem does not exist. 
 \end{lemma}
@@ -637,6 +638,9 @@ Target criterion becomes
 \
 
 $=$ target criterion under RE discretion
+
+\hfill \hyperlink{no_commitment_intuition}{\beamergotobutton{Why no commitment?}}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -701,10 +705,36 @@ $\rightarrow$ A first intertemporal tradeoff
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
+	\frametitle{Short-run costs, long-run benefits}
+	\label{SRLRtradeoffs}
+Assume Taylor rule and no concern for output gap stabilization	
+	
+\begin{equation*}
+i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0 
+\end{equation*}
+
+\begin{figure}[h!]
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\floatfoot{}
+\label{fig_loss}
+\end{figure}	
+	
+\hfill \hyperlink{SRcosts}{\beamergotobutton{Short-run costs}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
 	\frametitle{How to implement?}
 	
 	\begin{itemize}
-	\item Need reaction function to anchor beliefs
+	\item[$\Rightarrow$] Highlights role of reaction function to anchor expectations
+	
+	\
 	
 	\
 	
@@ -715,35 +745,11 @@ $\rightarrow$ A first intertemporal tradeoff
 	
 	\
 	
+	\
+	
 	\item E.g. Taylor rule disciplines $\; \hat{\E}_t i_T = \psi_{\pi}\hat{\E}_t\pi_{T}+\psi_{x}\hat{\E}_tx_{T}$
 	\end{itemize}
 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{}
-
-\begin{itemize}
-\item Or: need to announce target criterion
-
-\
-
-\item Problem 1: private sector needs to back out reaction function
-
-\
-
-\item Problem 2: private sector cannot compute target criterion
-
-\begin{align*}
-\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
-\\
-\bigg(\textcolor{blue}{\E_t}\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
-\bigg\}
-\end{align*}
-\end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -808,16 +814,6 @@ $\rightarrow$ A first intertemporal tradeoff
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{}
-\vspace{-1cm}
-	
-\centering Thank you!
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%
 %         TEMPLATES
@@ -964,6 +960,58 @@ f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb
 \end{align}
 
 \hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{No commitment - no lagged multipliers}
+	\label{no_commitment_intuition}
+	
+	Simplified version of the model: planner chooses $\{\pi_t, x_t, f_t, k_t\}_{t=t_0}^{\infty}$ to minimize
+ \begin{align*}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t- \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
+ \end{align*}
+
+ \begin{align}
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\textcolor{blue}{\varphi_{2,t}}(k_t + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \textcolor{blue}{\varphi_{2,t}} -\textcolor{blue}{\varphi_{2,t+1}}(1-k_{t+1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
+ \end{align}
+
+  
+\hyperlink{no_commitment}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Short-run costs from oscillatory dynamics}
+	\label{SRcosts}
+
+ Consider a stylized adaptive learning model in two equations:
+\begin{align}
+\pi_t & = \beta f_t + u_t \label{simple_NKPC} \\
+f_t & = f_{t-1} + k(\pi_t - f_{t-1}) \label{simple_expectations}
+\end{align}
+
+Solve for the time series of expectations $f_t$
+\begin{equation}
+f_t = \underbrace{\frac{1-k^{-1}}{1-k^{-1}\beta}}_{\approx 1}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
+\end{equation}
+
+Solve for forecast error $fe_t \equiv \pi_t - f_{t-1}$:
+\begin{equation}
+fe_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t \label{oscillating_fe}
+\end{equation}
+
+ 
+\hyperlink{SRLRtradeoffs}{\beamerreturnbutton{Return}}	
 
 
 \end{frame}

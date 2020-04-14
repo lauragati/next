@@ -77,11 +77,12 @@ for t = 1:T-1
         
         %Form Expectations using last period's estimates
         [fa, fb] = fafb_anal_constant_free(param,a, b, xsim(:,t),hx);
-        FA(:,t) = fa; 
+        FA(:,t) = fa;
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+        ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
         xesim = hx*xsim(:,t);
         
         %Update coefficients
@@ -106,7 +107,7 @@ for t = 1:T-1
         end
         
         % Create forecasts and FE
-        morning_fcst(:,t) = phi*[1;xsim(:,t)]; 
+        morning_fcst(:,t) = phi*[1;xsim(:,t)];
         % Yesterday evening's forecast error
         FEt_1(:,t) = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
         
