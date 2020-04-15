@@ -48,9 +48,9 @@
 \def \myTablePath {../../tables/} 
 
 \beamertemplatenavigationsymbolsempty % this removes the blue navigation bar that used to be on the bottom right
-\setbeamersize{text margin left=5mm,text margin right=12mm} 
+\setbeamersize{text margin left=30mm,text margin right=30mm} 
 %
-\font\reali=msbm10 at 12pt
+%\font\reali=msbm10 at 12pt
 
 %
 
@@ -81,6 +81,21 @@ An Endogenous Gain Learning Model}
     \tableofcontents[currentsection]
   \end{frame}
 }
+\useinnertheme{circles}
+
+% resets the bullet points of enumerate and itemize to defaults
+\setbeamertemplate{itemize items}[bullet]
+\setbeamertemplate{enumerate items}[default]
+
+%\defbeamertemplate{section in toc}{square unnumbered}{%
+%   \leavevmode\leftskip=1.75ex%
+%   \llap{\textcolor{red!70!black}{\vrule width2.25ex
+%     height1.85ex depth.4ex}}%
+%   \kern1.5ex\inserttocsection\par}
+%\setbeamertemplate{section in toc}[square unnumbered]
+
+% this removes the ugly bullets for the table of contents and just adds numbers
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
 
 % New Commands
 \newcommand{\real}{\hbox{\reali R}}
@@ -185,7 +200,7 @@ An Endogenous Gain Learning Model}
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Puzzling US business cycle fall 2019}
+	\frametitle{Puzzling Fed behavior fall 2019}
 
 \begin{figure}[h!]
 \subfigure[Unemployment rate, \%]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
@@ -219,7 +234,8 @@ An Endogenous Gain Learning Model}
 	\frametitle{Preview of results}
 	
 	\begin{enumerate}
-	\item  intertemporal tradeoff: short-run costs vs. long-run benefits of anchoring expectations
+	\item Two layers of new intertemporal tradeoffs 
+
 	
 	\
 	
@@ -232,7 +248,13 @@ An Endogenous Gain Learning Model}
 	\
 	
 	
-	\item[$\rightarrow$] illustrate in special case: target criterion 
+	\item[$\rightarrow$] illustrate analytically in special case: target criterion 
+	
+	\
+	
+	\
+	\item Not today: short-run costs vs. long-run benefits of anchoring expectations
+
 	\end{enumerate}
 
 
@@ -274,7 +296,7 @@ An Endogenous Gain Learning Model}
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Households - standard up to $\hat{\E}$}
+	\frametitle{Households: standard up to $\hat{\E}$}
 	\label{HH}
 
 Maximize lifetime expected utility
@@ -293,13 +315,14 @@ Budget constraint
 
 \vfill
 
-\hyperlink{details_HHs_firms}{\beamergotobutton{Consumption, price level}}
+%\vspace{2cm}
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Consumption, price level}}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Firms - standard up to $\hat{\E}$}
+	\frametitle{Firms: standard up to $\hat{\E}$}
 
 Maximize present value of profits
 \begin{equation}
@@ -315,14 +338,14 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 
 \vfill
 
-\hyperlink{details_HHs_firms}{\beamergotobutton{Profits, stochastic discount factor}}
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Profits, stochastic discount factor}}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Expectations - $\hat{\E}$ instead of $\E$}
+	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
 
 \begin{itemize}
 \item If use $\E$ (rational expectations, RE) \\
@@ -388,11 +411,16 @@ In RE, $\textcolor{blue}{a_{t-1} = (0,0,0)'}, b_{t-1} = g\;h \quad \forall t$
 \begin{frame}
 	\frametitle{Recursive least squares}
 	\label{RLS_special}
+	
+	\
+	
 Special case: learn only intercept of inflation:
 
 \begin{equation}
 a_{t-1} = (\bar{\pi}_{t-1},0,0)', \quad b_{t-1} = g\; h \quad \forall t
 \end{equation}
+
+\
 
 \
 
@@ -407,7 +435,7 @@ $\rightarrow$ RLS
  $b_1$ first row of $b$
 \vfill 
 
-\hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
 
 
 
@@ -417,7 +445,7 @@ $\rightarrow$ RLS
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Anchoring - endogenous gain}
+	\frametitle{Anchoring mechanism: endogenous gain}
 	\label{anchoring1}
 
 
@@ -440,40 +468,12 @@ k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
 
 \vfill 
 
-\hyperlink{g}{\beamergotobutton{Functional forms}}
+\hfill \hyperlink{g}{\beamergotobutton{Functional forms}}
 
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%  	
-\begin{frame}
-	\frametitle{Anchoring function - interpretation}
-	\label{anchoring_function}
-	
-\begin{equation*}
-k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) 
-\end{equation*}
-
-\begin{figure}[h!]
-\caption{U Michigan inflation expectations (\%)}
-\includegraphics[scale = 0.14]{\myFigPath macrolunch_umich}
-\end{figure}
-
-\begin{itemize}
-\item If gain nondecreasing, $\bar{\pi}$ changes \\
-$\rightarrow$ \emph{unanchored expectations}
-
-\
-
-%\item If gain decreasing, $\bar{\pi}$ stable $\rightarrow$ \emph{anchored expectations}
-\end{itemize}
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -503,14 +503,14 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ramsey problem for special case}
+\section{Solving the Ramsey problem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Ramsey problem}
 	 \begin{align*}
-& \min_{ \{y_t, \phi_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \min_{ \{y_t, \bar{\pi}_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
 & \text{s.t. model equations}
 \end{align*}
 
@@ -585,7 +585,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Interpretation - intertemporal tradeoffs}
+	\frametitle{Two layers of intertemporal tradeoffs}
 \small{
 \begin{align*}
 & \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
@@ -596,19 +596,19 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-\textcolor{red}{tradeoffs from discretion in RE} \\
+\textcolor{red}{Intratemporal tradeoffs in RE (discretion)} \\
 
 \
 
 \
 
-+ \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} \\
+\textcolor{blue}{Intertemporal tradeoff from current level and change of the gain } \\
 
 \
 
 \
 
-+ \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+\textcolor{mygreen}{Intertemporal tradeoff from future expected levels and changes of the gain}
 }
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -618,26 +618,21 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 	\frametitle{}
 	\label{no_commitment}
 
-\begin{lemma} The commitment solution of the Ramsey problem does not exist. 
+\begin{lemma} The commitment solution of the Ramsey problem does not exist under adaptive learning. 
 \end{lemma}
 
 \
 
 \
 
-Let $\quad k_t \rightarrow 0, \quad \mathbf{g_{z,t}} \rightarrow 0$
+\
+
+\begin{corollary} Optimal policy under adaptive learning is time-inconsistent. 
+\end{corollary}
 
 \
 
-Target criterion becomes
-
-\begin{align}
-& \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} 
-\end{align}
-
-\
-
-$=$ target criterion under RE discretion
+\vfill
 
 \hfill \hyperlink{no_commitment_intuition}{\beamergotobutton{Why no commitment?}}
 
@@ -645,94 +640,26 @@ $=$ target criterion under RE discretion
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{}
-
-\begin{corollary} Optimal policy is time-inconsistent. 
-\end{corollary}
-
-\
-
-Already true for exogenous gain learning!  
-
-\
-
-Constant gain specification:
-
-\begin{itemize}
-\item $k_t = k$
-\item $g_{z,t} = 0$ (still)
-\end{itemize}
 
 
-\begin{align}
-\pi_t  = -\frac{\lambda_x}{\kappa} x_t + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} k
-\E_t\sum_{i=1}^{\infty}x_{t+i}(1-k)^i 
- \label{target_molnar} % I think this is still correct, despite the corrections of March 30, 2020.
-\end{align}
 
 
-\
-
-$\rightarrow$ A first intertemporal tradeoff
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Anchoring as a second intertemporal tradeoff}
-\small{
-\begin{align*}
-& \pi_t  =  \; -\frac{\lambda_x}{\kappa} x_t \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
-\end{align*}
-
-\
-
-\
-
-+ \textcolor{blue}{first intertemporal tradeoff from stance of learning} \\
-
-\
-
-\
-
-+ \textcolor{mygreen}{second intertemporal tradeoff from stance of anchoring}
-}
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Short-run costs, long-run benefits}
-	\label{SRLRtradeoffs}
-Assume Taylor rule and no concern for output gap stabilization	
-	
-\begin{equation*}
-i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0 
-\end{equation*}
-
-\begin{figure}[h!]
-\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
-\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
-\caption{Central bank loss as a function of $\psi_{\pi}$}
-%\floatfoot{}
-\label{fig_loss}
-\end{figure}	
-	
-\hfill \hyperlink{SRcosts}{\beamergotobutton{Short-run costs}}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+\section{Implications}
+%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{How to implement?}
-	
+
+\	
 	\begin{itemize}
-	\item[$\Rightarrow$] Highlights role of reaction function to anchor expectations
+	\item Related issue under RE: optimal interest rate sequence implies indeterminate equilibrium
+	
+	\
+	
+	\item[$\Rightarrow$] Reaction function stabilizes expectations
 	
 	\
 	
@@ -747,7 +674,9 @@ i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0
 	
 	\
 	
-	\item E.g. Taylor rule disciplines $\; \hat{\E}_t i_T = \psi_{\pi}\hat{\E}_t\pi_{T}+\psi_{x}\hat{\E}_tx_{T}$
+	\item E.g. Taylor rule disciplines expectations:
+	
+	 $$\; \hat{\E}_t i_T = \psi_{\pi}\hat{\E}_t\pi_{T}+\psi_{x}\hat{\E}_tx_{T}$$
 	\end{itemize}
 
 
@@ -756,23 +685,23 @@ i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Form of reaction function?}
+	\frametitle{Next steps: form of reaction function}
 	
 \begin{itemize}
-\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)$
+\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)$ nonlinear
 
 \
 
-\item Preliminary results prefer the simple Taylor rule 
-\begin{align*}
-&i_t = \psi_{\pi}\pi_t \\
-& \text{over} \\
-& i_t = \psi_{\pi}\pi_t + \psi_k k_t + \psi_{\bar{\pi}}\bar{\pi}_{t-1}
-\end{align*}
+\
+
+\item Would explain deviations from Taylor rule
+
 
 \
 
-\item Taylor rule better approximation of optimal policy than under RE?
+\
+
+\item However: no commitment makes Taylor rule more viable than under RE as a rough approximation of optimal feedback rule
 \end{itemize}
 	
 
@@ -788,26 +717,16 @@ i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0
 
 \
 
-\item Optimal policy conditions on
+\
+
+\item Optimal policy conditions on stance of current and expected future anchoring
+\item[] \hspace{4cm} $\hookrightarrow$ determine intertemporal tradeoffs
 
 \
 
-\begin{itemize}
-
-\item stance of expectations 
-
 \
 
-\item stance of anchoring and expected future anchoring
-\end{itemize}
-
-\
-
-\item Optimal policy trades off short-run costs with future benefits of anchoring expectations
-
-\
-
-\item Can explain departures from the Taylor rule like US, fall 2019
+\item Explain departures from the Taylor rule like US, fall 2019
 \end{itemize}
 
 
@@ -843,6 +762,32 @@ i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \backupbegin
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Short-run costs, long-run benefits}
+	\label{SRLRtradeoffs}
+
+\
+	
+Assume Taylor rule and no concern for output gap stabilization	
+	
+\begin{equation*}
+i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0 
+\end{equation*}
+
+\begin{figure}[h!]
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\floatfoot{}
+\label{fig_loss}
+\end{figure}	
+	
+\hfill \hyperlink{SRcosts}{\beamergotobutton{Short-run costs}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%% Slide %%%%%%
