@@ -354,7 +354,7 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 
 Model solution 
  \begin{align}
- s_t & = h s_{t-1} + \epsilon_t \label{state} \\
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
  y_t & = g s_t \label{obs_RE}
  \end{align}
 
@@ -431,7 +431,7 @@ $\rightarrow$ RLS
  
  \
  
- $k_t$ gain \\
+ $k_t \in (0,1)$ gain \\
  $b_1$ first row of $b$
 \vfill 
 
@@ -589,7 +589,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 \small{
 \begin{align*}
 & \pi_t  =  \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi},t+j}} }
+& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
 \end{align*}
 
 \
@@ -602,13 +602,14 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-\textcolor{blue}{Intertemporal tradeoff from current level and change of the gain } \\
+\textcolor{blue}{Intertemporal tradeoff: current level and change of the gain } \\
 
 \
 
 \
 
-\textcolor{mygreen}{Intertemporal tradeoff from future expected levels and changes of the gain}
+\textcolor{mygreen}{Intertemporal tradeoff: future expected levels and changes of the gain}
+
 }
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -694,7 +695,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-\item Would explain deviations from Taylor rule
+\item Explains deviations from Taylor rule
 
 
 \
@@ -702,6 +703,12 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 \
 
 \item However: no commitment makes Taylor rule more viable than under RE as a rough approximation of optimal feedback rule
+
+\
+
+\
+
+\item If Taylor rule, model prefers being less aggressive on inflation
 \end{itemize}
 	
 
@@ -727,6 +734,12 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 \
 
 \item Explain departures from the Taylor rule like US, fall 2019
+
+\
+
+\
+
+\item If Fed acted to anchor expectations, then Missing Deflation and Inflation are not ``missing"
 \end{itemize}
 
 
