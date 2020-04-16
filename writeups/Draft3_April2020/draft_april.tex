@@ -106,11 +106,10 @@ An Endogenous Gain Learning Model \\
 %%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
 
 \begin{abstract}
-This paper analyzes optimal monetary policy in a behavioral model where expectation formation is characterized by potential anchoring of expectations. Expectations are anchored when in an adaptive learning setting, the private sector endogenously chooses a decreasing learning gain. Within the context of an otherwise standard macro model with nominal rigidities, I find that the central bank trades off the short-run costs with the long-run benefits of anchoring expectations. Having anchored expectations reduces the volatility of observables in the long run, but getting expectations anchored is costly in terms of inducing volatility in the short run. Optimal policy therefore takes the form of a targeting rule that conditions on the stance of expectations.   
+This paper analyzes optimal monetary policy in a behavioral model where expectation formation is characterized by potential anchoring of expectations. Expectations are anchored when in an adaptive learning setting, the private sector endogenously chooses a decreasing learning gain. Within the context of an otherwise standard macro model with nominal rigidities, I find that the central bank trades off the short-run costs with the long-run benefits of anchoring expectations. Optimal policy is characterized by a targeting rule that spells out this tradeoff conditional on the extent to which expectations are anchored. In particular, having anchored expectations reduces the volatility of observables in the long run, but getting expectations anchored is costly in terms of inducing volatility in the short run. 
 \end{abstract}
 
-% 27 March 2020:
-%This paper analyzes optimal monetary policy in a behavioral model where expectation formation is characterized by potential anchoring of expectations. Expectations are anchored when in an adaptive learning setting, the private sector endogenously chooses a decreasing learning gain. Within the context of an otherwise standard macro model with nominal rigidities, I find that the central bank trades off the short-run costs with the long-run benefits of anchoring expectations. Optimal policy is characterized by a targeting rule that spells out this tradeoff conditional on the extent to which expectations are anchored. In particular, having anchored expectations reduces the volatility of observables in the long run, but getting expectations anchored is costly in terms of inducing volatility in the short run. 
+
 
 %\tableofcontents
 
@@ -172,7 +171,7 @@ The paper is structured as follows. Section \ref{NK} introduces the model and th
  %%%%%%%%%%%%%%%%%%           NK MODEL            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \section{The model}\label{NK}
-Apart from expectation formation, the model is a standard New Keynesian model where the rational expectations (RE) assumption is replaced by the behavioral assumption of expectation-anchoring. The advantage of having a standard NK backbone to the model is that one can neatly isolate the way the anchoring mechanism alters the behavior of the model. Since the mechanics of the rational expectations version of this model are well understood, I only lay out the model briefly and pinpoint the places where the assumption of nonrational expectations matters.\footnote{For the specifics of the NK model the reader is referred to \cite{woodford2011interest}.}
+Apart from expectation formation, the model is a standard New Keynesian model with nominal frictions \`a la \cite{calvo1983staggered}. The advantage of having a standard NK backbone to the model is that one can neatly isolate the way the anchoring mechanism alters the behavior of the model. Since the mechanics of the rational expectations version of this model are well understood, I only lay out the model briefly and pinpoint the places where the assumption of nonrational expectations matters.\footnote{For the specifics of the NK model the reader is referred to \cite{woodford2011interest}.}
 \subsection{Households}
 The representative household is infinitely-lived and maximizes expected discounted lifetime utility from consumption net of the disutility of supplying labor hours:
 \begin{equation}
@@ -250,25 +249,11 @@ where the matrices $A_i, \; i=\{a,b,s\}$ gather coefficients and are given in Ap
  \end{equation}
 where $h$ gathers the autoregressive coefficients $\rho_j$, $\epsilon_t$ the Gaussian innovations $\varepsilon_t^j$, and $\eta$ the standard deviations $\sigma_t^j$, for $j=\{r,i,u\}$. $\Sigma = \eta \eta'$  is the variance-covariance matrix of disturbances.\footnote{For the sake of conciseness, I have suppressed the expressions for these in the main text. See App. \ref{app_compact}.}
 
-  %%%%%%%%%%%%%%%%%%           MON.POL. PROBLEM            %%%%%%%%%%%%%%%%%% 
-%\newpage
-\subsection{Monetary policy}\label{monpol}
-I assume the monetary authority seeks to maximize welfare of the representative household under commitment. As shown in \cite{woodford2011interest}, a second-oder Taylor approximation of household utility delivers a central bank loss function of the form
-\begin{equation}
-L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
-\end{equation}
-where $\lambda_j \; j=\{x,i\}$ is the weight the central bank assigns to stabilizing variable $j$ and $j^*$ is its target value. The central bank's problem, then, is to determine paths for inflation, the output gap and the interest rate that minimize the loss in Equation (\ref{CBloss}), subject to the model equations (\ref{NKIS}) and (\ref{NKPC}), as well as the evolution of long-horizon expectations, spelled out in Section \ref{learning}. A second question is to find a policy rule - a response function for the policy instrument $i_t$ - that implements the optimal allocation.
-
-While for most of the paper I consider a general specification for monetary policy, in Section \ref{opt_TR}, I will restrict attention to a standard Taylor rule:
-\begin{equation}
-i_t = \psi_{\pi}(\pi_t -\bar{\pi}) + \psi_{x} (x_t -\bar{x}) + \bar{i}_t  \label{TR}
-\end{equation}
-where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively, $\bar{\pi}$ and $\bar{x}$ are the central bank's targets. Lastly, $\bar{i}_t$ is a monetary policy shock. I assume that the central bank publicly announces the Taylor rule. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning.\footnote{In an extension I consider the case where the Taylor rule is not known (or not believed) by the public and therefore is learned together with the relations (\ref{NKIS}) and (\ref{NKPC}). This dampens intertemporal expectation effects as long as the Taylor rule is not learned; afterwards, the model dynamics are identical to those of the baseline.} 
 
  %%%%%%%%%%%%%%%%%%           LEARNING            %%%%%%%%%%%%%%%%%% 
 %\newpage
-\section{Learning with anchored expectations}\label{learning}
-The main informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Therefore they are not able to form rational expectations forecasts.\footnote{To see this, observe that an agent with rational expectations would internalize the rational expectations state-space system (see (\ref{state}) - (\ref{obs_RE}) in App. \ref{app_compact}) and would therefore forecast future jumps as $\E_t z_{t+h} = g^{RE}\E_ts_{t+h} = g^{RE}h^{h}s_t$, where $g^{RE}$ is the mapping between states and jumps under rational expectations. Agents in the learning model however don't know $g^{RE}$ and are thus indeed unable to form the rational expectations forecast.} Instead, agents postulate an ad-hoc forecasting relationship between states and jumps and seek to refine it in light of incoming data. 
+\section{Learning with an anchoring mechanism}\label{learning}
+The informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Therefore they are not able to form rational expectations forecasts.\footnote{To see this, observe that an agent with rational expectations would internalize the rational expectations state-space system (see (\ref{state}) - (\ref{obs_RE}) in App. \ref{app_compact}) and would therefore forecast future jumps as $\E_t z_{t+h} = g^{RE}\E_ts_{t+h} = g^{RE}h^{h}s_t$, where $g^{RE}$ is the mapping between states and jumps under rational expectations. Agents in the learning model however don't know $g^{RE}$ and are thus indeed unable to form the rational expectations forecast.} Instead, agents postulate an ad-hoc forecasting relationship between states and jumps and seek to refine it in light of incoming data. 
 \subsection{Perceived law of motion}
 I assume agents consider a forecasting model for jumps of the form
 \begin{equation}
@@ -295,28 +280,23 @@ R_t &= R_{t-1} +  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \be
 \end{align}
 where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t^{-1}$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi$. A low gain, by contrast, means that the current forecast error only has a small effect on $\phi_t$.
 
-The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time so that $k_t^{-1} = (k_{t-1}+1)^{-1}$. Instead, in the spirit of \cite{carvalho2019anchored}, I allow firms and households in the model to choose whether to use a constant or a decreasing gain. I use the following endogenous gain specification: let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
-\begin{align}
-\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t-1} fe_{t-1}'  -\omega_{t-1})\\
-\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t-1}'\omega_t^{-1}fe_{t-1} -\theta_{t-1}) \label{cusum_crit}
-\end{align}
-where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $fe_{t-1}$ is the most recent forecast error, realized at time $t$. Then for a specified threshold $\tilde{\theta}$, the gain is determined endogenously as
-\begin{align*}
-k_t & = \begin{cases} k_{t-1}+1 \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis \label{anchoring}
-\end{cases} 
-\end{align*}
-In other words, agents choose a decreasing gain when the criterion $\theta_t$ is lower than the threshold $\tilde{\theta}$; otherwise they choose a constant gain. This framework, which I call an anchoring mechanism, captures the intuition that when current squared forecast errors are large compared to agents' estimated forecast error variance, agents conclude that the forecasting performance of their current PLM $\phi_{t-1}$ is poor. Since $\phi_{t-1}$ appears to provide an inaccurate description of the evolution of observables, agents choose a constant gain, reflecting their desire to update $\phi$ strongly using the most recent data. By contrast, if $\theta_t <\tilde{\theta}$, current squared forecast errors are not sizable compared the estimated forecast error variance; it seems that $\phi_{t-1}$ is close to the data-generating process and so agents see no need to change it, thus opting for a decreasing gain. The situation when $\theta_t <\tilde{\theta}$  thus constitutes \emph{anchored expectations}.
+\subsection{Endogenous gain as anchoring mechanism}
 
-It is worthwhile to compare my anchoring criterion $\theta$ to the one in \cite{carvalho2019anchored}. The criterion employed by \cite{carvalho2019anchored} is computed as the absolute difference between subjective and model-consistent expectations, scaled by the variance of shocks. On the one hand, their specification requires the private sector to evaluate model-consistent expectations, which runs counter to the maintained informational assumptions. It is more consistent with the present model, then, to assume that firms and households employ a statistical test of structural change. This motivates my choice of a statistic for $\theta$ as a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.} 
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time so that $k_t^{-1} = (k_{t-1}+1)^{-1}$. Instead, in the spirit of \cite{carvalho2019anchored}, I allow firms and households in the model to choose whether to use a constant or a decreasing gain. I use the following endogenous gain specification: let $fe_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
+\begin{equation}
+k_t^{-1}  = k_{t-1}^{-1} + \mathbf{g}(fe_{t|t-1}) 
+\label{anchoring}
+\end{equation}
+where $\mathbf{g(\cdot)}$ is a smooth, increasing function in the forecast error that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$.
 
-On the other hand, simulation of the model using \cite{carvalho2019anchored}'s criterion reveals that their criterion leads to the opposite comparative statics of anchoring with respect to monetary policy aggressiveness. In particular, while policy that is more aggressive on inflation (a higher $\psi_{\pi}$) leads to more anchoring in a model with the CUSUM-inspired criterion, if one uses \cite{carvalho2019anchored}'s criterion, the same comparative static involves \emph{less} anchoring. This comes from the fact that \cite{carvalho2019anchored}'s criterion endows the public sector with capabilities to disentangle volatility due to the learning mechanism from that owing to exogenous disturbances. Thus agents in the \cite{carvalho2019anchored} model are able to make more advanced inferences about the performance of their forecasting rule and understand that a higher $\psi_{\pi}$ causes more learning-induced volatility. This is however not possible for agents who process data in real time without knowledge of the model. Therefore the CUSUM-inspired criterion is preferable both on conceptual and quantitative grounds.
+Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. If they observe small forecast errors, $\mathbf{g(\cdot)} < 0$.  Firms and households thus use decreasing gains, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's estimate of $g$, $g^l$, is not updated strongly. In other words, the previously maintained PLM is seen as close enough to the true DGP. 
 
-%Further inspection of the anchoring mechanism foreshadows how anchoring and monetary policy interact in the model. Recall that $\phi = [a,b]$, where $a$ is the estimate of the constant and $b$ the estimate of the slope in the law of motion of jumps. Believing the estimate $b$ to be correct means that agents think they know how observables respond to shocks. Analogously, thinking that the estimate $a$ is correct has the interpretation of agents being confident about the long-run average values of the observables. But that is equivalent to agents trusting that the central bank is able to implement its proclaimed targets in the long run. In this way, anchored expectations has a natural interpretation as trust in the central bank's ability to achieve the long-run target.\footnote{For this reason, a learning specification in which only the constant is learned ($b= b^{RE}$) is sufficient to analyze anchored expectations qualitatively. Quantitatively, however, learning the slope makes a big difference. For this reason, figures that aim to provide intuition on the workings of anchoring, such as the figures of Section \ref{results_sim}, are, unless stated otherwise, computed using the constant-only specification.} 
-%
-%Having thus established anchored expectations as a metric of trust in the central bank implementing the announced target, it becomes intuitive why a monetary authority would want to make sure that expectations do not become unanchored. Clearly, unanchored expectations have the opposite interpretation to anchored ones: they reflect that the public has doubts whether the bank is committed or able to achieve the long-run target. And due to the feedback from expectations to observables (recall Equation (\ref{LOM_LR})), unanchored expectations can have self-confirming effects in that they cause observables to drift away from the announced target. Thus a central bank that doesn't come across as committed to the target may fail to anchor expectations and will thus face additional difficulty in implementing the target. 
+By contrast, observing large forecast errors leads to increasing gains, which corresponds to assigning a higher weight to more recent observations than old ones. Such a forecasting scheme outperforms the decreasing gain scheme when the environment is volatile, reflecting a possible regime switch. If the previous DGP has been replaced by a new one, having high gains allows agents to discount old observations generated by the previous DGP that is no longer in effect, and rely more on the newest observations that come from the current DGP. In this way, agents can learn the new DGP faster, correcting their previously held PLM. This is the case of \emph{unanchored expectations}. 
+
+It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping $g$ between states and jumps than $g^l_{t-1}$, so that$g^l_t$ is updated strongly. Private sector forecasts will thus drift in the direction of the update in $g^l$, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. However, it is not obvious that the central bank prefers to anchor expectations at all points in time because regime shifts in model parameters might warrant letting the private sector learn the new DGP fast. Indeed, the contribution of this paper is to characterize formally the nature of the monetary policy problem when expectation formation is characterized by the  anchoring mechanism.
 
 \subsection{Actual law of motion}
-Having laid out the expectation formation, I can now characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
+To complete the model, I now use the specifics of the anchoring expectation formation to characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
 \begin{equation}
 f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta h)^{-1}s_t \quad \quad \quad f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta h)^{-1}s_t  \label{fafb_anal}
 \end{equation}
@@ -330,51 +310,42 @@ where $g^l$ is a $3\times4$ matrix given in App. \ref{app_FG}. Thus, instead of 
 
 
 
+
  %%%%%%%%%%%%%%%%%%            RESULTS            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \section{Monetary policy and anchoring}\label{analytical}
 
 In this section I use the model developed above to analyze the interaction between monetary policy and the anchoring mechanism. I begin with an analytical characterization of optimal monetary policy. As a first step, I analyze the Ramsey problem of determining optimal paths for the endogenous variables that policy seeks to bring about.  While the anchoring mechanism introduces substantial nonlinearity into the model, it is possible to derive an optimal targeting criterion for the policymaker to follow. As we shall see, the optimal rule prescribes for monetary policy to act conditionally on the stance of expectations. In particular, whether expectations are anchored or not matters for the extent to which there is a tradeoff between inflation and output gap stabilization, as well as for determining the intertemporal cost-benefit tradeoff for getting or keeping expectations anchored. 
 
-Since history-dependence is not a feature of the optimal solution, purely forward-looking Taylor rules of the class of Equation (\ref{TR}) are no longer dominated by the Ramsey solution. In Section \ref{opt_TR}, I therefore solve for the optimal coefficients in Equation (\ref{TR}) and investigate how the choice of Taylor-rule coefficients affects the anchoring mechanism. In contrast to conventional wisdom in learning models, optimal monetary policy is \emph{less} aggressive on inflation (and on the output gap) in the anchoring model than under rational expectations. As I explain in detail below, the reason is the anchoring mechanism represents a novel intertemporal tradeoff for the central bank in which the short-run costs of getting expectations anchored are traded off against the long-run benefits.
+Since history-dependence is not a feature of the optimal solution, purely forward-looking Taylor rules of the class of Equation (\ref{TR}) are no longer dominated by the Ramsey solution. In Section \ref{opt_TR}, I therefore restrict attention to Taylor-type feedback rules for the interest rate. I solve for the optimal coefficients in Equation (\ref{TR}) numerically and investigate how the choice of Taylor-rule coefficients affects the anchoring mechanism. In contrast to conventional wisdom in learning models, optimal monetary policy is \emph{less} aggressive on inflation (and on the output gap) in the anchoring model than under rational expectations. As I explain in detail below, the reason is the anchoring mechanism represents a novel intertemporal tradeoff for the central bank in which the short-run costs of getting expectations anchored are traded off against the long-run benefits.
+
+  %%%%%%%%%%%%%%%%%%           MON.POL. PROBLEM            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\subsection{The Ramsey problem}\label{ramsey}
+I assume the monetary authority seeks to maximize welfare of the representative household under commitment. As shown in \cite{woodford2011interest}, a second-oder Taylor approximation of household utility delivers a central bank loss function of the form
+\begin{equation}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
+\end{equation}
+where $\lambda_j \; j=\{x,i\}$ is the weight the central bank assigns to stabilizing variable $j$ and $j^*$ is its target value. The central bank's problem, then, is to determine paths for inflation, the output gap and the interest rate that minimize the loss in Equation (\ref{CBloss}), subject to the model equations (\ref{NKIS}) and (\ref{NKPC}), as well as the evolution of long-horizon expectations, spelled out in Section \ref{learning}. A second question is how to implement the optimal allocation; that is, to find a response function for the policy instrument $i_t$ that implements the optimal sequences for the observables.
+
+While for most of the paper I consider a general specification for monetary policy, in Section \ref{opt_TR}, I will restrict attention to a standard Taylor rule:
+\begin{equation}
+i_t = \psi_{\pi}(\pi_t -\bar{\pi}) + \psi_{x} (x_t -\bar{x}) + \bar{i}_t  \label{TR}
+\end{equation}
+where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively, $\bar{\pi}$ and $\bar{x}$ are the central bank's targets. Lastly, $\bar{i}_t$ is a monetary policy shock. I also assume that when the Taylor rule is in effect, the central bank publicly announces this. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning.\footnote{In an extension I consider the case where the Taylor rule is not known (or not believed) by the public and therefore is learned together with the relations (\ref{NKIS}) and (\ref{NKPC}). This dampens intertemporal expectation effects as long as the Taylor rule is not learned; afterwards, the model dynamics are identical to those of the baseline.} 
  
 
 % %%%%%%%%%%%%%%%%%%           ANALYTICAL RESULTS            %%%%%%%%%%%%%%%%%% 
 \subsection{Ramsey policy under anchoring}\label{ramsey}
 
-To illustrate the first result in a parsimonious manner, consider a highly simplified version of the model. The planner chooses $\{\pi_t, x_t, f_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
- \begin{align*}
-\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
- \end{align*}
- where the IS-curve, $x_t = \E_t x_{t+1}+\sigma f_t -\sigma i_t +\sigma r_t^n$, is a non-binding constraint, therefore excluded from the problem, and $\E_t x_{t+1}$ is rational. In this simplified setting, $f_t$ is a stand-in variable capturing inflation expectations that evolves according to a recursive least squares algorithm. The anchoring function $\mathbf{g}$ specifies how the gain $k_t^{-1}$ changes as a function of the current forecast error.\footnote{An economically more sensible specification would be $k_t^{-1}-k_{t-1}^{-1} = \mathbf{g(\pi_t-f_{t-1})}$, but I abstract from it for the sake of simplicity.} Note that the problem involves commitment because the monetary authority internalizes the effects of its actions both on the evolution of expectations and on that of the gain. 
- 
- After some manipulation, first order conditions reduce to:
- \begin{align}
-  2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
-  -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
- \end{align}
-Inspection of this system reveals that unlike the rational expectations case ($f_t = \E_t{\pi_{t+1}}$), the optimal solution does not involve lagged multipliers.\footnote{This echoes the findings of \cite{molnar2014optimal} and \cite{gaspar2010inflation}.} This implies that the monetary authority cannot condition the optimal time path of inflation and the output gap on the past; optimal policy is not history-dependent. This leads me to the following result.
+Appendix \ref{app_midsimple_problem} lays out the policy problem for a simplified version of the baseline model. In particular, I make three simplifying assumptions compared to the baseline model. First, I assume that only the  inflation process is learned; expectations about the output gap and the interest rate are rational evaluations of the infinite sum of future expectations. Second, I assume that only the constant of the inflation process is learned. Third, I consider the following simplification of the anchoring mechanism:\footnote{These assumptions are made for algebraic convenience only and do not alter the qualitative implications of the model. For a more general version, see App. \ref{app_generalTC}.}
 
-\begin{result} Nonexistence of commitment under learning \\
-In an adaptive learning model with exogenous or endogenous gain, the optimal Ramsey policy does not involve commitment. 
-\label{result_no_commitment}
-\end{result}
-
-The intuition for this result is easy to see if one compares expectation formation under rational expectations and learning. In the former, the lagged multiplier appears in the solution because expected inflation is a jump variable; the government can fool the public once, but subsequently the public internalizes this and incorporates it into its expectations. The adjustment of expectations under rational expectations is a punishment strategy for deviating which enables the central bank to commit to abstaining from deviation. 
-
-\cite{mele2019perils} report a similar finding in a decreasing gain learning model.\footnote{Their terminology of contrasting ``inflation-targeting'' with ``price-level targeting" policy rules renders the connection to commitment less immediate, but it is helpful to recall that in the rational expectations NK model, optimal discretionary monetary policy involves inflation stabilization, while optimal commitment entails full price-level stabilization.} Their explanation for the lack of a commitment device on the part of the central bank is that learning agents have no ``off-equilibrium strategies." More explicitly, one can think of the policy problem as an infinitely repeated prisoner's dilemma between the public and the monetary authority. Under rational expectations, the immediate adjustment of expectations plays the role of the public's punishment strategy which keeps the monetary authority from deviating from the commitment equilibrium in each stage game. Because expectations in the learning model are purely backward-looking and sluggish to update, however, the public cannot implement a punishment immediately after a deviation by the monetary authority. Thus the folk theorem fails and the authority deviates in every stage game.\footnote{In a sense the folk theorem fails here because expectations lack a notion of optimality; the public is an automaton with strategies specified in a suboptimal way. The literature on central bank reputation seeks to address this by reintroducing some form of optimality to expectation formation. See \cite{cho1995induction} and \cite{ireland2000expectations}. Another possible remedy is to retain a sufficient degree of forward-looking expectations as in the finite-horizon planning approach advocated by \cite{woodford2019monetary}.} 
-
-The system of first order conditions (\ref{simpleFOC1})-(\ref{simpleFOC2}) and model equations for this simplified system also reveal how the endogenous gain introduces nonlinearity to the equation system. In particular, notice how in equations (\ref{simpleFOC1})-(\ref{simpleFOC2}) the gain $k_t^{-1}$ shows up multiplicatively with the Lagrange multiplier, $\varphi_{2,t}$. In fact, the origin of the problem is the recursive least squares learning equation
 \begin{equation}
-f_t = f_{t-1} + k_t^{-1}(\pi_t - f_{t-1}) \label{simpleRLS}
+k_t = \mathbf{g}(fe_{t|t-1}) \label{anchoring_simple}
 \end{equation}
-where the first interaction terms between the gain and other endogenous variables show up. This results in an equation system of nonlinear difference equations that does not admit an analytical solution. 
+ 
 
-Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed the endogeneity of the gain that causes these troubles. Were we to specify a constant gain setup, $k_t^{-1}$ would merely equal the constant $\bar{g}$ and the anchoring function $\mathbf{g}$ would trivially reduce to $\bar{g}$ as well. In such a case, all interaction terms would reduce to multiplication between endogenous variables and parameters; linearity would be restored and a solution for the optimal time paths of endogenous variables would be obtainable. Similarly, a decreasing gain specification would also be manageable since for all $t$, the gain would simply be given by $t^{-1}$, and the anchoring function would also be deterministic and exogenous. 
-
-Although a full optimal time path for the endogenous variables is thus not available for the anchoring model, it is still possible to characterize optimal monetary policy in terms of a target criterion. That is, one can express a relationship between inflation and output gaps from the first order conditions that characterizes the optimal plan that the monetary authority can rely on to implement and to communicate its policy.\footnote{See \cite{woodford2011interest} for a discussion of the desirability of target criteria for robustly optimal policy as well as ease of communication with the public.}  
-
-Appendix \ref{app_midsimple_problem} lays out the policy problem for a simplified version of the baseline model. In particular, I make three simplifying assumptions compared to the baseline model. First, I assume that only the  inflation process is learned; expectations about the output gap and the interest rate are rational evaluations of the infinite sum of future expectations. Second, I assume that only the constant of the inflation process is learned. Third, like in the very simple model above, I maintain the assumption of an unspecified anchoring function $\mathbf{g}$ which determines the current gain as a function of the most recent forecast error.\footnote{These assumptions are made for algebraic convenience only and do not alter the model's interpretation as describing the interaction between anchoring and monetary policy. Focusing on long-run inflation expectations only in fact serves to highlight the situation in which the question of anchoring is of most acute importance to central bankers.} The solution of this problem is stated in the following result.
+The solution of the Ramsey problem under these assumptions is stated in the following result.
 
 \begin{result} Target criterion in the anchoring model \\
 The targeting rule in the simplified learning model with anchoring is given by
@@ -390,7 +361,7 @@ The targeting rule in the simplified learning model with anchoring is given by
 %\bigg\} \label{target}
 %\end{align}
 
-For the derivation, see Appendix \ref{app_midsimple_problem}.
+For the derivation, see Appendix \ref{app_midsimple_problem}. For a general target criterion without assumption (\ref{anchoring_simple}), see Appendix \ref{app_generalTC}. 
 \label{result_target_anchoring}
 \end{result}
 The interpretation of Equation (\ref{target}) is that the tradeoff between inflation and output gaps due to cost-push shocks is amplified in two ways due to the anchoring mechanism. The first is the presence of learning, captured by the gain $k_t^{-1}$ in the second term on the right-hand side. This corresponds to the results of \cite{molnar2014optimal}, who show in the context of a decreasing or constant gain Euler-equation learning model that the presence of learning introduces a novel intertemporal tradeoff between inflation and output gap stabilization. That effect is thus present here too. However, there is another effect due to the anchoring mechanism. It is manifest both in the $((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t)$ term in the first bracket and in the multiplication of $(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})$ in the second.
@@ -421,39 +392,36 @@ Is the target criterion (\ref{target}) implementable in practice? Even in the ca
 \end{align} 
 While still a long expression, the interpretation of (\ref{target_simplified}) is straightforward. It instructs the policymaker to weigh the inflation-output gap tradeoff by the current output gap and an additional term that captures the effects of learning and anchoring. The learning-and-anchoring term corresponds exactly to expected future output gaps, discounted by future gains, assuming those to be equal to current ones, where the entire expression is weighted by the current gain and the extent of the change in the current gain times the forecast error.
 
-To the public, such a rule could be communicated in simple terms along the lines of: ``current inflation will target the negative of today's output gap, minus the present discounted value of all expected future output gaps, discounted by the current gain, times the sum of the current gain and the forecast error times the change in the current gain.'' The advantage of such a targeting rule is that it is simple to communicate and to compute, and, given that it is more aligned with the long-run expectation of learning agents with anticipated utility, it can also reduce forecast errors and thus aid the anchoring of expectations. 
+To the public, such a rule could be communicated in simple terms along the lines of: ``current inflation will target the negative of today's output gap, minus the present discounted value of all expected future output gaps, discounted by the current gain, times the sum of the current gain and the forecast error times the change in the current gain.'' The advantage of such a targeting rule is that it is simple to communicate and to compute, and, given that it is more aligned with the long-run expectation of learning agents with anticipated utility, it can also reduce forecast errors and thus aid the anchoring of expectations.
+
+\subsection{No commitment under adaptive learning}
+Underlying the notion that the anchoring model has as a limit the discretionary rational expectations model is a striking general result. To illustrate this result in a parsimonious manner, consider a simplified version of the model. The planner chooses $\{\pi_t, x_t, f_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+ \begin{align*}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
+ \end{align*}
+ where the IS-curve, $x_t = \E_t x_{t+1}+\sigma f_t -\sigma i_t +\sigma r_t^n$, is a non-binding constraint, therefore excluded from the problem, and $\E_t x_{t+1}$ is rational. In this simplified setting, $f_t$ is a stand-in variable capturing inflation expectations that evolves according to a recursive least squares algorithm. The anchoring function $\mathbf{g}$ specifies how the gain $k_t^{-1}$ changes as a function of the current forecast error according to assumption(\ref{anchoring_simple}).\footnote{Here I maintain assumption (\ref{anchoring_simple}) for presentational purposes. It has no bearing on the results.} Note that the problem involves commitment because the monetary authority internalizes the effects of its actions both on the evolution of expectations and on that of the gain. 
+ 
+ After some manipulation, first order conditions reduce to:
+ \begin{align}
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
+ \end{align}
+Inspection of this system reveals that unlike the rational expectations case ($f_t = \E_t{\pi_{t+1}}$), the optimal solution does not involve lagged multipliers.\footnote{This echoes the findings of \cite{molnar2014optimal} and \cite{gaspar2010inflation}.} This implies that the monetary authority cannot condition the optimal time path of inflation and the output gap on the past; optimal policy is not history-dependent. This leads me to the following result.
+
+\begin{result} Nonexistence of commitment under adaptive learning \\
+In an adaptive learning model with exogenous or endogenous gain, the optimal Ramsey policy does not involve commitment. 
+\label{result_no_commitment}
+\end{result}
+
+The intuition for this result is easy to see if one compares expectation formation under rational expectations and learning. In the former, the lagged multiplier appears in the solution because expected inflation is a jump variable; the government can fool the public once, but subsequently the public internalizes this and incorporates it into its expectations. The adjustment of expectations under rational expectations is a punishment strategy for deviating which enables the central bank to commit to abstaining from deviation. 
+
+\cite{mele2019perils} report a similar finding in a decreasing gain learning model.\footnote{Their terminology of contrasting ``inflation-targeting'' with ``price-level targeting" policy rules renders the connection to commitment less immediate, but it is helpful to recall that in the rational expectations NK model, optimal discretionary monetary policy involves inflation stabilization, while optimal commitment entails full price-level stabilization.} Their explanation for the lack of a commitment device on the part of the central bank is that learning agents have no ``off-equilibrium strategies." More explicitly, one can think of the policy problem as an infinitely repeated prisoner's dilemma between the public and the monetary authority. Under rational expectations, the immediate adjustment of expectations plays the role of the public's punishment strategy which keeps the monetary authority from deviating from the commitment equilibrium in each stage game. Because expectations in the learning model are purely backward-looking and sluggish to update, however, the public cannot implement a punishment immediately after a deviation by the monetary authority. Thus the folk theorem fails and the authority deviates in every stage game.\footnote{In a sense the folk theorem fails here because expectations lack a notion of optimality; the public is an automaton with strategies specified in a suboptimal way. The literature on central bank reputation seeks to address this by reintroducing some form of optimality to expectation formation. See \cite{cho1995induction} and \cite{ireland2000expectations}. Another possible remedy is to retain a sufficient degree of forward-looking expectations as in the finite-horizon planning approach advocated by \cite{woodford2019monetary}.} 
+
+  
 
 \subsection{Optimal Taylor rule with anchoring}\label{opt_TR}
 The rational expectations version of the targeting rule (\ref{target}) would take the form of (\ref{cgg_discretion}) with an additional $x_{t-1}$ term capturing the benefits of commitment. Therefore, due to its purely forward-looking nature, a Taylor-type interest rate rule is not fully optimal in the rational expectations NK model. Since Result \ref{result_no_commitment} tells us that in the anchoring model commitment is inexistent, there is a renewed interest in formulating monetary policy as a Taylor rule, as these types of rules are no longer excluded from the class of fully optimal rules. In particular, the targeting rule (\ref{target}) is also purely forward-looking. One may then wonder whether Taylor-rule coefficients $(\psi_{\pi}, \psi_x)$ exist that can implement the optimal plan. Therefore I now consider the restricted set of purely forward-looking policy rules and ask what values of the Taylor-rule coefficients are optimal in the case of the anchoring model.
 
-\begin{result} Optimal Taylor-rule coefficients in the anchoring model \\
-In the learning model with anchoring, the optimal Taylor-rule coefficients are given by
-\begin{align}
-\psi_{\pi}^{anchor} & = \frac{\kappa  \sigma }{\lambda_i} \label{opt_psipi_anchor}
-\\
-\psi_{x}^{anchor} & =  \frac{\lambda_x\sigma }{\lambda_i } \label{opt_psix_anchor}
-\end{align}
-For the rational expectations version of the model with the assumption $\rho \equiv \rho_u = \rho_r$, the coefficients are
-\begin{align}
-\psi_{\pi}^{RE} & = \frac{\kappa  \sigma }{\lambda_i(\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psipi_RE}
-\\
-\psi_{x}^{RE} & =  \frac{\lambda_x\sigma  (1-\beta  \rho )}{\lambda_i (\rho -1) (\beta  \rho -1)-\kappa  \lambda_i \rho  \sigma } \label{opt_psix_RE}
-\end{align}
-See Appendix \ref{app_oni} for derivations.
-\label{result_TR}
-\end{result}
-
-This result has several interesting implications. First, focusing on the coefficient on inflation, $\psi_{\pi}$, one can write $\psi_{\pi}^{RE} = \psi_{\pi}^{anchor}\frac{1}{(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma }$. It is immediate that unless $\rho=0$\footnote{The other exception is $\lambda_i \rightarrow 0$, discussed below. Note also that the same conclusions hold for the coefficient on the output gap.}, $|\psi_{\pi}^{RE}| >\psi_{\pi}^{anchor}\geq 0$\footnote{The absolute value on the RE coefficient signifies that for $\rho > \bar{\rho}$, the factor $\frac{1}{(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma }$ turns negative. I therefore exclude all $\rho \leq \bar{\rho}$. $\bar{\rho}$ is given by the smaller root of $(\rho -1) (\beta  \rho -1)-\kappa  \rho  \sigma = 0$, which for my baseline calibration is 0.668021, so empirically, this is not a restrictive constraint.}. In words, under learning with an anchoring mechanism, monetary policy is optimally \emph{less} aggressive on inflation than under rational expectations. Under my baseline calibration with the additional assumption that $\rho=0.6$, the RE coefficient exceeds the one under anchoring by a factor of 15.06; with a lower $\rho$ of 0.3, the factor reduces to 2.25.
-
-Given that most papers on optimal policy under learning emphasize the importance of heightened aggressiveness on inflation, this result may seem surprising. The conventional wisdom, as emphasized for example by \cite{assenza2019managing}, is that since adaptive learning introduces positive feedback in the model, an aggressive policy response to inflation can stabilize the system by adding negative feedback. In an anchoring setting, this relationship becomes non-monotonic due to the endogeneity of the gain. Moreover, this is a case where the choice of Euler-equation vs. long-horizon learning matters. When long-horizon expectations are present, a high inflation coefficient of the central bank leads to a much more volatility than under Euler-equation learning because, due to anticipated interest rate responses, the entire expectation profile responds to shocks. This additional volatility from long-horizon expectations is amplified if the gain is endogenous, since agents respond to heightened volatility by unanchoring their expectations. This however results in further movement in expectations, leading to a novel positive feedback loop.
-
-This reinforces our previous notion that anchoring adds an additional intertemporal tradeoff compared to exogenous gain settings. To undermine additional long-run volatility caused by unanchored expectations, the central bank seeks to anchor them. This is however costly in the short run, as being more aggressive on inflation results in more volatility coming from intertemporal anticipation effects.
-
-The second observation is that the rational expectations results for the central bank's weights $\lambda_x$ and $\lambda_i$ continue to hold. In particular, a positive coefficient on the output gap is only optimal in either model if $\lambda_x > 0$. Moreover, as $\lambda_i \rightarrow 0, \psi_{\pi} \rightarrow \infty$ both for RE and for anchoring. This reflects that if the central bank is willing to allow excessive fluctuation in its policy instrument, then being infinitely aggressive on inflation can stifle all fluctuations away from the steady state. But as long as $\lambda_i$ is infinitesimally above zero, the central bank will be less aggressive on inflation under anchoring than under RE. 
-
-The reason these results continue to hold under anchoring is that in the optimal path, the central bank anchors expectations in order to approximate the RE outcome.\footnote{See App. \ref{app_oni} for details on why this is the case.} It is thus clear that this is a limit result; in the limit, the monetary authority aims to bring about time paths for the economy in which the forecasting rules used by the public sector do not respond to unforecastable disturbances. Once this limit obtains, that is, expectations are fully anchored, monetary policy finds it optimal to be infinitely aggressive on inflation, as under RE. But during the convergence process, the fact that the gain in nonzero prompts the central bank to deviate from the optimal rule in order to get control over the expectation formation process. This explains why a central bank might be off the Taylor rule if it fears that expectations have become unanchored.\footnote{This intuition is further corroborated in the simulations in Section \ref{results_sim}.} 
-
-The third observation concerns the Taylor principle, which, as shown by \cite{bullard2002learning} and \cite{preston2005}, continues to hold under learning. Here, fulfillment of the Taylor principle requires that $\lambda_i < \kappa\sigma$. For log utility ($\sigma=1$) and reasonable price rigidity ($\kappa \approx 0.2$), this implies $\lambda_i < 0.2$. Interest rate stabilization concerns must thus be second order compared to inflation stabilization concerns in order for the equilibrium to be determinate and learnable.
 
 %%%%%%%%%%%%%%%%%%           SIMULATION RESULTS            %%%%%%%%%%%%%%%%%% 
 %\newpage
@@ -655,6 +623,23 @@ F_{t-1} & = \bigg(A_a \frac{1}{1-\alpha\beta} + A_b\frac{1}{1-\beta} \bigg)a_{t-
 G_{t-1} & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(I_3 - \beta h \bigg)^{-1} + A_s
 \end{align}
 
+\section{Alternative specifications for the anchoring function}\label{alternative_criteria}
+Let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
+\begin{align}
+\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t-1} fe_{t-1}'  -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t-1}'\omega_t^{-1}fe_{t-1} -\theta_{t-1}) \label{cusum_crit}
+\end{align}
+where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $fe_{t-1}$ is the most recent forecast error, realized at time $t$. Then for a specified threshold $\tilde{\theta}$, the gain is determined endogenously as
+\begin{align*}
+k_t & = \begin{cases} k_{t-1}+1 \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis \label{anchoring_kinked}
+\end{cases} 
+\end{align*}
+In other words, agents choose a decreasing gain when the criterion $\theta_t$ is lower than the threshold $\tilde{\theta}$; otherwise they choose a constant gain. This framework, which I call an anchoring mechanism, captures the intuition that when current squared forecast errors are large compared to agents' estimated forecast error variance, agents conclude that the forecasting performance of their current PLM $\phi_{t-1}$ is poor. Since $\phi_{t-1}$ appears to provide an inaccurate description of the evolution of observables, agents choose a constant gain, reflecting their desire to update $\phi$ strongly using the most recent data. By contrast, if $\theta_t <\tilde{\theta}$, current squared forecast errors are not sizable compared the estimated forecast error variance; it seems that $\phi_{t-1}$ is close to the data-generating process and so agents see no need to change it, thus opting for a decreasing gain. The situation when $\theta_t <\tilde{\theta}$  thus constitutes \emph{anchored expectations}.
+
+It is worthwhile to compare my anchoring criterion $\theta$ to the one in \cite{carvalho2019anchored}. The criterion employed by \cite{carvalho2019anchored} is computed as the absolute difference between subjective and model-consistent expectations, scaled by the variance of shocks. On the one hand, their specification requires the private sector to evaluate model-consistent expectations, which runs counter to the maintained informational assumptions. It is more consistent with the present model, then, to assume that firms and households employ a statistical test of structural change. This motivates my choice of a statistic for $\theta$ as a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.} 
+
+On the other hand, simulation of the model using \cite{carvalho2019anchored}'s criterion reveals that their criterion leads to the opposite comparative statics of anchoring with respect to monetary policy aggressiveness. In particular, while policy that is more aggressive on inflation (a higher $\psi_{\pi}$) leads to more anchoring in a model with the CUSUM-inspired criterion, if one uses \cite{carvalho2019anchored}'s criterion, the same comparative static involves \emph{less} anchoring. This comes from the fact that \cite{carvalho2019anchored}'s criterion endows the public sector with capabilities to disentangle volatility due to the learning mechanism from that owing to exogenous disturbances. Thus agents in the \cite{carvalho2019anchored} model are able to make more advanced inferences about the performance of their forecasting rule and understand that a higher $\psi_{\pi}$ causes more learning-induced volatility. This is however not possible for agents who process data in real time without knowledge of the model. Therefore the CUSUM-inspired criterion is preferable both on conceptual and quantitative grounds.
+
 \section{The policy problem in the simplified baseline model }\label{app_midsimple_problem}
 Denote by $\mathbf{g}_i(t) \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time-varying derivatives of the anchoring function $\mathbf{g}(t)$. In this simplified setting, $\bar{\pi}_t = e_1 a_t$, the estimated constant for the inflation process. $e_i$ is a selector vector, selecting row $i$ of the subsequent matrix. I also use the notation $b_i \equiv e_i b$.   The planner chooses $\{\pi_t, x_t, f_{a,t},  f_{b,t}, \bar{\pi}_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
 
@@ -674,22 +659,47 @@ After a little bit of simplifying, the FOCs boil down to the following three equ
 & -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa}x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +f_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
 & \varphi_{6,t} = (\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}) \varphi_{5,t} \label{constraints}
 \end{align}
-Note that Equation (\ref{gaspar22}) is the analogue of \cite{gaspar2010inflation}'s Equation (22) (or, equivalently, of  \cite{molnar2014optimal}'s (16)), except that there's an additional multiplier, $\varphi_6$. This multiplier reflects the fact that in addition to the constraint coming from the expectation process itself, with shadow value $\varphi_5$, learning involves the gain equation as a constraint as well. One can also clearly read off Result 1: when the learning process has converged such that neither expectations nor the gain process are constraints ($\varphi_5 =\varphi_6 = 0$), the discretionary inflation-output gap tradeoff familiar from \cite{clarida1999science} obtains. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} = 1$, one obtains the target criterion (\ref{target}).
+Note that Equation (\ref{gaspar22}) is the analogue of \cite{gaspar2010inflation}'s Equation (22) (or, equivalently, of  \cite{molnar2014optimal}'s (16)), except that there's an additional multiplier, $\varphi_6$. This multiplier reflects the fact that in addition to the constraint coming from the expectation process itself, with shadow value $\varphi_5$, learning involves the gain equation as a constraint as well. One can also clearly read off Result 2: when the learning process has converged such that neither expectations nor the gain process are constraints ($\varphi_5 =\varphi_6 = 0$), the discretionary inflation-output gap tradeoff familiar from \cite{clarida1999science} obtains. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} = 1$, one obtains the target criterion (\ref{target}).
 
-\section{Optimal Taylor-rule coefficients in the anchoring model} \label{app_oni}
-I solve for the optimal Taylor-rule coefficients in the anchoring model by obtaining the optimal noninertial plan for the endogenous variables and performing coefficient-comparison on (\ref{TR}).\footnote{For the specifics of the optimal noninertial plan, see \cite{woodford2011interest}.} The noninertial plan entails linear responses to exogenous disturbances of the form $z_t = \bar{z} + f_z u_t + g_z r_t^n$ where $z = \{\pi,x,i, f_a, f_b, \bar{\pi}, k^{-1}\}$\footnote{Note that I assume the central bank treats the long-run expectations $f_{a}, f_b$, the gain $k^{-1}$ and the expected inflation mean $\bar{\pi}$ as endogenous variables, just like $\pi, x$ and $i$.}. I obtain the optimal responses to disturbances $f_z, g_z$ by having them minimize the part of the central bank's loss function, Equation (\ref{CBloss}), that pertains to losses from variance in the endogenous variables, subject to the conjectures satisfying the model equations (\ref{midsimple_first}) - (\ref{midsimple_last}). 
-
-Since this procedure is described in detail in \cite{woodford2011interest}, I will only emphasize the special features of the anchoring model here. First, I assume the following functional form for the anchoring function $\mathbf{g}$:
+The system of first order conditions (\ref{simpleFOC1})-(\ref{simpleFOC2}) and model equations for this simplified system also reveal how the endogenous gain introduces nonlinearity to the equation system. In particular, notice how in equations (\ref{simpleFOC1})-(\ref{simpleFOC2}) the gain $k_t^{-1}$ shows up multiplicatively with the Lagrange multiplier, $\varphi_{2,t}$. In fact, the origin of the problem is the recursive least squares learning equation
 \begin{equation}
-k_t^{-1} -k_{t-1}^{-1} = c + d(\pi_t -\bar{\pi}_{t-1} - b_{11}r_t^n - b_{13}u_t)
+f_t = f_{t-1} + k_t^{-1}(\pi_t - f_{t-1}) \label{simpleRLS}
 \end{equation}
-where $c,d$ are real constants. This assumption ensures that the derivatives of $\mathbf{g}$ do not remain unspecified. Actually, the assumption turns out not to matter due to the feature of the plan I turn to next. 
+where the first interaction terms between the gain and other endogenous variables show up. This results in an equation system of nonlinear difference equations that does not admit an analytical solution. 
 
-As for the inertial plan in App. \ref{app_midsimple_problem} and the main text, interaction terms between endogenous terms show up upon plugging the conjectures into the model equations. Restricting these to vanish implies setting $f_i = g_i=0$ for $i = \bar{\pi}, k^{-1}$. The economic interpretation for this is that in the optimal evolution of endogenous variables, the gain and the expectation of mean inflation do not fluctuate in response to shocks. In other words, optimally, expectations should be anchored. From this follows that 
+Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed the endogeneity of the gain that causes these troubles. Were we to specify a constant gain setup, $k_t^{-1}$ would merely equal the constant $\bar{g}$ and the anchoring function $\mathbf{g}$ would trivially reduce to $\bar{g}$ as well. In such a case, all interaction terms would reduce to multiplication between endogenous variables and parameters; linearity would be restored and a solution for the optimal time paths of endogenous variables would be obtainable. Similarly, a decreasing gain specification would also be manageable since for all $t$, the gain would simply be given by $t^{-1}$, and the anchoring function would also be deterministic and exogenous. 
+
+Although a full optimal time path for the endogenous variables is thus not available for the anchoring model, it is still possible to characterize optimal monetary policy in terms of a target criterion. That is, one can express a relationship between inflation and output gaps from the first order conditions that characterizes the optimal plan that the monetary authority can rely on to implement and to communicate its policy.\footnote{See \cite{woodford2011interest} for a discussion of the desirability of target criteria for robustly optimal policy as well as ease of communication with the public.}
+
+\section{A target criterion for an anchoring mechanism specified in terms of gain changes}\label{app_generalTC}
+Consider the general anchoring mechanism of equation (\ref{anchoring}):
+\begin{equation}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
+\end{equation}
+With this assumption, the FOCs of the Ramsey problem are
 \begin{align}
-f_{f_a} = \frac{b_{13}}{1-\alpha  \beta  \rho _u}\quad \quad  f_{f_b}=  \frac{b_{13}}{1-\beta  \rho _u} \quad \quad g_{f_a}  = \frac{b_{11}}{1-\alpha  \beta  \rho _r} \quad \quad g_{f_b} = \frac{b_{11}}{1-\beta  \rho _r}
+& 2\pi_t + 2\frac{\lambda}{\kappa}x_t -k_t^{-1} \varphi_{5,t} - \mathbf{g}_{\pi}(t)\varphi_{6,t}  = 0 \label{gaspar22}\\
+& c x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
+& \varphi_{6,t} \; \textcolor{red}{+\; \varphi_{6,t+1}} = fe_t \varphi_{5,t} \label{constraints}
 \end{align}
-which simply has the interpretation that long-horizon expectations should correspond to the rational expectation of the respective shock in the infinite future.
+where the red multiplier is the new element vis-a-vis the case where the anchoring function is specified in levels ($k_t^{-1} = \mathbf{g}(fe_{t-1})$), and I'm using the shorthand notation
+\begin{align}
+c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa} \\ 
+fe_t & = \pi_t - \bar{\pi}_{t-1}-b s_{t-1}
+\end{align}
+(\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi}(t)$).
+One can simplify this three-equation-system to:
+\begin{align}
+\varphi_{6,t} & = -c fe_t x_{t+1} + \bigg(1+ \frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1}) -fe_t \mathbf{g}_{\bar{\pi}}(t) \bigg) \varphi_{6,t+1} -\frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda}{\kappa}x_t   - \bigg( \frac{k_t^{-1}}{fe_t} + \mathbf{g}_{\pi}(t)\bigg)\varphi_{6,t} + \frac{k_t^{-1}}{fe_t}\varphi_{6,t+1}\label{1'}
+\end{align}
+Unfortunately, I haven't been able to solve (\ref{6'}) for $\varphi_{6,t}$ and therefore I can't express the target criterion so nicely as before. The only thing I can say is to direct the targeting rule-following central bank to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}^{-1}}{fe_{t+j}}}{\frac{k_{t+j}^{-1}}{fe_{t+j}} + \mathbf{g}_{\pi}(t+j)} \label{sol1'}
+\end{equation}
+Interpretation: the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the CB always hits the target (
+$\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0 \quad \forall i$); or expectations are always anchored ($k_{t+j}^{-1}=0 \quad \forall j$). 
+
 
 \section{Oscillatory dynamics in learning models with sufficiently high gain} \label{app_oscillations}
 Here I present an illustration for why adaptive learning models produce oscillatory impulse responses if the gain is high enough. Consider a stylized adaptive learning model in two equations:

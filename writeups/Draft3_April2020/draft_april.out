@@ -3,18 +3,21 @@
 \BOOKMARK [2][-]{subsection.2.1}{Households}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Firms}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Aggregate laws of motion}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Monetary policy}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{Learning with anchored expectations}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{Perceived law of motion}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Actual law of motion}{section.3}% 9
+\BOOKMARK [1][-]{section.3}{Learning with an anchoring mechanism}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Perceived law of motion}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Endogenous gain as anchoring mechanism}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Actual law of motion}{section.3}% 9
 \BOOKMARK [1][-]{section.4}{Monetary policy and anchoring}{}% 10
-\BOOKMARK [2][-]{subsection.4.1}{Ramsey policy under anchoring}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.2}{Optimal Taylor rule with anchoring}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Simulations}{}% 13
-\BOOKMARK [2][-]{subsection.5.1}{Discussion}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 15
-\BOOKMARK [1][-]{appendix.A}{Compact model notation}{}% 16
-\BOOKMARK [1][-]{appendix.B}{The observation matrix for learning}{}% 17
-\BOOKMARK [1][-]{appendix.C}{The policy problem in the simplified baseline model }{}% 18
-\BOOKMARK [1][-]{appendix.D}{Optimal Taylor-rule coefficients in the anchoring model}{}% 19
-\BOOKMARK [1][-]{appendix.E}{Oscillatory dynamics in learning models with sufficiently high gain}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{The Ramsey problem}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Ramsey policy under anchoring}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{No commitment under adaptive learning}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Optimal Taylor rule with anchoring}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Simulations}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Discussion}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Compact model notation}{}% 18
+\BOOKMARK [1][-]{appendix.B}{The observation matrix for learning}{}% 19
+\BOOKMARK [1][-]{appendix.C}{Alternative specifications for the anchoring function}{}% 20
+\BOOKMARK [1][-]{appendix.D}{The policy problem in the simplified baseline model }{}% 21
+\BOOKMARK [1][-]{appendix.E}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 22
+\BOOKMARK [1][-]{appendix.F}{Oscillatory dynamics in learning models with sufficiently high gain}{}% 23
