@@ -13,45 +13,45 @@ Warning--no number and no volume in mele2019perils
 Warning--page numbers missing in mele2019perils
 Warning--no number and no volume in williams2003adaptive
 Warning--page numbers missing in williams2003adaptive
-You've used 35 entries,
+You've used 36 entries,
             2861 wiz_defined-function locations,
-            829 strings with 9928 characters,
-and the built_in function-call counts, 23556 in all, are:
-= -- 2031
-> -- 1562
+            835 strings with 10050 characters,
+and the built_in function-call counts, 24136 in all, are:
+= -- 2083
+> -- 1588
 < -- 6
-+ -- 458
-- -- 556
-* -- 2048
-:= -- 4274
-add.period$ -- 106
-call.type$ -- 35
-change.case$ -- 237
-chr.to.int$ -- 35
-cite$ -- 45
-duplicate$ -- 654
-empty$ -- 1498
-format.name$ -- 640
-if$ -- 4357
++ -- 464
+- -- 566
+* -- 2095
+:= -- 4380
+add.period$ -- 109
+call.type$ -- 36
+change.case$ -- 243
+chr.to.int$ -- 36
+cite$ -- 46
+duplicate$ -- 672
+empty$ -- 1542
+format.name$ -- 650
+if$ -- 4462
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 39
-newline$ -- 177
-num.names$ -- 350
-pop$ -- 169
+missing$ -- 40
+newline$ -- 182
+num.names$ -- 360
+pop$ -- 172
 preamble$ -- 1
-purify$ -- 451
+purify$ -- 463
 quote$ -- 0
-skip$ -- 702
+skip$ -- 719
 stack$ -- 0
-substring$ -- 1400
-swap$ -- 224
+substring$ -- 1445
+swap$ -- 230
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 650
+type$ -- 670
 warning$ -- 10
-while$ -- 371
+while$ -- 383
 width$ -- 0
-write$ -- 463
+write$ -- 476
 (There were 10 warnings)

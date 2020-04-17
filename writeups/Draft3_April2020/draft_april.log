@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 APR 2020 21:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 APR 2020 09:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -676,7 +676,7 @@ LaTeX Warning: Reference `state' on page 9 undefined on input line 268.
 
 [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
 <../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetb
-ar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png, id=524, 1060.96375pt x
+ar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png, id=525, 1060.96375pt x
  660.4675pt>
 File: ../../figures/plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_
 thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png Graphic file (type
@@ -691,7 +691,7 @@ psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png
 
 <../../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1
 _5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.
-png, id=525, 1084.05pt x 660.4675pt>
+png, id=526, 1084.05pt x 660.4675pt>
 File: ../../figures/plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi
 _pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_0
 2_09.png Graphic file (type png)
@@ -709,7 +709,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 <../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constan
-t_only_2020_02_10.png, id=527, 1407.2575pt x 769.87625pt>
+t_only_2020_02_10.png, id=528, 1407.2575pt x 769.87625pt>
 File: ../../figures/command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_co
 nstant_only_2020_02_10.png Graphic file (type png)
 
@@ -720,7 +720,7 @@ _again_critCUSUM_constant_only_2020_02_10.png used on input line 519.
 (pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
 
 <../../figures/command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_const
-ant_only_2020_02_10.png, id=528, 1407.2575pt x 769.87625pt>
+ant_only_2020_02_10.png, id=529, 1407.2575pt x 769.87625pt>
 File: ../../figures/command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_
 constant_only_2020_02_10.png Graphic file (type png)
 
@@ -743,7 +743,7 @@ horing_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10.png (PNG co
 py)>]
 <../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
 _psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2
-020_02_09.png, id=551, 1117.17375pt x 604.2575pt>
+020_02_09.png, id=552, 1117.17375pt x 604.2575pt>
 File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
 arams_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lam
 i_0_2020_02_09.png Graphic file (type png)
@@ -758,7 +758,7 @@ _kap_0_8_lamx_0_lami_0_2020_02_09.png used on input line 529.
 
 <../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
 _psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_20
-20_02_09.png, id=552, 1117.17375pt x 604.2575pt>
+20_02_09.png, id=553, 1117.17375pt x 604.2575pt>
 File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
 arams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami
 _0_2020_02_09.png Graphic file (type png)
@@ -773,7 +773,7 @@ kap_0_8_lamx_0_lami_0_2020_02_09.png used on input line 530.
 
 <../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params
 _psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020
-_02_09.png, id=553, 1140.26pt x 604.2575pt>
+_02_09.png, id=554, 1140.26pt x 604.2575pt>
 File: ../../figures/command_IRFs_anchoring_loss_again_critCUSUM_constant_only_p
 arams_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0
 _2020_02_09.png Graphic file (type png)
@@ -794,7 +794,7 @@ IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_
 0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09.png (PNG copy)>]
 
 <../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_1_01_2020_02_10.png, id=569, 1407.2575pt x 769.87625pt>
+tant_only_psi_pi_1_01_2020_02_10.png, id=570, 1407.2575pt x 769.87625pt>
 File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
 _constant_only_psi_pi_1_01_2020_02_10.png Graphic file (type png)
 
@@ -806,7 +806,7 @@ pol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10.png used on input line
 (pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
 
 <../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_1_5_2020_02_10.png, id=570, 1407.2575pt x 769.87625pt>
+tant_only_psi_pi_1_5_2020_02_10.png, id=571, 1407.2575pt x 769.87625pt>
 File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
 _constant_only_psi_pi_1_5_2020_02_10.png Graphic file (type png)
 
@@ -818,7 +818,7 @@ pol_again_critCUSUM_constant_only_psi_pi_1_5_2020_02_10.png used on input line
 (pdftex.def)             Requested size: 253.29543pt x 138.57175pt.
 
 <../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_cons
-tant_only_psi_pi_2_2020_02_10.png, id=571, 1407.2575pt x 769.87625pt>
+tant_only_psi_pi_2_2020_02_10.png, id=572, 1407.2575pt x 769.87625pt>
 File: ../../figures/command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM
 _constant_only_psi_pi_2_2020_02_10.png Graphic file (type png)
 
@@ -859,10 +859,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 757.
  ) 
 Here is how much of TeX's memory you used:
- 10512 strings out of 493089
- 164662 string characters out of 6134842
- 273482 words of memory out of 5000000
- 13600 multiletter control sequences out of 15000+600000
+ 10516 strings out of 493089
+ 164775 string characters out of 6134842
+ 273518 words of memory out of 5000000
+ 13603 multiletter control sequences out of 15000+600000
  15434 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,21n,39p,1836b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -886,10 +886,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_april.pdf (34 pages, 1011511 bytes).
+Output written on draft_april.pdf (34 pages, 1011711 bytes).
 PDF statistics:
- 863 PDF objects out of 1000 (max. 8388607)
- 785 compressed objects within 8 object streams
- 224 named destinations out of 1000 (max. 500000)
+ 864 PDF objects out of 1000 (max. 8388607)
+ 786 compressed objects within 8 object streams
+ 225 named destinations out of 1000 (max. 500000)
  247 words of extra memory for PDF output out of 10000 (max. 10000000)
 
