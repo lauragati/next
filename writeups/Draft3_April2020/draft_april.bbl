@@ -8,13 +8,6 @@ Anufriev, M. and C.~Hommes (2012).
 \newblock {\em American Economic Journal: Microeconomics\/}~{\em 4\/}(4),
   35--64.
 
-\bibitem[\protect\citeauthoryear{Assenza, Heemeijer, Hommes, and
-  Massaro}{Assenza et~al.}{2019}]{assenza2019managing}
-Assenza, T., P.~Heemeijer, C.~Hommes, and D.~Massaro (2019).
-\newblock Managing self-organization of expectations through monetary policy: a
-  macro experiment.
-\newblock {\em Journal of Monetary Economics\/}.
-
 \bibitem[\protect\citeauthoryear{Ball}{Ball}{1994}]{ball1994credible}
 Ball, L. (1994).
 \newblock Credible disinflation with staggered price-setting.
@@ -190,6 +183,12 @@ Preston, B. (2008).
 Sargent, T.~J. (1999).
 \newblock {\em The Conquest of American Inflation}.
 \newblock Princeton University Press.
+
+\bibitem[\protect\citeauthoryear{Taylor}{Taylor}{1993}]{taylor1993discretion}
+Taylor, J.~B. (1993).
+\newblock Discretion versus policy rules in practice.
+\newblock In {\em Carnegie-Rochester conference series on public policy},
+  Volume~39, pp.\  195--214. Elsevier.
 
 \bibitem[\protect\citeauthoryear{Tversky and Kahneman}{Tversky and
   Kahneman}{1974}]{tversky1974judgment}

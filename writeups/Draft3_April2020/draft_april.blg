@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft_april.aux
+The style file: chicago.bst
+Database file #1: ../../literature/ref_next.bib
+Warning--no number and no volume in carvalho2019anchored
+Warning--page numbers missing in carvalho2019anchored
+Warning--no journal in eusepi2018limits
+Warning--no number and no volume in eusepi2018limits
+Warning--page numbers missing in eusepi2018limits
+Warning--can't use both author and editor fields in evans2013bayesian
+Warning--no number and no volume in mele2019perils
+Warning--page numbers missing in mele2019perils
+Warning--no number and no volume in williams2003adaptive
+Warning--page numbers missing in williams2003adaptive
+You've used 35 entries,
+            2861 wiz_defined-function locations,
+            829 strings with 9928 characters,
+and the built_in function-call counts, 23556 in all, are:
+= -- 2031
+> -- 1562
+< -- 6
++ -- 458
+- -- 556
+* -- 2048
+:= -- 4274
+add.period$ -- 106
+call.type$ -- 35
+change.case$ -- 237
+chr.to.int$ -- 35
+cite$ -- 45
+duplicate$ -- 654
+empty$ -- 1498
+format.name$ -- 640
+if$ -- 4357
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 39
+newline$ -- 177
+num.names$ -- 350
+pop$ -- 169
+preamble$ -- 1
+purify$ -- 451
+quote$ -- 0
+skip$ -- 702
+stack$ -- 0
+substring$ -- 1400
+swap$ -- 224
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 650
+warning$ -- 10
+while$ -- 371
+width$ -- 0
+write$ -- 463
+(There were 10 warnings)
