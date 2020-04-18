@@ -61,7 +61,7 @@ cgain = 3;
 
 % Model selection
 %%%%%%%%%%%%%%%%%%%
-PLM = constant_only;
+PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 % % the smooth criterion only works in this combo:
@@ -70,7 +70,7 @@ gain = again_critsmooth;
 
 T = 400 % 400
 % Size of cross-section
-N = 100;%100 500
+N = 1 %100 500
 burnin = 100;
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
@@ -79,7 +79,13 @@ h = 10; % h-period IRFs
 [fyn, fxn, fypn, fxpn] = model_NK(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+[Aa_old, Ab_old, As_old] = matrices_A_13_true_baseline(param, hx);
+[Aa_april, Ab_april, As_april] = matrices_A_25_true_baseline(param,hx);
+
+Aa = Aa_april;
+Ab = Ab_april;
+As = As_april;
+
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
@@ -118,10 +124,16 @@ for s=2  %2->zoom in on monetary policy shock
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
+        % the original code
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
-        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e);
-        [x_smooth, y_smooth, k_smooth(:,n), pibar(:,n), FA, FB, g_pi, g_pibar, ~,diff_smooth(:,n)] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e);
-        [x_g, y_g, k_g(:,n),  phi_g, ~, ~, diff_g(:,n)] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e);
+        % its plain vanilla cleaned version WORK WITH THIS
+        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e);
+        % RETIRED
+%         % a cleaned version only for pi-only scalar learning with scalar
+%         % smooth criterion RETIRED
+%         [x_smooth, y_smooth, k_smooth(:,n), pibar(:,n), FA, FB, g_pi, g_pibar, ~,diff_smooth(:,n)] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e);
+%         % vector learning for the smooth anchoring function g. RETIRED
+%         [x_g, y_g, k_g(:,n),  phi_g, ~, ~, diff_g(:,n)] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e);
         % Shocked
         % RE
         % make RE shock the same scale as learning:
@@ -136,9 +148,10 @@ for s=2  %2->zoom in on monetary policy shock
             
             % Shocked
             [~, ys_LH] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
-            [~, ys_clean] = sim_learnLH_clean(param,gx,hx,SIG, Aa, Ab, As,PLM, gain, T+burnin,burnin,e, dt, x0);
-            [~, ys_smooth] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e,dt,x0);
-            [~, ys_g] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e, dt, x0);
+            [~, ys_clean] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e, dt, x0);
+            % RETIRED:
+%             [~, ys_smooth] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e,dt,x0);
+%             [~, ys_g] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e, dt, x0);
         end
         
     end
@@ -152,37 +165,29 @@ disp(['Max difference in jumps = ', num2str(max(max(abs(y_LH-y_clean))))])
 disp(['Max difference in k = ', num2str(max(max(abs(k-k_clean))))])
 disp(['Max difference in convergence diffs = ', num2str(max(max(abs(diff-diff_clean))))])
 disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_clean))))])
-disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-disp('%%%%%  Diffs for sim_learnLH_clean_smooth.m %%%%%')
-disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-disp(['Max difference in states = ', num2str(max(max(abs(x_LH-x_smooth))))])
-disp(['Max difference in jumps = ', num2str(max(max(abs(y_LH-y_smooth))))])
-disp(['Max difference in k = ', num2str(max(max(abs(k-k_smooth))))])
-disp(['->Max difference in k_clean, k_smooth = ', num2str(max(max(abs(k_clean-k_smooth))))])
-disp(['Max difference in convergence diffs = ', num2str(max(max(abs(diff-diff_smooth))))])
-disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_smooth))))])
-disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-disp('%%%%% Diffs for sim_learnLH_clean_g.m %%%%%')
-disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-disp(['Max difference in states = ', num2str(max(max(abs(x_LH-x_g))))])
-disp(['Max difference in jumps = ', num2str(max(max(abs(y_LH-y_g))))])
-disp(['Max difference in k = ', num2str(max(max(abs(k-k_g))))])
-disp(['Max difference in convergence diffs = ', num2str(max(max(abs(diff-diff_g))))])
-disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_g))))])
+% disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+% disp('%%%%%  Diffs for sim_learnLH_clean_smooth.m %%%%%')
+% disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+% disp(['Max difference in states = ', num2str(max(max(abs(x_LH-x_smooth))))])
+% disp(['Max difference in jumps = ', num2str(max(max(abs(y_LH-y_smooth))))])
+% disp(['Max difference in k = ', num2str(max(max(abs(k-k_smooth))))])
+% disp(['Max difference in convergence diffs = ', num2str(max(max(abs(diff-diff_smooth))))])
+% disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_smooth))))])
+% disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+% disp('%%%%% Diffs for sim_learnLH_clean_g.m %%%%%')
+% disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+% disp(['Max difference in states = ', num2str(max(max(abs(x_LH-x_g))))])
+% disp(['Max difference in jumps = ', num2str(max(max(abs(y_LH-y_g))))])
+% disp(['Max difference in k = ', num2str(max(max(abs(k-k_g))))])
+% disp(['Max difference in convergence diffs = ', num2str(max(max(abs(diff-diff_g))))])
+% disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_g))))])
 
 
 %%
 figure
-subplot(2,2,1)
+subplot(1,2,1)
 plot(mean(diff,2))
 title('Convergence - mean(diff) across N')
-subplot(2,2,2)
+subplot(1,2,2)
 plot(diff(:,end))
 title('Convergence  - diff for N=end')
-subplot(2,2,3)
-plot(mean(pibar,2))
-title('mean(pibar)')
-subplot(2,2,4)
-plot(pibar(:,end))
-title('Pibar for N=end')
-sgtitle('Properties of sim\_learnLH.m')

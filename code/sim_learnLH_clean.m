@@ -2,7 +2,7 @@
 % does exactly the same thing as sim_learnLH.m. Supposed to serve as a basis for other codes to adapt it.
 % 2020 and will no longer be changed (as a safety copy).
 % 10 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, Aa, Ab, As,PLM, gain, T,ndrop,e, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -35,7 +35,7 @@ if gain == 21
 elseif gain == 22
     crit = 2; % CUSUM criterion
 elseif gain == 23
-    crit = 3; % smooth criterion (this is implemented ONLY for the case that only pi is learned)
+    crit = 3; % smooth criterion 
 end
 
 phi = [a,b];
@@ -81,8 +81,8 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        %         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
-        ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
+        ysim(:,t) = ALM(param,hx,fa,fb,xsim(:,t));
+%         ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
         xesim = hx*xsim(:,t);
         
         %Update coefficients

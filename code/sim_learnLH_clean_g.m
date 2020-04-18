@@ -65,20 +65,21 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-%         ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
-        ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
+                ysim(:,t) = Aa*fa + Ab*fb + As*xsim(:,t);
+%         ysim(:,t) = aleph_gimel(param,hx,fa,fb,xsim(:,t));
+        %         ysim(:,t) = aleph_gimel2(param,hx,fa,fb,xsim(:,t),k(:,t-1),phi_seq(1,1,t-1),phi_seq(2,1,t-1));
         xesim = hx*xsim(:,t);
         
         %Update coefficients
         % Only smooth criterion here
-                % scalar:
-                fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
-                fk = fk_smooth_pi_only(param,fe,k(:,t-1));
-%                 % vector: 
-%                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
-%                 fk = fk_smooth(param,fe,k(:,t-1));
-            k(:,t) = fk;
-
+        % scalar:
+        fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
+        fk = fk_smooth_pi_only(param,fe,k(:,t-1));
+        %                 % vector:
+        %                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]);
+        %                 fk = fk_smooth(param,fe,k(:,t-1));
+        k(:,t) = fk;
+        
         
         % Create forecasts and FE
         morning_fcst(:,t) = phi*[1;xsim(:,t)];
