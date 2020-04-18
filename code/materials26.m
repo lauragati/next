@@ -59,14 +59,15 @@ eta = SIG; %just so you know
 rng(0)
 eN = randn(ne,T+ndrop,N);
 e = squeeze(eN(:,:,1));
+% zero out the monpol shock
 eN(2,:,:) = zeros(T+ndrop,N);
 
-% an initial simulation
-
+% an initial simulation using the Taylor rule
 [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-
 create_plot_observables(ysim)
 create_plot_observables(1./k)
+
+% an initial simulation given an interest rate sequence CONT HERE
 
 
 % Optimization Parameters
