@@ -90,7 +90,7 @@ for t = 1:T-1
             k(:,t) = k(:,t-1)+1;
         elseif gain==21 || gain == 22 || gain == 23% endogenous gain
             if crit == 1 % CEMP's criterion
-                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
+                fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
                 %                 fe = fe(1,1);

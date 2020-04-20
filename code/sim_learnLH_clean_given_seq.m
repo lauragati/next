@@ -1,8 +1,8 @@
-% a cleaned-up version of sim_learnLH.m, which was verified to work 10 April
-% 2020 and will no longer be changed (as a safety copy).
-% Does exactly the same thing as sim_learnLH.m. Supposed to serve as a basis for other codes to adapt it.
-% 10 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
+% a version of sim_learnLH_clean.m that simulates the model given exogenous
+% sequence(s) specified in seq. Changes w.r.t. that code are marked with
+% <----
+% 20 April 2020
+function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean_given_seq(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -35,7 +35,7 @@ if gain == 21
 elseif gain == 22
     crit = 2; % CUSUM criterion
 elseif gain == 23
-    crit = 3; % smooth criterion 
+    crit = 3; % smooth criterion
 end
 
 phi = [a,b];
@@ -81,7 +81,8 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = ALM(param,hx,fa,fb,xsim(:,t));
+        % Evaluate observables given input sequences
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t)); % <-------
         xesim = hx*xsim(:,t);
         
         %Update coefficients
@@ -90,7 +91,7 @@ for t = 1:T-1
             k(:,t) = k(:,t-1)+1;
         elseif gain==21 || gain == 22 || gain == 23% endogenous gain
             if crit == 1 % CEMP's criterion
-                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
+                fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
                 %                 fe = fe(1,1);
@@ -144,6 +145,7 @@ end
 
 %Last period observables.
 ysim(:,t+1) = gx*xsim(:,t+1);
+
 
 %Drop ndrop periods from simulation
 xsim = xsim(:,ndrop+1:end);
