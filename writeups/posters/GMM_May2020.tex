@@ -1,0 +1,313 @@
+\documentclass[20pt, a1paper, landscape]{tikzposter}
+\usepackage[utf8]{inputenc}
+
+\title{Monetary Policy \& Anchored Expectations - An Endogenous Gain Learning Model}
+\author{Laura G\'ati}
+\date{\today}
+\institute{Boston College}
+
+\usepackage{blindtext}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+\usepackage{caption}
+
+% general appearance
+\usetheme{Autumn}
+\usecolorstyle{Britain}
+\usecolorstyle[colorOne=white,colorTwo=gray]{Britain}
+
+% this big chunk of code redefines the "Slide" style for blocks so that the backgound color of the titles aren't shaded (or graded)
+\defineblockstyle{Slide}{
+    titlewidthscale=1, bodywidthscale=1, titleleft,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=0, linewidth=0pt, titleinnersep=1cm,
+    bodyinnersep=1cm
+}{
+    \ifBlockHasTitle%
+        % changed "right color=..,left color=.." to "fill=blocktitlebgcolor"
+        \draw[draw=none, fill=blocktitlebgcolor] 
+           (blocktitle.south west) rectangle (blocktitle.north east);
+    \fi%
+    \draw[draw=none, fill=blockbodybgcolor] %
+        (blockbody.north west) [rounded corners=30] -- (blockbody.south west) --
+        (blockbody.south east) [rounded corners=0]-- (blockbody.north east) -- cycle;
+}
+
+% appearance of the blocks
+\useblockstyle{Slide}
+% using the below I can change the color of the block title
+%\colorlet{blocktitlebgcolor}{red}
+
+
+\usepackage{bookman}
+
+
+% remove annoying bottom right logo
+\tikzposterlatexaffectionproofoff
+
+% My own definitions
+\def \myFigPath {../../figures/} 
+\def \myTablePath {../../tables/} 
+
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+%\newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+% creating colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+\definecolor{mygreen}{RGB}{0, 128, 0} % this is Laura's green
+
+
+%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\begin{columns}
+\column{0.5}
+\block{}{
+\section{Puzzling Fed behavior fall 2019}
+% Note: to have minipages side by side, you MUST NOT have space between the minipages!
+\noindent
+\begin{minipage}{0.15\textwidth}
+\centering
+\includegraphics[scale=0.27]{\myFigPath urate_2020_02_09}
+    \captionof{figure}{Unemployment rate \\ (\%)}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\centering
+\includegraphics[scale=0.27]{\myFigPath frr_2020_02_09}
+    \captionof{figure}{Fed funds rate target, \\ upper limit (\%)}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\centering
+\includegraphics[scale=0.27]{\myFigPath epi10_2020_02_09}
+    \captionof{figure}{Market-based inflation expectations, 10 year, average (\%)}
+\end{minipage}
+
+\section{Model with anchoring expectation formation}
+Macro model with Calvo nominal friction: standard up to expectation formation $(\hat{\E})$ 
+
+
+
+\subsection{Expectation formation}
+
+\begin{itemize}
+\item Model solution under rational expectations (RE)
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+\item Here: private sector does not know $g$ $\rightarrow$ estimate using (\ref{state}) \& observed states
+\item Households and firms don't know they are identical
+\item Special case: private sector doesn't know long-run mean of inflation:
+\begin{equation}
+\hat{\E}_t \pi_{t+1} = \textcolor{blue}{\bar{\pi}_{t-1}} + g_1h_1s_t  \label{PLM_fcst_general}
+\end{equation}
+\item Updates estimate of mean inflation using recursive least squares
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\end{equation}
+\end{itemize}
+
+\subsection{Anchoring mechanism}
+Endogenous gain as anchoring mechanism:
+\begin{equation}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
+\end{equation}
+
+}
+%%%%%%%%%%%%%%% COLUMN 2 %%%%%%%%%%%%%%%%%
+
+\column{0.5}
+\block{}{
+
+
+
+\subsection{Aggregate laws of motion}
+IS- and Phillips curve
+  \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+
+
+
+\section{Ramsey policy under anchoring expectation formation}
+
+\begin{result} Target criterion under anchoring
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
+\\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\}  \label{target}
+\end{align*}
+\end{result}
+
+$\rightarrow$ Two layers of novel intertemporal tradeoffs: can postpone intratemporal tradeoff
+
+\begin{result} For any adaptive learning scheme, the discretion and commitment solutions of the Ramsey problem coincide.  The solution qualitatively resembles discretion and is thus not subject to the time inconsistency problem.
+\end{result}
+
+\section*{Implementation?}
+\begin{itemize}
+\item Need for feedback rules satisfying 
+\item Form of feedback rule? Model suggests 
+\begin{equation*}
+ i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)\quad  \text{nonlinear}
+ \end{equation*}
+\item[$\rightarrow$] Explains deviations from Taylor rule
+\item[$\rightarrow$] Interesting to assess Taylor rule as approximation to optimal rule
+\item[] $\hookrightarrow$ Might do better than under RE since commitment plan not feasible here
+\item Optimal Taylor rule less aggressive on inflation than under RE
+\end{itemize}
+
+
+}
+\end{columns}
+
+%%%%%%%%%%%%%%%%% OLD STUFF %%%%%%%%%%%%%%%%%%%
+%\begin{columns}
+%\column{0.5}
+%\block{Puzzling Fed behavior fall 2019}
+%{
+%% Note: to have minipages side by side, you MUST NOT have space between the minipages!
+%\noindent
+%\begin{minipage}{0.15\textwidth}
+%\centering
+%\includegraphics[scale=0.22]{\myFigPath urate_2020_02_09}
+%    \captionof{figure}{Unemployment rate \\ (\%)}
+%\end{minipage}
+%\begin{minipage}{0.15\textwidth}
+%\centering
+%\includegraphics[scale=0.22]{\myFigPath frr_2020_02_09}
+%    \captionof{figure}{Fed funds rate target, \\ upper limit (\%)}
+%\end{minipage}
+%\begin{minipage}{0.15\textwidth}
+%\centering
+%\includegraphics[scale=0.22]{\myFigPath epi10_2020_02_09}
+%    \captionof{figure}{Market-based inflation expectations, 10 year, average (\%)}
+%\end{minipage}
+%}
+%\column{0.5}
+%\block{Model: IS- and Phillips curve, modified for nonrational expectations}
+%{ Macro model with nominal frictions: standard up to expectation formation $(\hat{\E})$ \\
+%
+%IS- and Phillips curve
+%  \begin{align}
+%x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+%\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+%\end{align}
+%
+%
+%
+%}
+%\end{columns}
+%
+%\begin{columns}
+%\column{0.5}
+%\block{Anchoring expectation formation}
+%{ 
+%
+%\begin{itemize}
+%\item Model solution under rational expectations
+% \begin{align}
+% s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+% y_t & = g s_t \label{obs_RE}
+% \end{align}
+%\item Here: private sector does not know $g$ $\rightarrow$ estimate using (\ref{state}) \& observed states
+%\item Households and firms don't know they are identical
+%\item Special case: private sector doesn't know long-run mean of inflation:
+%\begin{equation}
+%\hat{\E}_t \pi_{t+1} = \textcolor{blue}{\bar{\pi}_{t-1}} + g_1h_1s_t  \label{PLM_fcst_general}
+%\end{equation}
+%\item Updates estimate of mean inflation using recursive least squares
+%\begin{equation}
+%\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+%\end{equation}
+%\item Endogenous gain as anchoring mechanism:
+%\begin{equation}
+%k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
+%\end{equation}
+%\end{itemize}
+%}
+%
+%\column{0.5}
+%\block{}
+%{\section{Ramsey policy under anchoring expectation formation}
+%
+%\begin{result} Target criterion under anchoring
+%\begin{align*}
+%\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
+%\\
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+%\bigg\}  \label{target}
+%\end{align*}
+%\end{result}
+%
+%\begin{result} For any adaptive learning scheme, the discretion and commitment solutions of the Ramsey problem coincide. Thus the time consistency problem does not emerge.
+%\end{result}
+%
+%\section*{Implementation?}
+%\begin{itemize}
+%\item Implementation?
+%\item Form of feedback rule? Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)$ nonlinear
+%\item[$\rightarrow$] Explains deviations from Taylor rule
+%\end{itemize}
+%     
+%}
+%\end{columns}
+
+
+\end{document}
