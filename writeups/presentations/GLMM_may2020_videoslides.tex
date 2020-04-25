@@ -1,0 +1,300 @@
+\documentclass[11pt]{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc} % don't know what this does: it sets font encoding
+%\usepackage{gfsartemisia} % this chooses the font
+%%\usepackage{txfonts}
+%% the above two seem to give the same, the below two as well
+%%\usepackage{accanthis} 
+%%\usepackage{concmath}
+% Another way to go is the following
+%  The available themes are: structurebold, structurebolditalic, structuresmallcapsserif, structureitalicsserif, serif and default.
+%\usefonttheme{default}
+\usefonttheme{serif}
+%\usefonttheme{structurebold}
+%%\usefonttheme{structurebolditalic} % .sty wasn't found
+%\usefonttheme{structuresmallcaps}
+%\usefonttheme{structuresmallcapsserif} % <------
+%%%%%%\usefonttheme{structureitalicsserif} % .sty wasn't found
+%%%%%\usefonttheme{serif} % the font theme has to correspond to the font used
+%%%%\usefonttheme{structurebold} % it seems you can use a combo of these
+%%%%% Here comes the font command itself:
+%%%%% The available fonts depend on your LATEX installation, the most common are: mathptmx, helvet, avat, bookman, chancery, charter, culer, mathtime, mathptm, newcent, palatino, pifont and utopia.
+%%%%% I also have ccfonts
+\usepackage{bookman}
+%%%%\usepackage{helvet}
+%%%%\usepackage[T1]{fontenc}  % some fonts, like concrete math, require a specific font encoding (concrete math requires T1)
+\usepackage{subfigure}
+%\usepackage[default]{lato}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+
+\def \myFigPath {../../figures/} 
+\def \myTablePath {../../tables/} 
+
+\beamertemplatenavigationsymbolsempty % this removes the blue navigation bar that used to be on the bottom right
+\setbeamersize{text margin left=30mm,text margin right=30mm} 
+%
+%\font\reali=msbm10 at 12pt
+
+%
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{April 15, 2020}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%\usetheme{CambridgeUS} % CambridgeUS, Madrid
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Structure of talk}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\useinnertheme{circles}
+
+% resets the bullet points of enumerate and itemize to defaults
+\setbeamertemplate{itemize items}[bullet]
+\setbeamertemplate{enumerate items}[default]
+
+%\defbeamertemplate{section in toc}{square unnumbered}{%
+%   \leavevmode\leftskip=1.75ex%
+%   \llap{\textcolor{red!70!black}{\vrule width2.25ex
+%     height1.85ex depth.4ex}}%
+%   \kern1.5ex\inserttocsection\par}
+%\setbeamertemplate{section in toc}[square unnumbered]
+
+% this removes the ugly bullets for the table of contents and just adds numbers
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+
+
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% creating colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+% These are my colors -- there are many like them, but these ones are mine (Paul Goldsmith-Pinkham's)
+\definecolor{blue_PGP}{RGB}{0,114,178}
+\definecolor{red_PGP}{RGB}{213,94,0}
+\definecolor{yellow_PGP}{RGB}{240,228,66}
+\definecolor{green_PGP}{RGB}{0,158,115}
+\definecolor{mygreen}{RGB}{0, 128, 0} % this is Laura's green
+%% I use a beige off white for my background 
+\definecolor{MyBackground}{RGB}{255,253,218}
+%% Uncomment this if you want to change the background color to something else 
+%\setbeamercolor{background canvas}{bg=MyBackground} % this is a very nice beige
+%% Change the bg color to adjust your transition slide background color! 
+%\newenvironment{transitionframe}{
+%\setbeamercolor{background canvas}{bg=yellow} \begin{frame}}{
+%\end{frame} }
+
+%\setbeamercolor{frametitle}{fg=blue_PGP} 
+%\setbeamercolor{title}{fg=black} 
+%\setbeamertemplate{footline}[frame number]  % this sets the footer the same color as the background
+%\setbeamertemplate{navigation symbols}{} % don't know what this does
+%\setbeamercolor{button}{bg=MyBackground,fg=blue_PGP}
+
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+%\begin{frame}
+%
+%\maketitle
+%
+%
+%\end{frame}
+
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Fall 2019: Fed off the Taylor rule}
+
+\begin{figure}[h!]
+\subfigure[Unemployment rate, \%]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
+\hfil \subfigure[Fed funds rate target, upper limit, \%]{\includegraphics[scale = 0.12]{\myFigPath frr_2020_02_09}}
+\subfigure[Market-based average inflation expectations over the next 10 years, \% ]{\includegraphics[scale = 0.12]{\myFigPath epi10_2020_02_09}}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{This project}
+	
+	\begin{enumerate}
+	\item[] Model anchored expectations as an endogenous gain adaptive learning scheme
+	
+	\
+	
+	\
+	
+	\item[$\rightarrow$] How to conduct optimal monetary policy in interaction with the anchoring expectation formation?
+	%How does a concern to anchor expectations affect the conduct of monetary policy?
+	\end{enumerate}
+	\end{frame}
+
+
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
+%
+%\begin{itemize}
+%\item Model solution under $\E$ (rational expectations, RE) 
+% \begin{align}
+% s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+% y_t & = \textcolor{blue}{g} s_t \label{obs_RE}
+% \end{align}
+%
+%
+%$s_t $  states \\
+%$y_t $ jumps
+%
+%\
+%
+%\item Under $\hat{\E} \rightarrow$ private sector does not know $\textcolor{blue}{g}$ \\
+%
+%\
+%
+%$\rightarrow$ estimate using observed states \& knowledge of (\ref{state})
+%
+%
+%\end{itemize}
+%
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%% Slide %%%%%%  	
+%\begin{frame}
+%	\frametitle{Anchoring mechanism: endogenous gain}
+%	\label{anchoring1}
+%
+%
+%Gain in literature usually exogenous: 
+%\begin{equation*}
+%k_t = \begin{cases}\frac{1}{t} \quad \quad \text{decreasing}\\
+%k \quad \quad \text{constant}
+%\end{cases}
+%\end{equation*}
+%
+%\
+%
+%\
+%
+%Here instead
+%\begin{equation}
+%k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
+%\end{equation}
+%
+%
+%\vfill 
+%
+%
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+\end{document}
