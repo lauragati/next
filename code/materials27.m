@@ -26,7 +26,7 @@ N = 10; % degree of polynomial (0 to N-1)
 
 legendre = @(Pn,Pn_1,n,x) (2*n+1)/(n+1)*x*Pn - n/(n+1)*Pn_1;
 
-chebyshev = @(Tn,Tn_1,n,x) 2*x*Tn -Tn_1;
+chebyshev = @(Tn,Tn_1,n,x) 2.*x.*Tn -Tn_1;
 
 laguerre = @(Ln,Ln_1,n,x) 1/(n+1)*(2*n+1-x)*Ln -n/(n+1)*Ln_1;
 
@@ -163,7 +163,7 @@ for i=1:T
     % Evaluate Legendre of order k at that node x(j) recursively
     for k=1:N+1
         if k==1 % order zero
-            varphi(k,i) = 1; 
+            varphi(k,i) = 1;
         elseif k==2 % order 1
             varphi(k,i) = x_i;
         else % order 2 to N
@@ -176,13 +176,74 @@ px = bet_ols'*varphi;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2.) Chebyshev interpolation
 
+% Step 1: Compute ngrid+1 interpolation nodes
+k=1:N+1;
+z_k = cos((2.*k - 1)/(2*N+2) * pi);
+% Step 2. Adjust nodes to [a,b] interval (which is idiotic here but I'm doing it for completeness)
+x_k = (z_k + 1).*(b-a)/2 + a;
+% Step 3: evaluate f at the nodes
+y_k = true_fun(x_k);
+% Step 4: compute Chebyshev coefficients a_i
+a_i = zeros(N+1,1);
+Ti = zeros(N+1,N+1);
+Tlast = zeros(N+1,N+1);
+% First loop to construct Chebyshev coefficients
+for i=1:N+1
+    % first evaluate the chebyshev
+    if i==1 % order 0
+        Ti(i,:) = 1;
+    elseif i==2 % order 1
+        Ti(i,:) = x_k;
+    else % order 2 to N-1
+        Ti(i,:) = chebyshev(Ti(i,:), Ti(i-2,:),i,x_k);
+    end
+    sum_num = 0;
+    sum_den = 0;
+    for k=1:N+1
+        sum_num = sum_num + y_k(k)*Ti(i,k);
+        sum_den = sum_den + Ti(i,k)^2;
+    end
+    a_i(i) = sum_num/sum_den;
+end
+% Pass through all the points in the interval to create the big Chebyshev
+Ti = zeros(N+1,T);
+for j=1:T
+    x_j = interval(j);
+    % Evaluate Chebyshev of order k at that node x(j) recursively
+    for i=1:N+1
+        if i==1 % order zero
+            Ti(i,j) = 1;
+        elseif i==2 % order 1
+            Ti(i,j) = 2.*(x_j-a)/(b-a)-1;
+        else % order 2 to N
+            Ti(i,j) = chebyshev(Ti(i-1,j), Ti(i-2,j),1,2.*(x_j-a)/(b-a)-1);
+        end
+    end
+end
+
+fhat =0;
+for i=1:N+1
+    fhat = fhat + a_i(i) .* Ti(i,:);
+end
+
+
+% Plot configs
+[fs, lw] = plot_configs;
+
 figure
-h1 = plot(interval, f); hold on
-h2 = plot(interval, px, '--');
-h3 = plot(interval, zeros(size(interval)), ':');
-h4 = plot(interval, zeros(size(interval)));
-title('True f against approximations')
-legend([h1,h2, h3, h4], 'Approximand', 'Legendre least squares', 'Chebyshev interpolation', 'Spline')
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+h1 = plot(interval, f,'linewidth',lw); hold on
+h2 = plot(interval, px, '--','linewidth',lw);
+h3 = plot(interval, fhat, ':','linewidth',lw);
+h4 = plot(interval, zeros(size(interval)),'linewidth',lw);
+ax = gca; % current axes
+ax.FontSize = fs;
+grid on
+grid minor
+title('True f against approximations', 'FontSize',fs)
+legend([h1,h2, h3, h4], 'Approximand', 'Legendre least squares', 'Chebyshev interpolation', 'Spline', 'FontSize',fs, 'location', 'northwest')
+legend('boxoff')
 
 
 
