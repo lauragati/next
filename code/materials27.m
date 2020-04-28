@@ -101,9 +101,9 @@ a  = interval(1);
 b  = interval(end);
 
 % Approximand in "dataset"
-true_fun = @(x) (x+1).^(1/4);
+% true_fun = @(x) (x+1).^(1/4);
 % To do Example 3 uncomment the following
-% true_fun = @(x) min(max(-1*ones(size(x)),4.*(x-0.2)),1*ones(size(x)));
+true_fun = @(x) min(max(-1*ones(size(x)),4.*(x-0.2)),1*ones(size(x)));
 f = true_fun(interval);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,14 +135,12 @@ for j=1:ngrid
         elseif k==2 % order 1
             varphi(k,j) = x(j);
         else % order 2 to N
-            varphi(k,j) = legendre(varphi(k-1,j), varphi(k-2,j),1,x(j));
+            varphi(k,j) = legendre(varphi(k-1,j), varphi(k-2,j),k,x(j));
         end
-    end
-    
+    end 
     % approximand at xj
     truth(j) = true_fun(x(j));
 end
-
 % Second loop: evaluate inner products for each order k to create beta_ols
 for k=1:N+1
     for j=1:ngrid
@@ -154,6 +152,7 @@ for k=1:N+1
     inner_prod_k_den = sum(element_den);
     bet_ols(k) = inner_prod_k_num/inner_prod_k_den;
 end
+% This completes the quadrature.
 
 % Third loop: evaluate the Legendre least squares as the fitted value over
 % the "dataset". First create Legendre polynomials over the dataset
@@ -167,7 +166,7 @@ for i=1:T
         elseif k==2 % order 1
             varphi(k,i) = x_i;
         else % order 2 to N
-            varphi(k,i) = legendre(varphi(k-1,i), varphi(k-2,i),1,x_i);
+            varphi(k,i) = legendre(varphi(k-1,i), varphi(k-2,i),k,x_i);
         end
     end
 end
@@ -176,6 +175,7 @@ px = bet_ols'*varphi;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2.) Chebyshev interpolation
 
+% Note: number of nodes (m) = number of Chebyshev coefficients (n+1)
 % Step 1: Compute ngrid+1 interpolation nodes
 k=1:N+1;
 z_k = cos((2.*k - 1)/(2*N+2) * pi);
@@ -186,16 +186,16 @@ y_k = true_fun(x_k);
 % Step 4: compute Chebyshev coefficients a_i
 a_i = zeros(N+1,1);
 Ti = zeros(N+1,N+1);
-Tlast = zeros(N+1,N+1);
 % First loop to construct Chebyshev coefficients
 for i=1:N+1
     % first evaluate the chebyshev
     if i==1 % order 0
         Ti(i,:) = 1;
     elseif i==2 % order 1
-        Ti(i,:) = x_k;
+%         Ti(i,:) = x_k;
+        Ti(i,:) = z_k;
     else % order 2 to N-1
-        Ti(i,:) = chebyshev(Ti(i,:), Ti(i-2,:),i,x_k);
+        Ti(i,:) = chebyshev(Ti(i-1,:), Ti(i-2,:),i,z_k);
     end
     sum_num = 0;
     sum_den = 0;
@@ -288,5 +288,17 @@ legend([h1,h2, h3, h4], 'Approximand', 'Legendre least squares', 'Chebyshev inte
 legend('boxoff')
 
 
+if isequal(func2str(true_fun), '@(x)(x+1).^(1/4)')
+    figname='example2';
+else
+    figname='example3';
+end
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 
