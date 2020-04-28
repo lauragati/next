@@ -151,7 +151,7 @@ p(x) & = \sum_{k=0}^n \frac{\langle f,\varphi_k\rangle}{\langle \varphi_k,\varph
 \begin{enumerate}
 \item Calculate $N$ quadrature nodes $x_j \;, j=1\dots n$ as the zeros of the Chebyshev polynomial, and associated quadrature weights $w_j$ as the Chebyshev weights.
 \item Approximate the inner products, e.g. $\langle f,\varphi_k\rangle$ as
-\begin{equation}  \int_a^b f(x)\varphi_k(x)\omega^{L}(x)  \; dx \approx \sum_{j=1}^N w_j f(x_j)\varphi_j(x_j) \omega^l(x_j)
+\begin{equation}  \int_a^b f(x)\varphi_k(x)\omega^{L}(x)  \; dx \approx \sum_{j=1}^N w_j f(x_j)\varphi_k(x_j) \omega^l(x_j)
 \end{equation}
 where fortunately the Legendre weights $\omega^l(x) = 1 \; \forall x$.
 \end{enumerate}

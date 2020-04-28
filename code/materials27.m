@@ -22,9 +22,10 @@ skip = 1;
 %% Let's compute some polynomials (Judd, Numerical, p. 211 Mac)
 tau = 400;
 interval = linspace(-1,1,tau);
-N = 10; % degree of polynomial (0 to N-1)
 
-legendre = @(Pn,Pn_1,n,x) (2*n+1)/(n+1)*x*Pn - n/(n+1)*Pn_1;
+N = 6; % degree of polynomial (0 to N-1)
+
+legendre = @(Pn,Pn_1,n,x) (2*n+1)./(n+1).*x.*Pn - n./(n+1).*Pn_1;
 
 chebyshev = @(Tn,Tn_1,n,x) 2.*x.*Tn -Tn_1;
 
@@ -52,7 +53,7 @@ for i=1:tau
             L(n+1,i) = 1-x;
             H(n+1,i) = 2*x;
         else % order 2 to N-1
-            P(n+1,i) = legendre(P(n,i), P(n-1,i),n,x);
+            P(n+1,i) = legendre(P(n,i), P(n-1,i),n-1,x); % <---- seem to have to input n-1 here for some reason!
             T(n+1,i) = chebyshev(T(n,i), T(n-1,i),n,x);
             L(n+1,i) = laguerre(L(n,i), L(n-1,i),n,x);
             H(n+1,i) = hermite(H(n,i), H(n-1,i),n,x);
@@ -89,6 +90,14 @@ title('Hermite')
 
 % yay they work!
 
+legendre_order4 =@(x) 1/8.*(35.*x.^4 -30.*x.^2 +3);
+P4 = legendre_order4(interval);
+figure
+plot(interval,P4); hold on
+plot(interval, P(5,:))
+legend('Closed form', 'recursive')
+title('4th order Legendre polynomial')
+P4-P(5,:)
 
 
 %% Example 2: approximand = (x+1)^(1/4) and  Example 3: approximand = min(max(-1,4*(x-0.2),1))
@@ -97,13 +106,15 @@ N=4;
 ngrid =5; % number of points used in approximation
 T =100; % "size of dataset"
 interval = linspace(-1,1,T);
+
 a  = interval(1);
 b  = interval(end);
 
 % Approximand in "dataset"
-% true_fun = @(x) (x+1).^(1/4);
+% true_fun = @(x) x;
+true_fun = @(x) (x+1).^(1/4);
 % To do Example 3 uncomment the following
-true_fun = @(x) min(max(-1*ones(size(x)),4.*(x-0.2)),1*ones(size(x)));
+% true_fun = @(x) min(max(-1*ones(size(x)),4.*(x-0.2)),1*ones(size(x)));
 f = true_fun(interval);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,8 +126,10 @@ x = zeros(ngrid,1);
 omq = zeros(ngrid,1);
 varphi=zeros(N+1,ngrid); % order N plus 1 because of order 0
 truth = zeros(ngrid,1);
-element_num = zeros(ngrid,1);
-element_den = zeros(ngrid,1);
+inner_prod_k_num = zeros(N+1,1);
+inner_prod_k_den = zeros(N+1,1);
+element_num = zeros(N+1,ngrid);
+element_den = zeros(N+1,ngrid);
 bet_ols =zeros(N+1,1);
 % Gauss-Chebyshev quadrature to evaluate the inner products
 % First loop: evaluate all the quadrature nodes, weights, Legendre
@@ -124,9 +137,12 @@ bet_ols =zeros(N+1,1);
 % For ngrid nodes
 for j=1:ngrid
     % Calculate node
-    x(j) = a + (b-a)*(cos((2*j-1)/(2*ngrid)*pi)+1)/2;
+    x(j) = a + (b-a)*(cos((2*j-1)/(2*ngrid)*pi)+1)/2; % general [a,b] interval
     % Calculate quadrature weights
-    omq(j) = (b-a)/2 * pi/ngrid * sqrt(1-cos((2*j-1)/(2*ngrid)*pi)^2);
+    omq(j) = (b-a)/2 * pi/ngrid * sqrt(1-cos((2*j-1)/(2*ngrid)*pi)^2);% general [a,b] interval
+    
+    % approximand at xj
+    truth(j) = true_fun(x(j));
     
     % Evaluate Legendre of order k at that node x(j) recursively
     for k=1:N+1
@@ -135,28 +151,36 @@ for j=1:ngrid
         elseif k==2 % order 1
             varphi(k,j) = x(j);
         else % order 2 to N
-            varphi(k,j) = legendre(varphi(k-1,j), varphi(k-2,j),k,x(j));
+            varphi(k,j) = legendre(varphi(k-1,j), varphi(k-2,j),k-1,x(j));
         end
-    end 
-    % approximand at xj
-    truth(j) = true_fun(x(j));
+    end
 end
+% look ok
+% figure
+% plot(x,varphi(2,:)); hold on
+% plot(x,varphi(3,:))
+% plot(x,varphi(4,:))
+% plot(x,varphi(5,:))
+% title('Legendre')
+% return
+
 % Second loop: evaluate inner products for each order k to create beta_ols
 for k=1:N+1
     for j=1:ngrid
         % Calculate each element of the inner products for order k
-        element_num(j) = omq(j) * truth(j)*varphi(k,j)*om_l(x(j));
-        element_den(j) = omq(j) * varphi(k,j)*varphi(k,j)*om_l(x(j));
+        element_num(k,j) = omq(j) * truth(j)*varphi(k,j)*om_l(x(j));
+        element_den(k,j) = omq(j) * varphi(k,j)*varphi(k,j)*om_l(x(j));
     end
-    inner_prod_k_num = sum(element_num);
-    inner_prod_k_den = sum(element_den);
-    bet_ols(k) = inner_prod_k_num/inner_prod_k_den;
+    inner_prod_k_num(k) = sum(element_num(k,:));
+    inner_prod_k_den(k) = sum(element_den(k,:));
+    bet_ols(k) = inner_prod_k_num(k)/inner_prod_k_den(k);
 end
 % This completes the quadrature.
 
+% return
 % Third loop: evaluate the Legendre least squares as the fitted value over
 % the "dataset". First create Legendre polynomials over the dataset
-varphi = zeros(k,T);
+varphi = zeros(N+1,T);
 for i=1:T
     x_i = interval(i);
     % Evaluate Legendre of order k at that node x(j) recursively
@@ -166,12 +190,30 @@ for i=1:T
         elseif k==2 % order 1
             varphi(k,i) = x_i;
         else % order 2 to N
-            varphi(k,i) = legendre(varphi(k-1,i), varphi(k-2,i),k,x_i);
+            varphi(k,i) = legendre(varphi(k-1,i), varphi(k-2,i),k-1,x_i);
         end
     end
 end
 px = bet_ols'*varphi;
+% px = ones(size(bet_ols))'*varphi;
+% px = bet_ols'*ones(size(varphi));
 
+
+% alternative evaluation of fitted values gives you the same thing:
+% px = zeros(1,T);
+% for k=1:N+1
+%     px = px + bet_ols(k)*varphi(k,:);
+% end
+
+% I also checked that the legendre polynomials look ok:
+% figure
+% plot(interval,varphi(2,:)); hold on
+% plot(interval,varphi(3,:))
+% plot(interval,varphi(4,:))
+% plot(interval,varphi(5,:))
+% title('Legendre')
+
+% return
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2.) Chebyshev interpolation
 
@@ -185,6 +227,7 @@ x_k = (z_k + 1).*(b-a)/2 + a;
 y_k = true_fun(x_k);
 % Step 4: compute Chebyshev coefficients a_i
 a_i = zeros(N+1,1);
+b_i = zeros(N+1,1);
 Ti = zeros(N+1,N+1);
 % First loop to construct Chebyshev coefficients
 for i=1:N+1
@@ -192,31 +235,44 @@ for i=1:N+1
     if i==1 % order 0
         Ti(i,:) = 1;
     elseif i==2 % order 1
-%         Ti(i,:) = x_k;
         Ti(i,:) = z_k;
     else % order 2 to N-1
-        Ti(i,:) = chebyshev(Ti(i-1,:), Ti(i-2,:),i,z_k);
+        Ti(i,:) = chebyshev(Ti(i-1,:), Ti(i-2,:),i-1,z_k);
     end
     sum_num = 0;
     sum_den = 0;
+    sum_b0 = 0;
+    sum_b = 0;
     for k=1:N+1
         sum_num = sum_num + y_k(k)*Ti(i,k);
         sum_den = sum_den + Ti(i,k)^2;
+        
+        sum_b0 = sum_b0 + y_k(k);
+        sum_b = sum_b + y_k(k)*Ti(i,k);
     end
     a_i(i) = sum_num/sum_den;
+    
+    % alternative in Cai & Judd 2014, p. 12 Mac
+    if i==1
+        b_i(i) = sum_b0/(N+1);
+    else
+        b_i(i) = 2*sum_b/(N+1);
+    end
+    % interesting! a_i - b_i EXACTLY
 end
 % Pass through all the points in the interval to create the big Chebyshev
 Ti = zeros(N+1,T);
 for j=1:T
     x_j = interval(j);
+    Z_j = 2.*(x_j-a)/(b-a)-1; % back to the [-1,1] nodes
     % Evaluate Chebyshev of order k at that node x(j) recursively
     for i=1:N+1
         if i==1 % order zero
             Ti(i,j) = 1;
         elseif i==2 % order 1
-            Ti(i,j) = 2.*(x_j-a)/(b-a)-1;
+            Ti(i,j) = Z_j;
         else % order 2 to N
-            Ti(i,j) = chebyshev(Ti(i-1,j), Ti(i-2,j),1,2.*(x_j-a)/(b-a)-1);
+            Ti(i,j) = chebyshev(Ti(i-1,j), Ti(i-2,j),i-1,Z_j);
         end
     end
 end
@@ -261,13 +317,13 @@ d = coeffs_opt(:,4);
 sx = zeros(T,1);
 segment_index=1;
 for i=1:T
-    x=interval(i); 
+    x=interval(i);
     if i>=node_indexes(segment_index+1) && segment_index < ngrid-1
         segment_index = segment_index+1;
     end
     sx(i) = a(segment_index)+ b(segment_index)*x + c(segment_index)*x^2 + d(segment_index)*x^3;
 end
-    
+
 
 % Plot configs
 [fs, lw] = plot_configs;
