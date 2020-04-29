@@ -31,6 +31,8 @@ om = omt_1 + kap*kt_1^(-1)*(f*f' - omt_1);
 % based on Lütkepohl, "Intro to Multiple Time Series Analysis", p. 161
 tauhat = f'*om^(-1)*f; %<--- fave
 
+% warning off
+
 ny = size(f,1);
 tautilde = f'*om^(-1)*f/ny;
 thet = thett_1 + kap*kt_1^(-1)*(tauhat - thett_1); % this gives you a scalar yo

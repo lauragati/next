@@ -132,3 +132,5 @@ subplot(1,2,2)
 plot(kgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.2 Decision rules')
+
+%% Let's try to replicate Collard's "parametric dynamic programming example"

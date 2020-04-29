@@ -33,9 +33,11 @@ eta = SIG; %just so you know
 % Generate innovations
 rng(0)
 eN = randn(ne,T+ndrop,N);
-e = squeeze(eN(:,:,1));
+% e = squeeze(eN(:,:,1)); % this was the error identified with Ryan
 % zero out the monpol shock
 eN(2,:,:) = zeros(T+ndrop,N);
+e = squeeze(eN(:,:,1));
+
 
 % Params for the general learning code
 constant_only = 1; % learning constant only (vector learning)
@@ -82,8 +84,8 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 [x0, y0, k0, phi0, FA0, FB0, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule')
-create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule')
+% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule')
+% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule')
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
@@ -97,12 +99,26 @@ end
 
 % an initial simulation given exogenous input sequence(s) 
 [x1, y1, k1, phi1, FA1, FB1, diff1] = sim_learnLH_clean_given_seq(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq0);
-create_plot_observables(y1,seriesnames, 'Simulation using input sequence ')
-create_plot_observables(1./k1, invgain,'Simulation using input sequence')
+% create_plot_observables(y1,seriesnames, 'Simulation using input sequence ')
+% create_plot_observables(1./k1, invgain,'Simulation using input sequence')
 
 % An initial evaluation of objective function
 resids = objective_seq_clean(seq0,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 disp('Initial residuals are NKIS, NKPC, TR:')
 disp(num2str(resids))
 
-create_plot_observables(resids,residnames, 'Errors - Simulation using input sequence ')
+% create_plot_observables(resids,residnames, 'Errors - Simulation using input sequence ')
+
+%%
+% %Optimization Parameters
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'MaxFunEvals', 10000);
+options.UseParallel=true;
+% warning off
+tic
+objh = @(seq) objective_seq_clean(seq,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+[seq_opt] = fsolve(objh,seq0+2*rand(size(seq0)), options);
+toc
+
+seq_opt-seq0
+% indeed it can solve it, even if you initialize elsewhere
+disp('Done.')
