@@ -131,14 +131,14 @@ bottom=1in}
 
 \textsc{Algorithm: Parametric value function iteration} \\(Judd, \emph{Numerical Methods}, Algorithm 12.5)
 \begin{itemize}
-\item Objective: Solve Bellman equation $\rightarrow$ find coefficients $a^*$ such that the approximation $\hat{V}(x,a)$ is close enough.
-\item Initialization: Choose a functional form for $\hat{V}(x,a^0)$ and choose a grid of $n$ interpolation nodes $X=\{x_1,\dots,n_n\}$. Choose initial vector of coefficients $a^0$ and stopping criterion $\varepsilon>0$.
+\item Objective: Solve Bellman equation $\rightarrow$ find coefficients $b^*$ such that the approximation $\hat{V}(x,b)$ is close enough.
+\item Initialization: Choose a functional form for $\hat{V}(x,b^0)$ and choose a grid of $n$ interpolation nodes $X=\{x_1,\dots,n_n\}$. Choose initial vector of coefficients $b^0$ and stopping criterion $\varepsilon>0$.
 \item[Step 1] Maximization step \\
-Compute $v_j = T \hat{V}(\cdot,a^i)$ for $x_j \in X$.
+Compute $v_j = T \hat{V}(\cdot,b^i)$ for $x_j \in X$.
 \item[Step 2] Fitting step \\
-Using your choice of approximation method, compute the updated vector of coefficients $a^{i+1}$ such that $\hat{V}(x,a^{i+1})$ approximates the $(v_i,x_i)$ data. 
+Using your choice of approximation method, compute the updated vector of coefficients $b^{i+1}$ such that $\hat{V}(x,b^{i+1})$ approximates the $(v_i,x_i)$ data. 
 \item[Step 3] 
-If $||\hat{V}(x,a^{i}) -\hat{V}(x,a^{i+1}) < \varepsilon ||$, stop; else go to Step 1. 
+If $||\hat{V}(x,b^{i}) -\hat{V}(x,b^{i+1}) < \varepsilon ||$, stop; else go to Step 1. 
 \end{itemize}
 
 

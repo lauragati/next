@@ -12,64 +12,8 @@ todays_date = strrep(datestr(today), '-','_');
 skip = 1;
 
 
-%% Peter's VFI example here, I'm also basing this on the Collard notes
-if skip==0
-    clc
-    % params
-    tol=0.01; maxiter =200; dif = tol+1000; iter=0;
-    bet=0.99; alph = 0.3;
-    ks = (1/(alph*bet))^(1/(alph-1));
-    
-    dev=0.9;
-    kmin = (1-dev)*ks;
-    kmax = (1+dev)*ks;
-    ngrid = 1000; % number of data points in the grid (nbk in Collard's notation)
-    dk = (kmax-kmin)/(ngrid-1); % implied increment
-    kgrid = linspace(kmin,kmax,ngrid);
-    
-    v = zeros(1, ngrid);
-    vnew = zeros(1,ngrid);
-    jstar = zeros(1,ngrid);
-    tic
-    while dif > tol && iter < maxiter
-        for i=1:ngrid
-            % The idea is to do the max for each k_t(i)
-            k = kgrid(i);
-            % First, for this value of k_t, k_{t+1} must be less than k_t^alph
-            ub = k^alph;
-            % find the lowest index at which k_{t+1} exceeds k_t^alph
-            imax = find(kgrid > ub, 1 );
-            if isempty(imax) % if it's empty, then take all the gridpoints
-                imax = ngrid;
-            end
-            % 2nd, cons and utility as a function of this k_t, for all for all values of k_{t+1}
-            c = k^alph - kgrid(1:imax); % c(i,:) for all values of k_{t+1}
-            u = log(c); % u(i,:) for all values of k_{t+1}
-            [vnew(i), jstar(i)] = max(u + bet*v(1:imax));
-        end
-        dif = max(abs((vnew-v)));
-        v = vnew;
-        iter = iter+1;
-    end
-    toc
-    
-    % Final sol
-    % 1.) k_{t+1} as a function of k_t
-    kp = kgrid(jstar);
-    % 2.) c as function of k_t, k_{t+1}
-    c = kgrid.^alph - kp;
-    
-    
-    figure
-    plot(kgrid,c)
-    title('Consumption as a function of k_t')
-    
-    figure
-    plot(kgrid,kp)
-    title('k_{t+1} as a function of k_t')
-    
-end
 
+if skip==0
 %% Collard notes VFI
 sig  = 1.5;
 delt = 0.1;
@@ -132,6 +76,7 @@ subplot(1,2,2)
 plot(kgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.2 Decision rules')
+% it works!
 
 %% Let's try to replicate Collard's "parametric dynamic programming example"
 sig  = 1.5;
@@ -139,7 +84,7 @@ delt = 0.1;
 bet  = 0.95;
 alph = 0.3;
 
-ngrid=20; % Collard's nbk
+ngrid=20; % Collard's nbk, he says he set it to 20, but maybe not...
 p = 10; % order of Chebyshev polyonomials (0,1,...,10)
 crit=1;
 iter=1;
@@ -148,7 +93,7 @@ ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
 dev = 0.9;
 kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
-zk = -cos(2*[1:ngrid]'-1)*pi/(2*(ngrid));
+zk =  -cos((2*[1:ngrid]'-1)*pi/(2*m)); 
 kgrid = (kmax-kmin)*(zk+1)/2 +kmin;
 
 % Initial guess for the approximation
@@ -168,6 +113,8 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'none');
 
 tic
+warning off
+datestr(now)
 while crit>epsi
     k0 = kgrid(1);
     for i=1:ngrid
@@ -185,7 +132,7 @@ while crit>epsi
         %T-map given current "estimated" coefficients theta0:
         Tv(i) = -tv(kp(i), param, th0);
     end
-    % Fitting step: Given value function today, back out coefficients
+    % Fitting step: Given updated value function, back out coefficients
     thet =X\Tv;
     crit = max(abs(Tv-v));
     v = Tv;
@@ -195,7 +142,6 @@ end
 toc % indeed it takes 242 iterations (but much longer than the above: 60 seconds)
 
 % Compute consumption function
-kgrid
 c = kgrid.^alph+(1-delt)*kgrid-kp;
 
 figure
@@ -210,7 +156,182 @@ subplot(1,2,2)
 plot(kgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.8 Decision rules')
+% it works! But it takes 60 sec.
 
+end % skip
+%% Let's try the parametric VFI on the optimal growth with Collard's parameterization, but on my own
+% let me use notation in Cai and Judd 2014
+clc
+
+sig  = 1.5;
+delt = 0.1;
+bet  = 0.95;
+alph = 0.3;
+param = [sig,delt,bet,alph];
+
+%Optimization Parameters
+options = optimset('fmincon');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'none');
+
+m=20; % number of nodes (index i)
+n = 19; % 10 order of Chebyshev polyonomials (0,1,...,10) (index j)
+crit=1;
+iter=1;
+maxiter=5;
+epsi=1e-6; %-6
+ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
+dev = 0.9;
+kmin = (1-dev)*ks;
+kmax = (1+dev)*ks;
+zi =  -cos((2*(1:m)-1)*pi/(2*m));
+xgrid = (zi+1)*(kmax-kmin)/2 +kmin;
+% cheby polynomials on this grid (are constant y'know)
+Tn = chebyshev(zi,n);
+% Initial nodes as a completely uneducated guess
+b0 = ones(n+1,1);
+v0 = vhat_cheby(b0,xgrid,n,kmin,kmax);
+v1 = zeros(size(v0));
+kp = zeros(m,1);
+
+b=b0;
+v=v0;
+
+% always start searching at the beginning of the grid
+k0 = xgrid(1);
+datestr(now)
+tic
+while crit > epsi && iter< maxiter
+    % Step 1: maximization
+    for j=1:m
+        kj=xgrid(j);
+        negv = @(kp) TV(kp,b,kj,n,kmin,kmax, param);
+        
+%         [kp(j)] = fmincon(negv, k0, [],[],[],[],kmin,kmax,[],options);
+        [kp(j)] = fminunc(negv, k0, options); % noticeably faster
+        % compute the value function at the maximizing kp
+        v1(j) = -TV(kp(j),b,kj,n,kmin,kmax, param);
+        
+        % maybe this makes fmincon search elsewhere? It does, but not to
+        % huge effect.
+        k0 = kp(j);
+    end
+    
+    % Step 2: fitting
+    b1 = compute_cheby_coeffs(v,xgrid,n,kmin,kmax);
+    b1_alt = Tn\v1'; % b1-b1_alt not 0
+    v1_alt = vhat_cheby(b1,xgrid,n,kmin,kmax); % v1-v1_alt is almost 0
+    
+    % Compute stopping criterion and update
+    crit = max(abs(v1-v));
+    disp(['Concluding iteration = ', num2str(iter)])
+    disp(['Stopping criterion = ', num2str(crit)])
+    iter=iter+1;
+    b=b1_alt;
+    v=v1;
+end
+toc
+
+for j=1:m
+    kpj=xgrid(j);
+    loss(j) = TV(kpj,b,kj,n,kmin,kmax, param);
+    vhat(j) = vhat_cheby(b1,kpj,n,kmin,kmax);
+end
+
+% Compute consumption function
+c = xgrid.^alph+(1-delt).*xgrid-kp';
+
+figure
+plot(xgrid,v)
+title('Collard''s Fig. 7.7 Value function against k_t - MY TAKE')
+
+figure
+subplot(1,2,1)
+plot(xgrid,kp)
+title('k_{t+1} as a function of k_t')
+subplot(1,2,2)
+plot(xgrid,c)
+title('c_{t} as a function of k_t')
+sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
+ 
+% % % some initial testing of functions
+% T1 = chebyshev(zi,6);
+% figure
+% plot(zi,T1(2,:)); hold on
+% plot(zi,T1(3,:))
+% plot(zi,T1(4,:))
+% plot(zi,T1(5,:))
+% title('Chebyshev')
+% close
+% 
+% vhat1 = vhat_cheby(ones(1,n+1),xgrid,n,kmin,kmax);
+% % plot(vhat1) % it's very oscillatory, no idea if that's a good thing
+% 
+% tvhat1 = TV(xgrid(1),b0,xgrid(1),n,kmin,kmax, param); % ok seems to work
+% 
+% b1 = compute_cheby_coeffs(vhat1,xgrid,n,kmin,kmax); % ok seems to work
+
+%% Let me do my own functions
+
+function Tx = chebyshev(x,n) % checked - should be correct
+[xm,xn]=size(x);
+tau=max(xm,xn); % the number of data points
+Tx = zeros(n+1,tau);
+% creates Chebyshev polynomials for all x, of order 0,...,n
+Tx(1,:) = ones(1,tau); % order 0
+Tx(2,:) = x.*ones(1,tau);
+    for j=3:n+1
+        Tx(j,:) = 2*x.*Tx(j-1,:)-Tx(j-2,:);
+    end
+end
+
+function vhat = vhat_cheby(b,x,n,xmin,xmax) % checked - should be correct
+% Make sure b has the right size
+bp = reshape(b,1,n+1);
+% Convert x back to z
+z = (2.*x -xmin -xmax)./(xmax-xmin);
+% Evaluate Chebyshevs at z
+T = chebyshev(z,n);
+% Evaluate the approximated value function given the coefficients
+vhat = bp*T;
+end
+
+function negvj = TV(kp,bi,xj,n,xmin,xmax, param)
+% this function just gives you today's value for this state xj, times -1 (it's not a min)
+sig = param(1); delt=param(2); bet=param(3); alph=param(4);
+% we're moving along different values for today's capital, and we wanna
+% choose tomorrow's optimally, kp
+k=xj;
+% compute c given k, util given c
+kp = sqrt(kp.^2); % insures positivity of k' - is this necessary? I suspect not.
+c = k.^alph+(1-delt)*k-kp; % computes consumption
+d = find(c<=0);% find negative consumption
+c(d) = NaN; % get rid of negative c
+util = (c.^(1-sig)-1)/(1-sig); % computes utility
+% compute value function given k
+v = vhat_cheby(bi,kp,n,xmin,xmax); 
+% finally, the T-map TVhat:
+vj = util + bet*v;
+negvj =-vj;
+end
+
+function b = compute_cheby_coeffs(v,x,n,xmin,xmax)
+b=zeros(n+1,1);
+% convert xi to zi
+z = (2.*x -xmin -xmax)./(xmax-xmin);
+[zm,zn] = size(z);
+m = max(zm,zn); % recover the number of nodes
+% make sure size of v is right
+v=reshape(v,1,m);
+% compute chebyshevs
+T = chebyshev(z,n);
+b(1) = 1/m*(sum(v));
+for j=2:n+1
+    viTj = v*T(j,:)';
+    b(j) = 2/m * viTj;
+end
+
+end
+%% Collard's functions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% A nice thing is Collard's intuitive Chebyshev and value functions
 % chebyshev = @(Tn,Tn_1,n,x) 2.*x.*Tn -Tn_1; % this was mine and it's not as convenient as Collard's
