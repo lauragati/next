@@ -170,26 +170,30 @@ alph = 0.3;
 param = [sig,delt,bet,alph];
 
 %Optimization Parameters
-options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'none');
+% options = optimset('fmincon');
+options = optimset('fminunc');
+options = optimset(options, 'TolFun', 1e-16, 'display', 'none');
 
 m=20; % number of nodes (index i)
 n = 19; % 10 order of Chebyshev polyonomials (0,1,...,10) (index j)
 crit=1;
 iter=1;
-maxiter=5;
-epsi=1e-6; %-6
+maxiter=10;
+epsi=1e-30; %-6
 ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
 dev = 0.9;
 kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
 zi =  -cos((2*(1:m)-1)*pi/(2*m));
-xgrid = (zi+1)*(kmax-kmin)/2 +kmin;
+xgrid = (zi+1).*(kmax-kmin)/2 +kmin;
 % cheby polynomials on this grid (are constant y'know)
 Tn = chebyshev(zi,n);
 % Initial nodes as a completely uneducated guess
 b0 = ones(n+1,1);
 v0 = vhat_cheby(b0,xgrid,n,kmin,kmax);
+% initialize the value function instead as umax given kp=0
+% v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % -> get the same thing!
+% b0 = Tn\v0';
 v1 = zeros(size(v0));
 kp = zeros(m,1);
 
@@ -207,7 +211,7 @@ while crit > epsi && iter< maxiter
         negv = @(kp) TV(kp,b,kj,n,kmin,kmax, param);
         
 %         [kp(j)] = fmincon(negv, k0, [],[],[],[],kmin,kmax,[],options);
-        [kp(j)] = fminunc(negv, k0, options); % noticeably faster
+        [kp(j,iter)] = fminunc(negv, k0, options); % noticeably faster
         % compute the value function at the maximizing kp
         v1(j) = -TV(kp(j),b,kj,n,kmin,kmax, param);
         
@@ -218,7 +222,9 @@ while crit > epsi && iter< maxiter
     
     % Step 2: fitting
     b1 = compute_cheby_coeffs(v,xgrid,n,kmin,kmax);
-    b1_alt = Tn\v1'; % b1-b1_alt not 0
+%     b1_alt = Tn\v1'; % b1-b1_alt not 0
+    b1_alt = v1/Tn; % conceptually correct b1_alt for me
+
     v1_alt = vhat_cheby(b1,xgrid,n,kmin,kmax); % v1-v1_alt is almost 0
     
     % Compute stopping criterion and update
@@ -226,7 +232,8 @@ while crit > epsi && iter< maxiter
     disp(['Concluding iteration = ', num2str(iter)])
     disp(['Stopping criterion = ', num2str(crit)])
     iter=iter+1;
-    b=b1_alt;
+    b=b1;
+%     b=b1_alt;
     v=v1;
 end
 toc
@@ -238,7 +245,7 @@ for j=1:m
 end
 
 % Compute consumption function
-c = xgrid.^alph+(1-delt).*xgrid-kp';
+c = xgrid.^alph+(1-delt).*xgrid-kp(:,end)';
 
 figure
 plot(xgrid,v)
@@ -246,7 +253,8 @@ title('Collard''s Fig. 7.7 Value function against k_t - MY TAKE')
 
 figure
 subplot(1,2,1)
-plot(xgrid,kp)
+plot(xgrid,kp(:,end)); hold on
+plot(xgrid,xgrid,'k--')
 title('k_{t+1} as a function of k_t')
 subplot(1,2,2)
 plot(xgrid,c)
@@ -307,6 +315,7 @@ c = k.^alph+(1-delt)*k-kp; % computes consumption
 d = find(c<=0);% find negative consumption
 c(d) = NaN; % get rid of negative c
 util = (c.^(1-sig)-1)/(1-sig); % computes utility
+util(d) = -1e12; % utility = low number for c<0
 % compute value function given k
 v = vhat_cheby(bi,kp,n,xmin,xmax); 
 % finally, the T-map TVhat:
