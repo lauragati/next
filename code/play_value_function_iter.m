@@ -85,7 +85,7 @@ bet  = 0.95;
 alph = 0.3;
 
 ngrid=20; % Collard's nbk, he says he set it to 20, but maybe not...
-p = 10; % order of Chebyshev polyonomials (0,1,...,10)
+% p = 10; % order of Chebyshev polyonomials (0,1,...,10)
 crit=1;
 iter=1;
 epsi=1e-6;
@@ -95,7 +95,6 @@ kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
 zk =  -cos((2*[1:ngrid]'-1)*pi/(2*m)); 
 kgrid = (kmax-kmin)*(zk+1)/2 +kmin;
-
 % Initial guess for the approximation
 % Collard calls the coefficients theta, thus th0
 % Collard's logic is: initialize value function at utility function...
@@ -123,7 +122,8 @@ while crit>epsi
         % Given current coefficients th0 and today's k, kgrid(i), starting
         % with a guess of k0, solve for k':
         objh = @(kp) tv(kp,param,th0);
-        [kp(i)] = fmincon(objh, k0, [],[],[],[],kmin,kmax,[],options);
+%         [kp(i)] = fmincon(objh, k0, [],[],[],[],kmin,kmax,[],options);
+        [kp(i)] = fminunc(objh, k0,options);
         % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
         % I wonder if we could get around doing fmincon...
         
@@ -139,7 +139,7 @@ while crit>epsi
     th0 = thet;
     iter=iter+1;
 end
-toc % indeed it takes 242 iterations (but much longer than the above: 60 seconds)
+toc % indeed it takes 242 iterations (But it takes 60 sec. With fminunc only 12 sec!)
 
 % Compute consumption function
 c = kgrid.^alph+(1-delt)*kgrid-kp;
@@ -156,7 +156,7 @@ subplot(1,2,2)
 plot(kgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.8 Decision rules')
-% it works! But it takes 60 sec.
+% it works! 
 
 end % skip
 %% Let's try the parametric VFI on the optimal growth with Collard's parameterization, but on my own
@@ -178,22 +178,22 @@ m=20; % number of nodes (index i)
 n = 19; % 10 order of Chebyshev polyonomials (0,1,...,10) (index j)
 crit=1;
 iter=1;
-maxiter=10;
-epsi=1e-30; %-6
+maxiter=10;%300
+epsi=1e-20; %-6
 ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
 dev = 0.9;
 kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
-zi =  -cos((2*(1:m)-1)*pi/(2*m));
+zi =  -cos((2*(1:m)'-1)*pi/(2*m));
 xgrid = (zi+1).*(kmax-kmin)/2 +kmin;
 % cheby polynomials on this grid (are constant y'know)
 Tn = chebyshev(zi,n);
 % Initial nodes as a completely uneducated guess
 b0 = ones(n+1,1);
 v0 = vhat_cheby(b0,xgrid,n,kmin,kmax);
-% initialize the value function instead as umax given kp=0
-% v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % -> get the same thing!
-% b0 = Tn\v0';
+% % initialize the value function instead as umax given kp=0
+% v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % -> explodes!
+% b0 =v0/Tn;
 v1 = zeros(size(v0));
 kp = zeros(m,1);
 
@@ -208,44 +208,41 @@ while crit > epsi && iter< maxiter
     % Step 1: maximization
     for j=1:m
         kj=xgrid(j);
-        negv = @(kp) TV(kp,b,kj,n,kmin,kmax, param);
+        negv = @(kp) TV(kp,b,xgrid(j),n,kmin,kmax, param);
         
 %         [kp(j)] = fmincon(negv, k0, [],[],[],[],kmin,kmax,[],options);
         [kp(j,iter)] = fminunc(negv, k0, options); % noticeably faster
         % compute the value function at the maximizing kp
         v1(j) = -TV(kp(j),b,kj,n,kmin,kmax, param);
         
-        % maybe this makes fmincon search elsewhere? It does, but not to
-        % huge effect.
+        % maybe this makes fmincon search elsewhere? It does, it seems like
+        % an educated guess. It does make a diff too.
         k0 = kp(j);
     end
     
     % Step 2: fitting
     b1 = compute_cheby_coeffs(v,xgrid,n,kmin,kmax);
-%     b1_alt = Tn\v1'; % b1-b1_alt not 0
-    b1_alt = v1/Tn; % conceptually correct b1_alt for me
+    b1_alt = Tn\v1; % b1-b1_alt not 0.
+%     b1_alt = v1/Tn; % conceptually correct b1_alt for me;  b1(1)-b1_alt(1) not 0, the rest practically is
 
     v1_alt = vhat_cheby(b1,xgrid,n,kmin,kmax); % v1-v1_alt is almost 0
+    v_alt = vhat_cheby(b,xgrid,n,kmin,kmax); % v1=v_alt, that's cool
+
     
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
     disp(['Concluding iteration = ', num2str(iter)])
     disp(['Stopping criterion = ', num2str(crit)])
     iter=iter+1;
-    b=b1;
-%     b=b1_alt;
+%     b=b1;
+    b=b1_alt;
     v=v1;
 end
 toc
 
-for j=1:m
-    kpj=xgrid(j);
-    loss(j) = TV(kpj,b,kj,n,kmin,kmax, param);
-    vhat(j) = vhat_cheby(b1,kpj,n,kmin,kmax);
-end
-
 % Compute consumption function
-c = xgrid.^alph+(1-delt).*xgrid-kp(:,end)';
+c = xgrid.^alph+(1-delt).*xgrid-kp(:,end);
+
 
 figure
 plot(xgrid,v)
@@ -261,15 +258,28 @@ plot(xgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
  
-% % % some initial testing of functions
-% T1 = chebyshev(zi,6);
-% figure
-% plot(zi,T1(2,:)); hold on
-% plot(zi,T1(3,:))
-% plot(zi,T1(4,:))
-% plot(zi,T1(5,:))
-% title('Chebyshev')
-% close
+%% some initial testing of functions
+zi =  -cos((2*[1:m]'-1)*pi/(2*m)); 
+kgrid = (kmax-kmin)*(zi+1)/2 +kmin;
+
+% 1.) Chebyshev polyonomials should equal
+T_me = chebyshev(zi,n);
+T_collard = chebychev(zi,n);
+T_me-T_collard % yep
+
+% 2.) vhat given coefficients should equal
+v0 = (((kgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet)));% take Collard's initial value function and coefficients
+b0 =T_me\v0;
+vhat_collard = value(ks,[kmin, kmax, n],b0);
+vhat_me = vhat_cheby(b0,ks,n,kmin,kmax);
+vhat_collard - vhat_me % yep
+
+% 3.) TV
+negv_collard = tv(ks,[alph, bet, delt, sig, kmin, kmax, n, ks],b0);
+negv_me = TV(ks,b0,ks,n,kmin,kmax, [sig,delt,bet,alph]);
+negv_collard-negv_me
+
+
 % 
 % vhat1 = vhat_cheby(ones(1,n+1),xgrid,n,kmin,kmax);
 % % plot(vhat1) % it's very oscillatory, no idea if that's a good thing
@@ -280,27 +290,28 @@ sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
 
 %% Let me do my own functions
 
-function Tx = chebyshev(x,n) % checked - should be correct
+function Tx = chebyshev(x,n) % checked - correct
 [xm,xn]=size(x);
 tau=max(xm,xn); % the number of data points
-Tx = zeros(n+1,tau);
+x=reshape(x,tau,1);
+Tx = zeros(tau,n+1);
 % creates Chebyshev polynomials for all x, of order 0,...,n
-Tx(1,:) = ones(1,tau); % order 0
-Tx(2,:) = x.*ones(1,tau);
+Tx(:,1) = ones(tau,1); % order 0
+Tx(:,2) = x.*ones(tau,1);
     for j=3:n+1
-        Tx(j,:) = 2*x.*Tx(j-1,:)-Tx(j-2,:);
+        Tx(:,j) = 2*x.*Tx(:,j-1)-Tx(:,j-2);
     end
 end
 
-function vhat = vhat_cheby(b,x,n,xmin,xmax) % checked - should be correct
+function vhat = vhat_cheby(b,x,n,xmin,xmax) % checked - correct
 % Make sure b has the right size
-bp = reshape(b,1,n+1);
+b = reshape(b,n+1,1);
 % Convert x back to z
-z = (2.*x -xmin -xmax)./(xmax-xmin);
+z = 2*(x-xmin)/(xmax-xmin)-1;
 % Evaluate Chebyshevs at z
 T = chebyshev(z,n);
 % Evaluate the approximated value function given the coefficients
-vhat = bp*T;
+vhat = T*b;
 end
 
 function negvj = TV(kp,bi,xj,n,xmin,xmax, param)
@@ -317,7 +328,7 @@ c(d) = NaN; % get rid of negative c
 util = (c.^(1-sig)-1)/(1-sig); % computes utility
 util(d) = -1e12; % utility = low number for c<0
 % compute value function given k
-v = vhat_cheby(bi,kp,n,xmin,xmax); 
+v = vhat_cheby(bi,kp,n,xmin,xmax);
 % finally, the T-map TVhat:
 vj = util + bet*v;
 negvj =-vj;
@@ -373,7 +384,7 @@ kmin    = param(1);
 kmax    = param(2);
 n       = param(3);
 zk      = 2*(k-kmin)/(kmax-kmin)-1; % convert k back to zk of [-1,1]
-v       = chebychev(zk,n)*theta; % this is the polyonomial approx: chebyshev polynomial * coefficients
+v       = chebychev(zk,n)*theta; % this is the polynomial approx: chebyshev polynomial * coefficients
 end
 
 % and finally the T-map, mapping V(k') to V
