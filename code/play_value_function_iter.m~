@@ -14,153 +14,289 @@ skip = 1;
 
 
 if skip==0
-%% Collard notes VFI
-sig  = 1.5;
-delt = 0.1;
-bet  = 0.95;
-alph = 0.3;
-ngrid = 1000; % Collard's nbk
-crit = 1;
-epsi = 1e-6;
-
-ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
-dev = 0.9;
-kmin = (1-dev)*ks;
-kmax = (1+dev)*ks;
-kgrid = linspace(kmin,kmax,ngrid)'; %% need to pay attention such that the dimensions of
-% the grid, v, u, and c are the same (or at least compatible) for the
-% maximzation, that's why I'm transposing here.
-v = zeros(ngrid,1);
-dr = zeros(ngrid,1); % decision rule = will store indices of optimal k' on the grid
-vnew = zeros(ngrid,1);
-
-iter = 0;
-tic
-while crit>epsi
-    iter = iter+1;
-    for i=1:ngrid
-        % select today's capital, k
-        k = kgrid(i);
-        % calculate the maximum index on the grid for k' such that
-        % consumption is still positive
-        imax = find(k^alph + (1-delt)*k - kgrid < 0,1) -1;
-        if isempty(imax) % if it's empty, then take all the gridpoints
-            imax = ngrid;
+    %% Collard notes VFI
+    sig  = 1.5;
+    delt = 0.1;
+    bet  = 0.95;
+    alph = 0.3;
+    ngrid = 1000; % Collard's nbk
+    crit = 1;
+    epsi = 1e-6;
+    
+    ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
+    dev = 0.9;
+    kmin = (1-dev)*ks;
+    kmax = (1+dev)*ks;
+    kgrid = linspace(kmin,kmax,ngrid)'; %% need to pay attention such that the dimensions of
+    % the grid, v, u, and c are the same (or at least compatible) for the
+    % maximzation, that's why I'm transposing here.
+    v = zeros(ngrid,1);
+    dr = zeros(ngrid,1); % decision rule = will store indices of optimal k' on the grid
+    vnew = zeros(ngrid,1);
+    
+    iter = 0;
+    tic
+    while crit>epsi
+        iter = iter+1;
+        for i=1:ngrid
+            % select today's capital, k
+            k = kgrid(i);
+            % calculate the maximum index on the grid for k' such that
+            % consumption is still positive
+            imax = find(k^alph + (1-delt)*k - kgrid < 0,1) -1;
+            if isempty(imax) % if it's empty, then take all the gridpoints
+                imax = ngrid;
+            end
+            % now, given permissible values of k', calculate c...
+            c = k^alph + (1-delt)*k - kgrid(1:imax);
+            % ... and corresponding utility
+            u = (c.^(1-sig)-1)/(1-sig);
+            % update value function and choose index of optimal k' too
+            [vnew(i), dr(i)] = max(u + bet*v(1:imax));
         end
-        % now, given permissible values of k', calculate c...
-        c = k^alph + (1-delt)*k - kgrid(1:imax);
-        % ... and corresponding utility
-        u = (c.^(1-sig)-1)/(1-sig);
-        % update value function and choose index of optimal k' too
-        [vnew(i), dr(i)] = max(u + bet*v(1:imax));
+        crit = max(abs(vnew-v));
+        v = vnew;
     end
-    crit = max(abs(vnew-v));
-    v = vnew;
-end
-toc
-
-% Final solution
-kp = kgrid(dr);
-c  = kgrid.^alph + (1-delt)*kgrid - kp;
-
-
-figure
-plot(kgrid,v)
-title('Collard''s Fig. 7.1 Value function against k_t')
-
-figure
-subplot(1,2,1)
-plot(kgrid,kp)
-title('k_{t+1} as a function of k_t')
-subplot(1,2,2)
-plot(kgrid,c)
-title('c_{t} as a function of k_t')
-sgtitle('Collard''s Fig. 7.2 Decision rules')
-% it works!
-
-%% Let's try to replicate Collard's "parametric dynamic programming example"
-sig  = 1.5;
-delt = 0.1;
-bet  = 0.95;
-alph = 0.3;
-
-ngrid=20; % Collard's nbk, he says he set it to 20, but maybe not...
-% p = 10; % order of Chebyshev polyonomials (0,1,...,10)
-crit=1;
-iter=1;
-epsi=1e-6;
-ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
-dev = 0.9;
-kmin = (1-dev)*ks;
-kmax = (1+dev)*ks;
-zk =  -cos((2*[1:ngrid]'-1)*pi/(2*m)); 
-kgrid = (kmax-kmin)*(zk+1)/2 +kmin;
-% Initial guess for the approximation
-% Collard calls the coefficients theta, thus th0
-% Collard's logic is: initialize value function at utility function...
-v       = (((kgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet)));
-% ...calculate Chebyshev polynomials at the [-1,1] nodes...
-X       = chebychev(zk,ngrid);
-% ...and back out initial coefficients from the approximation identity V =thet*cheby
-th0     = X\v; % initial guess for params
-Tv      = zeros(ngrid,1);
-kp      = zeros(ngrid,1);
-
-
-%Optimization Parameters
-options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'none');
-
-tic
-warning off
-datestr(now)
-while crit>epsi
-    k0 = kgrid(1);
-    for i=1:ngrid
-        param = [alph, bet, delt, sig, kmin, kmax, ngrid, kgrid(i)];
-        % kp(i) = some optimization routine that gives you optimal k'
-        % Given current coefficients th0 and today's k, kgrid(i), starting
-        % with a guess of k0, solve for k':
-        objh = @(kp) tv(kp,param,th0);
-%         [kp(i)] = fmincon(objh, k0, [],[],[],[],kmin,kmax,[],options);
-        [kp(i)] = fminunc(objh, k0,options);
-        % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
-        % I wonder if we could get around doing fmincon...
+    toc
+    
+    % Final solution
+    kp = kgrid(dr);
+    c  = kgrid.^alph + (1-delt)*kgrid - kp;
+    
+    
+    figure
+    plot(kgrid,v)
+    title('Collard''s Fig. 7.1 Value function against k_t')
+    
+    figure
+    subplot(1,2,1)
+    plot(kgrid,kp)
+    title('k_{t+1} as a function of k_t')
+    subplot(1,2,2)
+    plot(kgrid,c)
+    title('c_{t} as a function of k_t')
+    sgtitle('Collard''s Fig. 7.2 Decision rules')
+    % it works!
+    
+    %% Let's try to replicate Collard's "parametric dynamic programming example"
+    sig  = 1.5;
+    delt = 0.1;
+    bet  = 0.95;
+    alph = 0.3;
+    
+    ngrid=20; % Collard's nbk, he says he set it to 20, but maybe not...
+    % p = 10; % order of Chebyshev polyonomials (0,1,...,10)
+    crit=1;
+    iter=1;
+    epsi=1e-6;
+    ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
+    dev = 0.9;
+    kmin = (1-dev)*ks;
+    kmax = (1+dev)*ks;
+    zk =  -cos((2*[1:ngrid]'-1)*pi/(2*m));
+    kgrid = (kmax-kmin)*(zk+1)/2 +kmin;
+    % Initial guess for the approximation
+    % Collard calls the coefficients theta, thus th0
+    % Collard's logic is: initialize value function at utility function...
+    v       = (((kgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet)));
+    % ...calculate Chebyshev polynomials at the [-1,1] nodes...
+    X       = chebychev(zk,ngrid);
+    % ...and back out initial coefficients from the approximation identity V =thet*cheby
+    th0     = X\v; % initial guess for params
+    Tv      = zeros(ngrid,1);
+    kp      = zeros(ngrid,1);
+    
+    
+    %Optimization Parameters
+    options = optimset('fmincon');
+    options = optimset(options, 'TolFun', 1e-9, 'display', 'none');
+    
+    tic
+    warning off
+    datestr(now)
+    while crit>epsi
+        k0 = kgrid(1);
+        for i=1:ngrid
+            param = [alph, bet, delt, sig, kmin, kmax, ngrid, kgrid(i)];
+            % kp(i) = some optimization routine that gives you optimal k'
+            % Given current coefficients th0 and today's k, kgrid(i), starting
+            % with a guess of k0, solve for k':
+            objh = @(kp) tv(kp,param,th0);
+            %         [kp(i)] = fmincon(objh, k0, [],[],[],[],kmin,kmax,[],options);
+            [kp(i)] = fminunc(objh, k0,options);
+            % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+            % I wonder if we could get around doing fmincon...
+            
+            k0 = kp(i);
+            %get back today's value function given the optimal kp(i) and the
+            %T-map given current "estimated" coefficients theta0:
+            Tv(i) = -tv(kp(i), param, th0);
+        end
+        % Fitting step: Given updated value function, back out coefficients
+        thet =X\Tv;
+        crit = max(abs(Tv-v));
+        v = Tv;
+        th0 = thet;
+        iter=iter+1;
+    end
+    toc % indeed it takes 242 iterations (But it takes 60 sec. With fminunc only 12 sec!)
+    
+    % Compute consumption function
+    c = kgrid.^alph+(1-delt)*kgrid-kp;
+    
+    figure
+    plot(kgrid,v)
+    title('Collard''s Fig. 7.7 Value function against k_t')
+    
+    figure
+    subplot(1,2,1)
+    plot(kgrid,kp)
+    title('k_{t+1} as a function of k_t')
+    subplot(1,2,2)
+    plot(kgrid,c)
+    title('c_{t} as a function of k_t')
+    sgtitle('Collard''s Fig. 7.8 Decision rules')
+    % it works!
+    
+    
+    %% Let's try the parametric VFI on the optimal growth with Collard's parameterization, but on my own
+    % let me use notation in Cai and Judd 2014
+    clc
+    
+    sig  = 1.5;
+    delt = 0.1;
+    bet  = 0.95;
+    alph = 0.3;
+    param = [sig,delt,bet,alph];
+    
+    %Optimization Parameters
+    % options = optimset('fmincon');
+    options = optimset('fminunc');
+    options = optimset(options, 'TolFun', 1e-16, 'display', 'none');
+    
+    m=20; % number of nodes (index i)
+    n = 19; % 10 order of Chebyshev polyonomials (0,1,...,10) (index j)
+    crit=1;
+    iter=1;
+    maxiter=300;%300
+    epsi=1e-6; %-6
+    ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
+    dev = 0.9;
+    kmin = (1-dev)*ks;
+    kmax = (1+dev)*ks;
+    zi =  -cos((2*(1:m)'-1)*pi/(2*m));
+    xgrid = (zi+1).*(kmax-kmin)/2 +kmin;
+    % cheby polynomials on this grid (are constant y'know)
+    Tn = chebyshev(zi,n);
+    % Initial nodes as a completely uneducated guess
+    b0 = ones(n+1,1);
+    v0 = vhat_cheby(b0,xgrid,n,kmin,kmax);
+    % % initialize the value function instead as umax given kp=0
+    % v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % -> explodes!
+    % b0 =Tn\v0;
+    v1 = zeros(size(v0));
+    kp = zeros(m,1);
+    
+    b=b0;
+    v=v0;
+    
+    % always start searching at the beginning of the grid
+    k0 = xgrid(1);
+    datestr(now)
+    tic
+    while crit > epsi && iter< maxiter
+        % Step 1: maximization
+        for j=1:m
+            kj=xgrid(j);
+            negv = @(kp) TV(kp,b,xgrid(j),n,kmin,kmax, param);
+            
+            %         [kp(j)] = fmincon(negv, k0, [],[],[],[],kmin,kmax,[],options);
+            [kp(j,iter)] = fminunc(negv, k0, options); % noticeably faster
+            % compute the value function at the maximizing kp
+            v1(j) = -TV(kp(j,iter),b,kj,n,kmin,kmax, param);
+            
+            %         % let's also do it with Collard's methods
+            %         negv_collard = @(kp) tv(kp,[alph, bet, delt, sig, kmin, kmax, n, kj],b);
+            %         [kp_collard(j,iter)] = fminunc(negv_collard, k0, options); % these equal mine
+            %         v1_collard(j) = -tv(kp(j,iter),[alph, bet, delt, sig, kmin, kmax, n, kj],b); % these equal mine too
+            
+            
+            % maybe this makes fmincon search elsewhere? It does, it seems like
+            % an educated guess. It does make a diff too.
+            %         k0 = kp(j);
+            %         disp(kp(j))
+        end
         
-        k0 = kp(i);
-        %get back today's value function given the optimal kp(i) and the
-        %T-map given current "estimated" coefficients theta0:
-        Tv(i) = -tv(kp(i), param, th0);
+        % Step 2: fitting
+        %     b1 = compute_cheby_coeffs(v,xgrid,n,kmin,kmax); % don't actually need
+        %     this!
+        b1 = Tn\v1; % b1-b1_alt not 0.
+        
+        % Compute stopping criterion and update
+        crit = max(abs(v1-v));
+        if mod(iter,50)==0
+            disp(['Concluding iteration = ', num2str(iter)])
+            disp(['Stopping criterion = ', num2str(crit)])
+        end
+        iter=iter+1;
+        %     b=b1;
+        b=b1;
+        v=v1;
     end
-    % Fitting step: Given updated value function, back out coefficients
-    thet =X\Tv;
-    crit = max(abs(Tv-v));
-    v = Tv;
-    th0 = thet;
-    iter=iter+1;
+    toc
+    
+    % Compute consumption function
+    c = xgrid.^alph+(1-delt).*xgrid-kp(:,end);
+    
+    
+    figure
+    plot(xgrid,v)
+    title('Collard''s Fig. 7.7 Value function against k_t - MY TAKE')
+    
+    figure
+    subplot(1,2,1)
+    plot(xgrid,kp(:,end)); hold on
+    plot(xgrid,xgrid,'k--')
+    title('k_{t+1} as a function of k_t')
+    subplot(1,2,2)
+    plot(xgrid,c)
+    title('c_{t} as a function of k_t')
+    sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
+    
+    % it works, yeaaaaah! and takes <9 sec.
+    
+    %% some initial testing of functions
+    zi =  -cos((2*[1:m]'-1)*pi/(2*m));
+    kgrid = (kmax-kmin)*(zi+1)/2 +kmin;
+    
+    % 1.) Chebyshev polyonomials should equal
+    T_me = chebyshev(zi,n);
+    T_collard = chebychev(zi,n);
+    T_me-T_collard % yep
+    
+    % 2.) vhat given coefficients should equal
+    v0 = (((kgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet)));% take Collard's initial value function and coefficients
+    b0 =T_me\v0;
+    vhat_collard = value(ks,[kmin, kmax, n],b0);
+    vhat_me = vhat_cheby(b0,ks,n,kmin,kmax);
+    vhat_collard - vhat_me % yep
+    
+    % 3.) TV
+    negv_collard = tv(ks,[alph, bet, delt, sig, kmin, kmax, n, ks],b0);
+    negv_me = TV(ks,b0,ks,n,kmin,kmax, [sig,delt,bet,alph]);
+    negv_collard-negv_me
+    
+    
+    %
+    % vhat1 = vhat_cheby(ones(1,n+1),xgrid,n,kmin,kmax);
+    % % plot(vhat1) % it's very oscillatory, no idea if that's a good thing
+    %
+    % tvhat1 = TV(xgrid(1),b0,xgrid(1),n,kmin,kmax, param); % ok seems to work
+    %
+    % b1 = compute_cheby_coeffs(vhat1,xgrid,n,kmin,kmax); % ok seems to work
 end
-toc % indeed it takes 242 iterations (But it takes 60 sec. With fminunc only 12 sec!)
+%% let's try parametric VFI with a spline!
 
-% Compute consumption function
-c = kgrid.^alph+(1-delt)*kgrid-kp;
-
-figure
-plot(kgrid,v)
-title('Collard''s Fig. 7.7 Value function against k_t')
-
-figure
-subplot(1,2,1)
-plot(kgrid,kp)
-title('k_{t+1} as a function of k_t')
-subplot(1,2,2)
-plot(kgrid,c)
-title('c_{t} as a function of k_t')
-sgtitle('Collard''s Fig. 7.8 Decision rules')
-% it works! 
-
-end % skip
-%% Let's try the parametric VFI on the optimal growth with Collard's parameterization, but on my own
-% let me use notation in Cai and Judd 2014
 clc
 
 sig  = 1.5;
@@ -174,8 +310,7 @@ param = [sig,delt,bet,alph];
 options = optimset('fminunc');
 options = optimset(options, 'TolFun', 1e-16, 'display', 'none');
 
-m=20; % number of nodes (index i)
-n = 19; % 10 order of Chebyshev polyonomials (0,1,...,10) (index j)
+m=5; % number of nodes (index i), m-1 intervals
 crit=1;
 iter=1;
 maxiter=300;%300
@@ -184,21 +319,34 @@ ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
 dev = 0.9;
 kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
-zi =  -cos((2*(1:m)'-1)*pi/(2*m));
-xgrid = (zi+1).*(kmax-kmin)/2 +kmin;
-% cheby polynomials on this grid (are constant y'know)
-Tn = chebyshev(zi,n);
+% for the spline, uniformly placed nodes are fine
+xgrid = linspace(kmin,kmax,m)';
+% for the spline, I also need a bigger-dimensional sample
+T =20; % sample size
+xsample = linspace(kmin,kmax,T);
 % Initial nodes as a completely uneducated guess
-b0 = ones(n+1,1);
-v0 = vhat_cheby(b0,xgrid,n,kmin,kmax);
-% % initialize the value function instead as umax given kp=0
-% v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % -> explodes!
-% b0 =Tn\v0;
-v1 = zeros(size(v0));
-kp = zeros(m,1);
+coeffs0 = zeros(m-1,4); % [a,b,c,d]
+coeffs0 = ones(m-1,4);
+coeffs0 = rand(m-1,4);
 
-b=b0;
+
+% Let's try out the spline functions
+% needs to be able to produce a scalar value too goddammit
+v0_scalar = vhat_spline(coeffs0, xgrid(1),xsample);
+v0 = vhat_spline(coeffs0, xgrid,xsample);
+
+
+return
+v_try = -TV_spline(xgrid(1),coeffs0,xgrid,xsample, param);
+v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xsample, param);
+
+
+return
+kp = zeros(T,1);
+
+coeffs=coeffs0;
 v=v0;
+
 
 % always start searching at the beginning of the grid
 k0 = xgrid(1);
@@ -208,39 +356,26 @@ while crit > epsi && iter< maxiter
     % Step 1: maximization
     for j=1:m
         kj=xgrid(j);
-        negv = @(kp) TV(kp,b,xgrid(j),n,kmin,kmax, param);
-        
-%         [kp(j)] = fmincon(negv, k0, [],[],[],[],kmin,kmax,[],options);
-        [kp(j,iter)] = fminunc(negv, k0, options); % noticeably faster
+        negv = @(kp) TV_spline(kp,coeffs,xgrid(j),xgrid,xsample, param);
+        [kp(j,iter)] = fminunc(negv, k0, options);
         % compute the value function at the maximizing kp
-        v1(j) = -TV(kp(j,iter),b,kj,n,kmin,kmax, param);
-        
-%         % let's also do it with Collard's methods
-%         negv_collard = @(kp) tv(kp,[alph, bet, delt, sig, kmin, kmax, n, kj],b);
-%         [kp_collard(j,iter)] = fminunc(negv_collard, k0, options); % these equal mine
-%         v1_collard(j) = -tv(kp(j,iter),[alph, bet, delt, sig, kmin, kmax, n, kj],b); % these equal mine too
-        
-        
-        % maybe this makes fmincon search elsewhere? It does, it seems like
-        % an educated guess. It does make a diff too.
-%         k0 = kp(j);
-%         disp(kp(j))
+        v1(j) = -TV_spline(kp(j,iter),coeffs,kj,xgrid,xsample,param);
     end
     
     % Step 2: fitting
-%     b1 = compute_cheby_coeffs(v,xgrid,n,kmin,kmax); % don't actually need
-%     this!
-    b1 = Tn\v1; % b1-b1_alt not 0.
+    tic
+    objh = @(coeffs) obj_spline_secant_hermite(coeffs,xgrid,v1);
+    [coeffs1,FVAL] = fsolve(objh,coeffs0, options);
+    toc
     
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
     if mod(iter,50)==0
-    disp(['Concluding iteration = ', num2str(iter)])
-    disp(['Stopping criterion = ', num2str(crit)])
+        disp(['Concluding iteration = ', num2str(iter)])
+        disp(['Stopping criterion = ', num2str(crit)])
     end
     iter=iter+1;
-%     b=b1;
-    b=b1;
+    coeffs=coeffs1;
     v=v1;
 end
 toc
@@ -263,40 +398,6 @@ plot(xgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
 
-% it works, yeaaaaah! and takes <9 sec.
- 
-%% some initial testing of functions
-zi =  -cos((2*[1:m]'-1)*pi/(2*m)); 
-kgrid = (kmax-kmin)*(zi+1)/2 +kmin;
-
-% 1.) Chebyshev polyonomials should equal
-T_me = chebyshev(zi,n);
-T_collard = chebychev(zi,n);
-T_me-T_collard % yep
-
-% 2.) vhat given coefficients should equal
-v0 = (((kgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet)));% take Collard's initial value function and coefficients
-b0 =T_me\v0;
-vhat_collard = value(ks,[kmin, kmax, n],b0);
-vhat_me = vhat_cheby(b0,ks,n,kmin,kmax);
-vhat_collard - vhat_me % yep
-
-% 3.) TV
-negv_collard = tv(ks,[alph, bet, delt, sig, kmin, kmax, n, ks],b0);
-negv_me = TV(ks,b0,ks,n,kmin,kmax, [sig,delt,bet,alph]);
-negv_collard-negv_me
-
-
-% 
-% vhat1 = vhat_cheby(ones(1,n+1),xgrid,n,kmin,kmax);
-% % plot(vhat1) % it's very oscillatory, no idea if that's a good thing
-% 
-% tvhat1 = TV(xgrid(1),b0,xgrid(1),n,kmin,kmax, param); % ok seems to work
-% 
-% b1 = compute_cheby_coeffs(vhat1,xgrid,n,kmin,kmax); % ok seems to work
-
-%% let's try parametric VFI with a spline!
-
 %% Let me do my own functions
 
 function Tx = chebyshev(x,n) % checked - correct
@@ -307,9 +408,9 @@ Tx = zeros(tau,n+1);
 % creates Chebyshev polynomials for all x, of order 0,...,n
 Tx(:,1) = ones(tau,1); % order 0
 Tx(:,2) = x.*ones(tau,1);
-    for j=3:n+1
-        Tx(:,j) = 2*x.*Tx(:,j-1)-Tx(:,j-2);
-    end
+for j=3:n+1
+    Tx(:,j) = 2*x.*Tx(:,j-1)-Tx(:,j-2);
+end
 end
 
 function vhat = vhat_cheby(b,x,n,xmin,xmax) % checked - correct
@@ -341,6 +442,51 @@ v = vhat_cheby(bi,kp,n,xmin,xmax);
 % finally, the T-map TVhat:
 vj = util + bet*v;
 negvj =-vj;
+end
+
+function negvj = TV_spline(kp,coeffs,xj,xsample, param)
+% this function just gives you today's value for this state xj, times -1 (it's not a min)
+sig = param(1); delt=param(2); bet=param(3); alph=param(4);
+% we're moving along different values for today's capital, and we wanna
+% choose tomorrow's optimally, kp
+k=xj;
+% compute c given k, util given c
+kp = sqrt(kp.^2); % insures positivity of k' - is this necessary? I suspect not.
+c = k.^alph+(1-delt)*k-kp; % computes consumption
+d = find(c<=0);% find negative consumption
+c(d) = NaN; % get rid of negative c
+util = (c.^(1-sig)-1)/(1-sig); % computes utility
+util(d) = -1e12; % utility = low number for c<0
+% compute value function given k
+v = vhat_spline(coeffs,xj,xsample);
+% finally, the T-map TVhat:
+vj = util + bet*v;
+negvj =-vj;
+end
+
+function vhat = vhat_spline(coeffs, xgrid, xsample)
+ngrid=length(xgrid);
+T = length(xsample);
+% fish out coefficients
+a = coeffs(:,1);
+b = coeffs(:,2);
+c = coeffs(:,3);
+d = coeffs(:,4);
+
+% construct spline
+sx = zeros(T,1);
+segment_index=1;
+for i=1:T
+    x=xsample(i);
+    if x > xgrid(segment_index+1) && segment_index < ngrid-1
+             segment_index = segment_index+1;
+    end
+%     if i>=node_indexes(segment_index+1) && segment_index < ngrid-1
+%         segment_index = segment_index+1;
+%     end
+    sx(i) = a(segment_index)+ b(segment_index)*x + c(segment_index)*x^2 + d(segment_index)*x^3;
+end
+vhat = sx;
 end
 
 function b = compute_cheby_coeffs(v,x,n,xmin,xmax) % not used b/c not necessary!
