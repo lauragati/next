@@ -129,6 +129,19 @@ bottom=1in}
 
 %\listoffigures
 
+The setup of the problem makes the separate issues I'm facing clear:
+\begin{equation}
+V(x) = \max_u p(u,x) + \beta \E V(x')
+\end{equation}
+\begin{enumerate}
+\item Interpolate instead of discretize $\leftarrow$ this is where I'm at
+\item Interpolation may have to be shape-preserving
+\item Compute expectation on RHS $\rightarrow$ quadrature
+\item $x$ is a vector $\rightarrow$ multivariate approximation
+\end{enumerate}
+
+
+
 \textsc{Algorithm: Parametric value function iteration} \\(Judd, \emph{Numerical Methods}, Algorithm 12.5)
 \begin{itemize}
 \item Objective: Solve Bellman equation $\rightarrow$ find coefficients $b^*$ such that the approximation $\hat{V}(x,b)$ is close enough.
@@ -142,9 +155,26 @@ If $||\hat{V}(x,b^{i}) -\hat{V}(x,b^{i+1}) < \varepsilon ||$, stop; else go to S
 \end{itemize}
 
 
+\section{Optimal growth model}
+\subsection{Optimal growth - value function iteration with discretization}
+\begin{figure}[h!]
+\subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_discrete_valuefun}}
+\subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_discrete_decisions}}
+\end{figure}
+\subsection{Optimal growth - value function iteration with Chebyshev polynomial interpolation}
+\begin{figure}[h!]
+\subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_cheby_valuefun}}
+\subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_cheby_decisions}}
+\end{figure}
+\newpage
+\subsection{Optimal growth - value function iteration with cubic spline interpolation}
+\begin{figure}[h!]
+\subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_valuefun}}
+\subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_decisions}}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\clearpage
 \newpage
 \appendix
 % the following command makes equation numbering include the section first, but just for what follows

@@ -111,8 +111,8 @@ a  = interval(1);
 b  = interval(end);
 
 % Approximand in "dataset"
-% true_fun = @(x) x;
-true_fun = @(x) (x+1).^(1/4);
+true_fun = @(x) x.^2;
+% true_fun = @(x) (x+1).^(1/4);
 % To do Example 3 uncomment the following
 % true_fun = @(x) min(max(-1*ones(size(x)),4.*(x-0.2)),1*ones(size(x)));
 f = true_fun(interval);

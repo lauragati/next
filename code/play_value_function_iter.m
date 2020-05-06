@@ -9,6 +9,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
 
+print_figs=0;
 skip = 1;
 
 
@@ -67,6 +68,16 @@ if skip==0
     figure
     plot(kgrid,v)
     title('Collard''s Fig. 7.1 Value function against k_t')
+    figname = 'vfi_discrete_valuefun';
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
     
     figure
     subplot(1,2,1)
@@ -77,6 +88,16 @@ if skip==0
     title('c_{t} as a function of k_t')
     sgtitle('Collard''s Fig. 7.2 Decision rules')
     % it works!
+    
+    figname = 'vfi_discrete_decisions';
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
     
     %% Let's try to replicate Collard's "parametric dynamic programming example"
     sig  = 1.5;
@@ -93,7 +114,7 @@ if skip==0
     dev = 0.9;
     kmin = (1-dev)*ks;
     kmax = (1+dev)*ks;
-    zk =  -cos((2*[1:ngrid]'-1)*pi/(2*m));
+    zk =  -cos((2*[1:ngrid]'-1)*pi/(2*ngrid));
     kgrid = (kmax-kmin)*(zk+1)/2 +kmin;
     % Initial guess for the approximation
     % Collard calls the coefficients theta, thus th0
@@ -251,7 +272,15 @@ if skip==0
     
     figure
     plot(xgrid,v)
-    title('Collard''s Fig. 7.7 Value function against k_t - MY TAKE')
+    title('Collard''s Fig. 7.7 Value function against k_t - Chebyshev polynomials')
+    figname = 'vfi_cheby_valuefun';
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
     
     figure
     subplot(1,2,1)
@@ -261,7 +290,16 @@ if skip==0
     subplot(1,2,2)
     plot(xgrid,c)
     title('c_{t} as a function of k_t')
-    sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
+    sgtitle('Collard''s Fig. 7.8 Decision rules - Chebyshev polynomials')
+    figname = 'vfi_cheby_decisions';
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
     
     % it works, yeaaaaah! and takes <9 sec.
     
@@ -307,13 +345,15 @@ param = [sig,delt,bet,alph];
 
 %Optimization Parameters
 % options = optimset('fmincon');
-options = optimset('fminunc');
-options = optimset(options, 'TolFun', 1e-16, 'display', 'none');
+options1 = optimset('fminunc');
+options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
+options2 = optimset('fsolve');
+options2 = optimset(options2, 'TolFun', 1e-16, 'display', 'none');
 
-m=5; % number of nodes (index i), m-1 intervals
+m=20; % number of nodes (index i), m-1 intervals
 crit=1;
 iter=1;
-maxiter=300;%300
+maxiter=600;%300
 epsi=1e-6; %-6
 ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
 dev = 0.9;
@@ -321,49 +361,46 @@ kmin = (1-dev)*ks;
 kmax = (1+dev)*ks;
 % for the spline, uniformly placed nodes are fine
 xgrid = linspace(kmin,kmax,m)';
-% for the spline, I also need a bigger-dimensional sample
-T =20; % sample size
-xsample = linspace(kmin,kmax,T)';
 % Initial nodes as a completely uneducated guess
 coeffs0 = zeros(m-1,4); % [a,b,c,d]
 coeffs0 = ones(m-1,4);
-coeffs0 = rand(m-1,4);
+% coeffs0 = rand(m-1,4);
 
 
 % Let's try out the spline functions
-v0 = vhat_spline(coeffs0, xgrid,xsample);
-% v_try = -TV_spline(xsample,coeffs0,xgrid,xsample, param);
-v_try_scalar = -TV_spline(xsample(1),coeffs0,xgrid,xsample, param);
-% NEED TO FIGURE THIS OUT!
+v0 = vhat_spline(coeffs0, xgrid,xgrid);
+v0_scalar = vhat_spline(coeffs0,xgrid, xgrid(end-1)); 
 
-return
-kp = zeros(T,1);
+v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xgrid, param);
+
+% return
 
 coeffs=coeffs0;
-v=v0;
+v=v0';
 
-
+kp = zeros(m,1);
+exitflag=nan;
 % always start searching at the beginning of the grid
 k0 = xgrid(1);
 datestr(now)
 tic
 while crit > epsi && iter< maxiter
     % Step 1: maximization
-    for j=1:T
+    for j=1:m
         kj=xgrid(j);
-        negv = @(kp) TV_spline(kp,coeffs,xgrid(j),xgrid,xsample, param);
-        [kp(j,iter)] = fminunc(negv, k0, options);
+        negv = @(kp) TV_spline(kp,coeffs,kj,xgrid, param);
+        [kp(j,iter)] = fminunc(negv, k0, options1);
         
+        % compute the value function at the maximizing kp
+        v1(j) = -TV_spline(kp(j,iter),coeffs,kj, xgrid, param);
     end
     
-    % compute the value function at the maximizing kp
-     v1 = -TV_spline(kp(:,iter),coeffs,xgrid,xsample,param);
-    
     % Step 2: fitting
-    tic
     objh = @(coeffs) obj_spline_secant_hermite(coeffs,xgrid,v1);
-    [coeffs1,FVAL] = fsolve(objh,coeffs0, options);
-    toc
+% I think this is the conceptually correct thing: the new k are the nodes %
+% CONT HERE
+%     objh = @(coeffs) obj_spline_secant_hermite(coeffs,kp(:,iter),v1);
+    [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs, options2);
     
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
@@ -383,7 +420,17 @@ c = xgrid.^alph+(1-delt).*xgrid-kp(:,end);
 
 figure
 plot(xgrid,v)
-title('Collard''s Fig. 7.7 Value function against k_t - MY TAKE')
+title('Collard''s Fig. 7.7 Value function against k_t - SPLINE')
+figname = 'vfi_spline_valuefun';
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
 
 figure
 subplot(1,2,1)
@@ -393,7 +440,16 @@ title('k_{t+1} as a function of k_t')
 subplot(1,2,2)
 plot(xgrid,c)
 title('c_{t} as a function of k_t')
-sgtitle('Collard''s Fig. 7.8 Decision rules - MY TAKE')
+sgtitle('Collard''s Fig. 7.8 Decision rules - SPLINE')
+figname = 'vfi_spline_decisions';
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 %% Let me do my own functions
 
@@ -441,12 +497,11 @@ vj = util + bet*v;
 negvj =-vj;
 end
 
-function negvj = TV_spline(kp,coeffs,xgrid,xsample, param)
+function negvj = TV_spline(kp,coeffs,k,xgrid, param)
 % this function just gives you today's value for this state xj, times -1 (it's not a min)
 sig = param(1); delt=param(2); bet=param(3); alph=param(4);
 % we're moving along different values for today's capital, and we wanna
 % choose tomorrow's optimally, kp
-k=xsample;
 % compute c given k, util given c
 kp = sqrt(kp.^2); % insures positivity of k' - is this necessary? I suspect not.
 c = k.^alph+(1-delt)*k-kp; % computes consumption
@@ -455,7 +510,7 @@ c(d) = NaN; % get rid of negative c
 util = (c.^(1-sig)-1)/(1-sig); % computes utility
 util(d) = -1e12; % utility = low number for c<0
 % compute value function given k
-v = vhat_spline(coeffs,xgrid,xsample);
+v = vhat_spline(coeffs,xgrid,kp);
 % finally, the T-map TVhat:
 vj = util + bet*v;
 negvj =-vj;
@@ -470,17 +525,31 @@ b = coeffs(:,2);
 c = coeffs(:,3);
 d = coeffs(:,4);
 
-% construct spline
-sx = zeros(T,1);
-segment_index=1;
-for i=1:T
-    x=xsample(i);
-    if x > xgrid(segment_index+1) && segment_index < ngrid-1
-             segment_index = segment_index+1;
+if T>1 % if you input an entire sample
+    % construct spline
+    sx = zeros(T,1);
+    int_i=1; % interval i (previously segment_index)
+    for i=1:T
+        x=xsample(i);
+        if x >= xgrid(int_i+1) && int_i < ngrid-1
+            int_i = int_i+1;
+        end
+        sx(i) = a(int_i)+ b(int_i)*x + c(int_i)*x^2 + d(int_i)*x^3;
     end
-    sx(i) = a(segment_index)+ b(segment_index)*x + c(segment_index)*x^2 + d(segment_index)*x^3;
+else % if you input a single x
+    x=xsample;
+    % find the first node larger than x
+    next_node = find(xgrid>x,1);
+    int_i = next_node-1;
+    if int_i==0
+        int_i=1;
+    elseif x>max(xgrid)
+        int_i=ngrid-1;
+    end
+    sx = a(int_i)+ b(int_i)*x + c(int_i)*x^2 + d(int_i)*x^3;
 end
-vhat=sx;
+vhat = sx;
+
 end
 
 function b = compute_cheby_coeffs(v,x,n,xmin,xmax) % not used b/c not necessary!
