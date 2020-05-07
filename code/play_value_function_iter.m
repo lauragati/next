@@ -362,16 +362,43 @@ kmax = (1+dev)*ks;
 % for the spline, uniformly placed nodes are fine
 xgrid = linspace(kmin,kmax,m)';
 % Initial nodes as a completely uneducated guess
-coeffs0 = zeros(m-1,4); % [a,b,c,d]
+coeffs0 = zeros(m-1,4); % [a,b,c,d] % this actually converges the fastest, but you always get the same thing
 coeffs0 = ones(m-1,4);
 % coeffs0 = rand(m-1,4);
 
+% let's try Collard's initialization
+v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % you get exactly the same thing
 
 % Let's try out the spline functions
-v0 = vhat_spline(coeffs0, xgrid,xgrid);
+v0_vector = vhat_spline(coeffs0, xgrid,xgrid);
 v0_scalar = vhat_spline(coeffs0,xgrid, xgrid(end-1)); 
 
 v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xgrid, param);
+
+% Let's try my spline on simple things
+% x^2
+% interval = linspace(-1,1,20);
+% % Approximand in "dataset"
+% true_fun = @(x) x.^2;
+% f = true_fun(interval);
+% 
+% objh = @(coeffs) obj_spline_secant_hermite(coeffs,interval,f);
+%     [coeffs1,FVAL,exitflag] = fsolve(objh,coeffs0, options2);
+% fhat = vhat_spline(coeffs1,interval,interval);
+% fhat_end = vhat_spline(coeffs1,interval,interval(end));
+% figure
+% plot(f); hold on
+% plot(fhat)
+% yo it seems to work so nicely
+
+% % four known points
+% xi = [-1,0,1,2];
+% yi = [2,0,-2,0]';
+% M = [1,-1,1,-1; 1,0,0,0; 1,1,1,1; 1,2,4,8];
+% a = M^(-1)*yi;
+% a0 = zeros(size(a));
+% objh = @(a) obj_spline_secant_hermite(a,xi,yi);
+% [a1,FVAL,exitflag(iter)] = fsolve(objh,a0', options2); % my approach doesn't work here at all
 
 % return
 
@@ -387,7 +414,7 @@ tic
 while crit > epsi && iter< maxiter
     % Step 1: maximization
     for j=1:m
-        kj=xgrid(j);
+        kj=xgrid(j);   
         negv = @(kp) TV_spline(kp,coeffs,kj,xgrid, param);
         [kp(j,iter)] = fminunc(negv, k0, options1);
         
@@ -397,10 +424,9 @@ while crit > epsi && iter< maxiter
     
     % Step 2: fitting
     objh = @(coeffs) obj_spline_secant_hermite(coeffs,xgrid,v1);
-% I think this is the conceptually correct thing: the new k are the nodes %
-% CONT HERE
+% I think this is the conceptually correct thing: the new k are the nodes; or you know, maybe not, maybe the nodes for the spline should be the same %
 %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,kp(:,iter),v1);
-    [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs, options2);
+    [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs0, options2);
     
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
@@ -516,37 +542,26 @@ vj = util + bet*v;
 negvj =-vj;
 end
 
-function vhat = vhat_spline(coeffs, xgrid, xsample)
+function vhat = vhat_spline(coeffs, xgrid, x)
 ngrid=length(xgrid);
-T = length(xsample);
+T = length(x);
 % fish out coefficients
 a = coeffs(:,1);
 b = coeffs(:,2);
 c = coeffs(:,3);
 d = coeffs(:,4);
 
-if T>1 % if you input an entire sample
-    % construct spline
-    sx = zeros(T,1);
-    int_i=1; % interval i (previously segment_index)
-    for i=1:T
-        x=xsample(i);
-        if x >= xgrid(int_i+1) && int_i < ngrid-1
-            int_i = int_i+1;
-        end
-        sx(i) = a(int_i)+ b(int_i)*x + c(int_i)*x^2 + d(int_i)*x^3;
-    end
-else % if you input a single x
-    x=xsample;
+sx = zeros(T,1);
+for i=1:T
     % find the first node larger than x
-    next_node = find(xgrid>x,1);
+    next_node = find(xgrid>x(i),1);
     int_i = next_node-1;
     if int_i==0
         int_i=1;
-    elseif x>max(xgrid)
+    elseif x(i)>=max(xgrid)
         int_i=ngrid-1;
     end
-    sx = a(int_i)+ b(int_i)*x + c(int_i)*x^2 + d(int_i)*x^3;
+    sx(i) = a(int_i)+ b(int_i)*x(i) + c(int_i)*x(i)^2 + d(int_i)*x(i)^3; 
 end
 vhat = sx;
 

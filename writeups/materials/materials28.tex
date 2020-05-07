@@ -172,83 +172,83 @@ If $||\hat{V}(x,b^{i}) -\hat{V}(x,b^{i+1}) < \varepsilon ||$, stop; else go to S
 \subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_valuefun}}
 \subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_decisions}}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\newpage
-\appendix
-% the following command makes equation numbering include the section first, but just for what follows
-\numberwithin{equation}{section}
-\section{Model summary}
-
-\vspace{-0.5cm}
-
-\begin{align}
-x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{A1}  \\
-\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{A2}  \\
-i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text{if imposed})
-\end{align}
-
-\vspace{-1.2cm}
-
-\begin{align}
-\text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
-\text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
-\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \\
-\text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1})\\
-\text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{fafb_anal}
-\end{align}
-
-\vspace{-0.5cm}
-
-This notation captures vector learning ($z$ learned) for intercept only. For scalar learning, $a_t= \begin{pmatrix} \bar{\pi}_t & 0 & 0\end{pmatrix}' $ and $b_1$ designates the first row of $b$. The observables $(\pi, x)$ are determined as:
-\begin{align}
-x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t \label{A9} \\
-\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t \label{A10}
-\end{align}
-
-\section{Target criterion}\label{target_crit_levels}
-The target criterion in the simplified model (scalar learning of inflation intercept only, $k_t^{-1} = \mathbf{g}(fe_{t-1})$):
-\begin{align*}
-\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
-\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)
-\bigg\} \numberthis \label{target}
-\end{align*}
-where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation purposes, let me rewrite this as follows:
-\begin{align*}
-\pi_t  = & \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j) \bigg)}
-\numberthis \label{target_interpretation}
-\end{align*}
-Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
-
-%\section{A target criterion system for an anchoring function specified for gain changes}\label{target_crit_changes}
-%\begin{equation}
-%k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
-%\end{equation}
-%Turns out the $k_{t-1}$ adds one $\varphi_{6,t+1}$ too many which makes the target criterion unwieldy. The FOCs of the Ramsey problem are
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+%\newpage
+%\appendix
+%% the following command makes equation numbering include the section first, but just for what follows
+%\numberwithin{equation}{section}
+%\section{Model summary}
+%
+%\vspace{-0.5cm}
+%
 %\begin{align}
-%& 2\pi_t + 2\frac{\lambda}{\kappa}x_t -k_t^{-1} \varphi_{5,t} - \mathbf{g}_{\pi}(t)\varphi_{6,t}  = 0 \label{gaspar22}\\
-%& c x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
-%& \varphi_{6,t} \; \textcolor{red}{+\; \varphi_{6,t+1}} = fe_t \varphi_{5,t} \label{constraints}
+%x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{A1}  \\
+%\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{A2}  \\
+%i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text{if imposed})
 %\end{align}
-%where the red multiplier is the new element vis-a-vis the case where the anchoring function is specified in levels ($k_t^{-1} = \mathbf{g}(fe_{t-1})$, as in App. \ref{target_crit_levels}), and I'm using the shorthand notation
+%
+%\vspace{-1.2cm}
+%
 %\begin{align}
-%c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa} \\ 
-%fe_t & = \pi_t - \bar{\pi}_{t-1}-b s_{t-1}
+%\text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
+%\text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
+%\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \\
+%\text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1})\\
+%\text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{fafb_anal}
 %\end{align}
-%(\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi}(t)$).
-%One can simplify this three-equation-system to:
+%
+%\vspace{-0.5cm}
+%
+%This notation captures vector learning ($z$ learned) for intercept only. For scalar learning, $a_t= \begin{pmatrix} \bar{\pi}_t & 0 & 0\end{pmatrix}' $ and $b_1$ designates the first row of $b$. The observables $(\pi, x)$ are determined as:
 %\begin{align}
-%\varphi_{6,t} & = -c fe_t x_{t+1} + \bigg(1+ \frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1}) -fe_t \mathbf{g}_{\bar{\pi}}(t) \bigg) \varphi_{6,t+1} -\frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
-%0 & = 2\pi_t + 2\frac{\lambda}{\kappa}x_t   - \bigg( \frac{k_t^{-1}}{fe_t} + \mathbf{g}_{\pi}(t)\bigg)\varphi_{6,t} + \frac{k_t^{-1}}{fe_t}\varphi_{6,t+1}\label{1'}
+%x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_b + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t \label{A9} \\
+%\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_a + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t \label{A10}
 %\end{align}
-%Unfortunately, I haven't been able to solve (\ref{6'}) for $\varphi_{6,t}$ and therefore I can't express the target criterion so nicely as before. The only thing I can say is to direct the targeting rule-following central bank to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
-%\begin{equation}
-%\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}^{-1}}{fe_{t+j}}}{\frac{k_{t+j}^{-1}}{fe_{t+j}} + \mathbf{g}_{\pi}(t+j)} \label{sol1'}
-%\end{equation}
-%Interpretation: the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the CB always hits the target (
-%$\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0 \quad \forall i$); or expectations are always anchored ($k_{t+j}^{-1}=0 \quad \forall j$). 
+%
+%\section{Target criterion}\label{target_crit_levels}
+%The target criterion in the simplified model (scalar learning of inflation intercept only, $k_t^{-1} = \mathbf{g}(fe_{t-1})$):
+%\begin{align*}
+%\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi}(t) \bigg) \\
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}}}(t+j)) \bigg)
+%\bigg\} \numberthis \label{target}
+%\end{align*}
+%where I'm using the notation that $\prod_{j=0}^{0} \equiv 1$. For interpretation purposes, let me rewrite this as follows:
+%\begin{align*}
+%\pi_t  = & \; \textcolor{red}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{blue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+%& \textcolor{mygreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+ fe^{eve}_{t|t-1}\mathbf{g}_{\pi}(t) \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}^{-1} + fe^{eve}_{t+1+j|t+j})\mathbf{g_{\bar{\pi}}}(t+j) \bigg)}
+%\numberthis \label{target_interpretation}
+%\end{align*}
+%Interpretation: \textcolor{red}{tradeoffs from discretion in RE} + \textcolor{blue}{effect of current level and change of the gain on future tradeoffs} + \textcolor{mygreen}{effect of future expected levels and changes of the gain on future tradeoffs}
+%
+%%\section{A target criterion system for an anchoring function specified for gain changes}\label{target_crit_changes}
+%%\begin{equation}
+%%k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1})
+%%\end{equation}
+%%Turns out the $k_{t-1}$ adds one $\varphi_{6,t+1}$ too many which makes the target criterion unwieldy. The FOCs of the Ramsey problem are
+%%\begin{align}
+%%& 2\pi_t + 2\frac{\lambda}{\kappa}x_t -k_t^{-1} \varphi_{5,t} - \mathbf{g}_{\pi}(t)\varphi_{6,t}  = 0 \label{gaspar22}\\
+%%& c x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi}}(t)\varphi_{6,t+1} = 0 \label{gaspar21}\\
+%%& \varphi_{6,t} \; \textcolor{red}{+\; \varphi_{6,t+1}} = fe_t \varphi_{5,t} \label{constraints}
+%%\end{align}
+%%where the red multiplier is the new element vis-a-vis the case where the anchoring function is specified in levels ($k_t^{-1} = \mathbf{g}(fe_{t-1})$, as in App. \ref{target_crit_levels}), and I'm using the shorthand notation
+%%\begin{align}
+%%c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda}{\kappa} \\ 
+%%fe_t & = \pi_t - \bar{\pi}_{t-1}-b s_{t-1}
+%%\end{align}
+%%(\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi}(t)$).
+%%One can simplify this three-equation-system to:
+%%\begin{align}
+%%\varphi_{6,t} & = -c fe_t x_{t+1} + \bigg(1+ \frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1}) -fe_t \mathbf{g}_{\bar{\pi}}(t) \bigg) \varphi_{6,t+1} -\frac{fe_t}{fe_{t+1}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
+%%0 & = 2\pi_t + 2\frac{\lambda}{\kappa}x_t   - \bigg( \frac{k_t^{-1}}{fe_t} + \mathbf{g}_{\pi}(t)\bigg)\varphi_{6,t} + \frac{k_t^{-1}}{fe_t}\varphi_{6,t+1}\label{1'}
+%%\end{align}
+%%Unfortunately, I haven't been able to solve (\ref{6'}) for $\varphi_{6,t}$ and therefore I can't express the target criterion so nicely as before. The only thing I can say is to direct the targeting rule-following central bank to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
+%%\begin{equation}
+%%\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}^{-1}}{fe_{t+j}}}{\frac{k_{t+j}^{-1}}{fe_{t+j}} + \mathbf{g}_{\pi}(t+j)} \label{sol1'}
+%%\end{equation}
+%%Interpretation: the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the CB always hits the target (
+%%$\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0 \quad \forall i$); or expectations are always anchored ($k_{t+j}^{-1}=0 \quad \forall j$). 
 
 
 \end{document}

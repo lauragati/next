@@ -11,13 +11,14 @@ n=ngrid-1; % number of intervals
 % Now set up the equation system
 eqs = zeros(4*n,1);
 index=0;
+
 % 1.) Interpolating conditions + continuity at interior nodes 
-% the first conditions
+% the first conditions (actually this is Judd, 6.9.2)
 for i=1:n
     index=index+1;
 eqs(index) = -y(i) + a(i)+ b(i)*x(i) + c(i)*x(i)^2 + d(i)*x(i)^3;
 end
-% the second conditions
+% the second conditions (actually this is Judd, 6.9.1)
 for i=2:n+1
     index=index+1;
 eqs(index) = -y(i) + a(i-1)+ b(i-1)*x(i) + c(i-1)*x(i)^2 + d(i-1)*x(i)^3;
@@ -40,7 +41,8 @@ end
 
 % secant Hermite last 2 conditions
 index = index+1;
-eqs(index) = -b(1)-2*c(1)*x(1) + ((a(2)+ b(2)*x(2) + c(2)*x(2)^2 + d(2)*x(2)^3) - (a(1)+ b(1)*x(1) + c(1)*x(1)^2 + d(1)*x(1)^3)) / (x(2)-x(1));
+eqs(index) = -b(1)-2*c(1)*x(1)-3*d(1)*x(1)^2 + ((a(2)+ b(2)*x(2) + c(2)*x(2)^2 + d(2)*x(2)^3) - (a(1)+ b(1)*x(1) + c(1)*x(1)^2 + d(1)*x(1)^3)) / (x(2)-x(1));
 % to simplify, let's call 
 index=index+1;
-eqs(index) = -b(n)-2*c(n)*x(n) + ((a(n)+ b(n)*x(n) + c(n)*x(n)^2 + d(n)*x(n)^3) - (a(n-1)+ b(n-1)*x(n-1) + c(n-1)*x(n-1)^2 + d(n-1)*x(n-1)^3)) / (x(n)-x(n-1));
+% eqs(index) = -b(n)-2*c(n)*x(n) + ((a(n)+ b(n)*x(n) + c(n)*x(n)^2 + d(n)*x(n)^3) - (a(n-1)+ b(n-1)*x(n-1) + c(n-1)*x(n-1)^2 + d(n-1)*x(n-1)^3)) / (x(n)-x(n-1));
+eqs(index) = -b(n)-2*c(n)*x(n+1)-3*d(n)*x(n+1)^2 + ((a(n)+ b(n)*x(n+1) + c(n)*x(n+1)^2 + d(n)*x(n+1)^3) - (a(n-1)+ b(n-1)*x(n) + c(n-1)*x(n)^2 + d(n-1)*x(n)^3)) / (x(n+1)-x(n));
