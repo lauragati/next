@@ -21,7 +21,7 @@ output_table = print_figs;
 
 plot_IRFs=1;
 plot_simulated_sequence = 1;
-plot_gains=0;
+plot_gains=1;
 plot_gain_IRF = 0;
 plot_IRFs_anch = 0;
 skip_old_stuff = 1;
@@ -59,13 +59,13 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = dgain;
+gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
 % Size of cross-section
 N = 100 %100, 500
-burnin = 100;
+burnin = 0; % 100
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 

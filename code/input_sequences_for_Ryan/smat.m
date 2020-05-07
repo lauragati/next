@@ -21,7 +21,7 @@ s1_TR = [sig-sig*bet*psi_pi, 1-bet-sig*bet*psi_x,0];
 
 % Uncomment to impose condition (*): input s1_old for s1, which really is the
 % assumption of agents knowing the Taylor rule:
-s1 = s1_TR;
+% s1 = s1_TR;
 
 % When you call smat the first time, it should display what info assumption
 % about the Taylor rule you're using

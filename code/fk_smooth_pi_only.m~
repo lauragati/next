@@ -26,12 +26,12 @@ c=param.c;
 % k = kt_1 + d - c*(fe^2);
 
 % <----
-% Alternative 5: % <-- This one works nicely! Try to go with this.
-d = 10; c=0.01;
-k = kt_1 + 1/((d*fe)^2) - c*kt_1;
+% % Alternative 5: % <-- This one works nicely! Try to go with this.
+% d = 10; c=0.01;
+% k = kt_1 + 1/((d*fe)^2) - c*kt_1;
 
 % Alternative 6 = compatible with target criterion (k_t = g(fe))
-% Empirically, doesn't work at all because the gain is specified in levels.
+% Empirically, doesn't work at all because the gain is specifi
 % k = 1/((d*fe)^2);
 
 % % <----
