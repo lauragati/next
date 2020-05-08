@@ -137,23 +137,21 @@ options.UseParallel=true;
 % % Works like a charm
 % seq_opt-seq0(:,2:end-1)
 
-
-
 % 3.) Now rewrite sim given seq to be able to input k
 seq0crop = [seq0(:,2:end-1);k0(2:end-1)];
-objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-disp('Initial residuals are NKIS, NKPC, TR, gain LOM:')
+objh = @(seq) objective_seq_clean2(seq,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+resids = objective_seq_clean2(seq0crop,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+disp('Initial residuals are NKIS, NKPC, TR:')
 disp(num2str(resids))
 % return
 % Now randomize
-seq0crop = seq0crop+2*rand(size(seq0crop,1),T-2);
+seq0crop = seq0crop+2*rand(size(s),T-2);
 % Now solve
 tic
 [seq_opt] = fsolve(objh,seq0crop, options);
 toc
 
-seq_opt-[seq0(:,2:end-1);k0(2:end-1)]
+seq_opt-seq0(:,2:end-1)
 
 
 

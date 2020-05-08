@@ -38,6 +38,7 @@ k = kt_1 + 1/((d*fe)^2) - c*kt_1;
 % % Alternative 7 % This one looks like constant gain learning, so that's
 % % also considerable. It never goes negative, it fluctuates up and down
 % % around some mean. So should follow up on this one too.
+% This is the only one that works with fsolve if you input exog sequences.
 % rho=0.5;
 % gam=0.01;
 % k1 = rho * kt_1^(-1) + gam*(fe)^2;

@@ -1,8 +1,7 @@
-% a version of sim_learnLH_clean.m that simulates the model given exogenous
-% sequence(s) specified in seq. Changes w.r.t. that code are marked with
-% <----
+% a version of sim_learnLH_clean_given_seq.m that simulates the model given exogenous
+% sequence(s) specified in seq AND an exogenous expectation sequence
 % 20 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1, diff] = sim_learnLH_clean_given_seq(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1, diff] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -52,6 +51,12 @@ diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
 
+if size(seq,1) > n_input_jumps
+    seq_jumps = seq(1:n_input_jumps,:);
+    seq_k = seq(end,:);
+end
+
+
 evening_fcst = nan(ny,T);
 morning_fcst = nan(ny,T);
 FA = zeros(ny,T);
@@ -82,7 +87,7 @@ for t = 1:T-1
         
         %Solve for current states
         % Evaluate observables given input sequences
-        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq(:,t-1)); % <-------
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq_jumps(:,t-1)); % <-------
         xesim = hx*xsim(:,t);
         
         %Update coefficients
@@ -94,14 +99,18 @@ for t = 1:T-1
                 fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-%                                 fe = fe(1,1);
+                %                                 fe = fe(1,1);
                 [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
-%                                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
+                %                                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
                 fk = fk_smooth_pi_only(param,fe,k(:,t-1));
             end
-            k(:,t) = fk;
+            if size(seq,1) == n_input_jumps
+                k(:,t) = fk;
+            elseif size(seq,1) > n_input_jumps
+                k(:,t) = seq_k(:,t-1);
+            end
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end

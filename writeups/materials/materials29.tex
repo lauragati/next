@@ -136,6 +136,20 @@ CUSUM-equations:
 k_t & = \mathbb{I}_{\theta_t < \tilde{\theta}}(k_{t-1}+1) +(1-\mathbb{I})\bar{g}^{-1}
 \end{align}
 
+Instead, I would like to use the smooth anchoring equation because it only adds one extra equation and because the target criterion is formulated in terms of it. But for that I need a functional form that works, i.e. has at least three desirable features and is robust to parameter values and input sequences. Below is one that does an ok job but is very sensitive to parameter values and input sequences:
+\begin{equation}
+k_t^{-1} = \rho k_{t-1}^{-1} + \gamma fe_{t|t-1}^2
+\end{equation}
+with $\rho=0.5, \gamma=0.01$ ( or $\rho=0.9, \gamma=0.001$).
+Necessary features:
+\begin{enumerate}
+\item generally decreasing
+\item can jump up from time to time when forecast errors are large
+\item does not decrease below zero
+\end{enumerate}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
