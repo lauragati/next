@@ -1,8 +1,8 @@
-% a cleaned-up version of sim_learnLH.m, which was verified to work 10 April
-% 2020 and will no longer be changed (as a safety copy).
-% Does exactly the same thing as sim_learnLH.m. Supposed to serve as a basis for other codes to adapt it.
-% 10 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
+% a version of sim_learnLH_clean_given_seq.m that simulates the model given exogenous
+% sequence(s) specified in seq AND an exogenous expectation sequence given
+% by FE
+% 8 May 2020
+function [xsim, ysim, k, phi_seq, FA, FB, fe, g_pi, g_pibar,diff] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -35,7 +35,7 @@ if gain == 21
 elseif gain == 22
     crit = 2; % CUSUM criterion
 elseif gain == 23
-    crit = 3; % smooth criterion 
+    crit = 3; % smooth criterion
 end
 
 phi = [a,b];
@@ -52,12 +52,22 @@ diff(1) = nan;
 k = zeros(1,T);
 k(:,1) = gbar^(-1);
 
+if size(seq,1) > n_input_jumps
+    seq_jumps = seq(1:n_input_jumps,:);
+    seq_fe = seq(end,:);
+else
+    seq_jumps = seq;
+end
+
+
 evening_fcst = nan(ny,T);
 morning_fcst = nan(ny,T);
 FA = zeros(ny,T);
 FB = zeros(ny,T);
 FEt_1 = zeros(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
-
+fe = zeros(1,T);
+g_pi = zeros(1,T);
+g_pibar = zeros(1,T);
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
 om = eta*eta';
@@ -81,7 +91,8 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = ALM(param,hx,fa,fb,xsim(:,t));
+        % Evaluate observables given input sequences
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq_jumps(:,t-1)); % <-------
         xesim = hx*xsim(:,t);
         
         %Update coefficients
@@ -93,14 +104,20 @@ for t = 1:T-1
                 fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-                %                 fe = fe(1,1);
+                %                                 fe = fe(1,1);
                 [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
-                %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
+                %                                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
-                fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
-                fk = fk_smooth_pi_only(param,fe,k(:,t-1));
+                
+            if size(seq,1) == n_input_jumps
+                fe(t) = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
+            elseif size(seq,1) > n_input_jumps
+                fe(t) = seq_fe(:,t-1);
+            end
+                [fk, g_pi(t), g_pibar(t)] = fk_smooth_pi_only(param,fe(t),k(:,t-1));
             end
             k(:,t) = fk;
+            
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end
@@ -144,6 +161,7 @@ end
 
 %Last period observables.
 ysim(:,t+1) = gx*xsim(:,t+1);
+
 
 %Drop ndrop periods from simulation
 xsim = xsim(:,ndrop+1:end);

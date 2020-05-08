@@ -45,6 +45,8 @@ gam_k = param.gam_k;
 % gam=0.001; %0.01 or 0.001
 k1 = rho_k * kt_1^(-1) + gam_k*(fe)^2;
 k=1/k1;
+g_pi = 2*gam_k*fe;
+g_pibar = -2*gam_k*fe;
 
 % % Alternative 8 - to make Alt 7 decrease in general
 % rho=0.5; %0.5

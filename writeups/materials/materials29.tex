@@ -140,7 +140,7 @@ Instead, I would like to use the smooth anchoring equation because it only adds 
 \begin{equation}
 k_t^{-1} = \rho k_{t-1}^{-1} + \gamma fe_{t|t-1}^2
 \end{equation}
-with $\rho=0.5, \gamma=0.01$ ( or $\rho=0.9, \gamma=0.001$).
+with $\rho=0.9, \gamma=0.001$ 
 Necessary features:
 \begin{enumerate}
 \item generally decreasing
@@ -148,6 +148,12 @@ Necessary features:
 \item does not decrease below zero
 \end{enumerate}
 
+Report success! For this smooth gain function, I've been able to do 2 things:
+\begin{itemize}
+\item Input exogenous gain sequence ($\{i_t, k_t\}$) and treat TR  (\ref{TR}) \& LOM gain (\ref{A6}) as residual: \\
+$\rightarrow$ this does solve even if agents don't know the Taylor rule, but only from a small neighborhood of the solution.
+\item Input exogenous forecast error sequence ($\{i_t, fe_{t|t-1}\}$) and treat TR  (\ref{TR}) \& LOM FE (\ref{A7}) as residual: $\rightarrow$ this solves even if agents don't know the Taylor rule, and from a large neighborhood. The only back-draw is that it takes a while (128 iterations, almost 4 minutes). 
+\end{itemize}
 
 
 
@@ -173,8 +179,8 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text
 \begin{align}
 \text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
 \text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
-\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \\
-\text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1})\\
+\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \label{A6}\\
+\text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1}) \label{A7} \\
 \text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{fafb_anal}
 \end{align}
 

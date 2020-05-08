@@ -1,6 +1,7 @@
 % a version of sim_learnLH_clean_given_seq.m that simulates the model given exogenous
-% sequence(s) specified in seq AND an exogenous expectation sequence
-% 20 April 2020
+% sequence(s) specified in seq AND an exogenous expectation sequence given
+% by k
+% 8 May 2020
 function [xsim, ysim, k, phi_seq, FA, FB, FEt_1, diff] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps, dt, x0)
 
 this_code = mfilename;
@@ -54,6 +55,8 @@ k(:,1) = gbar^(-1);
 if size(seq,1) > n_input_jumps
     seq_jumps = seq(1:n_input_jumps,:);
     seq_k = seq(end,:);
+else 
+    seq_jumps = seq;
 end
 
 
