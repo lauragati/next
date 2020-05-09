@@ -403,8 +403,9 @@ v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xgrid, param);
 % return
 
 coeffs=coeffs0;
-v=v0';
+v=v0;
 
+v1 = zeros(m,1);
 kp = zeros(m,1);
 exitflag=nan;
 % always start searching at the beginning of the grid
@@ -427,7 +428,11 @@ while crit > epsi && iter< maxiter
 % I think this is the conceptually correct thing: the new k are the nodes; or you know, maybe not, maybe the nodes for the spline should be the same %
 %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,kp(:,iter),v1);
     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs0, options2);
+%     %This is awful: it's totally diverging
+%     objh = @(coeffs)obj_vhat_spline(coeffs,xgrid,v1);
+%     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs, options2);
     
+%     return
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
     if mod(iter,50)==0
@@ -564,7 +569,11 @@ for i=1:T
     sx(i) = a(int_i)+ b(int_i)*x(i) + c(int_i)*x(i)^2 + d(int_i)*x(i)^3; 
 end
 vhat = sx;
+end
 
+function resids = obj_vhat_spline(a,xgrid,v)
+vhat = vhat_spline(a,xgrid,xgrid);
+resids = (vhat-v).^2;
 end
 
 function b = compute_cheby_coeffs(v,x,n,xmin,xmax) % not used b/c not necessary!

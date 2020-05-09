@@ -111,7 +111,7 @@ end
 
 %%
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000, 'MaxFunEvals', 40000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 
@@ -188,9 +188,8 @@ options.UseParallel=true;
 
 
 
-% 5.) Continue inputting FE(pi) but instead of TR, use a RE-TC as a
+% 5.) Continue inputting FE(pi) but instead of TR, use a RE-TC or the evaluatable part of the anchTC (I refer to this as anchTC0) as a
 % residual eq.
-% 4.) Now input FE(pi) instead of k
 % seq0crop = seq0(:,2:end-1); % just input jumps
 seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
 objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
