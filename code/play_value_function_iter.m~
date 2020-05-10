@@ -545,11 +545,11 @@ while crit > epsi && iter< maxiter
     % Step 1: maximization
     for j=1:m
         kj=xgrid(j);
-        negv = @(kp) TV_pchip(kp,coeffs,kj, param);
+        negv = @(kp) TV_pchip(kp,coeffs,kj,xgrid, param);
         [kp(j,iter)] = fminunc(negv, k0, options1);
         
         % compute the value function at the maximizing kp
-        v1(j) = -TV_pchip(kp(j,iter),coeffs,kj, param);
+        v1(j) = -TV_pchip(kp(j,iter),coeffs,kj, xgrid, param);
     end
     
     % Step 2: fitting
@@ -673,7 +673,7 @@ negvj =-vj;
 end
 
 
-function negvj = TV_pchip(kp,coeffs,k, param)
+function negvj = TV_pchip(kp,coeffs,k,xgrid, param)
 % this function just gives you today's value for this state xj, times -1 (it's not a min)
 sig = param(1); delt=param(2); bet=param(3); alph=param(4);
 % we're moving along different values for today's capital, and we wanna
@@ -686,6 +686,8 @@ c(d) = NaN; % get rid of negative c
 util = (c.^(1-sig)-1)/(1-sig); % computes utility
 util(d) = -1e12; % utility = low number for c<0
 % compute value function given k
+% v = vhat_spline(coeffs,xgrid,kp);
+% try matlab's spline
 v = ppval(coeffs,kp);
 
 % finally, the T-map TVhat:

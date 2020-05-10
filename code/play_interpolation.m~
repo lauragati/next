@@ -41,7 +41,7 @@ Yq = [f(1:n:end), f(end)]; % function values at query points
 % the "interp1" command
 fhat2 = interp1(Xq,Yq,X); % linear interpolation
 fhat3 = interp1(Xq,Yq,X, 'spline'); % cubic spline interpolation
-fhat4 = interp1(Xq,Yq,X, 'pchip'); % shape-preserving cubic hermite interpolating polynomial
+fhat4 = interp1(Xq,Yq,X, 'pchip'); % shape-preserving cubic (hopefully spline) interpolation
 
 % The "spline" command
 % this gives you the coeffs, note that pp is a struct
@@ -55,11 +55,8 @@ fhat5 = spline(Xq,Yq,X);
 fhat5_alt = ppval(pp,X);
 fhat5-fhat5_alt; % bingo
 
-% The "pchip" command - works exactly like the spline command
-ppp= pchip(Xq,Yq);
-fhat4_alt = ppval(ppp,X);
-fhat4-fhat4_alt; % bingo
-
+% The "pchip" command
+ppp= pchip(Xq,Yq)
 % Comparing pchip with SPLINE:
 %     The function s(x) supplied by SPLINE is constructed in exactly the same way,
 %     except that the slopes at the X(j) are chosen differently, namely to make 
