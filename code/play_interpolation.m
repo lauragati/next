@@ -86,6 +86,27 @@ a-coeffs_opt % there's the problem
 % although Matlab's spline uses the "not-a'knot" end conditions (specifies
 % third derivates at endnodes) and not a natural spline, I have reason to
 % suspect that my spline is not quite doing the right thing.
+
+%% A multidimensional problem
+
+true_fun3  = @(x1,x2) x1+x2;
+a=0;
+b=1;
+
+X1 = linspace(a,b,20); 
+X2 = linspace(a,b,20); 
+% [X,Y] = ndgrid(X1,X2);
+[X,Y] = meshgrid(X1,X2);
+
+f = true_fun3(X,Y);
+
+
+figure
+mesh(X,Y,f)
+
+return
+
+
 %% Plot
 
 figure
