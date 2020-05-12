@@ -134,7 +134,7 @@ The setup of the problem makes the separate issues I'm facing clear:
 V(x) = \max_u p(u,x) + \beta \E V(x')
 \end{equation}
 \begin{enumerate}
-\item Interpolate instead of discretize $\leftarrow$ this is where I'm at
+\item Interpolate instead of discretize 
 \item Interpolation may have to be shape-preserving
 \item Compute expectation on RHS $\rightarrow$ quadrature
 \item $x$ is a vector $\rightarrow$ multivariate approximation
@@ -172,12 +172,18 @@ If $||\hat{V}(x,b^{i}) -\hat{V}(x,b^{i+1}) < \varepsilon ||$, stop; else go to S
 \subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_valuefun}}
 \subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_spline_decisions}}
 \end{figure}
-
 \subsection{Optimal growth - value function iteration with piecewise cubic Hermite interpolation (shape-preserving)}
 \begin{figure}[h!]
 \subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_pchip_valuefun}}
 \subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_pchip_decisions}}
 \end{figure}
+\newpage
+\subsection{Optimal growth - stochastic value function iteration with bivariate tech shock, discretized}
+\begin{figure}[h!]
+\subfigure[Value function]{\includegraphics[scale=0.5]{\myFigPath vfi_stoch_valuefun}}
+\subfigure[Decision rules]{\includegraphics[scale=0.5]{\myFigPath vfi_stoch_decisions}}
+\end{figure}
+This one is not a 100\% what Collard gets but hey.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\clearpage

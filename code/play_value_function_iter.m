@@ -332,166 +332,166 @@ if skip==0
     % tvhat1 = TV(xgrid(1),b0,xgrid(1),n,kmin,kmax, param); % ok seems to work
     %
     % b1 = compute_cheby_coeffs(vhat1,xgrid,n,kmin,kmax); % ok seems to work
-
-%% let's try parametric VFI with a spline!
-
-clc
-
-sig  = 1.5;
-delt = 0.1;
-bet  = 0.95;
-alph = 0.3;
-param = [sig,delt,bet,alph];
-
-%Optimization Parameters
-% options = optimset('fmincon');
-options1 = optimset('fminunc');
-options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
-options2 = optimset('fsolve');
-options2 = optimset(options2, 'TolFun', 1e-16, 'display', 'none');
-
-m=20; % number of nodes (index i), m-1 intervals
-crit=1;
-iter=1;
-maxiter=600;%300
-epsi=1e-6; %-6
-ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
-dev = 0.9;
-kmin = (1-dev)*ks;
-kmax = (1+dev)*ks;
-% for the spline, uniformly placed nodes are fine
-xgrid = linspace(kmin,kmax,m)';
-% Initial nodes as a completely uneducated guess
-% coeffs0 = zeros(m-1,4); % [a,b,c,d] % this actually converges the fastest, but you always get the same thing
-% coeffs0 = ones(m-1,4);
-% coeffs0 = rand(m-1,4);
-
-% let's try Collard's initialization
-v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % you get exactly the same thing
-
-% matlab's spline
-pp = spline(xgrid,v0);
-fake_kp = (xgrid(2)-xgrid(1))/2;
-vhat_m = ppval(pp,fake_kp);
-
-% return
-
-% Let's try out the spline functions
-% v0_vector = vhat_spline(coeffs0, xgrid,xgrid);
-% v0_scalar = vhat_spline(coeffs0,xgrid, xgrid(end-1));
-%
-% v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xgrid, param);
-
-% Let's try my spline on simple things
-% x^2
-% interval = linspace(-1,1,20);
-% % Approximand in "dataset"
-% true_fun = @(x) x.^2;
-% f = true_fun(interval);
-%
-% objh = @(coeffs) obj_spline_secant_hermite(coeffs,interval,f);
-%     [coeffs1,FVAL,exitflag] = fsolve(objh,coeffs0, options2);
-% fhat = vhat_spline(coeffs1,interval,interval);
-% fhat_end = vhat_spline(coeffs1,interval,interval(end));
-% figure
-% plot(f); hold on
-% plot(fhat)
-% yo it seems to work so nicely
-
-% % four known points
-% xi = [-1,0,1,2];
-% yi = [2,0,-2,0]';
-% M = [1,-1,1,-1; 1,0,0,0; 1,1,1,1; 1,2,4,8];
-% a = M^(-1)*yi;
-% a0 = zeros(size(a));
-% objh = @(a) obj_spline_secant_hermite(a,xi,yi);
-% [a1,FVAL,exitflag(iter)] = fsolve(objh,a0', options2); % my approach doesn't work here at all
-
-% return
-
-% coeffs=coeffs0;
-coeffs=pp;
-v=v0;
-
-v1 = zeros(m,1);
-kp = zeros(m,1);
-exitflag=nan;
-% always start searching at the beginning of the grid
-k0 = xgrid(1);
-datestr(now)
-tic
-while crit > epsi && iter< maxiter
-    % Step 1: maximization
-    for j=1:m
-        kj=xgrid(j);
-        negv = @(kp) TV_spline(kp,coeffs,kj,xgrid, param);
-        [kp(j,iter)] = fminunc(negv, k0, options1);
+    
+    %% let's try parametric VFI with a spline!
+    
+    clc
+    
+    sig  = 1.5;
+    delt = 0.1;
+    bet  = 0.95;
+    alph = 0.3;
+    param = [sig,delt,bet,alph];
+    
+    %Optimization Parameters
+    % options = optimset('fmincon');
+    options1 = optimset('fminunc');
+    options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
+    options2 = optimset('fsolve');
+    options2 = optimset(options2, 'TolFun', 1e-16, 'display', 'none');
+    
+    m=20; % number of nodes (index i), m-1 intervals
+    crit=1;
+    iter=1;
+    maxiter=600;%300
+    epsi=1e-6; %-6
+    ks = ((1-bet*(1-delt))/(alph*bet))^(1/(alph-1));
+    dev = 0.9;
+    kmin = (1-dev)*ks;
+    kmax = (1+dev)*ks;
+    % for the spline, uniformly placed nodes are fine
+    xgrid = linspace(kmin,kmax,m)';
+    % Initial nodes as a completely uneducated guess
+    % coeffs0 = zeros(m-1,4); % [a,b,c,d] % this actually converges the fastest, but you always get the same thing
+    % coeffs0 = ones(m-1,4);
+    % coeffs0 = rand(m-1,4);
+    
+    % let's try Collard's initialization
+    v0 = (((xgrid.^alph).^(1-sig)-1)/((1-sig)*(1-bet))); % you get exactly the same thing
+    
+    % matlab's spline
+    pp = spline(xgrid,v0);
+    fake_kp = (xgrid(2)-xgrid(1))/2;
+    vhat_m = ppval(pp,fake_kp);
+    
+    % return
+    
+    % Let's try out the spline functions
+    % v0_vector = vhat_spline(coeffs0, xgrid,xgrid);
+    % v0_scalar = vhat_spline(coeffs0,xgrid, xgrid(end-1));
+    %
+    % v_try_scalar = -TV_spline(xgrid(1),coeffs0,xgrid(1),xgrid, param);
+    
+    % Let's try my spline on simple things
+    % x^2
+    % interval = linspace(-1,1,20);
+    % % Approximand in "dataset"
+    % true_fun = @(x) x.^2;
+    % f = true_fun(interval);
+    %
+    % objh = @(coeffs) obj_spline_secant_hermite(coeffs,interval,f);
+    %     [coeffs1,FVAL,exitflag] = fsolve(objh,coeffs0, options2);
+    % fhat = vhat_spline(coeffs1,interval,interval);
+    % fhat_end = vhat_spline(coeffs1,interval,interval(end));
+    % figure
+    % plot(f); hold on
+    % plot(fhat)
+    % yo it seems to work so nicely
+    
+    % % four known points
+    % xi = [-1,0,1,2];
+    % yi = [2,0,-2,0]';
+    % M = [1,-1,1,-1; 1,0,0,0; 1,1,1,1; 1,2,4,8];
+    % a = M^(-1)*yi;
+    % a0 = zeros(size(a));
+    % objh = @(a) obj_spline_secant_hermite(a,xi,yi);
+    % [a1,FVAL,exitflag(iter)] = fsolve(objh,a0', options2); % my approach doesn't work here at all
+    
+    % return
+    
+    % coeffs=coeffs0;
+    coeffs=pp;
+    v=v0;
+    
+    v1 = zeros(m,1);
+    kp = zeros(m,1);
+    exitflag=nan;
+    % always start searching at the beginning of the grid
+    k0 = xgrid(1);
+    datestr(now)
+    tic
+    while crit > epsi && iter< maxiter
+        % Step 1: maximization
+        for j=1:m
+            kj=xgrid(j);
+            negv = @(kp) TV_spline(kp,coeffs,kj,xgrid, param);
+            [kp(j,iter)] = fminunc(negv, k0, options1);
+            
+            % compute the value function at the maximizing kp
+            v1(j) = -TV_spline(kp(j,iter),coeffs,kj, xgrid, param);
+        end
         
-        % compute the value function at the maximizing kp
-        v1(j) = -TV_spline(kp(j,iter),coeffs,kj, xgrid, param);
+        % Step 2: fitting
+        %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,xgrid,v1);
+        %     % I think this is the conceptually correct thing: the new k are the nodes; or you know, maybe not, maybe the nodes for the spline should be the same %
+        %     %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,kp(:,iter),v1);
+        %     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs0, options2);
+        %     %     %This is awful: it's totally diverging
+        %     %     objh = @(coeffs)obj_vhat_spline(coeffs,xgrid,v1);
+        %     %     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs, options2);
+        
+        % this works... juhuuuu
+        coeffs1 = spline(xgrid,v1);
+        %     return
+        % Compute stopping criterion and update
+        crit = max(abs(v1-v));
+        if mod(iter,50)==0
+            disp(['Concluding iteration = ', num2str(iter)])
+            disp(['Stopping criterion = ', num2str(crit)])
+        end
+        iter=iter+1;
+        coeffs=coeffs1;
+        v=v1;
+    end
+    toc
+    
+    % Compute consumption function
+    c = xgrid.^alph+(1-delt).*xgrid-kp(:,end);
+    
+    
+    figure
+    plot(xgrid,v)
+    title('Collard''s Fig. 7.7 Value function against k_t - SPLINE')
+    figname = 'vfi_spline_valuefun';
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
     end
     
-    % Step 2: fitting
-    %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,xgrid,v1);
-    %     % I think this is the conceptually correct thing: the new k are the nodes; or you know, maybe not, maybe the nodes for the spline should be the same %
-    %     %     objh = @(coeffs) obj_spline_secant_hermite(coeffs,kp(:,iter),v1);
-    %     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs0, options2);
-    %     %     %This is awful: it's totally diverging
-    %     %     objh = @(coeffs)obj_vhat_spline(coeffs,xgrid,v1);
-    %     %     [coeffs1,FVAL,exitflag(iter)] = fsolve(objh,coeffs, options2);
     
-    % this works... juhuuuu
-    coeffs1 = spline(xgrid,v1);
-    %     return
-    % Compute stopping criterion and update
-    crit = max(abs(v1-v));
-    if mod(iter,50)==0
-        disp(['Concluding iteration = ', num2str(iter)])
-        disp(['Stopping criterion = ', num2str(crit)])
+    figure
+    subplot(1,2,1)
+    plot(xgrid,kp(:,end)); hold on
+    plot(xgrid,xgrid,'k--')
+    title('k_{t+1} as a function of k_t')
+    subplot(1,2,2)
+    plot(xgrid,c)
+    title('c_{t} as a function of k_t')
+    sgtitle('Collard''s Fig. 7.8 Decision rules - SPLINE')
+    figname = 'vfi_spline_decisions';
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
     end
-    iter=iter+1;
-    coeffs=coeffs1;
-    v=v1;
-end
-toc
-
-% Compute consumption function
-c = xgrid.^alph+(1-delt).*xgrid-kp(:,end);
-
-
-figure
-plot(xgrid,v)
-title('Collard''s Fig. 7.7 Value function against k_t - SPLINE')
-figname = 'vfi_spline_valuefun';
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-
-figure
-subplot(1,2,1)
-plot(xgrid,kp(:,end)); hold on
-plot(xgrid,xgrid,'k--')
-title('k_{t+1} as a function of k_t')
-subplot(1,2,2)
-plot(xgrid,c)
-title('c_{t} as a function of k_t')
-sgtitle('Collard''s Fig. 7.8 Decision rules - SPLINE')
-figname = 'vfi_spline_decisions';
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
+    
 end
 
 %% let's try parametric VFI with a Piecewise Cubic Hermite Interpolating Polynomial. PCHIP
@@ -554,7 +554,7 @@ while crit > epsi && iter< maxiter
     
     % Step 2: fitting
     coeffs1 = pchip(xgrid,v1);
-
+    
     % Compute stopping criterion and update
     crit = max(abs(v1-v));
     if mod(iter,50)==0
@@ -595,6 +595,94 @@ plot(xgrid,c)
 title('c_{t} as a function of k_t')
 sgtitle('Collard''s Fig. 7.8 Decision rules - PCHIP')
 figname = 'vfi_pchip_decisions';
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% Stochastic value function iteration - Collard's code
+
+sigma   = 1.50;
+delta   = 0.10;
+beta    = 0.95;
+alpha   = 0.30;
+rho     = 0.80;
+se      = 0.12; % volatility of the shock
+nbk = 1000; % number of kapital gridpoints
+nba =2;  % number of technology gridpoints
+crit =1; 
+epsi = 1e-6; 
+% Discretization of the shock - Collard does this w/o Tauchen-Hussey b/c
+% tech shock only takes on 2 values
+p       = (1+rho)/2;
+PI      = [p 1-p;1-p p];
+se = 0.12; 
+ab =0;
+a1      = exp(-se*se/(1-rho*rho));
+a2      = exp(se*se/(1-rho*rho));
+A = [a1 a2];
+% Discretization of the state space - just a grid
+kmin = 0.2;
+kmax =6;
+kgrid = linspace(kmin,kmax,nbk)'; 
+c = zeros(nbk,nba);
+util = zeros(nbk,nba);
+v = zeros(nbk,nba);
+Tv = zeros(nbk,nba);
+% Collard doesn't seem to define k anywhere, I think it's just the kgrid
+k= kgrid;
+while crit>epsi;
+    for i=1:nbk
+        for j=1:nba;
+            c           = A(j)*k(i)^alpha+(1-delta)*k(i)-k;
+            neg         = find(c<=0);
+            c(neg)      = NaN;
+            util(:,j)   = (c.^(1-sigma)-1)/(1-sigma);
+            util(neg,j) = -1e12;
+        end
+        [Tv(i,:),dr(i,:)] = max(util+beta*(v*PI));
+    end;
+    crit = max(max(abs(Tv-v)));
+    v        = Tv;
+    iter = iter+1;
+end
+
+kp      = k(dr);
+for j=1:nba;
+    c(:,j)   = A(j)*k.^alpha+(1-delta)*k-kp(:,j);
+end
+
+figure
+plot(k,v(:,1)); hold on
+plot(k,v(:,2))
+title('Collard''s Fig. 7.9 Value function against k_t - with bivariate tech shock, discretized')
+figname = 'vfi_stoch_valuefun';
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+
+figure
+subplot(1,2,1)
+plot(k,kp(:,1)); hold on
+plot(k,kp(:,2))
+plot(k,k,'k--')
+title('k_{t+1} as a function of k_t')
+subplot(1,2,2)
+plot(k,c(:,1)); hold on
+plot(k,c(:,2))
+title('c_{t} as a function of k_t')
+sgtitle('Collard''s Fig. 7.10 Decision rules - with bivariate tech shock, discretized')
+figname = 'vfi_stoch_decisions';
 
 if print_figs ==1
     disp(figname)
