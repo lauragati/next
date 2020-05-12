@@ -21,6 +21,8 @@ figpath = [basepath '/figures'];
 tablepath = [basepath '/tables'];
 datapath = [basepath '/data'];
 tryouts_path = [toolpath '/tryouts'];
+maincode_path = [basepath '/code'];
+
 
 cd(current_dir)
 
@@ -31,6 +33,7 @@ addpath(figpath)
 addpath(datapath)
 addpath(tryouts_path)
 addpath(PS6_starter_path)
+addpath(maincode_path)
 
 todays_date = strrep(datestr(today), '-','_');
 
@@ -82,48 +85,93 @@ disp(['siga: ' num2str(sqrt((ggrid.^2)*pg))]); % I think the aha-effect here is 
 % each point on the grid. Confirm that the average h-policy value is close
 % to the ss-value of labor.
 [X1,X2] = ndgrid(ggrid,kgrid);
- [row, col] = size(X1);
- X = zeros(2,row*col);
- index=0;
- for i=1:row
-     for j=1:col
-         index=index+1;
-         X(:,index) = [X2(i,j);X1(i,j)]; % put kgrid on top, ggrid below
-     end
- end
- % X equals Ryan's XXgrid in the sols
- % Still need to demean to compare with hours
- gs=ss(gam_idx);
- XXdemean = X - repmat_col([ks;gs],length(X));
+[row, col] = size(X1);
+X = zeros(2,row*col);
+idx=0;
+for i=1:row
+    for j=1:col
+        idx=idx+1;
+        X(:,idx) = [X2(i,j);X1(i,j)]; % put kgrid on top, ggrid below
+    end
+end
+% X equals Ryan's XXgrid in the sols
+% Still need to demean to compare with hours
+gs=ss(gam_idx);
+XXdemean = X - repmat_col([ks;gs],length(X));
 
+[~,m] = size(X); % # gridpoints (= Ryan's 'ns')
 
- [~,m] = size(X); % # gridpoints (= Ryan's 'ns')
- Y = zeros(ny,m);
- for i=1:m
-     Y(:,i) = gx*X(:,i);
-%      Y(:,i) = gx*XXdemean(:,i); % this ain't cool either
- end
- H0 = Y(h_idx,:);
- hs = ss(h_idx);
- hs - mean(H0) % that doesn't look good. Maybe it isn't in levels? ignore it for now.
- 
- 
- 
- return
- 
- %**************************************************************************
+% Initial policy using policy functions of linearized econ (gx summarizes those)
+Y = zeros(ny,m);
+for i=1:m
+    Y(:,i) = gx*X(:,i);
+    %      Y(:,i) = gx*XXdemean(:,i); % this ain't cool either
+end
+H0 = Y(h_idx,:);
+hs = ss(h_idx);
+hs - mean(H0) % that doesn't look good. Maybe it isn't in levels? ignore it for now.
+% well...
+
+%**************************************************************************
 % 1d) Using initial policy values, generate a set of coeffs a_i such that
 % Htilde(a_i,X) approximates the data.
 
-%Replace this line with code initializing hours at each grid point
-H_init = H0';
-% H_init seem to be the initial coefficients, MM the interpolating
-% polynomial.
+pp = csapi({ggrid,kgrid},reshape(H0,size(X1)));
+a =pp.coefs;
 
-%This generate the coefficients a_i
-% [POL_init,MM] = ndim_simplex(X,X,H_init);
+%**************************************************************************
+% 2a) Residual function. Call it once
+
+res0 = res_obj(pp,X,kgrid,ggrid,pg,param,set);
+% holy shit it works - although the values are crap
+
+% handle
+obj = @(coeffs)res_obj(a,X,kgrid,ggrid,pg,param,set);
+
+%**************************************************************************
+% 3) Solve
+
+options = optimset('fsolve');
+options = optimset(options, 'display', 'iter');
+
+% POL_final = fsolve(obj,pp,options); % aha, shit, fsolve doesn't handle
+% the darn pp object
 
 
 
-
+function res = res_obj(coeffs,Xgrid,kgrid,ggrid,pg,param,set)
+param_unpack
+ng=length(ggrid);
+nk=length(kgrid);
+% 1. H(a,X) at each gridpoint X_i
+H = fnval(coeffs,{ggrid,kgrid});
+H = reshape(H,1,ng*nk);
+% 2. Use eqs. 1 and 2 to generate kp
+K = exp(Xgrid(1,:));
+GAM = exp(Xgrid(2,:));
+C = (1-alph)/chi.*GAM.^(alph/(alph-1)).*(K./H).^alph;
+KP = GAM.^(alph/(alph-1)).*K.^alph.*H.^(1-alph) - C +(1-del).*K.*GAM.^(alph/(alph-1));
+% 3. For each KP(X_i), generate 5 next period grid points XP_ij according
+% to grid values of GAM.
+[X1,X2] = ndgrid(ggrid,KP);
+[row, col] = size(X1);
+XP = zeros(2,row*col);
+idx=0;
+for i=1:row
+    for j=1:col
+        idx=idx+1;
+        XP(:,idx) = [X2(i,j);X1(i,j)]; % put kgrid on top, ggrid below
+    end
+end
+% 4. Evaluate policy function at the points XP. Use period t+1 versions of
+% eqs 1 and 2 to compute the terms on the RHS of eq 3. (rhs_i).
+HP = fnval(coeffs,{ggrid,log(KP)});
+% [h1,h2] = size(HP);
+% HP =reshape(HP,1,h1*h2);
+CP = (1-alph)/chi.*GAM.^(alph/(alph-1)).*(KP./HP).^alph;
+rhs=bet./CP.*GAM.^(1/(1-alph)).* ((KP./HP).^(alph-1) +1-del );
+Erhs = pg'*rhs;
+% 5. Compute residuals
+res = 1./C - Erhs;
+end
 

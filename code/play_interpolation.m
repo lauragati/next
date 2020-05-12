@@ -100,6 +100,7 @@ plot(Xqmat, fhat5, 'x', 'linewidth',lw)
 legend('Approximand', 'Linear interpolation with "interp1"', 'Cubic spline with "interp1"', 'Shape-preserving cubic with "interp1"', ...
     'Cubic spline with "spline"', ...
     'location', 'northwest')
+title('1D approximation - works nicely')
 ax = gca; % current axes
 ax.FontSize = fs;
 grid on
@@ -115,9 +116,9 @@ grid minor
 % 4) there is a pchip command too> it's Piecewise Cubic Hermite Interpolating Polynomial
 
 
-%% A multidimensional problem - a vector-valued interpolant
-close all
-clearvars
+%% A multidimensional problem - a scalar-valued interpolant
+% close all
+% clearvars
 clc
 
 true_fun3  = @(x1,x2) x1.^(1/2)+x2.^(1/2);
@@ -158,6 +159,8 @@ title('Linear interpolation')
 subplot(1,3,3)
 mesh(Xqmat,Y,Vq2)
 title('Spline interpolation')
+sgtitle('2D Approximation - works but doesn''t give you coeffs')
+
 
 % that's cool, but I'd like to get the coefficients too
 
@@ -262,7 +265,8 @@ w = true_fun3(Xq1,Xq2); % --> so you can actually do this really quickly!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % might not have to compute them painfully
 T = chebyshev(z,n);
-ai = T\w/T; 
+% ai = T\w/T; % ??????????
+ai = (T*T)\w;
 
 % Then the interpolant is
 % 1. Convert the evaluation points to [-1,1] nodes
@@ -272,13 +276,21 @@ Z2 =2*((X2-c)./(d-c)-1);
 T1 = chebyshev(Z1,n);
 T2 = chebyshev(Z2,n);
 % 3. Interpolant
-pxy = T1*ai*T2';
+% pxy = T1*ai*T2'; % ??????????
+pxy = T2*(T1*ai)';
+
 
 figure
 subplot(1,2,1)
 mesh(X,Y,f)
 subplot(1,2,2)
 mesh(X1,X2,pxy)
+sgtitle('2D Chebyshev approximation - not working, as you can see')
+
+%% Can the Curve-Fitting Toolbox do N-dim splines with coeffs?
+% let's move the discussion to play_interpolation_ND
+
+
 
 
 function Tx = chebyshev(x,n) % checked - correct
