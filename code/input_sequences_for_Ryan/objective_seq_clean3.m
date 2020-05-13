@@ -22,6 +22,7 @@ bet = param.bet;
 % Evaluate residuals (leave out first and last periods)
 pi = ysim(1,2:end-1);
 x  = ysim(2,2:end-1);
+xl = ysim(2,1:end-2);
 i  = ysim(3,2:end-1);
 s  = xsim(:,2:end-1);
 st_1 = xsim(:,1:end-2);
@@ -40,7 +41,8 @@ resPC = -pi +kapp*x + s3*fa + s4*s;
 resA6 = -k1(2:end) + rho_k*k1(1:end-1) + gam_k*fe.^2;
 resA7 = -fe + pi - pibar - b(1,:)*st_1;
 resRETC = pi+lamx/kapp*x;
-resanchTC0 = pi+lamx/kapp*x - (1-alph)*bet/(1-alph*bet)*(k1(2:end) + fe.*g_pi);
+res_commitTC = pi+lamx/kapp*x - lamx/kapp*xl;
+resanchTC0 = pi+lamx/kapp*x - lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k1(2:end) + fe.*g_pi);
 % interesting: this first part of the anchTC is just a mu below resRETC.
 
 % resids=resTR;
@@ -52,8 +54,11 @@ resanchTC0 = pi+lamx/kapp*x - (1-alph)*bet/(1-alph*bet)*(k1(2:end) + fe.*g_pi);
 % resids = [resRETC; resA7];
 % resids = [resanchTC0; resA7];
 % resids = [resanchTC0];
-resids = [resIS; resPC; resanchTC0; resA7];
 % resids = [resIS; resanchTC0; resA7];
+% resids = [resIS; resPC; resanchTC0; resA7];
+resids = [resIS; resPC; res_commitTC; resA7];
+
+
 
 
 

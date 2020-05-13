@@ -111,7 +111,7 @@ end
 
 %%
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000, 'MaxFunEvals', 4000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 
@@ -187,7 +187,6 @@ options.UseParallel=true;
 % % create_plot_observables(1./k4, invgain,'Simulation using input sequence')
 
 
-
 % 5.) Continue inputting FE(pi) but instead of TR, use a RE-TC or the evaluatable part of the anchTC (I refer to this as anchTC0) as a
 % residual eq.
 % seq0crop = seq0(:,2:end-1); % just input jumps
@@ -210,6 +209,34 @@ seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
 % [xsim4, ysim4, k4, phi_seq4, FA4, FB4, FEt_14] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
 % create_plot_observables(ysim4,seriesnames, 'Simulation using input sequence ')
 % create_plot_observables(1./k4, invgain,'Simulation using input sequence')
+
+return
+% 6.) Continue inputting FE(pi) and use a linear combo of TR and anchTC0:
+% a*TR + (1-a)anchTC0 as a residual and recursively lower a
+seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
+a=0.985;
+objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+resids = objective_seq_clean4(seq0crop,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+disp('Initial residuals')
+disp(num2str(resids))
+
+% Now solve
+tic
+[seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+toc
+seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
+crit = max(max(resids_opt));
+
+
+while a>0.01 && crit < 1e-12
+a=a-0.01
+seq0crop = seq_opt;
+objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+tic
+[seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+toc
+crit = max(max(resids_opt));
+end
 
 
 disp('Done.')

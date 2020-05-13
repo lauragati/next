@@ -57,14 +57,6 @@ grid minor
 
 %% Csapi is supposed to handle ND cases. So let's try a 2D case.
 
-% Matlab's example
-x = -1:.2:1; y=-1:.25:1; 
-[xx, yy] = ndgrid(x,y);
-z = sin(10*(xx.^2+yy.^2)); 
-pp = csapi({x,y},z);
-% "plots the function on its basic interval" (thank you)
-% fnplt(pp)
-
 true_fun3  = @(x1,x2) x1+x2;
 a=0;
 b=1;
@@ -92,13 +84,11 @@ fq = true_fun3(XXq,YYq);
 pp = csapi({Xq,Yq},fq);
 fhat3 = fnval(pp,{Xe,Ye});
 
-
 figure
 subplot(1,2,1)
 mesh(XXe,YYe,f)
 title('Approximand')
 subplot(1,2,2)
-% fnplt(pp)
 mesh(Xe,Ye,fhat3)
 title('Spline with "csapi"')
 sgtitle('Indeed, look how beautifully csapi managed')
