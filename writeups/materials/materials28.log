@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 MAY 2020 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAY 2020 19:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -939,7 +939,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 147.
 
-<../../figures/vfi_discrete_valuefun.png, id=31, 454.69875pt x 380.42125pt>
+<../../figures/vfi_discrete_valuefun.png, id=35, 454.69875pt x 380.42125pt>
 File: ../../figures/vfi_discrete_valuefun.png Graphic file (type png)
 
 <use ../../figures/vfi_discrete_valuefun.png>
@@ -947,7 +947,7 @@ Package pdftex.def Info: ../../figures/vfi_discrete_valuefun.png used on input
 line 161.
 (pdftex.def)             Requested size: 227.34882pt x 190.21014pt.
 
-<../../figures/vfi_discrete_decisions.png, id=32, 458.71375pt x 380.42125pt>
+<../../figures/vfi_discrete_decisions.png, id=36, 458.71375pt x 380.42125pt>
 File: ../../figures/vfi_discrete_decisions.png Graphic file (type png)
 
 <use ../../figures/vfi_discrete_decisions.png>
@@ -957,7 +957,7 @@ Package pdftex.def Info: ../../figures/vfi_discrete_decisions.png used on input
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../../figures/vfi_cheby_valuefun.png, id=54, 454.69875pt x 380.42125pt>
+<../../figures/vfi_cheby_valuefun.png, id=58, 454.69875pt x 380.42125pt>
 File: ../../figures/vfi_cheby_valuefun.png Graphic file (type png)
 
 <use ../../figures/vfi_cheby_valuefun.png>
@@ -965,7 +965,7 @@ Package pdftex.def Info: ../../figures/vfi_cheby_valuefun.png used on input lin
 e 166.
 (pdftex.def)             Requested size: 227.34882pt x 190.21014pt.
 
-<../../figures/vfi_cheby_decisions.png, id=55, 458.71375pt x 380.42125pt>
+<../../figures/vfi_cheby_decisions.png, id=59, 458.71375pt x 380.42125pt>
 File: ../../figures/vfi_cheby_decisions.png Graphic file (type png)
 
 <use ../../figures/vfi_cheby_decisions.png>
@@ -982,7 +982,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2 <../../figures/vfi_discrete_valuefun.png (PNG copy)> <../../figures/vfi_disc
 rete_decisions.png (PNG copy)> <../../figures/vfi_cheby_valuefun.png (PNG copy)
 > <../../figures/vfi_cheby_decisions.png (PNG copy)>]
-<../../figures/vfi_spline_valuefun.png, id=68, 454.69875pt x 380.42125pt>
+<../../figures/vfi_spline_valuefun.png, id=72, 454.69875pt x 380.42125pt>
 File: ../../figures/vfi_spline_valuefun.png Graphic file (type png)
 
 <use ../../figures/vfi_spline_valuefun.png>
@@ -990,7 +990,7 @@ Package pdftex.def Info: ../../figures/vfi_spline_valuefun.png used on input li
 ne 172.
 (pdftex.def)             Requested size: 227.34882pt x 190.21014pt.
 
-<../../figures/vfi_spline_decisions.png, id=69, 458.71375pt x 380.42125pt>
+<../../figures/vfi_spline_decisions.png, id=73, 458.71375pt x 380.42125pt>
 File: ../../figures/vfi_spline_decisions.png Graphic file (type png)
 
 <use ../../figures/vfi_spline_decisions.png>
@@ -998,7 +998,7 @@ Package pdftex.def Info: ../../figures/vfi_spline_decisions.png used on input l
 ine 173.
 (pdftex.def)             Requested size: 229.35631pt x 190.21014pt.
 
-<../../figures/vfi_pchip_valuefun.png, id=70, 454.69875pt x 380.42125pt>
+<../../figures/vfi_pchip_valuefun.png, id=74, 454.69875pt x 380.42125pt>
 File: ../../figures/vfi_pchip_valuefun.png Graphic file (type png)
 
 <use ../../figures/vfi_pchip_valuefun.png>
@@ -1006,7 +1006,7 @@ Package pdftex.def Info: ../../figures/vfi_pchip_valuefun.png used on input lin
 e 177.
 (pdftex.def)             Requested size: 227.34882pt x 190.21014pt.
 
-<../../figures/vfi_pchip_decisions.png, id=71, 458.71375pt x 380.42125pt>
+<../../figures/vfi_pchip_decisions.png, id=75, 458.71375pt x 380.42125pt>
 File: ../../figures/vfi_pchip_decisions.png Graphic file (type png)
 
 <use ../../figures/vfi_pchip_decisions.png>
@@ -1023,7 +1023,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3 <../../figures/vfi_spline_valuefun.png (PNG copy)> <../../figures/vfi_spline
 _decisions.png (PNG copy)> <../../figures/vfi_pchip_valuefun.png (PNG copy)> <.
 ./../figures/vfi_pchip_decisions.png (PNG copy)>]
-<../../figures/vfi_stoch_valuefun.png, id=82, 454.69875pt x 380.42125pt>
+<../../figures/vfi_stoch_valuefun.png, id=86, 454.69875pt x 380.42125pt>
 File: ../../figures/vfi_stoch_valuefun.png Graphic file (type png)
 
 <use ../../figures/vfi_stoch_valuefun.png>
@@ -1031,7 +1031,7 @@ Package pdftex.def Info: ../../figures/vfi_stoch_valuefun.png used on input lin
 e 183.
 (pdftex.def)             Requested size: 227.34882pt x 190.21014pt.
 
-<../../figures/vfi_stoch_decisions.png, id=83, 450.68375pt x 380.42125pt>
+<../../figures/vfi_stoch_decisions.png, id=87, 450.68375pt x 380.42125pt>
 File: ../../figures/vfi_stoch_decisions.png Graphic file (type png)
 
 <use ../../figures/vfi_stoch_decisions.png>
@@ -1052,27 +1052,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4 <../../figures/vfi_stoch_valuefun.png (PNG copy)> <../../figures/vfi_stoch_d
 ecisions.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 274.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 274.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
  (./materials28.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 274.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 274.
-
-
-Package rerunfilecheck Warning: File `materials28.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `materials28.out':
-(rerunfilecheck)             Before: BCF6DAA95376F17A0E914F9566269CCD;711
-(rerunfilecheck)             After:  AFBCDFA8EF086FB0AD2622D977021C53;935.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 274.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
+Package rerunfilecheck Info: File `materials28.out' has not changed.
+(rerunfilecheck)             Checksum: AFBCDFA8EF086FB0AD2622D977021C53;935.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 275.
  ) 
 Here is how much of TeX's memory you used:
- 20030 strings out of 493089
- 363915 string characters out of 6134842
+ 20031 strings out of 493089
+ 363931 string characters out of 6134842
  447402 words of memory out of 5000000
- 23104 multiletter control sequences out of 15000+600000
+ 23105 multiletter control sequences out of 15000+600000
  11990 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,54p,437b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1089,10 +1082,10 @@ xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials28.pdf (4 pages, 272705 bytes).
+Output written on materials28.pdf (4 pages, 272877 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 112 compressed objects within 2 object streams
+ 146 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
  32 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 
