@@ -139,7 +139,6 @@ options.UseParallel=true;
 % seq_opt-seq0(:,2:end-1)
 
 
-
 % % 3.) Now rewrite sim given seq to be able to input k
 % % seq0crop = seq0(:,2:end-1); % just input jumps
 % seq0crop = [seq0(:,2:end-1);k0(2:end-1)]; % input jumps and k
@@ -162,7 +161,6 @@ options.UseParallel=true;
 % % it can even solve it when you make agents NOT know the Taylor rule, but
 % % only super-close from the solution (0.01*rand, instead of 2*rand). This makes me wonder: what if we
 % % input forecast errors instead?
-
 
 
 % % 4.) Now input FE(pi) instead of k
@@ -205,38 +203,66 @@ disp(num2str(resids))
 tic
 [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
 toc
-seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
-% [xsim4, ysim4, k4, phi_seq4, FA4, FB4, FEt_14] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
-% create_plot_observables(ysim4,seriesnames, 'Simulation using input sequence ')
-% create_plot_observables(1./k4, invgain,'Simulation using input sequence')
-
-return
-% 6.) Continue inputting FE(pi) and use a linear combo of TR and anchTC0:
-% a*TR + (1-a)anchTC0 as a residual and recursively lower a
-seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
-a=0.985;
-objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-resids = objective_seq_clean4(seq0crop,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-disp('Initial residuals')
-disp(num2str(resids))
-
-% Now solve
-tic
-[seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
-toc
-seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
-crit = max(max(resids_opt));
 
 
-while a>0.01 && crit < 1e-12
-a=a-0.01
-seq0crop = seq_opt;
-objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-tic
-[seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
-toc
-crit = max(max(resids_opt));
-end
 
+% % 6.) Continue inputting FE(pi) and use a linear combo of TR and anchTC0:
+% % a*TR + (1-a)anchTC0 as a residual and recursively lower a
+% % Apparently this is a homotopy, lol.
+% seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
+% a=0.985;
+% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% resids = objective_seq_clean4(seq0crop,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% disp('Initial residuals')
+% disp(num2str(resids))
+% 
+% % Now solve
+% tic
+% [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+% toc
+% seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
+% crit = max(max(resids_opt));
+% 
+% while a>0.01 && crit < 1e-12
+% a=a-0.01
+% seq0crop = seq_opt;
+% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% tic
+% [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+% toc
+% crit = max(max(resids_opt));
+% end
+
+% % 7.) Parameterized expectations approach
+% % initialize at Taylor rule
+% seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
+% % Or detach from Taylor rule
+% seq0crop = rand(size(seq0crop));
+% % initialize beta-coefficients
+% bet0 = ones(4,3); % 4 states x 3 powers
+% bet = bet0(:);
+% objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% % Evaluate residuals once
+% resids = objective_seq_clean_parametricE(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% disp('Initial residuals IS, PC, TC and A7')
+% disp(num2str(resids))
+% return
+% 
+% maxiter=10;
+% iter=0;
+% while crit > 1e-9 && iter < maxiter
+%     iter=iter+1
+% % Now solve model equations given conjectured E
+% objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% 
+% tic
+% [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+% toc
+% % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
+% % Projection step: Recover v, compute analogues E, update beta
+% bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% crit=max(abs(bet-bet1));
+% bet=bet1;
+% end
 
 disp('Done.')

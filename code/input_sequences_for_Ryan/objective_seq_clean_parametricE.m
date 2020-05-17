@@ -1,4 +1,4 @@
-function [resids] = objective_seq_clean3(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e)
+function [resids] = objective_seq_clean_parametricE(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e)
 % a version of objective_seq_clean with an expectation equation as a
 % residual equation
 kapp = param.kapp;
@@ -43,20 +43,13 @@ resA7 = -fe + pi - pibar - b(1,:)*st_1;
 resRETC = pi+lamx/kapp*x;
 res_commitTC = pi+lamx/kapp*x - lamx/kapp*xl;
 resanchTC0 = pi+lamx/kapp*x - lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k1(2:end) + fe.*g_pi);
-% interesting: this first part of the anchTC is just a mu below resRETC.
+% Create basis as 1st, 2nd and 3rd powers of the states
+X = [k1(2:end);pibar;s([1,end],:)];
+sx = [X; X.^2; X.^3];
+E = B'*sx;
+resanchTC = pi+lamx/kapp*x - lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k1(2:end) + fe.*g_pi).*E; 
 
-% resids=resTR;
-% resids = [resIS; resPC; resTR];
-% resids = [resIS; resPC; resTR; resA6];
-% resids = [resTR; resA6];
-% resids = [resIS; resPC; resTR; resA7];
-% resids = [resTR; resA7];
-% resids = [resRETC; resA7];
-% resids = [resanchTC0; resA7];
-% resids = [resanchTC0];
-% resids = [resIS; resanchTC0; resA7];
-% resids = [resIS; resPC; resanchTC0; resA7];
-resids = [resIS; resPC; resRETC; resA7];
+resids = [resIS; resPC; resanchTC; resA7];
 
 
 
