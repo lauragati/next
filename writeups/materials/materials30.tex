@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.4}
+\def\myAdjustableFigScale{0.17}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -145,7 +145,15 @@ Lol, the only step that seems straightforward to me: $\beta^{i+1} = (s(X_t)'s(X_
 Then I guess I iterate until convergence by evaluating at every step $||\beta^i-\beta^{i+1}||$.
 \end{enumerate}
 
-
+\begin{figure}[h!]
+\subfigure[Observables, Taylor rule]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_obs_TR}}
+\hfill % this is great to intro dpace between subfigures
+\subfigure[Inverse gain, Taylor rule]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_invgain_TR}}
+\subfigure[Observables, target criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_obs}}
+\hfill % this is great to intro dpace between subfigures
+\subfigure[Inverse gain, target criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_invgain}}
+\caption{}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX

@@ -5,6 +5,7 @@
 clearvars
 close all
 clc
+print_figs=1;
 
 %% 1.) Parameters - don't need to edit anything here
 T = 100
@@ -84,8 +85,9 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule')
-% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule')
+create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', 'implement_anchTC_obs_TR', print_figs)
+create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', 'implement_anchTC_invgain_TR', print_figs)
+return
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
@@ -97,7 +99,7 @@ if initialization == init_rand
     seq0(:,2:end) = rand(n_inputs,T-1);
 end
 
-% an initial simulation given exogenous input sequence(s) 
+% an initial simulation given exogenous input sequence(s)
 [x1, y1, k1, phi1, FA1, FB1, FEt_1,diff1] = sim_learnLH_clean_given_seq(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq0);
 % create_plot_observables(y1,seriesnames, 'Simulation using input sequence ')
 % create_plot_observables(1./k1, invgain,'Simulation using input sequence')
@@ -142,7 +144,7 @@ options.UseParallel=true;
 % % 3.) Now rewrite sim given seq to be able to input k
 % % seq0crop = seq0(:,2:end-1); % just input jumps
 % seq0crop = [seq0(:,2:end-1);k0(2:end-1)]; % input jumps and k
-% objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % disp('Initial residuals are NKIS, NKPC, TR, gain LOM:')
 % disp(num2str(resids))
@@ -166,7 +168,7 @@ options.UseParallel=true;
 % % 4.) Now input FE(pi) instead of k
 % % seq0crop = seq0(:,2:end-1); % just input jumps
 % seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
-% objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % disp('Initial residuals are NKIS, NKPC, TR, gain LOM:')
 % disp(num2str(resids))
@@ -178,31 +180,32 @@ options.UseParallel=true;
 % [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
 % toc
 % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
-% 
+%
 % % it DID solve it! But it took almost 4 min.
 % [xsim4, ysim4, k4, phi_seq4, FA4, FB4, FEt_14] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
 % % create_plot_observables(ysim4,seriesnames, 'Simulation using input sequence ')
 % % create_plot_observables(1./k4, invgain,'Simulation using input sequence')
 
 
-% 5.) Continue inputting FE(pi) but instead of TR, use a RE-TC or the evaluatable part of the anchTC (I refer to this as anchTC0) as a
-% residual eq.
-% seq0crop = seq0(:,2:end-1); % just input jumps
-seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
-objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-disp('Initial residuals TC and A7')
-disp(num2str(resids))
-% return
-% Now completely detach from Taylor rule
-% seq0crop = seq0crop+20*rand(size(seq0crop,1),T-2);
-seq0crop = rand(size(seq0crop));
-resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-disp(num2str(resids))
-% Now solve
-tic
-[seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
-toc
+% % 5.) Continue inputting FE(pi) but instead of TR, use a RE-TC or the evaluatable part of the anchTC (I refer to this as anchTC0) as a
+% % residual eq.
+% % seq0crop = seq0(:,2:end-1); % just input jumps
+% seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
+% objh = @(seq) objective_seq_clean3(seq,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% disp('Initial residuals TC and A7')
+% disp(num2str(resids))
+% % return
+% % Now completely detach from Taylor rule
+% % seq0crop = seq0crop+20*rand(size(seq0crop,1),T-2);
+% seq0crop = rand(size(seq0crop));
+% resids = objective_seq_clean3(seq0crop,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% disp(num2str(resids))
+% % Now solve
+% tic
+% [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+% toc
+% % with rho=<0.6 and gam=0.001, it works! Holy smokes!
 
 
 
@@ -211,58 +214,65 @@ toc
 % % Apparently this is a homotopy, lol.
 % seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
 % a=0.985;
-% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % resids = objective_seq_clean4(seq0crop,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % disp('Initial residuals')
 % disp(num2str(resids))
-% 
+%
 % % Now solve
 % tic
 % [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
 % toc
 % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
 % crit = max(max(resids_opt));
-% 
+%
 % while a>0.01 && crit < 1e-12
 % a=a-0.01
 % seq0crop = seq_opt;
-% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
+% objh = @(seq) objective_seq_clean4(seq,a,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
 % tic
 % [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
 % toc
 % crit = max(max(resids_opt));
 % end
 
-% % 7.) Parameterized expectations approach
-% % initialize at Taylor rule
-% seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
-% % Or detach from Taylor rule
-% seq0crop = rand(size(seq0crop));
-% % initialize beta-coefficients
-% bet0 = ones(4,3); % 4 states x 3 powers
-% bet = bet0(:);
-% objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-% % Evaluate residuals once
-% resids = objective_seq_clean_parametricE(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-% disp('Initial residuals IS, PC, TC and A7')
-% disp(num2str(resids))
+% 7.) Parameterized expectations approach
+% initialize at Taylor rule
+seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
+% Or detach from Taylor rule
+seq0crop = rand(size(seq0crop));
+% initialize beta-coefficients
+bet0 = ones(4,3); % 4 states x 3 powers
+bet = bet0(:);
+objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+% Evaluate residuals once
+resids = objective_seq_clean_parametricE(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+disp('Initial residuals IS, PC, TC and A7')
+disp(num2str(resids))
 % return
-% 
-% maxiter=10;
-% iter=0;
-% while crit > 1e-9 && iter < maxiter
-%     iter=iter+1
-% % Now solve model equations given conjectured E
-% objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e); 
-% 
-% tic
-% [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
-% toc
-% % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
-% % Projection step: Recover v, compute analogues E, update beta
-% bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
-% crit=max(abs(bet-bet1));
-% bet=bet1;
-% end
+
+maxiter=10;
+BET = zeros(length(bet),maxiter);
+iter=0;
+crit=1;
+while crit > 1e-6 && iter < maxiter
+    iter=iter+1
+    BET(:,iter) = bet; % storing betas
+    % Now solve model equations given conjectured E
+    objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    
+    tic
+    [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+    toc
+    % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
+    % Projection step: Recover v, compute analogues E, update beta
+    bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    crit=max(abs(bet-bet1))
+    bet=bet1;
+end
+
+[~, ysim7, k7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
+create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
+create_plot_observables(1./k7, invgain,'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
 
 disp('Done.')

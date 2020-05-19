@@ -1,5 +1,26 @@
 function create_plot_observables(y,seriesnames,figtitle,figname,print_figs)
-% This is a simplified version w/o customized paths
+% This is a simplified version w/ hand-customized paths here
+% Add all the relevant paths
+current_dir = pwd;
+cd ../../ % go up 2 levels
+basepath = pwd;
+cd .. % go up another level to BC_Research
+BC_researchpath = pwd;
+toolpath = [BC_researchpath '/matlab_toolbox'];
+export_figpath = [toolpath '/Export_Fig'];
+figpath = [basepath '/figures'];
+tablepath = [basepath '/tables'];
+datapath = [basepath '/data'];
+tryouts_path = [toolpath '/tryouts'];
+
+cd(current_dir)
+
+addpath(basepath)
+addpath(toolpath)
+addpath(export_figpath)
+addpath(figpath)
+addpath(datapath)
+addpath(tryouts_path)
 % y = ny x T
 [ny,T] = size(y);
 
@@ -48,7 +69,7 @@ end
 
 if print_figs ==1
     disp(figname)
-%     cd(figpath)
+    cd(figpath)
     export_fig(figname)
     cd(current_dir)
     close

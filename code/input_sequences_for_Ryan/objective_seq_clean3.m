@@ -56,7 +56,7 @@ resanchTC0 = pi+lamx/kapp*x - lamx/kapp*(1-alph)*bet/(1-alph*bet)*(k1(2:end) + f
 % resids = [resanchTC0];
 % resids = [resIS; resanchTC0; resA7];
 % resids = [resIS; resPC; resanchTC0; resA7];
-resids = [resIS; resPC; resRETC; resA7];
+resids = [resIS; resPC; resanchTC0; resA7];
 
 
 
