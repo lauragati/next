@@ -18,7 +18,7 @@ skip = 1;
 [fs, lw] = plot_configs;
 
 %% The leading example with csapi - the "truth"
-
+ndim=2;
 true_fun  = @(x1,x2) x1+x2;
 a=0;
 b=1;
@@ -26,18 +26,23 @@ c=2;
 d=3;
 
 % Evaluation points and true f at evaluation points
-T=10;
-Xe = linspace(a,b,T);
-Ye = linspace(c,d,T);
+Tx = 120; % # of X-values
+Ty = 120; % # of Y-values
+T = Tx*Ty; % sample size is dim1*dim2
+Xe = linspace(a,b,Tx);
+Ye = linspace(c,d,Ty);
 % using the notation that XX is the matrix version of the vector grid
 [XXe,YYe] = ndgrid(Xe,Ye);
 f = true_fun(XXe,YYe);
 
 % Interpolation points
-N = 3; % number of nodes
-n = T/(N-1);
-Xq = [Xe(1:n:end), Xe(end)];
-Yq = [Ye(1:n:end), Ye(end)];
+Nx = 25; % number of nodes in the x-dimension
+Ny = 5; % number of nodes in the y-dimension
+Nq = Nx*Ny; % length of query sample
+nx = Tx/(Nx-1);
+ny = Ty/(Ny-1);
+Xq = [Xe(1:nx:end), Xe(end)];
+Yq = [Ye(1:ny:end), Ye(end)];
 
 [XXq, YYq]=ndgrid(Xq,Yq);
 % evaluate function at query points
@@ -51,16 +56,38 @@ subplot(1,2,1)
 mesh(XXe,YYe,f)
 title('Approximand')
 subplot(1,2,2)
-mesh(Xe,Ye,fhat3)
+mesh(XXe,YYe,fhat3)
 title('Spline with "csapi"')
 sgtitle('Original approximand with Matlab-internal approximation')
 
-%% ndim_simplex it - not yet workin
-x =cell(1,1);
-x{1} = Xq;
-x{2} = Yq;
-xx = [Xe;Ye]; % Ndim x T evaluation nodes
-[alph,Q,fracin] = ndim_simplex(x,xx,f)
+%% ndim_simplex
+Xgrid =cell(ndim,1); % (ndim*1) cell array storing the (1*Nx) and (1*Ny) grid points
+Xgrid{1} = Xq;
+Xgrid{2} = Yq;
+xgrid = cell(ndim,1); % (ndim*1) cell array storing the Nx*Ny nd-grid points
+[xgrid{1}, xgrid{2}] = ndgrid(Xgrid{1}, Xgrid{2});
+
+XXgrid = zeros(ndim,numel(xgrid{1})); % (ndim*Nq) double array storing the Nq interpolation nodes as (1*ndim) coordinates
+for jj = 1:ndim
+    XXgrid(jj,:) = xgrid{jj}(:)';
+end
+ns = length(XXgrid); % ns = Nq, the length of the query sample, i.e. the # of (x,y)-nodes.
+
+x = Xgrid; % 1*ndim cell grid of query points
+xx = XXgrid; % ndim * Nq  double grid of query points
+ff = fq(:)'; % 1*Nq function values at query points
+[alph,Q1,fracin] = ndim_simplex(x,xx,ff);
+[fhat,Q2] = ndim_simplex_eval(x,xx,alph);
+
+% post-production for plotting
+fq_Ryan = reshape(fhat, size(fq));
+
+figure
+subplot(1,2,1)
+mesh(XXe,YYe,f)
+subplot(1,2,2)
+mesh(XXq,YYq,fq_Ryan)
+sgtitle('ndim\_simplex - workin y''all')
 
 
 %% Chebyshev on 2D
@@ -83,34 +110,62 @@ y = (z+1).*(d-c)/2 +c;
 % Step 3. Evaluate f at the approximation nodes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [XXq,YYq] = ndgrid(x,y);
-w = true_fun(XXq,YYq); 
+w = true_fun(XXq,YYq);
 
+% % let's check that at least this is more or less correct
+% mesh(XXq,YYq,w) % yup
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Step 4. Compute Chebyshev coefficients
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% might not have to compute them painfully
 T = chebyshev(z,n);
-% ai = T\w/T; % ??????????
-ai = (T*T)\w;
+
+ai=zeros(m,m);
+wTT =zeros(m,m);
+T2 = T.^2;
+for i=0:n
+    for j=0:n
+        for k=1:m
+            for l=1:m
+                wTT(k,l) = w(k,l)*T(k,i+1)*T(l,j+1);
+            end
+        end
+        Ti2 = sum(T2(:,i+1));
+        Tj2 = sum(T2(:,j+1));
+        ai(i+1,j+1) = sum(sum(wTT))/ (Ti2*Tj2);
+    end
+end
+
+% might not have to compute them painfully
+% ai - T\w/T; % ain't right
+ai - (T'*w*T) / ((T'*T)*(T'*T)) % this is QUITE close
+ai - ((T'*T)*(T'*T))\(T'*w*T) % this is also QUITE close
 
 % Then the interpolant is
 % 1. Convert the evaluation points to [-1,1] nodes
-Z1 =2*((Xe-a)./(b-a)-1);
-Z2 =2*((Ye-c)./(d-c)-1);
+Z1 =2*(Xe-a)./(b-a)-1;
+Z2 =2*(Ye-c)./(d-c)-1;
 % 2. Evaluate the Chebys there
 T1 = chebyshev(Z1,n);
 T2 = chebyshev(Z2,n);
-% 3. Interpolant
-% pxy = T1*ai*T2'; % ??????????
-pxy = T2*(T1*ai)';
 
+% 3. Interpolant
+% for i=0:n
+%     for j=0:n
+%         p_el(i+1,j+1,:,:)=ai(i+1,j+1)*T1(:,i+1)*T2(:,j+1)';
+%     end
+% end
+% pxy = squeeze(sum(sum(p_el,1),2));
+% was again hoping not to have to compute it painfully
+% pxy - T1*ai*T2' % hoppla, both of these are correct
+% pxy - T2*(T1*ai)' % it's b/c T1=T2, b/c Z1=Z2. I don't know if this is a general result.
+pxy = T1*ai*T2';
 
 figure
 subplot(1,2,1)
 mesh(XXe,YYe,f)
 subplot(1,2,2)
-mesh(Xe,Ye,pxy)
-sgtitle('2D Chebyshev approximation - not working, as you can see')
+mesh(XXe,YYe,pxy)
+sgtitle('2D Chebyshev approximation - it''s working!')
 
 
 
