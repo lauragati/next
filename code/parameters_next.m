@@ -11,9 +11,9 @@ param.psi_x  = 0.01; %0
 param.psi_pi = 1.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % 0.145 param_correct CEMP. 0.02 is the value a dgain algorithm gets after 50 periods.
-param.thetbar = 4;%1 or 4 or 0.029; % param_correct CEMP
+param.thetbar = 16;%1 or 4 or 0.029; % param_correct CEMP
 param.rho_r = 0; %0
-param.rho_i = 0.6; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
+param.rho_i = 0; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
 param.rho_u = 0; %0
 param.rho = 0; % persistence of lag of interest rate
 param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
@@ -28,10 +28,12 @@ param.p21 = 1-param.p11;
 param.p12 = 1-param.p22;
 param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
-param.lamx = 0.5; % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
+param.lamx = 0.01; % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
 param.lami = 0;
-param.d = 10; % 10 (or 1) slope of anchoring function.
-param.c = 0; % 0 (or 0.5)  intercept of anchoring function. (the 'or's are for the smooth anchoring function, Alternative 4)
+param.d = 10; % 10 slope of anchoring function.
+param.c = 0; % 0 intercept of anchoring function.
+param.rho_k = 0.5; % 0.9 or 0.5 Anchoring function parameters for Alternative 7.
+param.gam_k = 0.001; %0.001 or 0.01
 param.psi_k     = 0.01; % reaction function coeffs for a first-pass reaction function r1.
 param.psi_pibar = 0.01;
 param.psi_xbar  = 0.01;

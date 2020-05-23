@@ -1,4 +1,4 @@
-% A playground for value function iteration and policy iteration
+% A playground for value function iteration
 
 clearvars
 close all
