@@ -85,9 +85,9 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', 'implement_anchTC_obs_TR', print_figs)
-create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', 'implement_anchTC_invgain_TR', print_figs)
-return
+% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', 'implement_anchTC_obs_TR', print_figs)
+% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', 'implement_anchTC_invgain_TR', print_figs)
+% return
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that

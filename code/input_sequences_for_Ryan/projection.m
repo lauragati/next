@@ -40,16 +40,35 @@ g_pibar = g_pibar(2:end-1);
 X = [k1;pibar;s([1,end],:)];
 sx = [X', X'.^2, X'.^3];
 
-% Step 3. Compute analogue synthetic expectation series
+% % Step 3. Compute analogue synthetic expectation series
+% tau=T-2;
+% E = zeros(tau,1);
+% for t=1:tau
+%     for i=1:(tau-t)
+%         PI=1;
+%         for j=0:i-1
+%             PI = PI*(1 - k1(t+1+j) - fe(t+1+j)*g_pibar(t+j));
+%         end
+%         SIG = x(t+i)*PI;
+%     end
+%     E(t) = SIG;
+% end
+
+% Step 3. Alternative: following Ryan's comment of 22 May 2020, use means
+% of variables to form expectations (in order to avoid introducing trends due to truncation)
+meanx  = mean(x);
+meank1 = mean(k1);
+meanfe = mean(fe);
+meangb = mean(g_pibar);
 tau=T-2;
 E = zeros(tau,1);
 for t=1:tau
     for i=1:(tau-t)
         PI=1;
         for j=0:i-1
-            PI = PI*(k1(t+1+j) + fe(t+1+j))*g_pibar(t+j);
+            PI = PI*(1 - meank1 - meanfe*meangb);
         end
-        SIG = x(t+i)*PI;
+        SIG = meanx*PI;
     end
     E(t) = SIG;
 end
