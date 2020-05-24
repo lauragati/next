@@ -1,4 +1,5 @@
 function [tv, pibar, k1] = mat31_TV(OM,param,pp,i,pibart_1,k1t_1, s, st_1,sgrid,PI)
+% Equations 32-34 in materials 25.
 Om6  = OM{6};
 Om7  = OM{7};
 Om9  = OM{9};

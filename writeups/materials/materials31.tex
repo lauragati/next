@@ -129,14 +129,19 @@ bottom=1in}
 
 %\listoffigures
 
-The value function problem takes the form
-\begin{align*}
-V(\mathbf{x}_t,t)& = \max_{i_t} -\bigg\{ \Omega_6 i_t^2 +\Omega_7\bar{\pi}_{t-1}^2 +\Omega_8i_t \bar{\pi}_{t-1} +\Omega_9i_ts_t + \Omega_{10}\bar{\pi}_{t-1}s_t +\Omega_{11}s_t + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \numberthis \\
-& \text{s.t.} \\
- \bar{\pi}_{t} & = \bar{\pi}_{t-1} + k_t^{-1}\big(-\kappa\sigma i_t +\Omega_{12}\bar{\pi}_{t-1}  +\Omega_5 s_t-b_1 s_{t-1}) \big)   \numberthis  \\
- k_t^{-1} & = \rho_k k_{t-1}^{-1}+ \gamma_k(-\kappa\sigma i_t +\Omega_{12}\bar{\pi}_{t-1}  +\Omega_5 s_t-b_1 s_{t-1})^2  \numberthis
-\end{align*}
-where the parameters $\Omega_i$ are defined in Materials 25, as is $\mathbf{x_t} \equiv (k_t^{-1}, \bar{\pi}_{t-1}, r_t^n, u_t)$.
+The value function problem: the planner chooses $\{i_t\}_{t=t_0}^{\infty}$ to minimize
+\begin{align}
+V(\mathbf{x}_t,t)& = \max -\bigg\{ (\pi_t^2 + \lambda_x x_t^2) + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \\
+& \text{s.t. to model equations, (\ref{A1})-(\ref{A8})}
+\end{align}
+where $\mathbf{x} \equiv (k^{-1}, \bar{\pi}, r^n, u)$. $V$ is thus $\mathcal{R}^4 \rightarrow \mathcal{R}$.
+
+Note:
+\begin{itemize}
+\item I'm using a $4\times4\times2\times2$ grid, and cubic spline interpolation for the value function. This takes 260 seconds. I'm sure I could speed things up by doing policy iteration instead. 
+\item Since equations (\ref{A5})-(\ref{A7}) involve past shocks, I need to take expectations regarding what node of the state-space we're coming from (``backward expectations'').
+\end{itemize}
+
 
 \begin{figure}[h!]
 \subfigure[Observables, Taylor rule]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_obs_TR}}
@@ -170,10 +175,10 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text
 
 \begin{align}
 \text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
-\text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \\
+\text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \label{A5} \\
 \text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \label{A6}\\
 \text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1}) \label{A7} \\
-\text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{fafb_anal}
+\text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{A8}
 \end{align}
 
 \vspace{-0.5cm}
