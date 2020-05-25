@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 MAY 2020 16:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 MAY 2020 10:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -944,7 +944,7 @@ File: ../../figures/implement_anchTC_obs_TR.png Graphic file (type png)
 
 <use ../../figures/implement_anchTC_obs_TR.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs_TR.png used on inpu
-t line 147.
+t line 148.
 (pdftex.def)             Requested size: 233.42902pt x 149.81773pt.
 
 <../../figures/implement_anchTC_invgain_TR.png, id=34, 1428.33624pt x 881.2925p
@@ -952,7 +952,7 @@ t>
 File: ../../figures/implement_anchTC_invgain_TR.png Graphic file (type png)
  <use ../../figures/implement_anchTC_invgain_TR.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_invgain_TR.png used on 
-input line 149.
+input line 150.
 (pdftex.def)             Requested size: 242.81395pt x 149.81773pt.
 
 <../../figures/implement_anchTC_obs.png, id=35, 1373.13pt x 881.2925pt>
@@ -960,7 +960,7 @@ File: ../../figures/implement_anchTC_obs.png Graphic file (type png)
 
 <use ../../figures/implement_anchTC_obs.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs.png used on input l
-ine 150.
+ine 151.
 (pdftex.def)             Requested size: 233.42902pt x 149.81773pt.
 
 <../../figures/implement_anchTC_invgain.png, id=36, 1428.33624pt x 881.2925pt>
@@ -968,7 +968,7 @@ File: ../../figures/implement_anchTC_invgain.png Graphic file (type png)
 
 <use ../../figures/implement_anchTC_invgain.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_invgain.png used on inp
-ut line 152.
+ut line 153.
 (pdftex.def)             Requested size: 242.81395pt x 149.81773pt.
 
 
@@ -986,7 +986,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [2 <../../figures/implement_anchTC_obs_TR.png (PNG copy)> <../../figures/implem
 ent_anchTC_invgain_TR.png (PNG copy)> <../../figures/implement_anchTC_obs.png (
 PNG copy)> <../../figures/implement_anchTC_invgain.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 182--182
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 183--183
 [] 
  []
 
@@ -999,14 +999,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 237.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 237.
  (./materials31.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 237.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 237.
 Package rerunfilecheck Info: File `materials31.out' has not changed.
 (rerunfilecheck)             Checksum: 6A78BBF97860279235C375D8C6E35FC8;101.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 236.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 237.
  ) 
 Here is how much of TeX's memory you used:
  20006 strings out of 493089
@@ -1015,7 +1015,7 @@ Here is how much of TeX's memory you used:
  23091 multiletter control sequences out of 15000+600000
  12273 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,54p,436b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,54p,471b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -1032,7 +1032,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials31.pdf (3 pages, 446433 bytes).
+Output written on materials31.pdf (3 pages, 447231 bytes).
 PDF statistics:
  144 PDF objects out of 1000 (max. 8388607)
  103 compressed objects within 2 object streams

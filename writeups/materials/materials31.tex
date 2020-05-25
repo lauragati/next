@@ -131,7 +131,7 @@ bottom=1in}
 
 The value function problem: the planner chooses $\{i_t\}_{t=t_0}^{\infty}$ to minimize
 \begin{align}
-V(\mathbf{x}_t,t)& = \max -\bigg\{ (\pi_t^2 + \lambda_x x_t^2) + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \\
+V(\mathbf{x}_t,t)& = \min \bigg\{ (\pi_t^2 + \lambda_x x_t^2) + \beta \E_t V(\mathbf{x}_{t+1},t+1) \bigg\} \\
 & \text{s.t. to model equations, (\ref{A1})-(\ref{A8})}
 \end{align}
 where $\mathbf{x} \equiv (k^{-1}, \bar{\pi}, r^n, u)$. $V$ is thus $\mathcal{R}^4 \rightarrow \mathcal{R}$.
@@ -140,6 +140,7 @@ Note:
 \begin{itemize}
 \item I'm using a $4\times4\times2\times2$ grid, and cubic spline interpolation for the value function. This takes 260 seconds. I'm sure I could speed things up by doing policy iteration instead. 
 \item Since equations (\ref{A5})-(\ref{A7}) involve past shocks, I need to take expectations regarding what node of the state-space we're coming from (``backward expectations'').
+\item How to compare the results? For value iteration, I get decision rules for $i, \bar{\pi}$ and $k^{-1}$ given grid values, while for projection I get a sequence for these given a simulated time series of shocks. I'm trying to pass the same time series of states from the projection result and see if I get the same interest rate sequence.
 \end{itemize}
 
 
