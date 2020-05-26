@@ -1,9 +1,13 @@
-function [tv, pibar, k1] = mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1, s,sgrid,PI)
+function [tv, pibar, k1] = mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1,s,st_1,sgrid,PI)
 % Equations A9 and A10 in materials 25.
 bet =param.bet;
 lamx = param.lamx;
 rhok = param.rho_k;
 gamk = param.gam_k;
+rho_r = param.rho_r;
+rho_u = param.rho_u;
+sig_r = param.sig_r;
+sig_u = param.sig_u;
 ns = length(sgrid);
 b = gx*hx;
 
@@ -18,32 +22,22 @@ x  = z(2);
 Lt =  pi^2 +lamx*x^2;
 
 % Implied endogenous states at t
-% crazy: compute forward and backward expectations at once
-v = zeros(ns,ns,ns,ns);
 % First: compute "expected fe" given what yesterday's shocks were
-for i=1:ns
-    rt_1=sgrid(i);
-    for j=1:ns
-        ut_1 = sgrid(j);
-        st_1 = [rt_1;0;ut_1];
-        fe = pi - (pibart_1+b(1,:)*st_1);
-        k1 = rhok*k1t_1 + gamk*(fe)^2;
-        pibar = pibart_1 + k1*(fe);
-        
-        % Second: compute expected future shocks for each expected past
-        v = zeros(ns,ns);
-        for ip=1:ns
-            rp=sgrid(ip);
-            for jp=1:ns
-                up = sgrid(jp);
-                v(i,j) = fnval(pp,{k1,pibar,rp,up});
-            end
-        end
-        v(i,j,ip,jp) = fnval(pp,{k1,pibar,rt_1,ut_1});
+fe = pi - (pibart_1+b(1,:)*st_1);
+k1 = rhok*k1t_1 + gamk*(fe)^2;
+pibar = pibart_1 + k1*(fe);
+% Second: compute expected future shocks for each current state
+v = zeros(ns,ns);
+r = s(1);
+u = s(3);
+for ip=1:ns
+    rp=rho_r*r + sig_r*sgrid(ip);
+    for jp=1:ns
+        up = rho_u*u + +sig_u*sgrid(jp);
+        v(ip,jp) = fnval(pp,{k1,pibar,r,u,rp,up});
     end
 end
 
-p = PI(1,1);
 
-tv = Lt + bet*(v(:)'*p*ones(size(v(:))));
+tv = Lt + bet*(v(:)'*PI(:));
 

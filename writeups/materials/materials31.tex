@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.27}
+\def\myAdjustableFigScale{0.23}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -118,7 +118,7 @@ bottom=1in}
 
 \linespread{1.0}
 
-\title{Materials 31 - Parameterized expectations against value iteration}
+\title{Materials 31 - Parameterized expectations (PE) against value iteration (VFI)}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -136,25 +136,32 @@ V(\mathbf{x}_t,t)& = \min \bigg\{ (\pi_t^2 + \lambda_x x_t^2) + \beta \E_t V(\ma
 \end{align}
 where $\mathbf{x} \equiv (k^{-1}, \bar{\pi}, r^n, u)$. $V$ is thus $\mathcal{R}^4 \rightarrow \mathcal{R}$.
 
-Note:
+Questions:
 \begin{itemize}
-\item I'm using a $4\times4\times2\times2$ grid, and cubic spline interpolation for the value function. This takes 260 seconds. I'm sure I could speed things up by doing policy iteration instead. 
-\item Since equations (\ref{A5})-(\ref{A7}) involve past shocks, I need to take expectations regarding what node of the state-space we're coming from (``backward expectations'').
-\item How to compare the results? For value iteration, I get decision rules for $i, \bar{\pi}$ and $k^{-1}$ given grid values, while for projection I get a sequence for these given a simulated time series of shocks. I'm trying to pass the same time series of states from the projection result and see if I get the same interest rate sequence. In math:
-\begin{align}
-V(X^{pe}) & = L(i) + \beta V(X^{pe}) \\
-i^*: \quad L(i) & = (1-\beta)V(X^{pe})
-\end{align}
+\item How to compare the results? For VFI, the policy function is \texttt{size(grid)} while for PE, it is $1\times T$, where $T$ is the length of a given simulated time series of shocks. I'm trying to pass the same time series of states from the PE result  ($X^{pe}$), obtain the value function, and try to back out the associated $1\times T$ policy from there. That is
+\begin{align*}
+V(X_t^{pe}) & = L(i) + \beta \E_tV(X_{t+1}^{pe}) \numberthis \\
+& \text{Since I had a hard time taking the $\E$, I cheated by computing} \\
+L(i) & = (1-\beta)V(X_t^{pe}) \numberthis \\
+& \text{Given}\quad  L(i), \quad i_t = L^{-1}(i)
+\end{align*}
 
 \end{itemize}
 
 
+\newpage
+Notes for me:
+\begin{itemize}
+\item Since equations (\ref{A5})-(\ref{A7}) involve past shocks, I actually have 2 additional states. If I instead take expectations regarding what node of the state-space we're coming from (``backward expectations''), then:
+\item I'm using a $4\times4\times2\times2$ grid, and cubic spline interpolation for the value function. This takes 260 seconds. I'm sure I could speed things up by doing policy iteration instead. 
+\end{itemize}
 \begin{figure}[h!]
 \subfigure[]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath pe_vfi_initPE}}
 \hfill % this is great to intro dpace between subfigures
 \subfigure[]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath pe_vfi_initrand}}
-\caption{Parameterized expectations against value iteration solution}
+\caption{Parameterized expectations against value iteration solution, 4 states (ignore past states)}
 \end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX

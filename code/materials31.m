@@ -12,12 +12,13 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
 skip = 1;
+really_do_valiter = 0;
 
 %%
 
@@ -45,12 +46,11 @@ options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
 % options1.UseParallel=true; % fminunc is a lot slower!
 
 % Only begin running value iteration if optimal outputs don't exist
-if exist('value_outputs.mat', 'file') ~=2
+if exist('value_outputs.mat', 'file') ~=2 || really_do_valiter==1
     
-    
-    v = zeros(nk,np,ns,ns);
-    pp = csapi({k1grid,pgrid,sgrid,sgrid},v);
-    it = zeros(nk,np,ns,ns);
+    v = zeros(nk,np,ns,ns,ns,ns);
+    pp = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},v);
+    it = zeros(size(v));
     k1p = zeros(size(v));
     pibp = zeros(size(v));
     v1 = zeros(size(v));
@@ -73,20 +73,28 @@ if exist('value_outputs.mat', 'file') ~=2
                     for l=1:ns
                         u=sgrid(l);
                         s = [r,0,u]';
-                        tv = @(i) mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1, s,sgrid,PI);
-                        it(i,j,k,l) = fminunc(tv, i0, options1);
-                        % compute the value function at the maximizing i
-                        [v1(i,j,k,l), pibp(i,j,k,l), k1p(i,j,k,l)] = mat31_TV3(param,gx,hx,pp,it(i,j,k,l),pibart_1,k1t_1, s,sgrid,PI);
+                        % t-1 exog states:
+                        for m=1:ns
+                            rt_1 = sgrid(m);
+                            for n=1:ns
+                                ut_1 = sgrid(n);
+                                st_1 = [rt_1; 0; ut_1];
+                                tv = @(i) mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1, s,st_1,sgrid,PI);
+                                it(i,j,k,l,m,n) = fminunc(tv, i0, options1);
+                                % compute the value function at the maximizing i
+                                [v1(i,j,k,l,m,n), pibp(i,j,k,l,m,n), k1p(i,j,k,l,m,n)] = mat31_TV3(param,gx,hx,pp,it(i,j,k,l),pibart_1,k1t_1,s,st_1,sgrid,PI);
+                            end
+                        end
                     end
                 end
             end
         end
         
         % Step 2: fitting
-        pp1 = csapi({k1grid,pgrid,sgrid,sgrid},v1);
+        pp1 = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},v1);
         
         % Compute stopping criterion and update
-        crit = max(max(max(max(abs(v1-v)))));
+        crit = max(max(max(max(max(max(abs(v1-v)))))));
         if mod(iter,10)==0 || iter==1
             disp(['Concluding iteration = ', num2str(iter)])
             disp(['Stopping criterion = ', num2str(crit)])
@@ -99,10 +107,12 @@ if exist('value_outputs.mat', 'file') ~=2
     % took about 4 minutes
     
     value_sols = {pp1,v1,it,pibp,k1p};
-    save('value_outputs.mat', 'value_sols')
-    
+    if crit < epsi
+        save('value_outputs.mat', 'value_sols')
+    end
 else
-    load('value_outputs.mat')
+%     load('value_outputs.mat')
+load('value_outputs_server.mat')
 end
 pp   = value_sols{1};
 v    = value_sols{2};
@@ -111,33 +121,6 @@ pibp = value_sols{4};
 k1p  = value_sols{5};
 
 %%
-figure
-subplot(2,1,1)
-plot(pgrid,pibp(1,:,1,1))
-title('Pibar_t as a function of pibar_{t-1}')
-subplot(2,1,2)
-plot(k1grid,k1p(:,1,1,1))
-title('k^{-1}_t as a function of k^{-1}_{t-1}')
-sgtitle('Decision rules')
-
-figure
-subplot(2,2,1)
-plot(k1grid,it(:,1,1,1))
-xlabel('k^{-1}_{t-1}')
-subplot(2,2,2)
-plot(pgrid,it(1,:,1,1))
-xlabel('pibar_{t-1}')
-subplot(2,2,3)
-plot(sgrid,squeeze(it(1,1,:,1)))
-xlabel('r^n_t')
-subplot(2,2,4)
-plot(sgrid,squeeze(it(1,1,1,:)))
-xlabel('u_t')
-sgtitle('Policy function i_t')
-
-close all
-
-
 % suppose we have a history of states from parametric expectations
 load('inputs.mat')
 seriesnames = {'\pi', 'x','i'};
@@ -150,39 +133,21 @@ phi7  = output{4};
 seq_opt = output{5};
 i_opt = seq_opt(3,:);
 
-% create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
-% create_plot_observables(1./k7, invgain,'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
-
 % take the states from the results of parametric E
 T=length(e)-2; % drop the first and last obs
 k1sim = 1./k7(2:end-1);
 pibsim = squeeze(phi7(1,1,2:end-1))';
 ssim = e(:,2:end-1);
-X = [k1sim; pibsim; ssim(1,:); ssim(3,:)];
-% or take a random X
-% X =X +0.1*rand(4,T);
-k1sim = X(1,:);
-pibsim = X(2,:);
-ssim = [X(3,:); zeros(1,T); X(4,:)];
+ssimt_1 = e(:,1:end-2);
+X = [k1sim; pibsim; ssim(1,:); ssim(3,:); ssimt_1(1,:); ssimt_1(3,:)];
 
 % I don't want this b/c this takes 100^4 grid
 % vsim = fnval(pp,{X(1,:),X(2,:),X(3,:),X(4,:)});
 % instead, I want this:
 vsim = fnval(pp,X);
+vsim = 1000*ones(size(vsim)); % replace as long as vsim isn't accurate
 
-% i0 = i_opt;
-i0 = i_opt;
-L = mat31_TV4(param,gx,hx,i0,pibsim,ssim,vsim);
-
-options1.MaxFunEvals = 40000;
-options1.Display = 'iter';
-tv = @(i) mat31_TV4(param,gx,hx,i,pibsim,ssim,vsim);
-tic
-[isim, ln, flg] = fminunc(tv, i0, options1);
-toc
-
-
-% another attempt at it based on Judd, 1998, p 100 (Mac).
+% attempt to back out policy from the converged V based on Judd, 1998, p 100 (Mac).
 bet = param.bet;
 lamx = param.lamx;
 sig  = param.sig;
@@ -193,7 +158,6 @@ Pu = (1-bet)*vsim; % Judd (12.3.5.)
 % Note that Pu = pi^2 + lamx*x^2, and
 % x = -sig.*i + s1*fb + s2*s;
 % pi = kapp*x + s3*fa + s4*s;, so
-% Compute this inverse in Mathematica, materials31.nb, it's called isol_{1,2}
 
 a = [pibsim;zeros(size(pibsim));zeros(size(pibsim))];
 b = gx*hx;
@@ -205,56 +169,47 @@ s1fb = s1*fb;
 s4s  = s4*ssim;
 s2s  = s2*ssim;
 
-isol1 = (kapp.^2.*sig.^2+lamx.*sig.^2).^(-1).*(kapp.^2.*s1fb.*sig+lamx.* ...
-  s1fb.*sig+kapp.^2.*s2s.*sig+lamx.*s2s.*sig+kapp.*s3fa.*sig+kapp.* ...
-  s4s.*sig+(-1).*((-1).*lamx.*s3fa.^2.*sig.^2+(-2).*lamx.*s3fa.* ...
-  s4s.*sig.^2+(-1).*lamx.*s4s.^2.*sig.^2).^(1/2));
-
-isol2 = (kapp.^2.*sig.^2+ ...
-  lamx.*sig.^2).^(-1).*(kapp.^2.*s1fb.*sig+lamx.*s1fb.*sig+kapp.^2.* ...
-  s2s.*sig+lamx.*s2s.*sig+kapp.*s3fa.*sig+kapp.*s4s.*sig+((-1).* ...
-  lamx.*s3fa.^2.*sig.^2+(-2).*lamx.*s3fa.*s4s.*sig.^2+(-1).*lamx.* ...
-  s4s.^2.*sig.^2).^(1/2));
-
 L = Pu;
-isol3 = (kapp.^2.*sig.^2+lamx.*sig.^2).^(-1).*(kapp.^2.*s1fb.*sig+lamx.* ...
-  s1fb.*sig+kapp.^2.*s2s.*sig+lamx.*s2s.*sig+kapp.*s3fa.*sig+kapp.* ...
-  s4s.*sig+(-1).*(kapp.^2.*L.*sig.^2+L.*lamx.*sig.^2+(-1).*lamx.* ...
-  s3fa.^2.*sig.^2+(-2).*lamx.*s3fa.*s4s.*sig.^2+(-1).*lamx.*s4s.^2.* ...
-  sig.^2).^(1/2));
-isol4 = (kapp.^2.*sig.^2+lamx.*sig.^2).^(-1).*(kapp.^2.* ...
-  s1fb.*sig+lamx.*s1fb.*sig+kapp.^2.*s2s.*sig+lamx.*s2s.*sig+kapp.* ...
-  s3fa.*sig+kapp.*s4s.*sig+(kapp.^2.*L.*sig.^2+L.*lamx.*sig.^2+(-1) ...
-  .*lamx.*s3fa.^2.*sig.^2+(-2).*lamx.*s3fa.*s4s.*sig.^2+(-1).*lamx.* ...
-  s4s.^2.*sig.^2).^(1/2));
+% Compute this inverse in Mathematica, materials31.nb, it's called isol_{1,2}
+isol_mma = (kapp.^2.*sig.^2+lamx.*sig.^2).^(-1).*(kapp.^2.*s1fb.*sig+lamx.* ...
+    s1fb.*sig+kapp.^2.*s2s.*sig+lamx.*s2s.*sig+kapp.*s3fa.*sig+kapp.* ...
+    s4s.*sig+(-1).*(kapp.^2.*L.*sig.^2+L.*lamx.*sig.^2+(-1).*lamx.* ...
+    s3fa.^2.*sig.^2+(-2).*lamx.*s3fa.*s4s.*sig.^2+(-1).*lamx.*s4s.^2.* ...
+    sig.^2).^(1/2));
 
-loss = period_loss_i(param,hx,i0,fa,fb,ssim,L);
-l = @(i) period_loss_i(param,hx,i0,fa,fb,ssim,L);
+% or compute it numerically here
+options1.MaxFunEvals = 40000;
+options1.Display = 'iter';
+options1.TolFun = 1e-20;
+options1.TolX = 1e-20;
+
+
+i0 = i_opt;
+l = @(i) period_loss_i(param,hx,i,fa,fb,ssim,L);
 tic
-[isol5, ln, flg] = fminunc(l, i0, options1);
+[isol_matlab, ln, flg] = fminunc(l, i0, options1);
 toc
 
 % solve it initializing away from PE sol
-loss = period_loss_i(param,hx,i0,fa,fb,ssim,L);
-l = @(i) period_loss_i(param,hx,i0,fa,fb,ssim,L);
+l = @(i) period_loss_i(param,hx,i,fa,fb,ssim,L);
 tic
-[isol6, ln, flg] = fminunc(l, i0+10*rand(1,T), options1);
+[isol_matlab_initrand, lnr, flgr] = fminunc(l, i0+100*rand(1,T), options1);
 toc
 
 figure
-plot(isim); hold on
-plot(real(isol1))
-plot(real(isol3))
-plot(isol5)
-legend('fminunc', 'invert v', 'invert v 2', 'invert v on matlab')
-title('holy shit - isol5 looks right')
+plot(real(isol_mma));  hold on
+plot(isol_matlab)
+plot(isol_matlab_initrand)
+plot(i_opt, 'k--')
+legend('mma', 'matlab, init at PE','matlab, init rand', 'sol PE')
+title('')
 
-figure
-plot(i_opt, 'k'); hold on
-plot(isol5, '--')
-legend('sol from parametric E', 'sol from VFI')
-title('bingo')
+% figure
+% plot(i_opt, 'k'); hold on
+% plot(isol_matlab, '--')
+% legend('sol from parametric E', 'sol from VFI')
+% title('bingo')
 
-create_plot_observables([i_opt; isol5],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE} ', 'pe_vfi_initPE', print_figs)
-create_plot_observables([i_opt; isol6],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE}+10*rand ', 'pe_vfi_initrand', print_figs)
+%create_plot_observables([i_opt; isol_matlab],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE} ', 'pe_vfi_initPE', print_figs)
+%create_plot_observables([i_opt; isol_matlab_initrand],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE}+10*rand ', 'pe_vfi_initrand', print_figs)
 
