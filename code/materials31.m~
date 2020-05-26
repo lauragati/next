@@ -12,7 +12,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -170,8 +170,8 @@ ssim = [X(3,:); zeros(1,T); X(4,:)];
 % instead, I want this:
 vsim = fnval(pp,X);
 
-% i0 = i_opt;
 i0 = i_opt;
+% i0 = rand(1,T);
 L = mat31_TV4(param,gx,hx,i0,pibsim,ssim,vsim);
 
 options1.MaxFunEvals = 40000;
@@ -234,13 +234,6 @@ tic
 [isol5, ln, flg] = fminunc(l, i0, options1);
 toc
 
-% solve it initializing away from PE sol
-loss = period_loss_i(param,hx,i0,fa,fb,ssim,L);
-l = @(i) period_loss_i(param,hx,i0,fa,fb,ssim,L);
-tic
-[isol6, ln, flg] = fminunc(l, i0+10*rand(1,T), options1);
-toc
-
 figure
 plot(isim); hold on
 plot(real(isol1))
@@ -248,13 +241,3 @@ plot(real(isol3))
 plot(isol5)
 legend('fminunc', 'invert v', 'invert v 2', 'invert v on matlab')
 title('holy shit - isol5 looks right')
-
-figure
-plot(i_opt, 'k'); hold on
-plot(isol5, '--')
-legend('sol from parametric E', 'sol from VFI')
-title('bingo')
-
-create_plot_observables([i_opt; isol5],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE} ', 'pe_vfi_initPE', print_figs)
-create_plot_observables([i_opt; isol6],{'PE','VFI',}, 'Optimal i-sequence given a simulation, initalized at i^{PE}+10*rand ', 'pe_vfi_initrand', print_figs)
-

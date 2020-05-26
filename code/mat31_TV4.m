@@ -20,6 +20,6 @@ pi = kapp*x + s3*fa + s4*s;
 L =  pi.^2 +lamx.*x.^2 + bet.*v;
 
 % norm
-Ln = max(max(abs(L)));
+Ln = max(max(L.^2));
 
 

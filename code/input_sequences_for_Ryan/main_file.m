@@ -5,7 +5,7 @@
 clearvars
 close all
 clc
-print_figs=1;
+print_figs=0;
 
 %% 1.) Parameters - don't need to edit anything here
 T = 100
@@ -271,8 +271,11 @@ while crit > 1e-6 && iter < maxiter
     bet=bet1;
 end
 
-[~, ysim7, k7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
+[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
+
+output = {e, ysim7, k7, phi7, seq_opt};
+save('inputs.mat', 'output')
 
 disp('Done.')

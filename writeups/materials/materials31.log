@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 MAY 2020 10:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 MAY 2020 11:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -939,37 +939,21 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 141.
 
-<../../figures/implement_anchTC_obs_TR.png, id=33, 1373.13pt x 881.2925pt>
-File: ../../figures/implement_anchTC_obs_TR.png Graphic file (type png)
+<../../figures/pe_vfi_initPE.png, id=33, 1406.25375pt x 894.34125pt>
+File: ../../figures/pe_vfi_initPE.png Graphic file (type png)
 
-<use ../../figures/implement_anchTC_obs_TR.png>
-Package pdftex.def Info: ../../figures/implement_anchTC_obs_TR.png used on inpu
-t line 148.
-(pdftex.def)             Requested size: 233.42902pt x 149.81773pt.
+<use ../../figures/pe_vfi_initPE.png>
+Package pdftex.def Info: ../../figures/pe_vfi_initPE.png used on input line 153
+.
+(pdftex.def)             Requested size: 379.69359pt x 241.47536pt.
 
-<../../figures/implement_anchTC_invgain_TR.png, id=34, 1428.33624pt x 881.2925p
-t>
-File: ../../figures/implement_anchTC_invgain_TR.png Graphic file (type png)
- <use ../../figures/implement_anchTC_invgain_TR.png>
-Package pdftex.def Info: ../../figures/implement_anchTC_invgain_TR.png used on 
-input line 150.
-(pdftex.def)             Requested size: 242.81395pt x 149.81773pt.
+<../../figures/pe_vfi_initrand.png, id=34, 1406.25375pt x 894.34125pt>
+File: ../../figures/pe_vfi_initrand.png Graphic file (type png)
 
-<../../figures/implement_anchTC_obs.png, id=35, 1373.13pt x 881.2925pt>
-File: ../../figures/implement_anchTC_obs.png Graphic file (type png)
-
-<use ../../figures/implement_anchTC_obs.png>
-Package pdftex.def Info: ../../figures/implement_anchTC_obs.png used on input l
-ine 151.
-(pdftex.def)             Requested size: 233.42902pt x 149.81773pt.
-
-<../../figures/implement_anchTC_invgain.png, id=36, 1428.33624pt x 881.2925pt>
-File: ../../figures/implement_anchTC_invgain.png Graphic file (type png)
-
-<use ../../figures/implement_anchTC_invgain.png>
-Package pdftex.def Info: ../../figures/implement_anchTC_invgain.png used on inp
-ut line 153.
-(pdftex.def)             Requested size: 242.81395pt x 149.81773pt.
+<use ../../figures/pe_vfi_initrand.png>
+Package pdftex.def Info: ../../figures/pe_vfi_initrand.png used on input line 1
+55.
+(pdftex.def)             Requested size: 379.69359pt x 241.47536pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -983,10 +967,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2 <../../figures/implement_anchTC_obs_TR.png (PNG copy)> <../../figures/implem
-ent_anchTC_invgain_TR.png (PNG copy)> <../../figures/implement_anchTC_obs.png (
-PNG copy)> <../../figures/implement_anchTC_invgain.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 183--183
+[2 <../../figures/pe_vfi_initPE.png (PNG copy)> <../../figures/pe_vfi_initrand.
+png (PNG copy)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 185--185
 [] 
  []
 
@@ -999,23 +982,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [3
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 237.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 237.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
  (./materials31.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 237.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 237.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
 Package rerunfilecheck Info: File `materials31.out' has not changed.
 (rerunfilecheck)             Checksum: 6A78BBF97860279235C375D8C6E35FC8;101.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 237.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
  ) 
 Here is how much of TeX's memory you used:
- 20006 strings out of 493089
- 362808 string characters out of 6134842
+ 19996 strings out of 493089
+ 362286 string characters out of 6134842
  456590 words of memory out of 5000000
- 23091 multiletter control sequences out of 15000+600000
+ 23083 multiletter control sequences out of 15000+600000
  12273 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,54p,471b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,54p,436b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -1032,10 +1015,10 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials31.pdf (3 pages, 447231 bytes).
+Output written on materials31.pdf (3 pages, 319281 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
+ 142 PDF objects out of 1000 (max. 8388607)
  103 compressed objects within 2 object streams
  25 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 39 words of extra memory for PDF output out of 10000 (max. 10000000)
 

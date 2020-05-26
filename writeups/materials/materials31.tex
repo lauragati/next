@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.17}
+\def\myAdjustableFigScale{0.27}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -140,18 +140,20 @@ Note:
 \begin{itemize}
 \item I'm using a $4\times4\times2\times2$ grid, and cubic spline interpolation for the value function. This takes 260 seconds. I'm sure I could speed things up by doing policy iteration instead. 
 \item Since equations (\ref{A5})-(\ref{A7}) involve past shocks, I need to take expectations regarding what node of the state-space we're coming from (``backward expectations'').
-\item How to compare the results? For value iteration, I get decision rules for $i, \bar{\pi}$ and $k^{-1}$ given grid values, while for projection I get a sequence for these given a simulated time series of shocks. I'm trying to pass the same time series of states from the projection result and see if I get the same interest rate sequence.
+\item How to compare the results? For value iteration, I get decision rules for $i, \bar{\pi}$ and $k^{-1}$ given grid values, while for projection I get a sequence for these given a simulated time series of shocks. I'm trying to pass the same time series of states from the projection result and see if I get the same interest rate sequence. In math:
+\begin{align}
+V(X^{pe}) & = L(i) + \beta V(X^{pe}) \\
+i^*: \quad L(i) & = (1-\beta)V(X^{pe})
+\end{align}
+
 \end{itemize}
 
 
 \begin{figure}[h!]
-\subfigure[Observables, Taylor rule]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_obs_TR}}
+\subfigure[]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath pe_vfi_initPE}}
 \hfill % this is great to intro dpace between subfigures
-\subfigure[Inverse gain, Taylor rule]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_invgain_TR}}
-\subfigure[Observables, target criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_obs}}
-\hfill % this is great to intro dpace between subfigures
-\subfigure[Inverse gain, target criterion]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath implement_anchTC_invgain}}
-\caption{Parameterized expectations solution}
+\subfigure[]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath pe_vfi_initrand}}
+\caption{Parameterized expectations against value iteration solution}
 \end{figure}
 
 
