@@ -171,7 +171,8 @@ l = @(i) period_loss_i(param,hx,i,fa,fb,ssim,L);
 tic
 [isol_matlab, ln, flg] = fsolve(l, i0, options1);
 toc
-% fsolve can't find a sol, maybe because the sol isn't (always) real
+% fsolve can't find a sol, maybe because the sol isn't real
+
 
 
 % Compute this inverse in Mathematica, materials31.nb, it's called isol_{1,2}
@@ -188,25 +189,21 @@ i2mma = (kapp.^2.*sig.^2+ ...
   lamx.*sig.^2).^(-1).*(fas.*kapp.*sig+fbs.*kapp.^2.*sig+fbs.*lamx.* ...
   sig+(kapp.^2.*L.*sig.^2+(-1).*fas.^2.*lamx.*sig.^2+L.*lamx.* ...
   sig.^2).^(1/2));
-% Note that i1 and i2 aren't always complex. When they are,
-% real(i1)=real(i2). When they are real, this equality doesn't hold.
 
-% ok, i1 = i1 from notes, 27 May 2020, and Mma, i2=i2 too
+% ok, i1 = i1 from notes and Mma, i2=i2
 Delt = sqrt((kapp^2+lamx).*L -lamx*fas.^2);
-i1notes = ((kapp^2+lamx).*fbs + kapp*fas - Delt)/((kapp^2+lamx)*sig);
-i2notes = ((kapp^2+lamx).*fbs + kapp*fas + Delt)/((kapp^2+lamx)*sig);
+i1_notes = ((kapp^2+lamx).*fbs + kapp*fas - Delt)/((kapp^2+lamx)*sig);
+i2_notes = ((kapp^2+lamx).*fbs + kapp*fas + Delt)/((kapp^2+lamx)*sig);
 
-% Note: if you force an always real sol by e.g. L = 1000*Pu; you can see that
-% Matlab's fsolve finds approximately one of the two sols found by
-% mathematica. But, Mma is more accurate and you can choose the
-% nonnegative solution.
- 
-figure
-plot(real(i1mma));  hold on
-plot(real(i2mma))
-plot(i_opt, 'k--')
-legend('mma 1', 'mma2', 'sol PE')
-title('')
+% 
+% 
+% figure
+% plot(real(isol_mma));  hold on
+% plot(isol_matlab)
+% plot(isol_matlab_initrand)
+% plot(i_opt, 'k--')
+% legend('mma', 'matlab, init at PE','matlab, init rand', 'sol PE')
+% title('')
 
 % figure
 % plot(i_opt, 'k'); hold on
