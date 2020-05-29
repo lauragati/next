@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 MAY 2020 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 MAY 2020 11:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**materials31.tex
-(./materials31.tex
+**materials32.tex
+(./materials32.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -814,8 +814,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 61.
 \c@lemma=\count161
 \c@corollary=\count162
 \c@conjecture=\count163
- (./materials31.aux)
-\openout1 = `materials31.aux'.
+ (./materials32.aux)
+\openout1 = `materials32.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
@@ -915,9 +915,9 @@ LaTeX Info: Redefining \ref on input line 117.
 LaTeX Info: Redefining \pageref on input line 117.
 LaTeX Info: Redefining \nameref on input line 117.
 
-(./materials31.out) (./materials31.out)
+(./materials32.out) (./materials32.out)
 \@outlinefile=\write4
-\openout4 = `materials31.out'.
+\openout4 = `materials32.out'.
 
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    Try loading font information for U+msa on input line 125.
@@ -930,42 +930,27 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 125.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 141.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 141.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
+
+<../../figures/materials32_policy.png, id=15, 1410.26875pt x 878.28125pt>
+File: ../../figures/materials32_policy.png Graphic file (type png)
+
+<use ../../figures/materials32_policy.png>
+Package pdftex.def Info: ../../figures/materials32_policy.png used on input lin
+e 139.
+(pdftex.def)             Requested size: 324.355pt x 202.00044pt.
  [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../../figures/pe_vfi_initPE.png, id=57, 1406.25375pt x 894.34125pt>
-File: ../../figures/pe_vfi_initPE.png Graphic file (type png)
-
-<use ../../figures/pe_vfi_initPE.png>
-Package pdftex.def Info: ../../figures/pe_vfi_initPE.png used on input line 159
-.
-(pdftex.def)             Requested size: 323.43156pt x 205.69415pt.
-
-<../../figures/pe_vfi_initrand.png, id=58, 1406.25375pt x 894.34125pt>
-File: ../../figures/pe_vfi_initrand.png Graphic file (type png)
-
-<use ../../figures/pe_vfi_initrand.png>
-Package pdftex.def Info: ../../figures/pe_vfi_initrand.png used on input line 1
-61.
-(pdftex.def)             Requested size: 323.43156pt x 205.69415pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[2 <../../figures/pe_vfi_initPE.png (PNG copy)> <../../figures/pe_vfi_initrand.
-png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 192--192
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../../f
+igures/materials32_policy.png (PNG copy)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 170--170
 [] 
  []
 
@@ -975,47 +960,47 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3
+[2
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
- (./materials31.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 246.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 246.
-Package rerunfilecheck Info: File `materials31.out' has not changed.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+ (./materials32.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package rerunfilecheck Info: File `materials32.out' has not changed.
 (rerunfilecheck)             Checksum: 6A78BBF97860279235C375D8C6E35FC8;101.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
  ) 
 Here is how much of TeX's memory you used:
- 20005 strings out of 493089
- 362361 string characters out of 6134842
+ 19997 strings out of 493089
+ 362186 string characters out of 6134842
  456590 words of memory out of 5000000
- 23088 multiletter control sequences out of 15000+600000
- 13395 words of font info for 51 fonts, out of 8000000 for 9000
+ 23087 multiletter control sequences out of 15000+600000
+ 14164 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,14n,54p,460b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,14n,54p,436b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
 /local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/te
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials31.pdf (3 pages, 332433 bytes).
+Output written on materials32.pdf (2 pages, 247969 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 39 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
+ 34 words of extra memory for PDF output out of 10000 (max. 10000000)
 
