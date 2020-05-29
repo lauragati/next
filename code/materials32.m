@@ -1,8 +1,28 @@
-% materials32_server
+% materials32
 % trying to map value iteration results to parametric expectations results
 % trying to accelerate vfi (only eval every jjth policy function) --> 50
 % min!
 % 28 May 2020
+
+clearvars
+close all
+clc
+
+% Add all the relevant paths and grab the codename
+this_code = mfilename;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath, inputsRyan_path] = add_paths;
+todays_date = strrep(datestr(today), '-','_');
+
+% Variable stuff ---
+print_figs        = 0;
+stop_before_plots = 0;
+skip_old_plots    = 0;
+output_table = print_figs;
+
+skip = 1;
+really_do_valiter = 0;
+
+%%
 
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 sig_r = param.sig_r;
@@ -26,7 +46,10 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 options1 = optimset('fminunc');
 options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
 % options1.UseParallel=true; % fminunc is a lot slower!
-  
+
+% Only begin running value iteration if optimal outputs don't exist
+if exist('value_outputs.mat', 'file') ~=2 && exist('value_outputs_server.mat', 'file') ~=2 || really_do_valiter==1
+    
     v = zeros(nk,np,ns,ns,ns,ns);
     pp = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},v);
     it = zeros(size(v));
@@ -38,14 +61,16 @@ options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
     iter=1;
     maxiter=2000;
     epsi=1e-6;
-    jj=5;
+    jj=100;
     datestr(now)
     tic
     i0 = 0; % the steady state value
     while crit > epsi && iter< maxiter && crit < 1e10
         % as VFI converges, make it start evaluating the policy function
         % more frequently
-        if crit < 5*epsi
+        if crit < epsi*10 && crit >= 5*epsi
+            jj = 5;
+        elseif crit < 5*epsi
             jj=1;
         end
         % Step 1: maximization
@@ -96,7 +121,44 @@ options1 = optimset(options1, 'TolFun', 1e-16, 'display', 'none');
     
     value_sols = {pp1,v1,it,pibp,k1p};
     if crit < epsi
-        save('value_outputs_server32_accelerated.mat', 'value_sols')
+        save('value_outputs.mat', 'value_sols')
         disp('saving results...')
     end
+else    
+%     load('value_outputs.mat')
+load('value_outputs_server.mat')
+end
 
+
+pp   = value_sols{1};
+v    = value_sols{2};
+it   = value_sols{3};
+pibp = value_sols{4};
+k1p  = value_sols{5};
+
+%%
+% take the history of states from parametric expectations
+load('inputs.mat')
+e = output{1};
+ysim7 = output{2};
+k7    = output{3};
+phi7  = output{4};
+seq_opt = output{5};
+i_pe = seq_opt(3,:);
+
+% compile state vector
+T=length(e)-2; % drop the first and last obs
+k1sim = 1./k7(2:end-1);
+pibsim = squeeze(phi7(1,1,2:end-1))';
+ssim = e(:,2:end-1);
+ssimt_1 = e(:,1:end-2);
+X = [k1sim; pibsim; ssim(1,:); ssim(3,:); ssimt_1(1,:); ssimt_1(3,:)];
+
+% approximate policy function
+ppi = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},it);
+i_vi = fnval(ppi,X);
+
+policies = [i_pe; i_vi];
+create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, 'accelerated_policy'],print_figs)
+
+working_figure_name_was = [this_code, '_policy']; % DONT USE THIS!!! 
