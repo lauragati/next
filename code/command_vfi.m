@@ -1,8 +1,8 @@
-% materials32
-% trying to map value iteration results to parametric expectations results
-% trying to accelerate vfi (only eval every jjth policy function) --> 50
-% min!
-% 28 May 2020
+% command_vfi.m
+% value function iteration for my model
+% accelerated version, takes around 30-45 min
+% migrated from materials32.m
+% 29 May 2020
 
 clearvars
 close all
@@ -12,6 +12,7 @@ clc
 this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath, inputsRyan_path] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
+nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
 print_figs        = 0;
@@ -19,8 +20,6 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-skip = 1;
-really_do_valiter = 0;
 
 %%
 
@@ -118,37 +117,9 @@ end
 toc
 % took about 30 minutes
 
-% value_sols = {pp1,v1,it,pibp,k1p};
-%     if crit < epsi
-%         save('value_outputs.mat', 'value_sols')
-%         disp('saving results...')
-%     end
-
-
-%%
-% take the history of states from parametric expectations
-load('inputs.mat')
-e = output{1};
-ysim7 = output{2};
-k7    = output{3};
-phi7  = output{4};
-seq_opt = output{5};
-i_pe = seq_opt(3,:);
-
-% compile state vector
-T=length(e)-2; % drop the first and last obs
-k1sim = 1./k7(2:end-1);
-pibsim = squeeze(phi7(1,1,2:end-1))';
-ssim = e(:,2:end-1);
-ssimt_1 = e(:,1:end-2);
-X = [k1sim; pibsim; ssim(1,:); ssim(3,:); ssimt_1(1,:); ssimt_1(3,:)];
-
-% approximate policy function
-% pgrid = linspace(-100,100,np);
-ppi = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},it);
-i_vi = fnval(ppi,X);
-
-policies = [i_pe; i_vi];
-create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, 'accelerated_policy'],print_figs)
-
-working_figure_name_was = [this_code, '_policy']; % DONT USE THIS!!!
+value_sols = {pp1,v1,it,pibp,k1p, pgrid,k1grid};
+    if crit < epsi
+        filename = ['value_outputs_', nowstr, '.mat'];
+        save(filename, 'value_sols')
+        disp('saving results...')
+    end

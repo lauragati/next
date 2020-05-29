@@ -30,11 +30,11 @@ pibar = pibart_1 + k1*(fe);
 v = zeros(ns,ns);
 r = s(1);
 u = s(3);
-for ip=1:ns
-    rp=rho_r*r + sig_r*sgrid(ip);
-    for jp=1:ns
-        up = rho_u*u + +sig_u*sgrid(jp);
-        v(ip,jp) = fnval(pp,{k1,pibar,r,u,rp,up});
+for i=1:ns
+    rp=rho_r*r + sig_r*sgrid(i);
+    for j=1:ns
+        up = rho_u*u +sig_u*sgrid(j);
+        v(i,j) = fnval(pp,{k1,pibar,r,u,rp,up});
     end
 end
 

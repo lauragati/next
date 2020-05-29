@@ -164,7 +164,7 @@ i_t &= \psi_{\pi}\pi_t + \psi_{x} x_t  + \bar{i}_t \label{TR} \quad \quad (\text
 \begin{align}
 \text{PLM:} \quad \quad & \hat{\E}_t z_{t+h}  =  a_{t-1} + bh_x^{h-1}s_t  \quad \forall h\geq 1 \quad \quad b = g_x\; h_x \quad \quad  \label{PLM} \\
 \text{Updating:} \quad \quad & a_{t}  =a_{t-1} +k_t^{-1}\big(z_{t} -(a_{t-1}+b s_{t-1}) \big)  \label{A5} \\
-\text{Anchoring function:} \quad \quad & k_t  = k_{t-1} + \mathbf{g}(fe_{t-1}^2) \label{A6}\\
+\text{Anchoring function:} \quad \quad & k^{-1}_t  = \rho_k k^{-1}_{t-1} + \gamma_k fe_{t-1}^2 \label{A6}\\
 \text{Forecast error:} \quad \quad & fe_{t-1}  = z_t - (a_{t-1}+b s_{t-1}) \label{A7} \\
 \text{LH expectations:} \quad \quad & f_a(t) = \frac{1}{1-\alpha\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \quad \quad  f_b(t) = \frac{1}{1-\beta}a_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{A8}
 \end{align}
