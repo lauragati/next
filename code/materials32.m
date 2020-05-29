@@ -60,7 +60,7 @@ if exist('value_outputs.mat', 'file') ~=2 && exist('value_outputs_server.mat', '
     crit=1;
     iter=1;
     maxiter=2000;
-    epsi=1e-6;
+    epsi=1e-3;
     jj=100;
     datestr(now)
     tic
@@ -91,8 +91,8 @@ if exist('value_outputs.mat', 'file') ~=2 && exist('value_outputs_server.mat', '
                                 st_1 = [rt_1; 0; ut_1];
                                 % only update policy every jjth iteration
                                 if mod(iter,jj)==0 || iter==1
-                                tv = @(i) mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1, s,st_1,sgrid,PI);
-                                it(i,j,k,l,m,n) = fminunc(tv, i0, options1);
+                                    tv = @(i) mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1, s,st_1,sgrid,PI);
+                                    it(i,j,k,l,m,n) = fminunc(tv, i0, options1);
                                 end
                                 % compute the value function at the maximizing i
                                 [v1(i,j,k,l,m,n), pibp(i,j,k,l,m,n), k1p(i,j,k,l,m,n)] = mat31_TV3(param,gx,hx,pp,it(i,j,k,l),pibart_1,k1t_1,s,st_1,sgrid,PI);
@@ -124,9 +124,10 @@ if exist('value_outputs.mat', 'file') ~=2 && exist('value_outputs_server.mat', '
         save('value_outputs.mat', 'value_sols')
         disp('saving results...')
     end
-else    
+else
 %     load('value_outputs.mat')
-load('value_outputs_server.mat')
+    load('value_outputs_server.mat')
+%     load('value_outputs_server32_accelerated.mat')
 end
 
 
@@ -161,4 +162,4 @@ i_vi = fnval(ppi,X);
 policies = [i_pe; i_vi];
 create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, 'accelerated_policy'],print_figs)
 
-working_figure_name_was = [this_code, '_policy']; % DONT USE THIS!!! 
+working_figure_name_was = [this_code, '_policy']; % DONT USE THIS!!!
