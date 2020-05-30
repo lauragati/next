@@ -118,8 +118,8 @@ toc
 % took about 30 minutes
 
 value_sols = {pp1,v1,it,pibp,k1p, pgrid,k1grid};
-    if crit < epsi
-        filename = ['value_outputs_', nowstr, '.mat'];
-        save(filename, 'value_sols')
-        disp('saving results...')
-    end
+if crit < epsi
+    filename = ['value_outputs_', nowstr, '.mat'];
+    save(filename, 'value_sols')
+    disp(['Saving results as ', filename])
+end

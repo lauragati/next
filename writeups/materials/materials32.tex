@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.23}
+\def\myAdjustableFigScale{0.17}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -131,14 +131,21 @@ bottom=1in}
 
 Approach to map value function iteration solution to the solution of parametric expectations:
 \begin{itemize}
-\item Use value function iteration policy values to approximate the policy function function using a cubic spline: obtain the coefficients $\alpha$ in $\hat{i}(\alpha,X^{grid})$.
+\item Use value function iteration policy values to approximate the policy function using a cubic spline: obtain the coefficients $\alpha$ in $\hat{i}(\alpha,X^{grid})$.
 \item Plug in the history of states from PE: $\hat{i}(\alpha, X^{pe})$.
 \end{itemize}
 
 \begin{figure}[h!]
-\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials32_policy}
-\caption{Policy function for a particular history of states, $X^{pe}$}
+\subfigure[$X_1^{pe}$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials32_policy}}
+\subfigure[$X_2^{pe}$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath compare_value_pea_results_value_outputs_server32_accelerated_pea_outputs_30_May_2020_10_18_28}}
+\caption{Policy function for two particular histories of states, $X^{pe}$}
 \end{figure}
+
+% one more check
+%\begin{figure}[h!]
+%\includegraphics[scale=\myAdjustableFigScale]{\myFigPath compare_value_pea_results_value_outputs_30_May_2020_10_42_12_pea_outputs_30_May_2020_10_18_28}
+%\caption{Here's another history of states, $X^{pe}$}
+%\end{figure}
 
 
 

@@ -37,7 +37,7 @@ k1grid = linspace(0,gbar,nk);
 np = 4;
 % pgrid = linspace(-0.2,0.2,np);
 % pgrid = linspace(-10,10,np); % this fucker causes the difference!
-pgrid = linspace(-4,4,np);
+% pgrid = linspace(-4,4,np);
 
 
 ns = 2;
@@ -45,21 +45,26 @@ sgrid = linspace(-sig_r,sig_r,ns);
 p = 0.5;
 PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 
-% output_name = 'value_outputs.mat';
-% output_name = 'value_outputs_server.mat';
-output_name = 'value_outputs_server32_accelerated.mat';
-load(output_name)
+% value_output_name = 'value_outputs.mat';
+% value_output_name = 'value_outputs_server.mat';
+% value_output_name = 'value_outputs_server32_accelerated';
+value_output_name = 'value_outputs_30_May_2020_10_42_12';
+load([value_output_name, '.mat'])
 
-pp   = value_sols{1};
-v    = value_sols{2};
-it   = value_sols{3};
-pibp = value_sols{4};
-k1p  = value_sols{5};
+pp     = value_sols{1};
+v      = value_sols{2};
+it     = value_sols{3};
+pibp   = value_sols{4};
+k1p    = value_sols{5};
+pgrid  = value_sols{6};
+k1grid = value_sols{7};
 
 
 %%
 % take the history of states from parametric expectations
-load('inputs.mat')
+pea_output_name = 'pea_outputs_30_May_2020_10_18_28';
+% load('inputs.mat')
+load([pea_output_name, '.mat'])
 e = output{1};
 ysim7 = output{2};
 k7    = output{3};
@@ -80,4 +85,4 @@ ppi = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},it);
 i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
-create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', output_name],print_figs)
+create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', value_output_name, '_', pea_output_name],print_figs)
