@@ -433,7 +433,48 @@ Not so for adaptive expectations. Learning agents look exclusively to past data 
 %%%%%%%%%%%%%%%%%%           IMPLEMENTING THE TC           %%%%%%%%%%%%%%%%%% 
 
 \subsection{Implementing the Ramsey policy: the optimal interest rate sequence}\label{implement}
-Having a characterization of optimal policy in the anchoring model as a first-order condition, the next relevant question is how the central bank should set its interest rate tool in order to implement the target criterion in (\ref{target}). As emphasized in Section \ref{ramsey}, the nonlinearity of the model does not admit an analytical answer to this question. I therefore solve for the optimal interest rate policy numerically using global methods. App. \ref{pea} outlines my preferred solution procedure, the parameterized expectations approach, while App. \ref{vfi} gives the details of the parameterized value function iteration approach I implement as a robustness check. The main output of this procedure is an approximation of the optimal interest rate policy as a function of the vector of state variables. Since the relevant state variables are the gain, expected mean inflation and the exogenous states at time $t$ and $t-1$, the state vector is six-dimensional:
+Having a characterization of optimal policy in the anchoring model as a first-order condition, the next relevant question is how the central bank should set its interest rate tool in order to implement the target criterion in (\ref{target}). As emphasized in Section \ref{ramsey}, the nonlinearity of the model does not admit an analytical answer to this question. I therefore solve for the optimal interest rate policy numerically using global methods. 
+
+For the numerical approach I rely on the calibration of model parameters outlined in Table \ref{calibration1}. Where possible, I adopt standard parameters from the literature. In particular, I rely on the parameterization in \cite{woodford2011interest}. The other motivation for the choice of some parameters is ease of interpretation. Therefore I restrict the shocks to be iid, and I set $\lambda_x = 0.01$ so that a concern for output gap stabilization should not be the main drivel of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) should also not be trivial. Reflecting this, I set a small, but nonzero coefficient on the output gap when I compare the optimal solution for the interest rate with an interest rate sequence brought about by a Taylor rule.
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+ $\beta$ & 0.99 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule \\\hline
+ $\psi_x$ & 0.01   & coefficient of the output gap in Taylor rule  \\\hline %% <---- Diffs. wrt calibration2
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline %% <----
+%& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+% $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
+%  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
+    $\rho_i$ & 0 &  persistence of monetary policy shock  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+    $\sigma_r$ & 1 & standard deviation of natural rate shock  \\ \hline
+%    $\sigma_i$ &  1  &standard deviation of monetary policy shock  \\ \hline %% <----
+    $\sigma_u$ & 1 & standard deviation of cost-push shock   \\ \hline  
+    $\lambda_x$ & 0.01 & weight on the output gap in central bank loss   \\ \hline  % <----
+    $\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
+    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
+    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
+\end{tabular}     
+      \caption{Calibrated parameters}  \label{calibration1}
+ \end{table}
+\end{center}
+
+
+\vspace{-1.0cm}
+
+I initialize the value of the gain at $\bar{g}=0.145$, the value for the constant gain estimated by \cite{carvalho2019anchored}. As I discuss in Section \ref{opt_TR}, this parameter has important implications for model dynamics when the anchoring function takes the CUSUM-form. However, the target criterion (\ref{target}) requires that the derivatives of the anchoring function exist, wherefore in this section I use a smooth specification for the anchoring function of the form:
+\begin{equation}
+ k^{-1}_t  = \rho_k k^{-1}_{t-1} + \gamma_k fe_{t-1}^2 \label{smooth} 
+\end{equation}
+Thus $\bar{g}$ does not have a strong bearing on model dynamics. Instead, $\rho_k$ and $\gamma_k$ become important. As no anchoring function of the form of (\ref{smooth}) has been used in the literature, I choose values for these two parameters by experimentation with simulations of the model using different values. In my current calibration, the gain is generally decreasing, but can be driven up considerably in response to shocks. 
+
+Before moving to the numerical solution for the optimal interest rate sequence, I note that the functional specification of (\ref{smooth}) reflects the criteria that the function should be smooth and should imply an overall decreasing gain sequence with occasional jumps up. Nonetheless, other functional forms are possible. Without any theoretical literature on anchoring functions to fall back on, choosing the right specification is an empirical question. For this reason, in Section X I estimate the anchoring function. 
+
+App. \ref{pea} outlines my preferred solution procedure, the parameterized expectations approach, while App. \ref{vfi} gives the details of the parameterized value function iteration approach I implement as a robustness check. The main output of this procedure is an approximation of the optimal interest rate policy as a function of the vector of state variables. Since the relevant state variables are the gain, expected mean inflation and the exogenous states at time $t$ and $t-1$, the state vector is six-dimensional:
 
 \begin{equation}
 X_t = (\bar{\pi}_{t-1}, k_{t-1}^{-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
@@ -464,7 +505,7 @@ Another way to investigate optimal policy in the model is to compare the evoluti
 \label{pea_TCvsTR}
 \end{figure}
 
-Fig. \ref{pea_TCvsTR} depicts the evolution of inflation, the output gap and the interest rate conditional on a sequence of exogenous disturbances. Panel (a) and (b) show the outcome achieved by adhering to the Taylor rule and the target criterion (\ref{target}) respectively. One clearly sees the features of optimal policy under anchoring compared to a standard Taylor-rule approach. Due to the low value of $\psi_x$ here, the Taylor-rule-following central bank resolves the inflation-output gap tradeoff by allowing the output gap to sink far into negative territory and instead stabilizing inflation. Instead, optimal policy uses the interest rate tool much more aggressively to achieve a nearly identical inflation series, yet a much more stable output gap series. In particular early in the sample, the central bank is willing to raise and lower the interest rate massively in order to eliminate any potential of massive unanchoring. But even late in the sample, the interest rate can take fluctuate wildly between $\pm5\%$ in order to quench any potential unanchoring brought about by unforecastable disturbances. Thus one observes both features of optimal policy foreshadowed in the previous discussions: i) anchoring alleviates the intratemporal tradeoff between inflation and the output gap, ii) there is an intertemporal volatility tradeoff between the short-run cost and the long-run benefit of anchoring expectations, for which reason the central bank prefers to avoid expectations getting unanchored in the first place. 
+Fig. \ref{pea_TCvsTR} depicts the evolution of inflation, the output gap and the interest rate conditional on a sequence of exogenous disturbances. Panel (a) and (b) show the outcome achieved by adhering to the Taylor rule and the target criterion (\ref{target}) respectively. One clearly sees the features of optimal policy under anchoring compared to a standard Taylor-rule approach. Due to the low value of $\psi_x$ here, the Taylor-rule-following central bank resolves the inflation-output gap tradeoff by allowing the output gap to sink far into negative territory and instead stabilizing inflation. Instead, optimal policy uses the interest rate tool much more aggressively to achieve a nearly identical inflation series, yet a much more stable output gap series. In particular early in the sample, the central bank is willing to raise and lower the interest rate massively in order to eliminate any potential of massive unanchoring. But even late in the sample, the interest rate can fluctuate wildly between $\pm5\%$ in order to quench any potential unanchoring brought about by unforecastable disturbances. Thus one observes both features of optimal policy foreshadowed in the previous discussions: i) anchoring alleviates the intratemporal tradeoff between inflation and the output gap, ii) there is an intertemporal volatility tradeoff between the short-run cost and the long-run benefit of anchoring expectations, for which reason the central bank prefers to avoid expectations getting unanchored in the first place. 
 
 
 %\subsubsection{Implementation without a feedback rule}
@@ -484,9 +525,7 @@ Fig. \ref{pea_TCvsTR} depicts the evolution of inflation, the output gap and the
 \subsection{Optimal Taylor rule under anchoring}\label{opt_TR}
 The optimal commitment rational expectations version of the targeting rule (\ref{target}) would take the form of (\ref{cgg_discretion}) with an additional $x_{t-1}$ term capturing the benefits of commitment. Therefore, due to its purely forward-looking nature, a Taylor-type interest rate rule is not fully optimal in the rational expectations NK model. Since Result \ref{result_no_commitment} tells us that in the anchoring model there is no distinction between commitment and discretion, there is a renewed interest in formulating monetary policy as a Taylor rule, as these types of rules are no longer excluded from the class of fully optimal rules. In particular, the targeting rule (\ref{target}) is also purely forward-looking. Therefore I now consider the restricted set of Taylor-type policy rules and ask what values of the Taylor-rule coefficients are optimal in the case of the anchoring model.
 
-\subsubsection{Calibration}
-
-In this section I compute the optimal Taylor rule coefficients numerically for a simulation of both the rational expectations and learning versions of the model.\footnote{To concentrate on the intuition, in this section I implement the learning algorithm such that only the constant is learned. The general formulation has qualitatively similar features but is more impacted by small-sample concerns prevalent in simulations.} Table \ref{calibration} summarizes the calibrated parameter values. For most of the parameters, I assign values commonly used in the macroeconomic literature. In particular, I follow \cite{woodford2011interest}'s calibration. For this section, I shut off the monetary policy parameters $\lambda_i$, $\lambda_x$ and $\psi_x$ in order to focus on the role of inflation in the central bank's problem and thus on the optimal choice of inflation aggressiveness, $\psi_{\pi}$.
+In this section I compute the optimal Taylor rule coefficients numerically for a simulation of both the rational expectations and learning versions of the model.\footnote{To concentrate on the intuition, in this section I implement the learning algorithm such that only the constant is learned. The general formulation has qualitatively similar features but is more impacted by small-sample concerns prevalent in simulations.} Table \ref{calibration2} reproduces the calibration of Table \ref{calibration1}, highlighting in blue differences between parameter values. I make the following changes. For this section, I shut off the monetary policy parameters $\lambda_i$, $\lambda_x$ and $\psi_x$ in order to focus on the role of inflation in the central bank's problem and thus on the optimal choice of inflation aggressiveness, $\psi_{\pi}$. As usual, this choice is motivated by the ease of interpretation. 
 
 For the simulations in this section, I use the CUSUM-inspired criterion outlined in App. \ref{alternative_criteria}. The learning parameters $\bar{g}, \tilde{\theta}$ and $\tilde{\kappa}$ require some discussion. While the choice of $\tilde{\kappa}$ only matters for the smoothness of the endogenous gain decision and thus can be set relatively freely, the threshold $\tilde{\theta}$ has more bearing on the behavior of the model. Intuitively, the higher $\tilde{\theta}$, the more forecast error volatility agents in the economy are willing to tolerate before switching to a constant gain. Experimenting with different values reveals that once $\tilde{\theta}$ is higher than a particular threshold, expectations are anchored for any value of $\psi_{\pi}$. Analogously if $\tilde{\theta}$ is below a lower threshold, expectations are always unanchored regardless of the value of $\psi_{\pi}$. My choice of $\tilde{\theta}=2.5$ is thus motivated by assigning a value for which the comparative static of anchoring with respect to $\psi_{\pi}$ is meaningful. 
 
@@ -497,21 +536,21 @@ For the simulations in this section, I use the CUSUM-inspired criterion outlined
  $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
  $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
  $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule \\\hline
- $\psi_x$ & 0   & coefficient of the output gap in Taylor rule  \\\hline
- $\bar{g}$ & $0.145$  & value of the constant gain \\\hline
+ $\textcolor{blue}{\psi_x}$ & 0   & coefficient of the output gap in Taylor rule  \\\hline
+ $\bar{g}$ & $0.145$  & \textcolor{blue}{value of the constant gain} \\\hline
 & & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
- $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline
-  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline
+ $\textcolor{blue}{\tilde{\theta}}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline
+  $\textcolor{blue}{\tilde{\kappa}}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline
     $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline
-    $\rho_i$ & 0.6 &  persistence of monetary policy shock  \\ \hline
+    $\textcolor{blue}{\rho_i}$ & 0.6 &  persistence of monetary policy shock  \\ \hline
     $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
-    $\sigma_i$ & 1 & standard deviation of natural rate shock  \\ \hline
-    $\sigma_r$ &  1  &standard deviation of monetary policy shock  \\ \hline
+    $\sigma_r$ & 1 & standard deviation of natural rate shock  \\ \hline
+    $\sigma_i$ &  1  &standard deviation of monetary policy shock  \\ \hline
     $\sigma_u$ & 1 & standard deviation of cost-push shock   \\ \hline  
-    $\lambda_x$ & 0 & weight on the output gap in central bank loss   \\ \hline  
+    $\textcolor{blue}{\lambda_x}$ & 0 & weight on the output gap in central bank loss   \\ \hline  
     $\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
 \end{tabular}     
-      \caption{Calibrated parameters}  \label{calibration}
+      \caption{Calibrated parameters}  \label{calibration2}
  \end{table}
 \end{center}
 
@@ -521,9 +560,7 @@ The choice of $\bar{g}$ is far from innocent as it has considerable implications
 
 Unfortunately, the model gives no guidance on the appropriate value for $\bar{g}$.\footnote{The analogy of the Kalman gain from the Kalman filter does not prove helpful either because it requires a steady state forecast error variance matrix which is not available in a learning context.} I thus turn to the thin literature on estimating learning gains. I assign the value  0.145, obtained by \cite{carvalho2019anchored}, to my knowledge the only study to estimate the value of the constant gain for an endogenous gain model. It has to be observed, however, that this is a significantly higher value than what was found in the literature estimating gains for constant gain learning. \cite{branch2006simple}'s number of 0.062 is quite close to \cite{eusepi2018limits}'s estimate of 0.05, while \cite{milani2007expectations} finds an even lower number of 0.0183. Studies that use calibrated gains such as \cite{williams2003adaptive} or \cite{orphanides2005decline} tend to experiment with a range of values in the $[0.01,0.1]$ interval. The value of 0.05 seems to have attained particular prominence, but also much lower numbers have been used, such as 0.002 in \cite{eusepi2011expectations}. I speculate that \cite{carvalho2019anchored}'s estimate is so large relative to other estimates because they estimate a switching-gain model, while the rest of the estimates come from constant gain specifications. In an endogenous gain specification, data needs to assign a higher value to the constant gain parameter to rationalize the same average gain in the time series. With these caveats in mind, I adopt \cite{carvalho2019anchored}'s value.
 
-\subsubsection{Simulated dynamics}
-
-Having thus assigned values to the parameters, I turn to the model's behavior. Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient $\psi_{\pi}$, obtained via grid-search, for the rational expectations and anchoring models. The table also compares the baseline parameterization with several alternatives. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$) or the nominal interest rate ($\lambda_i =0$), $\psi_{\pi}^{RE}$ is infinity. As discussed in Section \ref{analytical}, this is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence doesn't hold does not pose a problem. Similarly, if the monetary authority is willing to allow the nominal interest rate to fluctuate vastly in order to stabilize inflation, this also allows the central bank to be infinitely aggressive on inflation. 
+Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient $\psi_{\pi}$, obtained via grid-search, for the rational expectations and anchoring models. The table also compares the baseline parameterization with several alternatives. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$) or the nominal interest rate ($\lambda_i =0$), $\psi_{\pi}^{RE}$ is infinity. As discussed in Section \ref{analytical}, this is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence doesn't hold does not pose a problem. Similarly, if the monetary authority is willing to allow the nominal interest rate to fluctuate vastly in order to stabilize inflation, this also allows the central bank to be infinitely aggressive on inflation. 
 
 \begin{center}
 \begin{table}[h!]
