@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -115,5 +115,5 @@ ybar = mean(Y);
 % sum of squared residuals:
 SSR = sum((Y-yhat).^2);
 % total sum of squares:
-SST = sum((Y-ybar).^2);
+SST = (Y-ybar).^
 R2 = 1 - SSR/SST;

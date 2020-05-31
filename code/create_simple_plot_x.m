@@ -39,7 +39,7 @@ elseif nargin > 1
     ax.FontSize = fs;
     grid on
     grid minor
-    legend(h,seriesnames)
+    legend(h,seriesnames, 'interpreter', 'latex' )
     title(figtitle, 'FontSize',fs)
 end
 
