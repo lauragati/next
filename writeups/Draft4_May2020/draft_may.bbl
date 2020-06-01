@@ -13,11 +13,23 @@ Ball, L. (1994).
 \newblock Credible disinflation with staggered price-setting.
 \newblock {\em The American Economic Review\/}~{\em 84\/}(1), 282--289.
 
+\bibitem[\protect\citeauthoryear{Beaudry and Portier}{Beaudry and
+  Portier}{2006}]{beaudry2006stock}
+Beaudry, P. and F.~Portier (2006).
+\newblock Stock prices, news, and economic fluctuations.
+\newblock {\em American Economic Review\/}~{\em 96\/}(4), 1293--1307.
+
 \bibitem[\protect\citeauthoryear{Branch and Evans}{Branch and
   Evans}{2006}]{branch2006simple}
 Branch, W.~A. and G.~W. Evans (2006).
 \newblock A simple recursive forecasting model.
 \newblock {\em Economics Letters\/}~{\em 91\/}(2), 158--166.
+
+\bibitem[\protect\citeauthoryear{Branch and Evans}{Branch and
+  Evans}{2011}]{Branch2011}
+Branch, W.~A. and G.~W. Evans (2011, Jun).
+\newblock Monetary policy and heterogeneous expectations.
+\newblock {\em Economic Theory\/}~{\em 47\/}(2), 365--393.
 
 \bibitem[\protect\citeauthoryear{Brown, Durbin, and Evans}{Brown
   et~al.}{1975}]{brown1975techniques}
@@ -37,6 +49,13 @@ Bullard, J. and K.~Mitra (2002).
 Calvo, G.~A. (1983).
 \newblock Staggered prices in a utility-maximizing framework.
 \newblock {\em Journal of monetary Economics\/}~{\em 12\/}(3), 383--398.
+
+\bibitem[\protect\citeauthoryear{Campbell, Evans, Fisher, and
+  Justiniano}{Campbell et~al.}{2012}]{campbell2012macroeconomic}
+Campbell, J.~R., C.~L. Evans, J.~D.~M. Fisher, and A.~Justiniano (2012).
+\newblock Macroeconomic effects of federal reserve forward guidance [with
+  comments and discussion].
+\newblock {\em Brookings Papers on Economic Activity\/}, 1--80.
 
 \bibitem[\protect\citeauthoryear{Carvalho, Eusepi, Moench, and
   Preston}{Carvalho et~al.}{2019}]{carvalho2019anchored}
@@ -119,6 +138,12 @@ Ireland, P.~N. (2000).
 \newblock Expectations, credibility, and time-consistent monetary policy.
 \newblock {\em Macroeconomic Dynamics\/}~{\em 4\/}(4), 448--466.
 
+\bibitem[\protect\citeauthoryear{Kydland and Prescott}{Kydland and
+  Prescott}{1977}]{kydland1977rules}
+Kydland, F.~E. and E.~C. Prescott (1977).
+\newblock Rules rather than discretion: The inconsistency of optimal plans.
+\newblock {\em Journal of political economy\/}~{\em 85\/}(3), 473--491.
+
 \bibitem[\protect\citeauthoryear{Lubik and Matthes}{Lubik and
   Matthes}{2016}]{LUBIK201685}
 Lubik, T.~A. and C.~Matthes (2016).
@@ -188,12 +213,6 @@ Sargent, T.~J. (1999).
 Svensson, L.~E. (1999).
 \newblock Inflation targeting as a monetary policy rule.
 \newblock {\em Journal of monetary economics\/}~{\em 43\/}(3), 607--654.
-
-\bibitem[\protect\citeauthoryear{Taylor}{Taylor}{1993}]{taylor1993discretion}
-Taylor, J.~B. (1993).
-\newblock Discretion versus policy rules in practice.
-\newblock In {\em Carnegie-Rochester conference series on public policy},
-  Volume~39, pp.\  195--214. Elsevier.
 
 \bibitem[\protect\citeauthoryear{Tversky and Kahneman}{Tversky and
   Kahneman}{1974}]{tversky1974judgment}
