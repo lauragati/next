@@ -120,9 +120,8 @@ SST = sum((Y-ybar).^2);
 R2 = 1 - SSR/SST;
 
 %% Check how k1 and pibar comove
-% remove the initial, negative pibar value
-X = [k1sim(2:end)', ssim(1,2:end)', ssim(3,2:end)'];
-Y = abs(pibsim(2:end)');
+X = [k1sim', ssim(1,:)', ssim(3,:)'];
+Y = abs(pibsim');
 bet_ols = (X'*X)^(-1)*(X'*Y);
 yhat = X*bet_ols;
 ybar = mean(Y);
