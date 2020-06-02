@@ -739,7 +739,11 @@ G_{t-1} & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(
 \end{align}
 
 \section{Alternative specifications for the anchoring function}\label{alternative_criteria}
-Specifications for $\mathbf{g}$. TO DO. \\
+The baseline specification of the anchoring function in the main text is given by Equation (\ref{smooth}), reproduced here for convenience:
+\begin{equation}
+k^{-1}_t  = \rho_k k^{-1}_{t-1} + \gamma_k fe_{t-1}^2 
+\end{equation}
+
 The only other paper to consider an endogenous gain as a model for anchored expectations is \cite{carvalho2019anchored}. In their model, the anchoring function is a discrete choice function as follows. Let $\theta_t$ be a criterion to be defined. Then, for a threshold value $\tilde{\theta}$, the gain evolves according to
 \begin{align*}
 k_t & = \begin{cases} k_{t-1}+1 \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}^{-1}  \quad \text{otherwise.}\numberthis \label{anchoring_kinked}
@@ -823,13 +827,39 @@ Interpretation: the anchoring constraint is not binding ($\varphi_{6,t}=0$) if t
 $\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0, \; \forall i$); or expectations are always anchored ($k_{t+j}^{-1}=0, \; \forall j$). 
 
 \section{Parameterized expectations algorithm (PEA)} \label{pea}
+The objective of the parameterized expectations algorithm is to solve for the sequence of interest rates that solves the model equations including the target criterion, representing the first-order condition of the Ramsey problem. For convenience, I list the model equations:
+\begin{align*}
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_{b,t} + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (\mathbb{I}_{nx} - \beta h_x)^{-1} s_t \label{A9} \numberthis \\
+\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_{a,t} + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (\mathbb{I}_{nx} - \alpha \beta h_x)^{-1}  s_t \label{A10} \numberthis\\
+f_{a,t} & = \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  + b(\mathbb{I}_{nx} - \alpha\beta h)^{-1}s_t \numberthis \\
+f_{b,t} & = \frac{1}{1-\beta}\bar{\pi}_{t-1}  + b(\mathbb{I}_{nx} - \beta h)^{-1}s_t  \label{A8} \numberthis \\
+ fe_{t|t-1} &  = \pi_t - (\bar{\pi}_{t-1}+b_1 s_{t-1}) \label{A7} \numberthis \\
+ k^{-1}_t & = \gamma_k fe_{t|t-1}^2 \numberthis  \\
+ \bar{\pi}_{t} &  = \bar{\pi}_{t-1} +k_t^{-1}fe_{t|t-1} \numberthis \\
+ \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\} \numberthis \label{B1}
+\end{align*}
+
+Denote the expectation on the right hand side of (\ref{B1}) as $E_t$. The idea of the PEA is to approximate this expectation and to solve model equations given the approximation $\hat{E}$. The algorithm is as follows:\footnote{For a thorough treatment of the PEA the interested reader is referred to \cite{christiano2000occasionally}.}
+\begin{enumerate}
+\item[Objective:] Obtain the sequence $\{i_t\}_{t=1}^T$ that solves Equations (\ref{A9}) - (\ref{B1}) for a a history of exogenous shocks $\{s_t\}_{t=1}^T$ of length $T$. 
+\item Conjecture an initial expectation $\hat{E}_t=\beta^0 s(X_t)$ \\
+The expectation is approximated as a projection on a basis, $s(X_t)$, where $\beta^0$ are initial projection coefficients, and $X_t = (k_t,\bar{\pi}_{t-1}, r^n_t, u_t)$ is the state vector. I use a monomial basis consisting of the first, second and third powers of $X_t$.
+\item Solve model equations given conjectured $\hat{E}_t$ for a given sequence of shocks $\{s_t\}_{t=1}^T$\\
+Compute residuals to the model equations (\ref{A9}) - (\ref{B1}) given $\{s_t\}_{t=1}^T$ and $\{\hat{E}_t\}_{t=1}^T$. Obtain a sequence $\{i_t\}_{t=1}^T$ that sets the residuals to zero. The output of this step is $\{v_t\}_{t=1}^T$, the simulated history of endogenous variables (\cite{christiano2000occasionally} refer to this as ``synthetic time series"). 
+\item Compute realized analogues to $\{E_t\}_{t=1}^T$ given $\{v_t\}_{t=1}^T$
+\item Update $\beta$ regressing the synthetic $E_t$ on $s(X_t)$.\\
+The coefficient update is $\beta^{i+1} = (s(X_t)'s(X_t))^{-1}s(X_t)'E_t$. Then iterate until convergence by evaluating at every step $||\beta^i-\beta^{i+1}||$.
+\end{enumerate}
 
 \section{Parameterized value function iteration} \label{vfi}
+This is an alternative approach I implement as a robustness check to the PEA. The objective is thus the same: to obtain the interest rate sequence that solves the model equations. The general value iteration approach is fairly standard, for which reason I refer to the \cite{judd1998numerical} textbook for details. Specific to my application is that the state vector is six-dimensional, $X_t = (k_t,\bar{\pi}_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})$, and I approximate the value function using a cubic spline. Thus the output of the algorithm is a cubic spline approximation of the value function and a policy function for each node on the grid of states. Next, I interpolate the policy function using a cubic spline. As a last step I pass the state vector from the PEA simulation, obtaining an interest rate sequence conditional on the history of states. Fig. \ref{compare_pea_vfi} shows the resulting interest rate sequence, obtained through the two approaches, conditional on two different simulated sequences for the states.
 
 \begin{figure}[h!]
 \subfigure[$X_1$]{\includegraphics[scale=0.2]{\myFigPath materials32_policy}}
 \subfigure[$X_2$]{\includegraphics[scale=0.2]{\myFigPath compare_value_pea_results_value_outputs_server32_accelerated_pea_outputs_30_May_2020_10_18_28}}
-\caption{Policy function for two particular histories of states, $X$}
+\caption{Policy function for two particular histories of states, $X$, solved using parameterized expectations (PEA) and parametric value function iteration (VFI)} 
+\label{compare_pea_vfi}
 \end{figure}
 
 \section{Oscillatory dynamics in adaptive learning models} \label{app_oscillations}
