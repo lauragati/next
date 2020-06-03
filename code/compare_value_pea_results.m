@@ -48,7 +48,9 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs.mat';
 % value_output_name = 'value_outputs_server.mat';
 % value_output_name = 'value_outputs_server32_accelerated';
-value_output_name = 'value_outputs_30_May_2020_10_42_12';
+% value_output_name = 'value_outputs_30_May_2020_10_42_12';
+% value_output_name = 'value_outputs_server02_Jun_2020_14_58_12'; % 8x8x2x2 grid - works! 90 min
+value_output_name = 'value_outputs_server02_Jun_2020_18_21_35'; %16x16x2x2 -works! grid 15 hours.
 load([value_output_name, '.mat'])
 
 pp     = value_sols{1};
