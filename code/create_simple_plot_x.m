@@ -15,7 +15,7 @@ end
 [fs, lw] = plot_configs;
 linestyles = {'-k','-','--', ':'};
 
-if nargin ==1
+if nargin ==2
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -25,9 +25,10 @@ if nargin ==1
     plot(x,zeros(1,T), 'k--', 'linewidth',lw)
     ax = gca; % current axes
     ax.FontSize = fs;
+    set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
-elseif nargin > 1
+else
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -37,9 +38,11 @@ elseif nargin > 1
     plot(x,zeros(1,T), 'k--', 'linewidth',lw)
     ax = gca; % current axes
     ax.FontSize = fs;
+    set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
-    legend(h,seriesnames, 'interpreter', 'latex' )
+    legend(h,seriesnames, 'interpreter', 'latex', 'FontSize',fs)
+    legend('boxoff')
     title(figtitle, 'FontSize',fs)
 end
 

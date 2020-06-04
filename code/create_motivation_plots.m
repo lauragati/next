@@ -12,8 +12,8 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 [fs, lw] = plot_configs;
 
-print_figs = 0;
-do_infl_exp =0; % this one take a couple of seconds extra for some reason
+print_figs = 1;
+do_infl_exp =1; % this one take a couple of seconds extra for some reason
 close_em =0;
 
 %% unemployment rate
@@ -28,12 +28,13 @@ time_urate = output.Data(:,1);
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_urate,urate, 'k', 'linewidth',lw)
+plot(time_urate,urate, 'linewidth',lw)
 ax = gca; % current axes
 ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
-datetick('x','yyyy-mm')
+datetick('x','yyyy-mm', 'keeplimits')
 if print_figs ==1
     figname = ['urate_', date_today]
     cd(figpath)
@@ -57,13 +58,14 @@ time_pce =time_pce(13:end);
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_pce,pi_pce, 'k', 'linewidth',lw); hold on
-plot(time_pce, 2*ones(length(pi_pce)), 'b--', 'linewidth',lw)
+plot(time_pce,pi_pce, 'linewidth',lw); hold on
+plot(time_pce, 2*ones(length(pi_pce)), 'k--', 'linewidth',lw)
 ax = gca; % current axes
 ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
-datetick('x','yyyy-mm')
+datetick('x','yyyy-mm', 'keeplimits')
 if print_figs ==1
     figname = ['pce_', date_today]
     cd(figpath)
@@ -83,12 +85,13 @@ time_fedfunds = output.Data(:,1);
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_fedfunds,ffr_t, 'k', 'linewidth',lw)
+plot(time_fedfunds,ffr_t, 'linewidth',lw)
 ax = gca; % current axes
 ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
-datetick('x','yyyy-mm')
+datetick('x','yyyy-mm', 'keeplimits')
 if print_figs ==1
     figname = ['frr_', date_today]
     cd(figpath)
@@ -109,7 +112,7 @@ if do_infl_exp==1
     
     obs_start= datenum(observation_start, 'yyyy-mm-dd');
     % observation_end   = datestr(today,'yyyy-mm-dd');
-    observation_end   = datestr(today-60,'yyyy-mm-dd');
+    observation_end   = datestr(today-63,'yyyy-mm-dd');
     obs_end= datenum(observation_end, 'yyyy-mm-dd');
     
     ind_start = find(time_epi==obs_start);
@@ -122,13 +125,14 @@ if do_infl_exp==1
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    plot(time_epi,epi, 'k', 'linewidth',lw); hold on
-    plot(time_epi, 2*ones(length(epi)), 'b--', 'linewidth',lw)
+    plot(time_epi,epi, 'linewidth',lw); hold on
+    plot(time_epi, 2*ones(length(epi)), 'k--', 'linewidth',lw)
     ax = gca; % current axes
     ax.FontSize = fs;
+    set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
-    datetick('x','yyyy-mm')
+    datetick('x','yyyy-mm', 'keeplimits')
     if print_figs ==1
         figname = ['epi10_', date_today]
         cd(figpath)

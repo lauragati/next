@@ -59,7 +59,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critsmooth;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
@@ -181,7 +181,7 @@ if plot_IRFs==1
         series(2,:,:) = iry';
         figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
         subplot_names = titles_obs;
-        legendnames = {'Learning', 'RE'};
+        legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
     end
@@ -195,7 +195,7 @@ if plot_simulated_sequence==1
     series(2,:,:) = y_RE(:,end-T_t:end)';
     figname = [this_code, '_', 'sim' shocknames{s}, '_', gain_name, '_', PLM_name , '_', relevant_params, '_', date_today];
     subplot_names = titles_obs;
-    legendnames = {'Learning', 'RE'};
+    legendnames = {'Anchoring', 'RE'};
     figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
     create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
 end
@@ -206,7 +206,7 @@ if plot_gains==1
     xseries=1:T;
     seriesnames = 'k^{-1}';
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
-    figtitle = ['Inverse gains ; ' , gain_title];
+    figtitle = ['Gains ; ' , gain_title];
     %     figtitle = '';
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end
@@ -218,7 +218,7 @@ if plot_gain_IRF==1
     xseries=1:h;
     seriesnames = '1/k';
     figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
-    figtitle = ['IRF Inverse gains ; ' , gain_title];
+    figtitle = ['IRF gains ; ' , gain_title];
     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 end
 
@@ -244,7 +244,7 @@ if plot_IRFs_anch==1
         figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
 %         figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', param_names_vals{1}, '_', date_today];
         subplot_names = titles_obs;
-        legendnames = {'Learning', 'RE'};
+        legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];
 %         figtitle = '';
         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)

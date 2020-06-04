@@ -135,8 +135,8 @@ This paper addresses the need for a theory of optimal monetary policy in an envi
 The main argument of the paper is that monetary policy optimally monitors and bases its actions on the time series of expected mean inflation.\footnote{By ``expected mean inflation'' I mean the private sector's expectation of where inflation will be on average over a longer period in the future. Therefore I also refer to this as ``long-run inflation expectations.''} Fig. \ref{epi} portrays this series for the last decade in the US. As the figure shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. Not only can rational expectations models not capture drifting long-run expectations, restricting them to lie at the deterministic steady state, but this feature also renders them unable to answer the question how monetary policy should respond to long-run expectations drifting away from the target, as on Fig. \ref{epi}.
 
 \begin{figure}[h!]
-\subfigure[Market-based inflation expectations, 10 year, average, \%]{\includegraphics[scale = \mySmallFigScale]{\myFigPath epi10_2020_02_09}}
-\caption{}
+\includegraphics[scale = \mySmallFigScale]{\myFigPath epi10_2020_06_04}
+\caption{Market-based inflation expectations, 10 year, average, \%}
 \label{epi}
 \end{figure}
 
@@ -476,8 +476,8 @@ X_t = (\bar{\pi}_{t-1}, k_{t-1}^{-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
 As a first step, I plot how the approximated policy function depends on $\bar{\pi}_{t-1}$ and $k_{t-1}^{-1}$, while keeping all the other states at their mean. One can thus interpret the result, depicted on Fig. \ref{di}, as a partial derivative of the interest rate with respect to $k_{t-1}^{-1}$ (panel (a)) and $\bar{\pi}_{t-1}$ (panel (b)) respectively.
 
 \begin{figure}[h!]
-\subfigure[]{\includegraphics[scale=0.17]{\myFigPath analyze_opt_policy_ik}}
-\subfigure[]{\includegraphics[scale=0.17]{\myFigPath analyze_opt_policy_ip}}
+\subfigure[$i(k^{-1})$]{\includegraphics[scale=0.17]{\myFigPath analyze_opt_policy_ik}}
+\subfigure[$i(\bar{\pi})$]{\includegraphics[scale=0.17]{\myFigPath analyze_opt_policy_ip}}
 \caption{Comparative statics: policy in function of the endogenous states}
 \label{di}
 \end{figure}
@@ -546,6 +546,7 @@ Unfortunately, the model gives no guidance on the appropriate value for $\bar{g}
 
 Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient $\psi_{\pi}$ for the rational expectations and anchoring models. The table also compares the baseline parameterization with several alternatives. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$) or the nominal interest rate ($\lambda_i =0$), $\psi_{\pi}^{RE}$ is infinity. This is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence is violated does not pose a problem. Similarly, if the monetary authority is willing to allow the nominal interest rate to fluctuate vastly in order to stabilize inflation, this also allows the central bank to be infinitely aggressive on inflation. 
 
+% CUSUM-criterion results
 \begin{center}
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }
@@ -556,11 +557,27 @@ Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient 
  $\lambda_i =1 $ &  1.1  & 1.0978 \\  \hline
 %  $\lambda_x =1, \lambda_i =1.6092 $ & $\infty$  &  1.1580 \\  \hline
 \end{tabular}     
-      \caption{Optimal coefficient on inflation, RE against learning for alternative parameters}  \label{par_opt}
+      \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  \label{par_opt}
  \end{table}
 \end{center}
 
-\vspace{-1.4cm}
+%% smooth criterion results
+%\begin{center}
+%\begin{table}[h!]
+%\begin{tabular}{ c | c | c }
+% & $\psi^{*,RE}_{\pi}$ & $\psi^{*,anchoring}_{\pi}$  \\  \hline
+%  Baseline  & $\infty$  & $\infty$ \\  \hline
+%%  $\psi_{x} =1$  & $\infty$  & 1 \\  \hline
+% $\lambda_x =1 $ & 1.0873  & 1.0063 \\  \hline
+% $\lambda_i =1 $ &  1  & 1 \\  \hline
+%%  $\lambda_x =1, \lambda_i =1.6092 $ & $\infty$  &  1.1580 \\  \hline
+%\end{tabular}     
+%      \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  \label{par_opt}
+% \end{table}
+%\end{center}
+
+\vspace{-0.8cm}
+
 The main observation however is that $\psi_{\pi}$ is always lower for the anchoring model than for the RE model. This is reinforced in Fig. \ref{fig_loss} which plots the central bank's loss in the RE and learning models for the baseline specification, with various values of $\psi_{\pi}$. The message is clear: while for rational expectations, the loss is strictly decreasing in $\psi_{\pi}$, this is not the case for the anchoring model. 
 
 This echoes the analytical results of Section \ref{implement}: the anchoring mechanism introduces an intertemporal cost-benefit tradeoff for the central bank. On the one hand, as we will see shortly in Fig. \ref{IRF}, having unanchored expectations increases the volatility of the observables. This results in the central bank wishing to anchor expectations. As Fig. \ref{anchor_psi} makes clear, this requires raising $\psi_{\pi}$. But in an environment where agents know the Taylor rule, a higher coefficient on inflation will lead to initially higher volatility due to agents anticipating the endogenous responses of the nominal interest rate far in the future.

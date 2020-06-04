@@ -1,0 +1,24 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Market-based inflation expectations, 10 year, average, \%\relax }}{1}{figure.caption.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$i(k^{-1})$}}}{1}{figure.caption.3}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$i(\mathaccentV {bar}016{\pi })$}}}{1}{figure.caption.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Simulation using a Taylor rule}}}{1}{figure.caption.4}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Simulation using optimal policy}}}{1}{figure.caption.4}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RE}}}{1}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Anchoring}}}{1}{figure.caption.5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {RE against anchoring, expectations anchored}}}{1}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {RE against anchoring, expectations unanchored}}}{1}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\psi _{\pi } = 1.01$}}}{1}{figure.caption.7}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\psi _{\pi } = 1.5$}}}{1}{figure.caption.7}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\psi _{\pi } = 2$}}}{1}{figure.caption.7}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$\psi _{\pi } = 1.01$}}}{1}{figure.caption.8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$\psi _{\pi } = 1.5$}}}{1}{figure.caption.8}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$\psi _{\pi } = 2$}}}{1}{figure.caption.8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$i(X_1)$}}}{1}{figure.caption.9}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$i(X_2)$}}}{1}{figure.caption.9}
+\contentsline {figure}{\numberline {2}{\ignorespaces Comparative statics: policy in function of the endogenous states\relax }}{2}{figure.caption.3}
+\contentsline {figure}{\numberline {3}{\ignorespaces \relax }}{3}{figure.caption.4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Central bank loss function as a function of $\psi _{\pi }$\relax }}{4}{figure.caption.5}
+\contentsline {figure}{\numberline {5}{\ignorespaces Impulse responses after a contractionary monetary policy shock\relax }}{4}{figure.caption.6}
+\contentsline {figure}{\numberline {6}{\ignorespaces Cross-sectional average gains for various values of $\psi _{\pi }$\relax }}{5}{figure.caption.7}
+\contentsline {figure}{\numberline {7}{\ignorespaces Impulse responses for unanchored expectations for various values of $\psi _{\pi }$\relax }}{6}{figure.caption.8}
+\contentsline {figure}{\numberline {8}{\ignorespaces Policy function for two particular histories of states, $X^{PEA}$\relax }}{7}{figure.caption.9}

@@ -38,12 +38,14 @@ slope_and_constant = 2;
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again_critCEMP  = 21;
 again_critCUSUM = 22;
+again_smooth = 23;
+
 cgain = 3;
 
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_critCUSUM;
+gain = again_smooth;
 %%%%%%%%%%%%%%%%%%%
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
@@ -64,8 +66,8 @@ tic
 % ub = [1.2,1];
 % lb = [1.01,-.01];
 varp0 = 1.5;
-ub = 2; % 1.5
-lb = 1.001;
+ub = 10; % 1.5
+lb = 1.00001;
 %Compute the objective function one time with some values
 loss = objective_CB(varp0,setp,eN,burnin,PLM,gain);
 
@@ -86,9 +88,9 @@ tic
 % varp0 = [1.19,0];
 % ub = [1.2,1];
 % lb = [1.01,-.01];
-varp0 = 1.01;
-ub = 10; % 1.5
-lb = 1.001;
+% varp0 = 1.5;
+% ub = 10; % 1.5
+% lb = 1.001;
 %Compute the objective function one time with some values
 loss = objective_CB_RE(varp0,setp,eN,burnin);
 

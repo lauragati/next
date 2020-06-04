@@ -1,10 +1,14 @@
-function [fs, lw, grey, silver, maroon, light_coral, light_salmon,dark_green, green, light_green, light_sky_blue, ...
-    teal, purple, saddle_brown, light_brown, fs_pres,lw_pres] = plot_configs
+function [fs, lw, textinterpreter, mathinterpreter, ...
+    fs_pres,lw_pres, ...
+    grey, silver, maroon, light_coral, light_salmon,dark_green, green, light_green, light_sky_blue, ...
+    teal, purple, saddle_brown, light_brown] = plot_configs
 
 fs=40; % fontsize
 lw=4; % linewidth
 fs_pres = 80; % versions for beamer presi
 lw_pres = 6;
+textinterpreter = 'latex';
+mathinterpreter = 'tex';
 
 % Some color spectra
 % grey color (divide by 255)

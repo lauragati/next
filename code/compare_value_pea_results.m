@@ -37,7 +37,7 @@ k1grid = linspace(0,gbar,nk);
 np = 4;
 % pgrid = linspace(-0.2,0.2,np);
 % pgrid = linspace(-10,10,np); % this fucker causes the difference!
-% pgrid = linspace(-4,4,np);
+pgrid = linspace(-4,4,np);
 
 
 ns = 2;
@@ -45,8 +45,8 @@ sgrid = linspace(-sig_r,sig_r,ns);
 p = 0.5;
 PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 
-% value_output_name = 'value_outputs.mat';
-% value_output_name = 'value_outputs_server.mat';
+% value_output_name = 'value_outputs';
+% value_output_name = 'value_outputs_server';
 % value_output_name = 'value_outputs_server32_accelerated';
 % value_output_name = 'value_outputs_30_May_2020_10_42_12';
 % value_output_name = 'value_outputs_server02_Jun_2020_14_58_12'; % 8x8x2x2 grid - works! 90 min
@@ -64,8 +64,9 @@ k1grid = value_sols{7};
 
 %%
 % take the history of states from parametric expectations
-pea_output_name = 'pea_outputs_30_May_2020_10_18_28';
-% load('inputs.mat')
+% pea_output_name = 'pea_outputs_29_May_2020_14_42_56'; %X1
+pea_output_name = 'pea_outputs_30_May_2020_10_18_28'; %X2
+% pea_output_name = 'inputs'; % X1
 load([pea_output_name, '.mat'])
 e = output{1};
 ysim7 = output{2};
@@ -73,6 +74,11 @@ k7    = output{3};
 phi7  = output{4};
 seq_opt = output{5};
 i_pe = seq_opt(3,:);
+
+% % save some nice plots for draft and prezis
+% create_pretty_subplots(ysim7,{'$\pi$', '$x$','$i$'}, 'implement_anchTC_obs', print_figs)
+% create_pretty_plot_x(1:length(k7),1./k7, 'implement_anchTC_invgain', print_figs)
+
 
 % compile state vector
 T=length(e)-2; % drop the first and last obs
@@ -87,4 +93,7 @@ ppi = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},it);
 i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
-create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', value_output_name, '_', pea_output_name],print_figs)
+% create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', value_output_name, '_', pea_output_name],print_figs)
+
+% Create pretty plots
+create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty'], print_figs)

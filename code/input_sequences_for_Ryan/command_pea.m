@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -86,6 +86,14 @@ n_inputs = sum(s_inputs); % the number of input series
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
 % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', 'implement_anchTC_obs_TR', print_figs)
 % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', 'implement_anchTC_invgain_TR', print_figs)
+
+% when saving to draft or presentations, use these 3 lines below
+% cd '/Users/lauragati/Dropbox/BC_Research/next/code'
+% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, 'implement_anchTC_obs_TR', print_figs)
+% create_pretty_plot_x(1:length(k0),1./k0, 'implement_anchTC_invgain_TR', print_figs)
+
+
+
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
 % just causes errors that by construction fsolve can't close

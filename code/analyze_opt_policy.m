@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -95,18 +95,21 @@ i_p = fnval(ppi,[k1mean;pibvals;smean;smean;smean;smean]);
 % requires tex interpreter
 
 
-create_simple_plot_x(k1vals,i_k,'$ i(k^{-1}) $','',[this_code, '_ik'],print_figs)
-create_simple_plot_x(pibvals,i_p,'$ i(\bar{\pi}) $','',[this_code, '_ip'],print_figs)
+% create_simple_plot_x(k1vals,i_k,'$ i(k^{-1}) $','',[this_code, '_ik'],print_figs)
+% create_simple_plot_x(pibvals,i_p,'$ i(\bar{\pi}) $','',[this_code, '_ip'],print_figs)
+create_pretty_plot_x(k1vals,i_k,[this_code, '_ik'],print_figs)
+create_pretty_plot_x(pibvals,i_p,[this_code, '_ip'],print_figs)
 
 % % Let's do a getting unanchored scenario towards inflation and deflation
 % pibvals = linspace(0,0.05,n);
 % i_unanch1 = fnval(ppi,[k1vals;pibvals;smean;smean;smean;smean]);
 % create_simple_plot_x(pibvals,i_unanch1,'$i$','',[this_code, '_unanch_inf'],print_figs)
-% 
+%
 % pibvals = linspace(0,-0.05,n);
 % i_unanch2 = fnval(ppi,[k1vals;pibvals;smean;smean;smean;smean]);
 % create_simple_plot_x(pibvals,i_unanch2,'$i$','',[this_code, '_unanch_def'],print_figs)
 
+return
 %% Regress i on pi and x
 X = [ysim7(1,2:end-1); ysim7(2,2:end-1)]';
 Y = i_pe';

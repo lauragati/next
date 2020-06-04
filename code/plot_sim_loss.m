@@ -41,6 +41,8 @@ slope_and_constant = 2;
 dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
 again_critCEMP  = 21;
 again_critCUSUM = 22;
+again_smooth = 23;
+
 cgain = 3;
 
 % Model selection
@@ -101,4 +103,11 @@ yseries=loss_RE;
 seriesnames = 'Loss RE';
 figname = [this_code, '_', 'loss','_', 'RE', '_',relevant_params, '_', date_today];
 figtitle = ['CB loss as a function of \psi_{\pi} ; ' , ' RE'];
-create_plot(xseries,yseries,figname,print_figs,figtitle)
+create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
+
+%% Pretty plots for draft or prezi
+figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+create_pretty_plot_x(xseries, loss,figname,print_figs)
+
+figname = [this_code, '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
