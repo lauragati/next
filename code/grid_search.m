@@ -45,7 +45,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only;
-gain = again_smooth;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 

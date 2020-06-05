@@ -150,6 +150,7 @@ bottom=1in}
 \label{pea_TCvsTR}
 \end{figure}
 
+\clearpage
 \begin{figure}[h!]
 \subfigure[RE]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
 \subfigure[Anchoring]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
@@ -158,6 +159,24 @@ bottom=1in}
 \label{fig_loss}
 \end{figure}
 
+% relabel the fig number so we keep the numbering of the draft
+\renewcommand{\thefigure}{4.2}
+
+\begin{figure}[h!]
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\caption{Central bank loss function as a function of $\psi_{\pi}$}
+\floatfoot{Sample length is $T=400$ with a cross-section of $N=100$.}
+\label{fig_loss}
+\end{figure}
+
+Note: Loss is computed for various values of $\psi_{\pi}$ when $\psi_x = 0, \lambda_x=\lambda_i=0$ and for the CUSUM-criterion with parameters $\tilde{\kappa}=0.8, \tilde{\theta} = 4$. $T=400, N=100, n_{burn-in}=0$
+
+\clearpage
+% set the figure counter back so we resume counting where we left off
+\setcounter{figure}{4}
+\renewcommand{\thefigure}{\arabic{figure}}
+
 \begin{figure}[h!]
 \subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constant_only_2020_02_10}}
 \subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10}}
@@ -165,6 +184,21 @@ bottom=1in}
 \floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 100 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$. For the rest of the section, I keep these simulation values unless otherwise stated. For the anchoring model, the remark refers to whether expectations are anchored at the time the shock hits.}
 \label{IRF}
 \end{figure}
+
+% relabel the fig number so we keep the numbering of the draft
+\renewcommand{\thefigure}{5.2}
+
+\begin{figure}[h!]
+\subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\caption{Impulse responses after a contractionary monetary policy shock}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$. For the anchoring model, the remark refers to whether expectations are anchored at the time the shock hits.}
+\label{IRF}
+\end{figure}
+
+% set the figure counter back so we resume counting where we left off
+\setcounter{figure}{5}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{figure}[h!]
 \subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
@@ -175,6 +209,21 @@ bottom=1in}
 \label{anchor_psi}
 \end{figure}
 
+% relabel the fig number so we keep the numbering of the draft
+\renewcommand{\thefigure}{6.2}
+
+\begin{figure}[h!]
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\caption{Cross-sectional average gains for various values of $\psi_{\pi}$}
+\floatfoot{Sample length is $T=400$ (with 5 initial burn-in periods), cross-section size is $N=1000$.}
+\label{anchor_psi}
+\end{figure}
+
+% set the figure counter back so we resume counting where we left off
+\setcounter{figure}{6}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{figure}[h!]
 \subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10}}
@@ -184,6 +233,23 @@ bottom=1in}
 \floatfoot{}
 \label{IRF_unanchored_psi}
 \end{figure}
+
+
+% relabel the fig number so we keep the numbering of the draft
+\renewcommand{\thefigure}{7.2}
+
+\begin{figure}[h!]
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
+\label{IRF_unanchored_psi}
+\end{figure}
+
+% set the figure counter back so we resume counting where we left off
+\setcounter{figure}{7}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{figure}[h!]
 \subfigure[$i(X_1)$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath compare_value_pea_results_value_outputs_server_inputs_pretty}} % original was: materials32_policy

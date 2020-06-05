@@ -134,7 +134,7 @@ for t = 1:T-1
     
     %Simulate transition with shock
     %%% here is the addition of the impulse
-    if t+1==dt
+    if t+1==dt+ndrop
         e(:,t+1) = e(:,t+1)+x0';
     end
     %%%

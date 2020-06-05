@@ -15,7 +15,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -65,8 +65,8 @@ gain = again_critCUSUM;
 
 T = 400 % 400
 % Size of cross-section
-N = 100 %100, 500
-burnin = 0; % 100
+N = 1000 %100, 500, 1000
+burnin = 5; % 100, 0
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 
@@ -112,6 +112,7 @@ for s=2  %2->zoom in on monetary policy shock
         % Learning
 %         dbstop in sim_learnLH at 116 if t>=4
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+%         [x_LH, y_LH, k(:,n), ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+burnin,burnin,e);
         
         % Shocked
         % RE
@@ -206,7 +207,7 @@ if plot_gains==1
     yseries=mean(1./k,2)';
     xseries=1:T;
     seriesnames = 'k^{-1}';
-    figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
+    figname = [this_code, '_', 'invgain','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
     figtitle = ['Gains ; ' , gain_title];
     %     figtitle = '';
 %     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
@@ -233,7 +234,9 @@ if plot_IRFs_anch==1
         % 5) IRF: OBSERVABLES LH against RE, anchored
         series1 = RIR_anch(:,:,t);
         series2 = iry;
-        figname = [this_code, '_', 'RIR_LH_anch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+        figname = [this_code, '_', 'RIR_LH_anch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', ...
+            'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(burnin),'_', ...
+            relevant_params, '_date_',date_today];
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', anchored'];
@@ -245,7 +248,9 @@ if plot_IRFs_anch==1
         % 6) IRF: OBSERVABLES LH against RE, unanchored
         series1 = RIR_unanch(:,:,t);
         series2 = iry;
-        figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
+        figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', ...
+            'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(burnin),'_', ...
+            relevant_params, '_date_',date_today];
 %         figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', param_names_vals{1}, '_', date_today];
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};

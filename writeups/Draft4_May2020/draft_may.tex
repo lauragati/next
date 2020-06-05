@@ -524,7 +524,7 @@ For the simulations in this section, I use the discrete CUSUM-inspired anchoring
  $\bar{g}$ & $0.145$  & \textcolor{blue}{value of the constant gain} \\\hline
 & & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
  $\textcolor{blue}{\tilde{\theta}}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline
-  $\textcolor{blue}{\tilde{\kappa}}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline
+  $\textcolor{blue}{\tilde{\kappa}}$ &  0.8  & scaling parameter of gain for forecast error variance estimation \\ \hline
     $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline
     $\textcolor{blue}{\rho_i}$ & 0.6 &  persistence of monetary policy shock  \\ \hline
     $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
@@ -546,15 +546,30 @@ Unfortunately, the model gives no guidance on the appropriate value for $\bar{g}
 
 Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient $\psi_{\pi}$ for the rational expectations and anchoring models. The table also compares the baseline parameterization with several alternatives. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$) or the nominal interest rate ($\lambda_i =0$), $\psi_{\pi}^{RE}$ is infinity. This is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence is violated does not pose a problem. Similarly, if the monetary authority is willing to allow the nominal interest rate to fluctuate vastly in order to stabilize inflation, this also allows the central bank to be infinitely aggressive on inflation. 
 
-% CUSUM-criterion results
+%% CUSUM-criterion results, old
+%\begin{center}
+%\begin{table}[h!]
+%\begin{tabular}{ c | c | c }
+% & $\psi^{*,RE}_{\pi}$ & $\psi^{*,anchoring}_{\pi}$  \\  \hline
+%  Baseline  & $\infty$  & 1.6243 \\  \hline
+%%  $\psi_{x} =1$  & $\infty$  & 1 \\  \hline
+% $\lambda_x =1 $ & 2.1042  & 1.0571 \\  \hline
+% $\lambda_i =1 $ &  1.1  & 1.0978 \\  \hline
+%%  $\lambda_x =1, \lambda_i =1.6092 $ & $\infty$  &  1.1580 \\  \hline
+%\end{tabular}     
+%      \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  \label{par_opt}
+% \end{table}
+%\end{center}
+
+% CUSUM-criterion results, 5 June 2020
 \begin{center}
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }
  & $\psi^{*,RE}_{\pi}$ & $\psi^{*,anchoring}_{\pi}$  \\  \hline
-  Baseline  & $\infty$  & 1.6243 \\  \hline
+  Baseline  & $\infty$  & 1.0228 \\  \hline
 %  $\psi_{x} =1$  & $\infty$  & 1 \\  \hline
- $\lambda_x =1 $ & 2.1042  & 1.0571 \\  \hline
- $\lambda_i =1 $ &  1.1  & 1.0978 \\  \hline
+ $\lambda_x =1 $ & 1.1284  & 1.0046 \\  \hline
+ $\lambda_i =1 $ &  1  & 1.019 \\  \hline
 %  $\lambda_x =1, \lambda_i =1.6092 $ & $\infty$  &  1.1580 \\  \hline
 \end{tabular}     
       \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  \label{par_opt}
@@ -578,48 +593,84 @@ Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient 
 
 \vspace{-0.8cm}
 
-The main observation however is that $\psi_{\pi}$ is always lower for the anchoring model than for the RE model. This is reinforced in Fig. \ref{fig_loss} which plots the central bank's loss in the RE and learning models for the baseline specification, with various values of $\psi_{\pi}$. The message is clear: while for rational expectations, the loss is strictly decreasing in $\psi_{\pi}$, this is not the case for the anchoring model. 
+The main observation however is that $\psi_{\pi}$ is tendentially lower for the anchoring model than for the RE model. In particular, even absent a concern for interest rate stabilization ($\lambda_i = 0$), it is not optimal in the anchoring model to be infinitely aggressive on inflation. This is reinforced in Fig. \ref{fig_loss} which plots the central bank's loss in the RE and learning models for the baseline specification, with various values of $\psi_{\pi}$. The message is clear: while for rational expectations, the loss is strictly decreasing in $\psi_{\pi}$, this is not the case for the anchoring model. 
 
 This echoes the analytical results of Section \ref{implement}: the anchoring mechanism introduces an intertemporal cost-benefit tradeoff for the central bank. On the one hand, as we will see shortly in Fig. \ref{IRF}, having unanchored expectations increases the volatility of the observables. This results in the central bank wishing to anchor expectations. As Fig. \ref{anchor_psi} makes clear, this requires raising $\psi_{\pi}$. But in an environment where agents know the Taylor rule, a higher coefficient on inflation will lead to initially higher volatility due to agents anticipating the endogenous responses of the nominal interest rate far in the future.
+%\begin{figure}[h!]
+%\subfigure[RE]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+%\subfigure[Anchoring]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+%\caption{Central bank loss function as a function of $\psi_{\pi}$}
+%\floatfoot{}
+%\label{fig_loss}
+%\end{figure}
+
 \begin{figure}[h!]
-\subfigure[RE]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
-\subfigure[Anchoring]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
 \caption{Central bank loss function as a function of $\psi_{\pi}$}
-\floatfoot{}
+\floatfoot{Sample length is $T=400$ with a cross-section of $N=100$.}
 \label{fig_loss}
 \end{figure}
 
 To understand where the intertemporal volatility tradeoff is coming from, consider Fig. \ref{IRF}, portraying the impulse responses of the model after a contractionary monetary policy shock. The red dashed lines show the responses of the observables in the rational expectations version of the model. The blue lines show the responses in the learning model, on panel (a) conditional on expectations being anchored when the shock hits, on panel (b) being unanchored upon the arrival of the shock. 
+%\begin{figure}[h!]
+%\subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constant_only_2020_02_10}}
+%\subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10}}
+%\caption{Impulse responses after a contractionary monetary policy shock}
+%\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 100 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$. For the rest of the section, I keep these simulation values unless otherwise stated. For the anchoring model, the remark refers to whether expectations are anchored at the time the shock hits.}
+%\label{IRF}
+%\end{figure}
+
 \begin{figure}[h!]
-\subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_anchmonpol_again_critCUSUM_constant_only_2020_02_10}}
-\subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanchmonpol_again_critCUSUM_constant_only_2020_02_10}}
+\subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
 \caption{Impulse responses after a contractionary monetary policy shock}
-\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 100 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$. For the rest of the section, I keep these simulation values unless otherwise stated. For the anchoring model, the remark refers to whether expectations are anchored at the time the shock hits.}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$. For the anchoring model, the remark refers to whether expectations are anchored at the time the shock hits.}
 \label{IRF}
 \end{figure}
 
 Not only do the impulse responses show the usual behavior of learning models - dampened responses and increased persistence. More importantly, responses differ strongly depending on whether expectations are anchored or not when the shock hits. In particular, if expectations are anchored, responses are closer to rational expectations than when expectations are unanchored. Moreover, when expectations are unanchored, the endogenous responses of the observables become much more volatile, indeed, oscillatory\footnote{See App. \ref{app_oscillations} for an explanation of how forecast errors are responsible for the oscillatory dynamics.}. This makes intuitive sense: expectations being unanchored reflects the fact that firms and households are confronted with an environment that does not line up with their currently held perceived law of motion. They thus believe that a structural change has occurred and are therefore revising their expectations. Expectations are therefore fluctuating strongly, and as they feed back to the observables, the latter inherit their volatility. 
 
+%\begin{figure}[h!]
+%\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+%\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+%\caption{Cross-sectional average gains for various values of $\psi_{\pi}$}
+%\floatfoot{}
+%\label{anchor_psi}
+%\end{figure}
+
 \begin{figure}[h!]
-\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
-\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
-\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_loss_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.14]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.14]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.14]{\myFigPath command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}}
 \caption{Cross-sectional average gains for various values of $\psi_{\pi}$}
-\floatfoot{}
+\floatfoot{Sample length is $T=400$ (with 5 initial burn-in periods), cross-section size is $N=1000$.}
 \label{anchor_psi}
 \end{figure}
+
+
 Therefore, to avoid the volatility that results from unanchored expectations, the central bank wishes to anchor expectations. What choice of $\psi_{\pi}$ will do the job? Fig. \ref{anchor_psi} provides the answer. The figure shows the cross-sectional average of gains that result when $\psi_{\pi}$ takes on different values. Clearly, a higher $\psi_{\pi}$ results in lower and decreasing gains.\footnote{As I remark in App. \ref{alternative_criteria}, if one uses the anchoring function of \cite{carvalho2019anchored}, this conclusion is overturned.} Thus a central bank aiming to anchor expectations needs to employ a high $\psi_{\pi}$. 
 
 This is also intuitive. A more aggressive central bank can signal to the public that it is determined to achieve the announced inflation target. Thus agents can rest assured that their believed inflation target is indeed the one the central bank can and will implement. Whenever $\psi_{\pi}$ is low, however, the central bank is willing to tolerate bigger deviations from the target. This opens the door to speculation about whether the central bank is really committed to the target. In this case, deviations from the believed target of the same magnitude can cast doubt on the central bank's commitment, so that agents decide to monitor recent data closely to learn the seemingly shifting long-run mean of inflation.
 
 But if unanchored expectations cause heightened volatility, and being aggressive on inflation is able to anchor expectations, why does the monetary authority optimally choose a lower value for $\psi_{\pi}$ than under rational expectations? The reason is that conditional on being unanchored, a higher $\psi_{\pi}$ actually causes higher volatility than a lower one. This can be seen on Fig. \ref{IRF_unanchored_psi} which depicts the same impulse responses to a contractionary monetary policy shock as Fig. \ref{IRF}, focusing however only on responses conditional on expectations being unanchored upon the shock. It shows these responses for three different values of $\psi_{\pi}$.
 
+%\begin{figure}[h!]
+%\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10}}
+%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_5_2020_02_10}}
+%\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_2_2020_02_10}}
+%\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
+%\floatfoot{}
+%\label{IRF_unanchored_psi}
+%\end{figure}
+
 \begin{figure}[h!]
-\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_01_2020_02_10}}
-\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_1_5_2020_02_10}}
-\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_IRFs_anchoring_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_psi_pi_2_2020_02_10}}
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.20]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.20]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.20]{\myFigPath command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}}
 \caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
-\floatfoot{}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
 \label{IRF_unanchored_psi}
 \end{figure}
 
@@ -844,10 +895,9 @@ The coefficient update is $\beta^{i+1} = (s(X_t)'s(X_t))^{-1}s(X_t)'E_t$. Then i
 This is an alternative approach I implement as a robustness check to the PEA. The objective is thus the same: to obtain the interest rate sequence that solves the model equations. The general value iteration approach is fairly standard, for which reason I refer to the \cite{judd1998numerical} textbook for details. Specific to my application is that the state vector is six-dimensional, $X_t = (k_t,\bar{\pi}_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})$, and I approximate the value function using a cubic spline. Thus the output of the algorithm is a cubic spline approximation of the value function and a policy function for each node on the grid of states. Next, I interpolate the policy function using a cubic spline. As a last step I pass the state vector from the PEA simulation, obtaining an interest rate sequence conditional on the history of states. Fig. \ref{compare_pea_vfi} shows the resulting interest rate sequence, obtained through the two approaches, conditional on two different simulated sequences for the states.
 
 \begin{figure}[h!]
-\subfigure[$X_1$]{\includegraphics[scale=0.2]{\myFigPath materials32_policy}}
-\subfigure[$X_2$]{\includegraphics[scale=0.2]{\myFigPath compare_value_pea_results_value_outputs_server32_accelerated_pea_outputs_30_May_2020_10_18_28}}
-\caption{Policy function for two particular histories of states, $X$, solved using parameterized expectations (PEA) and parametric value function iteration (VFI)} 
-\label{compare_pea_vfi}
+\subfigure[$i(X_1)$]{\includegraphics[scale=0.2]{\myFigPath compare_value_pea_results_value_outputs_server_inputs_pretty}} % original was: materials32_policy
+\subfigure[$i(X_2)$]{\includegraphics[scale=0.2]{\myFigPath compare_value_pea_results_value_outputs_server02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty}}
+\caption{Policy function for two particular histories of states, $X^{PEA}$}
 \end{figure}
 
 \section{Oscillatory dynamics in adaptive learning models} \label{app_oscillations}

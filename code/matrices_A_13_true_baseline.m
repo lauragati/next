@@ -19,7 +19,7 @@ sig_r = param.sig_r;
 sig_i = param.sig_i;
 sig_u = param.sig_u;
 rho = param.rho;
-gam = param.gam;
+% gam = param.gam;
 nx= size(hx,1); 
 
 % transform these two to be compatible with Mathematica

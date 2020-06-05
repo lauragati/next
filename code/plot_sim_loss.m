@@ -106,8 +106,10 @@ figtitle = ['CB loss as a function of \psi_{\pi} ; ' , ' RE'];
 create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
 
 %% Pretty plots for draft or prezi
-figname = [this_code, '_', 'loss','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+figname = [this_code,'_pretty', '_', 'loss','_', gain_name, '_', PLM_name , '_', ...
+            'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(burnin),'_', ...
+            relevant_params, '_date_',date_today];
 create_pretty_plot_x(xseries, loss,figname,print_figs)
 
-figname = [this_code, '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+figname = [this_code, '_pretty', '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
 create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
