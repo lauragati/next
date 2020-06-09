@@ -15,7 +15,7 @@ date_today = strrep(datestr(today, 'yyyy-mm-dd'), '-','_');
 
 % % Add all the relevant paths and grab the codename
 this_code = mfilename;
-[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path,inputsRyan_path] = add_paths;
 
 % Variable stuff ---
 print_figs        = 0;

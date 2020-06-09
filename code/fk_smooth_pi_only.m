@@ -2,8 +2,8 @@
 % Still isn't working great.
 % 19 March 2020
 function [k, g_pi, g_pibar] = fk_smooth_pi_only(param,fe, kt_1)
-d=param.d;
-c=param.c;
+% d=param.d;
+% c=param.c;
 rho_k = param.rho_k;
 gam_k = param.gam_k;
 
