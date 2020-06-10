@@ -34,7 +34,7 @@ clc
 
 % Add all the relevant paths and grab the codename
 this_code = mfilename;
-[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path,inputsRyan_path] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
@@ -50,8 +50,8 @@ if redo_data_load_and_bootstrap==1 % takes about 140 sec
     % Suppose we have real data (in logs)
     y_data = get_data;
     [ny,T] = size(y_data)
-      
-    % Filter both using the same filter, at this point only the data
+    
+    % Filter the data
     % HP filter
     g_data = nan(size(y_data));
     c_data = nan(size(y_data));
@@ -100,7 +100,6 @@ if redo_data_load_and_bootstrap==1 % takes about 140 sec
     c = B(1,:); % coefficients of the constant
     PHI = B(2:end,:)';
     F = [PHI; [eye(ny*(p-1)), zeros(ny*(p-1),ny)]];
-    v = [res'; zeros(ny*(p-1),size(res',2))];
     Q = [[sigma, zeros(ny,ny*(p-1))]; zeros(ny*(p-1),ny*p)];
     % check sizes
     np = ny*p;
@@ -190,6 +189,7 @@ ny = acf_outputs{3};
 p = acf_outputs{4};
 K = acf_outputs{5};
 filt_data = acf_outputs{6};
+T = length(filt_data);
 
 % weighting matrix for GMM
 % note: 2nd argument of var(X,W,DIM) signifies whether to normalize by N-1
@@ -198,22 +198,80 @@ filt_data = acf_outputs{6};
 W = diag(var(Om_boot,0,2));
 W1 = W^(-1);
 
-% Fmincon 
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
+ne = 3;
+
+% Params for the general learning code
+constant_only = 1; % learning constant only
+constant_only_pi_only = 11; % learning constant only, inflation only
+mean_only_PLM = -1;
+slope_and_constant = 2;
+
+dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
+again_critCEMP  = 21;
+again_critCUSUM = 22;
+again_critsmooth = 23;
+cgain = 3;
+
+% Model selection
+%%%%%%%%%%%%%%%%%%%
+PLM = constant_only;
+gain = again_critsmooth;
+%%%%%%%%%%%%%%%%%%%
+
+% Size of cross-section
+% we're not doing a whole cross-section here
+ndrop = 100; % 100
+
+% gen all the N sequences of shocks at once.
+rng(0)
+e = randn(ne,T+ndrop);
+
+% Fmincon
 %Optimization Parameters
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
-coeffs0 = [10,10];
-ub = [];
-lb = [];
-% %Compute the objective function one time with some values
-loss = obj_GMM_LOMgain(varp0,set,eN,T,N,burnin,PLM,gain, vec(acf_data),W1);
+% Do an initial approx of the anchoring function to initialize the coeffs
+ng = 10;
+% grids for k^(-1)_{t-1} and f_{t|t-1}
+k1grid = linspace(0.001,param.gbar,ng);
+fegrid = linspace(-5,5,ng);
+% values for k^{-1}_t for the grid
+k = zeros(ng,ng);
+for i=1:ng
+    for j=1:ng
+        k(i,j) = fk_smooth_pi_only(param,fegrid(j), 1./k1grid(i));
+    end
+end
+k1 = 1./k;
+% map to ndim_simplex
+x = cell(2,1);
+x{1} = k1grid;
+x{2} = fegrid;
+[xxgrid, yygrid] = meshgrid(k1grid,fegrid);
+alph = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
+% just a check for use
+xx = [k1grid(1); fegrid(1)];
+out = ndim_simplex_eval(x,xx,alph);
+if out==k1(1)
+    disp('bingo')
+end
 
-return
+alph0 = alph;
+ub = alph0+0.1;
+lb = alph0-0.1;
+% %Compute the objective function one time with some values
+loss = obj_GMM_LOMgain(alph0,x,param,e,T,ndrop,PLM,gain,Om,W1);
+
+
 tic
 %Declare a function handle for optimization problem
-objh = @(coeffs) obj_GMM_LOMgain(coeffs,set,eN,T,N,burnin,PLM,gain, Om,W1);
-[par_opt, loss_opt] = fmincon(objh, coeffs, [],[],[],[],lb,ub,[],options);
+objh = @(alph) obj_GMM_LOMgain(alph,x,param,e,T,ndrop,PLM,gain,Om,W1);
+[alph_opt, loss_opt] = fmincon(objh, alph0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
+
+alph0-alph_opt
+
 

@@ -1,7 +1,6 @@
-function loss = obj_GMM_LOMgain(coeffs,param,e,T,ndrop,PLM,gain, Om_data, W1)
-
-% Replace the estimated parameters with the new guess
-pp.coefs = coeffs;
+function loss = obj_GMM_LOMgain(alph,x,param,e,T,ndrop,PLM,gain, Om_data, W1)
+% alph are the coefficients, x is the grid
+% 9 June 2020
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;
@@ -11,12 +10,12 @@ sig_u = param.sig_u;
 [fyn, fxn, fypn, fxpn] = model_NK(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-[Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
 % Simulate data given parameters
-[~, y] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e);
+[~, y] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e);
 
 % Filter the simulated data
 % % 1) HP filter
@@ -47,9 +46,10 @@ filt=ystar;
 % 0,1,...,K
 K=4;
 % Take the initial data, estimate a VAR
-max_lags = 16;
-[AIC,BIC,HQ] = aic_bic_hq(filt',max_lags);
-p =min([AIC,BIC,HQ]);
+max_lags = 6;
+% [AIC,BIC,HQ] = aic_bic_hq(filt',max_lags);
+% p =min([AIC,BIC,HQ]);
+p = 1;
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
 [A,B,res,sigma] = sr_var(filt', p);

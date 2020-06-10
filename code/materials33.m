@@ -232,17 +232,46 @@ e = randn(ne,T+ndrop);
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
-coeffs0 = [10,10];
-ub = [];
-lb = [];
-% %Compute the objective function one time with some values
-loss = obj_GMM_LOMgain(coeffs0,param,e,T,ndrop,PLM,gain,Om,W1);
+% Do an initial approx of the anchoring function to initialize the coeffs
+ng = 10;
+% grids for k^(-1)_{t-1} and f_{t|t-1}
+k1grid = linspace(0.001,param.gbar,ng);
+fegrid = linspace(-5,5,ng);
+% values for k^{-1}_t for the grid
+k = zeros(ng,ng);
+for i=1:ng
+    for j=1:ng
+        k(i,j) = fk_smooth_pi_only(param,fegrid(j), 1./k1grid(i));
+    end
+end
+k1 = 1./k;
+% map to ndim_simplex
+x = cell(2,1);
+x{1} = k1grid;
+x{2} = fegrid;
+[xxgrid, yygrid] = meshgrid(k1grid,fegrid);
+alph = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
+% just a check for use
+xx = [k1grid(1); fegrid(1)];
+out = ndim_simplex_eval(x,xx,alph);
+if out==k1(1)
+    disp('bingo')
+end
 
-return
+alph0 = alph;
+ub = alph0+0.1;
+lb = alph0-0.1;
+% %Compute the objective function one time with some values
+loss = obj_GMM_LOMgain(alph0,x,param,e,T,ndrop,PLM,gain,Om,W1);
+
+
 tic
 %Declare a function handle for optimization problem
-objh = @(coeffs) obj_GMM_LOMgain(coeffs,param,e,T,burnin,PLM,gain,Om,W1);
-[par_opt, loss_opt] = fmincon(objh, coeffs, [],[],[],[],lb,ub,[],options);
+objh = @(alph) obj_GMM_LOMgain(alph,x,param,e,T,ndrop,PLM,gain,Om,W1);
+[alph_opt, loss_opt] = fmincon(objh, alph0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
+
+alph0-alph_opt
+
 

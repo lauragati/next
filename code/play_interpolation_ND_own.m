@@ -60,6 +60,39 @@ mesh(XXe,YYe,fhat3)
 title('Spline with "csapi"')
 sgtitle('Original approximand with Matlab-internal approximation')
 
+%% Let's try spapi, my hope for shape-preserving ND interpolation
+% For spapi, you can define the order of the interpolating polynomial in
+% each dimension (first cell argument)
+pp = spapi({3,3},{Xq,Yq},fq);
+fhat4 = fnval(pp,{Xe,Ye});
+
+% let's do a piece-wise linear
+pp = spapi({2,2},{Xq,Yq},fq);
+fhat5 = fnval(pp,{Xe,Ye});
+
+% create spline from scratch
+knots = pp.knots;
+coefs = pp.coefs;
+% orders along all dimensions are inferred as
+order1 = length(knots{1})-size(squeeze(coefs),1)
+order2 = length(knots{2})-size(squeeze(coefs),2)
+sizec = [order1, order2];
+sp = spmak(knots,squeeze(coefs)); % somehow, supplying sizec doesn't work
+
+
+figure
+subplot(1,3,1)
+mesh(XXe,YYe,f)
+title('Approximand')
+subplot(1,3,2)
+mesh(XXe,YYe,fhat4)
+title('Cubic')
+subplot(1,3,3)
+mesh(XXe,YYe,fhat4)
+title('Piecewise linear')
+sgtitle('spapi')
+
+return
 %% ndim_simplex
 Xgrid =cell(ndim,1); % (ndim*1) cell array storing the (1*Nx) and (1*Ny) grid points
 Xgrid{1} = Xq;
@@ -88,6 +121,34 @@ mesh(XXe,YYe,f)
 subplot(1,2,2)
 mesh(XXq,YYq,fq_Ryan)
 sgtitle('ndim\_simplex - workin y''all')
+
+return
+%% A nice little play with ndim_simplex (see Materials 33)
+% Do an initial approx of the anchoring function to initialize the coeffs
+ng = 10;
+% grids for k^(-1)_{t-1} and f_{t|t-1}
+k1grid = linspace(0.001,param.gbar,ng);
+fegrid = linspace(-5,5,ng);
+% values for k^{-1}_t for the grid
+k = zeros(ng,ng);
+for i=1:ng
+    for j=1:ng
+        k(i,j) = fk_smooth_pi_only(param,fegrid(j), 1./k1grid(i));
+    end
+end
+k1 = 1./k;
+% map to ndim_simplex
+x = cell(2,1);
+x{1} = k1grid;
+x{2} = fegrid;
+[xxgrid, yygrid] = meshgrid(k1grid,fegrid);
+alph = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
+% just a check for use
+xx = [k1grid(1); fegrid(1)];
+out = ndim_simplex_eval(x,xx,alph);
+if out==k1(1)
+    disp('bingo')
+end
 
 
 %% Chebyshev on 2D
