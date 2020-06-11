@@ -201,6 +201,19 @@ W1 = W^(-1);
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
 
+sig_r = param.sig_r;
+sig_i = param.sig_i;
+sig_u = param.sig_u;
+
+% RE model
+[fyn, fxn, fypn, fxpn] = model_NK(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[ny, nx] = size(gx);
+
+% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+SIG = eye(nx).*[sig_r, sig_i, sig_u]';
+eta = SIG; %just so you know
+
 % Params for the general learning code
 constant_only = 1; % learning constant only
 constant_only_pi_only = 11; % learning constant only, inflation only
@@ -254,20 +267,25 @@ alph = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
 % just a check for use
 xx = [k1grid(1); fegrid(1)];
 out = ndim_simplex_eval(x,xx,alph);
-if out==k1(1)
-    disp('bingo')
+if out~=k1(1)
+    disp('ndim_simplex isn''t working')
 end
 
 alph0 = alph;
 ub = alph0+0.1;
 lb = alph0-0.1;
 % %Compute the objective function one time with some values
-loss = obj_GMM_LOMgain(alph0,x,param,e,T,ndrop,PLM,gain,Om,W1);
+loss = obj_GMM_LOMgain(alph0,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
 
-
+rng(0)
+for i=1:10
+    alphi = alph0 + rand(size(alph0));
+    lossi(i) = obj_GMM_LOMgain(alphi,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
+end
+return
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain(alph,x,param,e,T,ndrop,PLM,gain,Om,W1);
+objh = @(alph) obj_GMM_LOMgain(alph,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
 [alph_opt, loss_opt] = fmincon(objh, alph0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc

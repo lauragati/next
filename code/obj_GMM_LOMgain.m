@@ -1,18 +1,8 @@
-function loss = obj_GMM_LOMgain(alph,x,param,e,T,ndrop,PLM,gain, Om_data, W1)
+function loss = obj_GMM_LOMgain(alph,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om_data, W1)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 
-sig_r = param.sig_r;
-sig_i = param.sig_i;
-sig_u = param.sig_u;
-
-% RE model
-[fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 [ny, nx] = size(gx);
-% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
-SIG = eye(nx).*[sig_r, sig_i, sig_u]';
-eta = SIG; %just so you know
 
 % Simulate data given parameters
 [~, y] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e);
