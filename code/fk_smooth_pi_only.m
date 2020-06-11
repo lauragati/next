@@ -43,8 +43,8 @@ gam_k = param.gam_k;
 % This is the only one that works with fsolve.
 % rho=0.9; %0.5 or 0.9
 % gam=0.001; %0.01 or 0.001
-k1 = rho_k * kt_1^(-1) + gam_k*(fe)^2;
-k=1/k1;
+k1 = rho_k * kt_1.^(-1) + gam_k*(fe).^2;
+k=1./k1;
 g_pi = 2*gam_k*fe;
 g_pibar = -2*gam_k*fe;
 

@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.17}
+\def\myAdjustableFigScale{0.21}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -133,12 +133,37 @@ Instead of the AR(1) anchoring function used so far (Equation \ref{A6}), I use t
 \begin{equation}
 k_t^{-1} = \beta s(X)
 \end{equation}
-where $X = (k^{-1}_{t-1}, fe_{t|t-1})$. I'm trying to implement piecewise linear interpolation (to preserve shape). Initialization of $\beta$? If I had initial $X$!
+where $X = (k^{-1}_{t-1}, fe_{t|t-1})$ and I use piecewise linear interpolation. Now I initialize $\beta$ by specifying a grid for $X$, passing the grid through Equation (\ref{A6}) to generate $k^{-1}_t$-values, and approximating by fitting the grid to the $k^{-1}_t$-values. This means that if the functional relationship in Fig. \ref{fig_initial_anchor_fct} is the right one, then the AR(1) specification of Equation (\ref{A6}) isn't a bad description of the anchring function.
 
+Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inflation, the output gap and the nominal interest rate (federal funds rate) in the data. Fig. \ref{fig_estmtd_anchor_fct} presents some results. Notes and issues:
+
+\begin{figure}[h!]
+\includegraphics[scale=0.17]{\myFigPath materials33_initial_anchor_fct__date_11_Jun_2020}
+\caption{Initialization via Equation (\ref{A6}) implies this functional relationship}
+\label{fig_initial_anchor_fct}
+\end{figure}
+
+\begin{enumerate}
+\item $T=233$ before BK-filtering, $T=209$ after BK-filtering.
+\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular.
+\item The bounds on $\beta$ are very tight to make sure that the gain doesn't explode or turn negative.
+\end{enumerate}
+
+
+
+
+\begin{figure}[h!]
+\subfigure[$N_{burn}=0$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_0_date_11_Jun_2020}}
+\hfill % this is great to intro dpace between subfigures
+\subfigure[$N_{burn}=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_25_date_11_Jun_2020}}
+\subfigure[$N_{burn}=50$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_date_11_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\beta}^{GMM}$}
+\label{fig_estmtd_anchor_fct}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%    \clearpage
+    \clearpage
 %    \newpage
 \appendix
 % the following command makes equation numbering include the section first, but just for what follows
