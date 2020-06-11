@@ -198,7 +198,7 @@ T = length(filt_data);
 W = diag(var(Om_boot,0,2));
 W1 = W^(-1);
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
 
 sig_r = param.sig_r;
@@ -302,19 +302,11 @@ fegrid_fine = linspace(-5,5,ng_fine);
 k10 = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'],alph0);
 k1_opt = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'],alph_opt);
 
-[fs, lw] = plot_configs;
 figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 subplot(1,2,1)
 surf(xxgrid, yygrid,reshape(k10,[ng_fine,ng_fine]))
-xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs)
-title('Initial','interpreter', 'latex', 'fontsize', fs)
+xlabel('$k^{-1}_{t-1}$','interpre)
+title('initial')
 subplot(1,2,2)
 surf(xxgrid, yygrid,reshape(k1_opt,[ng_fine,ng_fine]))
-xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs)
-title('Optimal','interpreter', 'latex', 'fontsize', fs)
+title('optimal')
