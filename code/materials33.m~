@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -216,7 +216,7 @@ gain = again_critsmooth;
 
 % Size of cross-section
 % we're not doing a whole cross-section here
-ndrop = 50 % 0-50
+ndrop = 50; % 100
 
 % gen all the N sequences of shocks at once.
 rng(0)
@@ -288,10 +288,10 @@ k10 = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph0);
 % end
 
 dbstop if error
-tol = 0.5; % results don't change much if you make tol > 0.5
+tol = 1;
 ub = alph0+tol;
-lb = zeros(size(alph0));
-% lb = alph0-tol;
+% lb = zeros(size(alph0));
+lb = alph0-tol;
 
 % %Compute the objective function one time with some values
 loss = obj_GMM_LOMgain(alph0,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
@@ -322,12 +322,7 @@ set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
 
-if min(lb) < 0
-    lbname = 'lb_neg';
-else
-    lbname = 'lb_pos';
-end
-figname = [this_code, '_estmtd_anchor_fct_nburn_', num2str(ndrop),'_',lbname,'_date_', todays_date];
+figname = [this_code, '_estmtd_anchor_fct_nburn_', num2str(ndrop),'_date_', todays_date];
 if print_figs ==1
     disp(figname)
     cd(figpath)
@@ -335,7 +330,3 @@ if print_figs ==1
     cd(current_dir)
     close
 end
-
-estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, tol, lbname, ndrop};
-filename = ['estim_LOMgain_outputs', todays_date];
-save([filename, '.mat'], 'estim_outputs')

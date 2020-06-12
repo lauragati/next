@@ -99,6 +99,11 @@ for t = 1:T-1
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
 %                 disp(t)
+                if isnan(fe)
+                    disp('fe was nan, setting loss = 1e+10')
+                    return
+                    warning('fe is nan')
+                end
 %                 dbstop in ndim_simplex_eval at 54 if t==13
 %                 dbstop in sim_learnLH_clean_approx at 104 if t==13
                 fk = fk_smooth_approx(alph,x,fe,k(:,t-1));

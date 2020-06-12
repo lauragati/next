@@ -138,28 +138,41 @@ where $X = (k^{-1}_{t-1}, fe_{t|t-1})$ and I use piecewise linear interpolation.
 Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inflation, the output gap and the nominal interest rate (federal funds rate) in the data. Fig. \ref{fig_estmtd_anchor_fct} presents some results. Notes and issues:
 
 \begin{figure}[h!]
-\includegraphics[scale=0.17]{\myFigPath materials33_initial_anchor_fct__date_11_Jun_2020}
+\includegraphics[scale=0.17]{\myFigPath materials33_initial_anchor_fct__date_12_Jun_2020}
 \caption{Initialization via Equation (\ref{A6}) implies this functional relationship}
 \label{fig_initial_anchor_fct}
 \end{figure}
 
 \begin{enumerate}
 \item $T=233$ before BK-filtering, $T=209$ after BK-filtering.
-\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular.
+%\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular. --> reintroduced Taylor rule shock to solve stochastic singularity
 \item The bounds on $\beta$ are very tight to make sure that the gain doesn't explode or turn negative.
 \end{enumerate}
 
 
 
-
+% beta restricted to be positive
 \begin{figure}[h!]
-\subfigure[$N_{burn}=0$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_0_date_11_Jun_2020}}
+\subfigure[$N_{burn}=0$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_0_lb_pos_date_12_Jun_2020}}
 \hfill % this is great to intro dpace between subfigures
-\subfigure[$N_{burn}=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_25_date_11_Jun_2020}}
-\subfigure[$N_{burn}=50$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_date_11_Jun_2020}}
-\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\beta}^{GMM}$}
+\subfigure[$N_{burn}=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_25_lb_pos_date_12_Jun_2020}}
+\subfigure[$N_{burn}=50$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_lb_pos_date_12_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\beta}^{GMM} > 0$}
 \label{fig_estmtd_anchor_fct}
 \end{figure}
+
+% beta not restricted to be positive
+\begin{figure}[h!]
+\subfigure[$N_{burn}=0$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_0_lb_neg_date_12_Jun_2020}}
+\hfill % this is great to intro dpace between subfigures
+\subfigure[$N_{burn}=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_25_lb_neg_date_12_Jun_2020}}
+\subfigure[$N_{burn}=50$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_lb_neg_date_12_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\beta}^{GMM}$ (not restricted $>0$)}
+\label{fig_estmtd_anchor_fct}
+\end{figure}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

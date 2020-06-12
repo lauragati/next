@@ -11,8 +11,8 @@ s1 = [sig,1-bet,-sig*bet];
 s2 = sig*[1,0,0]*(eye(nx)-bet*hx)^(-1);
 s3 = [(1-alph)*bet,kapp*alph*bet,0];
 s4 = [0,0,1]*(eye(nx)-alph*bet*hx)^(-1);
-% s5 = [0,1,0]; % if you wanna include a monpol shock.
-s5 = [0,0,0]; % if you don't wanna include a monpol shock.
+s5 = [0,1,0]; % if you wanna include a monpol shock.
+% s5 = [0,0,0]; % if you don't wanna include a monpol shock.
 
 
 psi_pi = param.psi_pi;
