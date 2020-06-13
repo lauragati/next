@@ -2,6 +2,7 @@
 % begin to estimate anchoring function
 % return to the old GMM code, but write a new objective function
 % 5 June 2020
+% Takes about 3 minutes if you don't redo the bootstrap
 
 clearvars
 close all
@@ -214,6 +215,13 @@ PLM = constant_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
+% Call smat to check whether you're really including a monpol shock
+[s1, s2, s3, s4, s5] = smat(param,hx);
+%%%%%%%%%%%%%%%%%%%
+if sum(s5)==0
+    error('you don''t have a monpol shock, will get stochastic singularity')
+end
+
 % Size of cross-section
 % we're not doing a whole cross-section here
 ndrop = 50 % 0-50
@@ -336,6 +344,6 @@ if print_figs ==1
     close
 end
 
-estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, tol, lbname, ndrop};
+estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, tol, lbname, ndrop};
 filename = ['estim_LOMgain_outputs', todays_date];
 save([filename, '.mat'], 'estim_outputs')

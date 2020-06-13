@@ -1,5 +1,6 @@
 % computes the matrices I named "s" in front of fb, st, fa and st in
 % equations A9 and A10 (e.g. materials25, appendix)
+% INPUT SEQUENCES FOR RYAN SMAT
 function [s1, s2, s3, s4, s5] = smat(param,hx)
 kapp = param.kapp;
 bet  = param.bet;

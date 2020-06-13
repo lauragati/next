@@ -12,8 +12,8 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 [fs, lw] = plot_configs;
 
-print_figs = 1;
-do_infl_exp =1; % this one take a couple of seconds extra for some reason
+print_figs = 0;
+do_infl_exp =0; % this one take a couple of seconds extra for some reason
 close_em =0;
 
 %% unemployment rate

@@ -1,8 +1,6 @@
 % Smooth anchoring function using functional approximation
 % For use in estimation of the anchoring function, or later
 % 10 June 2020
-% MAIN CODE VERSION, KEEP CHECKING TO MAKE SURE IT'S THE SAME AS THE other
-% one. Last time I checked: 13 June 2020
 function [k,g_pi,g_pibar] = fk_smooth_approx(alph,x,fe,kt_1)
 
 xx = [1/kt_1; fe];
@@ -41,3 +39,7 @@ closest_fe = abs(offgrid_fe) == min(abs(offgrid_fe));
 % and take the derivatives at that gridpoint
 g_pi = g_fe(closest_k, closest_fe);
 g_pibar = -g_pi;
+
+
+
+
