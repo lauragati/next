@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -152,6 +152,7 @@ disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
 
+return
 output = {e, ysim7, k7, phi7, seq_opt};
 filename = ['pea_outputs_', nowstr, '.mat'];
 save(filename, 'output')

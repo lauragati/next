@@ -2,7 +2,7 @@
 % 2020 and will no longer be changed (as a safety copy).
 % Does exactly the same thing as sim_learnLH.m. Supposed to serve as a basis for other codes to adapt it.
 % 10 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -56,7 +56,7 @@ evening_fcst = nan(ny,T);
 morning_fcst = nan(ny,T);
 FA = zeros(ny,T);
 FB = zeros(ny,T);
-FEt_1 = nan(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
+FEt_1 = zeros(ny,T); % yesterday evening's forecast error, made at t-1 but realized at t and used to update pibar at t
 
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
@@ -90,7 +90,7 @@ for t = 1:T-1
             k(:,t) = k(:,t-1)+1;
         elseif gain==21 || gain == 22 || gain == 23% endogenous gain
             if crit == 1 % CEMP's criterion
-                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
+                fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
                 %                 fe = fe(1,1);
