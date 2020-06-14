@@ -65,7 +65,7 @@ cgain = 3;
 %%%%%%%%%%%%%%%%%%%
 % Model selection
 %%%%%%%%%%%%%%%%%%%
-PLM = constant_only;
+PLM = constant_only_pi_only;
 gain = egain_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 %Select exogenous inputs
@@ -84,13 +84,13 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', 'implement_anchTC_obs_TR', print_figs)
-% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', 'implement_anchTC_invgain_TR', print_figs)
+% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
+% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
 
-% when saving to draft or presentations, use these 3 lines below
+% % when saving to draft or presentations, use these 3 lines below
 % cd '/Users/lauragati/Dropbox/BC_Research/next/code'
-% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, 'implement_anchTC_obs_TR', print_figs)
-% create_pretty_plot_x(1:length(k0),1./k0, 'implement_anchTC_invgain_TR', print_figs)
+% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
+% create_pretty_plot_x(1:length(k0),1./k0, [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
 
 
 
@@ -104,7 +104,7 @@ seq0(:,2:end) = y0(i_inputs,2:end);
 %% Parameterized expectations
 
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'none', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 
@@ -150,7 +150,12 @@ disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
 [~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
-create_plot_observables(1./k7, invgain,'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
+create_plot_observables(1./k7, invgain, 'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
+
+% % when saving to draft or presentations, use these 3 lines below
+% cd '/Users/lauragati/Dropbox/BC_Research/next/code'
+% create_pretty_subplots(ysim7,{'$\pi$', '$x$','$i$'}, [this_code, '_implement_anchTC_obs_anchTC_',PLM_name,'_', todays_date], print_figs)
+% create_pretty_plot_x(1:length(k7),1./k7, [this_code, '_implement_anchTC_invgain_anchTC_',PLM_name,'_', todays_date], print_figs)
 
 return
 output = {e, ysim7, k7, phi7, seq_opt};

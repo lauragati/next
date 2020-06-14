@@ -1,38 +1,38 @@
 function B = projection_approx(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x, k1grid,fegrid, g_fe)
 % Compute steps 3 and 4 of the projection procedure.
 % 16 May 2020
-kapp = param.kapp;
-sig  = param.sig;
-psi_pi = param.psi_pi;
-psi_x  = param.psi_x;
-rho_k = param.rho_k;
-gam_k = param.gam_k;
-lamx = param.lamx;
-alph= param.alph;
-bet = param.bet;
+% kapp = param.kapp;
+% sig  = param.sig;
+% psi_pi = param.psi_pi;
+% psi_x  = param.psi_x;
+% rho_k = param.rho_k;
+% gam_k = param.gam_k;
+% lamx = param.lamx;
+% alph= param.alph;
+% bet = param.bet;
 
-[s1, s2, s3, s4] = smat(param,hx);
+% [s1, s2, s3, s4] = smat(param,hx);
 
 % Step 2 - compute synthetic time series v
 % Simulate given input sequences
 % input k
 % [xsim, ysim, k, ~, FA, FB, FEt_1] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 % input FE
-[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,...
+[xsim, ysim, k, phi_seq, ~, ~, FEt_1,~,g_pibar] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,...
     alph_opt,x, k1grid,fegrid, g_fe);
-pi = ysim(1,2:end-1);
+% pi = ysim(1,2:end-1);
 x  = ysim(2,2:end-1);
-xl = ysim(2,1:end-2);
-i  = ysim(3,2:end-1);
+% xl = ysim(2,1:end-2);
+% i  = ysim(3,2:end-1);
 s  = xsim(:,2:end-1);
-st_1 = xsim(:,1:end-2);
-fa = FA(:,2:end-1);
-fb = FB(:,2:end-1);
+% st_1 = xsim(:,1:end-2);
+% fa = FA(:,2:end-1);
+% fb = FB(:,2:end-1);
 fe = FEt_1(1,2:end-1); % select the FE(pi);
 k1 = 1./k(2:end-1);
 pibar = squeeze(phi_seq(1,1,1:end-2))';
-b = gx*hx;
-g_pi = g_pi(2:end-1);
+% b = gx*hx;
+% g_pi = g_pi(2:end-1);
 g_pibar = g_pibar(2:end-1);
 
 

@@ -65,7 +65,8 @@ k1grid = value_sols{7};
 %%
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_29_May_2020_14_42_56'; %X1
-pea_output_name = 'pea_outputs_30_May_2020_10_18_28'; %X2
+% pea_output_name = 'pea_outputs_30_May_2020_10_18_28'; %X2
+pea_output_name = 'pea_outputs_14_Jun_2020_09_56_33'; % constant-only, pi-only PLM
 % pea_output_name = 'inputs'; % X1
 load([pea_output_name, '.mat'])
 e = output{1};
@@ -96,4 +97,4 @@ policies = [i_pe; i_vi];
 % create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', value_output_name, '_', pea_output_name],print_figs)
 
 % Create pretty plots
-create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty'], print_figs)
+create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty_',todays_date], print_figs)
