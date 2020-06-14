@@ -5,6 +5,9 @@ function [k,g_pi,g_pibar] = fk_smooth_approx(alph,x,fe,kt_1,k1grid_fine, fegrid_
 
 xx = [1/kt_1; fe];
 k1 = ndim_simplex_eval(x,xx,alph);
+if k1<0
+    warning('k1<0')
+end
 
 k=1/k1;
 

@@ -133,9 +133,9 @@ Instead of the AR(1) anchoring function used so far (Equation \ref{A6}), I use t
 \begin{equation}
 k_t^{-1} = \beta s(X)
 \end{equation}
-where $X = (k^{-1}_{t-1}, fe_{t|t-1})$ and I use piecewise linear interpolation. Now I initialize $\beta$ by specifying a grid for $X$, passing the grid through Equation (\ref{A6}) to generate $k^{-1}_t$-values, and approximating by fitting the grid to the $k^{-1}_t$-values. This means that if the functional relationship in Fig. \ref{fig_initial_anchor_fct} is the right one, then the AR(1) specification of Equation (\ref{A6}) isn't a bad description of the anchring function.
+where $X = (k^{-1}_{t-1}, fe_{t|t-1})$ and I use piecewise linear interpolation. Now I initialize $\beta$ by specifying a grid for $X$, passing the grid through Equation (\ref{A6}) to generate $k^{-1}_t$-values, and approximating by fitting the grid to the $k^{-1}_t$-values. This means that if the functional relationship in Fig. \ref{fig_initial_anchor_fct} is the right one, then the AR(1) specification of Equation (\ref{A6}) isn't a bad description of the anchoring function.
 
-Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inflation, the output gap and the nominal interest rate (federal funds rate) in the data. Fig. \ref{fig_estmtd_anchor_fct} presents some results. Notes and issues:
+Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inflation, the output gap and the nominal interest rate (federal funds rate) in the data. 
 
 \begin{figure}[h!]
 \includegraphics[scale=0.17]{\myFigPath materials33_initial_anchor_fct__date_12_Jun_2020}
@@ -146,7 +146,7 @@ Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inf
 \begin{enumerate}
 \item $T=233$ before BK-filtering, $T=209$ after BK-filtering.
 %\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular. --> reintroduced Taylor rule shock to solve stochastic singularity
-\item The bounds on $\beta$ are very tight to make sure that the gain doesn't explode or turn negative.
+\item I try to set the loss very large if the gain explodes or turns negative, but I worry that it still does so off the grid, especially as the PEA's fsolve cannot solve now. 
 \end{enumerate}
 
 
@@ -171,8 +171,19 @@ Then I estimate $\beta$ using GMM, targeting the autocovariance structure of inf
 \label{fig_estmtd_anchor_fct}
 \end{figure}
 
+\clearpage
+\section{Is the estimated LOM gain in the nonpermissible range for PEA?}
+No, it doesn't look like it. If I fit an AR(1) (Equation \ref{A6}) to the estimated gain evolution, I obtain $(\rho_k, \gamma_k)=(0.6151, 0.0011)$ which results in the following relationship:
+\begin{figure}[h!]
+\includegraphics[scale=0.18]{\myFigPath analyze_estim_LOMgain_fitAR_14_Jun_2020}
+\caption{AR(1) approximation to the estimated functional form of the gain}
+\label{fitAR1}
+\end{figure}
 
-\newpage
+In particular, when doing PEA with the AR(1) specification for the gain, fsolve solved for my values of (0.5, 0.001). Rerunning PEA with the AR(1) specification and the values (0.6151, 0.0011) also works. So what's the problem with the PEA given approximated anchoring function?
+
+\clearpage
+%\newpage
 \section{PEA plots with constant only, $\pi$ only learning}
 \begin{figure}[h!]
 \subfigure[Taylor rule, observables]{\includegraphics[scale=0.14]{\myFigPath command_pea_implement_anchTC_obs_TR_constant_only_pi_only_14_Jun_2020}}

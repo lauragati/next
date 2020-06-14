@@ -100,7 +100,7 @@ cgain = 3;
 %%%%%%%%%%%%%%%%%%%
 % Model selection
 %%%%%%%%%%%%%%%%%%%
-PLM = constant_only;
+PLM = constant_only_pi_only;
 gain = egain_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 %Select exogenous inputs
@@ -143,7 +143,7 @@ seq0(:,2:end) = y0(i_inputs,2:end);
 %% Parameterized expectations
 
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter');%, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 
@@ -156,7 +156,6 @@ seq0crop = rand(size(seq0crop));
 bet0 = ones(4,3); % 4 states x 3 powers
 bet = bet0(:);
 
-% dbstop if error
 
 
 % Evaluate residuals once
@@ -164,9 +163,11 @@ resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,h
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 
-return
+% return
 
-maxiter=30;
+dbstop if warning
+
+maxiter=12;
 BET = zeros(length(bet),maxiter);
 iter=0;
 crit=1;
@@ -175,17 +176,23 @@ datestr(now)
 while crit > 1e-6 && iter < maxiter
     iter=iter+1
     BET(:,iter) = bet; % storing betas
-    % Now solve model equations given conjectured E
+    % Now solve model equations given conjectured E 
     objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x, k1grid,fegrid, g_fe);
     
     tic
-    [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
+    [seq_opt, resids_opt, flag] = fsolve(objh,seq0crop, options);
     toc
     % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
+    if flag==1 % If fsolve converged to a root
     % Projection step: Recover v, compute analogues E, update beta
     bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x, k1grid,fegrid, g_fe);
     crit=max(abs(bet-bet1))
     bet=bet1;
+    seq0crop = seq_opt; % try to accelerate 
+    else
+        disp('No sol, stopping PEA.')
+        return
+    end
 end
 endt = now;
 elapsed_seconds = etime(datevec(endt), datevec(start));
@@ -195,11 +202,11 @@ disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', ['implement_anchTC_obs_approx',nowstr], print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', ['implement_anchTC_invgain_approx', nowstr], print_figs)
 
-
+if flag==1 % only save output if last fsolve solved.
 output = {e, ysim7, k7, phi7, seq_opt};
 filename = ['pea_outputs_approx', nowstr, '.mat'];
 save(filename, 'output')
 disp(['Saving results as ', filename])
-
+end
 
 disp('Done.')

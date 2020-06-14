@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -33,6 +33,7 @@ sgrid = linspace(-sig_r,sig_r,ns);
 % value_output_name = 'value_outputs_server.mat';
 % value_output_name = 'value_outputs_server32_accelerated';
 value_output_name = 'value_outputs_30_May_2020_10_42_12';
+% value_output_name = 'value_outputs_approx13_Jun_2020_17_49_01';
 load([value_output_name, '.mat'])
 
 pp     = value_sols{1};
@@ -97,8 +98,8 @@ i_p = fnval(ppi,[k1mean;pibvals;smean;smean;smean;smean]);
 
 % create_simple_plot_x(k1vals,i_k,'$ i(k^{-1}) $','',[this_code, '_ik'],print_figs)
 % create_simple_plot_x(pibvals,i_p,'$ i(\bar{\pi}) $','',[this_code, '_ip'],print_figs)
-create_pretty_plot_x(k1vals,i_k,[this_code, '_ik'],print_figs)
-create_pretty_plot_x(pibvals,i_p,[this_code, '_ip'],print_figs)
+create_pretty_plot_x(k1vals,i_k,[this_code, '_ik', todays_date],print_figs)
+create_pretty_plot_x(pibvals,i_p,[this_code, '_ip', todays_date],print_figs)
 
 % % Let's do a getting unanchored scenario towards inflation and deflation
 % pibvals = linspace(0,0.05,n);

@@ -1,6 +1,6 @@
 % command_pea
 % do parameterized expectations for my model
-% takes around 4 min
+% takes around 5 min, with adaptive starting point less than 2 min
 % migrated from input_sequences_for_Ryan; main_file.m
 % 29 May 2020
 
@@ -143,19 +143,20 @@ while crit > 1e-6 && iter < maxiter
     bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
     crit=max(abs(bet-bet1))
     bet=bet1;
+    seq0crop = seq_opt; %<-- this speeds up to 1/3 of the time!!
 end
 endt = now;
 elapsed_seconds = etime(datevec(endt), datevec(start));
 disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
 [~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
-create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
-create_plot_observables(1./k7, invgain, 'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
+create_plot_observables(ysim7(:,1:end-1),seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
+create_plot_observables(1./k7(1:end-1), invgain, 'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
 
 % % when saving to draft or presentations, use these 3 lines below
 % cd '/Users/lauragati/Dropbox/BC_Research/next/code'
-% create_pretty_subplots(ysim7,{'$\pi$', '$x$','$i$'}, [this_code, '_implement_anchTC_obs_anchTC_',PLM_name,'_', todays_date], print_figs)
-% create_pretty_plot_x(1:length(k7),1./k7, [this_code, '_implement_anchTC_invgain_anchTC_',PLM_name,'_', todays_date], print_figs)
+% create_pretty_subplots(ysim7(:,1:end-1),{'$\pi$', '$x$','$i$'}, [this_code, '_implement_anchTC_obs_anchTC_',PLM_name,'_', todays_date], print_figs)
+% create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), [this_code, '_implement_anchTC_invgain_anchTC_',PLM_name,'_', todays_date], print_figs)
 
 return
 output = {e, ysim7, k7, phi7, seq_opt};

@@ -121,6 +121,9 @@ for t = 1:T-1
                 [fk, g_pi(t), g_pibar(t)] =fk_smooth_approx(alph,x,fe(t),k(:,t-1), k1grid,fegrid, g_fe); 
             end
             k(:,t) = fk;
+            if fk < 0
+                warning('k<0')
+            end
             
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);

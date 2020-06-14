@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -21,6 +21,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
+datestr(now)
 
 if redo_data_load_and_bootstrap==1 % takes about 140 sec
     %% 1.) Get real data and filter it
@@ -210,7 +211,7 @@ cgain = 3;
 
 % Model selection
 %%%%%%%%%%%%%%%%%%%
-PLM = constant_only;
+PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
@@ -342,6 +343,8 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+
+return
 
 estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, tol, lbname, ndrop};
 filename = ['estim_LOMgain_outputs', todays_date];
