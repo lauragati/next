@@ -1,4 +1,4 @@
-function [resids] = objective_seq_clean_parametricE_approx(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x)
+function [resids] = objective_seq_clean_parametricE_approx(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x, k1grid,fegrid, g_fe)
 % a version of objective_seq_clean with an expectation equation as a
 % residual equation
 % this version uses the approximated LOMgain from the GMM estimation, hence
@@ -21,7 +21,8 @@ bet = param.bet;
 % [xsim, ysim, k, ~, FA, FB, FEt_1] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 % input FE
 % [xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
-[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps, alph_opt,x);
+[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,...
+    alph_opt,x, k1grid,fegrid, g_fe);
 % Evaluate residuals (leave out first and last periods)
 pi = ysim(1,2:end-1);
 x  = ysim(2,2:end-1);

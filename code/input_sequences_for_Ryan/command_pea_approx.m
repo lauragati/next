@@ -36,9 +36,24 @@ ndrop_est  = estim_outputs{9};
 alph = alph_opt;
 
 % derivatives of the anchoring function wrt k^{-1}_{t-1} and fe
+tic
 [g_k,g_fe] = gradient(reshape(k1_opt,ng,ng));
-g_pi = g_fe;
+toc
+g_pi = g_fe; % input this w/ the k1grid and fegrid so the code doesn't have to take derivatives in every eval
 g_pibar = -g_fe;
+
+% fe=0.1;
+% kt_1 =1/k1_opt(1);
+k1grid = xxgrid(1,:);
+fegrid = yygrid(:,1);
+% tic
+% [k,g_pi,g_pibar] = fk_smooth_approx(alph,x,fe,kt_1, k1grid,fegrid, g_fe)
+% toc
+% tic
+% [k] = fk_smooth_approx(alph,x,fe,kt_1)
+% toc
+
+
 
 %% Parameters, RE model and Taylor rule
 T = 100
@@ -128,7 +143,7 @@ seq0(:,2:end) = y0(i_inputs,2:end);
 %% Parameterized expectations
 
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'none', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter', 'InitDamping',100000);%, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 
@@ -143,12 +158,13 @@ bet = bet0(:);
 
 % dbstop if error
 
-objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x);
+
 % Evaluate residuals once
-resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x);
+resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x,  k1grid,fegrid, g_fe);
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 
+% return
 
 maxiter=30;
 BET = zeros(length(bet),maxiter);
@@ -160,14 +176,14 @@ while crit > 1e-6 && iter < maxiter
     iter=iter+1
     BET(:,iter) = bet; % storing betas
     % Now solve model equations given conjectured E
-    objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x, k1grid,fegrid, g_fe);
     
     tic
     [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
     toc
     % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
     % Projection step: Recover v, compute analogues E, update beta
-    bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x, k1grid,fegrid, g_fe);
     crit=max(abs(bet-bet1))
     bet=bet1;
 end
@@ -175,7 +191,7 @@ endt = now;
 elapsed_seconds = etime(datevec(endt), datevec(start));
 disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
-[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
+[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs, alph,x, k1grid,fegrid, g_fe);
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', ['implement_anchTC_obs_approx',nowstr], print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', ['implement_anchTC_invgain_approx', nowstr], print_figs)
 

@@ -1,6 +1,5 @@
 % materials33
-% begin to estimate anchoring function
-% return to the old GMM code, but write a new objective function
+% estimate the approximated anchoring function
 % 5 June 2020
 % Takes about 3 minutes if you don't redo the bootstrap
 

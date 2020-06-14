@@ -1,4 +1,4 @@
-function [tv, pibar, k1] = mat31_TV3(param,gx,hx,pp,i,pibart_1,k1t_1,s,st_1,sgrid,PI)
+function [tv, pibar, k1] = mat31_TV3_approx(param,gx,hx,pp,i,pibart_1,k1t_1,s,st_1,sgrid,PI, alph, x_approx)
 % Equations A9 and A10 in materials 25.
 bet =param.bet;
 lamx = param.lamx;
@@ -24,7 +24,9 @@ Lt =  pi^2 +lamx*x^2;
 % Implied endogenous states at t
 % First: update endogenous states
 fe = pi - (pibart_1+b(1,:)*st_1);
-k1 = rhok*k1t_1 + gamk*(fe)^2;
+xx = [k1t_1; fe];
+k1 = ndim_simplex_eval(x_approx,xx,alph);
+
 pibar = pibart_1 + k1*(fe);
 % Second: compute expected future shocks for each current state
 v = zeros(ns,ns);

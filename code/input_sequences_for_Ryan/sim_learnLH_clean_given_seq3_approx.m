@@ -4,7 +4,8 @@
 % this version uses the approximated LOMgain from the GMM estimation, hence
 % "approx"
 % 13 June 2020
-function [xsim, ysim, k, phi_seq, FA, FB, fe, g_pi, g_pibar,diff] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps,alph,x, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, fe, g_pi, g_pibar,diff] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps,...
+    alph,x, k1grid,fegrid, g_fe, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -117,7 +118,7 @@ for t = 1:T-1
                 fe(t) = seq_fe(:,t-1);
             end
 %                 [fk, g_pi(t), g_pibar(t)] = fk_smooth_pi_only(param,fe(t),k(:,t-1));
-                [fk, g_pi(t), g_pibar(t)] =fk_smooth_approx(alph,x,fe(t),k(:,t-1)); 
+                [fk, g_pi(t), g_pibar(t)] =fk_smooth_approx(alph,x,fe(t),k(:,t-1), k1grid,fegrid, g_fe); 
             end
             k(:,t) = fk;
             
