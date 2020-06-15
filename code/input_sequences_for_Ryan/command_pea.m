@@ -84,8 +84,8 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
-% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
-% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
 
 % % when saving to draft or presentations, use these 3 lines below
 % cd '/Users/lauragati/Dropbox/BC_Research/next/code'

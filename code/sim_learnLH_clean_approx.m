@@ -101,9 +101,14 @@ for t = 1:T-1
 %                 disp(t)
                 if isnan(fe)
                     disp('fe was nan, setting loss = 1e+10')
+%                     warning('fe is nan')
                     return
-                    warning('fe is nan')
+                    
                 end
+%                  if t==223
+%                      dbstop
+%                         warning('t=223')
+%                  end
 %                 dbstop in ndim_simplex_eval at 54 if t==13
 %                 dbstop in sim_learnLH_clean_approx at 104 if t==13
                 fk = fk_smooth_approx(alph,x,fe,k(:,t-1));

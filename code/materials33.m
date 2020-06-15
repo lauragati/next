@@ -11,6 +11,7 @@ clc
 this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath, inputsRyan_path] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
+nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
 print_figs        = 0;
@@ -238,9 +239,10 @@ options.MaxFunEvals = 10000;
 options.UseParallel = 1; % 2/3 of the time
 
 % Do an initial approx of the anchoring function to initialize the coeffs
-ng = 10;
+ng = 22;
 % grids for k^(-1)_{t-1} and f_{t|t-1}
-k1grid = linspace(0.001,param.gbar,ng);
+k1min = 0%0.00001;
+k1grid = linspace(k1min,param.gbar,ng); %need to have k1min > 0
 fegrid = linspace(-5,5,ng);
 % values for k^{-1}_t for the grid
 k = zeros(ng,ng);
@@ -266,7 +268,7 @@ alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
 
 % Let's plot the approximated evolution of the gain on a finer sample
 ng_fine = 100;
-k1grid_fine = linspace(0.001,param.gbar,ng_fine);
+k1grid_fine = linspace(k1min,param.gbar,ng_fine);
 fegrid_fine = linspace(-5,5,ng_fine);
 [xxgrid_fine, yygrid_fine] = meshgrid(k1grid_fine,fegrid_fine);
 
@@ -295,8 +297,10 @@ k10 = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph0);
 %     close
 % end
 
-dbstop if error
-tol = 0.5; % results don't change much if you make tol > 0.5
+% dbstop if error
+% dbstop if warning
+
+tol = 100; % results don't change much if you make tol > 0.5
 ub = alph0+tol;
 lb = zeros(size(alph0));
 % lb = alph0-tol;
@@ -304,7 +308,76 @@ lb = zeros(size(alph0));
 % %Compute the objective function one time with some values
 loss = obj_GMM_LOMgain(alph0,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
 
-dbstop if warning
+% % % % stuff it took to realize to change smat to make agents know the TR
+% % % ndrop=0;
+% % % T=450;% At 450 you start to see the divergence
+% % % e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
+% % % 
+% % % [xc, yc, kc, phi_seqc, FAc, FBc, FEt_1c,diffc]  = sim_learnLH_clean(param,gx,hx,eta, constant_only, gain, T,ndrop,e);
+% % % [xcp, ycp, kcp, phi_seqcp, FAcp, FBcp, FEt_1cp,diffcp] = sim_learnLH_clean(param,gx,hx,eta, constant_only_pi_only, gain, T,ndrop,e);
+% % % 
+% % % % return
+% % % % [xc, yc, kc, phi_seqc, FAc, FBc, FEt_1c,diffc] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, constant_only, gain, T+ndrop,ndrop,e);
+% % % % [xcp, ycp, kcp, phi_seqcp, FAcp, FBcp, FEt_1cp,diffcp] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, constant_only_pi_only, gain, T+ndrop,ndrop,e);
+% % % pibarc = squeeze(phi_seqc(1,1,:));
+% % % pibarcp = squeeze(phi_seqcp(1,1,:));
+% % % fec = FEt_1c(1,:);
+% % % fecp = FEt_1cp(1,:);
+% % % 
+% % % tilwhen = 200;
+% % % tilwhen = T;
+% % % 
+% % % figure
+% % % set(gcf,'color','w'); % sets white background color
+% % % set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+% % % subplot(2,3,1)
+% % % plot(1./kc(1:tilwhen), 'linewidth',lw); hold on
+% % % plot(1./kcp(1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('gain', 'fontsize', fs)
+% % % subplot(2,3,2)
+% % % plot(pibarc(1:tilwhen), 'linewidth',lw); hold on
+% % % plot(pibarcp(1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('pibar', 'fontsize', fs)
+% % % subplot(2,3,3)
+% % % plot(fec(1:tilwhen), 'linewidth',lw); hold on
+% % % plot(fecp(1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('fe(pi)', 'fontsize', fs)
+% % % 
+% % % subplot(2,3,4)
+% % % plot(FAc(1,1:tilwhen), 'linewidth',lw); hold on
+% % % plot(FAcp(1,1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('FA(pi)', 'fontsize', fs)
+% % % subplot(2,3,5)
+% % % plot(yc(1,1:tilwhen), 'linewidth',lw); hold on
+% % % plot(ycp(1,1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('pi', 'fontsize', fs)
+% % % subplot(2,3,6)
+% % % plot(diffc(1:tilwhen), 'linewidth',lw); hold on
+% % % plot(diffcp(1:tilwhen), 'linewidth',lw)
+% % % ax = gca; % current axes
+% % % ax.FontSize = fs;
+% % % title('diff', 'fontsize', fs)
+% % % sgtitle('''Constant-only'' vs. ''constant-only,pi-only'' learning given \alpha_0', 'fontsize', fs)
+% % % 
+% % % figname = [this_code, '_PLMs_constant_only_vs_co_pi_only', todays_date];
+% % % if print_figs ==1
+% % %     disp(figname)
+% % %     cd(figpath)
+% % %     export_fig(figname)
+% % %     cd(current_dir)
+% % %     close
+% % % end
+% % % return
 
 tic
 %Declare a function handle for optimization problem
@@ -335,7 +408,7 @@ if min(lb) < 0
 else
     lbname = 'lb_pos';
 end
-figname = [this_code, '_estmtd_anchor_fct_nburn_', num2str(ndrop),'_',lbname,'_date_', todays_date];
+figname = [this_code, '_estmtd_anchor_fct_nburn_', num2str(ndrop),'_',lbname,'_k1min_',num2str(k1min),'_ng_',num2str(ng), '_ngfine_', num2str(ng_fine),'_date_', todays_date];
 if print_figs ==1
     disp(figname)
     cd(figpath)
@@ -347,5 +420,6 @@ end
 return
 
 estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, tol, lbname, ndrop};
-filename = ['estim_LOMgain_outputs', todays_date];
+filename = ['estim_LOMgain_outputs', nowstr];
 save([filename, '.mat'], 'estim_outputs')
+disp(['Saving as ' filename])

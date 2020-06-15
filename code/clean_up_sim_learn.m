@@ -71,7 +71,7 @@ gain = again_critsmooth;
 T = 400 % 400
 % Size of cross-section
 N = 1 %100 500
-burnin = 100;
+burnin = 100; %100
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 
@@ -127,7 +127,8 @@ for s=2  %2->zoom in on monetary policy shock
         % the original code
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         % its plain vanilla cleaned version WORK WITH THIS
-        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e);
+        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, ~,diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e);
+        
         % RETIRED
 %         % a cleaned version only for pi-only scalar learning with scalar
 %         % smooth criterion RETIRED
@@ -186,8 +187,8 @@ disp(['Max difference in shocked jumps = ', num2str(max(max(abs(ys_LH-ys_clean))
 %%
 figure
 subplot(1,2,1)
-plot(mean(diff,2))
+plot(mean(diff_clean,2))
 title('Convergence - mean(diff) across N')
 subplot(1,2,2)
-plot(diff(:,end))
+plot(diff_clean(:,end))
 title('Convergence  - diff for N=end')

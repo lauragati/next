@@ -23,7 +23,8 @@ skip = 1;
 
 
 % Load estimation outputs
-filename = 'estim_LOMgain_outputs13_Jun_2020';
+% filename = 'estim_LOMgain_outputs15_Jun_2020'; % copo, kmin=0.00001
+filename = 'estim_LOMgain_outputs15_Jun_2020_15_45_21'; % copo, kmin=0
 load([filename,'.mat'])
 xxgrid = estim_outputs{1};
 yygrid = estim_outputs{2};
@@ -38,39 +39,29 @@ ndrop_est  = estim_outputs{9};
 alph = alph_opt;
 
 % zoom in on the grid
-% k1 = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'./10],alph_opt);
-% figure
-% set(gcf,'color','w'); % sets white background color
-% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-% surf(xxgrid, yygrid./10,reshape(k1,[ng,ng]))
-% xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-% ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-% zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs, 'rotation',0)
-% % title('Optimal','interpreter', 'latex', 'fontsize', fs)
-% ax = gca; % current axes
-% ax.FontSize = fs;
-% set(gca,'TickLabelInterpreter', 'latex');
-% grid on
-% grid minor
+k1 = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'./10],alph_opt);
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+surf(xxgrid, yygrid./10,reshape(k1,[ng,ng]))
+xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
+ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
+zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs, 'rotation',0)
+% title('Optimal','interpreter', 'latex', 'fontsize', fs)
+ax = gca; % current axes
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
 
-% Let's try to fit an AR(1) LOM gain to this estimated one
+
+
+return
+%% Let's try to fit an AR(1) LOM gain to this estimated one
 ARLOM = @(param,k1t_1,fe) param(1).*k1t_1 +param(2).*fe.^2;
 
-param0 = [0.1,0.001];
+param0 = [0.1,0.0001];
 k1AR0 = ARLOM(param0,xxgrid,yygrid);
-% figure
-% set(gcf,'color','w'); % sets white background color
-% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-% surf(xxgrid, yygrid,reshape(k1AR0,[ng,ng]))
-% xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-% ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-% zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs, 'rotation',0)
-% % title('Optimal','interpreter', 'latex', 'fontsize', fs)
-% ax = gca; % current axes
-% ax.FontSize = fs;
-% set(gca,'TickLabelInterpreter', 'latex');
-% grid on
-% grid minor
 
 fitAR = @(param,k1t_1,fe, k1_target) (k1_target - vec(ARLOM(param,k1t_1,fe)))'*(k1_target - vec(ARLOM(param,k1t_1,fe)));
 loss0 = fitAR(param0,xxgrid,yygrid,k1_opt);

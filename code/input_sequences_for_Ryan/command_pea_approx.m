@@ -21,7 +21,8 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 % Load estimation outputs
-filename = 'estim_LOMgain_outputs13_Jun_2020';
+% filename = 'estim_LOMgain_outputs15_Jun_2020';% copo, kmin=0.00001
+filename = 'estim_LOMgain_outputs15_Jun_2020_15_45_21'; % copo, kmin=0
 load([filename,'.mat'])
 xxgrid = estim_outputs{1};
 yygrid = estim_outputs{2};
@@ -163,7 +164,7 @@ resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,h
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 
-% return
+return
 
 dbstop if warning
 
