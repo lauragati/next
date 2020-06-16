@@ -1,5 +1,4 @@
-function [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path,...
-    inputsRyan_path, RyanPS6_path] = add_paths
+function [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path] = add_paths
 
 % Add all the relevant paths
 current_dir = pwd;
@@ -13,8 +12,8 @@ figpath = [basepath '/figures'];
 tablepath = [basepath '/tables'];
 datapath = [basepath '/data'];
 tryouts_path = [toolpath '/tryouts'];
-inputsRyan_path = [current_dir '/input_sequences_for_Ryan'];
-RyanPS6_path = [current_dir '/Ryan_PS6_replicate'];
+% inputsRyan_path = [current_dir '/input_sequences_for_Ryan'];
+% RyanPS6_path = [current_dir '/Ryan_PS6_replicate'];
 
 cd(current_dir)
 
@@ -24,5 +23,5 @@ addpath(export_figpath)
 addpath(figpath)
 addpath(datapath)
 addpath(tryouts_path)
-addpath(inputsRyan_path)
-addpath(RyanPS6_path)
+% addpath(inputsRyan_path)
+% addpath(RyanPS6_path)

@@ -53,8 +53,10 @@ ax.FontSize = fs;
 set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
+close
 
-
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+[xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
 
 return
 %% Let's try to fit an AR(1) LOM gain to this estimated one
