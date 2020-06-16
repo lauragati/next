@@ -1,4 +1,4 @@
-function [resids] = objective_seq_clean_parametricE(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e)
+function [resids] = objective_seq_clean_parametricE(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR)
 % a version of objective_seq_clean with an expectation equation as a
 % residual equation
 kapp = param.kapp;
@@ -11,13 +11,14 @@ lamx = param.lamx;
 alph= param.alph;
 bet = param.bet;
 
-[s1, s2, s3, s4] = smat(param,hx);
+mpshock=0;
+[s1, s2, s3, s4] = smat(param,hx,knowTR,mpshock);
 
 % Simulate given input sequences
 % input k
 % [xsim, ysim, k, ~, FA, FB, FEt_1] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 % input FE
-[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
+[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,knowTR);
 
 % Evaluate residuals (leave out first and last periods)
 pi = ysim(1,2:end-1);

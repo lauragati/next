@@ -2,7 +2,7 @@
 % approximation coefficients matrix (alph) to approximate the
 % evolution of the gain using Ryan's ndim_simplex (ND piecewise linear interpolation)
 % 10 June 2020
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -81,7 +81,7 @@ for t = 1:T-1
         FB(:,t) = fb;
         
         %Solve for current states
-        ysim(:,t) = ALM(param,hx,fa,fb,xsim(:,t));
+        ysim(:,t) = ALM(param,hx,fa,fb,xsim(:,t), knowTR,mpshock);
         xesim = hx*xsim(:,t);
         
         %Update coefficients

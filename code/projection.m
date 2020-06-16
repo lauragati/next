@@ -1,4 +1,4 @@
-function B = projection(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e)
+function B = projection(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR)
 % Compute steps 3 and 4 of the projection procedure.
 % 16 May 2020
 kapp = param.kapp;
@@ -11,14 +11,13 @@ lamx = param.lamx;
 alph= param.alph;
 bet = param.bet;
 
-[s1, s2, s3, s4] = smat(param,hx);
 
 % Step 2 - compute synthetic time series v
 % Simulate given input sequences
 % input k
 % [xsim, ysim, k, ~, FA, FB, FEt_1] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 % input FE
-[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
+[xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,knowTR);
 
 pi = ysim(1,2:end-1);
 x  = ysim(2,2:end-1);

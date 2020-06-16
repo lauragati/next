@@ -1,8 +1,8 @@
-% command_pea_approx
+% command_pea_approx_main
 % do parameterized expectations for my model, with outputs of estimation of
 % approximated LOM gain / anchoring function
 % takes around 5 min
-% 13 June 2020
+% 16 June 2020
 
 clearvars
 close all
@@ -107,12 +107,11 @@ gain = egain_critsmooth;
 %Select exogenous inputs
 s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
-% Call smat to check what info assumption on the Taylor rule you're using
-[s1, s2, s3, s4, s5] = smat(param,hx);
+% Specify info assumption on the Taylor rule and not to include a monpol
+% shock
+knowTR =0
+mpshock=0
 %%%%%%%%%%%%%%%%%%%
-if sum(s5)>0
-    error('you include a monpol shock but no Taylor rule, are you crazy???')
-end
 
 
 % find indeces and number of input sequences
@@ -123,7 +122,7 @@ n_inputs = sum(s_inputs); % the number of input series
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 % an initial simulation using the Taylor rule
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
 % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 % return
@@ -132,7 +131,7 @@ n_inputs = sum(s_inputs); % the number of input series
 % create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 
-
+% return
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
@@ -160,7 +159,7 @@ bet = bet0(:);
 
 
 % Evaluate residuals once
-resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x,  k1grid,fegrid, g_fe);
+resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x,  k1grid,fegrid, g_fe, knowTR);
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 
@@ -178,7 +177,7 @@ while crit > 1e-6 && iter < maxiter
     iter=iter+1
     BET(:,iter) = bet; % storing betas
     % Now solve model equations given conjectured E 
-    objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x, k1grid,fegrid, g_fe);
+    objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x, k1grid,fegrid, g_fe, knowTR);
     
     tic
     [seq_opt, resids_opt, flag] = fsolve(objh,seq0crop, options);
@@ -186,7 +185,7 @@ while crit > 1e-6 && iter < maxiter
     % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
     if flag==1 % If fsolve converged to a root
     % Projection step: Recover v, compute analogues E, update beta
-    bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x, k1grid,fegrid, g_fe);
+    bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x, k1grid,fegrid, g_fe, knowTR);
     crit=max(abs(bet-bet1))
     bet=bet1;
     seq0crop = seq_opt; % try to accelerate 

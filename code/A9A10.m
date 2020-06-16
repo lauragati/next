@@ -1,11 +1,11 @@
-function [z] = A9A10(param,hx,fa,fb,s,seq)
+function [z] = A9A10(param,hx,fa,fb,s,seq,knowTR)
 % equations A9, A10 (in materials24 onwards)
 % 6 April 2020
 
 sig  = param.sig;
 kapp = param.kapp;
-
-[s1, s2, s3, s4] = smat(param,hx);
+mpshock = 0; % there is no monpol shock when i is input exogenously.
+[s1, s2, s3, s4] = smat(param,hx,knowTR,mpshock);
 
 
 if numel(seq)==1

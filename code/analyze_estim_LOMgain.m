@@ -55,8 +55,17 @@ grid on
 grid minor
 close
 
+% Specify info assumption on the Taylor rule and not to include a monpol
+% shock
+knowTR =0
+mpshock=0
+%%%%%%%%%%%%%%%%%%%
+
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
-[xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e, dt, x0)
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e,knowTR,mpshock);
+create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
+
 
 return
 %% Let's try to fit an AR(1) LOM gain to this estimated one

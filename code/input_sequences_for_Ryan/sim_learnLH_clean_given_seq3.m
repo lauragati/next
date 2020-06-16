@@ -2,7 +2,8 @@
 % sequence(s) specified in seq AND an exogenous expectation sequence given
 % by FE
 % 8 May 2020
-function [xsim, ysim, k, phi_seq, FA, FB, fe, g_pi, g_pibar,diff] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, fe, g_pi, g_pibar,diff] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM,gain,T,ndrop,e,seq,n_input_jumps,...
+    knowTR, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -92,7 +93,7 @@ for t = 1:T-1
         
         %Solve for current states
         % Evaluate observables given input sequences
-        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq_jumps(:,t-1)); % <-------
+        ysim(:,t) = A9A10(param,hx,fa,fb,xsim(:,t),seq_jumps(:,t-1),knowTR); % <-------
         xesim = hx*xsim(:,t);
         
         %Update coefficients

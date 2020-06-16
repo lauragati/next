@@ -1,8 +1,8 @@
 % command_pea
 % do parameterized expectations for my model
-% takes around 5 min, with adaptive starting point less than 2 min
-% migrated from input_sequences_for_Ryan; main_file.m
-% 29 May 2020
+% takes around 43 sec.
+% migrated from input_sequences_for_Ryan; command_pea.m
+% 16 June 2020
 
 clearvars
 close all
@@ -72,8 +72,10 @@ gain = egain_critsmooth;
 %Select exogenous inputs
 s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
-% Call smat to check what info assumption on the Taylor rule you're using
-[s1, s2, s3, s4, s5] = smat(param,hx);
+% Specify info assumption on the Taylor rule and not to include a monpol
+% shock
+knowTR =0
+mpshock=0
 %%%%%%%%%%%%%%%%%%%
 
 % find indeces and number of input sequences
@@ -84,9 +86,11 @@ n_inputs = sum(s_inputs); % the number of input series
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 % an initial simulation using the Taylor rule
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e,knowTR,mpshock);
 create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
 create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
+
+% return
 
 % % when saving to draft or presentations, use these 3 lines below
 % cd '/Users/lauragati/Dropbox/BC_Research/next/code'
@@ -117,9 +121,9 @@ seq0crop = rand(size(seq0crop));
 % initialize beta-coefficients
 bet0 = ones(4,3); % 4 states x 3 powers
 bet = bet0(:);
-objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR);
 % Evaluate residuals once
-resids = objective_seq_clean_parametricE(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+resids = objective_seq_clean_parametricE(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR);
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 % return
@@ -134,14 +138,14 @@ while crit > 1e-6 && iter < maxiter
     iter=iter+1
     BET(:,iter) = bet; % storing betas
     % Now solve model equations given conjectured E
-    objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    objh = @(seq) objective_seq_clean_parametricE(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR);
     
     tic
     [seq_opt, resids_opt] = fsolve(objh,seq0crop, options);
     toc
     % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
     % Projection step: Recover v, compute analogues E, update beta
-    bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e);
+    bet1 = projection(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR);
     crit=max(abs(bet-bet1))
     bet=bet1;
     seq0crop = seq_opt; %<-- this speeds up to 1/3 of the time!!
@@ -150,7 +154,7 @@ endt = now;
 elapsed_seconds = etime(datevec(endt), datevec(start));
 disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
-[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs);
+[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs,knowTR);
 create_plot_observables(ysim7(:,1:end-1),seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
 create_plot_observables(1./k7(1:end-1), invgain, 'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
 
@@ -161,7 +165,7 @@ create_plot_observables(1./k7(1:end-1), invgain, 'Simulation using input sequenc
 
 return
 output = {e, ysim7, k7, phi7, seq_opt};
-filename = ['pea_outputs_', nowstr, '.mat'];
+filename = [this_code, nowstr, '.mat'];
 save(filename, 'output')
 disp(['Saving results as ', filename])
 
