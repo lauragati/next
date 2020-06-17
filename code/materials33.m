@@ -162,7 +162,7 @@ if redo_data_load_and_bootstrap==1 % takes about 140 sec
     
 end % end of doing the whole data loading and bootstrapping again
 
-%% Compute weighting matrix and do GMM
+%% Compute weighting matrix and initialize alpha
 filename ='acf_data_11_Jun_2020';
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
@@ -216,54 +216,41 @@ PLM = constant_only_pi_only;
 gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
-% Call smat to check whether you're really including a monpol shock
-[s1, s2, s3, s4, s5] = smat(param,hx);
+% display which model you're doing
+[PLM_name, gain_name, gain_title] = give_names(PLM, gain);
+
+% Specify info assumption on the Taylor rule and not to include a monpol
+% shock
+knowTR =1
+mpshock=1
 %%%%%%%%%%%%%%%%%%%
-if sum(s5)==0
-    error('you don''t have a monpol shock, will get stochastic singularity')
-end
 
 % Size of cross-section
 % we're not doing a whole cross-section here
-ndrop = 50 % 0-50
+ndrop = 5 % 0-50
 
 % gen all the N sequences of shocks at once.
 rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 
-% Fmincon
-%Optimization Parameters
-options = optimset('fmincon');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
-options.MaxFunEvals = 10000;
-options.UseParallel = 1; % 2/3 of the time
-
-% Do an initial approx of the anchoring function to initialize the coeffs
-ng = 22;
+% Create grids
+ng = 4
 % grids for k^(-1)_{t-1} and f_{t|t-1}
-k1min = 0%0.00001;
-k1grid = linspace(k1min,param.gbar,ng); %need to have k1min > 0
+k1min = 0 
+k1grid = linspace(k1min,param.gbar,ng); 
 fegrid = linspace(-5,5,ng);
-% values for k^{-1}_t for the grid
-k = zeros(ng,ng);
-for i=1:ng
-    for j=1:ng
-        k(i,j) = fk_smooth_pi_only(param,fegrid(j), 1./k1grid(i));
-    end
-end
+
 % map to ndim_simplex
 x = cell(2,1);
 x{1} = k1grid;
 x{2} = fegrid;
 [xxgrid, yygrid] = meshgrid(k1grid,fegrid);
-% % check quikcly whether it looks ok
-kmesh = fk_smooth_pi_only(param,yygrid,1./xxgrid);
-disp(['max(kmesh-k'') = ', num2str(max(max(abs(kmesh - k'))))])
-k1 = 1./kmesh;
-% surf(k1grid,fegrid,k1)
-% xlabel('k1')
-% ylabel('fe')
 
+% values for k^{-1}_t for the grid
+kmesh = fk_smooth_pi_only(param,yygrid,1./xxgrid); % I've checked and this gives the same as putting fe and k_{t-1} one-by-one thru fk_smooth_pi_only
+k1 = 1./kmesh;
+
+% Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
 
 % Let's plot the approximated evolution of the gain on a finer sample
@@ -274,148 +261,83 @@ fegrid_fine = linspace(-5,5,ng_fine);
 
 k10 = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph0);
 
-% figure
-% set(gcf,'color','w'); % sets white background color
-% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-% mesh(xxgrid_fine, yygrid_fine,reshape(k10,[ng_fine,ng_fine]))
-% xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-% ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-% zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs, 'rotation',0)
-% % title('Initial','interpreter', 'latex', 'fontsize', fs)
-% ax = gca; % current axes
-% ax.FontSize = fs;
-% set(gca,'TickLabelInterpreter', 'latex');
-% grid on
-% grid minor
+xlabel = '$k^{-1}_{t-1}$'; ylabel = '$fe_{t|t-1}$'; zlabel = '$k^{-1}_{t}$';
+figname = [this_code, '_initial_approx_', todays_date];
+% create_pretty_3Dplot(k10,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,figname,print_figs)
+
+% % seems to behave fine for initial ones
+% % knowTR = 0;
+% % mpshock =0;
 % 
-% figname = [this_code, '_initial_anchor_fct','_','_date_', todays_date];
-% if print_figs ==1
-%     disp(figname)
-%     cd(figpath)
-%     export_fig(figname)
-%     cd(current_dir)
-%     close
-% end
+% % let's see how these alpha do
+% [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
+% 
+% % Some titles for figures
+% seriesnames = {'\pi', 'x','i'};
+% invgain = {'Inverse gain'};
+% create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
+% create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
+
+% In particular, k was never negative!
+
+% return
+
+%% GMM
 
 % dbstop if error
 % dbstop if warning
+
+% Fmincon
+%Optimization Parameters
+options = optimset('fmincon');
+options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
+options.MaxFunEvals = 10000;
+options.UseParallel = 1; % 2/3 of the time
 
 tol = 100; % results don't change much if you make tol > 0.5
 ub = alph0+tol;
 lb = zeros(size(alph0));
 % lb = alph0-tol;
+lbname = 'unrestricted';
+if sum(lb)==0
+    lbname = 'positive'
+end
 
 % %Compute the objective function one time with some values
-loss = obj_GMM_LOMgain(alph0,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
+loss = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
 
-% % % % stuff it took to realize to change smat to make agents know the TR
-% % % ndrop=0;
-% % % T=450;% At 450 you start to see the divergence
-% % % e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
-% % % 
-% % % [xc, yc, kc, phi_seqc, FAc, FBc, FEt_1c,diffc]  = sim_learnLH_clean(param,gx,hx,eta, constant_only, gain, T,ndrop,e);
-% % % [xcp, ycp, kcp, phi_seqcp, FAcp, FBcp, FEt_1cp,diffcp] = sim_learnLH_clean(param,gx,hx,eta, constant_only_pi_only, gain, T,ndrop,e);
-% % % 
-% % % % return
-% % % % [xc, yc, kc, phi_seqc, FAc, FBc, FEt_1c,diffc] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, constant_only, gain, T+ndrop,ndrop,e);
-% % % % [xcp, ycp, kcp, phi_seqcp, FAcp, FBcp, FEt_1cp,diffcp] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, constant_only_pi_only, gain, T+ndrop,ndrop,e);
-% % % pibarc = squeeze(phi_seqc(1,1,:));
-% % % pibarcp = squeeze(phi_seqcp(1,1,:));
-% % % fec = FEt_1c(1,:);
-% % % fecp = FEt_1cp(1,:);
-% % % 
-% % % tilwhen = 200;
-% % % tilwhen = T;
-% % % 
-% % % figure
-% % % set(gcf,'color','w'); % sets white background color
-% % % set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-% % % subplot(2,3,1)
-% % % plot(1./kc(1:tilwhen), 'linewidth',lw); hold on
-% % % plot(1./kcp(1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('gain', 'fontsize', fs)
-% % % subplot(2,3,2)
-% % % plot(pibarc(1:tilwhen), 'linewidth',lw); hold on
-% % % plot(pibarcp(1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('pibar', 'fontsize', fs)
-% % % subplot(2,3,3)
-% % % plot(fec(1:tilwhen), 'linewidth',lw); hold on
-% % % plot(fecp(1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('fe(pi)', 'fontsize', fs)
-% % % 
-% % % subplot(2,3,4)
-% % % plot(FAc(1,1:tilwhen), 'linewidth',lw); hold on
-% % % plot(FAcp(1,1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('FA(pi)', 'fontsize', fs)
-% % % subplot(2,3,5)
-% % % plot(yc(1,1:tilwhen), 'linewidth',lw); hold on
-% % % plot(ycp(1,1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('pi', 'fontsize', fs)
-% % % subplot(2,3,6)
-% % % plot(diffc(1:tilwhen), 'linewidth',lw); hold on
-% % % plot(diffcp(1:tilwhen), 'linewidth',lw)
-% % % ax = gca; % current axes
-% % % ax.FontSize = fs;
-% % % title('diff', 'fontsize', fs)
-% % % sgtitle('''Constant-only'' vs. ''constant-only,pi-only'' learning given \alpha_0', 'fontsize', fs)
-% % % 
-% % % figname = [this_code, '_PLMs_constant_only_vs_co_pi_only', todays_date];
-% % % if print_figs ==1
-% % %     disp(figname)
-% % %     cd(figpath)
-% % %     export_fig(figname)
-% % %     cd(current_dir)
-% % %     close
-% % % end
-% % % return
 
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain(alph,x,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
-[alph_opt, loss_opt] = fmincon(objh, alph0+0*rand(size(alph0)), [],[],[],[],lb,ub,[],options);
+objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
+[alph_opt, loss_opt, flag] = fmincon(objh, alph0+0*rand(size(alph0)), [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_opt);
+disp('Is optimal k1 ever negative?')
+find(k1_opt<0)
 
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-surf(xxgrid_fine, yygrid_fine,reshape(k1_opt,[ng_fine,ng_fine]))
-xlabel('$k^{-1}_{t-1}$','interpreter', 'latex', 'fontsize', fs)
-ylabel('$fe_{t|t-1}$','interpreter', 'latex', 'fontsize', fs)
-zlabel('$k^{-1}_{t}$','interpreter', 'latex', 'fontsize', fs, 'rotation',0)
-% title('Optimal','interpreter', 'latex', 'fontsize', fs)
-ax = gca; % current axes
-ax.FontSize = fs;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
+if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
+xlabel = '$k^{-1}_{t-1}$'; ylabel = '$fe_{t|t-1}$'; zlabel = '$k^{-1}_{t}$';
+figname = [this_code, '_estimated_alphas_','ndrop_', num2str(ndrop), '_ng_', num2str(ng),'_alpha_constraint_',lbname, '_', todays_date];
+create_pretty_3Dplot(k1_opt,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,figname,print_figs)
+end
+% how does the model behave for estimated alpha?
+% knowTR = 0;
+% mpshock =0;
 
-if min(lb) < 0
-    lbname = 'lb_neg';
-else
-    lbname = 'lb_pos';
-end
-figname = [this_code, '_estmtd_anchor_fct_nburn_', num2str(ndrop),'_',lbname,'_k1min_',num2str(k1min),'_ng_',num2str(ng), '_ngfine_', num2str(ng_fine),'_date_', todays_date];
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
+% let's see how these alpha do
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph_opt,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e)),knowTR,mpshock);
+disp('Is implied simulated k1 ever negative?')
+find(k0<0)
+
+% Some titles for figures
+seriesnames = {'\pi', 'x','i'};
+invgain = {'Inverse gain'};
+create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 
 return
 

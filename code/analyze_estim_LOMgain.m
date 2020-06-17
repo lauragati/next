@@ -55,16 +55,60 @@ grid on
 grid minor
 close
 
+
+% Parameters for RE and learning models
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+sig_r = param.sig_r;
+sig_i = param.sig_i;
+sig_u = param.sig_u;
+
+% RE model
+[fyn, fxn, fypn, fxpn] = model_NK(param);
+[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
+[ny, nx] = size(gx);
+
+% [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
+SIG = eye(nx).*[sig_r, sig_i, sig_u]';
+eta = SIG; %just so you know
+
+% Params for the general learning code
+constant_only = 1; % learning constant only
+constant_only_pi_only = 11; % learning constant only, inflation only
+mean_only_PLM = -1;
+slope_and_constant = 2;
+
+dgain = 1;  % 1 = decreasing gain, 2 = endogenous gain, 3 = constant gain
+again_critCEMP  = 21;
+again_critCUSUM = 22;
+again_critsmooth = 23;
+cgain = 3;
+
+% Model selection
+%%%%%%%%%%%%%%%%%%%
+PLM = constant_only_pi_only;
+gain = again_critsmooth;
+%%%%%%%%%%%%%%%%%%%
 % Specify info assumption on the Taylor rule and not to include a monpol
 % shock
 knowTR =0
 mpshock=0
 %%%%%%%%%%%%%%%%%%%
+% display which model you're doing
+[PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean(param,gx,hx,eta,PLM, gain, T,ndrop,e,knowTR,mpshock);
-create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_obs_TR_',PLM_name,'_', todays_date], print_figs)
-create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', [this_code, '_implement_anchTC_invgain_TR_',PLM_name,'_', todays_date], print_figs)
+T=100
+ndrop=0
+rng(0)
+e = randn(nx,T+ndrop); 
+e(2,:) =zeros(1,length(e));
+
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
+
+% Some titles for figures
+seriesnames = {'\pi', 'x','i'};
+invgain = {'Inverse gain'};
+create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
 
 
 return

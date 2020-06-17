@@ -1,5 +1,0 @@
-\contentsline {section}{\numberline {1}Model summary with interest rate smoothing $\rho i_{t-1}$}{2}{section.1}
-\contentsline {section}{\numberline {2}Compact notation - with lagged interest rate term in TR}{3}{section.2}
-\contentsline {section}{\numberline {3}Recap of timing}{4}{section.3}
-\contentsline {section}{\numberline {4}Current set of baseline parameters}{5}{section.4}
-\contentsline {section}{\numberline {5}Cross-sectional IRFs, mon. pol shock only, cgain \& dgain only $\blacktriangleleft $}{6}{section.5}

@@ -104,7 +104,7 @@ bottom=1in}
 \def\myTinyFigScale{0.16}
 \def\myPointFourteenFigScale{0.14}
 \def\myTinierFigScale{0.12}
-\def\myAdjustableFigScale{0.21}
+\def\myAdjustableFigScale{0.20}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
 \newcommand{\code}[1]{\texttt{#1}} %code %
 
@@ -144,15 +144,49 @@ Then I estimate $\alpha$ using GMM, targeting the autocovariance structure of in
 \label{fig_initial_anchor_fct}
 \end{figure}
 
-$T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM .
+$T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM. I drop the $ndrop=5$ initial values.
 
-\section{Estimation results/questions}
+\section{Estimation issues}
 \begin{enumerate}
 %\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular. --> reintroduced Taylor rule shock to solve stochastic singularity
-
-
 \item Different bounds on  $\alpha$ yield different estimates, see below.
+\item The estimation is also very sensitive to the choice of the grids for the gain and for forecast errors. For example, choosing $n_{grid} = 11$ instead of 10 leads to massively different estimates. In particular, odd vs. even seems to matter.
+\item Given $\hat{\alpha}$, PEA has a negative gain problem. I don't understand how!
+\end{enumerate}
 
+\begin{figure}[h!]
+\subfigure[Coefficients unrestricted, $n_{grid} = 10$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill 
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 10$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_positive_16_Jun_2020}}
+\subfigure[Coefficients unrestricted, $n_{grid} = 11$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 11$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_positive_16_Jun_2020}}
+\subfigure[Coefficients unrestricted, $n_{grid} = 20$. This actually goes negative!]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 20$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_positive_16_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{GMM}$}
+\label{fig_estmtd_anchor_fct}
+\end{figure}
+
+\clearpage
+
+I thought of something: I have $ngrid^2$ parameters and 45 moments. This means my grid can at most have 6 elements (or I need more autocovariance lags to have more moments).
+\begin{figure}[h!]
+\subfigure[Coefficients unrestricted, $n_{grid} = 6$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill 
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 6$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_positive_16_Jun_2020}}
+\subfigure[Coefficients unrestricted, $n_{grid} = 5$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 5$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_positive_16_Jun_2020}}
+\subfigure[Coefficients unrestricted, $n_{grid} = 4$.]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_unrestricted_16_Jun_2020}}
+\hfill
+\subfigure[Coefficients restricted $> 0$, $n_{grid} = 4$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_positive_16_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{GMM}$}
+\label{fig_estmtd_anchor_fct}
+\end{figure}
+
+\clearpage
+\section{Older plots for me}
 % constant only, pi only PLM
 % beta restricted to be positive
 \begin{figure}[h!]
@@ -161,7 +195,7 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \subfigure[$N_{burn}=25$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_date_15_Jun_2020}}
 \subfigure[$N_{burn}=50$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_date_15_Jun_2020}}
 \caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{GMM} > 0$}
-\label{fig_estmtd_anchor_fct}
+\label{fig_estmtd_anchor_fct_restricted}
 \end{figure}
 
 % beta not restricted to be positive
@@ -196,7 +230,8 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 %\end{figure}
 
 \clearpage
-\item Given $\hat{\alpha}$, PEA has a negative gain problem. My initial suspicion was that it's because during PEA, the gain falls below the lower bound I used during the estimation, and therefore turns negative. Here therefore I use the lower bound 0 for estimation, but still PEA has a negative gain problem. I don't understand how!
+
+
 \begin{figure}[h!]
 \includegraphics[scale=0.18]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_date_15_Jun_2020}
 \caption{$min(k^{-1}) = 0$ instead of 0.00001}
@@ -204,7 +239,7 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \label{mink1_0}
 \end{figure}
 
-\item The estimation is also very sensitive to the choice of the grids for the gain and for forecast errors. For example, choosing $n_{grid} = 11$ instead of 10 leads to massively different estimates. In particular, odd vs. even seems to matter.
+
 \begin{figure}[h!]
 \includegraphics[scale=0.18]{\myFigPath materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_ng_11_ngfine_100_date_15_Jun_2020}
 \caption{$n_{grid}$=11}
@@ -224,7 +259,6 @@ If I fit an AR(1) (Equation \ref{A6}) to the estimated gain evolution, I obtain 
 
 But these are very high values; the model isn't E-stable for such high values. Rerunning PEA with the AR(1) specification and the values (1, 0.0123) is able to solve, but involves a gain that's increasing over time!
 
-\end{enumerate}
 
 \clearpage
 %\newpage

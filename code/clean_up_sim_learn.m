@@ -15,7 +15,7 @@ date_today = strrep(datestr(today, 'yyyy-mm-dd'), '-','_');
 
 % % Add all the relevant paths and grab the codename
 this_code = mfilename;
-[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path,inputsRyan_path] = add_paths;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath,tryouts_path] = add_paths;
 
 % Variable stuff ---
 print_figs        = 0;
@@ -71,7 +71,7 @@ gain = again_critsmooth;
 T = 400 % 400
 % Size of cross-section
 N = 1 %100 500
-burnin = 100; %100
+burnin = 0; %100. If burnin = 0, only then are the shocked values the same b.c sim_learnLH didn't input the shock at dt+ndrop, but at dt.
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 
@@ -91,6 +91,11 @@ eta = SIG; %just so you know
 
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
+% Specify info assumption on the Taylor rule and not to include a monpol
+% shock
+knowTR =1
+mpshock=1
+%%%%%%%%%%%%%%%%%%%
 
 % Simulate models
 
@@ -127,7 +132,7 @@ for s=2  %2->zoom in on monetary policy shock
         % the original code
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         % its plain vanilla cleaned version WORK WITH THIS
-        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, ~,diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e);
+        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, ~,diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e,knowTR,mpshock);
         
         % RETIRED
 %         % a cleaned version only for pi-only scalar learning with scalar
@@ -149,7 +154,7 @@ for s=2  %2->zoom in on monetary policy shock
             
             % Shocked
             [~, ys_LH] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
-            [~, ys_clean] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e, dt, x0);
+            [~, ys_clean] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e,knowTR,mpshock, dt, x0);
             % RETIRED:
 %             [~, ys_smooth] = sim_learnLH_clean_smooth(param,gx,hx,SIG, Aa, Ab, As,T+burnin,burnin,e,dt,x0);
 %             [~, ys_g] = sim_learnLH_clean_g(param,gx,hx,SIG, Aa, Ab, As,PLM, T+burnin,burnin,e, dt, x0);
