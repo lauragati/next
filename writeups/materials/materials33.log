@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 JUN 2020 21:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 JUN 2020 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -947,71 +947,49 @@ Jun_2020.png used on input line 142.
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../../f
 igures/materials33_initial_anchor_fct__date_12_Jun_2020.png (PNG copy)>]
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_unre
-stricted_16_Jun_2020.png, id=61, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint
-_unrestricted_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_one_z
+ero_17_Jun_2020.png, id=60, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_
+one_zero_17_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_
-unrestricted_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_o
+ne_zero_17_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-10_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 158.
-(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
+6_alpha_constraint_one_zero_17_Jun_2020.png used on input line 161.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_posi
-tive_16_Jun_2020.png, id=62, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint
-_positive_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_one_z
+ero_17_Jun_2020.png, id=61, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_
+one_zero_17_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_
-positive_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_o
+ne_zero_17_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-10_alpha_constraint_positive_16_Jun_2020.png used on input line 160.
-(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
+5_alpha_constraint_one_zero_17_Jun_2020.png used on input line 163.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_unre
-stricted_16_Jun_2020.png, id=63, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint
-_unrestricted_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_one_z
+ero_17_Jun_2020.png, id=62, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_
+one_zero_17_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_
-unrestricted_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_o
+ne_zero_17_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-11_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 161.
-(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
+4_alpha_constraint_one_zero_17_Jun_2020.png used on input line 164.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_posi
-tive_16_Jun_2020.png, id=64, 1519.6775pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint
-_positive_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_3_alpha_constraint_one_z
+ero_17_Jun_2020.png, id=63, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_3_alpha_constraint_
+one_zero_17_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_
-positive_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_3_alpha_constraint_o
+ne_zero_17_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-11_alpha_constraint_positive_16_Jun_2020.png used on input line 163.
-(pdftex.def)             Requested size: 212.7534pt x 120.56963pt.
-
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_unre
-stricted_16_Jun_2020.png, id=65, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint
-_unrestricted_16_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_
-unrestricted_16_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-20_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 164.
-(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
-
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_posi
-tive_16_Jun_2020.png, id=66, 1519.6775pt x 861.2175pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint
-_positive_16_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_
-positive_16_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-20_alpha_constraint_positive_16_Jun_2020.png used on input line 166.
-(pdftex.def)             Requested size: 212.7534pt x 120.56963pt.
+3_alpha_constraint_one_zero_17_Jun_2020.png used on input line 166.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1019,80 +997,77 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2 <../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_u
-nrestricted_16_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_al
-phas_ndrop_5_ng_10_alpha_constraint_positive_16_Jun_2020.png (PNG copy)> <../..
-/figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_unrestrict
-ed_16_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_alphas_ndro
-p_5_ng_11_alpha_constraint_positive_16_Jun_2020.png (PNG copy)> <../../figures/
-materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_unrestricted_16_Jun
-_2020.png (PNG copy)> <../../figures/materials33_estimated_alphas_ndrop_5_ng_20
-_alpha_constraint_positive_16_Jun_2020.png (PNG copy)>]
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_unres
-tricted_16_Jun_2020.png, id=84, 1539.7525pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_
-unrestricted_16_Jun_2020.png Graphic file (type png)
+[2 <../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_on
+e_zero_17_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_alphas_
+ndrop_5_ng_5_alpha_constraint_one_zero_17_Jun_2020.png (PNG copy)> <../../figur
+es/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_one_zero_17_Jun_2
+020.png (PNG copy)> <../../figures/materials33_estimated_alphas_ndrop_5_ng_3_al
+pha_constraint_one_zero_17_Jun_2020.png (PNG copy)>]
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_unre
+stricted_16_Jun_2020.png, id=85, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint
+_unrestricted_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_u
-nrestricted_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_
+unrestricted_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-6_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 175.
-(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+10_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 175.
+(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_posit
-ive_16_Jun_2020.png, id=85, 1539.7525pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_
-positive_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_posi
+tive_16_Jun_2020.png, id=86, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint
+_positive_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_p
-ositive_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_
+positive_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-6_alpha_constraint_positive_16_Jun_2020.png used on input line 177.
-(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+10_alpha_constraint_positive_16_Jun_2020.png used on input line 177.
+(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_unres
-tricted_16_Jun_2020.png, id=86, 1539.7525pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_
-unrestricted_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_unre
+stricted_16_Jun_2020.png, id=87, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint
+_unrestricted_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_u
-nrestricted_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_
+unrestricted_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-5_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 178.
-(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+11_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 178.
+(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_posit
-ive_16_Jun_2020.png, id=87, 1519.6775pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_
-positive_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_posi
+tive_16_Jun_2020.png, id=88, 1519.6775pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint
+_positive_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_p
-ositive_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_
+positive_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-5_alpha_constraint_positive_16_Jun_2020.png used on input line 180.
-(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
+11_alpha_constraint_positive_16_Jun_2020.png used on input line 180.
+(pdftex.def)             Requested size: 212.7534pt x 120.56963pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_unres
-tricted_16_Jun_2020.png, id=88, 1539.7525pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_
-unrestricted_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_unre
+stricted_16_Jun_2020.png, id=89, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint
+_unrestricted_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_u
-nrestricted_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_
+unrestricted_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-4_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 181.
-(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+20_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 181.
+(pdftex.def)             Requested size: 215.56387pt x 120.56963pt.
 
-<../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_posit
-ive_16_Jun_2020.png, id=89, 1519.6775pt x 858.20625pt>
-File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_
-positive_16_Jun_2020.png Graphic file (type png)
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_posi
+tive_16_Jun_2020.png, id=90, 1519.6775pt x 861.2175pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint
+_positive_16_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_p
-ositive_16_Jun_2020.png>
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_
+positive_16_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
-4_alpha_constraint_positive_16_Jun_2020.png used on input line 183.
-(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
+20_alpha_constraint_positive_16_Jun_2020.png used on input line 183.
+(pdftex.def)             Requested size: 212.7534pt x 120.56963pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1101,6 +1076,162 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3
+
+ <../../figures/materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_unr
+estricted_16_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_alph
+as_ndrop_5_ng_10_alpha_constraint_positive_16_Jun_2020.png (PNG copy)> <../../f
+igures/materials33_estimated_alphas_ndrop_5_ng_11_alpha_constraint_unrestricted
+_16_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_alphas_ndrop_
+5_ng_11_alpha_constraint_positive_16_Jun_2020.png (PNG copy)> <../../figures/ma
+terials33_estimated_alphas_ndrop_5_ng_20_alpha_constraint_unrestricted_16_Jun_2
+020.png (PNG copy)> <../../figures/materials33_estimated_alphas_ndrop_5_ng_20_a
+lpha_constraint_positive_16_Jun_2020.png (PNG copy)>]
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_unres
+tricted_16_Jun_2020.png, id=102, 1539.7525pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_
+unrestricted_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_u
+nrestricted_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+6_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 192.
+(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_posit
+ive_16_Jun_2020.png, id=103, 1539.7525pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_
+positive_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_p
+ositive_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+6_alpha_constraint_positive_16_Jun_2020.png used on input line 194.
+(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_unres
+tricted_16_Jun_2020.png, id=104, 1539.7525pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_
+unrestricted_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_u
+nrestricted_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+5_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 195.
+(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_posit
+ive_16_Jun_2020.png, id=105, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_
+positive_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_p
+ositive_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+5_alpha_constraint_positive_16_Jun_2020.png used on input line 197.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
+
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_unres
+tricted_16_Jun_2020.png, id=106, 1539.7525pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_
+unrestricted_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_u
+nrestricted_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+4_alpha_constraint_unrestricted_16_Jun_2020.png used on input line 198.
+(pdftex.def)             Requested size: 215.56387pt x 120.14806pt.
+
+<../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_posit
+ive_16_Jun_2020.png, id=107, 1519.6775pt x 858.20625pt>
+File: ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_
+positive_16_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_p
+ositive_16_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estimated_alphas_ndrop_5_ng_
+4_alpha_constraint_positive_16_Jun_2020.png used on input line 200.
+(pdftex.def)             Requested size: 212.7534pt x 120.14806pt.
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_date_15
+_Jun_2020.png, id=108, 1519.6775pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_da
+te_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_dat
+e_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb
+_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 209.
+(pdftex.def)             Requested size: 303.93011pt x 172.24045pt.
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_date_1
+5_Jun_2020.png, id=109, 1519.6775pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_d
+ate_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_da
+te_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_25_l
+b_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 211.
+(pdftex.def)             Requested size: 303.93011pt x 172.24045pt.
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_date_1
+5_Jun_2020.png, id=110, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_d
+ate_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_da
+te_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
+b_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 212.
+(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_date_15
+_Jun_2020.png, id=111, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_da
+te_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_dat
+e_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb
+_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 219.
+(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_date_1
+5_Jun_2020.png, id=112, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_d
+ate_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_da
+te_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_25_l
+b_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 221.
+(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
+
+<../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_date_1
+5_Jun_2020.png, id=113, 1539.7525pt x 861.2175pt>
+File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_d
+ate_15_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_da
+te_15_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
+b_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 222.
+(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4
 
  <../../figures/materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_unre
 stricted_16_Jun_2020.png (PNG copy)> <../../figures/materials33_estimated_alpha
@@ -1111,71 +1242,8 @@ g_5_alpha_constraint_positive_16_Jun_2020.png (PNG copy)> <../../figures/materi
 als33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_unrestricted_16_Jun_2020.p
 ng (PNG copy)> <../../figures/materials33_estimated_alphas_ndrop_5_ng_4_alpha_c
 onstraint_positive_16_Jun_2020.png (PNG copy)>]
-<../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_date_15
-_Jun_2020.png, id=101, 1519.6775pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_da
-te_15_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_dat
-e_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb
-_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 193.
-(pdftex.def)             Requested size: 303.93011pt x 172.24045pt.
-
-<../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_date_1
-5_Jun_2020.png, id=102, 1519.6775pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_d
-ate_15_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_pos_k1min_1e-05_da
-te_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_25_l
-b_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 195.
-(pdftex.def)             Requested size: 303.93011pt x 172.24045pt.
-
-<../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_date_1
-5_Jun_2020.png, id=103, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_d
-ate_15_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_da
-te_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
-b_pos_k1min_1e-05_date_15_Jun_2020.png used on input line 196.
-(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
-
-<../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_date_15
-_Jun_2020.png, id=104, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_da
-te_15_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_dat
-e_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_0_lb
-_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 203.
-(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
-
-<../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_date_1
-5_Jun_2020.png, id=105, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_d
-ate_15_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_25_lb_neg_k1min_1e-05_da
-te_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_25_l
-b_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 205.
-(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
-
-<../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_date_1
-5_Jun_2020.png, id=106, 1539.7525pt x 861.2175pt>
-File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_d
-ate_15_Jun_2020.png Graphic file (type png)
-
-<use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_da
-te_15_Jun_2020.png>
-Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
-b_neg_k1min_1e-05_date_15_Jun_2020.png used on input line 206.
-(pdftex.def)             Requested size: 307.94504pt x 172.24045pt.
+LaTeX Warning: Text page 5 contains only floats.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1183,53 +1251,54 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
+[5 <../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_date
+_15_Jun_2020.png (PNG copy)> <../../figures/materials33_estmtd_anchor_fct_nburn
+_25_lb_pos_k1min_1e-05_date_15_Jun_2020.png (PNG copy)> <../../figures/material
+s33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_date_15_Jun_2020.png (PNG cop
+y)>]
 
- <../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_pos_k1min_1e-05_date_1
-5_Jun_2020.png (PNG copy)> <../../figures/materials33_estmtd_anchor_fct_nburn_2
-5_lb_pos_k1min_1e-05_date_15_Jun_2020.png (PNG copy)> <../../figures/materials3
-3_estmtd_anchor_fct_nburn_50_lb_pos_k1min_1e-05_date_15_Jun_2020.png (PNG copy)
->]
+LaTeX Warning: Text page 6 contains only floats.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5 <../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_date
+[6 <../../figures/materials33_estmtd_anchor_fct_nburn_0_lb_neg_k1min_1e-05_date
 _15_Jun_2020.png (PNG copy)> <../../figures/materials33_estmtd_anchor_fct_nburn
 _25_lb_neg_k1min_1e-05_date_15_Jun_2020.png (PNG copy)> <../../figures/material
 s33_estmtd_anchor_fct_nburn_50_lb_neg_k1min_1e-05_date_15_Jun_2020.png (PNG cop
 y)>]
 <../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_date_15_Ju
-n_2020.png, id=123, 1519.6775pt x 861.2175pt>
+n_2020.png, id=141, 1519.6775pt x 861.2175pt>
 File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_date_
 15_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_date_1
 5_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
-b_pos_k1min_0_date_15_Jun_2020.png used on input line 236.
+b_pos_k1min_0_date_15_Jun_2020.png used on input line 252.
 (pdftex.def)             Requested size: 273.53015pt x 155.01245pt.
 
 <../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_ng_11_ngfi
-ne_100_date_15_Jun_2020.png, id=124, 1519.6775pt x 861.2175pt>
+ne_100_date_15_Jun_2020.png, id=142, 1519.6775pt x 861.2175pt>
 File: ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_ng_11
 _ngfine_100_date_15_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_ng_11_
 ngfine_100_date_15_Jun_2020.png>
 Package pdftex.def Info: ../../figures/materials33_estmtd_anchor_fct_nburn_50_l
-b_pos_k1min_0_ng_11_ngfine_100_date_15_Jun_2020.png used on input line 244.
+b_pos_k1min_0_ng_11_ngfine_100_date_15_Jun_2020.png used on input line 260.
 (pdftex.def)             Requested size: 273.53015pt x 155.01245pt.
 
-<../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png, id=126, 1519.6775pt
+<../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png, id=144, 1519.6775pt
  x 861.2175pt>
 File: ../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png Graphic file (t
 ype png)
  <use ../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png>
 Package pdftex.def Info: ../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.
-png used on input line 255.
+png used on input line 271.
 (pdftex.def)             Requested size: 273.53015pt x 155.01245pt.
 
 
@@ -1241,7 +1310,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6
+[7
 
  <../../figures/materials33_estmtd_anchor_fct_nburn_50_lb_pos_k1min_0_date_15_J
 un_2020.png (PNG copy)> <../../figures/materials33_estmtd_anchor_fct_nburn_50_l
@@ -1252,66 +1321,66 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7 <../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png (PNG copy)>]
+[8 <../../figures/analyze_estim_LOMgain_fitAR_15_Jun_2020.png (PNG copy)>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 265.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 265.
+(hyperref)                removing `math shift' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 265.
+(hyperref)                removing `\pi' on input line 281.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 281.
 
 
 <../../figures/command_pea_implement_anchTC_obs_TR_constant_only_pi_only_14_Jun
-_2020.png, id=139, 1370.11874pt x 881.2925pt>
+_2020.png, id=157, 1370.11874pt x 881.2925pt>
 File: ../../figures/command_pea_implement_anchTC_obs_TR_constant_only_pi_only_1
 4_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_pea_implement_anchTC_obs_TR_constant_only_pi_only_14
 _Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_pea_implement_anchTC_obs_TR_cons
-tant_only_pi_only_14_Jun_2020.png used on input line 267.
+tant_only_pi_only_14_Jun_2020.png used on input line 283.
 (pdftex.def)             Requested size: 191.8153pt x 123.3801pt.
 
 <../../figures/command_pea_implement_anchTC_invgain_TR_constant_only_pi_only_14
-_Jun_2020.png, id=140, 1418.29875pt x 841.1425pt>
+_Jun_2020.png, id=158, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_pea_implement_anchTC_invgain_TR_constant_only_pi_on
 ly_14_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_pea_implement_anchTC_invgain_TR_constant_only_pi_onl
 y_14_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_pea_implement_anchTC_invgain_TR_
-constant_only_pi_only_14_Jun_2020.png used on input line 269.
+constant_only_pi_only_14_Jun_2020.png used on input line 285.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_pea_implement_anchTC_obs_anchTC_constant_only_pi_only_14
-_Jun_2020.png, id=141, 1370.11874pt x 881.2925pt>
+_Jun_2020.png, id=159, 1370.11874pt x 881.2925pt>
 File: ../../figures/command_pea_implement_anchTC_obs_anchTC_constant_only_pi_on
 ly_14_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_pea_implement_anchTC_obs_anchTC_constant_only_pi_onl
 y_14_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_pea_implement_anchTC_obs_anchTC_
-constant_only_pi_only_14_Jun_2020.png used on input line 270.
+constant_only_pi_only_14_Jun_2020.png used on input line 286.
 (pdftex.def)             Requested size: 191.8153pt x 123.3801pt.
 
 <../../figures/command_pea_implement_anchTC_invgain_anchTC_constant_only_pi_onl
-y_14_Jun_2020.png, id=142, 1418.29875pt x 841.1425pt>
+y_14_Jun_2020.png, id=160, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_pea_implement_anchTC_invgain_anchTC_constant_only_p
 i_only_14_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_pea_implement_anchTC_invgain_anchTC_constant_only_pi
 _only_14_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_pea_implement_anchTC_invgain_anc
-hTC_constant_only_pi_only_14_Jun_2020.png used on input line 272.
+hTC_constant_only_pi_only_14_Jun_2020.png used on input line 288.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/compare_value_pea_results_value_outputs_server02_Jun_2020_18_21_
-35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_2020.png, id=143, 1401.235pt 
+35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_2020.png, id=161, 1401.235pt 
 x 812.03375pt>
 File: ../../figures/compare_value_pea_results_value_outputs_server02_Jun_2020_1
 8_21_35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_2020.png Graphic file (t
@@ -1321,28 +1390,8 @@ ype png)
 _21_35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_2020.png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_value_outputs_
 server02_Jun_2020_18_21_35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_2020.
-png used on input line 278.
+png used on input line 294.
 (pdftex.def)             Requested size: 252.21141pt x 146.15976pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[8
-
- <../../figures/command_pea_implement_anchTC_obs_TR_constant_only_pi_only_14_Ju
-n_2020.png (PNG copy)> <../../figures/command_pea_implement_anchTC_invgain_TR_c
-onstant_only_pi_only_14_Jun_2020.png (PNG copy)> <../../figures/command_pea_imp
-lement_anchTC_obs_anchTC_constant_only_pi_only_14_Jun_2020.png (PNG copy)> <../
-../figures/command_pea_implement_anchTC_invgain_anchTC_constant_only_pi_only_14
-_Jun_2020.png (PNG copy)> <../../figures/compare_value_pea_results_value_output
-s_server02_Jun_2020_18_21_35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_202
-0.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 309--309
-[] 
- []
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1352,26 +1401,46 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [9
 
+ <../../figures/command_pea_implement_anchTC_obs_TR_constant_only_pi_only_14_Ju
+n_2020.png (PNG copy)> <../../figures/command_pea_implement_anchTC_invgain_TR_c
+onstant_only_pi_only_14_Jun_2020.png (PNG copy)> <../../figures/command_pea_imp
+lement_anchTC_obs_anchTC_constant_only_pi_only_14_Jun_2020.png (PNG copy)> <../
+../figures/command_pea_implement_anchTC_invgain_anchTC_constant_only_pi_only_14
+_Jun_2020.png (PNG copy)> <../../figures/compare_value_pea_results_value_output
+s_server02_Jun_2020_18_21_35_pea_outputs_14_Jun_2020_09_56_33_pretty_14_Jun_202
+0.png (PNG copy)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 325--325
+[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10
+
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 363.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 363.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 379.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 379.
  (./materials33.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 363.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 363.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 379.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 379.
 Package rerunfilecheck Info: File `materials33.out' has not changed.
 (rerunfilecheck)             Checksum: A8F21C12ABC5978DD01CB11ABDB92673;440.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 363.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 379.
  ) 
 Here is how much of TeX's memory you used:
- 20182 strings out of 493089
- 375628 string characters out of 6134842
- 457417 words of memory out of 5000000
- 23202 multiletter control sequences out of 15000+600000
- 16465 words of font info for 64 fonts, out of 8000000 for 9000
+ 20218 strings out of 493089
+ 377805 string characters out of 6134842
+ 457547 words of memory out of 5000000
+ 23224 multiletter control sequences out of 15000+600000
+ 17560 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,526b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1393,11 +1462,13 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials33.pdf (9 pages, 9524679 bytes).
+st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials33.pdf (10 pages, 10908236 bytes).
 PDF statistics:
- 255 PDF objects out of 1000 (max. 8388607)
- 194 compressed objects within 2 object streams
- 65 named destinations out of 1000 (max. 500000)
- 204 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 210 compressed objects within 3 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

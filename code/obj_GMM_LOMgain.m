@@ -1,11 +1,14 @@
-function loss = obj_GMM_LOMgain(alph,x,xxgrid, yygrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om_data, W1)
+function res = obj_GMM_LOMgain(alph,x,xxgrid, yygrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1)
 % alph are the coefficients, x is the grid
 % 9 June 2020
+% Update 17 June 2020: rewritten to work with lsqnonlin
 
+% disp('Current guess alpha = ')
+% disp(num2str(alph))
 % check "global" nonnegativity of k1
 k10 = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'],alph);
 if min(k10)<0
-    loss = 1e+10;
+    res = 1e+10;
     disp('k1 was negative on fine grid, not even bothering to do simulation')
 else
     
@@ -15,13 +18,12 @@ else
     mpshock=1;
     % Simulate data given parameters
     [~, y, k] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
-    
-    
+     
     k1 = 1./k(1:end-1); % cut off last period where k is unset
     % Do not filter data and estimate VARs if the current coefficients
     % alpha lead to an explosive learning simulation
     if isinf(max(k1)) || min(k1)<0
-        loss = 1e+10;
+        res = 1e+10;
     else
         % Filter the simulated data
         % % 1) HP filter
@@ -56,12 +58,7 @@ else
         % 0,1,...,K
         K=4;
         % Take the initial data, estimate a VAR
-        max_lags = 6;
-        % [AIC,BIC,HQ] = aic_bic_hq(filt',max_lags);
-        % p =min([AIC,BIC,HQ]);
-        p = 1;
-        % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
-        % the residuals, sigma is the estimated VC matrix.
+        % using the same lags p, K as for the real data
         [A,B,res,sigma] = sr_var(filt', p);
         
         % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -84,7 +81,7 @@ else
         % moments vector
         Om = vec(Gamj);
         
-        % Compute GMM loss
-        loss = (Om_data -Om)'*W1*(Om_data - Om);
+        % Compute GMM loss, not squared, just weighted ("weighted, not squared")
+        res = (Om_data -Om).*diag(W1);
     end
 end

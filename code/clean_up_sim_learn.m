@@ -70,7 +70,7 @@ gain = again_critsmooth;
 
 T = 400 % 400
 % Size of cross-section
-N = 1 %100 500
+N = 100 %100 500
 burnin = 0; %100. If burnin = 0, only then are the shocked values the same b.c sim_learnLH didn't input the shock at dt+ndrop, but at dt.
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
@@ -130,9 +130,9 @@ for s=2  %2->zoom in on monetary policy shock
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,burnin,e);
         % Learning
         % the original code
-        [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
+        [x_LH, y_LH,  evening_fcst, morning_fcst, FA, FB, FEt_1, ~, diff(:,n),~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
         % its plain vanilla cleaned version WORK WITH THIS
-        [x_clean, y_clean, k_clean(:,n), phi_clean, ~, ~, ~,diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e,knowTR,mpshock);
+        [x_clean, y_clean, k_clean(:,n), phi_clean, FA_clean, FB_clean, FEt_1_clean(:,:,n),diff_clean(:,n)] = sim_learnLH_clean(param,gx,hx,SIG,PLM, gain, T+burnin,burnin,e,knowTR,mpshock);
         
         % RETIRED
 %         % a cleaned version only for pi-only scalar learning with scalar

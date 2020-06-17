@@ -149,11 +149,28 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \section{Estimation issues}
 \begin{enumerate}
 %\item To estimate the autocorrelations in the data, I estimate reduced-form VAR. Matlab complains that my regressor matrix $X'X$ is singular. --> reintroduced Taylor rule shock to solve stochastic singularity
-\item Different bounds on  $\alpha$ yield different estimates, see below.
-\item The estimation is also very sensitive to the choice of the grids for the gain and for forecast errors. For example, choosing $n_{grid} = 11$ instead of 10 leads to massively different estimates. In particular, odd vs. even seems to matter.
-\item Given $\hat{\alpha}$, PEA has a negative gain problem. I don't understand how!
+\item Different bounds on  $\alpha$ yield different estimates. My understanding of \texttt{ndim\_simplex} is that the coefficients are the heights at each gridpoint, i.e. that $\alpha(x,y)$ is the z-axis value associated with gridpoint $(x,y)$. Therefore I impose $\alpha \in (0,1)$ as lower and upper bounds. 
+\item Certain $\alpha$ still imply explosive model dynamics. (I think that should be fine.) I exclude them by setting the estimation loss very high.
+\item I have $ngrid^2$ parameters and 45 moments. This means my grid can at most have 6 elements (or I need more autocovariance lags to have more moments). Therefore I investigate $ngrid=3,4,5,6$.
+%\item Given $\hat{\alpha}$, PEA has a negative gain problem. I don't understand how!
+\item Target criterion relies on the assumption $k_t^{-1} =\mathbf{g}(fe)$. Need a 1D estimate to implement the target criterion.
 \end{enumerate}
 
+
+\begin{figure}[h!]
+\subfigure[$n_{grid} = 6$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_6_alpha_constraint_one_zero_17_Jun_2020}}
+\hfill 
+\subfigure[$n_{grid} = 5$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_5_alpha_constraint_one_zero_17_Jun_2020}}
+\subfigure[$n_{grid} = 4$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_4_alpha_constraint_one_zero_17_Jun_2020}}
+\hfill
+\subfigure[$n_{grid} = 3$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_3_alpha_constraint_one_zero_17_Jun_2020}}
+\caption{$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{GMM}\in (0,1)$}
+\label{fig_estmtd_anchor_fct_ublb_onezero}
+\end{figure}
+
+
+\clearpage
+\section{Older plots for me}
 \begin{figure}[h!]
 \subfigure[Coefficients unrestricted, $n_{grid} = 10$]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath materials33_estimated_alphas_ndrop_5_ng_10_alpha_constraint_unrestricted_16_Jun_2020}}
 \hfill 
@@ -185,8 +202,7 @@ I thought of something: I have $ngrid^2$ parameters and 45 moments. This means m
 \label{fig_estmtd_anchor_fct}
 \end{figure}
 
-\clearpage
-\section{Older plots for me}
+
 % constant only, pi only PLM
 % beta restricted to be positive
 \begin{figure}[h!]

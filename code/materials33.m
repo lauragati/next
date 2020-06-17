@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -234,7 +234,7 @@ rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 
 % Create grids
-ng = 4
+ng = 3
 % grids for k^(-1)_{t-1} and f_{t|t-1}
 k1min = 0 
 k1grid = linspace(k1min,param.gbar,ng); 
@@ -294,25 +294,37 @@ options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 options.MaxFunEvals = 10000;
 options.UseParallel = 1; % 2/3 of the time
 
-tol = 100; % results don't change much if you make tol > 0.5
-ub = alph0+tol;
-lb = zeros(size(alph0));
+% tol = 100; % results are also sensitive to this
+% ub = alph0+tol;
+% % lb = zeros(size(alph0));
 % lb = alph0-tol;
+
+% let's try ones as bounds
+ub = ones(size(alph0));
+lb = zeros(size(alph0));
+
 lbname = 'unrestricted';
-if sum(lb)==0
+if sum(lb)==0 && sum(ub) > length(ub)
     lbname = 'positive'
+elseif sum(ub) == length(ub)
+    lbname = 'one_zero';
 end
 
 % %Compute the objective function one time with some values
-loss = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
+loss = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
 
 
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,Om,W1);
+objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
 [alph_opt, loss_opt, flag] = fmincon(objh, alph0+0*rand(size(alph0)), [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
+
+% experiment with interpretation of coeffs
+% alph_opt = linspace(1,0,ng)';
+% alph_opt = repmat(alph_opt,ng,1);
+
 
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_opt);
@@ -328,6 +340,31 @@ end
 % knowTR = 0;
 % mpshock =0;
 
+
+% % try to see if some alpha-values are non-permissible:
+% alph_opt = [11.0966
+% 0.0570916
+% 0.0868214
+%  0.116551
+%   99.5031
+%   12.5219
+%  0.062377
+%  0.499082
+%   41.2283
+%   22.1829
+%  0.581107
+%  0.148426
+%  0.023777
+%  0.721318
+%   0.95818
+%  0.116551];
+% alph_opt = 0.99*ones(size(alph_opt)); % non-explosive, constant gain
+% alph_opt = 0.1*rand(size(alph_opt)); % too high rand is explosive too, strangely enough
+% alph_opt = alph0; % this looks like dgain
+
+% alph_opt = 0.5*ones(size(alph_opt));
+% alph_opt(2:2:length(alph_opt)) = zeros(length(alph_opt)/2,1);
+% % it seems that too high coeffs lead to explosive k. Ones seems too high too
 % let's see how these alpha do
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph_opt,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e)),knowTR,mpshock);
 disp('Is implied simulated k1 ever negative?')
@@ -341,7 +378,7 @@ create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain appr
 
 return
 
-estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, tol, lbname, ndrop};
+estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, lbname, ndrop};
 filename = ['estim_LOMgain_outputs', nowstr];
 save([filename, '.mat'], 'estim_outputs')
 disp(['Saving as ' filename])
