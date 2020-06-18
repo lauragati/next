@@ -25,8 +25,9 @@ datestr(now)
 
 
 %% Get the data, filter them, generate data moments and bootstrap to get the weighting matrix
-% command_acf_data
-
+if skip==0
+command_acf_data
+end
 %% Estimate given a dataset
 
 command_GMM_LOMgain

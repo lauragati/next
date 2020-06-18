@@ -5,7 +5,7 @@ function create_pretty_plot_holdon(y,legendentries,figname,print_figs)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
-if nargin < max_no_inputs %no shock specified
+if nargin < max_no_inputs
     print_figs = 0;
 end
 
@@ -20,7 +20,7 @@ set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 for i=1:ny
     h(i) = plot(y(i,:), 'linewidth', lw); hold on
 end
-plot(zeros(1,T), 'k--', 'linewidth',lw)
+% plot(zeros(1,T), 'k--', 'linewidth',lw)
 ax = gca; % current axes
 ax.FontSize = fs;
 set(gca,'TickLabelInterpreter', 'latex');

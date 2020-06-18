@@ -1,4 +1,4 @@
-function res = obj_GMM_LOMgain(alph,x,xxgrid, yygrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1)
+function [res, Om] = obj_GMM_LOMgain(alph,x,xxgrid, yygrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1, alph0, Wprior)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
@@ -8,7 +8,7 @@ function res = obj_GMM_LOMgain(alph,x,xxgrid, yygrid,param,gx,hx,eta,e,T,ndrop,P
 % check "global" nonnegativity of k1
 k10 = ndim_simplex_eval(x,[xxgrid(:)';yygrid(:)'],alph);
 if min(k10)<0
-    res = 1e+10;
+    res = 1e+10*ones(size(Om_data));
     disp('k1 was negative on fine grid, not even bothering to do simulation')
 else
     
@@ -23,7 +23,7 @@ else
     % Do not filter data and estimate VARs if the current coefficients
     % alpha lead to an explosive learning simulation
     if isinf(max(k1)) || min(k1)<0
-        res = 1e+10;
+        res = 1e+10*ones(size(Om_data));
     else
         % Filter the simulated data
         % % 1) HP filter
@@ -82,6 +82,6 @@ else
         Om = vec(Gamj);
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
-        res = (Om_data -Om).*diag(W1);
+        res = (Om_data -Om).*diag(W1) + (alph0-alph)'*Wprior*ones(size(alph));
     end
 end

@@ -24,7 +24,9 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020';
+% filename ='acf_data_11_Jun_2020'; % real data
+
+filename ='acf_sim_data_18_Jun_2020'; % simulated data
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -35,6 +37,13 @@ filt_data = acf_outputs{6};
 lost_periods = acf_outputs{7};
 T = length(filt_data);
 T = T+lost_periods; % to make up for the loss due to filtering
+
+if contains(filename,'sim')
+alph_true = acf_outputs{8};
+true_nk1  = acf_outputs{9};
+true_nfe  = acf_outputs{10};
+end
+
 
 % weighting matrix for GMM
 % note: 2nd argument of var(X,W,DIM) signifies whether to normalize by N-1
@@ -98,10 +107,12 @@ e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic s
 nk1 = 2;
 nfe = 15 % 6,9,12,15
 % grids for k^(-1)_{t-1} and f_{t|t-1}
-k1min = 0
+k1min = 0;
 k1max = 1; % instead of param.gbar
+femax = 5;
+femin = -femax;
 k1grid = linspace(k1min,k1max,nk1); 
-fegrid = linspace(-5,5,nfe); % for alph0, fe is between (-2.6278,3.5811). N=100 AR(1)-simulations of the model yield an average fe in (-0.2946,0.2809)
+fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811). N=100 AR(1)-simulations of the model yield an average fe in (-0.2946,0.2809)
 
 % map to ndim_simplex
 x = cell(2,1);
@@ -115,13 +126,15 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
-rng(100)
+rng(10)
 alph0 = rand(size(alph0));
+alph0 = 0.5*ones(size(alph0));
+
 
 % Let's plot the approximated evolution of the gain on a finer sample
 ng_fine = 100;
 k1grid_fine = linspace(k1min,k1max,ng_fine);
-fegrid_fine = linspace(-5,5,ng_fine);
+fegrid_fine = linspace(femin,femax,ng_fine);
 [xxgrid_fine, yygrid_fine] = meshgrid(k1grid_fine,fegrid_fine);
 
 k10 = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph0);
@@ -130,19 +143,17 @@ xlabel = '$k^{-1}_{t-1}$'; ylabel = '$fe_{t|t-1}$'; zlabel = '$k^{-1}_{t}$';
 figname = [this_code, '_initial_approx_', todays_date];
 % create_pretty_3Dplot(k10,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,figname,print_figs)
 
-
-% % seems to behave fine for initial ones
-% % knowTR = 0;
-% % mpshock =0;
-% 
-% % let's see how these alpha do
+% % % seems to behave fine for initial alphas
 % [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph0,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
-% 
+% % 
 % % Some titles for figures
 % seriesnames = {'\pi', 'x','i'};
 % invgain = {'Inverse gain'};
-% create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
-% create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], print_figs)
+% figname = [this_code, '_initial_obs_',PLM_name,'_', todays_date];
+% create_plot_observables(y0,seriesnames, '', figname, print_figs)
+% figname = [this_code, '_initial_gain_',PLM_name,'_', todays_date];
+% % figname = [this_code, '_true_gain_',PLM_name,'_', todays_date];
+% create_plot_observables(1./k0,invgain, '', figname, print_figs)
 
 
 % return
@@ -156,7 +167,8 @@ figname = [this_code, '_initial_approx_', todays_date];
 %Optimization Parameters
 options = optimset('lsqnonlin');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
-options.MaxFunEvals = 10000;
+% options.MaxFunEvals = 30000;
+% options.MaxIter = 1200;
 options.UseParallel = 1; % 2/3 of the time
 
 
@@ -165,12 +177,13 @@ ub = ones(size(alph0));
 lb = zeros(size(alph0));
 
 % %Compute the objective function one time with some values
-res0 = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
-
+% let's weight the prior...
+Wprior=0; 
+[res0, Om0] = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
 
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
+objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
 [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
 toc
 
@@ -198,6 +211,32 @@ seriesnames = {'\pi', 'x','i'};
 invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+
+% Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
+[res1, Om1] = obj_GMM_LOMgain(alph_opt,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+yfig = [Om'; Om0'; Om1'];
+figname= [this_code, '_ACFs_', todays_date];
+create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs)
+
+
+if contains(filename,'sim')
+alph_true-alph_opt
+sum(abs(alph_true-alph_opt))
+
+% plot true relationship
+k1_true = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_true);
+create_pretty_3Dplot(k1_true,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,['true_relationship', todays_date],print_figs)
+
+% plot true, original and estimated alphas
+yfig = [alph_true'; alph0'; alph_opt'];
+figname= [this_code, '_ACFs_', todays_date];
+create_pretty_plot_holdon(yfig,{'true', 'initial', 'optimal'},figname,print_figs)
+
+figure
+plot(1:length(alph_true),alph_true), hold on
+plot(1:length(alph_true)/(nk1*nfe):length(alph_true),alph_opt)
+legend('true', 'estimated')
+end
 
 return
 

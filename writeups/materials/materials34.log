@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 JUN 2020 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 JUN 2020 15:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -930,7 +930,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 125.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=26, 1467.
+<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=30, 1467.
 4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png Graphic 
 file (type png)
@@ -941,7 +941,7 @@ n_2020.png used on input line 142.
 (pdftex.def)             Requested size: 249.46872pt x 145.89313pt.
 
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2020.p
-ng, id=29, 1467.4825pt x 858.20625pt>
+ng, id=33, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2
 020.png Graphic file (type png)
 
@@ -960,7 +960,7 @@ op_5_nfe_6_17_Jun_2020.png used on input line 159.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
 
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_12_17_Jun_2020.
-png, id=30, 1467.4825pt x 858.20625pt>
+png, id=34, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_12_17_Jun_
 2020.png Graphic file (type png)
 
@@ -971,7 +971,7 @@ op_5_nfe_12_17_Jun_2020.png used on input line 160.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
 
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_15_17_Jun_2020.
-png, id=31, 1467.4825pt x 858.20625pt>
+png, id=35, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_15_17_Jun_
 2020.png Graphic file (type png)
 
@@ -994,9 +994,37 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 0.png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_n
 fe_12_17_Jun_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_
 alphas_ndrop_5_nfe_15_17_Jun_2020.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 193--193
-[] 
- []
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 169.
+
+
+<../../figures/true_relationship18_Jun_2020.png, id=72, 1467.4825pt x 858.20625
+pt>
+File: ../../figures/true_relationship18_Jun_2020.png Graphic file (type png)
+ <use ../../figures/true_relationship18_Jun_2020.png>
+Package pdftex.def Info: ../../figures/true_relationship18_Jun_2020.png used on
+ input line 172.
+(pdftex.def)             Requested size: 322.84715pt x 188.80595pt.
+
+<../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2020.
+png, id=73, 1406.25375pt x 830.10126pt>
+File: ../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_
+2020.png Graphic file (type png)
+
+<use ../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2
+020.png>
+Package pdftex.def Info: ../../figures/command_GMM_LOMgain_true_gain_constant_o
+nly_pi_only_18_Jun_2020.png used on input line 174.
+(pdftex.def)             Requested size: 309.37679pt x 182.62283pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1006,22 +1034,36 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3
 
+ <../../figures/true_relationship18_Jun_2020.png (PNG copy)> <../../figures/com
+mand_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2020.png (PNG copy)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 203--203
+[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4
+
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
  (./materials34.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 257.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
 Package rerunfilecheck Info: File `materials34.out' has not changed.
-(rerunfilecheck)             Checksum: B0D82AC7D4EC30F7693DD22A31E051D3;208.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
+(rerunfilecheck)             Checksum: 94B7B4904B9078124503611D0B398AEC;275.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 257.
  ) 
 Here is how much of TeX's memory you used:
- 20012 strings out of 493089
- 363445 string characters out of 6134842
+ 20041 strings out of 493089
+ 364331 string characters out of 6134842
  456693 words of memory out of 5000000
- 23090 multiletter control sequences out of 15000+600000
- 14641 words of font info for 56 fonts, out of 8000000 for 9000
+ 23111 multiletter control sequences out of 15000+600000
+ 17560 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,441b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1030,25 +1072,26 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
 /local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials34.pdf (3 pages, 2046456 bytes).
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials34.pdf (4 pages, 2497397 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 141 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

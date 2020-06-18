@@ -165,6 +165,16 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 
 This actually looks quite robust i) to the gridsize, ii) to starting from random points. All I have done at this point is to increase the support of the gain, decrease its gridpoints to 2, increase the forecast error gridpoints, and implement \texttt{lsqnonlin}. Increasing the support of the gain also had the feature that now there are no explosions. So all these measures seem to have been beneficial. 
 
+\clearpage
+\section{Estimating $\alpha$ on simulated data}
+
+\begin{figure}[h!]
+\subfigure[$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath true_relationship18_Jun_2020}}
+\hfill
+\subfigure[A simulated history of $k^{-1}_t$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2020}}
+\caption{The truth using 2 gridpoints on $[0,1]$ for the gain, 15 on $[-5,5]$ for the forecast error}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage
