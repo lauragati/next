@@ -144,7 +144,7 @@ Then I estimate $\alpha$ using GMM, targeting the autocovariance structure of in
 \label{fig_initial_anchor_fct}
 \end{figure}
 
-$T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM. I drop the $ndrop=5$ initial values. I restrict $\alpha \in (0,1)$, the support of $k^{-1}$ in the grid.
+$T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM. I drop the $ndrop=5$ initial values. I restrict $\alpha \in (0,1)$, the support of $k^{-1}$ in the grid. I target the lag $0,\dots,4$ autocovariance matrices, dropping repeated entries at lag 0, leaving me with 42 moments.
 
 \section{Estimation issues}
 \begin{enumerate}
@@ -175,6 +175,13 @@ This actually looks quite robust i) to the gridsize, ii) to starting from random
 \caption{The truth using 2 gridpoints on $[0,1]$ for the gain, 15 on $[-5,5]$ for the forecast error}
 \end{figure}
 
+
+\begin{figure}[h!]
+\subfigure[$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_true_relationship_19_Jun_2020}}
+\hfill
+\subfigure[A simulated history of $k^{-1}_t$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_true_gain_sim_constant_only_pi_only_19_Jun_2020}}
+\caption{The truth using 2 gridpoints on $[0,1]$ for the gain, 6 on $[-5,5]$ for the forecast error}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage

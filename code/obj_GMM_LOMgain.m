@@ -18,7 +18,7 @@ else
     mpshock=1;
     % Simulate data given parameters
     [~, y, k] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
-     
+    
     k1 = 1./k(1:end-1); % cut off last period where k is unset
     % Do not filter data and estimate VARs if the current coefficients
     % alpha lead to an explosive learning simulation
@@ -71,15 +71,20 @@ else
         vecSig = (eye(np^2)-kron(F,F))\vec(Q);
         % VC matrix of data y
         Gamj = zeros(ny,ny,K+1);
+        Gamj_own = zeros(ny,K+1);
+        
         Sig = reshape(vecSig,np,np);
         for j=0:K
             % jth Autocov of data y, still as a VAR(1)
             Sigj = F^j * Sig;
             % jth Autocov of data y, finally as a VAR(p)
             Gamj(:,:,j+1) = Sigj(1:ny,1:ny);
+            % This only takes the covariances wrt the same var: (e.g Cov(x_t,x_{t-1}))
+            Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
         end
         % moments vector
-        Om = vec(Gamj);
+        % Om = vec(Gamj);
+        Om = vec(Gamj_own);
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
         res = (Om_data -Om).*diag(W1) + (alph0-alph)'*Wprior*ones(size(alph));

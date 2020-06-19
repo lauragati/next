@@ -26,8 +26,8 @@ datestr(now)
 %% Compute weighting matrix and initialize alpha
 % filename ='acf_data_11_Jun_2020'; % real data
 
-% filename ='acf_sim_data_18_Jun_2020'; % simulated data 2*15 true parameters, full Om
-filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters, only own Om
+% filename ='acf_sim_data_18_Jun_2020'; % simulated data 2*15 true parameters
+filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -112,7 +112,7 @@ e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic s
 
 % Create grids
 nk1 = 2;
-nfe = 6 % 6,9,12,15
+nfe = 1 % 6,9,12,15
 % grids for k^(-1)_{t-1} and f_{t|t-1}
 k1min = 0;
 k1max = 1; % instead of param.gbar
@@ -135,7 +135,8 @@ k1 = 1./kmesh;
 alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
 rng(10)
 alph0 = rand(size(alph0));
-alph0 = 1.1*ones(size(alph0));
+alph0 = 0.5*ones(size(alph0));
+
 
 % Let's plot the approximated evolution of the gain on a finer sample
 ng_fine = 100;
@@ -186,6 +187,7 @@ lb = zeros(size(alph0));
 % let's weight the prior...
 Wprior=0; 
 [res0, Om0] = obj_GMM_LOMgain(alph0,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+
 tic
 %Declare a function handle for optimization problem
 objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
