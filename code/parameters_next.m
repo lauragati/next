@@ -1,13 +1,13 @@
 function [param, set, param_names, param_values_str, param_titles] = parameters_next
 param.bet  = 0.99;%0.99
 param.sig  = 1; %1 IES=1 (log utility, consistent with balanced growth) Peter: micro estimates= 1/4 or 1/5, asset pricing lit finds 1/100.
-param.alph = 0.7; %0.9,0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 months)
+param.alph = 0.9; %0.9,0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 months)
 param.eta = 1/4; %1/4, inverse of Frisch. won't matter here. The Frisch: 1 or 2 (micro) or 4 (macro) e.g. Basu Lec 9, slide 16 Mac.
 param.om = 1.25;% 1.25 Subsumes all things that go into elasticity of marginal cost to output (including Frisch) Woodford. Interest and Prices, p. 172 (Table 3.1).
 param.thet = 10; %10. price elasticity of demand, Woodford, taken from Chari Kehoe McGrattan 2000.
 param.zeta = (param.om + 1/param.sig)/(1+param.om*param.thet); % parameter of strategic complementarity. If < 1, strat comp in price setting. If >1, strt subs.
 param.kapp = param.zeta * (1-param.alph*param.bet)/param.alph; % Woodford. Interest and Prices, p. 187.
-param.psi_x  = 1; %0.01,0
+param.psi_x  = 0.01; %0.01,0, 1
 param.psi_pi = 1.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.gbar    = 0.145; % 0.145 param_correct CEMP. 0.02 is the value a dgain algorithm gets after 50 periods.
