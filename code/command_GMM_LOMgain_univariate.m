@@ -25,8 +25,8 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020'; % real data
-% filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
+% filename ='acf_data_11_Jun_2020'; % real data
+filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
@@ -131,9 +131,9 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,xxgrid(:)',k1);
-% rng(10)
+% rng(5)
 % alph0 = rand(size(alph0));
-alph0 = 0.2*ones(size(alph0));
+% alph0 = 0.2*ones(size(alph0));
 figname = [this_code, '_initial_alphas_', todays_date];
 create_pretty_plot_x(fegrid,alph0',figname,print_figs)
 pause(3)
@@ -177,8 +177,8 @@ options.UseParallel = 1; % 2/3 of the time
 
 
 % let's keep these bounds
-ub = ones(size(alph0));
-lb = zeros(size(alph0));
+ub = k1max*ones(size(alph0));
+lb = k1min*ones(size(alph0));
 
 % %Compute the objective function one time with some values
 % let's weight the prior...

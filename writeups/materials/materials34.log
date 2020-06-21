@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  21 JUN 2020 11:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  21 JUN 2020 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1007,48 +1007,26 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 169.
 
 
-<../../figures/true_relationship18_Jun_2020.png, id=76, 1467.4825pt x 858.20625
-pt>
-File: ../../figures/true_relationship18_Jun_2020.png Graphic file (type png)
- <use ../../figures/true_relationship18_Jun_2020.png>
-Package pdftex.def Info: ../../figures/true_relationship18_Jun_2020.png used on
- input line 172.
-(pdftex.def)             Requested size: 322.84715pt x 188.80595pt.
+<../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png, id=76, 1
+467.4825pt x 861.2175pt>
+File: ../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png Grap
+hic file (type png)
 
-<../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2020.
-png, id=77, 1406.25375pt x 830.10126pt>
-File: ../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_
-2020.png Graphic file (type png)
+<use ../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png>
+Package pdftex.def Info: ../../figures/command_acf_sim_data_true_relationship_2
+1_Jun_2020.png used on input line 172.
+(pdftex.def)             Requested size: 322.84715pt x 189.46843pt.
 
-<use ../../figures/command_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2
-020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_true_gain_constant_o
-nly_pi_only_18_Jun_2020.png used on input line 174.
-(pdftex.def)             Requested size: 309.37679pt x 182.62283pt.
+<../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_Jun_
+2020.png, id=77, 1406.25375pt x 883.3pt>
+File: ../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21
+_Jun_2020.png Graphic file (type png)
 
-<../../figures/command_GMM_LOMgain_true_relationship_19_Jun_2020.png, id=78, 14
-67.4825pt x 858.20625pt>
-File: ../../figures/command_GMM_LOMgain_true_relationship_19_Jun_2020.png Graph
-ic file (type png)
-
-<use ../../figures/command_GMM_LOMgain_true_relationship_19_Jun_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_true_relationship_19
-_Jun_2020.png used on input line 180.
-(pdftex.def)             Requested size: 322.84715pt x 188.80595pt.
-
-<../../figures/command_GMM_LOMgain_true_gain_sim_constant_only_pi_only_19_Jun_2
-020.png, id=79, 1406.25375pt x 881.2925pt>
-File: ../../figures/command_GMM_LOMgain_true_gain_sim_constant_only_pi_only_19_
-Jun_2020.png Graphic file (type png)
-
-<use ../../figures/command_GMM_LOMgain_true_gain_sim_constant_only_pi_only_19_J
-un_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_true_gain_sim_consta
-nt_only_pi_only_19_Jun_2020.png used on input line 182.
-(pdftex.def)             Requested size: 309.37679pt x 193.88495pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<use ../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_
+Jun_2020.png>
+Package pdftex.def Info: ../../figures/command_acf_sim_data_true_gain_sim_const
+ant_only_pi_only_21_Jun_2020.png used on input line 174.
+(pdftex.def)             Requested size: 309.37679pt x 194.3266pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1058,37 +1036,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3
 
- <../../figures/true_relationship18_Jun_2020.png (PNG copy)> <../../figures/com
-mand_GMM_LOMgain_true_gain_constant_only_pi_only_18_Jun_2020.png (PNG copy)>]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4 <../../figures/command_GMM_LOMgain_true_relationship_19_Jun_2020.png (PNG co
-py)> <../../figures/command_GMM_LOMgain_true_gain_sim_constant_only_pi_only_19_
+ <../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png (PNG cop
+y)> <../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_
 Jun_2020.png (PNG copy)>]
-<../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png, id=95,
+<../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png, id=86,
  1377.145pt x 844.15375pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png Gr
 aphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_true
-_21_Jun_2020.png used on input line 189.
+_21_Jun_2020.png used on input line 181.
 (pdftex.def)             Requested size: 302.97284pt x 185.7144pt.
 
 <../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_pi_on
-ly_21_Jun_2020.png, id=96, 1428.33624pt x 883.3pt>
+ly_21_Jun_2020.png, id=87, 1406.25375pt x 883.3pt>
 File: ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_
 pi_only_21_Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_p
 i_only_21_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_true_gain
-_sim_constant_only_pi_only_21_Jun_2020.png used on input line 191.
-(pdftex.def)             Requested size: 314.23494pt x 194.3266pt.
+_sim_constant_only_pi_only_21_Jun_2020.png used on input line 183.
+(pdftex.def)             Requested size: 309.37679pt x 194.3266pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1096,12 +1066,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5
+[4
 
  <../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png (PNG c
 opy)> <../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only
 _pi_only_21_Jun_2020.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 219--219
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 211--211
 [] 
  []
 
@@ -1111,23 +1081,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6
+[5
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 273.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 273.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 265.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
  (./materials34.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 273.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 265.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
 Package rerunfilecheck Info: File `materials34.out' has not changed.
 (rerunfilecheck)             Checksum: 73B265887CC60AB2313F4F926ED4B13B;339.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 273.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 265.
  ) 
 Here is how much of TeX's memory you used:
- 20071 strings out of 493089
- 366057 string characters out of 6134842
+ 20057 strings out of 493089
+ 365374 string characters out of 6134842
  456693 words of memory out of 5000000
- 23128 multiletter control sequences out of 15000+600000
+ 23120 multiletter control sequences out of 15000+600000
  17560 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,441b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1153,10 +1123,10 @@ dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials34.pdf (6 pages, 3229664 bytes).
+Output written on materials34.pdf (5 pages, 2824229 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 194 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

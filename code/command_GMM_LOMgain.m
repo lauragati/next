@@ -27,7 +27,8 @@ datestr(now)
 % filename ='acf_data_11_Jun_2020'; % real data
 
 % filename ='acf_sim_data_18_Jun_2020'; % simulated data 2*15 true parameters, full Om
-filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters, only own Om
+% filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters, only own Om
+filename = 'acf_sim_data_21_Jun_2020'; % simulated data, 2*6 true parameters, full Om
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -44,6 +45,7 @@ alph_true = acf_outputs{8};
 true_nk1  = acf_outputs{9};
 true_nfe  = acf_outputs{10};
 end
+
 
 % Note: 3 moments at lag 0 are repeated. So technically we only have 42
 % moments (and they could be correlated further)
@@ -115,7 +117,7 @@ nk1 = 2;
 nfe = 6 % 6,9,12,15
 % grids for k^(-1)_{t-1} and f_{t|t-1}
 k1min = 0;
-k1max = 1; % instead of param.gbar
+k1max = 1; 
 femax = 5;
 femin = -femax;
 k1grid = linspace(k1min,k1max,nk1); 
@@ -133,7 +135,7 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
-rng(10)
+rng(5)
 alph0 = rand(size(alph0));
 alph0 = 1.1*ones(size(alph0));
 
@@ -179,8 +181,8 @@ options.UseParallel = 1; % 2/3 of the time
 
 
 % let's keep these bounds
-ub = ones(size(alph0));
-lb = zeros(size(alph0));
+ub = k1max*ones(size(alph0));
+lb = k1min*ones(size(alph0));
 
 % %Compute the objective function one time with some values
 % let's weight the prior...
@@ -230,7 +232,7 @@ sum(abs(alph_true-alph_opt))
 
 % plot true relationship
 k1_true = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_true);
-create_pretty_3Dplot(k1_true,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,['true_relationship', todays_date],print_figs)
+% create_pretty_3Dplot(k1_true,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,['true_relationship', todays_date],print_figs)
 
 % plot true, original and estimated alphas
 yfig = [alph_true'; alph0'; alph_opt'];

@@ -1,5 +1,27 @@
 % Takes about 90 seconds altogether.
-print_figs=1;
+% Takes about 90 seconds altogether.
+clearvars
+close all
+clc
+
+% Add all the relevant paths and grab the codename
+this_code = mfilename;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath, inputsRyan_path] = add_paths;
+todays_date = strrep(datestr(today), '-','_');
+nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
+
+% Variable stuff ---
+print_figs        = 1;
+stop_before_plots = 0;
+skip_old_plots    = 0;
+output_table = print_figs;
+
+skip = 1;
+[fs, lw] = plot_configs;
+redo_data_load_and_bootstrap = 0;
+datestr(now)
+
+
 %% 1.) Simulate data and filter it
 % Simulate data from the model given true alphas
 
@@ -71,6 +93,7 @@ mpshock=1
 % we're not doing a whole cross-section here
 ndrop = 5 % 0-50
 
+T=233;
 % gen all the N sequences of shocks at once.
 rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
@@ -171,8 +194,8 @@ for j=0:K
     Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
 end
 % moments vector
-% Om = vec(Gamj);
-Om = vec(Gamj_own);
+Om = vec(Gamj);
+% Om = vec(Gamj_own);
 
 
 % return

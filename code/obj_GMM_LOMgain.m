@@ -83,8 +83,8 @@ else
             Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
         end
         % moments vector
-        % Om = vec(Gamj);
-        Om = vec(Gamj_own);
+        Om = vec(Gamj);
+%         Om = vec(Gamj_own);
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
         res = (Om_data -Om).*diag(W1) + (alph0-alph)'*Wprior*ones(size(alph));
