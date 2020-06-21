@@ -1,3 +1,4 @@
+% command_sim_data_univariate.m
 % Takes about 90 seconds altogether.
 print_figs=1;
 %% 1.) Simulate data and filter it
@@ -6,23 +7,18 @@ print_figs=1;
 
 % Some thought as to how to generate true alphas and true grids!
 % Create grids
-nk1 = 2;
 nfe = 6 % 6,9,12,15
-% grids for k^(-1)_{t-1} and f_{t|t-1}
-k1min = 0;
-k1max = 1; % instead of param.gbar
+% grids for f_{t|t-1}
 femax = 5;
 femin = -femax;
-k1grid = linspace(k1min,k1max,nk1);
 fegrid = linspace(femin,femax,nfe);
 
 rng(0)
-alph_true = rand(nk1*nfe,1);
+alph_true = rand(nfe,1);
 
 % map to ndim_simplex
-x = cell(2,1);
-x{1} = k1grid;
-x{2} = fegrid;
+x = cell(1,1);
+x{1} = fegrid;
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
@@ -78,6 +74,9 @@ e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic s
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph_true,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
 
 % The truth in plots
+figname = [this_code, '_alph_true_', todays_date];
+create_pretty_plot_x(fegrid,alph_true',figname,print_figs)
+
 seriesnames = {'\pi', 'x','i'};
 invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
@@ -85,17 +84,12 @@ create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain appr
 
 
 ng_fine = 100;
-k1grid_fine = linspace(k1min,k1max,ng_fine);
 fegrid_fine = linspace(femin,femax,ng_fine);
-[xxgrid_fine, yygrid_fine] = meshgrid(k1grid_fine,fegrid_fine);
 
-k10 = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_true);
+k10 = ndim_simplex_eval(x,fegrid_fine(:)',alph_true);
 
-xlabel = '$k^{-1}_{t-1}$'; ylabel = '$fe_{t|t-1}$'; zlabel = '$k^{-1}_{t}$';
-figname = [this_code, '_true_relationship_', todays_date];
-create_pretty_3Dplot(k10,xxgrid_fine,yygrid_fine,xlabel,ylabel,zlabel,figname,print_figs)
 
-% return
+
 y_data = y0;
 [ny,T] = size(y_data)
 
@@ -171,8 +165,8 @@ for j=0:K
     Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
 end
 % moments vector
-% Om = vec(Gamj);
-Om = vec(Gamj_own);
+Om = vec(Gamj);
+% Om = vec(Gamj_own);
 
 
 % return
@@ -232,7 +226,7 @@ parfor i=1:nboot
     %     Om_boot(:,i) = vec(Gamj_own_booti);
 end
 toc
-filename = ['acf_sim_data_', todays_date];
-acf_outputs = {Om, Om_boot,ny,p,K, filt_data, lost_periods, alph_true, nk1, nfe};
+filename = ['acf_sim_univariate_data_', todays_date];
+acf_outputs = {Om, Om_boot,ny,p,K, filt_data, lost_periods, alph_true, nfe};
 save([filename,'.mat'],'acf_outputs')
 disp(['Saving as ' filename])

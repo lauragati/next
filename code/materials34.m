@@ -31,3 +31,6 @@ end
 %% Estimate given a dataset
 
 command_GMM_LOMgain
+
+%%  Estimate univariate anchoring function
+comman_GMM_LOMgain_univariate
