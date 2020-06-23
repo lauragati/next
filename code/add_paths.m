@@ -25,3 +25,7 @@ addpath(datapath)
 addpath(tryouts_path)
 % addpath(inputsRyan_path)
 % addpath(RyanPS6_path)
+
+% Note for future projects use:
+% Use "genpath" to Generate a path that includes myfolder and all folders below it.
+% p = genpath('myfolder')

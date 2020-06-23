@@ -146,12 +146,9 @@ Then I estimate $\alpha$ using GMM, targeting the autocovariance structure of in
 
 $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM. I drop the $ndrop=5$ initial values. I restrict $\alpha \in (0,1)$, the support of $k^{-1}$ in the grid. I target the lag $0,\dots,4$ autocovariance matrices, dropping repeated entries at lag 0, leaving me with 42 moments.
 
-\section{Estimation issues}
-\begin{enumerate}
-%\item Given $\hat{\alpha}$, PEA has a negative gain problem. I don't understand how!
-\item Target criterion relies on the assumption $k_t^{-1} =\mathbf{g}(fe)$. Need a 1D estimate to implement the target criterion.
-\end{enumerate}
-
+\clearpage
+\section{Estimating the 2D anchoring function}
+\subsection{Real data, 2D function}
 
 \begin{figure}[h!]
 \subfigure[$n_{fe-grid} = 6$]{\includegraphics[scale=\myAdjustableFigScale]{\myFigPath command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2020}}
@@ -165,24 +162,65 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 
 This actually looks quite robust i) to the gridsize, ii) to starting from random points. All I have done at this point is to increase the support of the gain, decrease its gridpoints to 2, increase the forecast error gridpoints, and implement \texttt{lsqnonlin}. Increasing the support of the gain also had the feature that now there are no explosions. So all these measures seem to have been beneficial. 
 
+\begin{figure}[h!]
+\subfigure[$\hat{\alpha}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_2D_alphas_opt_22_Jun_2020}}
+\subfigure[Residuals]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_2D_residuals_22_Jun_2020}}
+\subfigure[Implied relationship at median estimate]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_relationship_at_opt_median_22_Jun_2020}}
+\caption{$\hat{\alpha}$ for various random starting points}
+\end{figure}
+
+
 \clearpage
-\section{Estimating $\alpha$ on simulated data}
+\subsection{Simulated data, 2D function}
 
 \begin{figure}[h!]
-\subfigure[$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_acf_sim_data_true_relationship_21_Jun_2020}}
+\subfigure[$k^{-1}_t$ as a function of $k^{-1}_{t-1}$ and $fe_{t|t-1}$ given $\alpha^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_acf_sim_data_true_relationship_21_Jun_2020}}
 \hfill
-\subfigure[A simulated history of $k^{-1}_t$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_Jun_2020}}
+\subfigure[A simulated history of $k^{-1}_t$ given $\alpha^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_Jun_2020}}
 \caption{The truth using 2 gridpoints on $[0,1]$ for the gain, 6 on $[-5,5]$ for the forecast error}
 \end{figure}
 
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_2D_alphas_true22_Jun_2020}}
+\hfill
+\subfigure[$\hat{\alpha}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_acf_sim_data_21_Jun_2020_2D_alphas_opt_22_Jun_2020}}
+\subfigure[Residuals]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials34_acf_sim_data_21_Jun_2020_2D_residuals_22_Jun_2020}}
+\caption{$\hat{\alpha}$ for various random starting points}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%  UNIVARIATE   %%%%%%%%%%%%%%%%%
 \clearpage
 \section{Univariate anchoring function}
+\subsection{Real data, 1D function}
+
 \begin{figure}[h!]
-\subfigure[$k^{-1}_t$ as a function of $fe_{t|t-1}$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_true_21_Jun_2020}}
+\subfigure[$\hat{\alpha}$]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_1D_alphas_opt_22_Jun_2020}}
+\subfigure[Residuals]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_1D_residuals_22_Jun_2020}}
+\subfigure[Moments]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials34_acf_data_11_Jun_2020_1D_moments_22_Jun_2020}}
+\caption{$\hat{\alpha}$ for various random starting points}
+\end{figure}
+
+\clearpage
+\subsection{Simulated data, 1D function}
+
+\begin{figure}[h!]
+\subfigure[$k^{-1}_t$ as a function of $fe_{t|t-1}$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_true_21_Jun_2020}}
 \hfill
-\subfigure[A simulated history of $k^{-1}_t$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_true_gain_sim_constant_only_pi_only_21_Jun_2020}}
+\subfigure[A simulated history of $k^{-1}_t$ given $\hat{\alpha}^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_true_gain_sim_constant_only_pi_only_21_Jun_2020}}
 \caption{The truth using 6 gridpoints on $[-5,5]$ for the forecast error}
 \end{figure}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials341D_alphas_true22_Jun_2020}}
+\hfill
+\subfigure[$\hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials34_acf_sim_univariate_data_21_Jun_2020_1D_alphas_opt_22_Jun_2020}}
+\subfigure[Residuals]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials34_acf_sim_univariate_data_21_Jun_2020_1D_residuals_22_Jun_2020}}
+\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials34_acf_sim_univariate_data_21_Jun_2020_1D_moments_22_Jun_2020}}
+\caption{$\hat{\alpha}$ for various random starting points}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  21 JUN 2020 16:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  22 JUN 2020 20:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -930,7 +930,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 125.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=34, 1467.
+<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=46, 1467.
 4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png Graphic 
 file (type png)
@@ -944,14 +944,14 @@ n_2020.png used on input line 142.
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../../f
 igures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png (PNG copy)>]
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2020.p
-ng, id=56, 1467.4825pt x 858.20625pt>
+ng, id=68, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2
 020.png Graphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_20
 20.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_estimated_alphas_ndr
-op_5_nfe_6_17_Jun_2020.png used on input line 157.
+op_5_nfe_6_17_Jun_2020.png used on input line 154.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2
 020.png Graphic file (type png)
@@ -959,30 +959,66 @@ File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2
 <use ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_20
 20.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_estimated_alphas_ndr
-op_5_nfe_6_17_Jun_2020.png used on input line 159.
+op_5_nfe_6_17_Jun_2020.png used on input line 156.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
 
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_12_17_Jun_2020.
-png, id=57, 1467.4825pt x 858.20625pt>
+png, id=69, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_12_17_Jun_
 2020.png Graphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_12_17_Jun_2
 020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_estimated_alphas_ndr
-op_5_nfe_12_17_Jun_2020.png used on input line 160.
+op_5_nfe_12_17_Jun_2020.png used on input line 157.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
 
 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_15_17_Jun_2020.
-png, id=58, 1467.4825pt x 858.20625pt>
+png, id=70, 1467.4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_15_17_Jun_
 2020.png Graphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_15_17_Jun_2
 020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_estimated_alphas_ndr
-op_5_nfe_15_17_Jun_2020.png used on input line 162.
+op_5_nfe_15_17_Jun_2020.png used on input line 159.
 (pdftex.def)             Requested size: 234.802pt x 137.3158pt.
+
+<../../figures/materials34_acf_data_11_Jun_2020_2D_alphas_opt_22_Jun_2020.png, 
+id=71, 1387.1825pt x 801.99625pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_2D_alphas_opt_22_Jun_2020.
+png Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_2D_alphas_opt_22_Jun_2020.p
+ng>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_2D_alph
+as_opt_22_Jun_2020.png used on input line 166.
+(pdftex.def)             Requested size: 305.18109pt x 176.43971pt.
+
+<../../figures/materials34_acf_data_11_Jun_2020_2D_residuals_22_Jun_2020.png, i
+d=72, 1370.11874pt x 801.99625pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_2D_residuals_22_Jun_2020.p
+ng Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_2D_residuals_22_Jun_2020.pn
+g>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_2D_resi
+duals_22_Jun_2020.png used on input line 167.
+(pdftex.def)             Requested size: 301.42705pt x 176.43971pt.
+
+<../../figures/materials34_acf_data_11_Jun_2020_relationship_at_opt_median_22_J
+un_2020.png, id=73, 1467.4825pt x 858.20625pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_relationship_at_opt_median
+_22_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_relationship_at_opt_median_
+22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_relatio
+nship_at_opt_median_22_Jun_2020.png used on input line 168.
+(pdftex.def)             Requested size: 322.84715pt x 188.80595pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -990,75 +1026,76 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2 <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_202
-0.png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_n
-fe_12_17_Jun_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_
-alphas_ndrop_5_nfe_15_17_Jun_2020.png (PNG copy)>]
+[2
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 169.
+ <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe_6_17_Jun_2020.
+png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_alphas_ndrop_5_nfe
+_12_17_Jun_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_estimated_al
+phas_ndrop_5_nfe_15_17_Jun_2020.png (PNG copy)>]
 
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 169.
-
-
-<../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png, id=76, 1
+[3 <../../figures/materials34_acf_data_11_Jun_2020_2D_alphas_opt_22_Jun_2020.pn
+g (PNG copy)> <../../figures/materials34_acf_data_11_Jun_2020_2D_residuals_22_J
+un_2020.png (PNG copy)> <../../figures/materials34_acf_data_11_Jun_2020_relatio
+nship_at_opt_median_22_Jun_2020.png (PNG copy)>]
+<../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png, id=97, 1
 467.4825pt x 861.2175pt>
 File: ../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png Grap
 hic file (type png)
 
 <use ../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_acf_sim_data_true_relationship_2
-1_Jun_2020.png used on input line 172.
+1_Jun_2020.png used on input line 177.
 (pdftex.def)             Requested size: 322.84715pt x 189.46843pt.
 
 <../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_Jun_
-2020.png, id=77, 1406.25375pt x 883.3pt>
+2020.png, id=98, 1406.25375pt x 883.3pt>
 File: ../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21
 _Jun_2020.png Graphic file (type png)
 
 <use ../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_
 Jun_2020.png>
 Package pdftex.def Info: ../../figures/command_acf_sim_data_true_gain_sim_const
-ant_only_pi_only_21_Jun_2020.png used on input line 174.
+ant_only_pi_only_21_Jun_2020.png used on input line 179.
 (pdftex.def)             Requested size: 309.37679pt x 194.3266pt.
 
+<../../figures/materials34_2D_alphas_true22_Jun_2020.png, id=99, 1387.1825pt x 
+841.1425pt>
+File: ../../figures/materials34_2D_alphas_true22_Jun_2020.png Graphic file (typ
+e png)
+ <use ../../figures/materials34_2D_alphas_true22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_2D_alphas_true22_Jun_2020.pn
+g used on input line 184.
+(pdftex.def)             Requested size: 305.18109pt x 185.05193pt.
 
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
+<../../figures/materials34_acf_sim_data_21_Jun_2020_2D_alphas_opt_22_Jun_2020.p
+ng, id=100, 1387.1825pt x 801.99625pt>
+File: ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_alphas_opt_22_Jun_2
+020.png Graphic file (type png)
 
-[3
+<use ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_alphas_opt_22_Jun_20
+20.png>
+Package pdftex.def Info: ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_
+alphas_opt_22_Jun_2020.png used on input line 186.
+(pdftex.def)             Requested size: 305.18109pt x 176.43971pt.
 
- <../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png (PNG cop
-y)> <../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_
-Jun_2020.png (PNG copy)>]
-<../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png, id=86,
- 1377.145pt x 844.15375pt>
-File: ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png Gr
-aphic file (type png)
+<../../figures/materials34_acf_sim_data_21_Jun_2020_2D_residuals_22_Jun_2020.pn
+g, id=101, 1390.19376pt x 801.99625pt>
+File: ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_residuals_22_Jun_20
+20.png Graphic file (type png)
 
-<use ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_true
-_21_Jun_2020.png used on input line 181.
-(pdftex.def)             Requested size: 302.97284pt x 185.7144pt.
+<use ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_residuals_22_Jun_202
+0.png>
+Package pdftex.def Info: ../../figures/materials34_acf_sim_data_21_Jun_2020_2D_
+residuals_22_Jun_2020.png used on input line 187.
+(pdftex.def)             Requested size: 305.84357pt x 176.43971pt.
 
-<../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_pi_on
-ly_21_Jun_2020.png, id=87, 1406.25375pt x 883.3pt>
-File: ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_
-pi_only_21_Jun_2020.png Graphic file (type png)
 
-<use ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_p
-i_only_21_Jun_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_true_gain
-_sim_constant_only_pi_only_21_Jun_2020.png used on input line 183.
-(pdftex.def)             Requested size: 309.37679pt x 194.3266pt.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1068,10 +1105,142 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4
 
+ <../../figures/command_acf_sim_data_true_relationship_21_Jun_2020.png (PNG cop
+y)> <../../figures/command_acf_sim_data_true_gain_sim_constant_only_pi_only_21_
+Jun_2020.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5 <../../figures/materials34_2D_alphas_true22_Jun_2020.png (PNG copy)> <../../
+figures/materials34_acf_sim_data_21_Jun_2020_2D_alphas_opt_22_Jun_2020.png (PNG
+ copy)> <../../figures/materials34_acf_sim_data_21_Jun_2020_2D_residuals_22_Jun
+_2020.png (PNG copy)>]
+<../../figures/materials34_acf_data_11_Jun_2020_1D_alphas_opt_22_Jun_2020.png, 
+id=117, 1378.14874pt x 801.99625pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_1D_alphas_opt_22_Jun_2020.
+png Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_1D_alphas_opt_22_Jun_2020.p
+ng>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_1D_alph
+as_opt_22_Jun_2020.png used on input line 198.
+(pdftex.def)             Requested size: 248.05606pt x 144.35309pt.
+
+<../../figures/materials34_acf_data_11_Jun_2020_1D_residuals_22_Jun_2020.png, i
+d=118, 1374.13374pt x 786.94pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_1D_residuals_22_Jun_2020.p
+ng Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_1D_residuals_22_Jun_2020.pn
+g>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_1D_resi
+duals_22_Jun_2020.png used on input line 199.
+(pdftex.def)             Requested size: 247.3334pt x 141.64308pt.
+
+<../../figures/materials34_acf_data_11_Jun_2020_1D_moments_22_Jun_2020.png, id=
+119, 1370.11874pt x 818.05624pt>
+File: ../../figures/materials34_acf_data_11_Jun_2020_1D_moments_22_Jun_2020.png
+ Graphic file (type png)
+
+<use ../../figures/materials34_acf_data_11_Jun_2020_1D_moments_22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_acf_data_11_Jun_2020_1D_mome
+nts_22_Jun_2020.png used on input line 200.
+(pdftex.def)             Requested size: 246.61073pt x 147.24376pt.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6
+
+ <../../figures/materials34_acf_data_11_Jun_2020_1D_alphas_opt_22_Jun_2020.png 
+(PNG copy)> <../../figures/materials34_acf_data_11_Jun_2020_1D_residuals_22_Jun
+_2020.png (PNG copy)> <../../figures/materials34_acf_data_11_Jun_2020_1D_moment
+s_22_Jun_2020.png (PNG copy)>]
+<../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png, id=128
+, 1377.145pt x 844.15375pt>
+File: ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png Gr
+aphic file (type png)
+
+<use ../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png>
+Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_true
+_21_Jun_2020.png used on input line 208.
+(pdftex.def)             Requested size: 220.3477pt x 135.06735pt.
+
+<../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_pi_on
+ly_21_Jun_2020.png, id=129, 1406.25375pt x 883.3pt>
+File: ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_
+pi_only_21_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only_p
+i_only_21_Jun_2020.png>
+Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_true_gain
+_sim_constant_only_pi_only_21_Jun_2020.png used on input line 210.
+(pdftex.def)             Requested size: 225.00519pt x 141.33089pt.
+
+<../../figures/materials341D_alphas_true22_Jun_2020.png, id=130, 1377.145pt x 8
+41.1425pt>
+File: ../../figures/materials341D_alphas_true22_Jun_2020.png Graphic file (type
+ png)
+ <use ../../figures/materials341D_alphas_true22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials341D_alphas_true22_Jun_2020.png
+ used on input line 215.
+(pdftex.def)             Requested size: 220.3477pt x 134.58554pt.
+
+<../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_alphas_opt_22
+_Jun_2020.png, id=131, 1378.14874pt x 801.99625pt>
+File: ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_alphas_o
+pt_22_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_alphas_op
+t_22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_acf_sim_univariate_data_21_J
+un_2020_1D_alphas_opt_22_Jun_2020.png used on input line 217.
+(pdftex.def)             Requested size: 220.5083pt x 128.322pt.
+
+<../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_residuals_22_
+Jun_2020.png, id=132, 1370.11874pt x 801.99625pt>
+File: ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_residual
+s_22_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_residuals
+_22_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_acf_sim_univariate_data_21_J
+un_2020_1D_residuals_22_Jun_2020.png used on input line 218.
+(pdftex.def)             Requested size: 219.22348pt x 128.322pt.
+
+<../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_moments_22_Ju
+n_2020.png, id=133, 1410.26875pt x 818.05624pt>
+File: ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_moments_
+22_Jun_2020.png Graphic file (type png)
+
+<use ../../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_moments_2
+2_Jun_2020.png>
+Package pdftex.def Info: ../../figures/materials34_acf_sim_univariate_data_21_J
+un_2020_1D_moments_22_Jun_2020.png used on input line 219.
+(pdftex.def)             Requested size: 225.64761pt x 130.89166pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7
+
  <../../figures/command_GMM_LOMgain_univariate_alph_true_21_Jun_2020.png (PNG c
 opy)> <../../figures/command_GMM_LOMgain_univariate_true_gain_sim_constant_only
-_pi_only_21_Jun_2020.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 211--211
+_pi_only_21_Jun_2020.png (PNG copy)> <../../figures/materials341D_alphas_true22
+_Jun_2020.png (PNG copy)> <../../figures/materials34_acf_sim_univariate_data_21
+_Jun_2020_1D_alphas_opt_22_Jun_2020.png (PNG copy)> <../../figures/materials34_
+acf_sim_univariate_data_21_Jun_2020_1D_residuals_22_Jun_2020.png (PNG copy)> <.
+./../figures/materials34_acf_sim_univariate_data_21_Jun_2020_1D_moments_22_Jun_
+2020.png (PNG copy)>]
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 249--249
 [] 
  []
 
@@ -1081,24 +1250,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5
+[8
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 265.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 303.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 303.
  (./materials34.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 265.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 303.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 303.
 Package rerunfilecheck Info: File `materials34.out' has not changed.
-(rerunfilecheck)             Checksum: 73B265887CC60AB2313F4F926ED4B13B;339.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 265.
+(rerunfilecheck)             Checksum: A37DAA7172E8A0EA0A079A777C4A52D6;585.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 303.
  ) 
 Here is how much of TeX's memory you used:
- 20057 strings out of 493089
- 365374 string characters out of 6134842
- 456693 words of memory out of 5000000
- 23120 multiletter control sequences out of 15000+600000
- 17560 words of font info for 68 fonts, out of 8000000 for 9000
+ 20133 strings out of 493089
+ 370614 string characters out of 6134842
+ 456695 words of memory out of 5000000
+ 23163 multiletter control sequences out of 15000+600000
+ 14639 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,441b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1107,26 +1276,25 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
 /local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials34.pdf (5 pages, 2824229 bytes).
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on materials34.pdf (8 pages, 4379899 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 248 PDF objects out of 1000 (max. 8388607)
+ 193 compressed objects within 2 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 190 words of extra memory for PDF output out of 10000 (max. 10000000)
 

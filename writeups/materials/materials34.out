@@ -1,6 +1,9 @@
 \BOOKMARK [1][-]{section.1}{Estimation procedure}{}% 1
-\BOOKMARK [1][-]{section.2}{Estimation issues}{}% 2
-\BOOKMARK [1][-]{section.3}{Estimating \040on simulated data}{}% 3
-\BOOKMARK [1][-]{section.4}{Univariate anchoring function}{}% 4
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 5
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 6
+\BOOKMARK [1][-]{section.2}{Estimating the 2D anchoring function}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Real data, 2D function}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Simulated data, 2D function}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Univariate anchoring function}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Real data, 1D function}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Simulated data, 1D function}{section.3}% 7
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 8
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 9
