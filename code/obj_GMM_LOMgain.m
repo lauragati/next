@@ -87,6 +87,6 @@ else
 %         Om = vec(Gamj_own);
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
-        res = (Om_data -Om).*diag(W1) + (alph0-alph)'*Wprior*ones(size(alph));
+        res = (Om_data -Om).*diag(W1) + sum(abs(alph0-alph))*Wprior;
     end
 end

@@ -24,11 +24,11 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% filename ='acf_data_11_Jun_2020'; % real data
+filename ='acf_data_11_Jun_2020'; % real data
 
-% filename ='acf_sim_data_18_Jun_2020'; % simulated data 2*15 true parameters, full Om
-% filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters, only own Om
-filename = 'acf_sim_data_21_Jun_2020'; % simulated data, 2*6 true parameters, full Om
+% % % % % filename ='acf_sim_data_18_Jun_2020'; % simulated data 2*15 true parameters, full Om
+% % % % % filename ='acf_sim_data_19_Jun_2020'; % simulated data: 2*6 true parameters, only own Om
+% filename = 'acf_sim_data_21_Jun_2020'; % simulated data, 2*6 true parameters, full Om
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -137,7 +137,7 @@ k1 = 1./kmesh;
 alph0 = ndim_simplex(x,[xxgrid(:)';yygrid(:)'],k1);
 rng(5)
 alph0 = rand(size(alph0));
-alph0 = 1.1*ones(size(alph0));
+% alph0 = 1.1*ones(size(alph0));
 
 % Let's plot the approximated evolution of the gain on a finer sample
 ng_fine = 100;
@@ -172,11 +172,22 @@ figname = [this_code, '_initial_approx_', todays_date];
 % dbstop if warning
 
 % Fmincon
+% %Optimization Parameters
+% options = optimset('lsqnonlin');
+% options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
+% % options.MaxFunEvals = 8000;
+% % options.MaxIter = 600;
+% % options.TolX = 1e-9;
+% options.UseParallel = 1; % 2/3 of the time
+
 %Optimization Parameters
-options = optimset('lsqnonlin');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
+options = optimoptions('lsqnonlin');
+options = optimoptions(options, 'display', 'iter'); 
+options.TolFun= 1e-9;
+options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
 % options.MaxFunEvals = 30000;
 % options.MaxIter = 1200;
+% options.TolX = 1e-9;
 options.UseParallel = 1; % 2/3 of the time
 
 
@@ -194,6 +205,7 @@ objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,
 [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
 toc
 
+flag
 
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,[xxgrid_fine(:)';yygrid_fine(:)'],alph_opt);

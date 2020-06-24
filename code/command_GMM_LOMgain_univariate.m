@@ -19,6 +19,8 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
+save_estim_outputs =0;
+
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
@@ -40,8 +42,8 @@ T = length(filt_data);
 T = T+lost_periods; % to make up for the loss due to filtering
 
 if contains(filename,'sim')
-alph_true = acf_outputs{8};
-nfe_true  = acf_outputs{9};
+    alph_true = acf_outputs{8};
+    nfe_true  = acf_outputs{9};
 end
 
 % Note: 3 moments at lag 0 are repeated. So technically we only have 42
@@ -131,35 +133,40 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,xxgrid(:)',k1);
-% rng(5)
-% alph0 = rand(size(alph0));
+rng(8)
+alph0 = rand(size(alph0));
 % alph0 = 0.2*ones(size(alph0));
 figname = [this_code, '_initial_alphas_', todays_date];
-create_pretty_plot_x(fegrid,alph0',figname,print_figs)
-pause(3)
-close 
+if skip==0
+    create_pretty_plot_x(fegrid,alph0',figname,print_figs)
+    pause(3)
+    close
+end
 
-% Let's plot the approximated evolution of the gain on a finer sample
+% Let's plot the initial approximated evolution of the gain on a finer sample
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
-% simulation given initial alphas
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph0,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
-% 
-% Some titles for figures
-seriesnames = {'\pi', 'x','i'};
-invgain = {'Inverse gain'};
-figname = [this_code, '_initial_obs_',PLM_name,'_', todays_date];
-create_plot_observables(y0,seriesnames, '', figname, print_figs)
-pause(2)
-close 
-
-figname = [this_code, '_initial_gain_',PLM_name,'_', todays_date];
-create_plot_observables(1./k0,invgain, '', figname, print_figs)
-
-pause(3)
-close 
+if skip==0
+    % simulation given initial alphas
+    [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph0,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
+    %
+    % Some titles for figures
+    seriesnames = {'\pi', 'x','i'};
+    invgain = {'Inverse gain'};
+    figname = [this_code, '_initial_obs_',PLM_name,'_', todays_date];
+    create_plot_observables(y0,seriesnames, '', figname, print_figs)
+    pause(2)
+    close
+    
+    figname = [this_code, '_initial_gain_',PLM_name,'_', todays_date];
+    create_plot_observables(1./k0,invgain, '', figname, print_figs)
+    
+    pause(3)
+    close
+    
+end
 % return
 
 %% GMM
@@ -168,21 +175,32 @@ close
 % dbstop if warning
 
 % Fmincon
+% %Optimization Parameters
+% options = optimset('lsqnonlin');
+% options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+% % options.MaxFunEvals = 30000;
+% % options.MaxIter = 1200;
+% % options.TolX = 1e-9;
+% options.UseParallel = 1; % 2/3 of the time
+
 %Optimization Parameters
-options = optimset('lsqnonlin');
-options = optimset(options, 'TolFun', 1e-9, 'display', 'iter'); 
-% options.MaxFunEvals = 30000;
+options = optimoptions('lsqnonlin');
+options = optimoptions(options, 'display', 'iter');
+options.TolFun= 1e-11;
+% options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
+% options.MaxFunEvals = 1000;
 % options.MaxIter = 1200;
+options.TolX = 1e-11;
 options.UseParallel = 1; % 2/3 of the time
 
 
 % let's keep these bounds
-ub = k1max*ones(size(alph0));
-lb = k1min*ones(size(alph0));
+ub = ones(size(alph0));
+lb = zeros(size(alph0));
 
 % %Compute the objective function one time with some values
 % let's weight the prior...
-Wprior=0; 
+Wprior=0;
 [res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
 
 
@@ -193,6 +211,7 @@ objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T
 toc
 
 
+
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
@@ -200,9 +219,11 @@ disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = [this_code, '_alph_opt_', todays_date];
-create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
+    figname = [this_code, '_alph_opt_', todays_date];
+    create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
 end
+
+flag
 
 % how does the model behave for estimated alpha?
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e)),knowTR,mpshock);
@@ -213,8 +234,10 @@ find(k0<0)
 % Some titles for figures
 seriesnames = {'\pi', 'x','i'};
 invgain = {'Inverse gain'};
-create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
-create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+if skip==0
+    create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+    create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+end
 
 % Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
 [res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
@@ -224,19 +247,77 @@ create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs
 
 
 if contains(filename,'sim')
-alph_true-alph_opt
-sum(abs(alph_true-alph_opt))
-
-% plot true, original and estimated alphas
-yfig = [alph_true'; alph0'; alph_opt'];
-figname= [this_code, '_alphas_', todays_date];
-create_pretty_plot_holdon(yfig,{'true', 'initial', 'optimal'},figname,print_figs)
-
+    alph_true-alph_opt
+    sum(abs(alph_true-alph_opt))
+    
+    % plot true, original and estimated alphas
+    yfig = [alph_true'; alph0'; alph_opt'];
+    figname= [this_code, '_alphas_', todays_date];
+    create_pretty_plot_holdon(yfig,{'true', 'initial', 'optimal'},figname,print_figs)
 end
 
-return
+% investigate loss function
+% 1. loss(true coeffs)=0?
+[res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+% res_true all are zero, as Peter said that they better be.
+% Om - Om_true % these are also all zeros. So at least the code is ok.
+% 2. What does the loss look like?
+nrange =100;
+alphi_values =linspace(lb(1),ub(1),nrange);
+obj = zeros(length(alph_true),nrange);
+tic
+for i=1:length(alph_true)
+    alph = alph_true;
+    for j=1:nrange
+        alph(i) = alphi_values(j);
+        res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+        obj(i,j) = sum(res.^2);
+    end
+end
+toc
 
-estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, boundname, ndrop};
-filename = ['estim_LOMgain_outputs_univariate', nowstr];
-save([filename, '.mat'], 'estim_outputs')
-disp(['Saving as ' filename])
+[min_obj, min_idx] = min(obj,[],2);
+[alph_true,alphi_values(min_idx)']
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+for i=1:length(alph_true)
+    subplot(2,3,i)
+    plot(alphi_values,obj(i,:), 'linewidth', lw);
+    ax = gca; % current axes
+    ax.FontSize = fs;
+    set(gca,'TickLabelInterpreter', 'latex');
+    grid on
+    grid minor
+end
+figname = [this_code,'_loss_for_indi_alphas_others_at_true', todays_date];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Can I find the right alphas if I start nearly at the correct alph0?
+alph0 = alph_true;
+alph0(6) = alphi_values(end); % <--- the answer is "depends where you start''
+options.TolFun= 1e-11;
+% options.OptimalityTolerance = 1e-9;
+% options.MaxFunEvals = 1000;
+% options.MaxIter = 1200;
+options.TolX = 1e-11;
+tic
+[alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
+toc
+[alph_true, alph_opt]
+
+
+% save estimation outputs
+if save_estim_outputs==1
+    estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, boundname, ndrop};
+    filename = ['estim_LOMgain_outputs_univariate', nowstr];
+    save([filename, '.mat'], 'estim_outputs')
+    disp(['Saving as ' filename])
+end

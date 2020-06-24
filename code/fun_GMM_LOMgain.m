@@ -2,7 +2,7 @@
 % a function version of command_GMM_LOMgain so you can run it sequentially
 % with different starting points
 % 22 June 2020
-function [alph_opt, resnorm, residual, flag] = fun_GMM_LOMgain(acf_outputs, nk1, nfe, k1min, k1max, femin, femax, alph0)
+function [alph_opt, resnorm, residual, Om_opt, flag] = fun_GMM_LOMgain(acf_outputs, nk1, nfe, k1min, k1max, femin, femax, alph0)
 
 
 
@@ -101,12 +101,22 @@ fegrid_fine = linspace(femin,femax,ng_fine);
 %% GMM
 
 % Fmincon
+% %Optimization Parameters
+% options = optimset('lsqnonlin');
+% options = optimset(options, 'TolFun', 1e-10, 'display', 'none'); 
+% options.MaxFunEvals = 15000;
+% options.MaxIter = 900;
+% options.UseParallel = 0; % 2/3 of the time
+
 %Optimization Parameters
-options = optimset('lsqnonlin');
-options = optimset(options, 'TolFun', 1e-10, 'display', 'none'); 
-options.MaxFunEvals = 15000;
-options.MaxIter = 900;
-options.UseParallel = 0; % 2/3 of the time
+options = optimoptions('lsqnonlin');
+options = optimoptions(options, 'display', 'none'); 
+options.TolFun= 1e-15;
+% options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
+% options.MaxFunEvals = 1000;
+% options.MaxIter = 1200;
+options.TolX = 1e-15;
+options.UseParallel = 1; % 2/3 of the time
 
 
 % let's keep these bounds
@@ -123,6 +133,7 @@ objh = @(alph) obj_GMM_LOMgain(alph,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,
 [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
 % toc
 
+[~, Om_opt] = obj_GMM_LOMgain(alph_opt,x,xxgrid_fine,yygrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
 
 
 
