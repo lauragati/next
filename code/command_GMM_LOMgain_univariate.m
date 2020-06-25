@@ -117,7 +117,7 @@ e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic s
 nfe = 6 % 6,9,12,15
 %%%%%%%%%%%%%%%%%%%
 % grids for f_{t|t-1}
-femax = 3.5;
+femax = 5; % for data, 2.5 may be a reasonable range
 femin = -femax;
 fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
 
@@ -136,7 +136,9 @@ k1 = 1./kmesh;
 alph0 = ndim_simplex(x,xxgrid(:)',k1);
 % rng(14)
 % alph0 = rand(size(alph0));
-alph0 = 0.2*ones(size(alph0));
+% alph0 = 0.2*ones(size(alph0));
+
+
 figname = [this_code, '_initial_alphas_', todays_date];
 if skip==0
     create_pretty_plot_x(fegrid,alph0',figname,print_figs)
@@ -187,7 +189,7 @@ end
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
 options = optimoptions(options, 'display', 'iter');
-options.TolFun= 1e-15;
+options.TolFun= 1e-9;
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
 % options.MaxFunEvals = 1000;
 % options.MaxIter = 1200;
@@ -202,16 +204,17 @@ lb = zeros(size(alph0));
 % %Compute the objective function one time with some values
 % let's weight the prior...
 Wprior=0;
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
 
 
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
+objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1);
 [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
 toc
 
-
+flag
+alph_opt
 
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt);
@@ -219,12 +222,11 @@ disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
-if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
+% if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
     figname = [this_code, '_alph_opt_', todays_date];
     create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
-end
+% end
 
-flag
 
 % how does the model behave for estimated alpha?
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e)),knowTR,mpshock);

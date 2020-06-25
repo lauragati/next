@@ -6,11 +6,10 @@ function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,
 % not penalizing deviations from the prior.
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
-if nargin < max_no_inputs 
+if nargin < max_no_inputs
     Wprior = 0;
     alph0 = 0;
 end
-
 
 % disp('Current guess alpha = ')
 % disp(num2str(alph))
@@ -93,9 +92,15 @@ else
         end
         % moments vector
         Om = vec(Gamj);
-%         Om = vec(Gamj_own);
+        %         Om = vec(Gamj_own);
+        
+        % additional moments
+        seconddiffs = diff(alph,2);
+        convexity_moment = sum(  seconddiffs(seconddiffs<=0).^2  );
+        calibrated_moment = abs(mean(k1)-0.05);
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
-        res = (Om_data -Om).*diag(W1) + sum(abs(alph0-alph))*Wprior;
+        devprior = sum(abs(alph0-alph))*Wprior;
+        res = (Om_data -Om).*diag(W1) + devprior + 1000*convexity_moment + 10*calibrated_moment;
     end
 end
