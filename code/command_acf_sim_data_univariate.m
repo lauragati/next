@@ -11,7 +11,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -34,7 +34,8 @@ femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
 rng(0)
-alph_true = rand(nfe,1);
+alph_true = [0.1;0.05;0.001;0.00001;0.02;0.09];
+% alph_true = (0.005*fegrid.^2)';
 
 % map to ndim_simplex
 x = cell(1,1);
@@ -103,6 +104,7 @@ invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_true_gain_sim_',PLM_name,'_', todays_date], print_figs)
 
+% return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);

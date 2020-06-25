@@ -110,11 +110,11 @@ fegrid_fine = linspace(femin,femax,ng_fine);
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
 options = optimoptions(options, 'display', 'none'); 
-options.TolFun= 1e-15;
+options.TolFun= 1e-9;
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
 % options.MaxFunEvals = 1000;
 % options.MaxIter = 1200;
-options.TolX = 1e-15;
+options.TolX = 1e-9;
 options.UseParallel = 1; % 2/3 of the time
 
 

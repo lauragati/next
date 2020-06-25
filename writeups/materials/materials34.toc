@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Estimation procedure}{1}{section.1}
+\contentsline {section}{\numberline {2}Estimating the 2D anchoring function}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Real data, 2D function}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Simulated data, 2D function}{5}{subsection.2.2}
+\contentsline {section}{\numberline {3}Univariate anchoring function}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Real data, 1D function}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Simulated data, 1D function}{7}{subsection.3.2}
+\contentsline {section}{\numberline {4}Investigate loss function for 1D case in detail}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Loss, changing one parameter at a time}{7}{subsection.4.1}
+\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}

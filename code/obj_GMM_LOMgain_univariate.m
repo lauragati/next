@@ -2,6 +2,15 @@ function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
+% Update 24 June 2020: no longer need to input alph0 and Wprior if you're
+% not penalizing deviations from the prior.
+this_code = mfilename;
+max_no_inputs = nargin(this_code);
+if nargin < max_no_inputs 
+    Wprior = 0;
+    alph0 = 0;
+end
+
 
 % disp('Current guess alpha = ')
 % disp(num2str(alph))

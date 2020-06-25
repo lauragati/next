@@ -125,10 +125,11 @@ bottom=1in}
 
 %%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
 
-%\tableofcontents
+\tableofcontents
 
 %\listoffigures
 
+%\newpage
 \section{Estimation procedure}
 Instead of the AR(1) anchoring function used so far (Equation \ref{A6}), I use the following equation
 \begin{equation}
@@ -232,13 +233,20 @@ materials34_acf_sim_data_21_Jun_2020_2D_residuals_23_Jun_2020}}
 
 
 \section{Investigate loss function for 1D case in detail}
-\subsection{Loss changing one parameter at a time}
+\subsection{Loss, changing one parameter at a time}
 \begin{figure}[h!]
 \includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_loss_for_indi_alphas_others_at_true23_Jun_2020}
 \caption{Objective function when I hold all coefficients at $\alpha^{true}$, move one at a time from 0 to 1}
 \end{figure}
 
 These minima correspond to the true values. 
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{rand1}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_loss_for_indi_alphas_others_at_initial24_Jun_2020}}
+\hfill
+\subfigure[$\alpha^{rand2}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_loss_for_indi_alphas_others_at_alph_opt24_Jun_2020}}
+\caption{Objective function when I hold all coefficients at $\alpha^{rand}$, move one at a time from 0 to 1}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

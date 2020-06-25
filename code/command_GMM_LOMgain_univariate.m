@@ -28,8 +28,8 @@ datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % filename ='acf_data_11_Jun_2020'; % real data
-filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
-
+% filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
+filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -133,8 +133,8 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 alph0 = ndim_simplex(x,xxgrid(:)',k1);
-rng(8)
-alph0 = rand(size(alph0));
+% rng(14)
+% alph0 = rand(size(alph0));
 % alph0 = 0.2*ones(size(alph0));
 figname = [this_code, '_initial_alphas_', todays_date];
 if skip==0
@@ -186,11 +186,11 @@ end
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
 options = optimoptions(options, 'display', 'iter');
-options.TolFun= 1e-11;
+options.TolFun= 1e-15;
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
 % options.MaxFunEvals = 1000;
 % options.MaxIter = 1200;
-options.TolX = 1e-11;
+options.TolX = 1e-9;
 options.UseParallel = 1; % 2/3 of the time
 
 
@@ -247,7 +247,7 @@ create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs
 
 
 if contains(filename,'sim')
-    alph_true-alph_opt
+    [alph_true,alph_opt]
     sum(abs(alph_true-alph_opt))
     
     % plot true, original and estimated alphas
@@ -256,7 +256,9 @@ if contains(filename,'sim')
     create_pretty_plot_holdon(yfig,{'true', 'initial', 'optimal'},figname,print_figs)
 end
 
-% investigate loss function
+%%  investigate loss function
+if skip==0
+
 % 1. loss(true coeffs)=0?
 [res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
 % res_true all are zero, as Peter said that they better be.
@@ -268,6 +270,8 @@ obj = zeros(length(alph_true),nrange);
 tic
 for i=1:length(alph_true)
     alph = alph_true;
+%     alph = alph0;
+%     alph = alph_opt;
     for j=1:nrange
         alph(i) = alphi_values(j);
         res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, alph0, Wprior);
@@ -292,6 +296,9 @@ for i=1:length(alph_true)
     grid minor
 end
 figname = [this_code,'_loss_for_indi_alphas_others_at_true', todays_date];
+% figname = [this_code,'_loss_for_indi_alphas_others_at_initial', todays_date];
+% figname = [this_code,'_loss_for_indi_alphas_others_at_alph_opt', todays_date];
+
 if print_figs ==1
     disp(figname)
     cd(figpath)
@@ -300,6 +307,7 @@ if print_figs ==1
     close
 end
 
+return
 % Can I find the right alphas if I start nearly at the correct alph0?
 alph0 = alph_true;
 alph0(6) = alphi_values(end); % <--- the answer is "depends where you start''
@@ -313,8 +321,8 @@ tic
 toc
 [alph_true, alph_opt]
 
-
-% save estimation outputs
+end
+%% save estimation outputs
 if save_estim_outputs==1
     estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, boundname, ndrop};
     filename = ['estim_LOMgain_outputs_univariate', nowstr];
