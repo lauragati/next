@@ -23,7 +23,7 @@ skip = 1;
 [fs, lw] = plot_configs;
 datestr(now)
 
-do21 = 0;
+do21 = 1;
 do22 = 0;
 do23 = 0;
 do24 = 0;
@@ -204,14 +204,6 @@ if do21==1
     % Plot the 10 smallest
     figname = [this_code, '_6by6_loss_10smallest', todays_date];
     create_pretty_plot_x(1:length(loss_10smallest),loss_10smallest',figname,print_figs)
-    
-    % Plot alphas for largest and smallest losses
-    figname = [this_code, '_largest_alphas', todays_date];
-    legendentries = {'Largest', ''};
-    create_pretty_plot_holdon(largest_alphas',legendentries,figname,print_figs)
-    figname = [this_code, '_smallest_alphas', todays_date];
-    legendentries = {'Smallest', ''};
-    create_pretty_plot_holdon(smallest_alphas',legendentries,figname,print_figs)
     
     
 end

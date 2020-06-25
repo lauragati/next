@@ -151,7 +151,23 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \section{Simulated data, 1D function}
 
 \subsection{Evaluate loss on a $6^6=46656$ grid}
+\begin{figure}[h!]
+\subfigure[Full grid and excluding the highest 10]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials35_6by6_loss_25_Jun_2020}}
+\hfill
+\subfigure[The lowest 10 losses]{\includegraphics[scale=\myTinyFigScale]{\myFigPath materials35_6by6_loss_10smallest25_Jun_2020}}
+\caption{Objective function values on a grid with values $(0;    0.2;    0.4;    0.6;    0.8;   1)$}
+\end{figure}
 
+\begin{figure}[h!]
+\subfigure[True coefficients]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials341D_alphas_true22_Jun_2020}}
+\hfill
+\subfigure[Highest loss]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials35_largest_alphas25_Jun_2020}}
+\hfill
+\subfigure[Lowest loss]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials35_smallest_alphas25_Jun_2020}}
+\caption{The $\alpha$s with highest and lowest objective function values}
+\end{figure}
+
+\clearpage
 \subsection{$\alpha^{true} \in(0,0.1)$ and convex}
 \begin{figure}[h!]
 \subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_24_Jun_2020}}
@@ -160,12 +176,24 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \subfigure[$\alpha^{true}, \alpha_0, \hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_24_Jun_2020}}
 \hfill
 \subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_ACFs_24_Jun_2020}}
-
-\caption{caption}
+\caption{Effects of making the truth i) convex ii) between 0 and 0.1}
 \end{figure}
 
 Actually, this improves the solver's ability to get close (up to $\alpha(fe=-5)$) dramatically! But this indicates the finite-element issue: there might not be any data in the -5 range for the forecast error. If that's so, then redoing this spiel with the true data involving a smaller forecast error support should do the trick. 
 
+\begin{figure}[h!]
+\subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_25_Jun_2020}}
+\hfill
+\subfigure[Gain for a simulation using $\alpha^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_only_25_Jun_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, \hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_25_Jun_2020}}
+\hfill
+\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_ACFs_25_Jun_2020}}
+\caption{Effects of making the truth i) convex ii) between 0 and 0.1 iii) shrinking the true forecast error support to $(-3.5,3.5)$}
+\end{figure}
+
+BAM! That did it! PTO.
+
+\clearpage
 \subsection{100000 starting points, top 10 minima}
 
 \begin{figure}[h!]

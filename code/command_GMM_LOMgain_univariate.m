@@ -27,9 +27,10 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% filename ='acf_data_11_Jun_2020'; % real data
+filename ='acf_data_11_Jun_2020'; % real data
 % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
-filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
+% filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
+% filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
@@ -116,7 +117,7 @@ e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic s
 nfe = 6 % 6,9,12,15
 %%%%%%%%%%%%%%%%%%%
 % grids for f_{t|t-1}
-femax = 5;
+femax = 3.5;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
 
@@ -135,7 +136,7 @@ k1 = 1./kmesh;
 alph0 = ndim_simplex(x,xxgrid(:)',k1);
 % rng(14)
 % alph0 = rand(size(alph0));
-% alph0 = 0.2*ones(size(alph0));
+alph0 = 0.2*ones(size(alph0));
 figname = [this_code, '_initial_alphas_', todays_date];
 if skip==0
     create_pretty_plot_x(fegrid,alph0',figname,print_figs)

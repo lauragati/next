@@ -29,7 +29,7 @@ datestr(now)
 % Create grids
 nfe = 6 % 6,9,12,15
 % grids for f_{t|t-1}
-femax = 5;
+femax = 3.5;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
