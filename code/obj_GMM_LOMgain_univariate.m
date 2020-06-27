@@ -1,4 +1,4 @@
-function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1, alph0, Wprior)
+function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1,Wconvexity,Wmean,alph0,Wprior)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
@@ -32,6 +32,7 @@ else
     % alpha lead to an explosive learning simulation
     if isinf(max(k1)) || min(k1)<0
         res = 1e+10*ones(size(Om_data));
+        Om =nan;
     else
         % Filter the simulated data
         % % 1) HP filter
@@ -97,10 +98,10 @@ else
         % additional moments
         seconddiffs = diff(alph,2);
         convexity_moment = sum(  seconddiffs(seconddiffs<=0).^2  );
-        calibrated_moment = abs(mean(k1)-0.05);
+        calibrated_moment = (mean(k1)-0.05)^2;
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
         devprior = sum(abs(alph0-alph))*Wprior;
-        res = (Om_data -Om).*diag(W1) + devprior + 1000*convexity_moment + 10*calibrated_moment;
+        res = (Om_data -Om).*diag(W1) + devprior + Wconvexity*convexity_moment + Wmean*calibrated_moment;
     end
 end

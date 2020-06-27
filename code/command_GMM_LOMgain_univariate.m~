@@ -34,18 +34,18 @@ filename ='acf_data_11_Jun_2020'; % real data
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 4 % 6,9,12,15
+nfe = 6 % 6,9,12,15
 % grids for fe_{t|t-1}
 femax = 3.5; % 3.5
-femin = -3.5;
+femin = -femax;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wconvexity=0;%1000
+Wconvexity=1000;%1000
 Wmean=0;%0
-% rng(0)
+rng(10)
 % alph0 = rand(nfe,1);
 % alph0 = 0.2*ones(nfe,1);
 use_smart_alph0=1;% default
