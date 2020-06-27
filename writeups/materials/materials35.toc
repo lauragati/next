@@ -6,5 +6,6 @@
 \contentsline {subsection}{\numberline {2.4}Add moments}{7}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Strict priors: anchoring function should be convex}{7}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Calibrated moments: e.g. average gain in simulation should be 0.05}{7}{subsubsection.2.4.2}
-\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
+\contentsline {subsection}{\numberline {2.5}But is it robust?}{8}{subsection.2.5}
+\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}

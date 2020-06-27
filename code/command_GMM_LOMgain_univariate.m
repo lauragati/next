@@ -34,7 +34,7 @@ filename ='acf_data_11_Jun_2020'; % real data
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 4 % 6,9,12,15
+nfe = 5 % 6,9,12,15
 % grids for fe_{t|t-1}
 femax = 3.5; % 3.5
 femin = -3.5;
@@ -43,12 +43,27 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wconvexity=0;%1000
-Wmean=0;%0
-% rng(0)
+Wconvexity=1000;%1000
+Wmean=100;%0
+% rng(8)
 % alph0 = rand(nfe,1);
-% alph0 = 0.2*ones(nfe,1);
+% alph0 = 0.05*ones(nfe,1);
 use_smart_alph0=1;% default
+% alph0 =     [0.0674
+%     0.0168
+%          0
+%     0.0168
+%     0.0674]; % default*5
+
+%Optimization Parameters
+options = optimoptions('lsqnonlin');
+options = optimoptions(options, 'display', 'iter');
+options.TolFun= 1e-9;
+% options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
+options.MaxFunEvals = 1000;
+% options.MaxIter = 1200;
+options.TolX = 1e-9;
+options.UseParallel = 1; % 2/3 of the time
 %%%%%%%%%%%%%%%%%%%
 
 
@@ -190,24 +205,6 @@ end
 % dbstop if error
 % dbstop if warning
 
-% Fmincon
-% %Optimization Parameters
-% options = optimset('lsqnonlin');
-% options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
-% % options.MaxFunEvals = 30000;
-% % options.MaxIter = 1200;
-% % options.TolX = 1e-9;
-% options.UseParallel = 1; % 2/3 of the time
-
-%Optimization Parameters
-options = optimoptions('lsqnonlin');
-options = optimoptions(options, 'display', 'iter');
-options.TolFun= 1e-9;
-% options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
-% options.MaxFunEvals = 1000;
-% options.MaxIter = 1200;
-options.TolX = 1e-9;
-options.UseParallel = 1; % 2/3 of the time
 
 % %Compute the objective function one time with some values
 

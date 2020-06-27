@@ -4,5 +4,6 @@
 \BOOKMARK [2][-]{subsection.2.2}{true \(0,0.1\) and convex}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{100000 starting points, top 10 minima}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Add moments}{section.2}% 6
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 7
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 8
+\BOOKMARK [2][-]{subsection.2.5}{But is it robust?}{section.2}% 7
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 8
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 9

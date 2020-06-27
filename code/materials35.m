@@ -27,6 +27,7 @@ do21 = 0;
 do22 = 0;
 do23 = 0;
 do24 = 0;
+do25 = 1;
 
 
 %% Hopefully general params
@@ -242,4 +243,51 @@ end
 %% 2.4) Add moments
 if do24==1
     command_GMM_LOMgain_univariate
+end
+
+%% 2.5) Check if candidate sol on real data is robust to different starting points
+if do25==1
+nsearch=10;
+disp(['Expected to take ', num2str(nsearch*30/60), ' minutes.'])
+filename ='acf_data_11_Jun_2020'; % real data
+% filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. full Om
+load([filename, '.mat'])
+nfe=5;
+k1min = 0;
+k1max= 1;
+femax = 3.5;
+femin = -femax;
+
+% Uniform random starting values
+rng('default')
+% b=1; a=0;
+% ALPH0 = a + (b-a).*rand(nfe,nsearch);
+ALPH0 = rand(nfe,nsearch);
+alph_opt = ones(nfe,nsearch);
+resnorm = zeros(1,nsearch);
+res = zeros(45,nsearch);
+Om_opt = zeros(45,nsearch);
+flag = zeros(1,nsearch);
+
+% just used to check against command_GMM_LOMgain_univariate.m
+% ALPH0 =     [0.0674
+%     0.0168
+%     0
+%     0.0168
+%     0.0674]; % default*5
+
+
+tic
+for i=1:nsearch
+    alph0 = ALPH0(:,i);
+    [alph_opt(:,i), resnorm(i),res(:,i), Om_opt(:,i),flag(i)] = fun_GMM_LOMgain_univariate(acf_outputs, nfe, k1min, k1max, femin, femax, alph0);
+end
+toc
+
+alph_converged = alph_opt(:,flag>0);
+resnorm_converged = resnorm(flag>0);
+[min_resnorm,min_idx]= min(resnorm_converged);
+alph_best = alph_converged(:,min_idx);
+disp('The best candidate and mean of candidates:')
+[alph_best, mean(alph_converged,2)]
 end

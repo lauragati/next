@@ -210,6 +210,32 @@ BAM! That did it! PTO.
 \subsubsection{Strict priors: anchoring function should be convex}
 \subsubsection{Calibrated moments: e.g. average gain in simulation should be 0.05}
 
+Turning to the real data, I've found that 
+\begin{itemize}
+\item without (and also with!) additional moments, data is able identify 5 parameters;
+\item the convexity moment forces the solution to be convex (otherwise it is often, but not often not convex);
+\item the mean moment helps pinning down the solution when the convexity moment is in place.
+\end{itemize}
+Such a solution seems quite robust to starting points (there are some starting points that lead the solver not to converge). The solution looks like this:
+\clearpage
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_27_Jun_2020}
+\caption{The candidate solution}
+\floatfoot{$n_{\alpha}=5, fe\in(-3.5,3.5), \alpha\in(0,1)$, convexity and mean moment imposed, starting point is given by the AR(1) gain function on this grid. $\hat{\alpha}=(0.7696;    0.0026;    0;    0.0058;    0.0107)$}
+\end{figure}
+
+\subsection{But is it robust?}
+
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallFigScale]{\myFigPath placeholder}
+\caption{Converged solutions for 10 runs}
+\floatfoot{$n_{\alpha}=5, fe\in(-3.5,3.5), \alpha\in(0,1)$, convexity and mean moment imposed, from different initial points between (0,1).}
+\end{figure}
+
+\clearpage
+
+ 
+
 
 %\begin{figure}[h!]
 %\subfigure[]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}

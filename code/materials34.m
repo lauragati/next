@@ -25,7 +25,7 @@ datestr(now)
 do2D =0
 do1D =0
 
-nsearch = 10; % each search takes about 16 sec. So 100 should take a little under 30 min.
+nsearch = 1; % each search takes about 16 sec. So 100 should take a little under 30 min.
 
 %% Get the data, filter them, generate data moments and bootstrap to get the weighting matrix
 if skip==0
@@ -139,10 +139,10 @@ if do1D==1
     
     load([filename, '.mat'])
     
-    nfe=6;
+    nfe=5;
     k1min = 0;
     k1max=1;
-    femax = 5;
+    femax = 3.5;
     femin = -femax;
     
     % Uniform random starting values
@@ -154,8 +154,9 @@ if do1D==1
     Om_opt = zeros(45,nsearch);
     flag = zeros(1,nsearch);
     
+   
     tic
-    parfor i=1:nsearch
+    for i=1:nsearch
         alph0 = ALPH0(:,i);
         [alph_opt(:,i), resnorm(i),res(:,i), Om_opt(:,i),flag(i)] = fun_GMM_LOMgain_univariate(acf_outputs, nfe, k1min, k1max, femin, femax, alph0);
     end
@@ -205,6 +206,7 @@ if do1D==1
         create_pretty_plot_x(fegrid,alph_true',figname,print_figs)
     end
 end
+return
 
 %% Coax the solver to get to the right answer: for 1D case only
 % --> do it on the server, as it seems that for a large enough nsearch, it can actually recover the true coeffs
