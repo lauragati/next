@@ -1,11 +1,12 @@
 \contentsline {section}{\numberline {1}Estimation procedure}{2}{section.1}
-\contentsline {section}{\numberline {2}Simulated data, 1D function}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Evaluate loss on a $6^6=46656$ grid}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}$\alpha ^{true} \in (0,0.1)$ and convex}{5}{subsection.2.2}
+\contentsline {section}{\numberline {2}1D function}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Simulated data, evaluate loss on a $6^6=46656$ grid}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Simulated data, $\alpha ^{true} \in (0,0.1)$ and convex}{5}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}100000 starting points, top 10 minima}{7}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Add moments}{7}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Strict priors: anchoring function should be convex}{7}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Calibrated moments: e.g. average gain in simulation should be 0.05}{7}{subsubsection.2.4.2}
-\contentsline {subsection}{\numberline {2.5}But is it robust?}{8}{subsection.2.5}
-\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}
+\contentsline {subsection}{\numberline {2.5}But is it robust?}{7}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Is the L-shape a residue of too many coefficients?}{10}{subsection.2.6}
+\contentsline {section}{\numberline {A}Model summary}{11}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{11}{appendix.B}

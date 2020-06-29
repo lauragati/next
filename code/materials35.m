@@ -29,6 +29,7 @@ do23 = 0;
 do24 = 0;
 do25 = 1;
 
+save_stuff=0;
 
 %% Hopefully general params
 
@@ -247,8 +248,9 @@ end
 
 %% 2.5) Check if candidate sol on real data is robust to different starting points
 if do25==1
-nsearch=10;
+nsearch=100;
 disp(['Expected to take ', num2str(nsearch*30/60), ' minutes.'])
+
 filename ='acf_data_11_Jun_2020'; % real data
 % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. full Om
 load([filename, '.mat'])
@@ -260,9 +262,9 @@ femin = -femax;
 
 % Uniform random starting values
 rng('default')
-% b=1; a=0;
-% ALPH0 = a + (b-a).*rand(nfe,nsearch);
-ALPH0 = rand(nfe,nsearch);
+ALPH0 = rand(nfe,nsearch); % rand draws from Unif(0,1)
+% ALPH0 = rand(1,nsearch).*ones(nfe,nsearch); % lines as starting points
+
 alph_opt = ones(nfe,nsearch);
 resnorm = zeros(1,nsearch);
 res = zeros(45,nsearch);
@@ -284,10 +286,72 @@ for i=1:nsearch
 end
 toc
 
+% filter out the ones that converged
 alph_converged = alph_opt(:,flag>0);
 resnorm_converged = resnorm(flag>0);
-[min_resnorm,min_idx]= min(resnorm_converged);
+% Split into leaders and runners-up
+n_converged = length(resnorm_converged);
+n_leaders = ceil(n_converged/2);
+n_runnersup = n_converged - n_leaders;
+[min_resnorm,min_idx]= mink(resnorm_converged, n_leaders);
+[max_resnorm,max_idx]= maxk(resnorm_converged, n_runnersup);
 alph_best = alph_converged(:,min_idx);
 disp('The best candidate and mean of candidates:')
 [alph_best, mean(alph_converged,2)]
+
+
+edges = [min_resnorm(1),min_resnorm(end)+1,max_resnorm(end)-1, max_resnorm(1)];
+% edges = [min_resnorm(1),max_resnorm(end),max_resnorm(end-1)-1, max_resnorm(1)];
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+h = histogram(resnorm_converged, edges)
+ax = gca; % current axes
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+figname = [this_code,'_hist_resnorm_n_', num2str(nsearch),'_', todays_date];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+point1 = alph_converged(:,min_idx);
+point2 = alph_converged(:,max_idx);
+mean_point1 = mean(point1,2)'
+mean_point2 = mean(point2,2)'
+
+figname = [this_code,'_point1_n_', num2str(nsearch),'_', todays_date];
+create_pretty_plot_holdon(point1(:,1:16)',{'','',''},figname,print_figs)
+figname = [this_code,'_point2_n_', num2str(nsearch),'_', todays_date];
+create_pretty_plot_holdon(point2',{'','',''},figname,print_figs)
+
+if save_stuff==1
+    filename = ['best_n', num2str(nsearch),'_', todays_date];
+    output = {alph_best,min_resnorm};
+    save([filename,'.mat'], 'output')
+    disp(['Saving as ', filename])
+end
+
+
+% return
+% %%%%%
+% % Do the same with inputs from server - this shit aint working
+% load('mat35_25_server_best_candidates_29_Jun_2020.mat')
+% % outputs = {alph_opt, resnorm, Om_opt, flag, alph_converged, resnorm_converged};
+% alph_opt_server = outputs{1};
+% resnorm_server  = outputs{2};
+% Om_opt_server   = outputs{3};
+% flag_server     = outputs{4};
+% alph_conv_server= outputs{5};
+% resnorm_conv_server= outputs{6};
+% ALPH0_server   = outputs{7};
+% 
+% histogram(flag_server)
+
+
 end

@@ -1,0 +1,437 @@
+\documentclass[11pt]{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+
+% Layout and style
+\usefonttheme{serif}
+\usepackage{palatino} 
+
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+\def \myFigPath {../../../figures/} 
+\def \myTablePath {../../../tables/} 
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{pbblue}{HTML}{0A75A8}% filling color for the progress bar
+\definecolor{pbgray}{HTML}{575757}% background color for the progress bar
+
+% a set of nice blue, nice red and nice green
+\definecolor{dodgerblue}{RGB}{16,78,139}
+\definecolor{aquamarinegreen}{RGB}{69,139,116}
+\definecolor{brownredlight}{RGB}{238,59,59}
+\definecolor{brownreddark}{RGB}{205,51,51}
+
+
+
+\makeatletter
+\def\progressbar@progressbar{} % the progress bar
+\newcount\progressbar@tmpcounta% auxiliary counter
+\newcount\progressbar@tmpcountb% auxiliary counter
+\newdimen\progressbar@pbht %progressbar height
+\newdimen\progressbar@pbwd %progressbar width
+\newdimen\progressbar@tmpdim % auxiliary dimension
+
+\progressbar@pbwd=1.15\linewidth % change width of progress bar
+\progressbar@pbht=0.5ex % change thickness of progress bar
+
+% the progress bar
+\def\progressbar@progressbar{%
+
+    \progressbar@tmpcounta=\insertframenumber
+    \progressbar@tmpcountb=\inserttotalframenumber
+    \progressbar@tmpdim=\progressbar@pbwd
+    \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+    \divide\progressbar@tmpdim by \progressbar@tmpcountb
+
+  \begin{tikzpicture}[rounded corners=2pt,very thin]
+
+    \shade[top color=pbgray!10,bottom color=pbgray!10,middle color=pbgray!10]
+      (0pt, 0pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+
+      \shade[draw=dodgerblue,top color=dodgerblue,bottom color=dodgerblue,middle color=dodgerblue] %
+        (0pt, 0pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+
+% ADD COMPLETION PERCENTAGE
+%    \draw[color=normal text.fg!50]  
+%      (0pt, 0pt) rectangle (\progressbar@pbwd, \progressbar@pbht) 
+%        node[pos=0.5,color=normal text.fg] {\textnormal{%
+%             \pgfmathparse{\insertframenumber*100/\inserttotalframenumber}%
+%             \pgfmathprintnumber[fixed,precision=2]{\pgfmathresult}\,\%%
+%        }%
+%    };
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{headline}{}
+{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,center,dp=1ex]{white}%
+    \progressbar@progressbar%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+% Set colors of butthons
+\setbeamercolor{button}{bg=dodgerblue,fg=white}
+
+% this removes the blue navigation bar that used to be on the bottom right
+\beamertemplatenavigationsymbolsempty 
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Structure of talk}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\useinnertheme{circles}
+
+% resets the bullet points of enumerate and itemize to defaults
+\setbeamertemplate{itemize items}[bullet]
+\setbeamertemplate{enumerate items}[default]
+
+% this removes the ugly bullets for the table of contents and just adds numbers
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% Colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{April 15, 2020}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frame}[plain] % use the argument plain here to remove the progress bar
+
+\maketitle
+
+\end{frame}
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Puzzling Fed behavior fall 2019}
+
+\begin{figure}[h!]
+\subfigure[Unemployment rate, \%]{\includegraphics[scale = 0.12]{\myFigPath urate_2020_02_09}}
+\hfil \subfigure[Fed funds rate target, upper limit, \%]{\includegraphics[scale = 0.12]{\myFigPath frr_2020_02_09}}
+\subfigure[Market-based inflation expectations, 10 year, \% average]{\includegraphics[scale = 0.12]{\myFigPath epi10_2020_02_09}}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Preview of results}
+	
+	\begin{enumerate}
+	\item Two layers of new intertemporal tradeoffs 
+
+	
+	\
+	
+	\
+	
+	\item Optimal monetary policy time-inconsistent
+	
+	\
+	
+	\
+	
+	
+	\item[$\rightarrow$] Illustrate analytically in special case: target criterion 
+	
+	\
+	
+	\
+	\item Not today: short-run costs vs. long-run benefits of anchoring expectations
+
+	\end{enumerate}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Related literature}
+
+\begin{itemize}
+\item \textbf{Optimal monetary policy in New Keynesian models}
+\item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
+
+\
+
+\
+
+\item \textbf{Econometric learning}
+\item[] Evans \& Honkapohja (2001), Preston (2005), Moln\'ar \& Santoro (2014)
+
+\
+
+\
+
+\item \textbf{Anchoring / endogenous gain} 
+\item[] Carvalho et al (2019), Svensson (2015), Hooper et al (2019), Milani (2014)
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
+
+\begin{itemize}
+\item If use $\E$ (rational expectations, RE) \\
+
+\
+
+Model solution 
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+$s_t \equiv (r^n_t, u_t)' \quad $  (states) \\
+$y_t \equiv (\pi_t, x_t, i_t)' \quad $ (jumps)
+
+\
+
+\item If use $\hat{\E} \rightarrow$ private sector does not know $g$ \\
+$\rightarrow$ estimate using observed states \& knowledge of (\ref{state})
+
+\
+
+\item Households and firms don't know they are identical
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Conclusion}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\backupbegin
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Short-run costs, long-run benefits}
+	\label{SRLRtradeoffs}
+
+\
+	
+Assume Taylor rule and no concern for output gap stabilization	
+	
+\begin{equation*}
+i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0 
+\end{equation*}
+
+\begin{figure}[h!]
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\floatfoot{}
+\label{fig_loss}
+\end{figure}	
+	
+\hfill \hyperlink{SRcosts}{\beamergotobutton{Short-run costs}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Functional forms for $\mathbf{g}$}
+	\label{g}
+\begin{itemize}
+\item Smooth anchoring function
+\begin{equation}
+k_t = k_{t-1} - c + d fe_{t|t-1}^2
+\end{equation}
+$c,d > 0$
+
+\
+
+\item Kinked anchoring function
+ \begin{align*}
+k_t & = \begin{cases} \frac{1}{t} \quad \text{when} \quad \theta_t < \bar{\theta}  \\ k \quad \text{otherwise.}\numberthis
+\end{cases} 
+\end{align*}
+$\theta_t$ criterion, $\bar{\theta}$ threshold value
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Choices for criterion $\theta_t$}
+	\label{g}
+\begin{itemize}
+\item Carvalho et al. (2019)'s criterion  
+\begin{equation}
+\theta_t^{CEMP} = \max | \Sigma^{-1} ( \phi_{t-1} - T(\phi_{t-1})) |
+\end{equation}
+
+
+$\Sigma$ variance-covariance matrix of shocks \\
+$T(\phi)$ mapping from PLM to ALM
+
+\
+
+\
+
+\item CUSUM-criterion
+\begin{align}
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
+\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1})
+\end{align}
+
+\
+
+$\omega_t$ estimated forecast-error variance
+\end{itemize}
+
+
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\backupend % NEED TO CONCLUDE WITH THIS TO HAVE SEPARATE NUMBERING FOR APPENDIX
+
+\end{document}

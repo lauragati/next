@@ -148,9 +148,9 @@ Then I estimate $\alpha$ using GMM, targeting the autocovariance structure of in
 $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-only, inflation-only'' learning PLM. I drop the $ndrop=5$ initial values. I restrict $\alpha \in (0,1)$, the support of $k^{-1}$ in the grid. I target the lag $0,\dots,4$ autocovariance matrices, dropping repeated entries at lag 0, leaving me with 42 moments.
 
 \clearpage
-\section{Simulated data, 1D function}
+\section{1D function}
 
-\subsection{Evaluate loss on a $6^6=46656$ grid}
+\subsection{Simulated data, evaluate loss on a $6^6=46656$ grid}
 \begin{figure}[h!]
 \subfigure[Full grid and excluding the highest 10]{\includegraphics[scale=\mySmallFigScale]{\myFigPath materials35_6by6_loss_25_Jun_2020}}
 \hfill
@@ -168,7 +168,7 @@ $T=233$ before BK-filtering, $T=209$ after BK-filtering. Using the ``constant-on
 \end{figure}
 
 \clearpage
-\subsection{$\alpha^{true} \in(0,0.1)$ and convex}
+\subsection{Simulated data, $\alpha^{true} \in(0,0.1)$ and convex}
 \begin{figure}[h!]
 \subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_24_Jun_2020}}
 \hfill
@@ -195,29 +195,29 @@ BAM! That did it! PTO.
 
 \clearpage
 \subsection{100000 starting points, top 10 minima}
-
-\begin{figure}[h!]
-\subfigure[Policy function]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
-\hfill
-\subfigure[Residuals]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
-\subfigure[Loss function]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
-\hfill
-\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
-\caption{Top 10 candidates}
-\end{figure}
+Didn't improve on 1000, besides the nonconvex truth was too much of a challenge, so not pursing this.
+%\begin{figure}[h!]
+%\subfigure[Policy function]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+%\hfill
+%\subfigure[Residuals]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+%\subfigure[Loss function]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+%\hfill
+%\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+%\caption{Top 10 candidates}
+%\end{figure}
 
 \subsection{Add moments}
 \subsubsection{Strict priors: anchoring function should be convex}
 \subsubsection{Calibrated moments: e.g. average gain in simulation should be 0.05}
 
-Turning to the real data, I've found that 
+Starting with simulated data, and then turning to the real data, I've found that 
 \begin{itemize}
 \item without (and also with!) additional moments, data is able identify 5 parameters;
-\item the convexity moment forces the solution to be convex (otherwise it is often, but not often not convex);
+\item the convexity moment forces the solution to be convex (otherwise it is often not convex);
 \item the mean moment helps pinning down the solution when the convexity moment is in place.
 \end{itemize}
 Such a solution seems quite robust to starting points (there are some starting points that lead the solver not to converge). The solution looks like this:
-\clearpage
+%\clearpage
 \begin{figure}[h!]
 \includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_27_Jun_2020}
 \caption{The candidate solution}
@@ -227,14 +227,46 @@ Such a solution seems quite robust to starting points (there are some starting p
 \subsection{But is it robust?}
 
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallFigScale]{\myFigPath placeholder}
-\caption{Converged solutions for 10 runs}
-\floatfoot{$n_{\alpha}=5, fe\in(-3.5,3.5), \alpha\in(0,1)$, convexity and mean moment imposed, from different initial points between (0,1).}
+\subfigure[Residuals of converged solutions]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_hist_resnorm_n_2029_Jun_2020}}
+\hfill
+\subfigure[$\hat{\alpha}^{Point 1}$]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_point1_n_20_29_Jun_2020}}
+\subfigure[$\hat{\alpha}^{Point 2}$]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_point2_n_20_29_Jun_2020}}
+\caption{Converged solutions for 20 runs (6 converged)}
+\floatfoot{$n_{\alpha}=5, fe\in(-3.5,3.5), \alpha\in(0,1)$, convexity and mean moment imposed, from different straight lines between (0,1) as initial points.}
 \end{figure}
+
+Initialization for robustness check: random straight lines between (0,1). I've also done completely random sets of points and I get similar, but less clean results because initializing at non-convex points impairs the solver's behavior (gets stuck at more local minima).
+\begin{itemize}
+\item Mean coefficients in Point 1 = $( 0.7663;    0.0011;    0.0007;    0.0054 ;   0.0092)$
+\item Mean coefficients in Point 2 = $( 0.0267;    0;    0.0329;    0.0673;    0.1639)$
+\end{itemize}
+
 
 \clearpage
 
- 
+\begin{figure}[h!]
+\subfigure[Residuals of converged solutions]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_hist_resnorm_n_100_29_Jun_2020}}
+\hfill
+\subfigure[$\hat{\alpha}^{Point 1}$]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_point1_n_100_29_Jun_2020}}
+\subfigure[$\hat{\alpha}^{Point 2}$]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath materials35_point2_n_100_29_Jun_2020}}
+\caption{Converged solutions for 100 runs (35 converged)}
+\floatfoot{$n_{\alpha}=5, fe\in(-3.5,3.5), \alpha\in(0,1)$, convexity and mean moment imposed, from different straight lines between (0,1) as initial points.}
+\end{figure}
+\begin{itemize}
+\item Mean coefficients in Point 1 = $( 0.7816;    0.0014;    0.0012;   0.0054;    0.0091)$
+\item Mean coefficients in Point 2 = $(0.0279;    0;    0.0324;    0.0654;    0.1652 )$
+\end{itemize}
+
+\subsection{Is the L-shape a residue of too many coefficients?}
+No:
+\begin{figure}[h!]
+\subfigure[$n_{\alpha}=4$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_29_Jun_2020}}
+\hfill
+\subfigure[$n_{\alpha}=3$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_nfe329_Jun_2020}}
+\caption{The same configurations as above, except less parameters}
+\floatfoot{}
+\end{figure}
+
 
 
 %\begin{figure}[h!]

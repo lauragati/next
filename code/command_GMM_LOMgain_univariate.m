@@ -44,7 +44,7 @@ lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
 Wconvexity=1000;%1000
-Wmean=100;%0
+Wmean=100;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.05*ones(nfe,1);
