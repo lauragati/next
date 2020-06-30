@@ -2,6 +2,7 @@ function EL = loss_CB(param,y)
 % expected loss of CB given a cross section of simulated histories
 % y = (ny,T,N)
 % 26 Jan 2020
+% checked thru 30 June 2020
 lamx = param.lamx;
 lami = param.lami;
 bet = param.bet;

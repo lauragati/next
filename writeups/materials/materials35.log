@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 JUN 2020 11:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 JUN 2020 14:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,7 +937,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=80, 1467.
+<../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png, id=85, 1467.
 4825pt x 858.20625pt>
 File: ../../figures/command_GMM_LOMgain_initial_approx_17_Jun_2020.png Graphic 
 file (type png)
@@ -968,7 +968,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 153.
 
 
-<../../figures/materials35_6by6_loss_25_Jun_2020.png, id=93, 1340.00626pt x 931
+<../../figures/materials35_6by6_loss_25_Jun_2020.png, id=98, 1340.00626pt x 931
 .48pt>
 File: ../../figures/materials35_6by6_loss_25_Jun_2020.png Graphic file (type pn
 g)
@@ -977,7 +977,7 @@ Package pdftex.def Info: ../../figures/materials35_6by6_loss_25_Jun_2020.png us
 ed on input line 155.
 (pdftex.def)             Requested size: 294.80229pt x 204.92622pt.
 
-<../../figures/materials35_6by6_loss_10smallest25_Jun_2020.png, id=94, 1428.336
+<../../figures/materials35_6by6_loss_10smallest25_Jun_2020.png, id=99, 1428.336
 24pt x 838.13126pt>
 File: ../../figures/materials35_6by6_loss_10smallest25_Jun_2020.png Graphic fil
 e (type png)
@@ -987,8 +987,8 @@ Package pdftex.def Info: ../../figures/materials35_6by6_loss_10smallest25_Jun_2
 020.png used on input line 157.
 (pdftex.def)             Requested size: 228.53847pt x 134.10373pt.
 
-<../../figures/materials341D_alphas_true22_Jun_2020.png, id=95, 1377.145pt x 84
-1.1425pt>
+<../../figures/materials341D_alphas_true22_Jun_2020.png, id=100, 1377.145pt x 8
+41.1425pt>
 File: ../../figures/materials341D_alphas_true22_Jun_2020.png Graphic file (type
  png)
  <use ../../figures/materials341D_alphas_true22_Jun_2020.png>
@@ -996,8 +996,8 @@ Package pdftex.def Info: ../../figures/materials341D_alphas_true22_Jun_2020.png
  used on input line 162.
 (pdftex.def)             Requested size: 302.97284pt x 185.05193pt.
 
-<../../figures/materials35_largest_alphas25_Jun_2020.png, id=96, 1378.14874pt x
- 805.0075pt>
+<../../figures/materials35_largest_alphas25_Jun_2020.png, id=101, 1378.14874pt 
+x 805.0075pt>
 File: ../../figures/materials35_largest_alphas25_Jun_2020.png Graphic file (typ
 e png)
  <use ../../figures/materials35_largest_alphas25_Jun_2020.png>
@@ -1005,8 +1005,8 @@ Package pdftex.def Info: ../../figures/materials35_largest_alphas25_Jun_2020.pn
 g used on input line 164.
 (pdftex.def)             Requested size: 303.19366pt x 177.1022pt.
 
-<../../figures/materials35_smallest_alphas25_Jun_2020.png, id=97, 1378.14874pt 
-x 805.0075pt>
+<../../figures/materials35_smallest_alphas25_Jun_2020.png, id=102, 1378.14874pt
+ x 805.0075pt>
 File: ../../figures/materials35_smallest_alphas25_Jun_2020.png Graphic file (ty
 pe png)
  <use ../../figures/materials35_smallest_alphas25_Jun_2020.png>
@@ -1058,7 +1058,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 <../../figures/command_acf_sim_data_univariate_alph_true_24_Jun_2020.png, id=11
-4, 1397.22pt x 841.1425pt>
+9, 1397.22pt x 841.1425pt>
 File: ../../figures/command_acf_sim_data_univariate_alph_true_24_Jun_2020.png G
 raphic file (type png)
 
@@ -1068,7 +1068,7 @@ e_24_Jun_2020.png used on input line 173.
 (pdftex.def)             Requested size: 223.55977pt x 134.58554pt.
 
 <../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_o
-nly_24_Jun_2020.png, id=115, 1451.4225pt x 881.2925pt>
+nly_24_Jun_2020.png, id=120, 1451.4225pt x 881.2925pt>
 File: ../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only
 _pi_only_24_Jun_2020.png Graphic file (type png)
 
@@ -1078,7 +1078,7 @@ Package pdftex.def Info: ../../figures/command_acf_sim_data_univariate_true_gai
 n_sim_constant_only_pi_only_24_Jun_2020.png used on input line 175.
 (pdftex.def)             Requested size: 232.23235pt x 141.00967pt.
 
-<../../figures/command_GMM_LOMgain_univariate_alphas_24_Jun_2020.png, id=116, 1
+<../../figures/command_GMM_LOMgain_univariate_alphas_24_Jun_2020.png, id=121, 1
 378.14874pt x 826.08624pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alphas_24_Jun_2020.png Graph
 ic file (type png)
@@ -1088,7 +1088,7 @@ Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_24
 _Jun_2020.png used on input line 176.
 (pdftex.def)             Requested size: 220.5083pt x 132.1765pt.
 
-<../../figures/command_GMM_LOMgain_univariate_ACFs_24_Jun_2020.png, id=117, 140
+<../../figures/command_GMM_LOMgain_univariate_ACFs_24_Jun_2020.png, id=122, 140
 1.235pt x 826.08624pt>
 File: ../../figures/command_GMM_LOMgain_univariate_ACFs_24_Jun_2020.png Graphic
  file (type png)
@@ -1098,8 +1098,8 @@ Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_ACFs_24_J
 un_2020.png used on input line 178.
 (pdftex.def)             Requested size: 224.20218pt x 132.1765pt.
 
-<../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png, id=11
-8, 1398.22375pt x 841.1425pt>
+<../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png, id=12
+3, 1398.22375pt x 841.1425pt>
 File: ../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png G
 raphic file (type png)
 
@@ -1109,7 +1109,7 @@ e_25_Jun_2020.png used on input line 185.
 (pdftex.def)             Requested size: 223.72037pt x 134.58554pt.
 
 <../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_o
-nly_25_Jun_2020.png, id=119, 1428.33624pt x 881.2925pt>
+nly_25_Jun_2020.png, id=124, 1428.33624pt x 881.2925pt>
 File: ../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only
 _pi_only_25_Jun_2020.png Graphic file (type png)
 
@@ -1119,7 +1119,7 @@ Package pdftex.def Info: ../../figures/command_acf_sim_data_univariate_true_gai
 n_sim_constant_only_pi_only_25_Jun_2020.png used on input line 187.
 (pdftex.def)             Requested size: 228.53847pt x 141.00967pt.
 
-<../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png, id=120, 1
+<../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png, id=125, 1
 398.22375pt x 826.08624pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png Graph
 ic file (type png)
@@ -1129,7 +1129,7 @@ Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_25
 _Jun_2020.png used on input line 188.
 (pdftex.def)             Requested size: 223.72037pt x 132.1765pt.
 
-<../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png, id=121, 139
+<../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png, id=126, 139
 0.19376pt x 826.08624pt>
 File: ../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png Graphic
  file (type png)
@@ -1175,7 +1175,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 215.
 
-<../../figures/command_GMM_LOMgain_univariate_alph_opt_27_Jun_2020.png, id=144,
+<../../figures/command_GMM_LOMgain_univariate_alph_opt_27_Jun_2020.png, id=149,
  1378.14874pt x 841.1425pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alph_opt_27_Jun_2020.png Gra
 phic file (type png)
@@ -1185,7 +1185,7 @@ Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_opt_
 27_Jun_2020.png used on input line 222.
 (pdftex.def)             Requested size: 303.19366pt x 185.05193pt.
 
-<../../figures/materials35_hist_resnorm_n_2029_Jun_2020.png, id=145, 1369.115pt
+<../../figures/materials35_hist_resnorm_n_2029_Jun_2020.png, id=150, 1369.115pt
  x 841.1425pt>
 File: ../../figures/materials35_hist_resnorm_n_2029_Jun_2020.png Graphic file (
 type png)
@@ -1195,7 +1195,7 @@ Package pdftex.def Info: ../../figures/materials35_hist_resnorm_n_2029_Jun_2020
 .png used on input line 230.
 (pdftex.def)             Requested size: 246.43007pt x 151.39911pt.
 
-<../../figures/materials35_point1_n_20_29_Jun_2020.png, id=146, 1377.145pt x 81
+<../../figures/materials35_point1_n_20_29_Jun_2020.png, id=151, 1377.145pt x 81
 3.0375pt>
 File: ../../figures/materials35_point1_n_20_29_Jun_2020.png Graphic file (type 
 png)
@@ -1204,7 +1204,7 @@ Package pdftex.def Info: ../../figures/materials35_point1_n_20_29_Jun_2020.png
 used on input line 232.
 (pdftex.def)             Requested size: 247.8754pt x 146.34044pt.
 
-<../../figures/materials35_point2_n_20_29_Jun_2020.png, id=147, 1397.22pt x 813
+<../../figures/materials35_point2_n_20_29_Jun_2020.png, id=152, 1397.22pt x 813
 .0375pt>
 File: ../../figures/materials35_point2_n_20_29_Jun_2020.png Graphic file (type 
 png)
@@ -1235,7 +1235,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [8 <../../figures/materials35_hist_resnorm_n_2029_Jun_2020.png (PNG copy)> <../
 ../figures/materials35_point1_n_20_29_Jun_2020.png (PNG copy)> <../../figures/m
 aterials35_point2_n_20_29_Jun_2020.png (PNG copy)>]
-<../../figures/materials35_hist_resnorm_n_100_29_Jun_2020.png, id=164, 1357.07p
+<../../figures/materials35_hist_resnorm_n_100_29_Jun_2020.png, id=169, 1357.07p
 t x 844.15375pt>
 File: ../../figures/materials35_hist_resnorm_n_100_29_Jun_2020.png Graphic file
  (type png)
@@ -1245,7 +1245,7 @@ Package pdftex.def Info: ../../figures/materials35_hist_resnorm_n_100_29_Jun_20
 20.png used on input line 248.
 (pdftex.def)             Requested size: 244.26205pt x 151.94112pt.
 
-<../../figures/materials35_point1_n_100_29_Jun_2020.png, id=165, 1377.145pt x 8
+<../../figures/materials35_point1_n_100_29_Jun_2020.png, id=170, 1377.145pt x 8
 16.04875pt>
 File: ../../figures/materials35_point1_n_100_29_Jun_2020.png Graphic file (type
  png)
@@ -1254,7 +1254,7 @@ Package pdftex.def Info: ../../figures/materials35_point1_n_100_29_Jun_2020.png
  used on input line 250.
 (pdftex.def)             Requested size: 247.8754pt x 146.88243pt.
 
-<../../figures/materials35_point2_n_100_29_Jun_2020.png, id=166, 1397.22pt x 81
+<../../figures/materials35_point2_n_100_29_Jun_2020.png, id=171, 1397.22pt x 81
 6.04875pt>
 File: ../../figures/materials35_point2_n_100_29_Jun_2020.png Graphic file (type
  png)
@@ -1274,7 +1274,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  <../../figures/materials35_hist_resnorm_n_100_29_Jun_2020.png (PNG copy)> <../
 ../figures/materials35_point1_n_100_29_Jun_2020.png (PNG copy)> <../../figures/
 materials35_point2_n_100_29_Jun_2020.png (PNG copy)>]
-<../../figures/command_GMM_LOMgain_univariate_alph_opt_29_Jun_2020.png, id=176,
+<../../figures/command_GMM_LOMgain_univariate_alph_opt_29_Jun_2020.png, id=181,
  1378.14874pt x 844.15375pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alph_opt_29_Jun_2020.png Gra
 phic file (type png)
@@ -1285,7 +1285,7 @@ Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_opt_
 (pdftex.def)             Requested size: 220.5083pt x 135.06735pt.
 
 <../../figures/command_GMM_LOMgain_univariate_alph_opt_nfe329_Jun_2020.png, id=
-177, 1378.14874pt x 844.15375pt>
+182, 1378.14874pt x 844.15375pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alph_opt_nfe329_Jun_2020.png
  Graphic file (type png)
 
@@ -1303,7 +1303,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  copy)> <../../figures/command_GMM_LOMgain_univariate_alph_opt_nfe329_Jun_2020.
 png (PNG copy)>]
 <../../figures/compare_value_pea_results_approx_value_outputs_approx30_Jun_2020
-_10_19_45_pea_outputs_approx30_Jun_2020_09_39_12_pretty.png, id=185, 1421.31pt 
+_10_19_45_pea_outputs_approx30_Jun_2020_09_39_12_pretty.png, id=190, 1421.31pt 
 x 796.9775pt>
 File: ../../figures/compare_value_pea_results_approx_value_outputs_approx30_Jun
 _2020_10_19_45_pea_outputs_approx30_Jun_2020_09_39_12_pretty.png Graphic file (
@@ -1316,7 +1316,7 @@ utputs_approx30_Jun_2020_10_19_45_pea_outputs_approx30_Jun_2020_09_39_12_pretty
 .png used on input line 275.
 (pdftex.def)             Requested size: 312.68916pt x 175.33559pt.
 
-<../../figures/implement_anchTC_obs_approx30_Jun_2020.png, id=186, 1370.11874pt
+<../../figures/implement_anchTC_obs_approx30_Jun_2020.png, id=191, 1370.11874pt
  x 881.2925pt>
 File: ../../figures/implement_anchTC_obs_approx30_Jun_2020.png Graphic file (ty
 pe png)
@@ -1325,7 +1325,7 @@ Package pdftex.def Info: ../../figures/implement_anchTC_obs_approx30_Jun_2020.p
 ng used on input line 277.
 (pdftex.def)             Requested size: 246.61073pt x 158.6258pt.
 
-<../../figures/implement_anchTC_invgain30_Jun_2020.png, id=187, 1418.29875pt x 
+<../../figures/implement_anchTC_invgain30_Jun_2020.png, id=192, 1418.29875pt x 
 841.1425pt>
 File: ../../figures/implement_anchTC_invgain30_Jun_2020.png Graphic file (type 
 png)
@@ -1334,7 +1334,7 @@ Package pdftex.def Info: ../../figures/implement_anchTC_invgain30_Jun_2020.png
 used on input line 278.
 (pdftex.def)             Requested size: 255.28276pt x 151.39911pt.
 
-<../../figures/analyze_opt_policy_ip30_Jun_2020.png, id=188, 1399.2275pt x 841.
+<../../figures/analyze_opt_policy_ip30_Jun_2020.png, id=193, 1399.2275pt x 841.
 1425pt>
 File: ../../figures/analyze_opt_policy_ip30_Jun_2020.png Graphic file (type png
 )
@@ -1378,22 +1378,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 377.
  (./materials35.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 377.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 377.
-
-
-Package rerunfilecheck Warning: File `materials35.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `materials35.out':
-(rerunfilecheck)             Before: 0C41A55AFA1EF47503C8B3FEBFD68CE2;813
-(rerunfilecheck)             After:  9FA9D6D25FCEEAD19F1E0A89F857F721;863.
+Package rerunfilecheck Info: File `materials35.out' has not changed.
+(rerunfilecheck)             Checksum: 9FA9D6D25FCEEAD19F1E0A89F857F721;863.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 377.
  ) 
 Here is how much of TeX's memory you used:
- 20201 strings out of 493089
- 371998 string characters out of 6134842
+ 20202 strings out of 493089
+ 372009 string characters out of 6134842
  456708 words of memory out of 5000000
- 23203 multiletter control sequences out of 15000+600000
+ 23204 multiletter control sequences out of 15000+600000
  14471 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,436b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1417,10 +1410,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials35.pdf (13 pages, 2103931 bytes).
+Output written on materials35.pdf (13 pages, 2104441 bytes).
 PDF statistics:
- 305 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
+ 309 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
  77 named destinations out of 1000 (max. 500000)
- 236 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 244 words of extra memory for PDF output out of 10000 (max. 10000000)
 

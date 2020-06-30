@@ -87,7 +87,6 @@ ppi = csapi({pgrid,sgrid,sgrid,sgrid,sgrid},it);
 i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
-% create_simple_plot(policies,{'PE', 'VFI'},'Policy: i(X)',[this_code, '_', value_output_name, '_', pea_output_name],print_figs)
 
 % Create pretty plots
 create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty'], print_figs)
