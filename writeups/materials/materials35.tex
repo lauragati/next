@@ -255,6 +255,7 @@ Initialization for robustness check: random straight lines between (0,1). I've a
 \begin{itemize}
 \item Mean coefficients in Point 1 = $( 0.7816;    0.0014;    0.0012;   0.0054;    0.0091)$
 \item Mean coefficients in Point 2 = $(0.0279;    0;    0.0324;    0.0654;    0.1652 )$
+\item The very best solution: $( 0.8307;    0.0004;    0.0028;    0.0051;    0.0064)$,  residual = 480.3449.
 \end{itemize}
 
 \subsection{Is the L-shape a residue of too many coefficients?}
@@ -267,7 +268,22 @@ No:
 \floatfoot{}
 \end{figure}
 
+\newpage
+\section{Redo VFI and PEA using the best approximation of the gain evolution function}
 
+\begin{figure}[h!]
+\subfigure[Optimal policy: PEA vs VFI]{\includegraphics[scale=\mySmallFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx30_Jun_2020_10_19_45_pea_outputs_approx30_Jun_2020_09_39_12_pretty}}
+\hfill
+\subfigure[Observables under optimal policy conditional on a history of shocks]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath implement_anchTC_obs_approx30_Jun_2020}}
+\subfigure[Gain under optimal policy conditional on a history of shocks]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath implement_anchTC_invgain30_Jun_2020}}
+\caption{Optimal interest rate sequence conditional on a history of shocks}
+\end{figure}
+
+\section{Other analysis}
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallFigScale]{\myFigPath analyze_opt_policy_ip30_Jun_2020}
+\caption{Comparative statics of the policy function: $\partial i / \partial fe$ if all other states are kept at their mean}
+\end{figure}
 
 %\begin{figure}[h!]
 %\subfigure[]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}

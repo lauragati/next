@@ -21,38 +21,33 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 % Load estimation outputs
-% filename = 'estim_LOMgain_outputs15_Jun_2020';% copo, kmin=0.00001
-filename = 'estim_LOMgain_outputs15_Jun_2020_15_45_21'; % copo, kmin=0
+filename = 'best_n100_29_Jun_2020'; % materials35 candidate
+
+% load the saved stuff
 load([filename,'.mat'])
-xxgrid = estim_outputs{1};
-yygrid = estim_outputs{2};
-ng     = estim_outputs{3};
-k1_opt = estim_outputs{4};
-alph_opt = estim_outputs{5};
-x = estim_outputs{6};
-tol    = estim_outputs{7};
-lbname = estim_outputs{8};
-ndrop_est  = estim_outputs{9};
+alph_best = output{1};
+resnorm = output{2};
+alph_opt = alph_best(:,1);
+% grab the rest from materials35, part 2.5
+nfe=5;
+k1min = 0;
+k1max= 1;
+femax = 3.5;
+femin = -femax;
+% and from materials35, intro
+fegrid = linspace(femin,femax,nfe);
+x = cell(1,1);
+x{1} = fegrid;
+ng_fine = 100;
+fegrid_fine = linspace(femin,femax,ng_fine);
+
+% evaluate gradients of estimated LOM gain beforehand
+k1_opt = ndim_simplex_eval(x,fegrid_fine,alph_opt);
+g_fe = gradient(k1_opt);
+
 
 alph = alph_opt;
 
-% derivatives of the anchoring function wrt k^{-1}_{t-1} and fe
-tic
-[g_k,g_fe] = gradient(reshape(k1_opt,ng,ng));
-toc
-g_pi = g_fe; % input this w/ the k1grid and fegrid so the code doesn't have to take derivatives in every eval
-g_pibar = -g_fe;
-
-% fe=0.1;
-% kt_1 =1/k1_opt(1);
-k1grid = xxgrid(1,:);
-fegrid = yygrid(:,1);
-% tic
-% [k,g_pi,g_pibar] = fk_smooth_approx(alph,x,fe,kt_1, k1grid,fegrid, g_fe)
-% toc
-% tic
-% [k] = fk_smooth_approx(alph,x,fe,kt_1)
-% toc
 
 
 
@@ -122,7 +117,7 @@ n_inputs = sum(s_inputs); % the number of input series
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 % an initial simulation using the Taylor rule
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
 % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 % return
@@ -153,17 +148,17 @@ seq0crop = [seq0(:,2:end-1);FEt_10(1,2:end-1)]; % input jumps and Fe(pi)
 % Or detach from Taylor rule
 seq0crop = rand(size(seq0crop));
 % initialize beta-coefficients
-bet0 = ones(4,3); % 4 states x 3 powers
+bet0 = zeros(4,3); % 4 states x 3 powers % INITIALIZE AT ZEROS INSTEAD OF ONES AND IT FINDS SOL
 bet = bet0(:);
 
-
+% return
 
 % Evaluate residuals once
-resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x,  k1grid,fegrid, g_fe, knowTR);
+resids = objective_seq_clean_parametricE_approx(seq0crop,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph, x,fegrid, g_fe, knowTR);
 disp('Initial residuals IS, PC, TC and A7')
 disp(num2str(resids))
 
-return
+% return
 
 dbstop if warning
 
@@ -177,7 +172,7 @@ while crit > 1e-6 && iter < maxiter
     iter=iter+1
     BET(:,iter) = bet; % storing betas
     % Now solve model equations given conjectured E 
-    objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x, k1grid,fegrid, g_fe, knowTR);
+    objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x,fegrid, g_fe, knowTR);
     
     tic
     [seq_opt, resids_opt, flag] = fsolve(objh,seq0crop, options);
@@ -185,7 +180,7 @@ while crit > 1e-6 && iter < maxiter
     % seq_opt-[seq0(:,2:end-1);FEt_10(1,2:end-1)]
     if flag==1 % If fsolve converged to a root
     % Projection step: Recover v, compute analogues E, update beta
-    bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x, k1grid,fegrid, g_fe, knowTR);
+    bet1 = projection_approx(seq_opt,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e,alph,x,fegrid, g_fe, knowTR);
     crit=max(abs(bet-bet1))
     bet=bet1;
     seq0crop = seq_opt; % try to accelerate 
@@ -198,7 +193,7 @@ endt = now;
 elapsed_seconds = etime(datevec(endt), datevec(start));
 disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
-[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs, alph,x, k1grid,fegrid, g_fe);
+[~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs, alph,x,fegrid, g_fe, knowTR);
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', ['implement_anchTC_obs_approx',nowstr], print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', ['implement_anchTC_invgain_approx', nowstr], print_figs)
 

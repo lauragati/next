@@ -76,6 +76,8 @@ ppi = csapi({pgrid,sgrid,sgrid,sgrid,sgrid},it);
 
 %hold every state at their means, just move pibar
 i_p = fnval(ppi,[pibvals;smean;smean;smean;smean]);
+% create_simple_plot_x(k1vals,i_k,'$ i(k^{-1}) $','',[this_code, '_ik'],print_figs)
+% create_simple_plot_x(pibvals,i_p,'$ i(\bar{\pi}) $','',[this_code, '_ip'],print_figs)
 create_pretty_plot_x(pibvals,i_p,[this_code, '_ip', todays_date],print_figs)
 
 

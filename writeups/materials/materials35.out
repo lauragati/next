@@ -6,5 +6,7 @@
 \BOOKMARK [2][-]{subsection.2.4}{Add moments}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{But is it robust?}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.6}{Is the L-shape a residue of too many coefficients?}{section.2}% 8
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 9
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 10
+\BOOKMARK [1][-]{section.3}{Redo VFI and PEA using the best approximation of the gain evolution function}{}% 9
+\BOOKMARK [1][-]{section.4}{Other analysis}{}% 10
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 11
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 12

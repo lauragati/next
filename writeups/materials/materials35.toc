@@ -8,5 +8,7 @@
 \contentsline {subsubsection}{\numberline {2.4.2}Calibrated moments: e.g. average gain in simulation should be 0.05}{7}{subsubsection.2.4.2}
 \contentsline {subsection}{\numberline {2.5}But is it robust?}{7}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Is the L-shape a residue of too many coefficients?}{10}{subsection.2.6}
-\contentsline {section}{\numberline {A}Model summary}{11}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{11}{appendix.B}
+\contentsline {section}{\numberline {3}Redo VFI and PEA using the best approximation of the gain evolution function}{11}{section.3}
+\contentsline {section}{\numberline {4}Other analysis}{12}{section.4}
+\contentsline {section}{\numberline {A}Model summary}{13}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{13}{appendix.B}

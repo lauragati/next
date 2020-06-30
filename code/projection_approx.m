@@ -1,4 +1,5 @@
-function B = projection_approx(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x, k1grid,fegrid, g_fe, knowTR)
+function B = projection_approx(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x,fegrid, g_fe, knowTR)
+% FOR THE UNIVARIATE APPROXIMATED LOM GAIN
 % Compute steps 3 and 4 of the projection procedure.
 % 16 May 2020
 % kapp = param.kapp;
@@ -19,7 +20,7 @@ function B = projection_approx(seq,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndro
 % [xsim, ysim, k, ~, FA, FB, FEt_1] = sim_learnLH_clean_given_seq2(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 % input FE
 [xsim, ysim, k, phi_seq, ~, ~, FEt_1,~,g_pibar] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,...
-    alph_opt,x, k1grid,fegrid, g_fe, knowTR);
+    alph_opt,x,fegrid, g_fe, knowTR);
 % pi = ysim(1,2:end-1);
 x  = ysim(2,2:end-1);
 % xl = ysim(2,1:end-2);

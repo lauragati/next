@@ -1,8 +1,9 @@
-function [resids] = objective_seq_clean_parametricE_approx(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x, k1grid,fegrid, g_fe, knowTR)
+function [resids] = objective_seq_clean_parametricE_approx(seq,B,n_input_jumps,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph_opt,x,fegrid, g_fe, knowTR)
 % a version of objective_seq_clean with an expectation equation as a
 % residual equation
 % this version uses the approximated LOMgain from the GMM estimation, hence
 % "approx"
+% NOTE: this is for the univariate LOM gain, I only implement PEA for that.
 % 13 June 2020
 kapp = param.kapp;
 sig  = param.sig;
@@ -23,7 +24,7 @@ mpshock=0;
 % input FE
 % [xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi,g_pibar] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps);
 [xsim, ysim, k, phi_seq, FA, FB, FEt_1,g_pi] = sim_learnLH_clean_given_seq3_approx(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq,n_input_jumps,...
-    alph_opt,x, k1grid,fegrid, g_fe, knowTR);
+    alph_opt,x,fegrid, g_fe, knowTR);
 
 % Evaluate residuals (leave out first and last periods)
 pi = ysim(1,2:end-1);
