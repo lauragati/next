@@ -1,12 +1,12 @@
 function [param, set, param_names, param_values_str, param_titles] = parameters_next
 param.bet  = 0.99;%0.99
 param.sig  = 1; %1 IES=1 (log utility, consistent with balanced growth) Peter: micro estimates= 1/4 or 1/5, asset pricing lit finds 1/100.
-param.alph = 0.9; %0.9,0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 months)
+param.alph = 0.5; %0.9,0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 months) (slides5_sticky_price_model, slide 43). Rotemberg Woodford 1997 calibrate this as 0.66 on the basis of the frequency of price changes in the US (0.66 -> 3 quarters) (Blinder et al, 1998, table 4.1)
 param.eta = 1/4; %1/4, inverse of Frisch. won't matter here. The Frisch: 1 or 2 (micro) or 4 (macro) e.g. Basu Lec 9, slide 16 Mac.
 param.om = 1.25;% 1.25 Subsumes all things that go into elasticity of marginal cost to output (including Frisch) Woodford. Interest and Prices, p. 172 (Table 3.1).
 param.thet = 10; %10. price elasticity of demand, Woodford, taken from Chari Kehoe McGrattan 2000.
 param.zeta = (param.om + 1/param.sig)/(1+param.om*param.thet); % parameter of strategic complementarity. If < 1, strat comp in price setting. If >1, strt subs.
-param.kapp = param.zeta * (1-param.alph*param.bet)/param.alph; % Woodford. Interest and Prices, p. 187.
+param.kapp = param.zeta * (1-param.alph*param.bet)/param.alph; % Woodford. Interest and Prices, p. 187. % (1-param.alph) was missing, corrected 1 July 2020
 param.psi_x  = 0; %0.01,0, 1
 param.psi_pi = 1.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
@@ -28,7 +28,7 @@ param.thettilde =2.5;%1.6 or 2.5 the new thetbar for CUSUM-test. I just set both
 % param.p12 = 1-param.p22;
 % param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 % param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
-param.lamx = 0;%0.01, % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
+param.lamx = 1;%0.01, % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
 param.lami = 0;
 % param.d = 10; % 10 slope of anchoring function.
 % param.c = 0; % 0 intercept of anchoring function.

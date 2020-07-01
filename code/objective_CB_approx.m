@@ -1,4 +1,4 @@
-function EL = objective_CB_approx(varp,setp,eN,ndrop,PLM,gain,alph,x)
+function EL = objective_CB_approx(varp,setp,eN,ndrop,PLM,gain,alph,x, knowTR)
 % 30 June 2020
 
 sig_r = setp.sig_r;
@@ -17,7 +17,7 @@ param = setp;
 [ny, nx] = size(gx);
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 
-knowTR=1;
+% knowTR=1;
 mpshock=1;
 
 [~,T,N] = size(eN);
@@ -25,7 +25,6 @@ y= zeros(ny,T,N);
 for n=1:N
     e = squeeze(eN(:,:,n));
     [~, y(:,:,n)] = sim_learnLH_clean_approx(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,knowTR,mpshock);
-    
 end
 
 EL = loss_CB(param,y);

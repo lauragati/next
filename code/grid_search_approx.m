@@ -72,6 +72,8 @@ gain = again_smooth;
 
 disp(['(psi_x, lam_x, lam_i)=   ', num2str([param.psi_x, param.lamx, param.lami])])
 
+knowTR=1
+
 % gen all the N sequences of shocks at once.
 rng(0)
 eN = randn(ne,T,N);
@@ -81,7 +83,7 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 
 %% Fmincon
-% takes about 4 min
+% takes about 3 min
 tic
 % varp0 = [1.19,0];
 % ub = [1.2,1];
@@ -90,11 +92,11 @@ varp0 = 1.5;
 ub = 10; % 1.5
 lb = 1.00001;
 %Compute the objective function one time with some values
-loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,gain, alph,x);
+loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,gain, alph,x, knowTR);
 
 
 %Declare a function handle for optimization problem
-objh = @(varp) objective_CB_approx(varp,setp,eN,burnin,PLM,gain, alph,x);
+objh = @(varp) objective_CB_approx(varp,setp,eN,burnin,PLM,gain, alph,x, knowTR);
 [par_opt, loss_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
@@ -104,7 +106,7 @@ disp(['Learning: psi_pi_opt = ', num2str(par_opt), ', L(psi_pi_opt) = ', num2str
 
 
 %% Fmincon RE
-% takes about 4 min
+% takes about 30 sec
 tic
 
 % varp0 = [1.19,0];
@@ -124,7 +126,7 @@ toc
 
 disp(['RE: psi_pi_opt = ', num2str(par_opt_RE), ', L(psi_pi_opt) = ', num2str(loss_opt_RE)])
 loss_at_psi_learn = objective_CB_RE(par_opt,setp,eN,burnin);
-loss_at_psi_RE = objective_CB_approx(par_opt,setp,eN,burnin,PLM,gain, alph,x);
+loss_at_psi_RE = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x, knowTR);
 disp(['RE loss at learning-optimal psi_pi = ', num2str(loss_at_psi_learn)])
 disp(['Learning loss at RE-optimal psi_pi = ', num2str(loss_at_psi_RE)])
 

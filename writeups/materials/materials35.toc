@@ -10,5 +10,7 @@
 \contentsline {subsection}{\numberline {2.6}Is the L-shape a residue of too many coefficients?}{10}{subsection.2.6}
 \contentsline {section}{\numberline {3}Redo VFI and PEA using the best approximation of the gain evolution function}{11}{section.3}
 \contentsline {section}{\numberline {4}Other analysis}{12}{section.4}
-\contentsline {section}{\numberline {A}Model summary}{13}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{13}{appendix.B}
+\contentsline {subsection}{\numberline {4.1}Comparative statics of policy}{12}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Optimal Taylor-rule coefficients}{13}{subsection.4.2}
+\contentsline {section}{\numberline {A}Model summary}{14}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{14}{appendix.B}

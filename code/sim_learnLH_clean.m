@@ -2,7 +2,11 @@
 % 2020 and will no longer be changed (as a safety copy).
 % Does exactly the same thing as sim_learnLH.m. Supposed to serve as a basis for other codes to adapt it.
 % 10 April 2020
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock, dt, x0)
+% Update 1 July 2020: the main difference between this code and
+% sim_learnLH.m at this point is the ALM: here, you can specify the ALM
+% depending on whether the public knows the Taylor rule or not, and whether
+% you include a monpol shock or not.
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean(param,gx,hx,eta,PLM,gain,T,ndrop,e,knowTR,mpshock, dt,x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
