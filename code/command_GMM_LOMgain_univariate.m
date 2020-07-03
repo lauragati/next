@@ -27,14 +27,14 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_11_Jun_2020'; % real data
 % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
-% filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
+filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 5 % 6,9,12,15
+nfe = 6 % 6,9,12,15
 % grids for fe_{t|t-1}
 femax = 3.5; % 3.5
 femin = -3.5;
@@ -146,7 +146,7 @@ mpshock=1
 ndrop = 5 % 0-50
 
 % gen all the N sequences of shocks at once.
-rng(0)
+rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 
 fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
@@ -163,7 +163,7 @@ k1 = 1./kmesh;
 
 % Do an initial approx of the anchoring function to initialize the coeffs
 if use_smart_alph0==1
-alph0 = ndim_simplex(x,xxgrid(:)',k1);
+    alph0 = ndim_simplex(x,xxgrid(:)',k1);
 end
 
 
@@ -228,8 +228,8 @@ disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-    figname = [this_code, '_alph_opt_', todays_date];
-    create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
+figname = [this_code, '_alph_opt_', todays_date];
+create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
 % end
 
 
@@ -250,9 +250,56 @@ end
 % Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
 [res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
 yfig = [Om'; Om0'; Om1'];
+if skip==0
 figname= [this_code, '_ACFs_', todays_date];
 create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs)
+end
 
+% Covariogram
+Gamj = reshape(Om,ny,ny,K+1);
+Gamj0 = reshape(Om0,ny,ny,K+1);
+Gamj1 = reshape(Om1,ny,ny,K+1);
+cvgram = zeros(ny,K+1,ny);
+cvgram0 = zeros(ny,K+1,ny);
+cvgram1 = zeros(ny,K+1,ny);
+
+titles = {'$\pi_t$', '$x_t$', '$i_t$'};
+titles_k = {'$\pi_{t-k}$', '$x_{t-k}$', '$i_{t-k}$'};
+it=0;
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+for i=1:ny
+    for j=1:ny
+        it=it+1;
+        sp(it)=subplot(ny,ny,it);
+        pos_sp = get(sp(it), 'position');
+        set(sp(it), 'position', [1, 1, 0.95, 0.95].*pos_sp );
+        
+        z = plot(0:K,zeros(1,K+1), 'k--', 'linewidth',lw); hold on
+        h = plot(0:K,squeeze(Gamj(i,j,:)), 'linewidth', lw);
+        h0 = plot(0:K,squeeze(Gamj0(i,j,:)), 'linewidth', lw);
+        h1 = plot(0:K,squeeze(Gamj1(i,j,:)), 'linewidth', lw);
+        ax = gca; % current axes
+        ax.FontSize = fs*3/4;
+        set(gca,'TickLabelInterpreter', 'latex');
+        grid on
+        grid minor
+        title([titles{i}, ' vs. ', titles_k{j}],'interpreter', 'latex', 'fontsize', fs*3/4)
+    end
+end
+lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
+% Note position: left, bottom, width, height
+figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
+
+% only save the autocovariogram is using real data
+if contains(filename,'sim')==0 && print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 if contains(filename,'sim')
     [alph_true,alph_opt]
@@ -265,69 +312,69 @@ end
 
 %%  investigate loss function
 if skip==0
-
-% 1. loss(true coeffs)=0?
-[res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
-% res_true all are zero, as Peter said that they better be.
-% Om - Om_true % these are also all zeros. So at least the code is ok.
-% 2. What does the loss look like?
-nrange =100;
-alphi_values =linspace(lb(1),ub(1),nrange);
-obj = zeros(length(alph_true),nrange);
-tic
-for i=1:length(alph_true)
-    alph = alph_true;
-%     alph = alph0;
-%     alph = alph_opt;
-    for j=1:nrange
-        alph(i) = alphi_values(j);
-        res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
-        obj(i,j) = sum(res.^2);
+    
+    % 1. loss(true coeffs)=0?
+    [res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+    % res_true all are zero, as Peter said that they better be.
+    % Om - Om_true % these are also all zeros. So at least the code is ok.
+    % 2. What does the loss look like?
+    nrange =100;
+    alphi_values =linspace(lb(1),ub(1),nrange);
+    obj = zeros(length(alph_true),nrange);
+    tic
+    for i=1:length(alph_true)
+        alph = alph_true;
+        %     alph = alph0;
+        %     alph = alph_opt;
+        for j=1:nrange
+            alph(i) = alphi_values(j);
+            res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+            obj(i,j) = sum(res.^2);
+        end
     end
-end
-toc
-
-[min_obj, min_idx] = min(obj,[],2);
-[alph_true,alphi_values(min_idx)']
-
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-for i=1:length(alph_true)
-    subplot(2,3,i)
-    plot(alphi_values,obj(i,:), 'linewidth', lw);
-    ax = gca; % current axes
-    ax.FontSize = fs;
-    set(gca,'TickLabelInterpreter', 'latex');
-    grid on
-    grid minor
-end
-figname = [this_code,'_loss_for_indi_alphas_others_at_true', todays_date];
-% figname = [this_code,'_loss_for_indi_alphas_others_at_initial', todays_date];
-% figname = [this_code,'_loss_for_indi_alphas_others_at_alph_opt', todays_date];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-return
-% Can I find the right alphas if I start nearly at the correct alph0?
-alph0 = alph_true;
-alph0(6) = alphi_values(end); % <--- the answer is "depends where you start''
-options.TolFun= 1e-11;
-% options.OptimalityTolerance = 1e-9;
-% options.MaxFunEvals = 1000;
-% options.MaxIter = 1200;
-options.TolX = 1e-11;
-tic
-[alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
-toc
-[alph_true, alph_opt]
-
+    toc
+    
+    [min_obj, min_idx] = min(obj,[],2);
+    [alph_true,alphi_values(min_idx)']
+    
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    for i=1:length(alph_true)
+        subplot(2,3,i)
+        plot(alphi_values,obj(i,:), 'linewidth', lw);
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        set(gca,'TickLabelInterpreter', 'latex');
+        grid on
+        grid minor
+    end
+    figname = [this_code,'_loss_for_indi_alphas_others_at_true', todays_date];
+    % figname = [this_code,'_loss_for_indi_alphas_others_at_initial', todays_date];
+    % figname = [this_code,'_loss_for_indi_alphas_others_at_alph_opt', todays_date];
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
+    
+    return
+    % Can I find the right alphas if I start nearly at the correct alph0?
+    alph0 = alph_true;
+    alph0(6) = alphi_values(end); % <--- the answer is "depends where you start''
+    options.TolFun= 1e-11;
+    % options.OptimalityTolerance = 1e-9;
+    % options.MaxFunEvals = 1000;
+    % options.MaxIter = 1200;
+    options.TolX = 1e-11;
+    tic
+    [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
+    toc
+    [alph_true, alph_opt]
+    
 end
 %% save estimation outputs
 if save_estim_outputs==1

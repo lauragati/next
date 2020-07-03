@@ -429,34 +429,39 @@ Not so for adaptive expectations. Learning agents look exclusively to past data 
 \subsection{Implementing the Ramsey policy: the optimal interest rate sequence}\label{implement}
 Having a characterization of optimal policy in the anchoring model as a first-order condition, the next relevant question is how the central bank should set its interest rate tool in order to implement the target criterion in (\ref{target}). As emphasized in Section \ref{ramsey}, the nonlinearity of the model does not admit an analytical answer to this question. I therefore solve for the optimal interest rate policy numerically using global methods. 
 
-For the numerical approach I rely on the calibration of model parameters outlined in Table \ref{calibration1}. Where possible, I adopt standard parameters from the literature. In particular, I rely on the parameterization in \cite{woodford2011interest}. The other motivation for the choice of some parameters is ease of interpretation. Therefore I restrict the shocks to be iid, and I set $\lambda_x = 0.01$ so that a concern for output gap stabilization should not be the main driver of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) should also not be trivial. Reflecting this, I set a small, but nonzero coefficient on the output gap when I compare the optimal solution for the interest rate with an interest rate sequence brought about by a Taylor rule.
+For the numerical approach I use the calibration of model parameters outlined in Table \ref{calibration1}. Where possible, I adopt standard parameters from the literature. In particular, for $\beta, \sigma$ and other parameters underlying $\kappa$, the slope of the Phillips curve, I rely on the parameterization of \cite{chari2000sticky}, advocated in \cite{woodford2011interest}.\footnote{The composite parameter $\kappa$ is given by  $\kappa = \frac{(1-\alpha)(1-\alpha\beta)}{\alpha} \zeta$, where $\zeta$ is a measure of strategic complementarity in price setting. Assuming specific factor markets, constant desired markups with respect to output levels and no intermediate inputs, $\zeta = \frac{\omega + \sigma^{-1}}{1+\omega\theta}$. Here $\theta$ is the price elasticity of demand and $\omega$ is the elasticity of the marginal cost function with respect to output. \cite{chari2000sticky}'s calibration involves  $\theta =10, \sigma =1, \omega = 1.25, \beta = 0.99$, so that together with my choice of $\alpha$, $\kappa$ is pinned down.} The probability of not adjusting prices, $\alpha$, is set to match an average price duration of two quarters, which is a little below the numbers found in empirical studies.\footnote{The evidence on the average duration of prices can be summarized as follows. On the lower end, \cite{bils2004some} find a mean duration of 4.3 months and \cite{klenow2010microeconomic} find 6.9 months. \cite{klenow2008state} and \cite{nakamura2008five} agree on between 7-9 months, while \cite{eichenbaum2011reference}'s number is 10.6 months. This averages to a little above 7 months. My number for $\alpha$ corresponds to 6 months. I choose the lower end of this spectrum in order to allow the learning mechanism, and not price stickiness, to drive the bulk of the model's persistence.} 
+I set $\lambda_x$ to 0.05, the value estimated by \cite{rotemberg1997optimization}. A low, nonzero value for $\lambda_x$ is also desirable because it implies that a concern for output gap stabilization is not the main driver of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) is not trivial either.
+
+The other motivation for the choice of some parameters is ease of interpretation. First, I restrict the shocks to be iid. Second, in sections of the paper where I assume a Taylor rule, I set a zero coefficient on the output gap, and unless  otherwise specified, I set the inflation coefficient of the Taylor rule to 1.5, the value recommended by \cite{taylor1993discretion}. Note that the asterisks in Table \ref{calibration1} demarcate parameters that pertain to the Taylor rule and thus only to sections of the paper which assume that a Taylor rule is in effect.
+
 \begin{center}
 \begin{table}
 \begin{tabular}{ c | c  | l }
  $\beta$ & 0.99 & stochastic discount factor \\  \hline
  $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
  $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
- $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule \\\hline
- $\psi_x$ & 0.01   & coefficient of the output gap in Taylor rule  \\\hline %% <---- Diffs. wrt calibration2
+ $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
+ $\psi_x$ & 0   & coefficient of the output gap in Taylor rule*  \\\hline %% <---- Diffs. wrt calibration2
  $\bar{g}$ & $0.145$  & initial value of the gain \\\hline %% <----
 %& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
 % $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
 %  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
     $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
-    $\rho_i$ & 0 &  persistence of monetary policy shock  \\ \hline
+    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
     $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
     $\sigma_r$ & 1 & standard deviation of natural rate shock  \\ \hline
-%    $\sigma_i$ &  1  &standard deviation of monetary policy shock  \\ \hline %% <----
+    $\sigma_i$ &  1  &standard deviation of monetary policy shock*  \\ \hline %% <----
     $\sigma_u$ & 1 & standard deviation of cost-push shock   \\ \hline  
-    $\lambda_x$ & 0.01 & weight on the output gap in central bank loss   \\ \hline  % <----
+    $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
     $\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
-    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
-    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
+%    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
+%    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
 \end{tabular}     
       \caption{Calibrated parameters}  \label{calibration1}
  \end{table}
 \end{center}
-
+% TABLE WAS UPDATED 3 JULY 2020. THINK ABOUT CUTTING THE OTHER TABLE.
 
 \vspace{-1.0cm}
 

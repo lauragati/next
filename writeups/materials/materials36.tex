@@ -142,9 +142,9 @@ So far I've used 0.5.
 \item Klenow \& Kryvstov (2008): mean 7-9 months, median 4-7 months
 \item Nakamura \& Steinsson (2008): 7-9 months
 \item Klenow \& Malin (2010): 6.9 months
-\item Eichenbaum, Jaimovitch \& Rebelo (2008): 10.6 months
+\item Eichenbaum, Jaimovitch \& Rebelo (2008, published as 2011): 10.6 months
 \end{itemize}
-\item[$\rightarrow$] On average this gives us 7.56 months, a little more than two quarters. The implied $\alpha \approx 0.6$. Rotemberg \& Woodford (1997) calibrate $\alpha=0.66$.To err on the flexible price side, I set $\alpha =0.5$.
+\item[$\rightarrow$] On average this gives us 7.56 months, a little more than two quarters. The implied $\alpha \approx 0.6$. Rotemberg \& Woodford (1997) calibrate $\alpha=0.66$. To err on the flexible price side, I set $\alpha =0.5$.
 \end{itemize}
 \subsection{The composite parameter $\kappa$ once and for all}
 I've used $\kappa = \frac{(1-\alpha\beta)}{\alpha} \zeta$ where I should have used $\kappa = \frac{(1-\alpha)(1-\alpha\beta)}{\alpha} \zeta$. In Preston (2005), and I think this is also Woodford's favorite specification, $\zeta = \frac{\omega + \sigma^{-1}}{1+\omega\theta}$.
@@ -155,7 +155,7 @@ Let's define terms:
 \item $\zeta$: measure of strategic complementarity in price setting. The smaller $\zeta$, the more complementarity. This depends on a bunch of things:
 	\begin{itemize}
 	\item homogenous vs. specific factor markets ($s_y = 0$ or not)
-	\item constant vs. variable desired markup (is $\epsilon_{\mu}=0$ or not)
+	\item constant vs. variable desired markup ($\epsilon_{\mu}=0$ or not)
 	\item no vs. intermediate inputs ($s_m = 0$ or not)
 	\end{itemize}
 	In particular (Prop 3.3 in Woodford 2011, equation 1.43, Chapter 3,  p. 171):
@@ -176,14 +176,48 @@ Then expression $\zeta = \frac{\omega + \sigma^{-1}}{1+\omega\theta}$ is obtaine
 \begin{equation}
 \zeta =  \frac{s_y + s_Y}{1+ s_y \theta}
 \end{equation}
-What is $\omega$? It's the derivative of the MC function wrt own output, but this only coincides with $s_y$ for specific factor markets. Woodford shows that for specific factor markets, $s_y = \omega, s_Y = \sigma^{-1}$, while for common factor markets $s_Y = \omega + \sigma^{-1}$. 
-
-More on $\omega$: 
+What is $\omega$? It's the derivative of the MC function wrt own output, but this only coincides with $s_y$ for specific factor markets. Woodford shows that for specific factor markets, $s_y = \omega, s_Y = \sigma^{-1}$, while for common factor markets $s_Y = \omega + \sigma^{-1}$ because for the latter, there is no distinction between own and aggregate output for the purpose of wage setting and thus marginal cost. So, more broadly, $\omega$ is a measure of how marginal cost reacts to some wage-relevant measure of output. Woodford, Chapter 3, (1.16), p. 152:
+\begin{equation}
+\omega = \underbrace{\omega_w}_{=\eta, \text{ Frisch elasticity of disutility of labor wrt output}} + \underbrace{\omega_p}_{\text{elasticity of MPL wrt output}}
+\end{equation}
+Denoting the Frisch elasticity as $\eta$, and noting that for Cobb-Douglas, $\partial MPL / \partial y_t = 0$, 
+\begin{equation}
+\omega = \eta
+\end{equation}		
 \item Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values: $\theta =10, \sigma =1, \omega = 1.25, \beta = 0.99$
+These values are not controversial. I just want to check that the Frisch elasticity is Kosher, because by setting $\omega = 1.25$, we are implicitly setting the Frisch. 
+According to Susanto (compare my summaries Part 1, p. 56 Mac and Part 2 p. 46-47 Mac), the inverse Frisch elasticity, $\varepsilon_{H,W}=\eta^{-1}$ needs to be 4 to flatten the labor supply curve (Barro-King comovement puzzle), but estimates suggests it's $<1$. Here, $\omega=1.25=\eta$ implies $\eta^{-1}=4/5 <1$. I guess that's at least in line with estimates. 
+\item The value of $\kappa$ \\
+Susanto suggests (somewhere in my notes) that for a NK model to display reasonable dynamics, $\kappa$ needs to be below 0.1, but preferably even less than 0.01. \\
+Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.5$ $\rightarrow$ $\kappa = 0.0842$. 
+Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.6$ $\rightarrow$ $\kappa = 0.0451$. 
+Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.66$ $\rightarrow$ $\kappa = 0.0298$. 
+Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.7$ $\rightarrow$ $\kappa = 0.0219$. 
 \end{itemize}
 
+\section{Back to estimation}
+\subsection{Simulated data with different seed}
+\begin{figure}[h!]
+\subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_25_Jun_2020}}
+\hfill
+\subfigure[Gain for a simulation using $\alpha^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_only_25_Jun_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, \hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_25_Jun_2020}}
+\hfill
+\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_ACFs_25_Jun_2020}}
+\caption{A seed for shocks of \texttt{rng(1)} when true data was generated using \texttt{rng(0)}}
+\end{figure}
 
-
+\newpage
+\subsection{Autocovariogram for real data}
+\begin{figure}[h!]
+\subfigure[$\hat{\alpha} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\subfigure[$\hat{\alpha} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\caption{Candidate points}
+\end{figure}
 
 %\begin{figure}[h!]
 %\subfigure[]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}

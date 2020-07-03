@@ -28,7 +28,7 @@ param.thettilde =2.5;%1.6 or 2.5 the new thetbar for CUSUM-test. I just set both
 % param.p12 = 1-param.p22;
 % param.psi1 = 1.8; % 2.19 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
 % param.psi2 = 0.89; % 0.89 Taylor-coefficient on inflation in acctive regime (Davig and Leeper 2007 values)
-param.lamx = 1;%0.01, % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
+param.lamx = 0.05;%0.05, % 0 Rotemberg Woodford 1997 estimate 0.05. Woodford 2011 suggests optimal value = kapp/theta (0.01683)
 param.lami = 0;
 % param.d = 10; % 10 slope of anchoring function.
 % param.c = 0; % 0 intercept of anchoring function.
