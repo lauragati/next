@@ -198,12 +198,12 @@ Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.7$ 
 \section{Back to estimation}
 \subsection{Simulated data with different seed}
 \begin{figure}[h!]
-\subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_25_Jun_2020}}
+\subfigure[$\alpha^{true} = ( 0.1;    0.05;    0.001;    0.00001;    0.02;    0.09)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_alph_true_04_Jul_2020}}
 \hfill
-\subfigure[Gain for a simulation using $\alpha^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_only_25_Jun_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, \hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_25_Jun_2020}}
+\subfigure[Gain for a simulation using $\alpha^{true}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_only_04_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, \hat{\alpha}$, right now for nonconvergent solution using default configs]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_04_Jul_2020}}
 \hfill
-\subfigure[Moments]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_ACFs_25_Jun_2020}}
+\subfigure[Autocovariogram, right now for nonconvergent solution using default configs]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_1046_04_Jul_2020}}
 \caption{A seed for shocks of \texttt{rng(1)} when true data was generated using \texttt{rng(0)}}
 \end{figure}
 

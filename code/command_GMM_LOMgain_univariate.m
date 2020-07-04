@@ -30,7 +30,8 @@ datestr(now)
 % filename ='acf_data_11_Jun_2020'; % real data
 % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
-filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
+% filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
+filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -43,8 +44,8 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wconvexity=1000;%1000
-Wmean=100;%100, 0
+Wconvexity=1e+10;%1000
+Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.05*ones(nfe,1);
@@ -205,12 +206,17 @@ end
 % dbstop if error
 % dbstop if warning
 
-
+% test: take a nonconvex alpha
+alph0 = [0.0000
+    0.0170
+    0.0482
+    0.0109
+    0.0047
+    0.0000];
 % %Compute the objective function one time with some values
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, Wconvexity,Wmean);
 
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Wconvexity,Wmean,Om,W1,Wconvexity,Wmean);
-
-
+return
 tic
 %Declare a function handle for optimization problem
 objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
@@ -291,9 +297,10 @@ end
 lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
 % Note position: left, bottom, width, height
 figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
-
-% only save the autocovariogram is using real data
-if contains(filename,'sim')==0 && print_figs ==1
+if contains(filename,'sim')==1 
+    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
+end
+if print_figs ==1
     disp(figname)
     cd(figpath)
     export_fig(figname)

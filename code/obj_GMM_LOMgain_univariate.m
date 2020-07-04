@@ -102,6 +102,9 @@ else
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
         devprior = sum(abs(alph0-alph))*Wprior;
-        res = (Om_data -Om).*diag(W1) + devprior + Wconvexity*convexity_moment + Wmean*calibrated_moment;
+        res = (Om_data -Om).*diag(W1);
+        res(end+1) = devprior;
+        res(end+1) = Wconvexity*convexity_moment;
+        res(end+1) = Wmean*calibrated_moment;
     end
 end

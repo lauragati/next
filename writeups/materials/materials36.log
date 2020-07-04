@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 JUL 2020 17:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 JUL 2020 14:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -983,46 +983,47 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3]
-<../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png, id=79
+<../../figures/command_acf_sim_data_univariate_alph_true_04_Jul_2020.png, id=79
 , 1398.22375pt x 841.1425pt>
-File: ../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png G
+File: ../../figures/command_acf_sim_data_univariate_alph_true_04_Jul_2020.png G
 raphic file (type png)
 
-<use ../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png>
+<use ../../figures/command_acf_sim_data_univariate_alph_true_04_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_acf_sim_data_univariate_alph_tru
-e_25_Jun_2020.png used on input line 201.
+e_04_Jul_2020.png used on input line 201.
 (pdftex.def)             Requested size: 223.72037pt x 134.58554pt.
 
 <../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only_pi_o
-nly_25_Jun_2020.png, id=80, 1428.33624pt x 881.2925pt>
+nly_04_Jul_2020.png, id=80, 1428.33624pt x 881.2925pt>
 File: ../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only
-_pi_only_25_Jun_2020.png Graphic file (type png)
+_pi_only_04_Jul_2020.png Graphic file (type png)
 
 <use ../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_only_
-pi_only_25_Jun_2020.png>
+pi_only_04_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_acf_sim_data_univariate_true_gai
-n_sim_constant_only_pi_only_25_Jun_2020.png used on input line 203.
+n_sim_constant_only_pi_only_04_Jul_2020.png used on input line 203.
 (pdftex.def)             Requested size: 228.53847pt x 141.00967pt.
 
-<../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png, id=81, 13
+<../../figures/command_GMM_LOMgain_univariate_alphas_04_Jul_2020.png, id=81, 13
 98.22375pt x 826.08624pt>
-File: ../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png Graph
+File: ../../figures/command_GMM_LOMgain_univariate_alphas_04_Jul_2020.png Graph
 ic file (type png)
 
-<use ../../figures/command_GMM_LOMgain_univariate_alphas_25_Jun_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_25
-_Jun_2020.png used on input line 204.
+<use ../../figures/command_GMM_LOMgain_univariate_alphas_04_Jul_2020.png>
+Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_04
+_Jul_2020.png used on input line 204.
 (pdftex.def)             Requested size: 223.72037pt x 132.1765pt.
 
-<../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png, id=82, 1390
-.19376pt x 826.08624pt>
-File: ../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png Graphic
- file (type png)
+<../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm
+_1046_04_Jul_2020.png, id=82, 1355.0625pt x 877.2775pt>
+File: ../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_re
+snorm_1046_04_Jul_2020.png Graphic file (type png)
 
-<use ../../figures/command_GMM_LOMgain_univariate_ACFs_25_Jun_2020.png>
-Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_ACFs_25_J
-un_2020.png used on input line 206.
-(pdftex.def)             Requested size: 222.43555pt x 132.1765pt.
+<use ../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_res
+norm_1046_04_Jul_2020.png>
+Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
+iogram_sim_nfe_6_resnorm_1046_04_Jul_2020.png used on input line 206.
+(pdftex.def)             Requested size: 243.90073pt x 157.90314pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1030,11 +1031,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4 <../../figures/command_acf_sim_data_univariate_alph_true_25_Jun_2020.png (PN
+[4 <../../figures/command_acf_sim_data_univariate_alph_true_04_Jul_2020.png (PN
 G copy)> <../../figures/command_acf_sim_data_univariate_true_gain_sim_constant_
-only_pi_only_25_Jun_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_uni
-variate_alphas_25_Jun_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_u
-nivariate_ACFs_25_Jun_2020.png (PNG copy)>]
+only_pi_only_04_Jul_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_uni
+variate_alphas_04_Jul_2020.png (PNG copy)> <../../figures/command_GMM_LOMgain_u
+nivariate_autocovariogram_sim_nfe_6_resnorm_1046_04_Jul_2020.png (PNG copy)>]
 <../../figures/placeholder.png, id=97, 1165.35374pt x 727.71875pt>
 File: ../../figures/placeholder.png Graphic file (type png)
 
@@ -1086,7 +1087,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
  ) 
 Here is how much of TeX's memory you used:
  20053 strings out of 493089
- 364103 string characters out of 6134842
+ 364273 string characters out of 6134842
  456590 words of memory out of 5000000
  23111 multiletter control sequences out of 15000+600000
  14638 words of font info for 56 fonts, out of 8000000 for 9000
@@ -1113,7 +1114,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials36.pdf (6 pages, 478302 bytes).
+Output written on materials36.pdf (6 pages, 548892 bytes).
 PDF statistics:
  203 PDF objects out of 1000 (max. 8388607)
  167 compressed objects within 2 object streams
