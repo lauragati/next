@@ -38,17 +38,18 @@ filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, conve
 nfe = 6 % 6,9,12,15
 % grids for fe_{t|t-1}
 femax = 3.5; % 3.5
-femin = -3.5;
+femin = -femax;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wconvexity=1e+10;%1000
-Wmean=0;%100, 0
+Wdiffs2= 1e+0;%1000
+Wdiffs1 =1e+0;
+Wmean=1e+0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
-% alph0 = 0.05*ones(nfe,1);
+% alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 % alph0 =     [0.0674
 %     0.0168
@@ -203,23 +204,20 @@ end
 
 %% GMM
 
-% dbstop if error
-% dbstop if warning
-
-% test: take a nonconvex alpha
-alph0 = [0.0000
-    0.0170
-    0.0482
-    0.0109
-    0.0047
-    0.0000];
+% % test: take a nonconvex alpha
+% alph0 = [0.0000
+%     0.0170
+%     0.0482
+%     0.0109
+%     0.0047
+%     0.0000];
 % %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1, Wconvexity,Wmean);
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 
-return
+% return
 tic
 %Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
 toc
 
@@ -254,7 +252,7 @@ if skip==0
 end
 
 % Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
-[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 yfig = [Om'; Om0'; Om1'];
 if skip==0
 figname= [this_code, '_ACFs_', todays_date];
@@ -321,7 +319,7 @@ end
 if skip==0
     
     % 1. loss(true coeffs)=0?
-    [res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+    [res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
     % res_true all are zero, as Peter said that they better be.
     % Om - Om_true % these are also all zeros. So at least the code is ok.
     % 2. What does the loss look like?
@@ -335,7 +333,7 @@ if skip==0
         %     alph = alph_opt;
         for j=1:nrange
             alph(i) = alphi_values(j);
-            res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wconvexity,Wmean);
+            res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
             obj(i,j) = sum(res.^2);
         end
     end
