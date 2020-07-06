@@ -32,21 +32,21 @@ datestr(now)
 % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, experimentation, see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 6,9,12,15
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -2;
+femax = 3.5; % 3.5
+femin = -3;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 0;%1000
-Wdiffs1 =0;
-Wmean=0;%100, 0
+Wdiffs2= 1e+0;%1000
+Wdiffs1 =1e+0;
+Wmean=1e+0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
@@ -148,7 +148,7 @@ mpshock=1
 ndrop = 5 % 0-50
 
 % gen all the N sequences of shocks at once.
-rng(0) % rng('default')=rng(0)is the one that was used to generate the true data.
+rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 
 fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
@@ -212,7 +212,7 @@ end
 %     0.0047
 %     0.0000];
 % %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+[res0, Om0] = obj_GMM_LOMgain_univariate(invalphopt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 
 % return
 tic

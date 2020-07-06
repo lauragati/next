@@ -27,14 +27,15 @@ datestr(now)
 
 % Some thought as to how to generate true alphas and true grids!
 % Create grids
-nfe = 6 % 6,9,12,15
+nfe = 5 % 6,9,12,15
 % grids for f_{t|t-1}
-femax = 3.5;
+femax = 2;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
 rng(0)
-alph_true = [0.1;0.05;0.001;0.00001;0.02;0.09];
+% alph_true = [0.1;0.05;0.001;0.00001;0.02;0.09];
+alph_true = [0.05;0.025;0;0.025;0.05];
 % alph_true = (0.005*fegrid.^2)';
 
 % map to ndim_simplex
@@ -104,7 +105,7 @@ invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_true_gain_sim_',PLM_name,'_', todays_date], print_figs)
 
-return
+% return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
