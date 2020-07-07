@@ -219,6 +219,35 @@ Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.7$ 
 \caption{Candidate points}
 \end{figure}
 
+\newpage
+\section{Impulse responses to iid monpol shocks across a wide range of learning models}
+$T=400, N=100, n_{drop}=5,$ shock imposed at $t=25$, calibration as above, Taylor rule assumed to be known, PLM = learn constant only, of inflation only.
+
+\begin{figure}[h!]
+\subfigure[Decreasing gain learning]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_only_pi_only_2020_07_07}}
+\hfill
+\subfigure[Mean gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_invgain_dgain_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07}}
+\subfigure[Constant gain learning]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_only_pi_only_2020_07_07}}
+\hfill
+\subfigure[Mean gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_invgain_cgain_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07}}
+\subfigure[CEMP criterion (vector)]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_constant_only_pi_only_2020_07_07}}
+\hfill
+\subfigure[Mean gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_invgain_again_critCEMP_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07}}
+\caption{IRFs and gain history (sample means) }
+\end{figure}
+
+
+\begin{figure}[h!]
+\subfigure[CUSUM criterion (vector)]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_constant_only_pi_only_2020_07_07}}
+\hfill
+\subfigure[Mean gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_invgain_again_critCUSUM_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07}}
+\subfigure[Smooth criterion, approximated, using $\alpha^{true}= (0.05;0.025;0;0.025;0.05)$, on $fe \in (-2,2)$.]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_RIR_LH_monpol_again_critsmooth_constant_only_pi_only_2020_07_07}}
+\hfill
+\subfigure[Mean gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_IRFs_approx_pretty_invgain_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07}}
+
+\caption{IRFs and gain history (sample means), continued }
+\end{figure}
+
 %\begin{figure}[h!]
 %\subfigure[]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
 %\hfill

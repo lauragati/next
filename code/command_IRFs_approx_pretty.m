@@ -53,13 +53,22 @@ again_critCUSUM = 22;
 again_critsmooth = 23;
 cgain = 3;
 
+% this here is the 'truth' in acf_sim_univariate_data_06_Jul_2020.
+nfe=5;
+femax = 2;
+femin = -femax;
+fegrid = linspace(femin,femax,nfe);
+x = cell(1,1);
+x{1} = fegrid;
+alph_true = [0.05;0.025;0;0.025;0.05];
+alph=alph_true;
 
 %% Model selection and informational assumption
 
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only_pi_only;
-gain = again_critCEMP;
+gain = again_critsmooth;
 %%%%%%%%%%%%%%%%%%%
 
 T = 400 % 400
@@ -190,11 +199,17 @@ if plot_IRFs==1
         % 1) IRF: OBSERVABLES LH against RE
         series(1,:,:) = RIR_Y_LH(:,:,t)';
         series(2,:,:) = iry';
+        series1 = RIR_Y_LH(:,:,t);
+        series2 = iry;
         figname = [this_code, '_', 'RIR_LH_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', date_today];
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; shock imposed at t=', num2str(dt_vals(t))];
-        create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
+        create_subplot(series,subplot_names,figname,0, figtitle, legendnames)
+        if print_figs==1
+        create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,figname,print_figs)
+        end
+
     end
 end
 
