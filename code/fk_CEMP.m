@@ -4,6 +4,8 @@ function k = fk_CEMP(param,hx,Aa,Ab,As,a,b,SIG,kt_1)
 % output: 
 % fk = k
 % 26 Jan 2020
+% sim_learnLH_clean was reworked 7 July 2020 to allow this code to have explicit assumptions on whether people know
+% the Taylor rule and whether there is a monpol shock
 thetbar = param.thetbar;
 gbar = param.gbar;
 

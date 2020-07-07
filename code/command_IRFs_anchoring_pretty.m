@@ -15,7 +15,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -66,6 +66,10 @@ gain = again_critCUSUM;
 T = 400 % 400
 % Size of cross-section
 N = 1000 %100, 500, 1000
+
+knowTR=1
+mpshock=1
+
 burnin = 5; % 100, 0
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
@@ -112,7 +116,7 @@ for s=2  %2->zoom in on monetary policy shock
         % Learning
 %         dbstop in sim_learnLH at 116 if t>=4
         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain);
-%         [x_LH, y_LH, k(:,n), ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+burnin,burnin,e);
+%         [x_LH, y_LH, k(:,n), ~, ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+burnin,burnin,e,knowTR,mpshock);
         
         % Shocked
         % RE
@@ -128,6 +132,7 @@ for s=2  %2->zoom in on monetary policy shock
             
             % Shocked
             [~, ys_LH, ~, ~, ~, ~, ~, ~, ~,~, ks(:,n), anch(n)] = sim_learnLH(gx,hx,SIG,T+burnin,burnin,e, Aa, Ab, As, param, PLM, gain, dt, x0);
+%             [~, ys_LH, ks(:,n), ~, ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+burnin,burnin,e,knowTR,mpshock);
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
             GIR_k(:,n,t) = ks(dt:dt+h-1,n) - k(dt:dt+h-1,n);

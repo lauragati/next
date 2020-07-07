@@ -62,7 +62,7 @@ cgain = 3;
 % Model selection
 %%%%%%%%%%%%%%%%%%%
 PLM = constant_only_pi_only;
-gain = again_critsmooth;
+gain = again_critCUSUM;
 %%%%%%%%%%%%%%%%%%%
 % % the smooth criterion only works in this combo:
 % PLM = constant_only_pi_only;
@@ -71,7 +71,7 @@ gain = again_critsmooth;
 T = 400 % 400
 % Size of cross-section
 N = 100 %100 500
-burnin = 0; %100. If burnin = 0, only then are the shocked values the same b.c sim_learnLH didn't input the shock at dt+ndrop, but at dt.
+burnin = 5; %5, NOT TRUE: If burnin = 0, only then are the shocked values the same b.c sim_learnLH didn't input the shock at dt+ndrop, but at dt. THAT AINT TRUE!
 dt_vals = 25; %25 time of imposing innovation 345
 h = 10; % h-period IRFs
 

@@ -36,10 +36,11 @@ el = learn_selector;
 % If endog gain, choose criterion
 if gain == 21
     crit = 1; % CEMP's criterion
+    [Aa, Ab, As] = matrices_A_smat(param,hx, knowTR, mpshock);
 elseif gain == 22
     crit = 2; % CUSUM criterion
 elseif gain == 23
-    crit = 3; % smooth criterion 
+    crit = 3; % smooth criterion
 end
 
 phi = [a,b];
@@ -65,7 +66,7 @@ FEt_1 = zeros(ny,T); % yesterday evening's forecast error, made at t-1 but reali
 %%% initialize CUSUM variables: FEV om and criterion theta
 % om = sigy; %eye(ny);
 om = eta*eta';
-% om = om(1,1);
+% om = om(1,1); % no need to uncomment this anymore, it's done at the CUSUM section
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
 % thet = thettilde; % actually it's quite sensitive to where you initialize it.
 %%%
@@ -94,12 +95,16 @@ for t = 1:T-1
             k(:,t) = k(:,t-1)+1;
         elseif gain==21 || gain == 22 || gain == 23% endogenous gain
             if crit == 1 % CEMP's criterion
-                fk = fk_CEMP(param,hx,a,b,eta,k(:,t-1));
+                fk = fk_CEMP(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
+                % CEMP wrt to inflation only:
+%                 fk = fk_cemp_scalar(param,hx,Aa,Ab,As,a,b,eta,k(:,t-1));
             elseif crit==2 % CUSUM criterion
                 fe = ysim(:,t)-(phi*[1;xsim(:,t-1)]); % short-run FE
-                %                 fe = fe(1,1);
                 [fk, om, thet] = fk_CUSUM_vector(param,k(:,t-1),om, thet,fe);
-                %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
+                % CUSUM wrt to inflation only:
+%                 fe11 = fe(1,1);
+%                 om = om(1,1);
+%                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe11);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
                 fk = fk_smooth_pi_only(param,fe,k(:,t-1));
@@ -138,7 +143,7 @@ for t = 1:T-1
     
     %Simulate transition with shock
     %%% here is the addition of the impulse
-    if t+1==dt+ndrop
+    if t+1==dt  % dt = dt+ndrop (see top of code)
         e(:,t+1) = e(:,t+1)+x0';
     end
     %%%
