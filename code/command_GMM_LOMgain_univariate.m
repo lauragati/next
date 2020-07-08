@@ -9,7 +9,7 @@ clc
 
 % Add all the relevant paths and grab the codename
 this_code = mfilename;
-[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath, inputsRyan_path] = add_paths;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
@@ -59,16 +59,14 @@ use_smart_alph0=1;% default
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
-options = optimoptions(options, 'display', 'iter');
-options.TolFun= 1e-9;
+options = optimoptions(options, 'display', 'none');
+% options.TolFun= 1e-9;
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in optimoptions, not in optimset. It pertains to first order optimality measure.
 options.MaxFunEvals = 1000;
 % options.MaxIter = 1200;
-options.TolX = 1e-9;
+% options.TolX = 1e-9;
 options.UseParallel = 1; % 2/3 of the time
 %%%%%%%%%%%%%%%%%%%
-
-
 
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
@@ -80,6 +78,15 @@ filt_data = acf_outputs{6};
 lost_periods = acf_outputs{7};
 T = length(filt_data);
 T = T+lost_periods; % to make up for the loss due to filtering
+% T = 2*T
+
+ndrop = 5 % 0-50
+
+% gen all the N sequences of shocks at once.
+rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
+% Size of cross-section
+N=20;
+eN = randn(ny,T+ndrop,N);
 
 if contains(filename,'sim')
     alph_true = acf_outputs{8};
@@ -101,7 +108,6 @@ W1 = W^(-1);
 
 % return
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
-ne = 3;
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;
@@ -137,19 +143,12 @@ gain = again_critsmooth;
 % display which model you're doing
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
-% Specify info assumption on the Taylor rule and not to include a monpol
+% Specify info assumption on the Taylor rule and whether to include a monpol
 % shock
 knowTR =1
 mpshock=1
 %%%%%%%%%%%%%%%%%%%
-
-% Size of cross-section
-% we're not doing a whole cross-section here
-ndrop = 5 % 0-50
-
-% gen all the N sequences of shocks at once.
-rng(0) % rng('default')=rng(0)is the one that was used to generate the true data.
-e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
+% turned monpol shocks on in smat.m to avoid stochastic singularity!
 
 fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
 % map to ndim_simplex
@@ -211,38 +210,67 @@ end
 %     0.0109
 %     0.0047
 %     0.0000];
+e0 = squeeze(eN(:,:,1));
 % %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
 
 % return
+alph_opt = zeros(nfe,N);
+resnorm  = zeros(1,N);
+residual = zeros(length(res0),N);
+flag     = zeros(1,N);
 tic
-%Declare a function handle for optimization problem
-objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
-[alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
+for n=1:N
+    e_n = squeeze(eN(:,:,n));
+    %Declare a function handle for optimization problem
+    objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+    try
+        [alph_opt(:,n),resnorm(n),residual(:,n),flag(n)] = lsqnonlin(objh,alph0,lb,ub,options);
+    catch err
+        disp(['History n = ', num2str(n)])
+        fprintf(1,'The identifier was:\n%s',err.identifier);
+        fprintf(1,'\n The error message was:\n%s',err.message);
+        fprintf(1,'\n');
+        alph_opt(:,n) = nan(nfe,1);
+        resnorm(n) = inf;
+        flag(n) = nan;
+        continue % Pass control to the next iteration of FOR or WHILE loop.
+    end
+    
+end
 toc
 
 flag
-alph_opt
-resnorm
 
-minalphopt = -alph_opt;
-invalphopt = minalphopt+abs(min(minalphopt))
-[alph_true, invalphopt]
+
+alph_opt_conv = alph_opt(:,flag>0);
+resnorm_conv  = resnorm(flag>0);
+
+[resnorm_top10, idx_top10] = mink(resnorm_conv,10);
+alph_top10 = alph_opt_conv(:,idx_top10);
+
+alph_opt_mean = mean(alph_top10,2)
+mean(resnorm_top10)
+
+% minalphopt = -alph_opt_mean;
+% invalphopt = minalphopt+abs(min(minalphopt))
+% [alph_true, invalphopt]
 
 % Let's add the final output to the finer sample
-k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt);
+k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt_mean);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = [this_code, '_alph_opt_', todays_date];
-create_pretty_plot_x(fegrid,alph_opt',figname,print_figs)
+figname = [this_code, '_alph_opt_','resnorm_', num2str(floor(resnorm_top10(1))), '_' todays_date];
+create_pretty_plot_x(fegrid,alph_top10(:,1)',figname,print_figs)
 % end
 
 
 % how does the model behave for estimated alpha?
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e)),knowTR,mpshock);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e0)),knowTR,mpshock);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is implied simulated k1 ever negative?')
 find(k0<0)
@@ -256,11 +284,11 @@ if skip==0
 end
 
 % Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
-[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt_mean,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 yfig = [Om'; Om0'; Om1'];
 if skip==0
-figname= [this_code, '_ACFs_', todays_date];
-create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs)
+    figname= [this_code, '_ACFs_', todays_date];
+    create_pretty_plot_holdon(yfig,{'data', 'initial', 'optimal'},figname,print_figs)
 end
 
 % Covariogram
@@ -299,8 +327,8 @@ end
 lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
 % Note position: left, bottom, width, height
 figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
-if contains(filename,'sim')==1 
-    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
+if contains(filename,'sim')==1
+    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm_top10(1))), '_', todays_date];
 end
 if print_figs ==1
     disp(figname)
@@ -311,12 +339,12 @@ if print_figs ==1
 end
 
 if contains(filename,'sim')
-    [alph_true,alph_opt]
+    [alph_true,alph_top10]
     
     % plot true, original and estimated alphas
-    yfig = [alph_true'; alph0'; alph_opt'];
-    figname= [this_code, '_alphas_', todays_date];
-    create_pretty_plot_x_holdon(fegrid, yfig,{'true', 'initial', 'optimal'},figname,print_figs)
+    yfig = [alph_true'; alph0'; alph_opt_mean'];
+    figname= [this_code, '_alphas_','resnorm_', num2str(floor(resnorm_top10(1))), '_', todays_date];
+    create_pretty_plot_x_holdon(fegrid, yfig,{'true', 'initial', 'mean(optimal)'},figname,print_figs)
 end
 
 %%  investigate loss function
