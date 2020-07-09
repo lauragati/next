@@ -15,6 +15,9 @@ nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
 print_figs        = 0;
+if contains(current_dir, 'gsfs0') % sirius server
+    print_figs=1;
+end
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -44,7 +47,7 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 0;%1000
+Wdiffs2= 10000000;%1000
 Wdiffs1 =0;
 Wmean=0;%100, 0
 % rng(8)
@@ -85,7 +88,7 @@ ndrop = 5 % 0-50
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
-N=20;
+N=1000;
 eN = randn(ny,T+ndrop,N);
 
 if contains(filename,'sim')
@@ -247,11 +250,11 @@ flag
 alph_opt_conv = alph_opt(:,flag>0);
 resnorm_conv  = resnorm(flag>0);
 
-[resnorm_top10, idx_top10] = mink(resnorm_conv,10);
-alph_top10 = alph_opt_conv(:,idx_top10);
+% [resnorm_top10, idx_top10] = mink(resnorm_conv,10);
+% alph_top10 = alph_opt_conv(:,idx_top10);
 
-alph_opt_mean = mean(alph_top10,2)
-mean(resnorm_top10)
+alph_opt_mean = mean(alph_opt_conv,2)
+min(resnorm_conv)
 
 % minalphopt = -alph_opt_mean;
 % invalphopt = minalphopt+abs(min(minalphopt))
@@ -284,7 +287,9 @@ if skip==0
 end
 
 % Plot ACFs at start and end (Om0 and Om1 are the model-implied moments, initial and optimal)
-[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt_mean,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+[res1, Om1] = obj_GMM_LOMgain_univariate(alph_opt_mean,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,0,Wdiffs1,Wmean);
+disp(['alph_opt_mean has a residual of ', num2str(sum(res1.^2))])
+
 yfig = [Om'; Om0'; Om1'];
 if skip==0
     figname= [this_code, '_ACFs_', todays_date];
@@ -324,7 +329,12 @@ for i=1:ny
         title([titles{i}, ' vs. ', titles_k{j}],'interpreter', 'latex', 'fontsize', fs*3/4)
     end
 end
-lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
+% To avoid an undefined property 'NumColumns' on the server:
+if contains(current_dir, 'BC_Research') % local
+    lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
+elseif contains(current_dir, 'gsfs0') % sirius server
+    lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'Box', 'off');
+end
 % Note position: left, bottom, width, height
 figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
 if contains(filename,'sim')==1
@@ -339,7 +349,7 @@ if print_figs ==1
 end
 
 if contains(filename,'sim')
-    [alph_true,alph_top10]
+    [alph_true,alph_opt_mean]
     
     % plot true, original and estimated alphas
     yfig = [alph_true'; alph0'; alph_opt_mean'];

@@ -39,6 +39,7 @@ elseif contains(current_dir, 'gsfs0') % sirius server
     cd .. % go up another level to /gsfs0/data/gati, the server home
     server_researchpath = pwd;
     toolpath = [server_researchpath '/matlab_toolbox'];
+    addonspath = [server_researchpath '/addons2017a']; % write your versions of missing functions in Matlab 2017a
     export_figpath = [toolpath '/Export_Fig'];
     figpath = [basepath '/figures'];
     tablepath = [basepath '/tables'];
@@ -49,6 +50,7 @@ elseif contains(current_dir, 'gsfs0') % sirius server
     
     addpath(basepath)
     addpath(toolpath)
+    addpath(addonspath)
     addpath(export_figpath)
     addpath(figpath)
     addpath(datapath)
