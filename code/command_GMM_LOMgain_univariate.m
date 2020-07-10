@@ -47,7 +47,7 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 10000000;%1000
+Wdiffs2= 0;%10000000
 Wdiffs1 =0;
 Wmean=0;%100, 0
 % rng(8)
@@ -88,7 +88,7 @@ ndrop = 5 % 0-50
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
-N=1000;
+N=1000
 eN = randn(ny,T+ndrop,N);
 
 if contains(filename,'sim')
@@ -267,8 +267,8 @@ disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = [this_code, '_alph_opt_','resnorm_', num2str(floor(resnorm_top10(1))), '_' todays_date];
-create_pretty_plot_x(fegrid,alph_top10(:,1)',figname,print_figs)
+figname = [this_code, '_alph_opt_','resnorm_', num2str(floor(min(resnorm_conv))), '_' todays_date];
+create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
 % end
 
 
@@ -336,9 +336,9 @@ elseif contains(current_dir, 'gsfs0') % sirius server
     lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'Box', 'off');
 end
 % Note position: left, bottom, width, height
-figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm)), '_', todays_date];
+figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(min(resnorm_conv))), '_', todays_date];
 if contains(filename,'sim')==1
-    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(resnorm_top10(1))), '_', todays_date];
+    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_resnorm_', num2str(floor(min(resnorm_conv))), '_', todays_date];
 end
 if print_figs ==1
     disp(figname)
@@ -353,7 +353,7 @@ if contains(filename,'sim')
     
     % plot true, original and estimated alphas
     yfig = [alph_true'; alph0'; alph_opt_mean'];
-    figname= [this_code, '_alphas_','resnorm_', num2str(floor(resnorm_top10(1))), '_', todays_date];
+    figname= [this_code, '_alphas_','resnorm_', num2str(floor(min(resnorm_conv))), '_', todays_date];
     create_pretty_plot_x_holdon(fegrid, yfig,{'true', 'initial', 'mean(optimal)'},figname,print_figs)
 end
 

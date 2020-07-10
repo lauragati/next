@@ -3,6 +3,6 @@
 \contentsline {subsection}{\numberline {1.2}The composite parameter $\kappa $ once and for all}{2}{subsection.1.2}
 \contentsline {section}{\numberline {2}Back to estimation}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Simulated data with different seed}{4}{subsection.2.1}
-\contentsline {section}{\numberline {3}Impulse responses to iid monpol shocks across a wide range of learning models}{6}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
+\contentsline {section}{\numberline {3}Impulse responses to iid monpol shocks across a wide range of learning models}{7}{section.3}
+\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}
