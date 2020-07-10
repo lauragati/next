@@ -30,12 +30,12 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% filename ='acf_data_11_Jun_2020'; % real data
-% % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
-% % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
-% filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
-% filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename ='acf_data_11_Jun_2020'; % real data
+% % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
+% % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
+% % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
+% % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
+% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 6,9,12,15
@@ -47,7 +47,7 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 0;%10000000
+Wdiffs2= 10000000;%10000000
 Wdiffs1 =0;
 Wmean=0;%100, 0
 % rng(8)
@@ -215,7 +215,7 @@ end
 %     0.0000];
 e0 = squeeze(eN(:,:,1));
 % %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wdiffs1,Wmean);
 disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
 
 % return
