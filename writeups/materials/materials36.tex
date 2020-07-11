@@ -241,10 +241,14 @@ Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.7$ 
 \clearpage
 \subsection{Autocovariogram for real data}
 \begin{figure}[h!]
-\subfigure[$mean(\hat{\alpha})=(0.0979;    0.0076;    0.0058;    0.006;    0.0864), \colorbox{yellow}{N=1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_87_10_Jul_2020}}
+\subfigure[$mean(\hat{\alpha})=(0.0979;    0.0076;    0.0058;    0.006;    0.0864), \colorbox{yellow}{N=1000} $, \colorbox{yellow}{convexity weight 10M}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_87_10_Jul_2020}}
 \hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_resnorm_87_10_Jul_2020}}
-\caption{Mean estimated parameters over the cross-section of size $N$, convexity imposed with weight 10M, mean moment not imposed}
+
+\subfigure[$mean(\hat{\alpha})=(0.0773;    0.0103;    0.0097;    0.0104;    0.0771), \colorbox{yellow}{N=1000} $, \colorbox{yellow}{convexity weight 100K}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_87_11_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_resnorm_87_11_Jul_2020}}
+\caption{Mean estimated parameters over the cross-section of size $N$, convexity imposed, mean moment not imposed}
 \end{figure}
 
 \clearpage
