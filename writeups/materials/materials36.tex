@@ -239,7 +239,31 @@ Chari, Kehoe \& McGrattan (2000) and Woodford (2011) values with $\alpha = 0.7$ 
 \caption{Mean estimates for increasing $N$, imposing convexity, continued}
 \end{figure}
 
+\clearpage
+\subsubsection{The range $fe\in(-1,1)$ seems ill identified}
 
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_1025_13_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_1025_13_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=100} $, $mean(\hat{\alpha})= ( 0.1048;    0.0295;    0.0167;    0.0155;    0.0261;    0.1206)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_643_13_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_643_13_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000} $, $mean(\hat{\alpha})= (0.1049;    0.0307;    0.0163;    0.0157;    0.0311;    0.1087)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_149_13_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_149_13_Jul_2020}}
+\caption{Mean estimates for increasing $N$, imposing convexity with weight 100K, truth with $nfe=6, fe \in(-3.5,3.5)$ }
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000}$ , $mean(\hat{\alpha})= (0.1114;    0.0296;    0.0163;    0.0163;    0.0297;    0.1123)$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_147_13_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_147_13_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=100000} $, $mean(\hat{\alpha})= ()$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath placeholder}}
+\caption{Mean estimates for increasing $N$, imposing convexity with weight 100K, truth with $nfe=6, fe \in(-3.5,3.5)$, continued }
+\end{figure}
 
 
 \clearpage

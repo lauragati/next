@@ -3,7 +3,8 @@
 \contentsline {subsection}{\numberline {1.2}The composite parameter $\kappa $ once and for all}{2}{subsection.1.2}
 \contentsline {section}{\numberline {2}Back to estimation}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Simulated data with different seed}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Autocovariogram for real data}{7}{subsection.2.2}
-\contentsline {section}{\numberline {3}Impulse responses to iid monpol shocks across a wide range of learning models}{8}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{10}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{10}{appendix.B}
+\contentsline {subsubsection}{\numberline {2.1.1}The range $fe\in (-1,1)$ seems ill identified}{7}{subsubsection.2.1.1}
+\contentsline {subsection}{\numberline {2.2}Autocovariogram for real data}{9}{subsection.2.2}
+\contentsline {section}{\numberline {3}Impulse responses to iid monpol shocks across a wide range of learning models}{10}{section.3}
+\contentsline {section}{\numberline {A}Model summary}{12}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{12}{appendix.B}

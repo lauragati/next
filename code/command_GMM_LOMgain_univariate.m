@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -30,18 +30,18 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_11_Jun_2020'; % real data
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
-% % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
-% % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
+% % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
+filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 5 % 6,9,12,15
+nfe = 6 % 6,9,12,15
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -2;
+femax = 3.5; % 3.5
+femin = -3.5;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
@@ -88,7 +88,7 @@ ndrop = 5 % 0-50
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
-N=1000
+N=10000
 eN = randn(ny,T+ndrop,N);
 
 if contains(filename,'sim')
