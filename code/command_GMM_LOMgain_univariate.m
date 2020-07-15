@@ -34,14 +34,14 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
-filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+% filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 6 % 6,9,12,15
+nfe = 7 % 6,9,12,15
 % grids for fe_{t|t-1}
-femax = 3.5; % 3.5
-femin = -3.5;
+femax = 2; % 3.5
+femin = -2;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
@@ -88,7 +88,7 @@ ndrop = 5 % 0-50
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
-N=10000
+N=100
 eN = randn(ny,T+ndrop,N);
 
 if contains(filename,'sim')
@@ -267,7 +267,7 @@ disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = [this_code, '_alph_opt_','resnorm_', num2str(floor(min(resnorm_conv))), '_' todays_date];
+figname = [this_code, '_alph_opt_','resnorm_', num2str(floor(min(resnorm_conv))),'_nfe_',num2str(nfe), '_' todays_date];
 create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
 % end
 
@@ -351,10 +351,34 @@ end
 if contains(filename,'sim')
     [alph_true,alph_opt_mean]
     
-    % plot true, original and estimated alphas
-    yfig = [alph_true'; alph0'; alph_opt_mean'];
-    figname= [this_code, '_alphas_','resnorm_', num2str(floor(min(resnorm_conv))), '_', todays_date];
-    create_pretty_plot_x_holdon(fegrid, yfig,{'true', 'initial', 'mean(optimal)'},figname,print_figs)
+    figname= [this_code, '_alphas_','resnorm_', num2str(floor(min(resnorm_conv))),'_nfe_',num2str(nfe), '_', todays_date];
+    if length(alph_true)==length(alph_opt_mean)
+        % plot true, original and estimated alphas
+        yfig = [alph_true'; alph0'; alph_opt_mean'];
+        create_pretty_plot_x_holdon(fegrid, yfig,{'true', 'initial', 'mean(optimal)'},figname,print_figs)
+    else
+        figure
+        set(gcf,'color','w'); % sets white background color
+        set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        plot(linspace(femin,femax,length(alph_true)),alph_true, 'linewidth',lw); hold on
+        plot(fegrid, alph0, 'linewidth',lw)
+        plot(fegrid, alph_opt_mean, 'linewidth',lw)
+        ax = gca; % current axes
+        ax.FontSize = fs*3/4;
+        set(gca,'TickLabelInterpreter', 'latex');
+        grid on
+        grid minor
+        
+        if print_figs ==1
+            disp(figname)
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+    end
+    
+    
 end
 
 %%  investigate loss function

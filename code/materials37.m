@@ -1,8 +1,6 @@
-% materials36
-% Continue to estimate the 1D approximated anchoring function, with
-% autocovariogram and different seeds for simulated data and estimation
-% cross-section with N different histories for shocks
-% 24 June 2020
+% materials37
+% the neighborhood of zero in the estimation
+% 14 July 2020
 
 clearvars
 close all
