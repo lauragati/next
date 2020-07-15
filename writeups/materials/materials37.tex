@@ -132,63 +132,77 @@ bottom=1in}
 \newpage
 
 \section{Simulated ``true'' data}
-\subsection{Odd number of breakpoints (5)}
+\subsection{Odd number of knots (5)}
 
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_153_09_Jul_2020}}
 \hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_153_09_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=2000}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_153_N_2000_09_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_153_N_2000_09_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000} $]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_110_10_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_110_10_Jul_2020}}
+%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=2000}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_153_N_2000_09_Jul_2020}}
+%\hfill
+%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_153_N_2000_09_Jul_2020}}
+%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000} $]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_110_10_Jul_2020}}
+%\hfill
+%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_110_10_Jul_2020}}
 \caption{Mean estimates for increasing $N$, imposing convexity with weight 10M, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 
-\clearpage
-\subsection{Even number of breakpoints (6)}
+%\clearpage
+\subsection{Even number of knots (6)}
 
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=100} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_643_13_Jul_2020}}
 \hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_643_13_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_149_13_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_149_13_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_147_13_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_147_13_Jul_2020}}
+%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_149_13_Jul_2020}}
+%\hfill
+%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_149_13_Jul_2020}}
+%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_147_13_Jul_2020}}
+%\hfill
+%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_147_13_Jul_2020}}
 \caption{Mean estimates for increasing $N$, imposing convexity with weight 100K, truth with $nfe=6, fe \in(-3.5,3.5)$ }
 \end{figure}
 
+\clearpage
 \subsection{Finer grid in the zero neighborhood}
 \begin{figure}[h!]
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{5 breakpoints, uniformly spaced}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_307_nfe_5_14_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_307_14_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{7 breakpoints, uniformly spaced}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_300_nfe_7_14_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_7_resnorm_300_14_Jul_2020}}
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{5 breakpoints, concentrated around 0} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{uniformly spaced}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
 \hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath placeholder}}
-\caption{Mean estimates for $N=100$, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{concentrated around 0} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath placeholder}}
+
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{concentrated around 0, 0 at 0 imposed with weight 1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_803_nfe_5_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_803_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\caption{Mean estimates for $N=100$, 5 breakpoints, imposing convexity w/ weight 10K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+
+%% further
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{5 breakpoints, convexity weight 1000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_878_nfe_5_gridspacing_uneven_Wdiffs2_1000_Wmid_1000_15_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_878_gridspacing_uneven_Wdiffs2_1000_Wmid_1000_15_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{5 breakpoints, convexity weight 10000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_803_nfe_5_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_803_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{7 breakpoints, convexity weight 10000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_781_nfe_7_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_7_loss_781_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\caption{Mean estimates for $N=100$, breakpoints concentrated around 0, 0 at 0 imposed with weight 1000, imposing convexity with variable weight, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 
 %%%%%%%%             REAL DATA             %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Autocovariogram for real data}
 \begin{figure}[h!]
-\subfigure[$mean(\hat{\alpha})=(0.0979;    0.0076;    0.0058;    0.006;    0.0864), \colorbox{yellow}{N=1000} $, \colorbox{yellow}{convexity weight 10M}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_87_10_Jul_2020}}
+\subfigure[$\bar{\hat{\alpha}}=(0.2388;    0.0082;    0.001;    0.007;    0.2155)$, $\colorbox{yellow}{N=100} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_117_nfe_5_15_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_resnorm_87_10_Jul_2020}}
-
-\subfigure[$mean(\hat{\alpha})=(0.0773;    0.0103;    0.0097;    0.0104;    0.0771), \colorbox{yellow}{N=1000} $, \colorbox{yellow}{convexity weight 100K}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_87_11_Jul_2020}}
-\hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_resnorm_87_11_Jul_2020}}
-\caption{Mean estimated parameters over the cross-section of size $N$, convexity imposed, mean moment not imposed}
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
+\caption{Mean estimated parameters over the cross-section of size $N$, 5 breakpoints, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
 \end{figure}
 
 \clearpage

@@ -1,4 +1,4 @@
-function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wdiffs1,Wmean,alph0,Wprior)
+function [res, Om] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,alph0,Wprior)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
@@ -96,15 +96,28 @@ else
         %         Om = vec(Gamj_own);
         
         % additional moments
-        firstdiffs = diff(alph,1);
-        seconddiffs = diff(alph,2);
-        nfx1 = length(firstdiffs);
-        nfx2 = length(seconddiffs);
-        diffs2_moment = (seconddiffs.*(seconddiffs<=0)).^2;
-        nviol2 = sum(seconddiffs<=0);
-        diffs1_moment = (firstdiffs.*[firstdiffs(1:floor(nfx1/2))>0; firstdiffs(floor(nfx1/2)+1:end)<0]).^2;
-        nviol1 = sum([firstdiffs(1:floor(nfx1/2))>0; firstdiffs(floor(nfx1/2)+1:end)<0]);
+        % 15 July 2020 correction for convexity moment (see Notes)
+        % First derivatives:
+        deltalph  = diff(alph,1);
+        fegrid = x{1};
+        deltfegrid = diff(fegrid,1);
+        yp = deltalph./deltfegrid';
+        
+        % Second derivatives:
+        deltyp =  diff(yp,1);
+        ypp    = deltyp ./ deltfegrid(2:end)';
+        
+        nfx2 = length(ypp);
+        diffs2_moment = (ypp.*(ypp<=0)).^2;
         calibrated_moment = (mean(k1)-0.05)^2;
+        nfe = length(alph);
+        if mod(nfe,2)==0 % if there are even no. of knots, nevermind
+            alph_mid = 0;
+        else
+            midpoint=ceil(nfe/2);
+            alph_mid = alph(midpoint);
+        end
+        
         
         % Compute GMM loss, not squared, just weighted ("weighted, not squared")
         devprior = sum(abs(alph0-alph))*Wprior;
@@ -112,8 +125,8 @@ else
         % add extra moments
         res(end+1) = devprior;
         res(end+1) = Wmean*calibrated_moment;
-        res(end+1:end+nfx2) = nviol2*Wdiffs2*diffs2_moment;
-        res(end+1:end+nfx1) = nviol1*Wdiffs1*diffs1_moment;
+        res(end+1) = Wmid*alph_mid;
+        res(end+1:end+nfx2) = Wdiffs2*diffs2_moment;
         
     end
 end
