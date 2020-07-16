@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -30,26 +30,26 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% filename ='acf_data_11_Jun_2020'; % real data
+filename ='acf_data_11_Jun_2020'; % real data
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 5 % 6,9,12,15
+nfe = 7 % 5,7,9
 gridspacing = 'uneven'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -2;
+femax = 5; % 3.5
+femin = -5;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
 Wdiffs2= 10000;%10000000=10M, seems like 100K is sufficient, or even 10K
-Wmid =0; %1000
+Wmid =1000; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
@@ -158,7 +158,7 @@ switch gridspacing
     case 'uniform'
         fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
     case 'uneven'
-        fegrid = uneven_grid(femin,femax,nfe);
+        fegrid = uneven_grid(femin,femax,nfe)
 end
 % map to ndim_simplex
 x = cell(1,1);
@@ -227,6 +227,7 @@ residual = zeros(length(res0),N);
 flag     = zeros(1,N);
 res1     = nan(size(residual));
 Om1      = nan(length(Om0),N);
+FE       = zeros(ny,T,N);
 tic
 
 parfor n=1:N
@@ -247,8 +248,8 @@ parfor n=1:N
     end
     
     if flag(n) >0
-    % Om0 and Om1 are the model-implied moments, initial and optimal
-    [res1(:,n), Om1(:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
+        % Om0 and Om1 are the model-implied moments, initial and optimal
+        [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
     end
 end
 toc
@@ -262,6 +263,62 @@ resnorm_mean = sum(resmean.^2);
 
 alph_opt_mean = mean(alph_opt_conv,2)
 min(resnorm_mean)
+
+fesim = squeeze(FE(1,:,:));
+femean = mean(fesim,2);
+fesimmax = max(fesim,[],2);
+fesimmin = min(fesim,[],2);
+
+% Plot histograms of fe
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+subplot(2,2,1)
+hist(femean)
+ax = gca; % current axes
+ax.FontSize = fs*3/4;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+title('Mean fe in cross-section','interpreter', 'latex', 'fontsize', fs*3/4)
+subplot(2,2,2)
+hist(fesimmax)
+ax = gca; % current axes
+ax.FontSize = fs*3/4;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+title('Max fe across histories','interpreter', 'latex', 'fontsize', fs*3/4)
+subplot(2,2,3)
+hist(fesimmin)
+ax = gca; % current axes
+ax.FontSize = fs*3/4;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+title('Min fe across histories','interpreter', 'latex', 'fontsize', fs*3/4)
+subplot(2,2,4)
+hist(fesim(:))
+ax = gca; % current axes
+ax.FontSize = fs*3/4;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+title('Fe across all cross-sections','interpreter', 'latex', 'fontsize', fs*3/4)
+figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+if contains(filename,'sim')==1
+    figname = [this_code, '_histogram_FE_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+end
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
 
 
 % Let's add the final output to the finer sample
@@ -345,6 +402,7 @@ if print_figs ==1
     close
 end
 
+% True alphas against estimated ones
 if contains(filename,'sim')
     if length(alph_true)==length(alph_opt_mean)
         [alph_true,alph_opt_mean]
@@ -447,8 +505,15 @@ if skip==0
 end
 %% save estimation outputs
 if save_estim_outputs==1
-    estim_outputs = {xxgrid_fine,yygrid_fine, ng_fine, k1_opt, alph_opt, x, boundname, ndrop};
+    rngsetting=rng;
+    estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+    learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+    estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
     filename = ['estim_LOMgain_outputs_univariate', nowstr];
     save([filename, '.mat'], 'estim_outputs')
     disp(['Saving as ' filename])
 end
+
+
+
+

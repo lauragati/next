@@ -164,3 +164,4 @@ xsim = xsim(:,ndrop+1:end);
 ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
+FEt_1 = FEt_1(:,ndrop+1:end);

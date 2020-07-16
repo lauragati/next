@@ -132,47 +132,39 @@ bottom=1in}
 \newpage
 
 \section{Simulated ``true'' data}
+\begin{itemize}
+\item[(a)] In the last materials, we saw that for about $N=1000$, asymptotic behavior happens. So having a cross-section of $N$ seems to work.
+\item[(b)] We also saw that in the neighborhood of zero forecast errors the estimates don't converge to 0. These materials aim to solve this issue. The first two figures recapitulate the problem.
+\end{itemize}
+
 \subsection{Odd number of knots (5)}
 
 \begin{figure}[h!]
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_153_09_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_153_09_Jul_2020}}
-%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=2000}$]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_153_N_2000_09_Jul_2020}}
-%\hfill
-%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_153_N_2000_09_Jul_2020}}
-%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000} $]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_110_10_Jul_2020}}
-%\hfill
-%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_resnorm_110_10_Jul_2020}}
-\caption{Mean estimates for increasing $N$, imposing convexity with weight 10M, truth with $nfe=5, fe \in(-2,2)$}
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_758_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
+\caption{Mean estimates for $N=100$, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 
-%\clearpage
 \subsection{Even number of knots (6)}
 
 \begin{figure}[h!]
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=100} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_643_13_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}) $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_731_nfe_6_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_643_13_Jul_2020}}
-%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_149_13_Jul_2020}}
-%\hfill
-%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_149_13_Jul_2020}}
-%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{N=10000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_resnorm_147_13_Jul_2020}}
-%\hfill
-%\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_resnorm_147_13_Jul_2020}}
-\caption{Mean estimates for increasing $N$, imposing convexity with weight 100K, truth with $nfe=6, fe \in(-3.5,3.5)$ }
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_loss_731_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
+\caption{Mean estimates for $N=100$, imposing convexity with weight 100K, truth with $nfe=6, fe \in(-3.5,3.5)$ }
 \end{figure}
 
 \clearpage
-\subsection{Finer grid in the zero neighborhood}
+\subsection{Finer grid in the zero neighborhood - uneven spacing and restriction at 0}
 \begin{figure}[h!]
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{uniformly spaced}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{uniformly spaced}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_694_nfe_5_gridspacing_uniform_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath placeholder}}
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_694_gridspacing_uniform_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
 
-\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{concentrated around 0} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath placeholder}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{concentrated around 0} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_770_nfe_5_gridspacing_uneven_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath placeholder}}
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_770_gridspacing_uneven_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
 
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{concentrated around 0, 0 at 0 imposed with weight 1000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_803_nfe_5_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
 \hfill
@@ -181,7 +173,7 @@ bottom=1in}
 \end{figure}
 
 
-%% further
+%\subsection{Can I decrease the weight on the convexity moment?}
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{5 breakpoints, convexity weight 1000}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_878_nfe_5_gridspacing_uneven_Wdiffs2_1000_Wmid_1000_15_Jul_2020}}
 \hfill
@@ -192,19 +184,133 @@ bottom=1in}
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{7 breakpoints, convexity weight 10000} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_781_nfe_7_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
 \hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_7_loss_781_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
-\caption{Mean estimates for $N=100$, breakpoints concentrated around 0, 0 at 0 imposed with weight 1000, imposing convexity with variable weight, truth with $nfe=5, fe \in(-2,2)$}
+\caption{Can I decrease the weight on the convexity moment? Mean estimates for $N=100$, breakpoints concentrated around 0, 0 at 0 imposed with weight 1000, imposing convexity with variable weight, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
+
+
+%% V-shape
+\subsection{Is the V-shape forced? A U-shaped truth}
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{6 knots, uniform grid, 0 at 0 restriction not imposed} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_747_nfe_6_gridspacing_uniform_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_6_loss_747_gridspacing_uniform_Wdiffs2_10000_Wmid_0_16_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{5 knots} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_804_nfe_5_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_804_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{7 knots}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_801_nfe_7_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_7_loss_801_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimates for $N=100$, imposing convexity with weight 10K, knots concentrated around 0, 0 at 0 imposed with weight 1000; truth with $nfe=6, fe \in(-3.5,3.5)$ }
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \newline \colorbox{yellow}{9 knots} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_950_nfe_9_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_9_loss_950_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{11 knots} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_764_nfe_11_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_11_loss_764_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), \colorbox{yellow}{13 knots} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_3728_nfe_13_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_13_loss_3728_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Continued}
+\end{figure}
+\begin{itemize}
+\item I still seem to see the issue that the 0-neighborhood isn't well identified, but it doesn't seem grave.
+\item 11 knots or more seems underidentified, 9 may be the max.
+\end{itemize}
+
+\subsection{Are there no forecast errors in the 0-neighborhood?}
+
+\begin{figure}[h!]
+\subfigure[truth with $nfe=6, fe \in(-3.5,3.5)$\colorbox{yellow}{13 knots} ]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_sim_nfe_13_loss_3728_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\hfill
+\subfigure[truth with $nfe=6, fe \in(-3.5,3.5)$\colorbox{yellow}{5 knots} ]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_sim_nfe_5_loss_804_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Distribution of forecast errors in the cross-section, $N=100$}
+\end{figure}
+
+$\rightarrow$ Yes there are! In fact, too many knots make forecast errors more concentrated around 0.
 
 %%%%%%%%             REAL DATA             %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Autocovariogram for real data}
+\subsection{\# knots}
 \begin{figure}[h!]
-\subfigure[$\bar{\hat{\alpha}}=(0.2388;    0.0082;    0.001;    0.007;    0.2155)$, $\colorbox{yellow}{N=100} $]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_resnorm_117_nfe_5_15_Jul_2020}}
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_287_nfe_5_16_Jul_2020}}
 \hfill
-\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_15_Jul_2020}}
-\caption{Mean estimated parameters over the cross-section of size $N$, 5 breakpoints, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_5_loss_287_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_5_loss_287_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{ 5 breakpoints}}
+\floatfoot{Constant estimation parameters: cross-section of size $N=100, fe \in(-3.5,3.5)$, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
 \end{figure}
 
+\clearpage
+
+\begin{figure}[h!]
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_279_nfe_7_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_279_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_7_loss_279_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{ 7 breakpoints}}
+\floatfoot{Constant estimation parameters: cross-section of size $N=100, fe \in(-3.5,3.5)$, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h!]
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_269_nfe_9_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_9_loss_269_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_9_loss_269_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{ 9 breakpoints}}
+\floatfoot{Constant estimation parameters: cross-section of size $N=100, fe \in(-3.5,3.5)$, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\end{figure}
+Note: only 6/100 converged $\rightarrow$ seems underidentified. Pick 7 knots as default.
+
+\clearpage
+\subsection{Support of forecast errors}
+\begin{figure}[h!]
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_302_nfe_7_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_302_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_7_loss_302_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{$fe \in (-2,2)$}}
+\floatfoot{Constant estimation parameters: cross-section of size $N=100$, 7 knots, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h!]
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_274_nfe_7_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_274_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_7_loss_274_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{$fe \in (-5,5)$}}
+\floatfoot{Constant estimation parameters: cross-section of size $N=100$, 7 knots, convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\end{figure}
+
+$\rightarrow$ It seems robust to the choice of forecast-error-support!
+
+\clearpage
+\subsection{Repeat the last specification with $N=1000$}
+\begin{figure}[h!]
+\subfigure[$\bar{\hat{\alpha}}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram at an average of the $N$ shock histories]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\subfigure[Distribution of forecast errors]{\includegraphics[scale=\myFigScale]{\myFigPath command_GMM_LOMgain_univariate_histogram_FE_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}}
+\caption{Mean estimated parameters, autocovariogram and forecast errors for \colorbox{yellow}{cross-section of size $N=1000$}}
+\floatfoot{Constant estimation parameters: 7 knots, $fe \in (-5,5)$,convexity imposed with weight 10K, points unevenly spaced (denser at 0), 0 at 0 imposed with weight 1000, mean moment not imposed}
+\end{figure}
+
+%Notes:
+\begin{itemize}
+\item Took 96.33 min.
+\item Seems robust.
+\item mean($\hat{\alpha}) = (0.3509;    0.1427;    0.0180;    0.0005;    0.0204;    0.1406;    0.3411)$
+\end{itemize}
+
+
+%%%%%%%%%%     IRFS                %%%%%%%%%%%%%%%%
 \clearpage
 \section{Impulse responses to iid monpol shocks across a wide range of learning models}
 $T=400, N=100, n_{drop}=5,$ shock imposed at $t=25$, calibration as above, Taylor rule assumed to be known, PLM = learn constant only, of inflation only.

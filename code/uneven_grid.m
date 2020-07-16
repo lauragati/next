@@ -13,6 +13,10 @@ pospoints_evenly = 0+posdist/(ngpos+1) :posdist/(ngpos+1): maxval-posdist/(ngpos
 % Now shift the uneven points away from their even position
 decreasing_shift = sort((pospoints_evenly/maxval).^(1/4), 'descend');
 pospoints = abs(pospoints_evenly -decreasing_shift);
+if length(pospoints)>1 && pospoints(1)>pospoints(2)
+    pospoints(1) = pospoints(2)/3;
+end
+
 
 negpoints = sort(-pospoints);
 grid = [minval, negpoints,0,pospoints, maxval];
