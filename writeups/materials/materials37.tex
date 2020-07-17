@@ -309,6 +309,43 @@ $\rightarrow$ It seems robust to the choice of forecast-error-support!
 \item mean($\hat{\alpha}) = (0.3509;    0.1427;    0.0180;    0.0005;    0.0204;    0.1406;    0.3411)$
 \end{itemize}
 
+%%%%%%%%%%     PEA                %%%%%%%%%%%%%%%%
+\clearpage
+\section{Redo PEA}
+using $\alpha=$mean($\hat{\alpha})=(0.3509;    0.1427;    0.0180;    0.0005;    0.0204;    0.1406;    0.3411)$
+
+\begin{figure}[h!]
+\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty}}
+\hfill
+\subfigure[Observables]{\includegraphics[scale=\myTinyFigScale]{\myFigPath implement_anchTC_obs_approx17_Jul_2020}}
+\subfigure[Gain]{\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath implement_anchTC_invgain17_Jul_2020}}
+\caption{Optimal policy solution conditional on one particular evolution of shocks}
+\floatfoot{Using the same parameter values as for estimation, using mean($\hat{\alpha})=(0.3509;    0.1427;    0.0180;    0.0005;    0.0204;    0.1406;    0.3411)$ as approximation for the anchoring function, no monpol shocks because Taylor rule is not in effect, thus it is also assumed not to be known. Shock sequence $2\times100$ generated using \texttt{rng(0)}.}
+\end{figure}
+
+\subsection{Why is policy nonstationary?}
+\begin{figure}[h!]
+\includegraphics[scale=\myPointFourteenFigScale]{\myFigPath implement_anchTC_pibar17_Jul_2020}
+\hfill
+\caption{Tracking long-run expectations? Evolution of $\bar{\pi}$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
+\hfill
+\subfigure[Observables]{\includegraphics[scale=\myTinyFigScale]{\myFigPath implement_anchTC_obs_approx17_Jul_2020_15_34_46}}
+\subfigure[Gain]{\includegraphics[scale=\myTinyFigScale]{\myFigPath implement_anchTC_invgain17_Jul_2020_15_34_46}}
+\hfill
+\subfigure[$\bar{\pi}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath implement_anchTC_pibar17_Jul_2020_15_34_46}}
+\caption{Optimal policy solution conditional on a different, \texttt{rng(2)} evolution of shocks}
+\end{figure}
+\begin{itemize}
+\item It sure looks like policy was chasing long-run expectations.
+\item Running PEA for different PLMs, in particular, constant-only-inflation-only (default) vs. constant-only, all observables learning, I find that the nonstationary policy only occurs for my default policy. This seems to stem from the fact that if long-run expectations of $x$ and $i$ are also allowed to fluctuate, they, taken together with $\bar{\pi}$ cancel each other out. In particular, the long-run expectation of $i$ I think does the stabilization that $i$ itself needs to do if expectations of $i$ aren't allowed to fluctuate.
+\end{itemize}
+
+\subsection{Why is VFI-policy more volatile than that of PEA?}
+Is this because the spline, as a spectral approximation method, has a tendency to oscillate around kinks? Or because the approximation is very rough (4 gridpoints (or 6, or 8) for $\bar{\pi}$, 2 each for the two shocks at $t$ and at $t-1$)?
 
 %%%%%%%%%%     IRFS                %%%%%%%%%%%%%%%%
 \clearpage

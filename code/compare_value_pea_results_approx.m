@@ -11,6 +11,7 @@ clc
 this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 todays_date = strrep(datestr(today), '-','_');
+nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
 print_figs        = 0;
@@ -30,10 +31,10 @@ sig_u = param.sig_u;
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 
 % Grids
-nk = 4;
-gbar = param.gbar;
+% nk = 4;
+% gbar = param.gbar;
 % k1grid = linspace(0,gbar,nk);
-np = 4;
+% np = 4;
 % pgrid = linspace(-0.2,0.2,np);
 % pgrid = linspace(-10,10,np); % this fucker causes the difference!
 % pgrid = linspace(-4,4,np);
@@ -44,7 +45,11 @@ sgrid = linspace(-sig_r,sig_r,ns);
 p = 0.5;
 PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 
-value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
+% value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
+% value_output_name = 'value_outputs_approx17_Jul_2020_14_27_00'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=4
+% value_output_name = 'value_outputs_approx17_Jul_2020_16_13_24'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=6
+value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=8
+
 
 load([value_output_name, '.mat'])
 
@@ -59,7 +64,10 @@ pgrid  = value_sols{6};
 
 %%
 % take the history of states from parametric expectations
-pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
+% pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
+% pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0)
+pea_output_name = 'pea_outputs_approx17_Jul_2020_15_28_03'; % univariate approximated LOM gain, improved estimation, rng(2)
+
 load([pea_output_name, '.mat'])
 e = output{1};
 ysim7 = output{2};
@@ -68,9 +76,6 @@ phi7  = output{4};
 seq_opt = output{5};
 i_pe = seq_opt(3,:);
 
-% % save some nice plots for draft and prezis
-create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_approx', todays_date], print_figs)
-create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), ['implement_anchTC_invgain', todays_date], print_figs)
 
 
 % compile state vector
@@ -88,5 +93,10 @@ i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
 
-% Create pretty plots
-create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty'], print_figs)
+% % save some nice plots for draft and prezis
+create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
+create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_approx', nowstr], print_figs)
+create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), ['implement_anchTC_invgain', nowstr], print_figs)
+create_pretty_plot_x(1:T,pibsim, ['implement_anchTC_pibar', nowstr], print_figs)
+
+

@@ -8,6 +8,9 @@
 \contentsline {subsection}{\numberline {2.1}\# knots}{8}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Support of forecast errors}{11}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Repeat the last specification with $N=1000$}{13}{subsection.2.3}
-\contentsline {section}{\numberline {3}Impulse responses to iid monpol shocks across a wide range of learning models}{14}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{16}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{16}{appendix.B}
+\contentsline {section}{\numberline {3}Redo PEA}{14}{section.3}
+\contentsline {subsection}{\numberline {3.1}Why is policy nonstationary?}{14}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Why is VFI-policy more volatile than that of PEA?}{15}{subsection.3.2}
+\contentsline {section}{\numberline {4}Impulse responses to iid monpol shocks across a wide range of learning models}{16}{section.4}
+\contentsline {section}{\numberline {A}Model summary}{18}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{18}{appendix.B}

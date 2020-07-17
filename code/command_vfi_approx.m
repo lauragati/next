@@ -21,33 +21,77 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 % Load estimation outputs
-filename = 'best_n100_29_Jun_2020'; % materials35 candidate
 
+% filename = 'best_n100_29_Jun_2020'; % materials35 candidate
+% 
+% % load the saved stuff
+% load([filename,'.mat'])
+% alph_best = output{1};
+% resnorm = output{2};
+% alph_opt = alph_best(:,1);
+% % grab the rest from materials35, part 2.5
+% nfe=5;
+% k1min = 0;
+% k1max= 1;
+% femax = 3.5;
+% femin = -femax;
+% % and from materials35, intro
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
+% alph = alph_opt;
+
+
+filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
 % load the saved stuff
 load([filename,'.mat'])
-alph_best = output{1};
-resnorm = output{2};
-alph_opt = alph_best(:,1);
-% grab the rest from materials35, part 2.5
-nfe=5;
-k1min = 0;
-k1max= 1;
-femax = 3.5;
-femin = -femax;
-% and from materials35, intro
-fegrid = linspace(femin,femax,nfe);
-x = cell(1,1);
-x{1} = fegrid;
+% Structure of saved file:
+% estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+fegrid_fine = estim_outputs{1};
+ng_fine     = estim_outputs{2};
+k1_opt      = estim_outputs{3};
+alph_opt_mean = estim_outputs{4};
+x             = estim_outputs{5};
+estim_configs = estim_outputs{6};
+learn_configs = estim_outputs{7};
+nfe            = estim_configs{1};
+gridspacing    = estim_configs{2};
+femax          = estim_configs{3};
+femin          = estim_configs{4};
+ub             = estim_configs{5};
+lb             = estim_configs{6};
+Wprior         = estim_configs{7};
+Wdiffs2        = estim_configs{8};
+Wmid           = estim_configs{9};
+Wmean          = estim_configs{10};
+T_est          = estim_configs{11};
+ndrop_est      = estim_configs{12};
+N_est          = estim_configs{13};
+eN_est         = estim_configs{14};
+rngsetting_est = estim_configs{15};
+param       = learn_configs{1};
+PLM_name    = learn_configs{2};
+gain_name   = learn_configs{3};
+knowTR_est  = learn_configs{4};
+mpshock_est = learn_configs{5};
 
+% return
+fegrid_uneven = x{1};
+fegrid = fegrid_uneven;
+% % If you wanna use the uniform grid, then uncomment the following 3 lines:
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
 
-
-alph = alph_opt;
+alph = alph_opt_mean;
 
 
 
 %%
 
-[param, set, param_names, param_values_str, param_titles] = parameters_next;
+% [param, set, param_names, param_values_str, param_titles] = parameters_next; % use the ones from estimation
 sig_r = param.sig_r;
 sig_u = param.sig_u;
 
@@ -56,12 +100,17 @@ sig_u = param.sig_u;
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 
 % Grids
-nk = 4;
-gbar = param.gbar;
+% nk = 4;
+% gbar = param.gbar;
 % k1grid = linspace(0.0001,gbar,nk);
-np = 4;
-% pgrid = linspace(-0.2,0.2,np);
-pgrid = linspace(-4,4,np);
+np = 8;
+% pgrid = linspace(-100,100,np); doesn't help
+% pgrid = linspace(-4,4,np); % this doesn't
+% pgrid = linspace(-1.2,1.2,np); % this doesn't
+pgrid = linspace(-1,1,np); % this seems to work
+% pgrid = linspace(-0.2,0.2,np); % this seems to work
+
+
 ns = 2;
 sgrid = linspace(-sig_r,sig_r,ns);
 p = 0.5;
@@ -119,6 +168,7 @@ while crit > epsi && iter< maxiter && crit < 1e10
                             end
                             % compute the value function at the maximizing i
                             [v1(j,k,l,m,n), pibp(j,k,l,m,n), k1p(j,k,l,m,n)] = mat31_TV3_approx(param,gx,hx,pp,it(j,k,l,m,n),pibart_1,s,st_1,sgrid,PI, alph,x);
+%                             v1(j,k,l,m,n)
                         end
                     end
                 end
@@ -135,12 +185,17 @@ while crit > epsi && iter< maxiter && crit < 1e10
         disp(['Concluding iteration = ', num2str(iter)])
         disp(['Stopping criterion = ', num2str(crit)])
     end
+%     return
+    if crit>1e10
+        return
+    end
     iter=iter+1;
     pp=pp1;
     v=v1;
 end
 toc
-% took about 30 minutes
+
+% return
 
 value_sols = {pp1,v1,it,pibp,k1p, pgrid};
 if crit < epsi

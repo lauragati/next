@@ -155,8 +155,11 @@ elapsed_seconds = etime(datevec(endt), datevec(start));
 disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 
 [~, ysim7, k7, phi7] = sim_learnLH_clean_given_seq3(param,gx,hx,eta,PLM, gain, T,ndrop,e,seq_opt,n_inputs,knowTR);
-create_plot_observables(ysim7(:,1:end-1),seriesnames, 'Simulation using input sequence ', 'implement_anchTC_obs', print_figs)
-create_plot_observables(1./k7(1:end-1), invgain, 'Simulation using input sequence', 'implement_anchTC_invgain', print_figs)
+create_plot_observables(ysim7(:,1:end-1),seriesnames, 'Simulation using optimal sequence ', 'implement_anchTC_obs', print_figs)
+create_plot_observables(1./k7(1:end-1), invgain, 'Simulation using input optimal sequence', 'implement_anchTC_invgain', print_figs)
+lrexp = squeeze(phi7(:,1,:));
+create_plot_observables(lrexp(:,1:end-1),seriesnames, 'Simulation using optimal sequence - LR expectations ', 'implement_anchTC_LRexp', print_figs)
+
 
 % % when saving to draft or presentations, use these 3 lines below
 % cd '/Users/lauragati/Dropbox/BC_Research/next/code'

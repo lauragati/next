@@ -21,39 +21,82 @@ skip_old_plots    = 0;
 output_table = print_figs;
 
 % Load estimation outputs
-filename = 'best_n100_29_Jun_2020'; % materials35 candidate
 
+% % filename = 'best_n100_29_Jun_2020'; % materials35 candidate
+% % load the saved stuff
+% load([filename,'.mat'])
+% alph_best = output{1};
+% resnorm = output{2};
+% alph_opt = alph_best(:,1);
+% % grab the rest from materials35, part 2.5
+% nfe=5;
+% k1min = 0;
+% k1max= 1;
+% femax = 3.5;
+% femin = -femax;
+% % and from materials35, intro
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
+% ng_fine = 100;
+% fegrid_fine = linspace(femin,femax,ng_fine);
+
+filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
 % load the saved stuff
 load([filename,'.mat'])
-alph_best = output{1};
-resnorm = output{2};
-alph_opt = alph_best(:,1);
-% grab the rest from materials35, part 2.5
-nfe=5;
-k1min = 0;
-k1max= 1;
-femax = 3.5;
-femin = -femax;
-% and from materials35, intro
-fegrid = linspace(femin,femax,nfe);
-x = cell(1,1);
-x{1} = fegrid;
-ng_fine = 100;
-fegrid_fine = linspace(femin,femax,ng_fine);
+% Structure of saved file:
+% estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+fegrid_fine = estim_outputs{1};
+ng_fine     = estim_outputs{2};
+k1_opt      = estim_outputs{3};
+alph_opt_mean = estim_outputs{4};
+x             = estim_outputs{5};
+estim_configs = estim_outputs{6};
+learn_configs = estim_outputs{7};
+nfe            = estim_configs{1};
+gridspacing    = estim_configs{2};
+femax          = estim_configs{3};
+femin          = estim_configs{4};
+ub             = estim_configs{5};
+lb             = estim_configs{6};
+Wprior         = estim_configs{7};
+Wdiffs2        = estim_configs{8};
+Wmid           = estim_configs{9};
+Wmean          = estim_configs{10};
+T_est          = estim_configs{11};
+ndrop_est      = estim_configs{12};
+N_est          = estim_configs{13};
+eN_est         = estim_configs{14};
+rngsetting_est = estim_configs{15};
+param       = learn_configs{1};
+PLM_name    = learn_configs{2};
+gain_name   = learn_configs{3};
+knowTR_est  = learn_configs{4};
+mpshock_est = learn_configs{5};
+
+% return
+fegrid_uneven = x{1};
+fegrid = fegrid_uneven;
+% If you wanna use the uniform grid, then uncomment the following 3 lines:
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
 
 % evaluate gradients of estimated LOM gain beforehand
-k1_opt = ndim_simplex_eval(x,fegrid_fine,alph_opt);
+k1_opt = ndim_simplex_eval(x,fegrid_fine,alph_opt_mean);
 g_fe = gradient(k1_opt);
 
 
-alph = alph_opt;
+alph = alph_opt_mean;
 
 
 
 
 %% Parameters, RE model and Taylor rule
 T = 100
-N=10; % truly this is 1.
+N=1; % truly this is 1.
 
 % Some titles for figures
 seriesnames = {'\pi', 'x','i'};
@@ -62,7 +105,7 @@ residnames = {'IS', 'PC', 'TR'};
 
 % Parameters
 ndrop =0; ne=3;
-[param, set, param_names, param_values_str, param_titles] = parameters_next;
+% [param, set, param_names, param_values_str, param_titles] = parameters_next; % now using the ones from the estimation
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;
@@ -76,11 +119,10 @@ SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
 % Generate innovations
-rng(0)
-eN = randn(ne,T+ndrop,N);
+rng(2)
+e = randn(ne,T+ndrop);
 % zero out the monpol shock
-eN(2,:,:) = zeros(T+ndrop,N);
-e = squeeze(eN(:,:,1));
+e(2,:) = zeros(1,T+ndrop);
 
 % Params for the general learning code
 constant_only = 1; % learning constant only (vector learning)
@@ -117,6 +159,7 @@ n_inputs = sum(s_inputs); % the number of input series
 [PLM_name, gain_name, gain_title] = give_names(PLM, gain);
 
 % an initial simulation using the Taylor rule
+disp('Initial simul using TR - this should explode b/c agents don''t know the TR')
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
 % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
