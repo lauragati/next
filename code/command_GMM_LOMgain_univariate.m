@@ -30,26 +30,26 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_11_Jun_2020'; % real data
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 %%%%%%%%%%%%%%%%%%%
 % Grid
-nfe = 7 % 5,7,9
-gridspacing = 'uneven'; % uniform or uneven
+nfe = 5 % 5,7,9
+gridspacing = 'uniform'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 5; % 3.5
-femin = -5;
+femax = 2; % 3.5
+femin = -2;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 10000;%10000000=10M, seems like 100K is sufficient, or even 10K
-Wmid =1000; %1000
+Wdiffs2= 100000;%10000000=10M, seems like 100K is sufficient, or even 10K
+Wmid =0; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
@@ -60,6 +60,7 @@ use_smart_alph0=1;% default
 %          0
 %     0.0168
 %     0.0674]; % default*5
+cross_section = 'Nsimulations'; % Nestimations or Nsimulations
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -228,98 +229,87 @@ flag     = zeros(1,N);
 res1     = nan(size(residual));
 Om1      = nan(length(Om0),N);
 FE       = zeros(ny,T,N);
-tic
 
-parfor n=1:N
-    e_n = squeeze(eN(:,:,n));
-    %Declare a function handle for optimization problem
-    objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
-    try
-        [alph_opt(:,n),resnorm(n),residual(:,n),flag(n)] = lsqnonlin(objh,alph0,lb,ub,options);
-    catch err
-        disp(['History n = ', num2str(n)])
-        fprintf(1,'The identifier was:\n%s',err.identifier);
-        fprintf(1,'\n The error message was:\n%s',err.message);
-        fprintf(1,'\n');
-        alph_opt(:,n) = nan(nfe,1);
-        resnorm(n) = inf;
-        flag(n) = nan;
-        continue % Pass control to the next iteration of FOR or WHILE loop.
-    end
-    
-    if flag(n) >0
-        % Om0 and Om1 are the model-implied moments, initial and optimal
-        [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
-    end
+
+switch cross_section
+    case 'Nestimations'
+        tic
+        parfor n=1:N
+            e_n = squeeze(eN(:,:,n));
+            %Declare a function handle for optimization problem
+            objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+            try
+                [alph_opt(:,n),resnorm(n),residual(:,n),flag(n)] = lsqnonlin(objh,alph0,lb,ub,options);
+            catch err
+                disp(['History n = ', num2str(n)])
+                fprintf(1,'The identifier was:\n%s',err.identifier);
+                fprintf(1,'\n The error message was:\n%s',err.message);
+                fprintf(1,'\n');
+                alph_opt(:,n) = nan(nfe,1);
+                resnorm(n) = inf;
+                flag(n) = nan;
+                continue % Pass control to the next iteration of FOR or WHILE loop.
+            end
+            
+            if flag(n) >0
+                % Om0 and Om1 are the model-implied moments, initial and optimal
+                [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
+            end
+        end
+        toc
+        
+        flag
+        
+        alph_opt_conv = alph_opt(:,flag>0);
+        resmean = nanmean(res1,2);
+        resnorm_mean = sum(resmean.^2);
+        
+        alph_opt_mean = mean(alph_opt_conv,2)
+        alph_sorted = sort(alph_opt_conv,2);
+        med_idx = size(alph_sorted,2)/2;
+        if isinteger(med_idx)
+            alph_opt_med = (alph_sorted(:,med_idx) + alph_sorted(:,med_idx+1))/2
+            alph_opt_med_unsorted = (alph_opt_conv(:,med_idx) +alph_opt_conv(:,med_idx+1))/2
+            
+        else
+            alph_opt_med = alph_sorted(:,ceil(med_idx))
+            alph_opt_med_unsorted = alph_opt_conv(:,ceil(med_idx))
+            
+        end
+        min(resnorm_mean)
+        
+        plot_fe_histograms(FE);
+        figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+            '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+        if contains(filename,'sim')==1
+            figname = [this_code, '_histogram_FE_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+                '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+        end
+        if print_figs ==1
+            disp(figname)
+            cd(figpath)
+            export_fig(figname)
+            cd(current_dir)
+            close
+        end
+        
+        Om1mean = nanmean(Om1,2);
+        
+    case 'Nsimulations'
+        
+        %Declare a function handle for optimization problem
+        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        tic
+        [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
+        toc
+        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,N);
+        
+        % treat the single outcomes as the mean outcomes
+        alph_opt_mean = alph_opt;
+        Om1mean = Om1;
+        resnorm_mean = resnorm;
+        
 end
-toc
-
-flag
-
-
-alph_opt_conv = alph_opt(:,flag>0);
-resmean = nanmean(res1,2);
-resnorm_mean = sum(resmean.^2);
-
-alph_opt_mean = mean(alph_opt_conv,2)
-min(resnorm_mean)
-
-fesim = squeeze(FE(1,:,:));
-femean = mean(fesim,2);
-fesimmax = max(fesim,[],2);
-fesimmin = min(fesim,[],2);
-
-% Plot histograms of fe
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-subplot(2,2,1)
-hist(femean)
-ax = gca; % current axes
-ax.FontSize = fs*3/4;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-title('Mean fe in cross-section','interpreter', 'latex', 'fontsize', fs*3/4)
-subplot(2,2,2)
-hist(fesimmax)
-ax = gca; % current axes
-ax.FontSize = fs*3/4;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-title('Max fe across histories','interpreter', 'latex', 'fontsize', fs*3/4)
-subplot(2,2,3)
-hist(fesimmin)
-ax = gca; % current axes
-ax.FontSize = fs*3/4;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-title('Min fe across histories','interpreter', 'latex', 'fontsize', fs*3/4)
-subplot(2,2,4)
-hist(fesim(:))
-ax = gca; % current axes
-ax.FontSize = fs*3/4;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-title('Fe across all cross-sections','interpreter', 'latex', 'fontsize', fs*3/4)
-figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
-if contains(filename,'sim')==1
-    figname = [this_code, '_histogram_FE_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
-end
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-
 
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt_mean);
@@ -347,7 +337,6 @@ if skip==0
     create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 end
 
-Om1mean = nanmean(Om1,2);
 % Covariogram
 Gamj = reshape(Om,ny,ny,K+1);
 Gamj0 = reshape(Om0,ny,ny,K+1);
@@ -389,10 +378,10 @@ elseif contains(current_dir, 'gsfs0') % sirius server
 end
 % Note position: left, bottom, width, height
 figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
 if contains(filename,'sim')==1
     figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid),'_', cross_section, '_', todays_date];
 end
 if print_figs ==1
     disp(figname)
@@ -412,7 +401,7 @@ if contains(filename,'sim')
     end
     
     figname= [this_code, '_alphas_','loss_', num2str(floor(min(resnorm_mean))),'_nfe_',num2str(nfe),...
-        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
     
     figure
     set(gcf,'color','w'); % sets white background color
@@ -420,12 +409,14 @@ if contains(filename,'sim')
     plot(linspace(femin,femax,length(alph_true)),alph_true, 'linewidth',lw); hold on
     plot(fegrid, alph0, 'linewidth',lw)
     plot(fegrid, alph_opt_mean, 'linewidth',lw)
+%     plot(fegrid, alph_opt_med, 'linewidth',lw)
+%     plot(fegrid, alph_opt_med_unsorted, 'linewidth',lw)
     ax = gca; % current axes
     ax.FontSize = fs*3/4;
     set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
-    legend({'true', 'initial', 'mean(optimal)'}, 'location', 'southoutside', 'interpreter', 'latex')
+    legend({'true', 'initial', 'estimated'}, 'location', 'southoutside', 'interpreter', 'latex')
     legend('boxoff')
     if print_figs ==1
         disp(figname)

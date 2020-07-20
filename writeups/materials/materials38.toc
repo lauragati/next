@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}Simulated ``true'' data}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}3 potential causes to lack of identification in the zero neighborhood}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Reference for comparison: Fig 1. of Materials 37}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Potential cause \# 1: skewness $\rightarrow $ take median instead of mean }{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Issue \# +1: do $N$ simulations instead of $N$ estimations}{3}{subsection.1.4}
+\contentsline {section}{\numberline {A}Model summary}{4}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{4}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{5}{appendix.C}
