@@ -1,8 +1,4 @@
 \BOOKMARK [1][-]{section.1}{Simulated ``true'' data}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{3 potential causes to lack of identification in the zero neighborhood}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Reference for comparison: Fig 1. of Materials 37}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.3}{Potential cause \043 1: skewness \040take median instead of mean }{section.1}% 4
-\BOOKMARK [2][-]{subsection.1.4}{Issue \043 +1: do N simulations instead of N estimations}{section.1}% 5
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 6
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 7
-\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 8
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 2
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 3
+\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 4

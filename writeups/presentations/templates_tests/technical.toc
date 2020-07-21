@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Unanchoring in the data}{6}{0}{1}
+\beamer@sectionintoc {2}{Model of anchoring expectations}{7}{0}{2}
+\beamer@sectionintoc {3}{Solving the Ramsey problem}{16}{0}{3}
+\beamer@sectionintoc {4}{Implications}{22}{0}{4}

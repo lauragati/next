@@ -105,7 +105,7 @@ invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_true_gain_sim_',PLM_name,'_', todays_date], print_figs)
 
-% return
+return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);

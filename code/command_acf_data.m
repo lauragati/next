@@ -2,7 +2,7 @@
     % Suppose we have real data (in logs)
     y_data = get_data;
     [ny,T] = size(y_data)
-    
+%     return
     % Filter the data
     % HP filter
     g_data = nan(size(y_data));
@@ -28,12 +28,13 @@
     end
         lost_periods_BK = 2*K;
 
-    % % Plot filtered inflation
-    create_plot(1:numel(c_data(1,:)),c_data(1,:),'HP-filtered cycle',[this_code, '_HP'],print_figs,'PCE Inflation')
-    create_plot(1:numel(v_data(1,:)),v_data(1,:),'Hamilton-filtered cycle',[this_code, '_Hamilton'],print_figs,'PCE Inflation')
-    create_plot(1:numel(ystar_data(1,:)),ystar_data(1,:),'BK-filtered cycle',[this_code, '_BK'],print_figs,'PCE Inflation')
-    
-    
+    % % Plot filtered series
+    create_plot_observables(c_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'HP-filtered cycle', [this_code, '_HPall_', todays_date], 0)
+    create_plot_observables(v_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'Hamilton-filtered cycle', [this_code, '_Hamiltonall_', todays_date], 0)
+    create_plot_observables(ystar_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'BK-filtered cycle', [this_code, '_BKall_', todays_date], 0)
+
+
+%     return
     % choose your favorite filtered data
     filt_data = ystar_data;
     lost_periods = lost_periods_BK;
@@ -95,7 +96,7 @@
     Om_boot = zeros(length(Om),nboot);
     tic
     disp(datestr(now))
-    disp('Creating the bootstrapped autocovariances: takes about 30 sec b/c parallel')
+    disp('Creating the bootstrapped autocovariances: takes about 250 sec b/c parallel')
     parfor i=1:nboot
         Gamj_booti = zeros(ny,ny,K+1);
         %         max_lags = 16;

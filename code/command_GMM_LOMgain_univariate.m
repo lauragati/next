@@ -36,6 +36,8 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+% filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
@@ -60,7 +62,7 @@ use_smart_alph0=1;% default
 %          0
 %     0.0168
 %     0.0674]; % default*5
-cross_section = 'Nsimulations'; % Nestimations or Nsimulations
+cross_section = 'Nestimations'; % Nestimations or Nsimulations
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');

@@ -132,7 +132,7 @@ bottom=1in}
 \newpage
 
 \section{Simulated ``true'' data}
-\subsection{3 potential causes to lack of identification in the zero neighborhood}
+\subsection*{3 potential causes to lack of identification in the zero neighborhood}
 \begin{enumerate}
 \item The distribution of estimates is skewed $\rightarrow$ take $median(\hat{\alpha})$ instead of the mean.
 \item The truth is based on a simulation that doesn't favor the zero neighborhood $\rightarrow$ do 100 simulations from the ``true'' parameters and take the mean moments of those.
@@ -141,7 +141,7 @@ bottom=1in}
 \item[+2] Introduce expectation series (SPF)
 \end{enumerate}
 
-\subsection{Reference for comparison: Fig 1. of Materials 37}
+\subsection*{Reference for comparison: Fig 1. of Materials 37}
 
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
@@ -151,7 +151,7 @@ bottom=1in}
 \end{figure}
 
 \newpage 
-\subsection{Potential cause \# 1: skewness $\rightarrow$ take median instead of mean }
+\subsection*{Point \#1: skewness $\rightarrow$ take median instead of mean }
 
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha}), median(\hat{\alpha})$, unsorted median]{\includegraphics[scale=\mySmallFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_20_Jul_2020}}
@@ -159,8 +159,39 @@ bottom=1in}
 \end{figure}
 I understand what's happening! Half the estimates are L's, the other half are ``inverted L's'', which is why taking a mean or a classical, sorted median has the tendency to produce these nonmonotonic zigzags.
 
-%\newpage 
-\subsection{Issue \# +1: do $N$ simulations instead of $N$ estimations}
+\subsection*{Point \#2: do 100 truths}
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_63586357933_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_63586357933_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{truth is a mean of 100 simulations}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+That didn't help, did it now?
+
+\newpage 
+\subsection*{Point \#3:  change timing of forecast errors}
+\begin{align}
+k_t^{-1} &= \mathbf{g}(fe_{t|t-1})\\
+\bar{\pi}_t &= \bar{\pi}_{t-1} + k_t^{-1}fe_{t|t-1}
+\end{align}
+The issue 	seems to be: if $fe_{t|t-1} \approx 0$, then the gain is irrelevant for learning because $fe_{t|t-1}$ figures into both equations. So the idea is to decouple the two equations by changing the timing of one of the forecast errors. Note:
+\begin{align}
+fe_{t|t-1} &= \pi_t - (\bar{\pi}_{t-1}+bs_{t-1})\\
+&= \pi_t - \bar{\pi}_{t-1} \quad \quad \text{since shocks iid and $b$ is the RE transition matrix}
+\end{align}
+So what I can try is to use an older forecast error in equation (2). Try $fe_{t|t-1}\equiv \pi_t - \bar{\pi}_{t-2}$.
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_745_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_745_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{changing the forecast error timing in the updating equation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+A little more symmetric, but no dramatic improvement. 
+
+
+\newpage
+\subsection*{Point \#+1: do $N$ simulations instead of $N$ estimations}
 \begin{figure}[h!]
 \subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_951_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_20_Jul_2020}}
 \hfill
@@ -168,6 +199,9 @@ I understand what's happening! Half the estimates are L's, the other half are ``
 \caption{Estimates for $N=100$, \colorbox{yellow}{targeting mean moments in a single estimation instead of $N$ estimations of individual moments}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 The difference is striking!
+
+\subsection*{Point \#+2: introduce expectations series}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage

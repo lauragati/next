@@ -126,7 +126,13 @@ for t = 1:T-1
         
         % Do the updating
         if PLM == 1 || PLM == 11 % when learning constant only or "constant-only, pi-only"
-            a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )  );
+            a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )); % default
+            % try fe_{t|t-2} here
+%             if t>2
+%             a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(squeeze(phi_seq(1,1,t-2)) + b*xsim(:,t-1)) )  ); 
+%             else
+%                 a = el.*( a + k(:,t).^(-1).*( ysim(:,t)-(a + b*xsim(:,t-1)) )  );
+%             end
             phi = [a,b];
         elseif PLM == 2 % constant and slope learning
             R = R + k(:,t).^(-1)*([1;xsim(:,t-1)]*[1;xsim(:,t-1)]' - R); % now I don't know if the gain should be the same here, Ryan uses the same gain.
