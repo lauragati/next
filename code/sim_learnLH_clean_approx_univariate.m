@@ -3,7 +3,8 @@
 % evolution of the gain using Ryan's ndim_simplex (ND piecewise linear interpolation)
 % In addition, this version does that for the univariate anchoring function
 % 21 June 2020
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock, dt, x0)
+% Udpdate 22 July 2020: added measurement error v
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,v,knowTR,mpshock, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -146,7 +147,7 @@ for t = 1:T-1
         evening_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
         % evening_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t)
         
-        phi_seq(:,:,t) = phi; % store phis
+        phi_seq(:,:,t) = phi; % store phis 
         % check convergence
         diff(t) = max(max(abs(phi - squeeze(phi_seq(:,:,t-1)))));
         
@@ -165,9 +166,14 @@ end
 %Last period observables.
 ysim(:,t+1) = gx*xsim(:,t+1);
 
+% Add measurement error to observables
+ysim = ysim + v(1:3,:);
+phi_seq(1,1,:) = squeeze(phi_seq(1,1,:)) + v(4,:)';
+
 %Drop ndrop periods from simulation
 xsim = xsim(:,ndrop+1:end);
 ysim = ysim(:,ndrop+1:end);
 shock = e(:,ndrop+1:end); % innovations
 k = k(:,ndrop+1:end);
 FEt_1 = FEt_1(:,ndrop+1:end);
+phi_seq = phi_seq(:,:,ndrop+1:end);

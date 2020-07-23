@@ -200,8 +200,31 @@ A little more symmetric, but no dramatic improvement.
 \end{figure}
 The difference is striking!
 
+\newpage
 \subsection*{Point \#+2: introduce expectations series}
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_N_100_loss_0_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=0.35]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{incl. 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
 
+I've added measurement error to $\pi,x,i$ and the expectation to avoid stochastic singularity from having 4 observables and only 3 shocks. 
+
+This clearly has added useful info. Otherwise, behavior is like before:
+\begin{itemize}
+\item Without the convexity restriction, I still get nonconvex estimate.
+\item With the 0 at 0 restriction, I can match the 0 region, otherwise I can't.
+\item Both restrictions lead to basically identical moments.
+%\item $N=1000$ doesn't give drastic improvements either, and in covariograms, not at all.
+\end{itemize}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_N_1000loss_0_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_N_1000nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+\caption{Estimates for \colorbox{yellow}{$N=1000$,  incl. 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage

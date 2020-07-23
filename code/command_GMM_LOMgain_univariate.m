@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -30,13 +30,15 @@ redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% filename ='acf_data_11_Jun_2020'; % real data
+% % filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
-% filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+% % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -50,7 +52,7 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 100000;%10000000=10M, seems like 100K is sufficient, or even 10K
+Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
 Wmid =0; %1000
 Wmean=0;%100, 0
 % rng(8)
@@ -78,22 +80,24 @@ options.UseParallel = 0; % 2/3 of the time
 load([filename, '.mat'])
 Om = acf_outputs{1}; % this is the moments vector
 Om_boot = acf_outputs{2}; % moments vectors in bootstrapped samples
-ny = acf_outputs{3};
+nobs = acf_outputs{3};
 p = acf_outputs{4};
 K = acf_outputs{5};
 filt_data = acf_outputs{6};
 lost_periods = acf_outputs{7};
 T = length(filt_data);
 T = T+lost_periods; % to make up for the loss due to filtering
-% T = 2*T
 
 ndrop = 5 % 0-50
 
+% return
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
 N=100
-eN = randn(ny,T+ndrop,N);
+eN = randn(3,T+ndrop,N);
+vN = randn(nobs,T+ndrop,N); % measurement error
+
 
 if contains(filename,'sim')
     alph_true = acf_outputs{8};
@@ -123,7 +127,7 @@ sig_u = param.sig_u;
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
 [gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
-[ny, nx] = size(gx);
+[~, nx] = size(gx);
 
 % [Aa, Ab, As] = matrices_A_13_true_baseline(param, hx);
 SIG = eye(nx).*[sig_r, sig_i, sig_u]';
@@ -194,7 +198,7 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 if skip==0
     % simulation given initial alphas
-    [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,knowTR,mpshock);
+    [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
     %
     % Some titles for figures
     seriesnames = {'\pi', 'x','i'};
@@ -219,8 +223,10 @@ end
 
 
 e0 = squeeze(eN(:,:,1));
+v0 = squeeze(vN(:,:,1));
+
 % %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
 disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
 
 % return
@@ -230,7 +236,7 @@ residual = zeros(length(res0),N);
 flag     = zeros(1,N);
 res1     = nan(size(residual));
 Om1      = nan(length(Om0),N);
-FE       = zeros(ny,T,N);
+FE       = zeros(nx,T,N);
 
 
 switch cross_section
@@ -238,8 +244,9 @@ switch cross_section
         tic
         parfor n=1:N
             e_n = squeeze(eN(:,:,n));
+            v_n = squeeze(vN(:,:,n));
             %Declare a function handle for optimization problem
-            objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+            objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
             try
                 [alph_opt(:,n),resnorm(n),residual(:,n),flag(n)] = lsqnonlin(objh,alph0,lb,ub,options);
             catch err
@@ -255,7 +262,7 @@ switch cross_section
             
             if flag(n) >0
                 % Om0 and Om1 are the model-implied moments, initial and optimal
-                [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
+                [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
             end
         end
         toc
@@ -278,7 +285,7 @@ switch cross_section
             alph_opt_med_unsorted = alph_opt_conv(:,ceil(med_idx))
             
         end
-        min(resnorm_mean)
+        resnorm_mean
         
         plot_fe_histograms(FE);
         figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
@@ -300,11 +307,11 @@ switch cross_section
     case 'Nsimulations'
         
         %Declare a function handle for optimization problem
-        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
         tic
         [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
         toc
-        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,N);
+        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,N);
         
         % treat the single outcomes as the mean outcomes
         alph_opt_mean = alph_opt;
@@ -326,7 +333,7 @@ create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
 
 
 % how does the model behave for estimated alpha?
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T,ndrop,rand(size(e0)),knowTR,mpshock);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,rand(size(e0)),rand(size(v0)),knowTR,mpshock);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is implied simulated k1 ever negative?')
 find(k0<0)
@@ -340,23 +347,23 @@ if skip==0
 end
 
 % Covariogram
-Gamj = reshape(Om,ny,ny,K+1);
-Gamj0 = reshape(Om0,ny,ny,K+1);
-Gamj1 = reshape(Om1mean,ny,ny,K+1);
-cvgram = zeros(ny,K+1,ny);
-cvgram0 = zeros(ny,K+1,ny);
-cvgram1 = zeros(ny,K+1,ny);
+Gamj = reshape(Om,nobs,nobs,K+1);
+Gamj0 = reshape(Om0,nobs,nobs,K+1);
+Gamj1 = reshape(Om1mean,nobs,nobs,K+1);
+cvgram = zeros(nobs,K+1,nobs);
+cvgram0 = zeros(nobs,K+1,nobs);
+cvgram1 = zeros(nobs,K+1,nobs);
 
-titles = {'$\pi_t$', '$x_t$', '$i_t$'};
-titles_k = {'$\pi_{t-k}$', '$x_{t-k}$', '$i_{t-k}$'};
+titles = {'$\pi_t$', '$x_t$', '$i_t$', '$E_t\pi_{t+1}$'};
+titles_k = {'$\pi_{t-k}$', '$x_{t-k}$', '$i_{t-k}$', '$E_{t-k}\pi_{t-k+1}$'};
 it=0;
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-for i=1:ny
-    for j=1:ny
+for i=1:nobs
+    for j=1:nobs
         it=it+1;
-        sp(it)=subplot(ny,ny,it);
+        sp(it)=subplot(nobs,nobs,it);
         pos_sp = get(sp(it), 'position');
         set(sp(it), 'position', [1, 1, 0.95, 0.95].*pos_sp );
         
@@ -366,10 +373,11 @@ for i=1:ny
         h1 = plot(0:K,squeeze(Gamj1(i,j,:)), 'linewidth', lw);
         ax = gca; % current axes
         ax.FontSize = fs*3/4;
+        ax.YRuler.Exponent = 0; % turns off scientific notation
         set(gca,'TickLabelInterpreter', 'latex');
         grid on
         grid minor
-        title([titles{i}, ' vs. ', titles_k{j}],'interpreter', 'latex', 'fontsize', fs*3/4)
+        title([titles{i}, ' vs. ', titles_k{j}],'interpreter', 'latex', 'fontsize', fs*2/4)
     end
 end
 % To avoid an undefined property 'NumColumns' on the server:
@@ -379,10 +387,10 @@ elseif contains(current_dir, 'gsfs0') % sirius server
     lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'Box', 'off');
 end
 % Note position: left, bottom, width, height
-figname = [this_code, '_autocovariogram_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+figname = [this_code, '_autocovariogram_','N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
     '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
 if contains(filename,'sim')==1
-    figname = [this_code, '_autocovariogram_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+    figname = [this_code, '_autocovariogram_sim_','N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
         '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid),'_', cross_section, '_', todays_date];
 end
 if print_figs ==1
@@ -396,13 +404,15 @@ end
 % True alphas against estimated ones
 if contains(filename,'sim')
     if length(alph_true)==length(alph_opt_mean)
+        disp('alph_true against mean estimate')
         [alph_true,alph_opt_mean]
     else
+        disp('alph_true against mean estimate')
         alph_true
         alph_opt_mean
     end
     
-    figname= [this_code, '_alphas_','loss_', num2str(floor(min(resnorm_mean))),'_nfe_',num2str(nfe),...
+    figname= [this_code, '_alphas_','N_', num2str(N),'_loss_', num2str(floor(min(resnorm_mean))),'_nfe_',num2str(nfe),...
         '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
     
     figure

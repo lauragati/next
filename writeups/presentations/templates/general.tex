@@ -1,0 +1,1119 @@
+\documentclass[11pt]{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+
+% Layout and style
+\usefonttheme{serif}
+\usepackage{palatino} 
+
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+\def \myFigPath {../../../figures/} 
+\def \myTablePath {../../../tables/} 
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{pbblue}{HTML}{0A75A8}% filling color for the progress bar
+\definecolor{pbgray}{HTML}{575757}% background color for the progress bar
+
+% a set of nice blue, nice red and nice green
+\definecolor{dodgerblue}{RGB}{16,78,139}
+\definecolor{aquamarinegreen}{RGB}{69,139,116}
+\definecolor{brownredlight}{RGB}{238,59,59}
+\definecolor{brownreddark}{RGB}{205,51,51}
+
+
+
+\makeatletter
+\def\progressbar@progressbar{} % the progress bar
+\newcount\progressbar@tmpcounta% auxiliary counter
+\newcount\progressbar@tmpcountb% auxiliary counter
+\newdimen\progressbar@pbht %progressbar height
+\newdimen\progressbar@pbwd %progressbar width
+\newdimen\progressbar@tmpdim % auxiliary dimension
+
+\progressbar@pbwd=1.15\linewidth % change width of progress bar
+\progressbar@pbht=0.5ex % change thickness of progress bar
+
+% the progress bar
+\def\progressbar@progressbar{%
+
+    \progressbar@tmpcounta=\insertframenumber
+    \progressbar@tmpcountb=\inserttotalframenumber
+    \progressbar@tmpdim=\progressbar@pbwd
+    \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+    \divide\progressbar@tmpdim by \progressbar@tmpcountb
+
+  \begin{tikzpicture}[rounded corners=2pt,very thin]
+
+    \shade[top color=pbgray!10,bottom color=pbgray!10,middle color=pbgray!10]
+      (0pt, 0pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+
+      \shade[draw=dodgerblue,top color=dodgerblue,bottom color=dodgerblue,middle color=dodgerblue] %
+        (0pt, 0pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+
+% ADD COMPLETION PERCENTAGE
+%    \draw[color=normal text.fg!50]  
+%      (0pt, 0pt) rectangle (\progressbar@pbwd, \progressbar@pbht) 
+%        node[pos=0.5,color=normal text.fg] {\textnormal{%
+%             \pgfmathparse{\insertframenumber*100/\inserttotalframenumber}%
+%             \pgfmathprintnumber[fixed,precision=2]{\pgfmathresult}\,\%%
+%        }%
+%    };
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{headline}{}
+{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,center,dp=1ex]{white}%
+    \progressbar@progressbar%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+% Set colors of butthons
+\setbeamercolor{button}{bg=dodgerblue,fg=white}
+
+% this removes the blue navigation bar that used to be on the bottom right
+\beamertemplatenavigationsymbolsempty 
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Structure of talk}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\useinnertheme{circles}
+
+% resets the bullet points of enumerate and itemize to defaults
+\setbeamertemplate{itemize items}[bullet]
+\setbeamertemplate{enumerate items}[default]
+
+% this removes the ugly bullets for the table of contents and just adds numbers
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% Colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{April 15, 2020}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frame}[plain] % use the argument plain here to remove the progress bar
+
+\maketitle
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	
+\begin{quote}
+Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
+Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019.}
+\end{quote}	
+
+\begin{figure}[h!]
+\includegraphics[scale = \myTinyFigScale]{\myFigPath epi10_2020_06_04}
+\caption{Market-based inflation expectations, 10 year, average, \%}
+\label{epi}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{This project}
+	
+	\begin{itemize}
+	\item Estimation of the anchoring function: when do expectations become unanchored?
+	
+	\
+	
+	\
+
+	\item Model of anchoring expectation formation as an endogenous gain adaptive learning scheme
+	
+	\
+	
+	\
+	
+	\item[$\rightarrow$] How to conduct optimal monetary policy in interaction with the anchoring expectation formation?
+	%How does a concern to anchor expectations affect the conduct of monetary policy?
+	\end{itemize}
+	\end{frame}
+	%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Preview of results}
+	
+	\begin{itemize}
+	\item A \colorbox{yellow}{1\%-point} forecast error unanchors expectations
+
+	
+	\
+	
+	\
+	
+	\item Optimal monetary policy responsiveness time-varying 
+	
+	\
+	
+	\
+	
+	
+	\item[$\hookrightarrow$] Unanchored expectations introduce an intertemporal volatility tradeoff 
+	
+	\
+	
+	\
+	\item[$\hookrightarrow$] Illustrate analytically in special case: target criterion 
+
+	\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Related literature}
+
+\begin{itemize}
+\item \textbf{Optimal monetary policy in New Keynesian models}
+\item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
+
+\
+
+\
+
+\item \textbf{Econometric learning}
+\item[] Evans \& Honkapohja (2001, 2006), Preston (2005, 2008), Moln\'ar \& Santoro (2014), Ferrero (2007), Eusepi \& Preston (2011), Milani (2007, 2014), Lubik \& Matthes (2018)
+
+\
+
+\
+
+\item \textbf{Anchoring and the Phillips curve} 
+\item[] Sargent (1999), Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Gobbi et al (2019), Carvalho et al (2019)
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Households: standard up to $\hat{\E}$}
+	\label{HH}
+
+Maximize lifetime expected utility
+\begin{equation}
+\textcolor{brownreddark}{\hat{\E}_t}\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\label{lifetime_U}
+\end{equation}	
+
+Budget constraint
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + \int_0^1 w_t(j)h^i_t(j) + \Pi_t^i(j)  dj-T_t -P_tC^i_t
+ \label{BC}
+\end{equation}
+
+
+
+\vfill
+
+%\vspace{2cm}
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Consumption, price level}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Firms: standard up to $\hat{\E}$}
+
+Maximize present value of profits
+\begin{equation}
+\textcolor{brownreddark}{\hat{\E}_t}\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\label{lifetime_profits}
+\end{equation}
+
+subject to demand
+\begin{equation}
+y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
+\end{equation}
+
+
+\vfill
+
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Profits, stochastic discount factor}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
+
+\begin{itemize}
+\item If use $\E$ (rational expectations, RE) \\
+
+\
+
+Model solution 
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+$s_t \equiv (r^n_t, u_t)' \quad $  (states) \\
+$y_t \equiv (\pi_t, x_t, i_t)' \quad $ (jumps)
+
+\
+
+\item If use $\hat{\E} \rightarrow$ private sector does not know $g$ \\
+$\rightarrow$ estimate using observed states \& knowledge of (\ref{state})
+
+\
+
+\item Households and firms don't know they are identical
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Adaptive learning}
+	\label{adaptive_learning}
+
+\begin{itemize}
+\item Estimate $g$ using recursive least squares (RLS)
+  \\
+  
+  \
+  
+$\rightarrow$ nonrational expectations:
+\begin{equation} 
+\hat{\E}_t y_{t+1} = \phi_{t-1}\begin{bmatrix} \textcolor{brownreddark}{1} \\ s_{t} \end{bmatrix} \label{PLMcompact}
+\end{equation}
+
+\item Note: \textcolor{brownreddark}{misspecified}	\\
+
+\
+
+Can write:
+\begin{equation}
+\hat{\E}_t y_{t+1} = \textcolor{brownreddark}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
+\end{equation}
+
+\
+
+In RE, $\textcolor{brownreddark}{a_{t-1} = (0,0,0)'}, \quad b_{t-1} = g\;h \quad \forall t$
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Recursive least squares}
+	\label{RLS_special}
+	
+	\
+	
+Special case: learn only intercept of inflation:
+
+\begin{equation}
+a_{t-1} = (\bar{\pi}_{t-1},0,0)', \quad b_{t-1} = g\; h \quad \forall t
+\end{equation}
+
+\
+
+\
+
+$\rightarrow$ RLS
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\end{equation}
+ 
+ \
+ 
+ $k_t \in (0,1)$ gain \\
+ $b_1$ first row of $b$
+\vfill 
+
+\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Anchoring mechanism: endogenous gain}
+	\label{anchoring1}
+
+
+Gain in literature usually exogenous: 
+\begin{equation*}
+k_t = \begin{cases}\frac{1}{t} \quad \quad \text{decreasing}\\
+k \quad \quad \text{constant}
+\end{cases}
+\end{equation*}
+
+\
+
+\
+
+Here instead
+\begin{equation}
+k_t = k_{t-1} + \mathbf{g}(fe_{t|t-1}) \label{gain}
+\end{equation}
+
+
+\vfill 
+
+\hfill \hyperlink{g}{\beamergotobutton{Functional forms}}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Model summary}
+	\label{aggregate_LOMS}
+\begin{itemize}
+\item IS- and Phillips curve:	
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+\hfill \hyperlink{derivations}{\beamergotobutton{Derivations}}
+
+\
+
+\item  Expectations evolve according to RLS with the endogenous gain given by (\ref{gain})
+
+\
+
+\item[$\rightarrow$] How should $\{ i_t \}$ be set?
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solving the Ramsey problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Ramsey problem}
+	 \begin{align*}
+& \min_{ \{y_t, \bar{\pi}_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \text{s.t. model equations}
+\end{align*}
+
+\
+
+\
+
+\begin{itemize}
+\item $\E$ is the central bank's (CB) expectation
+
+\
+
+\item Assumption: CB observes private expectations and knows the model
+\end{itemize}
+
+ 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Special case}
+	\label{special_case}
+
+\begin{itemize}
+\item Only inflation intercept learned
+
+\
+
+\item Anchoring function simplified to 
+\begin{equation}
+k_t = \mathbf{g}(fe_{t|t-1}) \label{gain_simple}
+\end{equation}
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Target criterion for special case}
+	\label{anchTC}
+	
+	\begin{result} 
+
+\
+
+In the simplified model with anchoring, monetary policy optimally brings about the following target relationship between inflation and the output gap
+	
+\begin{align*}
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
+\\
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\}  \label{target}
+\end{align*}
+
+\
+
+\
+
+where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, $\; \prod_{j=0}^{0} \equiv 1 \; $ and $b_1$ is the first row of $b$.
+	\end{result}
+\vfill 
+
+\hfill \hyperlink{generalTC}{\beamergotobutton{General case}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Two layers of intertemporal tradeoffs}
+\small{
+\begin{align*}
+& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
+\end{align*}
+
+\
+
+\
+
+\textcolor{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\
+
+\
+
+\
+
+\textcolor{dodgerblue}{Intertemporal tradeoff: current level and change of the gain } \\
+
+\
+
+\
+
+\textcolor{aquamarinegreen}{Intertemporal tradeoff: future expected levels and changes of the gain}
+
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{}
+	\label{no_commitment}
+
+\begin{corollary} Optimal policy under adaptive learning is time-inconsistent. 
+\end{corollary}
+
+
+\
+
+\
+
+\
+
+\begin{lemma} The commitment solution of the Ramsey problem does not exist under adaptive learning. 
+\end{lemma}
+
+
+\
+
+\vfill
+
+\hfill \hyperlink{no_commitment_intuition}{\beamergotobutton{Why no commitment?}}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Implications}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Implementation: feedback rule}
+
+\	
+	\begin{itemize}
+	\item Related issue under RE: optimal interest rate sequence implies indeterminate equilibrium
+	
+	\
+	
+	\item[$\Rightarrow$] Reaction function stabilizes expectations
+	
+	\
+	
+	\
+	
+	\item[] Recall IS-curve:
+	\begin{equation*}
+	x_t =  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor{brownreddark}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big) 
+	\end{equation*}
+	
+	\
+	
+	\
+	
+	\item E.g. Taylor rule disciplines expectations:
+	
+	 $$\; \hat{\E}_t i_T = \psi_{\pi}\hat{\E}_t\pi_{T}+\psi_{x}\hat{\E}_tx_{T}$$
+	\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Next steps: form of reaction function}
+	
+\begin{itemize}
+\item Model suggests $\quad i_t = \mathbf{f}(\pi_t, k_{t}, \bar{\pi}_{t-1}; t)$ nonlinear
+
+\
+
+\
+
+\item Explains deviations from Taylor rule
+
+
+\
+
+\
+
+\item However: no commitment makes Taylor rule more viable than under RE as a rough approximation of optimal feedback rule
+
+\
+
+\
+
+\item If Taylor rule, model prefers being less aggressive on inflation
+\end{itemize}
+	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Conclusion}
+	
+\begin{itemize}
+\item Interaction between monetary policy and anchoring 
+
+\
+
+\
+
+\item Optimal policy conditions on stance of current and expected future anchoring
+\item[] \hspace{4cm} $\hookrightarrow$ determine intertemporal tradeoffs
+
+\
+
+\
+
+\item Explain departures from the Taylor rule like US, fall 2019
+
+\
+
+\
+
+\item If Fed acted to anchor expectations, then Missing Deflation and Inflation are not ``missing"
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%
+%         TEMPLATES
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Slide template}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%  	
+%\begin{frame}
+%	\frametitle{A beamer button template}
+%	\label{identification}
+%	
+%\hyperlink{Technicalities}{\beamergotobutton{Technicalities}}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\backupbegin
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Short-run costs, long-run benefits}
+	\label{SRLRtradeoffs}
+
+\
+	
+Assume Taylor rule and no concern for output gap stabilization	
+	
+\begin{equation*}
+i_t = \psi_{\pi}\pi_t  \quad \quad \lambda_x = 0 
+\end{equation*}
+
+\begin{figure}[h!]
+\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_RE_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath plot_sim_loss_loss_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_4_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_02_09}}
+\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\floatfoot{}
+\label{fig_loss}
+\end{figure}	
+	
+\hfill \hyperlink{SRcosts}{\beamergotobutton{Short-run costs}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Functional forms for $\mathbf{g}$}
+	\label{g}
+\begin{itemize}
+\item Smooth anchoring function
+\begin{equation}
+k_t = k_{t-1} - c + d fe_{t|t-1}^2
+\end{equation}
+$c,d > 0$
+
+\
+
+\item Kinked anchoring function
+ \begin{align*}
+k_t & = \begin{cases} \frac{1}{t} \quad \text{when} \quad \theta_t < \bar{\theta}  \\ k \quad \text{otherwise.}\numberthis
+\end{cases} 
+\end{align*}
+$\theta_t$ criterion, $\bar{\theta}$ threshold value
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Choices for criterion $\theta_t$}
+	\label{g}
+\begin{itemize}
+\item Carvalho et al. (2019)'s criterion  
+\begin{equation}
+\theta_t^{CEMP} = \max | \Sigma^{-1} ( \phi_{t-1} - T(\phi_{t-1})) |
+\end{equation}
+
+
+$\Sigma$ variance-covariance matrix of shocks \\
+$T(\phi)$ mapping from PLM to ALM
+
+\
+
+\
+
+\item CUSUM-criterion
+\begin{align}
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
+\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1})
+\end{align}
+
+\
+
+$\omega_t$ estimated forecast-error variance
+\end{itemize}
+
+
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Recursive least squares algorithm}
+	\label{RLS}
+
+
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Compact notation}
+	\label{compact}
+
+ \begin{align*}
+y_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = h s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
+
+\begin{equation}
+ y_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ \bar{i}_t \\ u_t 
+ \end{pmatrix} 
+\end{equation}
+and
+
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } y_{T+1} \quad \quad \quad \quad 
+f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb}
+\end{align}
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{No commitment - no lagged multipliers}
+	\label{no_commitment_intuition}
+	
+	Simplified version of the model: planner chooses $\{\pi_t, x_t, f_t, k_t\}_{t=t_0}^{\infty}$ to minimize
+ \begin{align*}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t- \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
+ \end{align*}
+
+ \begin{align}
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\textcolor{brownreddark}{\varphi_{2,t}}(k_t + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \textcolor{brownreddark}{\varphi_{2,t}} -\textcolor{brownreddark}{\varphi_{2,t+1}}(1-k_{t+1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
+ \end{align}
+
+  
+\hyperlink{no_commitment}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Short-run costs from oscillatory dynamics}
+	\label{SRcosts}
+
+ Consider a stylized adaptive learning model in two equations:
+\begin{align}
+\pi_t & = \beta f_t + u_t \label{simple_NKPC} \\
+f_t & = f_{t-1} + k(\pi_t - f_{t-1}) \label{simple_expectations}
+\end{align}
+
+Solve for the time series of expectations $f_t$
+\begin{equation}
+f_t = \underbrace{\frac{1-k^{-1}}{1-k^{-1}\beta}}_{\approx 1}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
+\end{equation}
+
+Solve for forecast error $fe_t \equiv \pi_t - f_{t-1}$:
+\begin{equation}
+fe_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t \label{oscillating_fe}
+\end{equation}
+
+ 
+\hyperlink{SRLRtradeoffs}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Target criterion system for anchoring function as changes of the gain}
+	\label{generalTC}
+
+\begin{align*}
+\varphi_{6,t} & = -c fe_{t|t-1} x_{t+1} + \bigg(1+ \frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}) -fe_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} \\
+& -\frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1})\varphi_{6,t+2} \numberthis \label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{fe_{t|t-1}}\varphi_{6,t+1}\numberthis \label{1'}
+\end{align*}
+$\varphi_{6,t}$ Lagrange multiplier on anchoring function
+
+\
+
+The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{fe_{t+j|t+j-1}}}{\frac{k_{t+j}}{fe_{t+j|t+j-1}} + \mathbf{g}_{\pi, t+j}} \label{sol1'}
+\end{equation}
+
+ 
+\hyperlink{anchTC}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Details on households and firms}
+	\label{details_HHs_firms}
+
+\
+
+Consumption:	
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+$\theta>1$: elasticity of substitution between varieties
+
+\
+
+Aggregate price level:
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+
+Profits:
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+
+Stochastic discount factor
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+
+
+\hyperlink{HH}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Derivations}
+	\label{derivations}
+
+Household FOCs
+ \begin{align*}
+\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
+\\
+\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
+\end{align*}
+where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+
+\begin{enumerate}
+\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
+\item Sub in (\ref{IBC})
+\item Aggregate over households $i$
+\item[$\rightarrow$] Obtain (\ref{NKIS})
+\end{enumerate}
+
+
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%\frametitle{A beamer button template, how to get back to main text}
+%\label{Steps}
+%
+%\begin{equation}
+%D = \begin{bmatrix}
+%d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
+%d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
+%\vdots & \vdots & \vdots & \ddots & \vdots 
+%\end{bmatrix}
+%\end{equation}
+%
+%\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\backupend
+
+
+\end{document}

@@ -1,4 +1,4 @@
-function [res, Om, FEt_1] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,alph0,Wprior)
+function [res, Om, FEt_1] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,v,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,alph0,Wprior)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
@@ -19,13 +19,16 @@ if min(k10)<0
     res = 1e+10*ones(size(Om_data));
     disp('k1 was negative on fine grid, not even bothering to do simulation')
 else
-    
-    [ny, nx] = size(gx);
-    
+        
     knowTR=1;
     mpshock=1;
+    
     % Simulate data given parameters
-    [~, y, k,~,~,~,FEt_1] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
+    [~, y, k,phi,~,~,FEt_1] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
+    % add one-step forecast to data
+    y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+    nobs = size(y_data,1);
+
     k1 = 1./k(1:end-1); % cut off last period where k is unset
     % Do not filter data and estimate VARs if the current coefficients
     % alpha lead to an explosive learning simulation
@@ -50,9 +53,9 @@ else
         
         % 3) BK filter
         K=12;
-        ystar = nan(ny,T-2*K);
-        for i=1:ny
-            ystar(i,:) = BKfilter(y(i,:)');
+        ystar = nan(nobs,T-2*K-1);
+        for i=1:nobs
+            ystar(i,:) = BKfilter(y_data(i,:)');
         end
         
         filt=ystar;
@@ -71,24 +74,24 @@ else
         
         % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
         PHI = B(2:end,:)';
-        F = [PHI; [eye(ny*(p-1)), zeros(ny*(p-1),ny)]];
-        Q = [[sigma, zeros(ny,ny*(p-1))]; zeros(ny*(p-1),ny*p)];
+        F = [PHI; [eye(nobs*(p-1)), zeros(nobs*(p-1),nobs)]];
+        Q = [[sigma, zeros(nobs,nobs*(p-1))]; zeros(nobs*(p-1),nobs*p)];
         % check sizes
-        np = ny*p;
+        np = nobs*p;
         
-        vecSig = (eye(np^2)-kron(F,F))\vec(Q);
+        vecSig = (eye(np^2)-kron(F,F))\vec(Q); % Hamilton p. 279 Mac, eq. [10.2.18]
         % VC matrix of data y
-        Gamj = zeros(ny,ny,K+1);
-        Gamj_own = zeros(ny,K+1);
+        Gamj = zeros(nobs,nobs,K+1);
+        Gamj_own = zeros(nobs,K+1);
         
         Sig = reshape(vecSig,np,np);
         for j=0:K
             % jth Autocov of data y, still as a VAR(1)
             Sigj = F^j * Sig;
             % jth Autocov of data y, finally as a VAR(p)
-            Gamj(:,:,j+1) = Sigj(1:ny,1:ny);
+            Gamj(:,:,j+1) = Sigj(1:nobs,1:nobs);
             % This only takes the covariances wrt the same var: (e.g Cov(x_t,x_{t-1}))
-            Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
+            Gamj_own(:,j+1) = diag(Sigj(1:nobs,1:nobs));
         end
         % moments vector
         Om = vec(Gamj);
