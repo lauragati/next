@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -31,14 +31,14 @@ datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % % filename ='acf_data_11_Jun_2020'; % real data
-% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
+% filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -52,8 +52,8 @@ ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
-Wmid =0; %1000
+Wdiffs2= 0;%100000, seems like 100K is sufficient, or even 10K
+Wmid =1000; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
@@ -94,7 +94,7 @@ ndrop = 5 % 0-50
 % gen all the N sequences of shocks at once.
 rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
 % Size of cross-section
-N=100
+N=1000
 eN = randn(3,T+ndrop,N);
 vN = randn(nobs,T+ndrop,N); % measurement error
 
@@ -166,6 +166,8 @@ switch gridspacing
         fegrid = linspace(femin,femax,nfe); % for alph0, fe is between (-2.6278,3.5811).
     case 'uneven'
         fegrid = uneven_grid(femin,femax,nfe)
+    case 'manual'
+        fegrid = [-2,-1,1,2]
 end
 % map to ndim_simplex
 x = cell(1,1);
@@ -326,8 +328,13 @@ disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
+% the appendix of each figname:
+figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', this_code, '_', todays_date];
+
+
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = [this_code, '_alph_opt_','loss_', num2str(floor(min(resnorm_mean))),'_nfe_',num2str(nfe), '_' todays_date];
+figname = ['alph_opt_',figspecs];
 create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
 % end
 
@@ -386,12 +393,12 @@ if contains(current_dir, 'BC_Research') % local
 elseif contains(current_dir, 'gsfs0') % sirius server
     lh = legend([h,h0,h1],{'Data', 'Initial','Optimal'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'Box', 'off');
 end
+
+
 % Note position: left, bottom, width, height
-figname = [this_code, '_autocovariogram_','N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
+figname = ['autocovariogram_' figspecs];
 if contains(filename,'sim')==1
-    figname = [this_code, '_autocovariogram_sim_','N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid),'_', cross_section, '_', todays_date];
+    figname = ['autocovariogram_sim_', figspecs];
 end
 if print_figs ==1
     disp(figname)
@@ -412,8 +419,7 @@ if contains(filename,'sim')
         alph_opt_mean
     end
     
-    figname= [this_code, '_alphas_','N_', num2str(N),'_loss_', num2str(floor(min(resnorm_mean))),'_nfe_',num2str(nfe),...
-        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', todays_date];
+    figname= ['alphas_',figspecs];
     
     figure
     set(gcf,'color','w'); % sets white background color

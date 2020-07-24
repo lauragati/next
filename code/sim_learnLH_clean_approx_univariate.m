@@ -100,6 +100,7 @@ for t = 1:T-1
                 %                 [fk, om, thet] = fk_cusum(param,k(:,t-1),om, thet,fe);
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
+%                 fex = ysim(2,t)-(a(2) + b(2,:)*xsim(:,t-1)); % output gap fe
 %                 disp(t)
                 if isnan(fe)
                     disp('fe was nan, setting loss = 1e+10')

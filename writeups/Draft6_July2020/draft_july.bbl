@@ -104,6 +104,12 @@ Cogley, T. and J.~M. Nason (1993).
   model.
 \newblock {\em Economics Letters\/}~{\em 43\/}(1), 77--81.
 
+\bibitem[\protect\citeauthoryear{Duffie and Singleton}{Duffie and
+  Singleton}{1990}]{duffie1990simulated}
+Duffie, D. and K.~J. Singleton (1990).
+\newblock Simulated moments estimation of markov models of asset prices.
+\newblock Technical report, National Bureau of Economic Research.
+
 \bibitem[\protect\citeauthoryear{Eichenbaum, Jaimovich, and Rebelo}{Eichenbaum
   et~al.}{2011}]{eichenbaum2011reference}
 Eichenbaum, M., N.~Jaimovich, and S.~Rebelo (2011).
@@ -178,6 +184,12 @@ Kydland, F.~E. and E.~C. Prescott (1977).
 \newblock Rules rather than discretion: The inconsistency of optimal plans.
 \newblock {\em Journal of Political Economy\/}~{\em 85\/}(3), 473--491.
 
+\bibitem[\protect\citeauthoryear{Lee and Ingram}{Lee and
+  Ingram}{1991}]{lee1991simulation}
+Lee, B.-S. and B.~F. Ingram (1991).
+\newblock Simulation estimation of time-series models.
+\newblock {\em Journal of Econometrics\/}~{\em 47\/}(2-3), 197--205.
+
 \bibitem[\protect\citeauthoryear{Lubik and Matthes}{Lubik and
   Matthes}{2016}]{LUBIK201685}
 Lubik, T.~A. and C.~Matthes (2016).
@@ -244,6 +256,12 @@ Rotemberg, J.~J. and M.~Woodford (1997).
 Sargent, T.~J. (1999).
 \newblock {\em The Conquest of American Inflation}.
 \newblock Princeton University Press.
+
+\bibitem[\protect\citeauthoryear{Smith}{Smith}{1993}]{smith1993SMM}
+Smith, A.~A. (1993).
+\newblock Estimating nonlinear time-series models using simulated vector
+  autoregressions.
+\newblock {\em Journal of Applied Econometrics\/}~{\em 8}, S63--S84.
 
 \bibitem[\protect\citeauthoryear{Svensson}{Svensson}{1999}]{svensson1999inflation}
 Svensson, L.~E. (1999).

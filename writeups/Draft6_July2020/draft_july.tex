@@ -256,7 +256,7 @@ where $h$ gathers the autoregressive coefficients $\rho_j$, $\epsilon_t$ the Gau
  %%%%%%%%%%%%%%%%%%           LEARNING            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \section{Learning with an anchoring mechanism}\label{learning}
-The informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Without knowing the form of the observation equation, then, they are not able to form rational expectations forecasts.\footnote{To see this, observe that an agent with rational expectations would internalize all of the rational expectations state-space system. Therefore, she would use the state transition equation (\ref{LOM_s}) together with the observation equation (\ref{RE_obs}) in App. \ref{app_FG} to forecast future jumps as $\E_t z_{t+k} = g^{RE}\E_ts_{t+k} = g^{RE}h^{k}s_t$, where $g^{RE}$ is the mapping between states and jumps under rational expectations. Agents in the learning model however do not know $g^{RE}$ and are thus indeed unable to form the rational expectations forecast.} Instead, agents postulate an ad-hoc forecasting relationship between states and jumps and seek to refine it in light of incoming data. In other words, they act like an econometrician: they estimate a simple statistical model and attempt to improve the fit of their model.
+The informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Without knowing the form of the observation equation, then, they are not able to form rational expectations forecasts.\footnote{To see this, observe that an agent with rational expectations would internalize all of the rational expectations state-space system. Therefore, she would use the state transition equation (\ref{LOM_s}) together with the observation equation (\ref{RE_obs}) in App. \ref{app_FG} to forecast future jumps as $\E_t z_{t+k} = g^{RE}\E_ts_{t+k} = g^{RE}h^{k}s_t$, where $g^{RE}$ is the mapping between states and jumps under rational expectations. Agents in the learning model however do not know (\ref{RE_obs}) and are thus indeed unable to form the rational expectations forecast.} Instead, agents postulate an ad-hoc forecasting relationship between states and jumps and seek to refine it in light of incoming data. In other words, they act like an econometrician: they estimate a simple statistical model and attempt to improve the fit of their model.
 \subsection{Perceived law of motion}
 I assume agents consider a forecasting model for jumps of the form
 \begin{equation}
@@ -279,25 +279,25 @@ Assuming that agents know the evolution of states, that is they have knowledge o
 
 The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $fe_{t|t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
 \begin{align}
-\phi_t  & = \bigg( \phi_{t-1}' + k_t^{-1} R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
-R_t &= R_{t-1} +  k_t^{-1} \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
 \end{align}
-where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t^{-1}$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi_t$. A low gain, by contrast, means that the current forecast error only has a small effect on $\phi_t$.
+where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi_t$. A low gain, by contrast, means that the current forecast error only has a small effect on $\phi_t$.
 
 \subsection{Endogenous gain as anchoring mechanism}
 
-The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time so that $k_t^{-1} = (k_{t-1}+1)^{-1}$. Instead, in the spirit of \cite{carvalho2019anchored}, I allow firms and households in the model to choose whether to use a constant or a decreasing gain. I use the following endogenous gain specification: let $fe_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = (k_{t-1}^{-1}+1)^{-1}$. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} to allow firms and households in the model to choose the value of the gain. I use the following endogenous gain specification: let $fe_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
 \begin{equation}
-k_t^{-1}  = \rho_k k_{t-1}^{-1} + \mathbf{g}(fe_{t|t-1}) 
+k_t  = \mathbf{g}(k_{t-1},fe_{t|t-1}) 
 \label{anchoring}
 \end{equation}
-where $\mathbf{g(\cdot)}$ is a smooth, increasing function in the forecast error that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms.\footnote{Equation (\ref{anchoring}) nests decreasing gains or constant gains as special cases. In both cases, the anchoring function is $\mathbf{g} = 0$, but a decreasing gain implies $\rho_k < 1$, while a constant gain sets $\rho_k = 1$.}.
+where $\mathbf{g(\cdot)}$ is a smooth, increasing function in both arguments that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms.\footnote{Equation (\ref{anchoring}) nests decreasing gains or constant gains as special cases. In both cases, the derivative of the anchoring function with respect to its second argument is 0, but a decreasing gain implies $\mathbf{g}(k_{t-1},fe_{t|t-1})  = (k_{t-1}^{-1}+1)^{-1}$, while a constant gain sets $\mathbf{g}(k_{t-1},fe_{t|t-1})  = \bar{g}$.}. I let my choice of functional form for $\mathbf{g(\cdot)}$ be guided by data, wherefore I start my inquiry by estimating the anchoring function (see Section \ref{estimation}).
 
-Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. If they observe small forecast errors, $\mathbf{g(\cdot)}$ is small enough so that $k^{-1}_t < k^{-1}_{t-1}$.  Firms and households thus use a decreasing gain, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's estimate of $g$, $g^l$, is not updated strongly. The private sector's long-run expectations of the observables are stable. 
+Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. For a given previous gain, if agents observe small forecast errors, $\mathbf{g(\cdot)}$ is small. Firms and households thus use a small gain to update their forecasting rule, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's long-run expectations of the observables are stable. 
 
-By contrast, observing large forecast errors leads to $\mathbf{g}$ being sufficiently large so that the gain increases. This corresponds to assigning a higher weight to more recent observations than old ones. Such a forecasting scheme outperforms the decreasing gain scheme when the environment is volatile, reflecting a possible regime switch. If the previous DGP has been replaced by a new one, having high gains allows agents to discount old observations generated by the previous DGP, and rely more on the newest observations that come from the current DGP. In this way, agents can learn the new DGP faster, correcting their previously held long-run expectations. This is the case of \emph{unanchored expectations}, and it induces long-run expectations to drift away from their previous values. 
+By contrast, observing large forecast errors leads to $\mathbf{g}(\cdot)$ being sufficiently large so that the gain increases. This corresponds to assigning a higher weight to more recent observations than old ones. Such a forecasting scheme outperforms a lower gain scheme when the environment is volatile, reflecting a possible regime switch. If the previous DGP has been replaced by a new one, having a high gain allows agents to discount old observations generated by the previous DGP, and rely more on the newest observations that come from the current DGP. In this way, agents can learn the new DGP faster, correcting their previously held long-run expectations. This is the case of \emph{unanchored expectations}, and it induces long-run expectations to drift away from their previous values. 
 
-It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping $g$ between states and jumps than $g^l_{t-1}$, so that $g^l_t$ is updated strongly. Private sector forecasts will thus drift in the direction of the update in $g^l$, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. However, it is not obvious that the central bank prefers to anchor expectations at all points in time because regime shifts in model parameters might warrant letting the private sector learn the new DGP fast. Indeed, the contribution of this paper is to characterize formally the nature of the monetary policy problem when expectation formation is characterized by the  anchoring mechanism.
+It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping between states and jumps than they previously maintained. Private sector forecasts will thus drift in the direction of the update, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. However, it is not obvious that the central bank prefers to anchor expectations at all points in time because regime shifts in model parameters might warrant letting the private sector learn the new DGP fast. Indeed, the contribution of this paper is to characterize formally the nature of the monetary policy problem when expectation formation is characterized by the  anchoring mechanism.
 
 \subsection{Actual law of motion}
 To complete the model, I now use the specifics of the anchoring expectation formation to characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
@@ -316,6 +316,31 @@ where $g^l$ is a $3\times4$ matrix given in App. \ref{app_FG}. Thus, instead of 
  %%%%%%%%%%%%%%%%%%           ESTIMATION            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \section{Estimating the anchoring function}\label{estimation}
+The numerical analysis of monetary policy requires a functional specification for the anchoring function $\mathbf{g}(\cdot)$ of Equation (\ref{anchoring}). But one may be interested in the form of the anchoring function in its own right because it carries the answer to a question crucial to central bankers: for what sign and size forecast errors do expectations become unanchored?
+
+Because the analytical results in Section \ref{ramsey} are based on a specification of the gain as a function of forecast errors only, I here present estimation results for that restricted specification.\footnote{Estimates of the general functional form are available on request.} Since the shape of the anchoring function is meaningful, I employ a piecewise linear approximation of the form:
+
+\begin{equation}
+\mathbf{g}(fe_{t|t-1}) = \alpha b(fe_{t|t-1})\label{gain}
+\end{equation}
+
+where $b(\cdot)$ is a second order spline basis and $\alpha$ is a vector of approximating coefficients. I estimate $\alpha$ by simulated method of moments \`a la \cite{lee1991simulation}, \cite{duffie1990simulated} and \cite{smith1993SMM}. App. \ref{SMM} contains a detailed description of the estimation methodology.
+
+\begin{figure}[h!]
+\includegraphics[scale=\mySmallFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+\caption{Estimated $\hat{\alpha}$: $k_t$ as a function of $fe_{t|t-1}$}
+\label{alpha_hat}
+\floatfoot{Estimates for $N=1000$, imposing convexity with weight 100000, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+Fig. \ref{alpha_hat} presents the estimated coefficients. The interpretation of the elements of $\hat{\alpha}$ is the value of the gain the private sector choses when it observers a forecast error of a particular magnitude. For example, a forecast error of -2\%-points in inflation is associated with a gain of 0.0257. Thus, the data suggest that small forecast errors, below 1\%-point in magnitude, do not unanchor expectations as the corresponding gain is very small, below 0.01.
+
+What amounts to a large gain? The consensus in the small literature on estimating learning gains lies between 0.01-0.05. On the higher end, \cite{branch2006simple} estimate a constant gain on inflation of 0.062. \cite{milani2007expectations} finds 0.0183. The estimates of the maximal value for endogenous gains lie somewhat higher, at 0.082 in \cite{milani2014learning} and at 0.145 in \cite{carvalho2019anchored}. Calibrated models tend to use values between 0.01-0.05, however, \cite{eusepi2011expectations} found that the value of 0.002 was sufficient to significantly alter the dynamic behavior of their RBC model. 
+
+An intuitive interpretation of the gain is that the inverse of the gain gives the number of past observations the private sector uses. My minimum value, 0.005, thus implies that firms and households, if they see no forecast errors, rely on the last 50 years of data.\footnote{The frequency of the model and the data is quarterly.} By contrast, forecast errors of 2\%-points in absolute value lead to a number around 0.03, which means that agents discount any observations older than about 8 years.
+
+Taken together, this allows me to interpret forecast errors exceeding 1\%-point as threatening to unanchor, and forecast errors in the range of 2\%-points as substantially unanchoring expectations. In particular, the private sector begins suspecting that a regime change may have occurred as soon as it sees that its forecasting procedure missed inflation by 1\%-point.  
+
 
  %%%%%%%%%%%%%%%%%%            RESULTS            %%%%%%%%%%%%%%%%%% 
 %\newpage
@@ -359,7 +384,7 @@ The solution of the Ramsey problem under these assumptions is stated in the foll
 \begin{result} Target criterion in the anchoring model \\
 The targeting rule in the simplified learning model with anchoring is given by
 \begin{align*}
-\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t} \bigg) \\
+\pi_t  = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t} \bigg) \\
 \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi},t+j}}) \bigg)
 \bigg\} \numberthis \label{target}
 \end{align*}
@@ -369,7 +394,7 @@ For the derivation, see Appendix \ref{app_midsimple_problem}. For a general targ
 \end{result}
 The interpretation of Equation (\ref{target}) is that the \emph{intra}temporal tradeoff between inflation and the output gap due to cost-push shocks is complemented by two \emph{intertemporal} tradeoffs: one due to learning and one due to anchoring. 
 
-The first intertemporal effect comes the current level of the gain,  $k_t^{-1}$, which captures how far learning is from converging to rational expectations. The second intertemporal tradeoff is manifest in the derivative of the anchoring function today,  $\mathbf{g}_{\pi,t}$, as well as in all expected levels and changes in the gain in the future in the expression $(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi},t+j}})$ in the second bracket on the right-hand side. This says that  the presence of anchoring amplifies this intertemporal tradeoff because now the degree and direction in which the gain changes today and is expected to change in the future matter too. In other words, the central bank needs to consider whether its chosen interest rate sequence contributes to anchoring expectations in future periods, or whether it actually serves to unanchor them.
+The first intertemporal effect comes the current level of the gain,  $k_t$, which captures how far learning is from converging to rational expectations. The second intertemporal tradeoff is manifest in the derivative of the anchoring function today,  $\mathbf{g}_{\pi,t}$, as well as in all expected levels and changes in the gain in the future in the expression $(1-k_{t+j}^{-1}(\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi},t+j}})$ in the second bracket on the right-hand side. This says that  the presence of anchoring amplifies this intertemporal tradeoff because now the degree and direction in which the gain changes today and is expected to change in the future matter too. In other words, the central bank needs to consider whether its chosen interest rate sequence contributes to anchoring expectations in future periods, or whether it actually serves to unanchor them.
 
 Let me investigate these channels in isolation and in more depth. To see exactly what the role of anchoring is in the target criterion, consider first the special case of exogenous gain adaptive learning, for simplicity with a constant gain specification.\footnote{The intuition is identical if the public were using a decreasing gain but the math would not convey that same intuition as cleanly.} In this case the anchoring function and the forecast error are irrelevant (since $\mathbf{g_i}=0, i=\pi,\bar{\pi}$) and (\ref{target}) boils down to
 \begin{align}
@@ -387,9 +412,9 @@ Anchoring, however, complicates the possibility of transfering today's tradeoff 
 
 Let me therefore rewrite Equation (\ref{gaspar22}) from App. \ref{app_midsimple_problem}, the first of the three-equation system obtained by solving the Ramsey problem:
 \begin{equation}
-2\pi_t = - 2\frac{\lambda_x}{\kappa}x_t +\varphi_{5,t} k_t^{-1} + \varphi_{6,t} \mathbf{g}_{\pi,t} 
+2\pi_t = - 2\frac{\lambda_x}{\kappa}x_t +\varphi_{5,t} k_t + \varphi_{6,t} \mathbf{g}_{\pi,t} 
 \end{equation}
-The Lagrange multipliers $\varphi_5 \geq 0$ and $\varphi_6 \geq 0$ are the multipliers of the RLS updating and the anchoring equation respectively. This equation, upon substitution of the solutions for the two multipliers, yields the target criterion and is thus ideal for interpretation. First, since $\varphi_{5,t}k_t^{-1} > 0$, one immediately obtains the above-discussed conclusion that as long as the adaptive learning equation is a constraint to the policymaker ($\varphi_{5,t} > 0$), the central bank has more room to transfer the contemporaneous tradeoff between inflation and the output gap to the future.\footnote{Strictly speaking, $\varphi_5$ and $\varphi_6$ are never zero in this model. The reason is that the anchoring model is a convex combination of decreasing and constant gain learning. The former has the RE solution as a limit, while the latter fluctuates around the RE solution with bounded variance. In the anchoring setting, if expectations are anchored and there are no inflation surprises, the gain converges to zero and the decreasing gain limit of discretionary RE obtains. However, exogenous disturbances induce unforecastable variation, producing forecast errors that will unanchor expectations, restarting the learning process. This is in stark contrast with \cite{carvalho2019anchored}, where the anchoring function is the map between the PLM and the expected ALM and thus only depends on the endogenous component of the forecast error. Therefore, in their model absent regime switches, expectations can never become unanchored once learning has converged.}
+The Lagrange multipliers $\varphi_5 \geq 0$ and $\varphi_6 \geq 0$ are the multipliers of the RLS updating and the anchoring equation respectively. This equation, upon substitution of the solutions for the two multipliers, yields the target criterion and is thus ideal for interpretation. First, since $\varphi_{5,t}k_t > 0$, one immediately obtains the above-discussed conclusion that as long as the adaptive learning equation is a constraint to the policymaker ($\varphi_{5,t} > 0$), the central bank has more room to transfer the contemporaneous tradeoff between inflation and the output gap to the future.\footnote{Strictly speaking, $\varphi_5$ and $\varphi_6$ are never zero in this model. The reason is that the anchoring model is a convex combination of decreasing and constant gain learning. The former has the RE solution as a limit, while the latter fluctuates around the RE solution with bounded variance. In the anchoring setting, if expectations are anchored and there are no inflation surprises, the gain converges to zero and the decreasing gain limit of discretionary RE obtains. However, exogenous disturbances induce unforecastable variation, producing forecast errors that will unanchor expectations, restarting the learning process. This is in stark contrast with \cite{carvalho2019anchored}, where the anchoring function is the map between the PLM and the expected ALM and thus only depends on the endogenous component of the forecast error. Therefore, in their model absent regime switches, expectations can never become unanchored once learning has converged.}
 
 However, whether the anchoring equation alleviates or exacerbates the inflation-output gap tradeoff depends on the sign of $\mathbf{g_{\pi,t}}$. If the derivative is positive, the effect is the same as above, and the central bank has more leeway to postpone the tradeoff to the future. By contrast, if the derivative is negative, that is expectations are becoming anchored, the intratemporal tradeoff is worsened.
 
@@ -400,7 +425,7 @@ This does not imply that the central bank should prefer to have unanchored expec
 Having unanchored expectations, however, is costly. As I demonstrate in Sections \ref{implement}-\ref{opt_TR}, unanchored expectations lead to more volatility in the observables due to more volatile forecast errors in the wake of a higher gain. Moreover, getting unanchored expectations anchored again is also costly. Therefore heightened inflation and output gap volatility may be too high a price to pay for an ameliorated inflation-output gap tradeoff.
 
 \subsubsection{Time consistence of optimal plans under adaptive learning}
-Now simplify the target criterion further, assuming that learning has converged, $k_t^{-1} = \mathbf{g_\pi} = 0$. We are left with 
+Now simplify the target criterion further, assuming that learning has converged, $k_t = \mathbf{g_\pi} = 0$. We are left with 
 \begin{equation}
 \pi_t  = -\frac{\lambda_x}{\kappa}x_t \label{cgg_discretion}
 \end{equation}
@@ -411,15 +436,15 @@ In an adaptive learning model with exogenous or endogenous gain, the optimal Ram
 \label{result_no_commitment}
 \end{result}
 
-To illustrate this result in a parsimonious manner, consider a simplified version of the model. The planner chooses $\{\pi_t, x_t, f_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+To illustrate this result in a parsimonious manner, consider a simplified version of the model. The planner chooses $\{\pi_t, x_t, f_t, k_t\}_{t=t_0}^{\infty}$ to minimize
  \begin{align*}
-\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t^{-1}(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t^{-1} - \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t - \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
  \end{align*}
- where the IS-curve, $x_t = \E_t x_{t+1}+\sigma f_t -\sigma i_t +\sigma r_t^n$, is a non-binding constraint, and is therefore excluded from the problem. $\varphi_i$ are Lagnrange-multipliers and $\E_t x_{t+1}$ is rational. In this simplified setting, $f_t$ is a stand-in variable capturing inflation expectations and evolves according to a recursive least squares algorithm. The anchoring function $\mathbf{g}$ specifies how the gain $k_t^{-1}$ changes as a function of the current forecast error according to assumption (\ref{anchoring_simple}).\footnote{Here I maintain assumption (\ref{anchoring_simple}) for presentational purposes. It has no bearing on the results.} Note that the problem involves commitment because the monetary authority internalizes the effects of its actions both on the evolution of expectations and on that of the gain. 
+ where the IS-curve, $x_t = \E_t x_{t+1}+\sigma f_t -\sigma i_t +\sigma r_t^n$, is a non-binding constraint, and is therefore excluded from the problem. $\varphi_i$ are Lagnrange-multipliers and $\E_t x_{t+1}$ is rational. In this simplified setting, $f_t$ is a stand-in variable capturing inflation expectations and evolves according to a recursive least squares algorithm. The anchoring function $\mathbf{g}$ specifies how the gain $k_t$ changes as a function of the current forecast error according to assumption (\ref{anchoring_simple}).\footnote{Here I maintain assumption (\ref{anchoring_simple}) for presentational purposes. It has no bearing on the results.} Note that the problem involves commitment because the monetary authority internalizes the effects of its actions both on the evolution of expectations and on that of the gain. 
  
  After some manipulation, first order conditions reduce to:
  \begin{align}
-  2\pi_t +2\frac{\lambda_x}{\kappa}x_t -\varphi_{2,t}(k_t^{-1} + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
+  2\pi_t +2\frac{\lambda_x}{\kappa}x_t -\varphi_{2,t}(k_t + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
   -2\beta\frac{\lambda_x}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1}^{-1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
  \end{align}
 Inspection of this system reveals that unlike the rational expectations case ($f_t = \E_t{\pi_{t+1}}$), the optimal solution does not involve lagged multipliers.\footnote{This echoes the findings of \cite{molnar2014optimal}.} This implies that the monetary authority cannot condition the optimal time path of inflation and the output gap on the past; optimal policy is not history-dependent. 
@@ -480,10 +505,10 @@ Before moving to the numerical solution for the optimal interest rate sequence, 
 App. \ref{pea} outlines my preferred solution procedure, the parameterized expectations approach, while App. \ref{vfi} gives the details of the parametric value function iteration approach I implement as a robustness check. The main output of this procedure is an approximation of the optimal interest rate policy as a function of the vector of state variables. Since the relevant state variables are the gain, expected mean inflation and the exogenous states at time $t$ and $t-1$, the state vector is six-dimensional:
 
 \begin{equation}
-X_t = (\bar{\pi}_{t-1}, k_{t-1}^{-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
+X_t = (\bar{\pi}_{t-1}, k_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
 \end{equation}
 
-As a first step, I plot how the approximated policy function depends on $\bar{\pi}_{t-1}$ and $k_{t-1}^{-1}$, while keeping all the other states at their mean. One can thus interpret the result, depicted on Fig. \ref{di}, as a partial derivative of the interest rate with respect to $k_{t-1}^{-1}$ (panel (a)) and $\bar{\pi}_{t-1}$ (panel (b)) respectively.
+As a first step, I plot how the approximated policy function depends on $\bar{\pi}_{t-1}$ and $k_{t-1}$, while keeping all the other states at their mean. One can thus interpret the result, depicted on Fig. \ref{di}, as a partial derivative of the interest rate with respect to $k_{t-1}$ (panel (a)) and $\bar{\pi}_{t-1}$ (panel (b)) respectively.
 
 \begin{figure}[h!]
 \subfigure[$i(k^{-1})$]{\includegraphics[scale=0.17]{\myFigPath analyze_opt_policy_ik}}
@@ -795,7 +820,7 @@ The baseline specification of the anchoring function $\mathbf{g}$ (Equation (\re
 
 The only other paper to consider an endogenous gain as a model for anchored expectations is \cite{carvalho2019anchored}. In their model, the anchoring function is a discrete choice function as follows. Let $\theta_t$ be a criterion to be defined. Then, for a threshold value $\tilde{\theta}$, the gain evolves according to
 \begin{align*}
-k_t^{-1} & = \begin{cases} (k_{t-1}+1)^{-1} \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}  \quad \text{otherwise.}\numberthis \label{anchoring_kinked}
+k_t & = \begin{cases} (k_{t-1}+1)^{-1} \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}  \quad \text{otherwise.}\numberthis \label{anchoring_kinked}
 \end{cases} 
 \end{align*}
 In other words, agents choose a decreasing gain when the criterion $\theta_t$ is lower than the threshold $\tilde{\theta}$; otherwise they choose a constant gain. The criterion employed by \cite{carvalho2019anchored} is computed as the absolute difference between subjective and model-consistent expectations, scaled by the variance of shocks:
@@ -806,8 +831,8 @@ where $\Sigma$ is the VC matrix of shocks, $\phi_{t-1}$ is the estimated matrix 
 
 As a robustness check, \cite{carvalho2019anchored} also compute an alternative criterion.\footnote{Note that for both criteria, I present the matrix generalizations of the scalar versions considered by \cite{carvalho2019anchored}.} Let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
 \begin{align}
-\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
-\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}^{-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1}) \label{cusum_crit}
+\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1}) \label{cusum_crit}
 \end{align}
 where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $fe_{t|t-1}$ is the most recent forecast error, realized at time $t$. Indeed, this is a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.}
 
@@ -816,9 +841,16 @@ It is interesting to compare the two discrete anchoring functions with my smooth
 On the other hand, simulation of the model using the different anchoring specifications reveals that \cite{carvalho2019anchored}'s preferred functional form leads to the opposite comparative statics of anchoring with respect to monetary policy aggressiveness as the smooth or the CUSUM-based specifications. In particular, while policy that is more aggressive on inflation (a higher $\psi_{\pi}$ in the Taylor rule) leads to more anchoring in a model with the smooth or the CUSUM-inspired criterion. If one uses \cite{carvalho2019anchored}'s criterion, the same comparative static involves \emph{less} anchoring. This comes from the fact that \cite{carvalho2019anchored}'s criterion endows the public sector with capabilities to disentangle volatility due to the learning mechanism from that owing to exogenous disturbances. Thus agents in the \cite{carvalho2019anchored} model are able to make more advanced inferences about the performance of their forecasting rule and understand that a higher $\psi_{\pi}$ causes more learning-induced volatility. This is however not possible for agents who process data in real time without knowledge of the model. Therefore my smooth and the discrete CUSUM-inspired specifications are preferable both on conceptual and quantitative grounds.
 
 Whether one relies on the discrete CUSUM or my smooth anchoring function, then, is a question of application. The analytical analysis of this paper requires derivatives of the anchoring function to exist. In such a case, the smooth specification is necessary. The discrete choice specification is easier to work with when computing moments conditional whether expectations are anchored or not because it only requires keeping track of two discrete cases.
+\section{Estimation procedure}\label{SMM}
+\begin{figure}[h!]
+\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+\caption{Autocovariogram}
+\floatfoot{Estimates for $N=1000$, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
 
 \section{The policy problem in the simplified baseline model }\label{app_midsimple_problem}
-Denote by $\mathbf{g}_{i,t} \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time-varying derivatives of the anchoring function $\mathbf{g}$. In this simplified setting, $\bar{\pi}_t = e_1 a_t$, the estimated constant for the inflation process. $e_i$ is a selector vector, selecting row $i$ of the subsequent matrix. I also use the notation $b_i \equiv e_i b$.   The planner chooses $\{\pi_t, x_t, f_{a,t},  f_{b,t}, \bar{\pi}_t, k_t^{-1}\}_{t=t_0}^{\infty}$ to minimize
+Denote by $\mathbf{g}_{i,t} \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time-varying derivatives of the anchoring function $\mathbf{g}$. In this simplified setting, $\bar{\pi}_t = e_1 a_t$, the estimated constant for the inflation process. $e_i$ is a selector vector, selecting row $i$ of the subsequent matrix. I also use the notation $b_i \equiv e_i b$.   The planner chooses $\{\pi_t, x_t, f_{a,t},  f_{b,t}, \bar{\pi}_t, k_t\}_{t=t_0}^{\infty}$ to minimize
 
  \begin{align}
 \mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{  (\pi_t^2  + \lambda_x x_t^2 )  \\
@@ -826,26 +858,26 @@ Denote by $\mathbf{g}_{i,t} \in (0,1), \; i=\pi, \bar{\pi}$, the potentially tim
  & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_{b,t}  -  (1-\beta)b_2 (I_3 - \beta h)^{-1}s_t + \sigma\beta b_3 (I_3 - \beta h)^{-1}s_t -\sigma e_1(I_3 - \beta h)^{-1}s_t  \big)\bigg) \\
  & +  \varphi_{3,t}  \bigg(f_{a,t} - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h)^{-1}s_t  \bigg) \\
  & + \varphi_{4,t}  \bigg(f_{b,t} - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h)^{-1}s_t \bigg)  \\
-  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t^{-1}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)   \bigg)  \\
-  & + \varphi_{6,t}  \bigg(k_t^{-1} - \mathbf{g}(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  \bigg)
+  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)   \bigg)  \\
+  & + \varphi_{6,t}  \bigg(k_t - \mathbf{g}(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  \bigg)
   \bigg\} \label{midsimple_last}
 \end{align}
 where $\rho_i$ are Lagrange-multipliers on the constraints.
 After a little bit of simplifying, the first-order conditions boil down to the following three equations:
 \begin{align}
-& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -\varphi_{5,t} k_t^{-1} - \varphi_{6,t} \mathbf{g}_{\pi,t} = 0 \label{gaspar22}\\
-& -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa}x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21}\\
+& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -\varphi_{5,t} k_t - \varphi_{6,t} \mathbf{g}_{\pi,t} = 0 \label{gaspar22}\\
+& -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa}x_{t+1} + \varphi_{5,t} -(1-k_t)\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21}\\
 & \varphi_{6,t} = (\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}) \varphi_{5,t} \label{constraints}
 \end{align}
 Note that Equation (\ref{gaspar22}) is the analogue of \cite{gaspar2010inflation}'s Equation (22) (or, equivalently, of  \cite{molnar2014optimal}'s (16)), except that there is an additional multiplier, $\varphi_6$. This multiplier reflects the fact that in addition to the constraint coming from the expectation process itself, with shadow value $\varphi_5$, learning involves the gain equation as a constraint as well. One can also clearly read off Result \ref{result_no_commitment}: when the learning process has converged such that neither expectations nor the gain process are constraints ($\varphi_5 =\varphi_6 = 0$), the discretionary inflation-output gap tradeoff familiar from \cite{clarida1999science} obtains. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} \equiv 1$, one obtains the target criterion (\ref{target}).
 
-The system of first order conditions (\ref{simpleFOC1})-(\ref{simpleFOC2}) and model equations for this simplified system also reveal how the endogenous gain introduces nonlinearity to the equation system. In particular, notice how in equations (\ref{simpleFOC1})-(\ref{simpleFOC2}), the gain $k_t^{-1}$ shows up multiplicatively with the Lagrange multiplier, $\varphi_{2,t}$. In fact, the origin of the problem is the recursive least squares learning equation for the learning coefficient $f_t$
+The system of first order conditions (\ref{simpleFOC1})-(\ref{simpleFOC2}) and model equations for this simplified system also reveal how the endogenous gain introduces nonlinearity to the equation system. In particular, notice how in equations (\ref{simpleFOC1})-(\ref{simpleFOC2}), the gain $k_t$ shows up multiplicatively with the Lagrange multiplier, $\varphi_{2,t}$. In fact, the origin of the problem is the recursive least squares learning equation for the learning coefficient $f_t$
 \begin{equation}
-f_t = f_{t-1} + k_t^{-1}(\pi_t - f_{t-1}) \label{simpleRLS}
+f_t = f_{t-1} + k_t(\pi_t - f_{t-1}) \label{simpleRLS}
 \end{equation}
 where the first interaction terms between the gain and other endogenous variables show up. This results in an equation system of nonlinear difference equations that does not admit an analytical solution. 
 
-Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed the endogeneity of the gain that causes these troubles. Were we to specify a constant gain setup, $k_t^{-1}$ would merely equal the constant $\bar{g}$ and the anchoring function $\mathbf{g}$ would trivially reduce to zero as well. In such a case, all interaction terms would reduce to multiplication between endogenous variables and parameters; linearity would be restored and a solution for the optimal time paths of endogenous variables would be obtainable. Similarly, a decreasing gain specification would also be manageable since for all $t$, the gain would simply be given by $t^{-1}$, and the anchoring function would also be deterministic and exogenous. 
+Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed the endogeneity of the gain that causes these troubles. Were we to specify a constant gain setup, $k_t$ would merely equal the constant $\bar{g}$ and the anchoring function $\mathbf{g}$ would trivially reduce to zero as well. In such a case, all interaction terms would reduce to multiplication between endogenous variables and parameters; linearity would be restored and a solution for the optimal time paths of endogenous variables would be obtainable. Similarly, a decreasing gain specification would also be manageable since for all $t$, the gain would simply be given by $t^{-1}$, and the anchoring function would also be deterministic and exogenous. 
 
 \section{A target criterion for an anchoring mechanism specified in terms of gain changes}\label{app_generalTC}
 Consider the general anchoring mechanism of Equation (\ref{anchoring}):
@@ -854,11 +886,11 @@ k_t = \rho_kk_{t-1} + \mathbf{g}(fe_{t|t-1})
 \end{equation}
 With this assumption, the FOCs of the Ramsey problem are
 \begin{align}
-& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -k_t^{-1} \varphi_{5,t} - \mathbf{g}_{\pi,t}\varphi_{6,t}  = 0 \label{gaspar22_general}\\
-& c x_{t+1} + \varphi_{5,t} -(1-k_t^{-1})\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21_general}\\
+& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -k_t \varphi_{5,t} - \mathbf{g}_{\pi,t}\varphi_{6,t}  = 0 \label{gaspar22_general}\\
+& c x_{t+1} + \varphi_{5,t} -(1-k_t)\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21_general}\\
 & \varphi_{6,t} \; \textcolor{blue}{+\; \varphi_{6,t+1}} = fe_{t|t-1} \varphi_{5,t} \label{constraints_general}
 \end{align}
-where the blue multiplier is the new element vis-\`a-vis the case where the anchoring function is specified in levels ($k_t^{-1} = \mathbf{g}(fe_{t|t-1})$), and I'm using the shorthand notation
+where the blue multiplier is the new element vis-\`a-vis the case where the anchoring function is specified in levels ($k_t = \mathbf{g}(fe_{t|t-1})$), and I'm using the shorthand notation
 \begin{align}
 c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa} \\ 
 fe_{t|t-1} & = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
@@ -867,7 +899,7 @@ fe_{t|t-1} & = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
 One can simplify this three-equation-system to:
 \begin{align}
 \varphi_{6,t} & = -c fe_{t|t-1} x_{t+1} + \bigg(1+ \frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}^{-1}) -fe_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} -\frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
-0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t^{-1}}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t^{-1}}{fe_{t|t-1}}\varphi_{6,t+1}\label{1'}
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{fe_{t|t-1}}\varphi_{6,t+1}\label{1'}
 \end{align}
 Thus a central bank that follows the target criterion has to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
 \begin{equation}
@@ -884,8 +916,8 @@ f_{a,t} & = \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  + b(I_{3} - \alpha\beta h)^{
 f_{b,t} & = \frac{1}{1-\beta}\bar{\pi}_{t-1}  + b(I_{3} - \beta h)^{-1}s_t  \label{A8} \numberthis \\
  fe_{t|t-1} &  = \pi_t - (\bar{\pi}_{t-1}+b_1 s_{t-1}) \label{A7} \numberthis \\
  k^{-1}_t & = \gamma_k fe_{t|t-1}^2 \numberthis  \\
- \bar{\pi}_{t} &  = \bar{\pi}_{t-1} +k_t^{-1}fe_{t|t-1} \numberthis \\
- \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t^{-1}+fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+ \bar{\pi}_{t} &  = \bar{\pi}_{t-1} +k_tfe_{t|t-1} \numberthis \\
+ \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
 \bigg\} \numberthis \label{B1}
 \end{align*}
 

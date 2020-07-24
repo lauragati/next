@@ -171,8 +171,8 @@ That didn't help, did it now?
 \newpage 
 \subsection*{Point \#3:  change timing of forecast errors}
 \begin{align}
-k_t^{-1} &= \mathbf{g}(fe_{t|t-1})\\
-\bar{\pi}_t &= \bar{\pi}_{t-1} + k_t^{-1}fe_{t|t-1}
+k_t^{-1} &= \mathbf{g}(fe_{t|t-1}) \label{gaineq}\\
+\bar{\pi}_t &= \bar{\pi}_{t-1} + k_t^{-1}fe_{t|t-1} \label{pibeq}
 \end{align}
 The issue 	seems to be: if $fe_{t|t-1} \approx 0$, then the gain is irrelevant for learning because $fe_{t|t-1}$ figures into both equations. So the idea is to decouple the two equations by changing the timing of one of the forecast errors. Note:
 \begin{align}
@@ -225,6 +225,71 @@ This clearly has added useful info. Otherwise, behavior is like before:
 \subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_N_1000nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
 \caption{Estimates for \colorbox{yellow}{$N=1000$,  incl. 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
+
+\subsubsection*{What's missing}
+To me it seems that the reason we're still underidentified is that the $(-1,1)$-forecast error region (possibly an even bigger, $(-1.5, 1.5)$-region) doesn't produce variation in $\bar{\pi}$ (see Eq. \ref{pibeq}). So let's try to replace the forecast error in the generation of the gain (Eq. \ref{gaineq}) by say the forecast error of the output gap. (Needs the constant-only PLM.) $\rightarrow$ Doesn't work at all, I guess b/c it doesn't correspond to the DGP.
+
+$\rightarrow$ Really wonder if the anchoring function specified in terms of changes, not levels of the gain would help! If instead of equation \ref{gaineq} in system \ref{gaineq}-\ref{pibeq}, we'd have
+\begin{align}
+k_t^{-1} &= \mathbf{g}(k_{t-1}^{-1},fe_{t|t-1}) \label{gaineqchanges}
+\end{align}
+
+No, even that wouldn't work b/c the estimation routine wouldn't be able to discriminate between two points on the line $(k^{-1}_{(i)}, fe \in (-1,1))$, for $\forall i$ in the $k$-space.
+
+$\rightarrow$ I'm increasingly thinking that that region cannot be identified at all because it simply doesn't matter for the evolution of long-run expectations.
+
+2 options:
+\begin{enumerate}
+\item Select gridpoints strictly outside the $(-1,1)$-region, and use the convexity restriction to interpolate inside the region.
+\item Impose the 0 at 0 restriction at the point at 0, and select the rest of the gridpoints outside the  $(-1,1)$-region.
+\end{enumerate}
+If my conjecture is correct, both of these approaches should be identified.
+\clearpage
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$,  \colorbox{yellow}{4 knots: (-2,-1,1,2)}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_4_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%\hfill
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$, \colorbox{yellow}{5 knots: (-2,-1, 0, 1,2)}, \newline 0 at 0 restriction imposed with weight 1K]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$, \colorbox{yellow}{5 knots: (-2,-1, 0, 1,2)}, \newline 0 at 0 restriction imposed with weight 1K,  \colorbox{yellow}{convexity restriction removed}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\caption{Estimates for $N=100$, incl. 1-step ahead forecasts of inflation, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+Unfortunately, it seems to me like even outside the trouble region, we're not identified. I say that because the 0 at 0 assumption on its own should have no bearing on the coefficients out in the tails of the forecast error space. But also there, even with a high $N$, I'm not nailing the truth.
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$,  \colorbox{yellow}{4 knots: (-2,-1,1,2)}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_1000_nfe_4_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%\hfill
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$, \colorbox{yellow}{5 knots: (-2,-1, 0, 1,2)}, \newline 0 at 0 restriction imposed with weight 1K]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$, \colorbox{yellow}{5 knots: (-2,-1, 0, 1,2)}, \newline 0 at 0 restriction imposed with weight 1K,  \colorbox{yellow}{convexity restriction removed} ]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\caption{Estimates for \colorbox{yellow}{$N=1000$}, incl. 1-step ahead forecasts of inflation, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+
+\clearpage
+\section{Real data with the SPF}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\caption{Estimates for $N=1000$, \colorbox{yellow}{ incl. SPF 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+\caption{Estimates for $N=1000$, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{ incl. SPF 1-step ahead forecasts of inflation}, \colorbox{yellow}{removing convexity restriction, imposing 0 at 0 with weight 1K}}
+\end{figure}
+
+
+
+%\begin{figure}[h!]
+%\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%%\hfill
+%\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_sim_constant_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
+%\caption{Estimates for $N=100$, \colorbox{yellow}{ incl. 1-step ahead forecasts of inflation, constant-only PLM}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+%\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                              APPENDIX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage

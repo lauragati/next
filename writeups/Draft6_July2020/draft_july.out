@@ -17,8 +17,9 @@
 \BOOKMARK [1][-]{appendix.A}{Compact model notation}{}% 17
 \BOOKMARK [1][-]{appendix.B}{The observation matrix for learning}{}% 18
 \BOOKMARK [1][-]{appendix.C}{Alternative specifications for the anchoring function}{}% 19
-\BOOKMARK [1][-]{appendix.D}{The policy problem in the simplified baseline model }{}% 20
-\BOOKMARK [1][-]{appendix.E}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 21
-\BOOKMARK [1][-]{appendix.F}{Parameterized expectations algorithm \(PEA\)}{}% 22
-\BOOKMARK [1][-]{appendix.G}{Parametric value function iteration}{}% 23
-\BOOKMARK [1][-]{appendix.H}{Oscillatory dynamics in adaptive learning models}{}% 24
+\BOOKMARK [1][-]{appendix.D}{Estimation procedure}{}% 20
+\BOOKMARK [1][-]{appendix.E}{The policy problem in the simplified baseline model }{}% 21
+\BOOKMARK [1][-]{appendix.F}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 22
+\BOOKMARK [1][-]{appendix.G}{Parameterized expectations algorithm \(PEA\)}{}% 23
+\BOOKMARK [1][-]{appendix.H}{Parametric value function iteration}{}% 24
+\BOOKMARK [1][-]{appendix.I}{Oscillatory dynamics in adaptive learning models}{}% 25
