@@ -13,6 +13,13 @@ Ball, L. (1994).
 \newblock Credible disinflation with staggered price-setting.
 \newblock {\em American Economic Review\/}~{\em 84\/}(1), 282--289.
 
+\bibitem[\protect\citeauthoryear{Baxter and King}{Baxter and
+  King}{1999}]{baxter1999measuring}
+Baxter, M. and R.~G. King (1999).
+\newblock Measuring business cycles: approximate band-pass filters for economic
+  time series.
+\newblock {\em Review of economics and statistics\/}~{\em 81\/}(4), 575--593.
+
 \bibitem[\protect\citeauthoryear{Beaudry and Portier}{Beaudry and
   Portier}{2006}]{beaudry2006stock}
 Beaudry, P. and F.~Portier (2006).
@@ -104,6 +111,18 @@ Cogley, T. and J.~M. Nason (1993).
   model.
 \newblock {\em Economics Letters\/}~{\em 43\/}(1), 77--81.
 
+\bibitem[\protect\citeauthoryear{Coibion and Gorodnichenko}{Coibion and
+  Gorodnichenko}{2015}]{coibion2015information}
+Coibion, O. and Y.~Gorodnichenko (2015).
+\newblock Information rigidity and the expectations formation process: A simple
+  framework and new facts.
+\newblock {\em American Economic Review\/}~{\em 105\/}(8), 2644--78.
+
+\bibitem[\protect\citeauthoryear{Dombeck}{Dombeck}{2017}]{dombeck2017effects}
+Dombeck, B. (2017).
+\newblock The effects of news shocks and bounded rationality on macroeconomic
+  volatility.
+
 \bibitem[\protect\citeauthoryear{Duffie and Singleton}{Duffie and
   Singleton}{1990}]{duffie1990simulated}
 Duffie, D. and K.~J. Singleton (1990).
@@ -115,11 +134,6 @@ Duffie, D. and K.~J. Singleton (1990).
 Eichenbaum, M., N.~Jaimovich, and S.~Rebelo (2011).
 \newblock Reference prices, costs, and nominal rigidities.
 \newblock {\em American Economic Review\/}~{\em 101\/}(1), 234--62.
-
-\bibitem[\protect\citeauthoryear{Eusepi, Giannoni, and Preston}{Eusepi
-  et~al.}{2018}]{eusepi2018limits}
-Eusepi, S., M.~Giannoni, and B.~Preston (2018).
-\newblock On the limits of monetary policy.
 
 \bibitem[\protect\citeauthoryear{Eusepi and Preston}{Eusepi and
   Preston}{2011}]{eusepi2011expectations}
@@ -153,6 +167,13 @@ Gaspar, V., F.~Smets, and D.~Vestin (2010).
   policy.
 \newblock In {\em Handbook of Monetary Economics}, Volume~3, pp.\  1055--1095.
   Elsevier.
+
+\bibitem[\protect\citeauthoryear{Gobbi, Mazzocchi, and Tamborini}{Gobbi
+  et~al.}{2019}]{gobbi2019monetary}
+Gobbi, L., R.~Mazzocchi, and R.~Tamborini (2019).
+\newblock Monetary policy, de-anchoring of inflation expectations, and the
+  ``new normal''.
+\newblock {\em Journal of Macroeconomics\/}~{\em 61}, 103070.
 
 \bibitem[\protect\citeauthoryear{Ireland}{Ireland}{2000}]{ireland2000expectations}
 Ireland, P.~N. (2000).
@@ -197,6 +218,12 @@ Lubik, T.~A. and C.~Matthes (2016).
   {G}reat {I}nflation.
 \newblock {\em Journal of Monetary Economics\/}~{\em 82}, 85 -- 106.
 
+\bibitem[\protect\citeauthoryear{Lucas}{Lucas}{1976}]{lucas1976econometric}
+Lucas, R.~E. (1976).
+\newblock Econometric policy evaluation: A critique.
+\newblock In {\em Carnegie-Rochester conference series on public policy},
+  Volume~1, pp.\  19--46.
+
 \bibitem[\protect\citeauthoryear{L{\"u}tkepohl}{L{\"u}tkepohl}{2013}]{lutkepohl2013introduction}
 L{\"u}tkepohl, H. (2013).
 \newblock {\em Introduction to multiple time series analysis}.
@@ -230,14 +257,6 @@ Nakamura, E. and J.~Steinsson (2008).
 \newblock Five facts about prices: A reevaluation of menu cost models.
 \newblock {\em The Quarterly Journal of Economics\/}~{\em 123\/}(4),
   1415--1464.
-
-\bibitem[\protect\citeauthoryear{Orphanides and Williams}{Orphanides and
-  Williams}{2005}]{orphanides2005decline}
-Orphanides, A. and J.~C. Williams (2005).
-\newblock The decline of activist stabilization policy: Natural rate
-  misperceptions, learning, and expectations.
-\newblock {\em Journal of Economic Dynamics and Control\/}~{\em 29\/}(11),
-  1927--1950.
 
 \bibitem[\protect\citeauthoryear{Preston}{Preston}{2005}]{preston2005}
 Preston, B. (2005).
@@ -273,11 +292,6 @@ Taylor, J.~B. (1993).
 \newblock Discretion versus policy rules in practice.
 \newblock In {\em Carnegie-Rochester conference series on public policy},
   Volume~39, pp.\  195--214. Elsevier.
-
-\bibitem[\protect\citeauthoryear{Williams}{Williams}{2003}]{williams2003adaptive}
-Williams, N. (2003).
-\newblock Adaptive learning and business cycles.
-\newblock {\em Manuscript, Princeton University\/}.
 
 \bibitem[\protect\citeauthoryear{Woodford}{Woodford}{2011}]{woodford2011interest}
 Woodford, M. (2011).

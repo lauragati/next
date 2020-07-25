@@ -1,4 +1,4 @@
-function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,N,alph0,Wprior)
+function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,N,alph0,Wprior)
 % alph are the coefficients, x is the grid
 % 20 July 2020
 % same as obj_GMM_LOMgain_univariate_mean, except simulates the model N
@@ -19,7 +19,7 @@ if min(k10)<0
     disp('k1 was negative on fine grid, not even bothering to do simulation')
 else
     
-    [ny, nx] = size(gx);
+    [ny, ~] = size(gx);
     
     knowTR=1;
     mpshock=1;
@@ -29,14 +29,19 @@ else
     k1 = nan(T-1,N);
     parfor n=1:N
         e_n = squeeze(eN(:,:,n));
-        [~, y, k,~,~,~,FEt_1(:,:,n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n, knowTR,mpshock);
-        k1(:,n) = 1./k(1:end-1); % cut off last period where k is unset
+        v_n = squeeze(vN(:,:,n));
+        [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+        
         % Do not filter data and estimate VARs if the current coefficients
         % alpha lead to an explosive learning simulation
-        if isinf(max(k1(:,n))) || min(k1(:,n))<0
-            %         res = 1e+10*ones(size(Om_data));
-            %         Om =nan;
+        if isinf(max(k)) || min(k)<0
+            % just skip
+            
         else
+            k1(:,n) = 1./k(1:end-1); % cut off last period where k is unset
+            y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+            nobs = size(y_data,1);
+            FEt_1(:,:,n) = fe;
             % Filter the simulated data
             % % 1) HP filter
             % g = nan(size(y));
@@ -54,9 +59,9 @@ else
             
             % 3) BK filter
             K=12;
-            ystar = nan(ny,T-2*K);
-            for i=1:ny
-                ystar(i,:) = BKfilter(y(i,:)');
+            ystar = nan(nobs,T-2*K-1);
+            for i=1:nobs
+                ystar(i,:) = BKfilter(y_data(i,:)');
             end
             
             filt=ystar;
@@ -71,28 +76,28 @@ else
             K=4;
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
-            [A,B,res,sigma] = sr_var(filt', p);
+            [~,B,~,sigma] = sr_var(filt', p);
             
             % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
             PHI = B(2:end,:)';
-            F = [PHI; [eye(ny*(p-1)), zeros(ny*(p-1),ny)]];
-            Q = [[sigma, zeros(ny,ny*(p-1))]; zeros(ny*(p-1),ny*p)];
+            F = [PHI; [eye(nobs*(p-1)), zeros(nobs*(p-1),nobs)]];
+            Q = [[sigma, zeros(nobs,nobs*(p-1))]; zeros(nobs*(p-1),nobs*p)];
             % check sizes
-            np = ny*p;
+            np = nobs*p;
             
             vecSig = (eye(np^2)-kron(F,F))\vec(Q);
             % VC matrix of data y
-            Gamj = zeros(ny,ny,K+1);
-            Gamj_own = zeros(ny,K+1);
+            Gamj = zeros(nobs,nobs,K+1);
+            Gamj_own = zeros(nobs,K+1);
             
             Sig = reshape(vecSig,np,np);
             for j=0:K
                 % jth Autocov of data y, still as a VAR(1)
                 Sigj = F^j * Sig;
                 % jth Autocov of data y, finally as a VAR(p)
-                Gamj(:,:,j+1) = Sigj(1:ny,1:ny);
+                Gamj(:,:,j+1) = Sigj(1:nobs,1:nobs);
                 % This only takes the covariances wrt the same var: (e.g Cov(x_t,x_{t-1}))
-                Gamj_own(:,j+1) = diag(Sigj(1:ny,1:ny));
+                Gamj_own(:,j+1) = diag(Sigj(1:nobs,1:nobs));
             end
             % moments vector
             Om_n(:,n) = vec(Gamj);

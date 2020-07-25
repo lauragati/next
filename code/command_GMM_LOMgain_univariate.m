@@ -40,20 +40,21 @@ filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
 
+dbstop if error
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
 gridspacing = 'uniform'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -2;
+femax = 5; % 3.5
+femin = -5;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
-Wdiffs2= 0;%100000, seems like 100K is sufficient, or even 10K
-Wmid =1000; %1000
+Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
+Wmid =0; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
@@ -92,9 +93,10 @@ ndrop = 5 % 0-50
 
 % return
 % gen all the N sequences of shocks at once.
-rng(1) % rng('default')=rng(0)is the one that was used to generate the true data.
+rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
 % Size of cross-section
 N=1000
+
 eN = randn(3,T+ndrop,N);
 vN = randn(nobs,T+ndrop,N); % measurement error
 
@@ -315,10 +317,11 @@ switch cross_section
         toc
         [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,N);
         
+        nancount = sum(sum(isnan(Om_n)));
         % treat the single outcomes as the mean outcomes
         alph_opt_mean = alph_opt;
         Om1mean = Om1;
-        resnorm_mean = resnorm;
+        resnorm_mean = resnorm
         
 end
 

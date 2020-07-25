@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Simulated ``true'' data}{2}{section.1}
-\contentsline {section}{\numberline {2}Real data with the SPF}{11}{section.2}
-\contentsline {section}{\numberline {A}Model summary}{13}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{13}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{14}{appendix.C}
+\contentsline {section}{\numberline {2}Real data with the SPF}{12}{section.2}
+\contentsline {section}{\numberline {A}Model summary}{15}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{15}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{16}{appendix.C}
