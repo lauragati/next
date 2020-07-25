@@ -10,8 +10,6 @@ if nargin < max_no_inputs
     alph0 = 0;
 end
 
-% disp('Current guess alpha = ')
-% disp(num2str(alph))
 % check "global" nonnegativity of k1
 k10 = ndim_simplex_eval(x,xxgrid(:)',alph);
 if min(k10)<0

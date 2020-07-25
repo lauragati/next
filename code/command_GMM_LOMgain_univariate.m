@@ -31,23 +31,22 @@ datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % % filename ='acf_data_11_Jun_2020'; % real data
-filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-% filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
+filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
 
-dbstop if error
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
 gridspacing = 'uniform'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 5; % 3.5
-femin = -5;
+femax = 2; % 3.5
+femin = -2;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
@@ -60,12 +59,7 @@ Wmean=0;%100, 0
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
-% alph0 =     [0.0674
-%     0.0168
-%          0
-%     0.0168
-%     0.0674]; % default*5
-cross_section = 'Nestimations'; % Nestimations or Nsimulations
+cross_section = 'Nsimulations'; % Nestimations or Nsimulations
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -92,11 +86,14 @@ T = T+lost_periods; % to make up for the loss due to filtering
 ndrop = 5 % 0-50
 
 % return
-% gen all the N sequences of shocks at once.
-rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
-% Size of cross-section
-N=1000
 
+% Size of cross-section
+N=100
+
+rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
+
+
+% gen all the N sequences of shocks at once.
 eN = randn(3,T+ndrop,N);
 vN = randn(nobs,T+ndrop,N); % measurement error
 
@@ -200,51 +197,35 @@ ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
-if skip==0
-    % simulation given initial alphas
-    [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
-    %
-    % Some titles for figures
-    seriesnames = {'\pi', 'x','i'};
-    invgain = {'Inverse gain'};
-    figname = [this_code, '_initial_obs_',PLM_name,'_', todays_date];
-    create_plot_observables(y0,seriesnames, '', figname, print_figs)
-    pause(2)
-    close
-    
-    figname = [this_code, '_initial_gain_',PLM_name,'_', todays_date];
-    create_plot_observables(1./k0,invgain, '', figname, print_figs)
-    
-    pause(3)
-    close
-    
-end
 % return
 
 %% GMM
 % dbstop if error % with the catch block, you don't actually stop at the
 % caught error
 
-
-e0 = squeeze(eN(:,:,1));
-v0 = squeeze(vN(:,:,1));
-
-% %Compute the objective function one time with some values
-[res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
-disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
-
 % return
-alph_opt = zeros(nfe,N);
-resnorm  = zeros(1,N);
-residual = zeros(length(res0),N);
-flag     = zeros(1,N);
-res1     = nan(size(residual));
-Om1      = nan(length(Om0),N);
-FE       = zeros(nx,T,N);
-
 
 switch cross_section
     case 'Nestimations'
+        alph_opt = zeros(nfe,N);
+        resnorm  = zeros(1,N);
+        flag     = zeros(1,N);
+        FE       = zeros(nx,T,N);
+        
+        
+        e0 = squeeze(eN(:,:,1));
+        v0 = squeeze(vN(:,:,1));
+        % Compute the objective function one time with some values
+        [res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+        disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
+        
+        
+        Om1      = nan(length(Om0),N);
+        residual = zeros(length(res0),N);
+        res1     = nan(size(residual));
+        
+        
+        
         tic
         parfor n=1:N
             e_n = squeeze(eN(:,:,n));
@@ -308,16 +289,45 @@ switch cross_section
         
         Om1mean = nanmean(Om1,2);
         
+        
+        
     case 'Nsimulations'
+        
+        N=10000; % N=10000 errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient?
+        rng(1)
+        eN1 = randn(3,T+ndrop,N);
+        vN1 = randn(nobs,T+ndrop,N);
+        
+        rng(2)
+        eN2 = randn(3,T+ndrop,N);
+        vN2 = randn(nobs,T+ndrop,N);
+        
+        tic
+        [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        toc
+        
+        diffOm = Om1-Om2;
+        
+        figure
+        plot(Om1)
+        hold on
+        plot(Om2)
+        max(diffOm)
+        return
+        
+        % Compute the objective function one time with some values
+        [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
         
         %Declare a function handle for optimization problem
         objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
         tic
         [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
         toc
-        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,N);
+        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
         
         nancount = sum(sum(isnan(Om_n)));
+        nanpercent = nancount/numel(Om_n)
         % treat the single outcomes as the mean outcomes
         alph_opt_mean = alph_opt;
         Om1mean = Om1;
@@ -343,7 +353,8 @@ create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
 
 
 % how does the model behave for estimated alpha?
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,rand(size(e0)),rand(size(v0)),knowTR,mpshock);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,...
+    rand(size(squeeze(eN(:,:,1)))),rand(squeeze(size(vN(:,:,1)))),knowTR,mpshock);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is implied simulated k1 ever negative?')
 find(k0<0)
@@ -430,8 +441,8 @@ if contains(filename,'sim')
     plot(linspace(femin,femax,length(alph_true)),alph_true, 'linewidth',lw); hold on
     plot(fegrid, alph0, 'linewidth',lw)
     plot(fegrid, alph_opt_mean, 'linewidth',lw)
-%     plot(fegrid, alph_opt_med, 'linewidth',lw)
-%     plot(fegrid, alph_opt_med_unsorted, 'linewidth',lw)
+    %     plot(fegrid, alph_opt_med, 'linewidth',lw)
+    %     plot(fegrid, alph_opt_med_unsorted, 'linewidth',lw)
     ax = gca; % current axes
     ax.FontSize = fs*3/4;
     set(gca,'TickLabelInterpreter', 'latex');

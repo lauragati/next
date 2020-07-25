@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 JUL 2020 20:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 JUL 2020 11:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1339,38 +1339,34 @@ OMgain_univariate_23_Jul_2020.png (PNG copy)> <../../figures/alphas_constant_on
 ly_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimat
 ions_command_GMM_LOMgain_univariate_23_Jul_2020.png (PNG copy)>]
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_unif
-orm_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_24_Jul_20
-20.png, id=162, 1391.1975pt x 809.0225pt>
+orm_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Jul_20
+20.png, id=162, 1064.97874pt x 687.56876pt>
 File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing
-_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_24_J
+_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_J
 ul_2020.png Graphic file (type png)
 
 <use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_
-uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_24_Ju
+uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Ju
 l_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
 _loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMg
-ain_univariate_24_Jul_2020.png used on input line 269.
-(pdftex.def)             Requested size: 222.59615pt x 129.44624pt.
+ain_univariate_25_Jul_2020.png used on input line 269.
+(pdftex.def)             Requested size: 170.40007pt x 110.01324pt.
 
 <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_0_gri
 dspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univari
-ate_24_Jul_2020.png, id=163, 1375.1375pt x 866.23625pt>
+ate_25_Jul_2020.png, id=163, 1066.98625pt x 736.7525pt>
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_
 0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_un
-ivariate_24_Jul_2020.png Graphic file (type png)
+ivariate_25_Jul_2020.png Graphic file (type png)
 
 <use ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_0
 _gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_uni
-variate_24_Jul_2020.png>
+variate_25_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
 y_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_com
-mand_GMM_LOMgain_univariate_24_Jul_2020.png used on input line 271.
-(pdftex.def)             Requested size: 550.04526pt x 346.48836pt.
-
-Overfull \hbox (60.05473pt too wide) in paragraph at lines 269--272
- [][] 
- []
+mand_GMM_LOMgain_univariate_25_Jul_2020.png used on input line 271.
+(pdftex.def)             Requested size: 426.78694pt x 294.69577pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1381,10 +1377,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [11
 
  <../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uni
-form_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_24_Jul_2
+form_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Jul_2
 020.png (PNG copy)> <../../figures/autocovariogram_sim_constant_only_pi_only_N_
 100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command
-_GMM_LOMgain_univariate_24_Jul_2020.png (PNG copy)>]
+_GMM_LOMgain_univariate_25_Jul_2020.png (PNG copy)>]
 <../../figures/alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_un
 iform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_
 2020.png, id=173, 1417.295pt x 841.1425pt>
@@ -1754,7 +1750,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials38.pdf (17 pages, 3221241 bytes).
+Output written on materials38.pdf (17 pages, 3180757 bytes).
 PDF statistics:
  341 PDF objects out of 1000 (max. 8388607)
  261 compressed objects within 3 object streams
