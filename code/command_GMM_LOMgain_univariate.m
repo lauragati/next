@@ -38,7 +38,8 @@ datestr(now)
 % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
+% filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
+filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -293,28 +294,30 @@ switch cross_section
         
     case 'Nsimulations'
         
-        N=10000; % N=10000 errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient?
-        rng(1)
-        eN1 = randn(3,T+ndrop,N);
-        vN1 = randn(nobs,T+ndrop,N);
-        
-        rng(2)
-        eN2 = randn(3,T+ndrop,N);
-        vN2 = randn(nobs,T+ndrop,N);
-        
-        tic
-        [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-        [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-        toc
-        
-        diffOm = Om1-Om2;
-        
-        figure
-        plot(Om1)
-        hold on
-        plot(Om2)
-        max(diffOm)
-        return
+        % Testing whether moments converge to something as N--> inf, and it
+        % seems yes, at N=1000.
+%         N=100; % N=10000: errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient? It seems so: plots on top, max(diff=0.0109)
+%         rng(1)
+%         eN1 = randn(3,T+ndrop,N);
+%         vN1 = randn(nobs,T+ndrop,N);
+%         
+%         rng(2)
+%         eN2 = randn(3,T+ndrop,N);
+%         vN2 = randn(nobs,T+ndrop,N);
+%         
+%         tic
+%         [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+%         [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+%         toc
+%         
+%         diffOm = Om1-Om2;
+%         
+%         figure
+%         plot(Om1)
+%         hold on
+%         plot(Om2)
+%         max(diffOm)
+%         return
         
         % Compute the objective function one time with some values
         [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
@@ -326,6 +329,7 @@ switch cross_section
         toc
         [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
         
+        flag
         nancount = sum(sum(isnan(Om_n)));
         nanpercent = nancount/numel(Om_n)
         % treat the single outcomes as the mean outcomes
