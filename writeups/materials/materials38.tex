@@ -114,11 +114,19 @@ bottom=1in}
 % define a command to make a huge question mark (it works in math mode)
 \newcommand{\bigqm}[1][1]{\text{\larger[#1]{\textbf{?}}}}
 
+% use package and define command to add blank page
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
 \begin{document}
 
 \linespread{1.0}
 
-\title{Materials 38 - Bias in the neighborhood of zero forecast errors}
+\title{Materials 38 - Bias (not only?) in the neighborhood of zero forecast errors}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -131,7 +139,113 @@ bottom=1in}
 
 \newpage
 
-\section{Simulated ``true'' data}
+\section{Ways to try to get identification}
+\subsection*{3 potential causes to lack of identification in the zero neighborhood}
+\begin{enumerate}
+\item The distribution of estimates is skewed $\rightarrow$ take $median(\hat{\alpha})$ instead of the mean. \\
+$\Rightarrow$ also unidentified
+\item The gain doesn't matter if the forecast error is 0, or very close to it $\rightarrow$ introduce a distinction between the forecast error that's used to choose the gain and the one used to update the coefficients of the learning rule. \\
+$\Rightarrow$ tried using a different forecast error (time, output gap), also unidentified
+\item  Introduce expectation series (SPF)
+\item Taking mean moments across $N$ histories instead of performing the estimation $N$ times.
+\item The truth is based on a simulation that doesn't favor the zero neighborhood $\rightarrow$ do 100 simulations from the ``true'' parameters and take the mean moments of those.
+\end{enumerate}
+
+\subsection*{Reference for comparison: Fig 1. of Materials 37}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_loss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
+\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_758_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020}}
+\caption{Reference figure: Mean estimates for $N=100$, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+
+\subsection{Point 3: add expectations series}
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath command_GMM_LOMgain_univariate_alphas_N_100_loss_0_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=0.35]{\myFigPath command_GMM_LOMgain_univariate_autocovariogram_sim_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{incl. 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+I've added measurement error to $\pi,x,i$ and the expectation to avoid stochastic singularity from having 4 observables and only 3 shocks. 
+
+
+\clearpage
+\subsection{Point 4: Mean moments instead of $N$ estimations}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Jul_2020}}
+\caption{Estimates for $N=100$,  incl. 1-step ahead forecasts of inflation, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{single estimation of mean moments from $N$ simulations}}
+\end{figure}
+
+This does make a difference and I think it improves on the moments vis-a-vis the $N$ estimations case. However, it converges in the wrong direction with $N=1000$. And it really depends on shocks! A seed of \texttt{rng(2)} instead of \texttt{rng(1)} makes a huge difference at $N=100$, b/c $N=100$ doesn't seem sufficient to wash out the shocks. $N=1000$ seems sufficient though. The ``$N$-estimations'' strategy however is robust to changing the seed. 
+
+
+\clearpage
+\subsection{Point 5: 100 simulations from truth}
+
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_119431835862_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_26_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_119431835862_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_26_Jul_2020}}
+\caption{Estimates for $N=100$,  incl. 1-step ahead forecasts of inflation, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{single estimation of mean moments from $N$ simulations, 100 truths}}
+\end{figure}
+Didn't converge!
+
+\newpage
+\subsection{Does the estimation strategy work?}
+Try in a simplified setting with
+\begin{align}
+s_t & = 0.7 s_{t-1} + \epsilon_t \\
+y_t & = \alpha b(s_t) \quad \quad \text{piecewise linear approx of state}
+\end{align}
+Estimate the same $\alpha^{true}$ as before, filtering the same way, calculating 5 moments (autocovariances of $y$) the exact same way.
+\begin{itemize}
+\item The ``estimate mean moments'' strategy is not robust (gets different, incorrect things depending on seed or initialization, even for 2 knots), just like for my application.
+\item The ``estimate $N$ times'' procedure is biased but robust just like in my application: biased everywhere but most in the middle (even for 2 knots)). 
+\end{itemize}
+$\Rightarrow$ Is there something about the way I compute the moments that renders them uninformative?
+
+\subsubsection{How I compute the moments} 
+I first fit a VAR to the BK-filtered data (I use $p$ I estimated in the data, usually 4). Then I rely on Hamilton, p. 266 on (p. 280 Mac), Notes 12, p. 25,  to estimate the autocovariances of a VAR as:
+\begin{enumerate}
+\item Rewrite the estimated $n$-variable VAR(p) as a VAR(1) as:
+\begin{equation}
+\xi_t = F\xi_{t-1} + v_t \label{var1}
+\end{equation}
+and define the VC matrix of the $\xi$ as $\Sigma \equiv \E(\xi_t\xi_t')$. The idea is to estimate $\Sigma$ from the VAR(1) representation and then back out the submatrices we need.
+\item Take the square of (\ref{var1}) and take expectations:
+\begin{equation}
+\Sigma = F\E(\xi_{t-1}\xi_{t-1}')F' + \underbrace{\E(v_tv_t')}_{\equiv Q}
+\end{equation}
+\item The solution to this is (Hamilton's equation [10.2.18]):
+\begin{equation}
+vec(\Sigma) = [I_{(np)^2} - F\otimes F]^{-1} vec(Q)
+\end{equation}
+\item The $j$th autocovariance of the process $y_t$ is given by the first $n$ rows and $n$ columns of $\Sigma_j$:
+\begin{equation}
+\Sigma_j = F \Sigma_{j-1} \quad = F^j\Sigma \quad \quad \text{(Hamilton's eq. [10.2.20]) and [10.2.21])}
+\end{equation}
+
+\end{enumerate}
+
+I've also tried to HP-filter instead of BK-filtering, for a truth with only 2 knots, both  mean moments and $N$ estimations strategies, results unchanged.
+
+%%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% adds blank page
+\afterpage{\blankpage}
+
+%%%%%%%%%%%%%%%%%%   FOR ME   %%%%%%%%%%%%
+\newpage
+
+\clearpage
+
+\section{For me: Simulated ``true'' data}
 \subsection*{3 potential causes to lack of identification in the zero neighborhood}
 \begin{enumerate}
 \item The distribution of estimates is skewed $\rightarrow$ take $median(\hat{\alpha})$ instead of the mean.

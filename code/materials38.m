@@ -33,3 +33,8 @@ save_stuff=0;
 %%
 
 command_GMM_LOMgain_univariate
+
+
+%%
+
+command_check_estimation

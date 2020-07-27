@@ -198,7 +198,7 @@ ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
-% return
+return
 
 %% GMM
 % dbstop if error % with the catch block, you don't actually stop at the
