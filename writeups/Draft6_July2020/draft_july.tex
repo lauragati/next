@@ -113,6 +113,9 @@ bottom=1in}
 
 % Market-based expectations
 \def\fignameMarketEPi{epi10_2020_06_04}
+% cleaned from liq premium
+\def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
@@ -703,7 +706,16 @@ Lastly, a foray into the empirics of anchoring expectation formation is importan
 \section{Filtering out liquidity risk from TIPS}\label{TIPS} 
 Some caution is needed when inferring inflation expectations from TIPS. The underlying idea is that the difference between real (indexed to inflation) and nominal yields should be a good metric for the market's expectations of inflation on average for the duration of the particular maturity. But since TIPS markets face liquidity issues, especially for seasoned securities, the TIPS yield also incorporates a liquidity premium. The positive bias in the TIPS yield thus leads to a negative bias in expected inflation.
 
-To gauge the presence of liquidity risk in TIPS, I rely on \cite{andreasen2018tips}'s estimation of the liquidity premium. Since their series only covers the period between July 11,1997 - Dec 27, 2013, I make use of the fact that they demonstrate a high correlation between liquidity risk and uncertainty. In particular, a regression of their average TIPS liquidity premium measure on the VIX index and controls yields an estimated coefficient of 0.85 (significant at the 1 percent level). Thus I can use the VIX to back out a fitted \cite{andreasen2018tips} estimate of the TIPS liquidity premium after 2013. 
+To gauge the presence of liquidity risk in TIPS, I rely on \cite{andreasen2018tips}'s estimation of the liquidity premium. Since their series only covers the period between July 11,1997 - Dec 27, 2013, I make use of the fact that they demonstrate a high correlation between liquidity risk and uncertainty. In particular, a regression of their average TIPS liquidity premium measure on the VIX index and controls yields an estimated coefficient of 0.85 (significant at the 1 percent level), with a constant of -5.21. Thus I can use the VIX to back out a fitted \cite{andreasen2018tips} estimate of the TIPS liquidity premium after 2013. Doing so, I subtract this fitted liquidity premium series from the TIPS yields, allowing me to construct an estimate of breakeven inflation corrected for the liquidity risk bias. Fig. \ref{epi_cleaned} presents the original breakeven inflation series, along with the bias-corrected estimate.
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, 10 year, average, \%}
+\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+In line with \cite{andreasen2018tips}'s findings, I obtain a negative bias in the inflation expectations series throughout the sample. This bias averages -0.0966 pp, which is sizable, but not as significant as one might have suspected. Also in analogy with \cite{andreasen2018tips}'s results, I find that liquidity issues in the TIPS market pose a bigger problem in recessions, when the market worries more about future TIPS becoming illiquid. In particular once the COVID-shock raises worries at the end of the sample, the estimated liquidity premium hits its highest value of 0.6508 pp. Even this large upward correction in breakeven inflation does not change the overall picture, however. The conclusion that long-run inflation expectations trend downward in the second half of the decade remains solid. 
 
 \section{Compact model notation}\label{app_compact} 
 The A-matrices are given by

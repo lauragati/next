@@ -236,7 +236,9 @@ vec(\Sigma) = [I_{(np)^2} - F\otimes F]^{-1} vec(Q)
 
 I've also tried to HP-filter instead of BK-filtering, for a truth with only 2 knots, both  mean moments and $N$ estimations strategies, results unchanged.
 
-One thing I am noticing is that the estimated variance of the moments is very tiny, but only for the synthetic data, not for the real data. This means that the weighting matrix of the quadratic form is on the order of $10^7$ (in this simplified example only $10^4$). Can this ruin the informativeness of the moments? (For my model, using an identity matrix substantially improves the matching of the moments.) And why is this only happening for synthetic data?
+One thing I am noticing is that the estimated variance of the moments is very tiny, but only for the synthetic data, not for the real data. This means that the weighting matrix of the quadratic form is on the order of between $10^4$ and $10^{10}$ (lower if higher number of knots). Can this ruin the informativeness of the moments? (For my model, using an identity matrix substantially improves the matching of the moments.) And why is this only happening for synthetic data?
+
+Replacing the piecewise linear approx with a linear rule with a slope coefficient works, but an intercept and a slope coefficient doesn't work to estimate the two parameters. 
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page

@@ -14,7 +14,8 @@ for n=1:N
     y(1) = 0;
     for t=2:T+ndrop
         s(t)=rho*s(t-1) +e(t);
-        y(t)= ndim_simplex_eval(x, s(t),alph);
+%         y(t)= ndim_simplex_eval(x, s(t),alph);
+        y(t) = alph(1)+alph(2)*s(t);
     end
     
     % Map into command_acf_sim_data_univariate.m

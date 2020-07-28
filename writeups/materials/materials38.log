@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 JUL 2020 22:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JUL 2020 10:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1144,7 +1144,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.246 \newpage
+l.248 \newpage
                [7]
 File: ../../figures/command_GMM_LOMgain_univariate_alphas_loss_758_nfe_5_gridsp
 acing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png Graphic file (type png)
@@ -1153,7 +1153,7 @@ acing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png Graphic file (type png)
 cing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_lo
 ss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png used on 
-input line 263.
+input line 265.
 (pdftex.def)             Requested size: 222.59615pt x 131.05228pt.
 File: ../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_lo
 ss_758_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png Graphic file (
@@ -1163,7 +1163,7 @@ type png)
 s_758_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_nfe_5_loss_758_gridspacing_uniform_Wdiffs2_100000_Wmid_0_16_Jul_2020
-.png used on input line 265.
+.png used on input line 267.
 (pdftex.def)             Requested size: 243.90073pt x 158.44513pt.
 
 
@@ -1185,7 +1185,7 @@ acing_uniform_Wdiffs2_100000_Wmid_0_20_Jul_2020.png Graphic file (type png)
 cing_uniform_Wdiffs2_100000_Wmid_0_20_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_lo
 ss_758_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_20_Jul_2020.png used on 
-input line 273.
+input line 275.
 (pdftex.def)             Requested size: 302.75201pt x 182.18118pt.
 
 <../../figures/command_GMM_LOMgain_univariate_alphas_loss_63586357933_nfe_5_gri
@@ -1199,7 +1199,7 @@ c file (type png)
 _gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_lo
 ss_63586357933_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_
-Jul_2020.png used on input line 280.
+Jul_2020.png used on input line 282.
 (pdftex.def)             Requested size: 220.1871pt x 129.60684pt.
 
 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_63
@@ -1214,7 +1214,7 @@ s_63586357933_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_202
 0.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_nfe_5_loss_63586357933_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nes
-timations_21_Jul_2020.png used on input line 282.
+timations_21_Jul_2020.png used on input line 284.
 (pdftex.def)             Requested size: 243.90073pt x 157.90314pt.
 
 
@@ -1240,7 +1240,7 @@ type png)
 cing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_lo
 ss_745_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020
-.png used on input line 300.
+.png used on input line 302.
 (pdftex.def)             Requested size: 222.59615pt x 129.44624pt.
 
 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_74
@@ -1254,7 +1254,7 @@ raphic file (type png)
 s_745_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_21_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_nfe_5_loss_745_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimation
-s_21_Jul_2020.png used on input line 302.
+s_21_Jul_2020.png used on input line 304.
 (pdftex.def)             Requested size: 243.90073pt x 157.90314pt.
 
 
@@ -1279,7 +1279,7 @@ type png)
 cing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_20_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_lo
 ss_951_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_20_Jul_2020
-.png used on input line 312.
+.png used on input line 314.
 (pdftex.def)             Requested size: 222.59615pt x 129.44624pt.
 
 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_nfe_5_loss_95
@@ -1293,10 +1293,10 @@ raphic file (type png)
 s_951_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_20_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_nfe_5_loss_951_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulation
-s_20_Jul_2020.png used on input line 314.
+s_20_Jul_2020.png used on input line 316.
 (pdftex.def)             Requested size: 243.90073pt x 157.90314pt.
 
-Overfull \hbox (44.15572pt too wide) in paragraph at lines 315--315
+Overfull \hbox (44.15572pt too wide) in paragraph at lines 317--317
 []\OT1/cmr/bx/n/9 Figure 9: |\OT1/cmr/m/n/9 Es-ti-mates for $\OML/cmm/m/it/9 N 
 \OT1/cmr/m/n/9 = 100$, [][][][][][],
  []
@@ -1320,7 +1320,7 @@ le (type png)
 dspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_N_
 100_loss_0_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_
-2020.png used on input line 322.
+2020.png used on input line 324.
 (pdftex.def)             Requested size: 220.1871pt x 130.08865pt.
 File: ../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_N_100_nf
 e_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020.p
@@ -1331,7 +1331,7 @@ _5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020.pn
 g>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestima
-tions_22_Jul_2020.png used on input line 324.
+tions_22_Jul_2020.png used on input line 326.
 (pdftex.def)             Requested size: 481.30534pt x 304.5925pt.
 
 
@@ -1352,7 +1352,7 @@ le (type png)
 dspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alphas_N_
 1000loss_0_nfe_5_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_
-2020.png used on input line 339.
+2020.png used on input line 341.
 (pdftex.def)             Requested size: 220.1871pt x 130.08865pt.
 
 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_sim_N_1000nfe_5_l
@@ -1367,10 +1367,10 @@ _5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_22_Jul_2020.pn
 g>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_sim_N_1000nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestima
-tions_22_Jul_2020.png used on input line 341.
+tions_22_Jul_2020.png used on input line 343.
 (pdftex.def)             Requested size: 550.04526pt x 348.09433pt.
 
-Overfull \hbox (60.05473pt too wide) in paragraph at lines 339--342
+Overfull \hbox (60.05473pt too wide) in paragraph at lines 341--344
  [][] 
  []
 
@@ -1404,7 +1404,7 @@ manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul
 _2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_4
 _loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMga
-in_univariate_23_Jul_2020.png used on input line 365.
+in_univariate_23_Jul_2020.png used on input line 367.
 (pdftex.def)             Requested size: 220.1871pt x 129.44624pt.
 
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_unif
@@ -1419,7 +1419,7 @@ uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23
 _Jul_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
 _loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_L
-OMgain_univariate_23_Jul_2020.png used on input line 367.
+OMgain_univariate_23_Jul_2020.png used on input line 369.
 (pdftex.def)             Requested size: 220.1871pt x 129.44624pt.
 
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_unif
@@ -1434,10 +1434,10 @@ uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul_
 2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
 _loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgai
-n_univariate_23_Jul_2020.png used on input line 368.
+n_univariate_23_Jul_2020.png used on input line 370.
 (pdftex.def)             Requested size: 222.59615pt x 129.44624pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 370--370
 \OT1/cmr/m/n/9 0 at 0 re-stric-tion im-posed with weight 1K,
  []
 
@@ -1454,7 +1454,7 @@ _manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Ju
 l_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_1000_nfe_
 4_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMg
-ain_univariate_23_Jul_2020.png used on input line 375.
+ain_univariate_23_Jul_2020.png used on input line 377.
 (pdftex.def)             Requested size: 220.1871pt x 129.44624pt.
 
 <../../figures/alphas_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uni
@@ -1469,7 +1469,7 @@ _uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_2
 3_Jul_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_1000_nfe_
 5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nestimations_command_GMM_
-LOMgain_univariate_23_Jul_2020.png used on input line 377.
+LOMgain_univariate_23_Jul_2020.png used on input line 379.
 (pdftex.def)             Requested size: 220.1871pt x 129.44624pt.
 
 <../../figures/alphas_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uni
@@ -1484,10 +1484,10 @@ _uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_Jul
 _2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_1000_nfe_
 5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMga
-in_univariate_23_Jul_2020.png used on input line 378.
+in_univariate_23_Jul_2020.png used on input line 380.
 (pdftex.def)             Requested size: 222.59615pt x 129.44624pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--378
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \OT1/cmr/m/n/9 0 at 0 re-stric-tion im-posed with weight 1K,
  []
 
@@ -1531,7 +1531,7 @@ uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_25_Ju
 l_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
 _loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMg
-ain_univariate_25_Jul_2020.png used on input line 385.
+ain_univariate_25_Jul_2020.png used on input line 387.
 (pdftex.def)             Requested size: 170.40007pt x 110.01324pt.
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_
 0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_un
@@ -1542,7 +1542,7 @@ _gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_uni
 variate_25_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
 y_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_com
-mand_GMM_LOMgain_univariate_25_Jul_2020.png used on input line 387.
+mand_GMM_LOMgain_univariate_25_Jul_2020.png used on input line 389.
 (pdftex.def)             Requested size: 426.78694pt x 294.69577pt.
 
 
@@ -1563,7 +1563,7 @@ ridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univa
 riate_26_Jul_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
 _loss_119431835862_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_comma
-nd_GMM_LOMgain_univariate_26_Jul_2020.png used on input line 395.
+nd_GMM_LOMgain_univariate_26_Jul_2020.png used on input line 397.
 (pdftex.def)             Requested size: 170.40007pt x 110.17384pt.
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_
 119431835862_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM
@@ -1574,7 +1574,7 @@ _LOMgain_univariate_26_Jul_2020.png Graphic file (type png)
 LOMgain_univariate_26_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
 y_N_100_nfe_5_loss_119431835862_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimu
-lations_command_GMM_LOMgain_univariate_26_Jul_2020.png used on input line 397.
+lations_command_GMM_LOMgain_univariate_26_Jul_2020.png used on input line 399.
 (pdftex.def)             Requested size: 422.37051pt x 294.69577pt.
 
 
@@ -1598,7 +1598,7 @@ g_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_
 Jul_2020.png>
 Package pdftex.def Info: ../../figures/alph_opt_constant_only_pi_only_N_100_nfe
 _5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LO
-Mgain_univariate_23_Jul_2020.png used on input line 407.
+Mgain_univariate_23_Jul_2020.png used on input line 409.
 (pdftex.def)             Requested size: 226.77184pt x 134.58554pt.
 
 <../../figures/autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspa
@@ -1613,10 +1613,10 @@ dspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univari
 ate_23_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_constant_only_pi_only_N_
 100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command
-_GMM_LOMgain_univariate_23_Jul_2020.png used on input line 409.
+_GMM_LOMgain_univariate_23_Jul_2020.png used on input line 411.
 (pdftex.def)             Requested size: 545.62885pt x 346.48836pt.
 
-Overfull \hbox (55.63832pt too wide) in paragraph at lines 407--410
+Overfull \hbox (55.63832pt too wide) in paragraph at lines 409--412
  [][] 
  []
 
@@ -1633,7 +1633,7 @@ ng_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univariate_23_J
 ul_2020.png>
 Package pdftex.def Info: ../../figures/alph_opt_constant_only_pi_only_N_1000_nf
 e_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOM
-gain_univariate_23_Jul_2020.png used on input line 414.
+gain_univariate_23_Jul_2020.png used on input line 416.
 (pdftex.def)             Requested size: 223.55977pt x 135.06735pt.
 
 <../../figures/autocovariogram_constant_only_pi_only_N_1000_nfe_5_loss_0_gridsp
@@ -1648,10 +1648,10 @@ idspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_GMM_LOMgain_univaria
 te_23_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_constant_only_pi_only_N_
 1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_0_Wmid_1000_Nestimations_command_
-GMM_LOMgain_univariate_23_Jul_2020.png used on input line 416.
+GMM_LOMgain_univariate_23_Jul_2020.png used on input line 418.
 (pdftex.def)             Requested size: 544.02287pt x 348.09433pt.
 
-Overfull \hbox (54.03235pt too wide) in paragraph at lines 414--417
+Overfull \hbox (54.03235pt too wide) in paragraph at lines 416--419
  [][] 
  []
 
@@ -1671,7 +1671,7 @@ ng_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_24
 _Jul_2020.png>
 Package pdftex.def Info: ../../figures/alph_opt_constant_only_pi_only_N_1000_nf
 e_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_L
-OMgain_univariate_24_Jul_2020.png used on input line 421.
+OMgain_univariate_24_Jul_2020.png used on input line 423.
 (pdftex.def)             Requested size: 173.77275pt x 114.99194pt.
 
 <../../figures/autocovariogram_constant_only_pi_only_N_1000_nfe_5_loss_0_gridsp
@@ -1686,7 +1686,7 @@ idspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univar
 iate_24_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_constant_only_pi_only_N_
 1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_comman
-d_GMM_LOMgain_univariate_24_Jul_2020.png used on input line 423.
+d_GMM_LOMgain_univariate_24_Jul_2020.png used on input line 425.
 (pdftex.def)             Requested size: 420.76454pt x 294.69577pt.
 
 
@@ -1727,7 +1727,7 @@ ng_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_24
 _Jul_2020.png (PNG copy)> <../../figures/autocovariogram_constant_only_pi_only_
 N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_comm
 and_GMM_LOMgain_univariate_24_Jul_2020.png (PNG copy)>]
-Overfull \hbox (9.30092pt too wide) in paragraph at lines 462--462
+Overfull \hbox (9.30092pt too wide) in paragraph at lines 464--464
 [] 
  []
 
@@ -1748,7 +1748,7 @@ y_pi_only_2020_07_07.png Graphic file (type png)
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_only
 _pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_dgain_constant_only_pi_only_2020_07_07.png used on input line 523.
+_dgain_constant_only_pi_only_2020_07_07.png used on input line 525.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_dgain_constant_only_pi_only_p
@@ -1763,7 +1763,7 @@ ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
 _05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_dgain
 _constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettild
-e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 525.
+e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 527.
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_only_pi_
@@ -1774,7 +1774,7 @@ y_pi_only_2020_07_07.png Graphic file (type png)
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_only
 _pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_cgain_constant_only_pi_only_2020_07_07.png used on input line 526.
+_cgain_constant_only_pi_only_2020_07_07.png used on input line 528.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_cgain_constant_only_pi_only_p
@@ -1789,7 +1789,7 @@ ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
 _05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_cgain
 _constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettild
-e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 528.
+e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 530.
 (pdftex.def)             Requested size: 225.96881pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_constant
@@ -1800,7 +1800,7 @@ stant_only_pi_only_2020_07_07.png Graphic file (type png)
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_cons
 tant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critCEMP_constant_only_pi_only_2020_07_07.png used on input line 529.
+_again_critCEMP_constant_only_pi_only_2020_07_07.png used on input line 531.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_again_critCEMP_constant_only_
@@ -1815,7 +1815,7 @@ nly_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0
 _8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critCEMP_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16
-_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 531.
+_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 533.
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_constan
@@ -1826,7 +1826,7 @@ nstant_only_pi_only_2020_07_07.png Graphic file (type png)
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_con
 stant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critCUSUM_constant_only_pi_only_2020_07_07.png used on input line 537.
+_again_critCUSUM_constant_only_pi_only_2020_07_07.png used on input line 539.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_again_critCUSUM_constant_only
@@ -1841,7 +1841,7 @@ only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_
 0_8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critCUSUM_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1
-6_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 539.
+6_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 541.
 
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
@@ -1853,10 +1853,10 @@ onstant_only_pi_only_2020_07_07.png Graphic file (type png)
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critsmooth_co
 nstant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critsmooth_constant_only_pi_only_2020_07_07.png used on input line 540.
+_again_critsmooth_constant_only_pi_only_2020_07_07.png used on input line 542.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
-Underfull \hbox (badness 1067) in paragraph at lines 540--540
+Underfull \hbox (badness 1067) in paragraph at lines 542--542
 []\OT1/cmr/m/n/9 (c) Smooth cri-te-rion, ap-prox-i-mated, us-ing $\OML/cmm/m/it
 /9 [] \OT1/cmr/m/n/9 =
  []
@@ -1874,7 +1874,7 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap
 _0_8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_
-16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 542
+16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 544
 .
 (pdftex.def)             Requested size: 230.1445pt x 134.58554pt.
 
@@ -1901,7 +1901,7 @@ Fs_approx_pretty_RIR_LH_monpol_again_critCEMP_constant_only_pi_only_2020_07_07.
 png (PNG copy)> <../../figures/command_IRFs_approx_pretty_invgain_again_critCEM
 P_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettil
 de_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 550.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1918,13 +1918,13 @@ ooth_constant_only_pi_only_2020_07_07.png (PNG copy)> <../../figures/command_IR
 Fs_approx_pretty_invgain_again_critsmooth_constant_only_pi_only_params_psi_pi_1
 _5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07
 _07.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 550.
  (./materials38.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 550.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 550.
 Package rerunfilecheck Info: File `materials38.out' has not changed.
 (rerunfilecheck)             Checksum: 12105E841BEA9B7CCEB8D22204A7E5B9;749.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 550.
  ) 
 Here is how much of TeX's memory you used:
  20359 strings out of 493089
@@ -1955,7 +1955,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials38.pdf (25 pages, 3377465 bytes).
+Output written on materials38.pdf (25 pages, 3377526 bytes).
 PDF statistics:
  446 PDF objects out of 1000 (max. 8388607)
  355 compressed objects within 4 object streams

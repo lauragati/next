@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 JUL 2020 22:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JUL 2020 12:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -509,20 +509,20 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 44.
 (./draft_july.aux)
 \openout1 = `draft_july.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
-LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 164.
+LaTeX Font Info:    ... okay on input line 164.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -594,7 +594,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 161.
+Package hyperref Info: Link coloring ON on input line 164.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -603,20 +603,20 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count151
 )
-LaTeX Info: Redefining \ref on input line 161.
-LaTeX Info: Redefining \pageref on input line 161.
-LaTeX Info: Redefining \nameref on input line 161.
+LaTeX Info: Redefining \ref on input line 164.
+LaTeX Info: Redefining \pageref on input line 164.
+LaTeX Info: Redefining \nameref on input line 164.
 
 (./draft_july.out) (./draft_july.out)
 \@outlinefile=\write3
 \openout3 = `draft_july.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 172.
+LaTeX Font Info:    Try loading font information for U+msa on input line 175.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 172.
+LaTeX Font Info:    Try loading font information for U+msb on input line 175.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -628,7 +628,7 @@ File: ../../figures/epi10_2020_06_04.png Graphic file (type png)
 
 <use ../../figures/epi10_2020_06_04.png>
 Package pdftex.def Info: ../../figures/epi10_2020_06_04.png used on input line 
-203.
+206.
 (pdftex.def)             Requested size: 301.42705pt x 185.05193pt.
  [2 <../../figures/epi10_2020_06_04.png (PNG copy)>] [3] [4] [5] [6] [7] [8] [9
 ] [10] [11]
@@ -644,7 +644,7 @@ g_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_
 Jul_2020.png>
 Package pdftex.def Info: ../../figures/alph_opt_constant_only_pi_only_N_100_nfe
 _5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LO
-Mgain_univariate_23_Jul_2020.png used on input line 397.
+Mgain_univariate_23_Jul_2020.png used on input line 400.
 (pdftex.def)             Requested size: 311.80586pt x 185.05193pt.
  [12 <../../figures/alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspaci
 ng_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23
@@ -654,7 +654,7 @@ File: ../../figures/analyze_opt_policy_ik.png Graphic file (type png)
 
 <use ../../figures/analyze_opt_policy_ik.png>
 Package pdftex.def Info: ../../figures/analyze_opt_policy_ik.png used on input 
-line 579.
+line 582.
 (pdftex.def)             Requested size: 240.93697pt x 148.28201pt.
 
 <../../figures/analyze_opt_policy_ip.png, id=573, 1386.17876pt x 841.1425pt>
@@ -662,7 +662,7 @@ File: ../../figures/analyze_opt_policy_ip.png Graphic file (type png)
 
 <use ../../figures/analyze_opt_policy_ip.png>
 Package pdftex.def Info: ../../figures/analyze_opt_policy_ip.png used on input 
-line 580.
+line 583.
 (pdftex.def)             Requested size: 235.64726pt x 142.99232pt.
 
 
@@ -675,7 +675,7 @@ File: ../../figures/implement_anchTC_obs_TR.png Graphic file (type png)
 
 <use ../../figures/implement_anchTC_obs_TR.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs_TR.png used on inpu
-t line 600.
+t line 603.
 (pdftex.def)             Requested size: 328.83522pt x 211.51451pt.
 
 <../../figures/implement_anchTC_obs.png, id=611, 1370.11874pt x 881.2925pt>
@@ -683,7 +683,7 @@ File: ../../figures/implement_anchTC_obs.png Graphic file (type png)
 
 <use ../../figures/implement_anchTC_obs.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs.png used on input l
-ine 602.
+ine 605.
 (pdftex.def)             Requested size: 328.83522pt x 211.51451pt.
 
 
@@ -703,7 +703,7 @@ arams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lam
 i_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/plot_sim_loss_pretty_loss_RE_again_critC
 USUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_
-5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 647.
+5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 650.
 (pdftex.def)             Requested size: 195.60947pt x 117.75914pt.
 
 <../../figures/plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_
@@ -719,7 +719,7 @@ kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/plot_sim_loss_pretty_loss_again_critCUSU
 M_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetb
 ar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png used on input lin
-e 648.
+e 651.
 (pdftex.def)             Requested size: 192.79898pt x 122.11539pt.
  [25 <../../figures/plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_
 params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_la
@@ -729,10 +729,18 @@ critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_1
 )>] [26] [27] (./draft_july.bbl
 [28
 
-] [29] [30]) [31] [32] [33] [34] [35]
+] [29] [30]) [31]
+<../../figures/cleaned_epi10_2020_07_28.png, id=733, 1069.9975pt x 695.59875pt>
+File: ../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
+<use ../../figures/cleaned_epi10_2020_07_28.png>
+Package pdftex.def Info: ../../figures/cleaned_epi10_2020_07_28.png used on inp
+ut line 712.
+(pdftex.def)             Requested size: 321.00172pt x 208.68123pt.
+ [32 <../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>] [33] [34] [35] [3
+6]
 <../../figures/autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspa
 cing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_
-23_Jul_2020.png, id=811, 1364.09625pt x 866.23625pt>
+23_Jul_2020.png, id=825, 1364.09625pt x 866.23625pt>
 File: ../../figures/autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gr
 idspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univar
 iate_23_Jul_2020.png Graphic file (type png)
@@ -742,29 +750,29 @@ dspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univari
 ate_23_Jul_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_constant_only_pi_only_N_
 100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command
-_GMM_LOMgain_univariate_23_Jul_2020.png used on input line 815.
+_GMM_LOMgain_univariate_23_Jul_2020.png used on input line 827.
 (pdftex.def)             Requested size: 477.44084pt x 303.18723pt.
- [36 <../../figures/autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gr
+ [37 <../../figures/autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gr
 idspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univar
-iate_23_Jul_2020.png (PNG copy)>] [37] [38] [39]
+iate_23_Jul_2020.png (PNG copy)>] [38] [39] [40]
 
-LaTeX Warning: Reference `compare_pea_vfi' on page 40 undefined on input line 9
-06.
+LaTeX Warning: Reference `compare_pea_vfi' on page 41 undefined on input line 9
+18.
 
 
 <../../figures/compare_value_pea_results_value_outputs_server_inputs_pretty.png
-, id=892, 1401.235pt x 812.03375pt>
+, id=905, 1401.235pt x 812.03375pt>
 File: ../../figures/compare_value_pea_results_value_outputs_server_inputs_prett
 y.png Graphic file (type png)
 
 <use ../../figures/compare_value_pea_results_value_outputs_server_inputs_pretty
 .png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_value_outputs_
-server_inputs_pretty.png used on input line 909.
+server_inputs_pretty.png used on input line 921.
 (pdftex.def)             Requested size: 280.24203pt x 162.40387pt.
 
 <../../figures/compare_value_pea_results_value_outputs_server02_Jun_2020_14_58_
-12_pea_outputs_30_May_2020_10_18_28_pretty.png, id=893, 1401.235pt x 812.03375p
+12_pea_outputs_30_May_2020_10_18_28_pretty.png, id=906, 1401.235pt x 812.03375p
 t>
 File: ../../figures/compare_value_pea_results_value_outputs_server02_Jun_2020_1
 4_58_12_pea_outputs_30_May_2020_10_18_28_pretty.png Graphic file (type png)
@@ -773,19 +781,19 @@ File: ../../figures/compare_value_pea_results_value_outputs_server02_Jun_2020_1
 _58_12_pea_outputs_30_May_2020_10_18_28_pretty.png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_value_outputs_
 server02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty.png used on 
-input line 910.
+input line 922.
 (pdftex.def)             Requested size: 280.24203pt x 162.40387pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[40] [41 <../../figures/compare_value_pea_results_value_outputs_server_inputs_p
+[41] [42 <../../figures/compare_value_pea_results_value_outputs_server_inputs_p
 retty.png (PNG copy)> <../../figures/compare_value_pea_results_value_outputs_se
 rver02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty.png (PNG copy)
 >]
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_
 constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetba
-r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=918, 1421.31pt
+r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=932, 1421.31pt
  x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critC
 USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_t
@@ -798,12 +806,12 @@ etbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_anch
 _monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_p
 si_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_0
-5.png used on input line 939.
+5.png used on input line 951.
 (pdftex.def)             Requested size: 255.82477pt x 148.32777pt.
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thet
-bar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=919, 1421.31
+bar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=933, 1421.31
 pt x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -816,9 +824,9 @@ thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5
 _psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06
-_05.png used on input line 940.
+_05.png used on input line 952.
 (pdftex.def)             Requested size: 255.82477pt x 148.32777pt.
- [42 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critC
+ [43 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critC
 USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_t
 hetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)> <
 ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM
@@ -826,7 +834,7 @@ _constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetb
 ar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>]
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_
-0_lami_0_2020_06_05.png, id=930, 1418.29875pt x 841.1425pt>
+0_lami_0_2020_06_05.png, id=944, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_
 lamx_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -836,12 +844,12 @@ t_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_the
-ttilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 949.
+ttilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 961.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
-_lami_0_2020_06_05.png, id=931, 1418.29875pt x 841.1425pt>
+_lami_0_2020_06_05.png, id=945, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -851,12 +859,12 @@ t_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_la
 mx_0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thet
-tilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 950.
+tilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 962.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_l
-ami_0_2020_06_05.png, id=932, 1418.29875pt x 841.1425pt>
+ami_0_2020_06_05.png, id=946, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lam
 x_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -866,12 +874,12 @@ t_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx
 _0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thetti
-lde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 951.
+lde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 963.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_the
-tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=940, 1421.3
+tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=954, 1421.3
 1pt x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_14
@@ -884,7 +892,7 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_0
 1_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_0
-6_05.png used on input line 962.
+6_05.png used on input line 974.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -897,12 +905,12 @@ thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5
 _psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06
-_05.png used on input line 963.
+_05.png used on input line 975.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetba
-r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=941, 1421.31pt
+r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=955, 1421.31pt
  x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_t
@@ -915,13 +923,13 @@ etbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_p
 si_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_0
-5.png used on input line 964.
+5.png used on input line 976.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[43 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constan
+[44 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constan
 t_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png (PNG copy)> <../../figures/command_IFS_anchoring_pr
 etty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -930,34 +938,34 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png (PNG copy)> <../
 arams_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_
 0_2020_06_05.png (PNG copy)>]
 
-LaTeX Warning: Text page 44 contains only floats.
+LaTeX Warning: Text page 45 contains only floats.
 
-[44 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_crit
+[45 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_crit
 CUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145
 _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>
  <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUS
 UM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetb
 ar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 979.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 991.
 
-[45]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 979.
+[46]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 991.
  (./draft_july.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 979.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 979.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 991.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 991.
 Package rerunfilecheck Info: File `draft_july.out' has not changed.
 (rerunfilecheck)             Checksum: 7CA8BD42706276787FE9AE424D86F4E1;1974.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 979.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 991.
  ) 
 Here is how much of TeX's memory you used:
- 10691 strings out of 493089
- 172460 string characters out of 6134842
- 277072 words of memory out of 5000000
- 13707 multiletter control sequences out of 15000+600000
+ 10700 strings out of 493089
+ 172738 string characters out of 6134842
+ 278188 words of memory out of 5000000
+ 13713 multiletter control sequences out of 15000+600000
  16135 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,21n,39p,1861b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -985,10 +993,10 @@ onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_july.pdf (45 pages, 1672238 bytes).
+Output written on draft_july.pdf (46 pages, 1741058 bytes).
 PDF statistics:
- 1119 PDF objects out of 1200 (max. 8388607)
- 1018 compressed objects within 11 object streams
- 290 named destinations out of 1000 (max. 500000)
- 307 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1132 PDF objects out of 1200 (max. 8388607)
+ 1029 compressed objects within 11 object streams
+ 292 named destinations out of 1000 (max. 500000)
+ 312 words of extra memory for PDF output out of 10000 (max. 10000000)
 

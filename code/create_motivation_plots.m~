@@ -169,8 +169,6 @@ liqp = liqpmore/100;
 
 cleaned_epi = epi+liqp;
 
-nanmean(epi-cleaned_epi)
-
 % Instead of cleaning the breakeven inflation series, the other way is to
 % compute the BEI, directly cleaning out liqp
 
@@ -193,31 +191,7 @@ cleaned_epi_w = i-(r(1:end-1)-liqpw(1:end-1));
 
 figure
 plot(cleaned_epi); hold on
-plot(1:5:numel(cleaned_epi),cleaned_epi_w) % perfect - the two measaures give exactly the same thing
-
-% BEI inflation, cleaned from liquidity premium, for draft and prezis
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time_epi,epi, 'linewidth',lw); hold on
-plot(time_epi,cleaned_epi, 'linewidth',lw)
-plot(time_epi, 2*ones(length(epi)), 'k--', 'linewidth',lw)
-legend({'Original', 'Without liquidity risk'},'interpreter', 'latex', 'location', 'southoutside')
-legend('boxoff')
-ax = gca; % current axes
-ax.FontSize = fs;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-datetick('x','yyyy-mm', 'keeplimits')
-if print_figs ==1
-    figname = ['cleaned_epi10_', date_today]
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
+plot(1:5:numel(cleaned_epi),cleaned_epi_w) % perfect - the two measaures give ea
 
 %%
 if close_em==1

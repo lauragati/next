@@ -34,13 +34,10 @@ rho=0.7;
 T=100;
 ndrop=5;
 e = randn(1,T+ndrop);
-v = randn(1,T+ndrop);
-
 % alph_true = [0.05;0.025;0;0.025;0.05];
 alph_true = [0.025;0.05];
-% alph_true=0.05;
 
-nknots = numel(alph_true);
+nknots = 2;
 statemax = 2;
 statemin = -statemax;
 stategrid = linspace(statemin,statemax,nknots);
@@ -56,8 +53,7 @@ s(1) = e(1);
 y(1) = 0;
 for t=2:T+ndrop
     s(t)=rho*s(t-1) +e(t);
-%     y(t)= ndim_simplex_eval(x, s(t),alph_true);
-    y(t) = alph_true(1)+alph_true(2)*s(t);
+    y(t)= ndim_simplex_eval(x, s(t),alph_true);
 end
 
 y = y(ndrop+1:end);
@@ -107,7 +103,6 @@ p =min([AIC,BIC,HQ]);
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
 [A,B,res,sigma] = sr_var(filt_data', p);
-
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
 c = B(1,:); % coefficients of the constant
@@ -214,9 +209,9 @@ options.UseParallel = 0; % 2/3 of the time
 
 W = diag(var(Om_boot,0,2));
 W1 = W^(-1)
-W1 = eye(size(W1));
+% W1 = eye(size(W1));
 
-% return
+return
 
 % Size of cross-section
 N=100
