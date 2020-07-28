@@ -60,7 +60,7 @@ Wmean=0;%100, 0
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
-cross_section = 'Nsimulations'; % Nestimations or Nsimulations
+cross_section = 'Nestimations'; % Nestimations or Nsimulations
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -116,6 +116,8 @@ end
 % dimension to take the variance.
 W = diag(var(Om_boot,0,2));
 W1 = W^(-1);
+% W1 = eye(size(W1)); % let's see if sim data does any better if the Fischer info doesn't blow up --> improves fit of model
+
 
 % return
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
@@ -198,7 +200,7 @@ ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
-return
+% return
 
 %% GMM
 % dbstop if error % with the catch block, you don't actually stop at the

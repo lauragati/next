@@ -34,10 +34,10 @@ rho=0.7;
 T=100;
 ndrop=5;
 e = randn(1,T+ndrop);
-% alph_true = [0.05;0.025;0;0.025;0.05];
-alph_true = [0.025;0.05];
+alph_true = [0.05;0.025;0;0.025;0.05];
+% alph_true = [0.025;0.05];
 
-nknots = 2;
+nknots = 5;
 statemax = 2;
 statemin = -statemax;
 stategrid = linspace(statemin,statemax,nknots);
@@ -205,10 +205,13 @@ options.UseParallel = 0; % 2/3 of the time
 
 % dbstop if error
 % dbstop if warning
-
+% dbstop in obj_GMM_check_mean at 47 if n==2
 
 W = diag(var(Om_boot,0,2));
 W1 = W^(-1);
+W1 = eye(size(W1));
+
+
 
 % Size of cross-section
 N=100

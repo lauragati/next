@@ -202,6 +202,7 @@ But a look at the data reveals that expectations of long-run inflation move arou
 \begin{figure}[h!]
 \includegraphics[scale = \mySmallFigScale]{\myFigPath \fignameMarketEPi}
 \caption{Market-based inflation expectations, 10 year, average, \%}
+\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year Treasury Inflation Protected Securities (TIPS). For a discussion of a potential negative bias in this series, see App. \ref{TIPS}.}
 \label{epi}
 \end{figure}
 
@@ -699,6 +700,10 @@ Lastly, a foray into the empirics of anchoring expectation formation is importan
 % the following command makes equation numbering include the section first, but just for what follows
 \numberwithin{equation}{section}
 
+\section{Filtering out liquidity risk from TIPS}\label{TIPS} 
+Some caution is needed when inferring inflation expectations from TIPS. The underlying idea is that the difference between real (indexed to inflation) and nominal yields should be a good metric for the market's expectations of inflation on average for the duration of the particular maturity. But since TIPS markets face liquidity issues, especially for seasoned securities, the TIPS yield also incorporates a liquidity premium. The positive bias in the TIPS yield thus leads to a negative bias in expected inflation.
+
+To gauge the presence of liquidity risk in TIPS, I rely on \cite{andreasen2018tips}'s estimation of the liquidity premium. Since their series only covers the period between July 11,1997 - Dec 27, 2013, I make use of the fact that they demonstrate a high correlation between liquidity risk and uncertainty. In particular, a regression of their average TIPS liquidity premium measure on the VIX index and controls yields an estimated coefficient of 0.85 (significant at the 1 percent level). Thus I can use the VIX to back out a fitted \cite{andreasen2018tips} estimate of the TIPS liquidity premium after 2013. 
 
 \section{Compact model notation}\label{app_compact} 
 The A-matrices are given by

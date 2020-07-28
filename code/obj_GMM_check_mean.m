@@ -8,13 +8,13 @@ Om_n = nan(numel(Om_data),N);
 for n=1:N
     s = zeros(T+ndrop,1);
     y = zeros(T+ndrop,1);
-
+    
     e=squeeze(eN(:,:,n));
-    s(1,n) = e(1);
-    y(1,n) = 0;
+    s(1) = e(1);
+    y(1) = 0;
     for t=2:T+ndrop
-        s(t,n)=rho*s(t-1) +e(t);
-        y(t,n)= ndim_simplex_eval(x, s(t),alph);
+        s(t)=rho*s(t-1) +e(t);
+        y(t)= ndim_simplex_eval(x, s(t),alph);
     end
     
     % Map into command_acf_sim_data_univariate.m
@@ -37,18 +37,28 @@ for n=1:N
     %     [v(i,:)] = Hamiltonfilter(y(i,:)');
     % end
     
-%     % 3) BK filter
-%     K=12;
-%     ystar = nan(nobs,T-2*K);
-%     for i=1:nobs
-%         ystar(i,:) = BKfilter(y_data(i,:)');
-%     end
+    %     % 3) BK filter
+    %     K=12;
+    %     ystar = nan(nobs,T-2*K);
+    %     for i=1:nobs
+    %         ystar(i,:) = BKfilter(y_data(i,:)');
+    %     end
     
     filt=c;
-    ranky = rank(filt'*filt);
-        if ranky < nobs
-            warning('Model-generated data matrix is not full rank')
-        end
+%     try
+%         ranky = rank(filt'*filt);
+%     catch err
+%         disp(['History n = ', num2str(n)])
+%         fprintf(1,'The identifier was:\n%s',err.identifier);
+%         fprintf(1,'\n The error message was:\n%s',err.message);
+%         fprintf(1,'\n');
+%         n
+%         continue % Pass control to the next iteration of FOR or WHILE loop.
+%     end
+%     
+%     if ranky < nobs
+%         warning('Model-generated data matrix is not full rank')
+%     end
     
     % Compute the model-implied moments
     % compute moments, Om, as the autocovariances of the data for lags
