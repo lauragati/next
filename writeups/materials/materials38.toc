@@ -4,8 +4,9 @@
 \contentsline {subsection}{\numberline {1.3}Point 5: 100 simulations from truth}{5}{subsection.1.3}
 \contentsline {subsection}{\numberline {1.4}Does the estimation strategy work?}{6}{subsection.1.4}
 \contentsline {subsubsection}{\numberline {1.4.1}How I compute the moments}{6}{subsubsection.1.4.1}
-\contentsline {section}{\numberline {2}For me: Simulated ``true'' data}{8}{section.2}
-\contentsline {section}{\numberline {3}Real data with the SPF}{19}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{22}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{22}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{23}{appendix.C}
+\contentsline {subsection}{\numberline {1.5}Rescale the GMM weighting matrix}{8}{subsection.1.5}
+\contentsline {section}{\numberline {2}For me: Simulated ``true'' data}{9}{section.2}
+\contentsline {section}{\numberline {3}Real data with the SPF}{20}{section.3}
+\contentsline {section}{\numberline {A}Model summary}{23}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{23}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{24}{appendix.C}

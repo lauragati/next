@@ -240,6 +240,27 @@ One thing I am noticing is that the estimated variance of the moments is very ti
 
 Replacing the piecewise linear approx with a linear rule with a slope coefficient works, but an intercept and a slope coefficient doesn't work to estimate the two parameters. 
 
+\newpage
+\subsection{Rescale the GMM weighting matrix}
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=0.35]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{incl. 1-step ahead forecasts of inflation, rescale W}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+I take the smallest diagonal element of $W$, the variance matrix of moments. I then rescale $W$ by the order of magnitude of the smallest element. That doesn't seem to do really well, although it does hit some moments better, others worse. It definitely stays closer to the initial values.
+
+\begin{figure}[h!]
+\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+%\hfill
+\subfigure[Autocovariogram]{\includegraphics[scale=0.35]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+\caption{Estimates for $N=100$, \colorbox{yellow}{incl. 1-step ahead forecasts of inflation, rescale W, estimate mean moments once}, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+Also here we see it sticking to the initialization clearly. It also became significantly faster (about 1/6th of the time!)
+
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page
 \afterpage{\blankpage}

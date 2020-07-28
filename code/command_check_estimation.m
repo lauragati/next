@@ -213,8 +213,15 @@ options.UseParallel = 0; % 2/3 of the time
 % dbstop in obj_GMM_check_mean at 47 if n==2
 
 W = diag(var(Om_boot,0,2));
-W1 = W^(-1)
-W1 = eye(size(W1));
+% If W really small, scale it up by the exponent of the smallest value
+% get exponent of 10 in the smallest diagonal element
+scaler = floor(log10(min(diag(W))));
+if scaler < 0
+    W = W* 10^(abs(scaler));
+end
+W1 = W^(-1) % better
+
+% W1 = eye(size(W1));
 
 % return
 
