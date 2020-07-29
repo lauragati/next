@@ -3,6 +3,8 @@ function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,
 % 20 July 2020
 % same as obj_GMM_LOMgain_univariate_mean, except simulates the model N
 % times and calculates mean moments
+
+
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
 if nargin < max_no_inputs

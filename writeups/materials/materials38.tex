@@ -261,6 +261,16 @@ I take the smallest diagonal element of $W$, the variance matrix of moments. I t
 
 Also here we see it sticking to the initialization clearly. It also became significantly faster (about 1/6th of the time!)
 
+\clearpage
+\subsection{Loss for holding $\alpha$s at true values, and varying one at a time}
+
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{Rescale W}]{\includegraphics[scale=0.35]{\myFigPath loss_for_indi_alphas_others_at_true_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+\subfigure[\colorbox{yellow}{Don't rescale W} (Rescaling but dropping the convexity moment looks like this too, except the order of magnitude is $10^{-5}$)]{\includegraphics[scale=0.35]{\myFigPath loss_for_indi_alphas_others_at_true_dontrescale_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_command_GMM_LOMgain_univariate_28_Jul_2020}}
+\caption{Loss for $N=100$, incl. 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page
 \afterpage{\blankpage}

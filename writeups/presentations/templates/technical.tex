@@ -184,6 +184,60 @@
 %\newtheorem{corollary}{Corollary}
 
 
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL FIGNAMES HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% Market-based expectations
+\def\fignameMarketEPi{epi10_2020_06_04}
+% cleaned from liq premium
+\def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+
+
+% Estimated coefficients alpha
+\def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+
+% Comparative statics of optimal policy
+% di/dk
+\def\fignameDiDk{analyze_opt_policy_ik}
+% di/dpibar
+\def\fignameDiDpibar{analyze_opt_policy_ip}
+
+% Observables in PEA for TR
+\def\fignamePEAobsTR{implement_anchTC_obs_TR}
+% Observables in PEA for anchoring
+\def\fignamePEAobsAnch{implement_anchTC_obs}
+
+% Central bank loss as a function of psi_pi in RE
+\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+% Central bank loss as a function of psi_pi in anchoring
+\def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+
+% Autocovariogram
+\def\fignameAutocov{autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+
+% Compare PEA and VFI policy for sequence of shocks X1
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_value_outputs_server_inputs_pretty}
+% Compare PEA and VFI policy for sequence of shocks X2
+\def\fignamePEAvsVFIsecondX{compare_value_pea_results_value_outputs_server02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty}
+
+% IRFs anchored vs unanchored
+\def\fignameIRFanchored{command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+\def\fignameIRFunanchored{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+
+% Cross-sectional average gains for various psi_pi
+\def\fignameGainPsiSmall{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+\def\fignameGainPsiMedium{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+\def\fignameGainPsiBig{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+
+% IRFs unanchored for various psi_pi
+\def\fignameIRFpsipiSmall{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+\def\fignameIRFpsipiMedium{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+\def\fignameIRFpsipiBig{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+
+%%%%%%%%%%%%%%%%%%%%
+
+
 \author[]{Laura G\'ati}
 % note: in the [] you can put a short name to be displayed in the footer
 
@@ -212,7 +266,7 @@ An Endogenous Gain Learning Model}
 
 
 %%%%%%% Slide %%%%%%
-\begin{frame}
+\begin{frame}\label{motivation}
 	
 \begin{quote}
 Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
@@ -220,12 +274,16 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 \end{quote}	
 
 \begin{figure}[h!]
-\includegraphics[scale = \myTinyFigScale]{\myFigPath epi10_2020_06_04}
+\includegraphics[scale = \myTinyFigScale]{\myFigPath \fignameMarketEPi}
 \caption{Market-based inflation expectations, 10 year, average, \%}
 \label{epi}
 \end{figure}
 
 
+%\vfill
+
+\vspace{-0.5cm}
+\hfill \hyperlink{app_TIPS}{\beamergotobutton{TIPS}}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
@@ -323,7 +381,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 	\colorbox{yellow}{TO DO}
 
 \begin{figure}[h!]
-\includegraphics[scale = \mySmallerFigScale]{\myFigPath command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_2020}
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
 \caption{Unanchoring as a function of forecast errors in inflation (\%-point)}
 \label{epi}
 \end{figure}
@@ -732,7 +790,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \colorbox{yellow}{TO DO} 
 	
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallerFigScale]{\myFigPath analyze_opt_policy_ip30_Jun_2020}
+\includegraphics[scale=\mySmallerFigScale]{\myFigPath \fignameDiDpibar}
 \caption{Comparative statics of the policy function: $\partial i / \partial \bar{\pi}$ if all other states are kept at their mean}
 \end{figure} % Materials 35
 
@@ -850,7 +908,23 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Correcting the TIPS from liquidity risk}
+	\label{app_TIPS}
 
+\begin{figure}[h!]
+\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, 10 year, average, \%}
+%\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+\vfill 
+\hyperlink{motivation}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix

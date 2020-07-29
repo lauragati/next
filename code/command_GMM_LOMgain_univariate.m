@@ -24,7 +24,7 @@ output_table = print_figs;
 
 save_estim_outputs =0;
 
-skip = 1;
+skip = 0;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
 datestr(now)
@@ -60,7 +60,8 @@ Wmean=0;%100, 0
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
-cross_section = 'Nestimations'; % Nestimations or Nsimulations
+cross_section = 'Nsimulations'; % Nestimations or Nsimulations
+scaleW =1;
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -118,10 +119,11 @@ W = diag(var(Om_boot,0,2));
 % If W really small, scale it up by the exponent of the smallest value
 % get exponent of 10 in the smallest diagonal element
 % return
-
-scaler = floor(log10(min(diag(W))));
-if scaler < 0
-    W = W* 10^(abs(scaler));
+if scaleW==1
+    scaler = floor(log10(min(diag(W))));
+    if scaler < 0
+        W = W* 10^(abs(scaler));
+    end
 end
 W1 = W^(-1);
 % W1 = eye(size(W1)); % let's see if sim data does any better if the Fischer info doesn't blow up --> improves fit of model
@@ -196,12 +198,6 @@ if use_smart_alph0==1
 end
 
 
-figname = [this_code, '_initial_alphas_', todays_date];
-if skip==0
-    create_pretty_plot_x(fegrid,alph0',figname,print_figs)
-    pause(3)
-    close
-end
 
 % Let's plot the initial approximated evolution of the gain on a finer sample
 ng_fine = 100;
@@ -306,28 +302,28 @@ switch cross_section
         
         % Testing whether moments converge to something as N--> inf, and it
         % seems yes, at N=1000.
-%         N=100; % N=10000: errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient? It seems so: plots on top, max(diff=0.0109)
-%         rng(1)
-%         eN1 = randn(3,T+ndrop,N);
-%         vN1 = randn(nobs,T+ndrop,N);
-%         
-%         rng(2)
-%         eN2 = randn(3,T+ndrop,N);
-%         vN2 = randn(nobs,T+ndrop,N);
-%         
-%         tic
-%         [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-%         [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-%         toc
-%         
-%         diffOm = Om1-Om2;
-%         
-%         figure
-%         plot(Om1)
-%         hold on
-%         plot(Om2)
-%         max(diffOm)
-%         return
+        %         N=100; % N=10000: errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient? It seems so: plots on top, max(diff=0.0109)
+        %         rng(1)
+        %         eN1 = randn(3,T+ndrop,N);
+        %         vN1 = randn(nobs,T+ndrop,N);
+        %
+        %         rng(2)
+        %         eN2 = randn(3,T+ndrop,N);
+        %         vN2 = randn(nobs,T+ndrop,N);
+        %
+        %         tic
+        %         [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        %         [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        %         toc
+        %
+        %         diffOm = Om1-Om2;
+        %
+        %         figure
+        %         plot(Om1)
+        %         hold on
+        %         plot(Om2)
+        %         max(diffOm)
+        %         return
         
         % Compute the objective function one time with some values
         [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
@@ -474,48 +470,55 @@ if contains(filename,'sim')
     
 end
 
-%%  investigate loss function
+%%  investigate loss function for fixing some alphas at true values
+% 28 July 2020
 if skip==0
     
     % 1. loss(true coeffs)=0?
-    [res_true, Om_true] = obj_GMM_LOMgain_univariate(alph_true,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
-    % res_true all are zero, as Peter said that they better be.
-    % Om - Om_true % these are also all zeros. So at least the code is ok.
+    [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+    % res_true all aren't zero, as Peter said that they better be. Maybe
+    % with N=1000?
+    
     % 2. What does the loss look like?
-    nrange =100;
-    alphi_values =linspace(lb(1),ub(1),nrange);
-    obj = zeros(length(alph_true),nrange);
+    nrange =10;
+    incr=0.001;%0.001
+    %     alphi_values =linspace(0,0.06,nrange);
+    obj = nan(length(alph_true),nrange);
     tic
     for i=1:length(alph_true)
         alph = alph_true;
-        %     alph = alph0;
-        %     alph = alph_opt;
+        % try to center the range tightly around the true value
+        if i==3
+            alphi_values(i,:) = linspace(0, alph_true(i)+incr,nrange)';
+        else
+            alphi_values(i,:) = linspace(alph_true(i)-incr, alph_true(i)+incr,nrange)';
+        end
         for j=1:nrange
-            alph(i) = alphi_values(j);
-            res = obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+            alph(i) = alphi_values(i,j);
+            res = obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
             obj(i,j) = sum(res.^2);
         end
     end
     toc
-    
-    [min_obj, min_idx] = min(obj,[],2);
-    [alph_true,alphi_values(min_idx)']
     
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
     for i=1:length(alph_true)
         subplot(2,3,i)
-        plot(alphi_values,obj(i,:), 'linewidth', lw);
+        plot(alphi_values(i,:),obj(i,:), 'linewidth', lw);
         ax = gca; % current axes
         ax.FontSize = fs;
         set(gca,'TickLabelInterpreter', 'latex');
         grid on
         grid minor
     end
-    figname = [this_code,'_loss_for_indi_alphas_others_at_true', todays_date];
-    % figname = [this_code,'_loss_for_indi_alphas_others_at_initial', todays_date];
-    % figname = [this_code,'_loss_for_indi_alphas_others_at_alph_opt', todays_date];
+    sgt = sgtitle(['$\alpha^{true} = $', num2str(alph_true')]);
+    sgt.FontSize =fs;
+    sgt.Interpreter = 'latex';
+%     figname = ['loss_for_indi_alphas_others_at_true_',figspecs];
+    figname = ['loss_for_indi_alphas_others_at_true_dontrescale_',figspecs];
+    
     
     if print_figs ==1
         disp(figname)
@@ -525,19 +528,6 @@ if skip==0
         close
     end
     
-    return
-    % Can I find the right alphas if I start nearly at the correct alph0?
-    alph0 = alph_true;
-    alph0(6) = alphi_values(end); % <--- the answer is "depends where you start''
-    options.TolFun= 1e-11;
-    % options.OptimalityTolerance = 1e-9;
-    % options.MaxFunEvals = 1000;
-    % options.MaxIter = 1200;
-    options.TolX = 1e-11;
-    tic
-    [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
-    toc
-    [alph_true, alph_opt]
     
 end
 %% save estimation outputs

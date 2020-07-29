@@ -98,6 +98,7 @@ eta = SIG; %just so you know
 % gen all the N sequences of shocks at once.
 rng(0)
 eN = randn(ne,T+ndrop,N);
+v = zeros(ne+1, T+ndrop); % shut off measurement error
 
 % Preallocate
 nd = size(dt_vals,2);
@@ -125,7 +126,7 @@ for s=2  %2->zoom in on monetary policy shock
         if gain ~= again_critsmooth
             [x_LH, y_LH, k(:,n), ~, ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,knowTR,mpshock);
         else
-            [x_LH, y_LH, k(:,n), ~, ~, ~, ~,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,knowTR,mpshock);
+            [x_LH, y_LH, k(:,n), ~, ~, ~, ~,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock);
         end
         % Shocked
         % RE
@@ -144,7 +145,7 @@ for s=2  %2->zoom in on monetary policy shock
             if gain ~= again_critsmooth
                 [~, ys_LH, ks(:,n), ~, ~, ~, ~, diffs] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,knowTR,mpshock, dt, x0);
             else
-                [~, ys_LH, ks(:,n), ~, ~, ~, ~,diffs] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,knowTR,mpshock,dt,x0);
+                [~, ys_LH, ks(:,n), ~, ~, ~, ~,diffs] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock,dt,x0);
             end
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
