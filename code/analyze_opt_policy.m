@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -84,7 +84,7 @@ create_pretty_plot_x(pibvals,i_p,[this_code, '_ip', todays_date],print_figs)
 
 
 %% Regress i on pi and x - this is just to see that under optimal policy, the CB responds much more to inflation and x than under TR
-X = [ysim7(1,2:end-1); ysim7(2,2:end-1)]';
+X = [ones(size(i_pe)); ysim7(1,2:end-1); ysim7(2,2:end-1)]';
 Y = i_pe';
 bet_ols = (X'*X)^(-1)*(X'*Y);
 yhat = X*bet_ols;
@@ -94,4 +94,34 @@ SSR = sum((Y-yhat).^2);
 % total sum of squares:
 SST = sum((Y-ybar).^2);
 R2 = 1 - SSR/SST;
+
+mdl = fitlm(X(:,2:end),Y)
+
+
+%% Regress pibar on k1, pibar{t-1}, fe and shocks - to see how much movement in LR exp is associated with what gains
+pibt   = pibsim(2:end);
+pibt_1 = pibsim(1:end-1);
+k1t    = k1sim(2:end);
+fe     = ysim7(1,3:end-1) - squeeze(phi7(1,1,3:end-1))';
+shocks = e([1;3],3:end-1);
+
+X = [ones(size(k1t)); k1t; pibt_1; fe]';
+Y = pibt';
+bet_ols = (X'*X)^(-1)*(X'*Y);
+yhat = X*bet_ols;
+ybar = mean(Y);
+% sum of squared residuals:
+SSR = sum((Y-yhat).^2);
+% total sum of squares:
+SST = sum((Y-ybar).^2);
+R2 = 1 - SSR/SST;
+
+mdl = fitlm(X(:,2:end),Y)
+
+% Calculation 30 July 2020
+% So if pibt_1 = 0, and forecast error increases by 1, 
+% we know from the estimated figure that the gain increases to 0.02, so the
+% change in pibar wrt fe is:
+betPibFe = 0.02*bet_ols(2)+bet_ols(4);
+
 

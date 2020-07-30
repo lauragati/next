@@ -22,6 +22,6 @@ for n=1:N
     for t=1:T
         period_loss(t) = bet^t * (lamx*X2(t,n) + PI2(t,n) + lami*I2(t,n));
     end
-    loss(n) = 1/2*sum(period_loss);
+    loss(n) = 1/2*nansum(period_loss);
 end
-EL = mean(loss);
+EL = nanmean(loss);

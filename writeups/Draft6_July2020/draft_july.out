@@ -12,16 +12,17 @@
 \BOOKMARK [2][-]{subsection.5.1}{The Ramsey policy under anchoring}{section.5}% 12
 \BOOKMARK [2][-]{subsection.5.2}{Implementing the Ramsey policy: the optimal interest rate sequence}{section.5}% 13
 \BOOKMARK [2][-]{subsection.5.3}{Optimal Taylor rule under anchoring}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.4}{Discussion}{section.5}% 15
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Filtering out liquidity risk from TIPS}{}% 17
-\BOOKMARK [1][-]{appendix.B}{Compact model notation}{}% 18
-\BOOKMARK [1][-]{appendix.C}{The observation matrix for learning}{}% 19
-\BOOKMARK [1][-]{appendix.D}{Alternative specifications for the anchoring function}{}% 20
-\BOOKMARK [1][-]{appendix.E}{Estimation procedure}{}% 21
-\BOOKMARK [1][-]{appendix.F}{The policy problem in the simplified baseline model }{}% 22
-\BOOKMARK [1][-]{appendix.G}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 23
-\BOOKMARK [1][-]{appendix.H}{Parameterized expectations algorithm \(PEA\)}{}% 24
-\BOOKMARK [1][-]{appendix.I}{Parametric value function iteration}{}% 25
-\BOOKMARK [1][-]{appendix.J}{Oscillatory dynamics in adaptive learning models}{}% 26
-\BOOKMARK [1][-]{appendix.K}{Impulse responses in the anchoring model}{}% 27
+\BOOKMARK [2][-]{subsection.5.4}{Welfare gains from optimal policy}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.5}{Discussion}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Filtering out liquidity risk from TIPS}{}% 18
+\BOOKMARK [1][-]{appendix.B}{Compact model notation}{}% 19
+\BOOKMARK [1][-]{appendix.C}{The observation matrix for learning}{}% 20
+\BOOKMARK [1][-]{appendix.D}{Alternative specifications for the anchoring function}{}% 21
+\BOOKMARK [1][-]{appendix.E}{Estimation procedure}{}% 22
+\BOOKMARK [1][-]{appendix.F}{The policy problem in the simplified baseline model }{}% 23
+\BOOKMARK [1][-]{appendix.G}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 24
+\BOOKMARK [1][-]{appendix.H}{Parameterized expectations algorithm \(PEA\)}{}% 25
+\BOOKMARK [1][-]{appendix.I}{Parametric value function iteration}{}% 26
+\BOOKMARK [1][-]{appendix.J}{Oscillatory dynamics in adaptive learning models}{}% 27
+\BOOKMARK [1][-]{appendix.K}{Impulse responses in the anchoring model}{}% 28

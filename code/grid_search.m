@@ -54,6 +54,8 @@ disp(['(psi_x, thetbar, thettilde)=   ', num2str([param.psi_x, param.thetbar, pa
 % gen all the N sequences of shocks at once.
 rng(0)
 eN = randn(ne,T,N);
+% vN = zeros(ne+1,T,N);
+
 
 %Optimization Parameters
 options = optimset('fmincon');

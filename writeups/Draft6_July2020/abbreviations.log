@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 JUL 2020 17:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  30 JUL 2020 09:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**draft_july.tex
-(./draft_july.tex
+**abbreviations.tex
+(./abbreviations.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
@@ -499,9 +499,6 @@ Package floatrow Info: Modified rotfloat package code loaded on input line 473.
 \LTright=\skip80
 \flrow@types=\toks32
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/palatino.sty
-Package: palatino 2005/04/12 PSNFSS-v9.2a (SPQR) 
-)
 Package hyperref Info: Option `colorlinks' set `true' on input line 44.
 \c@prop=\count140
 \c@definition=\count141
@@ -509,29 +506,23 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 44.
 \c@corollary=\count143
 \c@result=\count144
 
-(./draft_july.aux)
-\openout1 = `draft_july.aux'.
+No file abbreviations.aux.
+\openout1 = `abbreviations.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 190.
-LaTeX Font Info:    ... okay on input line 190.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 190.
-
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
-File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
-)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 189.
+LaTeX Font Info:    ... okay on input line 189.
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count145
@@ -602,7 +593,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 190.
+Package hyperref Info: Link coloring ON on input line 189.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -611,108 +602,718 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count151
 )
-LaTeX Info: Redefining \ref on input line 190.
-LaTeX Info: Redefining \pageref on input line 190.
-LaTeX Info: Redefining \nameref on input line 190.
-
-(./draft_july.out) (./draft_july.out)
+LaTeX Info: Redefining \ref on input line 189.
+LaTeX Info: Redefining \pageref on input line 189.
+LaTeX Info: Redefining \nameref on input line 189.
 \@outlinefile=\write3
-\openout3 = `draft_july.out'.
+\openout3 = `abbreviations.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 201.
+LaTeX Font Info:    Try loading font information for U+msa on input line 200.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 201.
+LaTeX Font Info:    Try loading font information for U+msb on input line 200.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 204.
- [1
+) [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 216.
 
-<../../figures/epi10_2020_06_04.png, id=126, 1370.11874pt x 841.1425pt>
+LaTeX Warning: Reference `epi' on page 2 undefined on input line 228.
+
+<../../figures/epi10_2020_06_04.png, id=15, 1370.11874pt x 841.1425pt>
 File: ../../figures/epi10_2020_06_04.png Graphic file (type png)
 
 <use ../../figures/epi10_2020_06_04.png>
 Package pdftex.def Info: ../../figures/epi10_2020_06_04.png used on input line 
-232.
+231.
 (pdftex.def)             Requested size: 301.42705pt x 185.05193pt.
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 233.
- [2 <../../figures/epi10_2020_06_04.png (PNG copy)>] [3] [4]
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 274.
- [5] [6] [7] [8] [9] [10]
+
+
+LaTeX Warning: Reference `TIPS' on page 2 undefined on input line 233.
+
+
+LaTeX Warning: Reference `TIPS' on page 2 undefined on input line 233.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 2 undefined on 
+input line 237.
+
+[2 <../../figures/epi10_2020_06_04.png (PNG copy)>]
+
+Package natbib Warning: Citation `kydland1977rules' on page 3 undefined on inpu
+t line 247.
+
+[3]
+
+Package natbib Warning: Citation `clarida1999science' on page 4 undefined on in
+put line 259.
+
+
+Package natbib Warning: Citation `woodford2011interest' on page 4 undefined on 
+input line 259.
+
+
+Package natbib Warning: Citation `svensson1999inflation' on page 4 undefined on
+ input line 259.
+
+
+Package natbib Warning: Citation `evans_honkapohja2001' on page 4 undefined on 
+input line 261.
+
+
+Package natbib Warning: Citation `milani2007expectations' on page 4 undefined o
+n input line 265.
+
+
+Package natbib Warning: Citation `eusepi2011expectations' on page 4 undefined o
+n input line 265.
+
+
+Package natbib Warning: Citation `cogley1993impulse' on page 4 undefined on inp
+ut line 265.
+
+
+Package natbib Warning: Citation `milani2014learning' on page 4 undefined on in
+put line 265.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 4 undefined on 
+input line 265.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 4 undefined on 
+input line 265.
+
+
+Package natbib Warning: Citation `sargent1999' on page 4 undefined on input lin
+e 265.
+
+[4]
+
+LaTeX Warning: Reference `NK' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `learning' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `estimation' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `analytical' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `ramsey' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `implement' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `opt_TR' on page 5 undefined on input line 267.
+
+
+LaTeX Warning: Reference `conclusion' on page 5 undefined on input line 267.
+
+
+Package natbib Warning: Citation `calvo1983staggered' on page 5 undefined on in
+put line 272.
+
+
+Package natbib Warning: Citation `woodford2011interest' on page 5 undefined on 
+input line 272.
+
+[5]
+
+LaTeX Warning: Reference `FOCs' on page 6 undefined on input line 295.
+
+[6]
+
+LaTeX Warning: Reference `lifetime_profits' on page 7 undefined on input line 3
+16.
+
+
+Package natbib Warning: Citation `preston2005' on page 7 undefined on input lin
+e 321.
+
+
+Package natbib Warning: Citation `preston2005' on page 7 undefined on input lin
+e 321.
+
+
+Package natbib Warning: Citation `bullard2002learning' on page 7 undefined on i
+nput line 321.
+
+
+Package natbib Warning: Citation `preston2005' on page 7 undefined on input lin
+e 321.
+
+
+Package natbib Warning: Citation `preston2005' on page 7 undefined on input lin
+e 323.
+
+
+Package natbib Warning: Citation `evans2009SP' on page 7 undefined on input lin
+e 323.
+
+
+Package natbib Warning: Citation `preston2005' on page 7 undefined on input lin
+e 323.
+
+[7]
+
+LaTeX Warning: Reference `NKIS' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `NKPC' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `NKIS' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `NKPC' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `learning' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `NKIS' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `NKPC' on page 8 undefined on input line 330.
+
+
+LaTeX Warning: Reference `app_compact' on page 8 undefined on input line 340.
+
+
+LaTeX Warning: Reference `NKIS' on page 8 undefined on input line 340.
+
+
+LaTeX Warning: Reference `NKPC' on page 8 undefined on input line 340.
+
+
+LaTeX Warning: Reference `TR' on page 8 undefined on input line 340.
+
+
+LaTeX Warning: Reference `app_compact' on page 8 undefined on input line 344.
+
+
+LaTeX Warning: Reference `app_compact' on page 8 undefined on input line 348.
+
+
+LaTeX Warning: Reference `LOM_s' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Reference `RE_obs' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Reference `app_FG' on page 8 undefined on input line 354.
+
+
+LaTeX Warning: Reference `RE_obs' on page 8 undefined on input line 354.
+
+[8]
+
+LaTeX Warning: Reference `PLM' on page 9 undefined on input line 360.
+
+
+Package natbib Warning: Citation `sargent1999' on page 9 undefined on input lin
+e 368.
+
+
+LaTeX Warning: Reference `LOM_s' on page 9 undefined on input line 370.
+
+[9]
+
+LaTeX Warning: Reference `PLM' on page 10 undefined on input line 375.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 10 undefined on
+ input line 384.
+
+
+LaTeX Warning: Reference `alternative_criteria' on page 10 undefined on input l
+ine 389.
+
+
+LaTeX Warning: Reference `anchoring' on page 10 undefined on input line 389.
+
+
+LaTeX Warning: Reference `estimation' on page 10 undefined on input line 389.
+
+[10]
+
+LaTeX Warning: Reference `LOM_LR' on page 11 undefined on input line 395.
+
+
+LaTeX Warning: Reference `PLM' on page 11 undefined on input line 398.
+
+
+LaTeX Warning: Reference `fafb' on page 11 undefined on input line 398.
+
+
+LaTeX Warning: Reference `LOM_LR' on page 11 undefined on input line 402.
+
+
+LaTeX Warning: Reference `app_FG' on page 11 undefined on input line 408.
+
+
+LaTeX Warning: Reference `LOM_s' on page 11 undefined on input line 408.
+
+
+LaTeX Warning: Reference `RE_obs' on page 11 undefined on input line 408.
+
+
+LaTeX Warning: Reference `LOM_s' on page 11 undefined on input line 408.
+
+
+LaTeX Warning: Reference `ALM' on page 11 undefined on input line 408.
+
+
+LaTeX Warning: Reference `anchoring' on page 11 undefined on input line 414.
+
+[11]
+
+LaTeX Warning: Reference `ramsey' on page 12 undefined on input line 416.
+
+
+Package natbib Warning: Citation `lee1991simulation' on page 12 undefined on in
+put line 422.
+
+
+Package natbib Warning: Citation `duffie1990simulated' on page 12 undefined on 
+input line 422.
+
+
+Package natbib Warning: Citation `smith1993SMM' on page 12 undefined on input l
+ine 422.
+
+
+LaTeX Warning: Reference `SMM' on page 12 undefined on input line 422.
+
+
 <../../figures/command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_20
-20.png, id=346, 1397.22pt x 844.15375pt>
+20.png, id=135, 1397.22pt x 844.15375pt>
 File: ../../figures/command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_J
 ul_2020.png Graphic file (type png)
 
 <use ../../figures/command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Ju
 l_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_alph_opt_
-loss_273_nfe_7_16_Jul_2020.png used on input line 428.
+loss_273_nfe_7_16_Jul_2020.png used on input line 425.
 (pdftex.def)             Requested size: 307.38936pt x 185.7144pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Reference `alpha_hat' on page 12 undefined on input line 431.
 
-[11] [12 <../../figures/command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_
-16_Jul_2020.png (PNG copy)>] [13]
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 473.
- [14] [15] [16] [17] [18] [19]
-<../../figures/analyze_opt_policy_ip29_Jul_2020.png, id=582, 1084.05pt x 718.68
+
+Package natbib Warning: Citation `branch2006simple' on page 12 undefined on inp
+ut line 433.
+
+
+Package natbib Warning: Citation `milani2007expectations' on page 12 undefined 
+on input line 433.
+
+
+Package natbib Warning: Citation `milani2014learning' on page 12 undefined on i
+nput line 433.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 12 undefined on
+ input line 433.
+
+
+Package natbib Warning: Citation `eusepi2011expectations' on page 12 undefined 
+on input line 433.
+
+[12 <../../figures/command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Ju
+l_2020.png (PNG copy)>]
+
+LaTeX Warning: Reference `ramsey' on page 13 undefined on input line 444.
+
+
+LaTeX Warning: Reference `implement' on page 13 undefined on input line 446.
+
+
+LaTeX Warning: Reference `opt_TR' on page 13 undefined on input line 448.
+
+
+Package natbib Warning: Citation `woodford2011interest' on page 13 undefined on
+ input line 453.
+
+[13]
+
+LaTeX Warning: Reference `CBloss' on page 14 undefined on input line 457.
+
+
+LaTeX Warning: Reference `NKIS' on page 14 undefined on input line 457.
+
+
+LaTeX Warning: Reference `NKPC' on page 14 undefined on input line 457.
+
+
+LaTeX Warning: Reference `learning' on page 14 undefined on input line 457.
+
+
+LaTeX Warning: Reference `opt_TR' on page 14 undefined on input line 459.
+
+
+LaTeX Warning: Reference `TR' on page 14 undefined on input line 463.
+
+
+LaTeX Warning: Reference `NKIS' on page 14 undefined on input line 463.
+
+
+LaTeX Warning: Reference `NKPC' on page 14 undefined on input line 463.
+
+
+LaTeX Warning: Reference `app_midsimple_problem' on page 14 undefined on input 
+line 470.
+
+
+LaTeX Warning: Reference `implement' on page 14 undefined on input line 470.
+
+
+LaTeX Warning: Reference `app_generalTC' on page 14 undefined on input line 472
+.
+
+[14]
+
+LaTeX Warning: Reference `app_midsimple_problem' on page 15 undefined on input 
+line 487.
+
+
+LaTeX Warning: Reference `anchoring_simple' on page 15 undefined on input line 
+487.
+
+
+LaTeX Warning: Reference `app_generalTC' on page 15 undefined on input line 487
+.
+
+
+LaTeX Warning: Reference `target' on page 15 undefined on input line 490.
+
+
+LaTeX Warning: Reference `target' on page 15 undefined on input line 494.
+
+
+Package natbib Warning: Citation `gaspar2010inflation' on page 15 undefined on 
+input line 500.
+
+
+Package natbib Warning: Citation `gaspar2010inflation' on page 15 undefined on 
+input line 500.
+
+
+Package natbib Warning: Citation `molnar2014optimal' on page 15 undefined on in
+put line 500.
+
+
+Package natbib Warning: Citation `molnar2014optimal' on page 15 undefined on in
+put line 500.
+
+
+Package natbib Warning: Citation `molnar2014optimal' on page 15 undefined on in
+put line 500.
+
+[15]
+
+LaTeX Warning: Reference `target_molnar' on page 16 undefined on input line 504
+.
+
+
+LaTeX Warning: Reference `target' on page 16 undefined on input line 504.
+
+
+LaTeX Warning: Reference `target_molnar' on page 16 undefined on input line 504
+.
+
+
+LaTeX Warning: Reference `target' on page 16 undefined on input line 506.
+
+
+LaTeX Warning: Reference `app_midsimple_problem' on page 16 undefined on input 
+line 506.
+
+
+LaTeX Warning: Reference `gaspar22' on page 16 undefined on input line 506.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 16 undefined on
+ input line 510.
+
+[16]
+
+LaTeX Warning: Reference `implement' on page 17 undefined on input line 518.
+
+
+LaTeX Warning: Reference `opt_TR' on page 17 undefined on input line 518.
+
+
+Package natbib Warning: Citation `clarida1999science' on page 17 undefined on i
+nput line 525.
+
+
+Package natbib Warning: Citation `kydland1977rules' on page 17 undefined on inp
+ut line 528.
+
+
+LaTeX Warning: Reference `anchoring_simple' on page 17 undefined on input line 
+536.
+
+
+LaTeX Warning: Reference `anchoring_simple' on page 17 undefined on input line 
+536.
+
+[17]
+
+Package natbib Warning: Citation `molnar2014optimal' on page 18 undefined on in
+put line 543.
+
+
+Package natbib Warning: Citation `mele2019perils' on page 18 undefined on input
+ line 547.
+
+
+Package natbib Warning: Citation `lucas1976econometric' on page 18 undefined on
+ input line 549.
+
+
+Package natbib Warning: Citation `coibion2015information' on page 18 undefined 
+on input line 551.
+
+[18]
+
+Package natbib Warning: Citation `cho1995induction' on page 19 undefined on inp
+ut line 553.
+
+
+Package natbib Warning: Citation `ireland2000expectations' on page 19 undefined
+ on input line 553.
+
+
+Package natbib Warning: Citation `woodford2019monetary' on page 19 undefined on
+ input line 553.
+
+
+Package natbib Warning: Citation `dombeck2017effects' on page 19 undefined on i
+nput line 553.
+
+
+LaTeX Warning: Reference `target' on page 19 undefined on input line 558.
+
+
+LaTeX Warning: Reference `ramsey' on page 19 undefined on input line 558.
+
+
+LaTeX Warning: Reference `calibration1' on page 19 undefined on input line 560.
+
+
+
+Package natbib Warning: Citation `chari2000sticky' on page 19 undefined on inpu
+t line 560.
+
+
+Package natbib Warning: Citation `woodford2011interest' on page 19 undefined on
+ input line 560.
+
+
+Package natbib Warning: Citation `chari2000sticky' on page 19 undefined on inpu
+t line 560.
+
+
+Package natbib Warning: Citation `bils2004some' on page 19 undefined on input l
+ine 560.
+
+
+Package natbib Warning: Citation `klenow2010microeconomic' on page 19 undefined
+ on input line 560.
+
+
+Package natbib Warning: Citation `klenow2008state' on page 19 undefined on inpu
+t line 560.
+
+
+Package natbib Warning: Citation `nakamura2008five' on page 19 undefined on inp
+ut line 560.
+
+
+Package natbib Warning: Citation `eichenbaum2011reference' on page 19 undefined
+ on input line 560.
+
+
+Package natbib Warning: Citation `rotemberg1997optimization' on page 19 undefin
+ed on input line 561.
+
+
+LaTeX Warning: Reference `target' on page 19 undefined on input line 561.
+
+
+Package natbib Warning: Citation `taylor1993discretion' on page 19 undefined on
+ input line 563.
+
+
+LaTeX Warning: Reference `calibration1' on page 19 undefined on input line 563.
+
+
+[19]
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 20 undefined on
+ input line 596.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 20 undefined on
+ input line 596.
+
+
+LaTeX Warning: Reference `alternative_criteria' on page 20 undefined on input l
+ine 596.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 20 undefined on
+ input line 596.
+
+
+LaTeX Warning: Reference `target' on page 20 undefined on input line 596.
+
+
+LaTeX Warning: Reference `pea' on page 20 undefined on input line 598.
+
+
+LaTeX Warning: Reference `vfi' on page 20 undefined on input line 598.
+
+
+LaTeX Warning: Reference `di' on page 20 undefined on input line 604.
+
+
+<../../figures/analyze_opt_policy_ip29_Jul_2020.png, id=222, 1084.05pt x 718.68
 5pt>
 File: ../../figures/analyze_opt_policy_ip29_Jul_2020.png Graphic file (type png
 )
  <use ../../figures/analyze_opt_policy_ip29_Jul_2020.png>
 Package pdftex.def Info: ../../figures/analyze_opt_policy_ip29_Jul_2020.png use
-d on input line 614.
-(pdftex.def)             Requested size: 260.1773pt x 172.48792pt.
+d on input line 608.
+(pdftex.def)             Requested size: 227.65721pt x 150.9283pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20] [21 <../../figures/analyze_opt_policy_ip29_Jul_2020.png (PNG copy)>]
-<../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png, id=619, 1054.9412
+
+LaTeX Warning: Reference `di' on page 20 undefined on input line 613.
+
+[20]
+
+LaTeX Warning: Reference `ramsey' on page 21 undefined on input line 619.
+
+[21 <../../figures/analyze_opt_policy_ip29_Jul_2020.png (PNG copy)>]
+
+Package natbib Warning: Citation `evans_honkapohja2001' on page 22 undefined on
+ input line 621.
+
+
+Package natbib Warning: Citation `evans2013bayesian' on page 22 undefined on in
+put line 621.
+
+
+Package natbib Warning: Citation `anufriev2012evolutionary' on page 22 undefine
+d on input line 621.
+
+
+LaTeX Warning: Reference `app_oscillations' on page 22 undefined on input line 
+621.
+
+
+LaTeX Warning: Reference `app_IRFs' on page 22 undefined on input line 621.
+
+
+Package natbib Warning: Citation `ball1994credible' on page 22 undefined on inp
+ut line 621.
+
+
+LaTeX Warning: Reference `target' on page 22 undefined on input line 625.
+
+
+LaTeX Warning: Reference `calibration1' on page 22 undefined on input line 625.
+
+
+
+<../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png, id=242, 1054.9412
 5pt x 754.82pt>
 File: ../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png Graphic file 
 (type png)
 
 <use ../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs_TR_approx29_Jul_202
-0.png used on input line 634.
+0.png used on input line 628.
 (pdftex.def)             Requested size: 305.92513pt x 218.8922pt.
 
-<../../figures/implement_anchTC_obs_approx17_Jul_2020.png, id=620, 1370.11874pt
+<../../figures/implement_anchTC_obs_approx17_Jul_2020.png, id=243, 1370.11874pt
  x 881.2925pt>
 File: ../../figures/implement_anchTC_obs_approx17_Jul_2020.png Graphic file (ty
 pe png)
  <use ../../figures/implement_anchTC_obs_approx17_Jul_2020.png>
 Package pdftex.def Info: ../../figures/implement_anchTC_obs_approx17_Jul_2020.p
-ng used on input line 636.
+ng used on input line 630.
 (pdftex.def)             Requested size: 328.83522pt x 211.51451pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[22] [23 <../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png (PNG copy
-)> <../../figures/implement_anchTC_obs_approx17_Jul_2020.png (PNG copy)>]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Reference `pea_TCvsTR' on page 22 undefined on input line 637.
 
 
+LaTeX Warning: Reference `target' on page 22 undefined on input line 637.
+
+[22]
+
+Package natbib Warning: Citation `taylor1993discretion' on page 23 undefined on
+ input line 644.
+
+
+Package natbib Warning: Citation `woodford2011interest' on page 23 undefined on
+ input line 644.
+
+
+LaTeX Warning: Reference `target' on page 23 undefined on input line 644.
+
+
+LaTeX Warning: Reference `cgg_discretion' on page 23 undefined on input line 64
+4.
+
+
+LaTeX Warning: Reference `result_no_commitment' on page 23 undefined on input l
+ine 644.
+
+[23 <../../figures/implement_anchTC_obs_TR_approx29_Jul_2020.png (PNG copy)> <.
+./../figures/implement_anchTC_obs_approx17_Jul_2020.png (PNG copy)>]
+
+LaTeX Warning: Reference `calibration1' on page 24 undefined on input line 646.
+
+
+
+LaTeX Warning: Reference `estimation' on page 24 undefined on input line 646.
+
+
+LaTeX Warning: Reference `par_opt' on page 24 undefined on input line 648.
+
+
+LaTeX Warning: Reference `fig_loss' on page 24 undefined on input line 670.
+
+
+LaTeX Warning: Reference `implement' on page 24 undefined on input line 672.
+
+
+LaTeX Warning: Reference `IRF' on page 24 undefined on input line 672.
+
+
+LaTeX Warning: Reference `anchor_psi' on page 24 undefined on input line 672.
+
+[24]
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
 y_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29.png, id
-=662, 1054.94125pt x 696.6025pt>
+=271, 1054.94125pt x 696.6025pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29.pn
 g Graphic file (type png)
@@ -722,12 +1323,12 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29.png
 >
 Package pdftex.def Info: ../../figures/plot_sim_loss_approx_pretty_losses_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_l
-ami_0_2020_07_29.png used on input line 682.
-(pdftex.def)             Requested size: 210.98451pt x 139.31802pt.
+ami_0_2020_07_29.png used on input line 676.
+(pdftex.def)             Requested size: 232.0878pt x 153.25302pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
 y_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29.png, id
-=663, 1093.08376pt x 688.5725pt>
+=272, 1093.08376pt x 688.5725pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29.pn
 g Graphic file (type png)
@@ -737,12 +1338,12 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29.png
 >
 Package pdftex.def Info: ../../figures/plot_sim_loss_approx_pretty_losses_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_l
-ami_0_2020_07_29.png used on input line 684.
-(pdftex.def)             Requested size: 218.61287pt x 137.71205pt.
+ami_0_2020_07_29.png used on input line 678.
+(pdftex.def)             Requested size: 240.47917pt x 151.4864pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
 y_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29.png, id
-=664, 1075.01625pt x 694.595pt>
+=273, 1075.01625pt x 694.595pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29.pn
 g Graphic file (type png)
@@ -752,12 +1353,12 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29.png
 >
 Package pdftex.def Info: ../../figures/plot_sim_loss_approx_pretty_losses_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_l
-ami_1_2020_07_29.png used on input line 685.
-(pdftex.def)             Requested size: 214.99944pt x 138.91653pt.
+ami_1_2020_07_29.png used on input line 679.
+(pdftex.def)             Requested size: 236.5043pt x 152.81137pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
 y_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29.png, id
-=665, 1094.0875pt x 696.6025pt>
+=274, 1094.0875pt x 696.6025pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29.pn
 g Graphic file (type png)
@@ -767,34 +1368,203 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29.png
 >
 Package pdftex.def Info: ../../figures/plot_sim_loss_approx_pretty_losses_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_l
-ami_1_2020_07_29.png used on input line 687.
-(pdftex.def)             Requested size: 218.81361pt x 139.31802pt.
+ami_1_2020_07_29.png used on input line 681.
+(pdftex.def)             Requested size: 240.69998pt x 153.25302pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: Reference `implement' on page 25 undefined on input line 687.
 
-[24] [25 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_con
-stant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_2
-9.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_again_crits
-mooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_
-2020_07_29.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_ag
-ain_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_
-0_lami_1_2020_07_29.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_
-losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_
-145_lamx_1_lami_1_2020_07_29.png (PNG copy)>] [26] [27] [28] [29]
-(./draft_july.bbl [30
 
-] [31] [32]) [33]
-<../../figures/cleaned_epi10_2020_07_28.png, id=770, 1069.9975pt x 695.59875pt>
+LaTeX Warning: Reference `implement' on page 25 undefined on input line 687.
+
+
+LaTeX Warning: Reference `ramsey' on page 25 undefined on input line 689.
+
+
+LaTeX Warning: Reference `implement' on page 25 undefined on input line 689.
+
+[25 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant
+_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29.png
+ (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth
+_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_
+07_29.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_again_c
+ritsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lam
+i_1_2020_07_29.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losse
+s_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_l
+amx_1_lami_1_2020_07_29.png (PNG copy)>]
+
+LaTeX Warning: Reference `result_no_commitment' on page 26 undefined on input l
+ine 693.
+
+
+LaTeX Warning: Reference `target' on page 26 undefined on input line 693.
+
+
+LaTeX Warning: Reference `implement' on page 26 undefined on input line 695.
+
+
+LaTeX Warning: Reference `implement' on page 26 undefined on input line 695.
+
+
+LaTeX Warning: Reference `opt_TR' on page 26 undefined on input line 697.
+
+
+LaTeX Warning: Reference `implement' on page 26 undefined on input line 699.
+
+
+Package natbib Warning: Citation `LUBIK201685' on page 26 undefined on input li
+ne 699.
+
+
+LaTeX Warning: Reference `implement' on page 26 undefined on input line 699.
+
+[26]
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 27 undefined on
+ input line 710.
+
+
+LaTeX Warning: Reference `result_no_commitment' on page 27 undefined on input l
+ine 714.
+
+
+Package natbib Warning: Citation `beaudry2006stock' on page 27 undefined on inp
+ut line 714.
+
+
+Package natbib Warning: Citation `campbell2012macroeconomic' on page 27 undefin
+ed on input line 714.
+
+
+Package natbib Warning: Citation `Branch2011' on page 27 undefined on input lin
+e 716.
+
+[27] [28]
+No file abbreviations.bbl.
+
+Package natbib Warning: Citation `andreasen2018tips' on page 29 undefined on in
+put line 739.
+
+
+Package natbib Warning: Citation `andreasen2018tips' on page 29 undefined on in
+put line 739.
+
+
+LaTeX Warning: Reference `epi_cleaned' on page 29 undefined on input line 739.
+
+
+<../../figures/cleaned_epi10_2020_07_28.png, id=299, 1069.9975pt x 695.59875pt>
 File: ../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
 <use ../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../figures/cleaned_epi10_2020_07_28.png used on inp
-ut line 784.
+ut line 742.
 (pdftex.def)             Requested size: 321.00172pt x 208.68123pt.
- [34 <../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>] [35] [36] [37] [3
-8]
+
+
+Package natbib Warning: Citation `andreasen2018tips' on page 29 undefined on in
+put line 748.
+
+
+Package natbib Warning: Citation `andreasen2018tips' on page 29 undefined on in
+put line 748.
+
+[29
+
+ <../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>]
+
+LaTeX Warning: Reference `LOM_s' on page 30 undefined on input line 767.
+
+[30]
+
+LaTeX Warning: Reference `anchoring' on page 31 undefined on input line 795.
+
+
+LaTeX Warning: Reference `gain' on page 31 undefined on input line 800.
+
+
+LaTeX Warning: Reference `estimation' on page 31 undefined on input line 803.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 31 undefined on
+ input line 805.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 31 undefined on
+ input line 810.
+
+
+LaTeX Warning: Reference `app_FG' on page 31 undefined on input line 814.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 31 undefined on
+ input line 816.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 31 undefined on
+ input line 816.
+
+
+Package natbib Warning: Citation `brown1975techniques' on page 31 undefined on 
+input line 821.
+
+
+Package natbib Warning: Citation `lutkepohl2013introduction' on page 31 undefin
+ed on input line 821.
+
+[31]
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 32 undefined on
+ input line 823.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 32 undefined on
+ input line 825.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 32 undefined on
+ input line 825.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 32 undefined on
+ input line 825.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 32 undefined on
+ input line 825.
+
+
+Package natbib Warning: Citation `gobbi2019monetary' on page 32 undefined on in
+put line 829.
+
+
+Package natbib Warning: Citation `gobbi2019monetary' on page 32 undefined on in
+put line 829.
+
+
+LaTeX Warning: Reference `estimation' on page 32 undefined on input line 837.
+
+[32]
+
+Package natbib Warning: Citation `baxter1999measuring' on page 33 undefined on 
+input line 847.
+
+
+LaTeX Warning: Reference `RLS' on page 33 undefined on input line 849.
+
+
+LaTeX Warning: Reference `RLS' on page 33 undefined on input line 851.
+
+
+Package natbib Warning: Citation `gobbi2019monetary' on page 33 undefined on in
+put line 851.
+
+
+LaTeX Warning: Reference `autocovariogram' on page 33 undefined on input line 8
+53.
+
+
 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_273_gr
-idspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png, id=863, 1355.0625pt x
+idspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png, id=346, 1355.0625pt x
  879.285pt>
 File: ../../figures/command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_2
 73_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png Graphic file (typ
@@ -804,18 +1574,103 @@ e png)
 3_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png>
 Package pdftex.def Info: ../../figures/command_GMM_LOMgain_univariate_autocovar
 iogram_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.pn
-g used on input line 899.
+g used on input line 857.
 (pdftex.def)             Requested size: 474.27899pt x 307.75436pt.
- [39 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_2
-73_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png (PNG copy)>] [40]
- [41] [42]
+ [33] [34 <../../figures/command_GMM_LOMgain_univariate_autocovariogram_nfe_7_l
+oss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020.png (PNG copy)>]
 
-LaTeX Warning: Reference `compare_pea_vfi' on page 43 undefined on input line 9
-90.
+
+LaTeX Warning: Reference `gaspar22' on page 35 undefined on input line 883.
+
+
+Package natbib Warning: Citation `gaspar2010inflation' on page 35 undefined on 
+input line 883.
+
+
+Package natbib Warning: Citation `molnar2014optimal' on page 35 undefined on in
+put line 883.
+
+
+LaTeX Warning: Reference `result_no_commitment' on page 35 undefined on input l
+ine 883.
+
+
+Package natbib Warning: Citation `clarida1999science' on page 35 undefined on i
+nput line 883.
+
+
+LaTeX Warning: Reference `target' on page 35 undefined on input line 883.
+
+
+LaTeX Warning: Reference `simpleFOC1' on page 35 undefined on input line 885.
+
+
+LaTeX Warning: Reference `simpleFOC2' on page 35 undefined on input line 885.
+
+
+LaTeX Warning: Reference `simpleFOC1' on page 35 undefined on input line 885.
+
+
+LaTeX Warning: Reference `simpleFOC2' on page 35 undefined on input line 885.
+
+
+LaTeX Warning: Reference `simpleRLS' on page 35 undefined on input line 891.
+
+[35]
+
+LaTeX Warning: Reference `anchoring' on page 36 undefined on input line 894.
+
+
+LaTeX Warning: Reference `gaspar22' on page 36 undefined on input line 909.
+
+
+LaTeX Warning: Reference `1'' on page 36 undefined on input line 915.
+
+
+LaTeX Warning: Reference `6'' on page 36 undefined on input line 915.
+
+
+LaTeX Warning: Reference `1'' on page 36 undefined on input line 915.
+
+[36]
+
+LaTeX Warning: Reference `sol1'' on page 37 undefined on input line 919.
+
+
+LaTeX Warning: Reference `B1' on page 37 undefined on input line 935.
+
+
+Package natbib Warning: Citation `christiano2000occasionally' on page 37 undefi
+ned on input line 935.
+
+
+LaTeX Warning: Reference `A9' on page 37 undefined on input line 937.
+
+
+LaTeX Warning: Reference `B1' on page 37 undefined on input line 937.
+
+
+LaTeX Warning: Reference `A9' on page 37 undefined on input line 941.
+
+
+LaTeX Warning: Reference `B1' on page 37 undefined on input line 941.
+
+
+Package natbib Warning: Citation `christiano2000occasionally' on page 37 undefi
+ned on input line 941.
+
+[37]
+
+Package natbib Warning: Citation `judd1998numerical' on page 38 undefined on in
+put line 948.
+
+
+LaTeX Warning: Reference `compare_pea_vfi' on page 38 undefined on input line 9
+48.
 
 
 <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul_2020
-_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png, id=943, 1405.25pt 
+_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png, id=406, 1405.25pt 
 x 812.03375pt>
 File: ../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul
 _2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png Graphic file (
@@ -825,12 +1680,12 @@ type png)
 2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_approx_value_o
 utputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty
-.png used on input line 993.
+.png used on input line 951.
 (pdftex.def)             Requested size: 281.04501pt x 162.40387pt.
 
 <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul_2020
 _14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46.pn
-g, id=944, 1401.235pt x 812.03375pt>
+g, id=407, 1401.235pt x 812.03375pt>
 File: ../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul
 _2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_
 46.png Graphic file (type png)
@@ -840,20 +1695,46 @@ _2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_
 6.png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_approx_value_o
 utputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty
-_17_Jul_2020_15_34_46.png used on input line 994.
+_17_Jul_2020_15_34_46.png used on input line 952.
 (pdftex.def)             Requested size: 280.24203pt x 162.40387pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[43] [44 <../../figures/compare_value_pea_results_approx_value_outputs_approx17
-_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png (PNG copy)
-> <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul_20
-20_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46.
-png (PNG copy)>]
+
+LaTeX Warning: Reference `simple_NKPC' on page 38 undefined on input line 963.
+
+
+LaTeX Warning: Reference `ramsey' on page 38 undefined on input line 963.
+
+
+LaTeX Warning: Reference `simple_expectations' on page 38 undefined on input li
+ne 963.
+
+[38]
+
+LaTeX Warning: Reference `oscillating_fe' on page 39 undefined on input line 97
+3.
+
+
+LaTeX Warning: Reference `IRF' on page 39 undefined on input line 975.
+
+
+LaTeX Warning: Reference `alternative_criteria' on page 39 undefined on input l
+ine 978.
+
+[39 <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul_
+2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty.png (PNG copy)> <..
+/../figures/compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14
+_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46.png (
+PNG copy)>]
+
+LaTeX Warning: Reference `IRF' on page 40 undefined on input line 980.
+
+
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_
 constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetba
-r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=972, 1421.31pt
+r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=428, 1421.31pt
  x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critC
 USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_t
@@ -866,12 +1747,12 @@ etbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_anch
 _monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_p
 si_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_0
-5.png used on input line 1025.
+5.png used on input line 983.
 (pdftex.def)             Requested size: 255.82477pt x 148.32777pt.
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thet
-bar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=973, 1421.31
+bar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=429, 1421.31
 pt x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -884,17 +1765,22 @@ thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5
 _psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06
-_05.png used on input line 1026.
+_05.png used on input line 984.
 (pdftex.def)             Requested size: 255.82477pt x 148.32777pt.
- [45 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critC
-USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_t
-hetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)> <
-../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM
-_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetb
-ar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>]
+
+
+LaTeX Warning: Reference `app_oscillations' on page 40 undefined on input line 
+990.
+
+[40 <../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCU
+SUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_th
+etbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)> <.
+./../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_
+constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetba
+r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>]
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_
-0_lami_0_2020_06_05.png, id=982, 1418.29875pt x 841.1425pt>
+0_lami_0_2020_06_05.png, id=439, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_
 lamx_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -904,12 +1790,12 @@ t_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_the
-ttilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 1035.
+ttilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 993.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
-_lami_0_2020_06_05.png, id=983, 1418.29875pt x 841.1425pt>
+_lami_0_2020_06_05.png, id=440, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -919,12 +1805,12 @@ t_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_la
 mx_0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thet
-tilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 1036.
+tilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 994.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
 
 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_on
 ly_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_l
-ami_0_2020_06_05.png, id=984, 1418.29875pt x 841.1425pt>
+ami_0_2020_06_05.png, id=441, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_consta
 nt_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lam
 x_0_lami_0_2020_06_05.png Graphic file (type png)
@@ -934,12 +1820,31 @@ t_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx
 _0_lami_0_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_invgain_aga
 in_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thetti
-lde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 1037.
+lde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png used on input line 995.
 (pdftex.def)             Requested size: 198.56047pt x 117.75914pt.
+
+
+LaTeX Warning: Reference `anchor_psi' on page 41 undefined on input line 1001.
+
+
+LaTeX Warning: Reference `alternative_criteria' on page 41 undefined on input l
+ine 1001.
+
+
+Package natbib Warning: Citation `carvalho2019anchored' on page 41 undefined on
+ input line 1001.
+
+
+LaTeX Warning: Reference `IRF_unanchored_psi' on page 41 undefined on input lin
+e 1003.
+
+
+LaTeX Warning: Reference `IRF' on page 41 undefined on input line 1003.
+
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_the
-tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=992, 1421.3
+tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=443, 1421.3
 1pt x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_14
@@ -952,7 +1857,7 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_0
 1_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_0
-6_05.png used on input line 1047.
+6_05.png used on input line 1005.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -965,12 +1870,12 @@ thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5
 _psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06
-_05.png used on input line 1048.
+_05.png used on input line 1006.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 
 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSU
 M_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetba
-r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=993, 1421.31pt
+r_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=444, 1421.31pt
  x 824.07875pt>
 File: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_cri
 tCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_t
@@ -983,13 +1888,13 @@ etbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../figures/command_IFS_anchoring_pretty_RIR_LH_unan
 ch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_p
 si_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_0
-5.png used on input line 1049.
+5.png used on input line 1007.
 (pdftex.def)             Requested size: 284.25696pt x 164.81282pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[46 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constan
+[41 <../../figures/command_IFS_anchoring_pretty_invgain_again_critCUSUM_constan
 t_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
 amx_0_lami_0_2020_06_05.png (PNG copy)> <../../figures/command_IFS_anchoring_pr
 etty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145
@@ -998,65 +1903,105 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05.png (PNG copy)> <../
 arams_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_
 0_2020_06_05.png (PNG copy)>]
 
-LaTeX Warning: Text page 47 contains only floats.
+LaTeX Warning: Text page 42 contains only floats.
 
-[47 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_crit
+[42 <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_crit
 CUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145
 _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>
  <../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUS
 UM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetb
 ar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1063.
 
-[48]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1063.
- (./draft_july.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1063.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1063.
+Package natbib Warning: Citation `ball1994credible' on page 43 undefined on inp
+ut line 1014.
 
-Package rerunfilecheck Info: File `draft_july.out' has not changed.
-(rerunfilecheck)             Checksum: 54FEFE1A7B65E6F00290E636DC568504;2057.
 
+Package natbib Warning: Citation `ball1994credible' on page 43 undefined on inp
+ut line 1014.
+
+
+LaTeX Warning: Reference `IRF' on page 43 undefined on input line 1016.
+
+
+LaTeX Warning: Reference `IRF' on page 43 undefined on input line 1016.
+
+
+Package natbib Warning: Citation `ball1994credible' on page 43 undefined on inp
+ut line 1016.
+
+
+LaTeX Warning: Reference `NKIS' on page 43 undefined on input line 1018.
+
+
+Package natbib Warning: Citation `ball1994credible' on page 43 undefined on inp
+ut line 1018.
+
+
+LaTeX Warning: Reference `IRF' on page 43 undefined on input line 1018.
+
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1021.
+[43]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1021.
+ (./abbreviations.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1021.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1021.
+
+
+
+Package rerunfilecheck Warning: File `abbreviations.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `abbreviations.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  7CA8BD42706276787FE9AE424D86F4E1;1974.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1063.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1021.
  ) 
 Here is how much of TeX's memory you used:
- 10793 strings out of 493089
- 175242 string characters out of 6134842
- 279001 words of memory out of 5000000
- 13775 multiletter control sequences out of 15000+600000
- 29850 words of font info for 83 fonts, out of 8000000 for 9000
+ 10520 strings out of 493089
+ 169408 string characters out of 6134842
+ 270165 words of memory out of 5000000
+ 13593 multiletter control sequences out of 15000+600000
+ 16135 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,39p,1861b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
-palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatin
-o/uplri8a.pfb>
-Output written on draft_july.pdf (48 pages, 1632992 bytes).
+ 36i,21n,39p,1982b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on abbreviations.pdf (43 pages, 1643071 bytes).
 PDF statistics:
- 1169 PDF objects out of 1200 (max. 8388607)
- 1065 compressed objects within 11 object streams
- 302 named destinations out of 1000 (max. 500000)
- 325 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 600 PDF objects out of 1000 (max. 8388607)
+ 505 compressed objects within 6 object streams
+ 239 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

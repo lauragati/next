@@ -16,7 +16,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -125,6 +125,8 @@ gain = again_smooth;
 disp(['(psi_x, lam_x, lam_i)=   ', num2str([param.psi_x, param.lamx, param.lami])])
 
 knowTR=1
+
+% vN=zeros(ne+1,T,N);
 
 %% Compute loss as a function of psi_pi and psi_x=0
 if compute_loss==1

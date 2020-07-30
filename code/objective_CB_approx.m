@@ -25,6 +25,8 @@ y= zeros(ny,T,N);
 for n=1:N
     e = squeeze(eN(:,:,n));
     [~, y(:,:,n)] = sim_learnLH_clean_approx(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,knowTR,mpshock);
+    % should use ... univariate.m to use univariate anchoring function, but there may be a problem with this code...
+%     [~, y(:,:,n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,v,knowTR,mpshock);
 end
 
 EL = loss_CB(param,y);

@@ -3,7 +3,7 @@
 \bibitem[\protect\citeauthoryear{Andreasen, Christensen, and Riddell}{Andreasen
   et~al.}{2018}]{andreasen2018tips}
 Andreasen, M.~M., J.~H. Christensen, and S.~Riddell (2018).
-\newblock The tips liquidity premium.
+\newblock The {TIPS} liquidity premium.
 \newblock Federal Reserve Bank of San Francisco.
 
 \bibitem[\protect\citeauthoryear{Anufriev and Hommes}{Anufriev and
@@ -24,7 +24,8 @@ Ball, L. (1994).
 Baxter, M. and R.~G. King (1999).
 \newblock Measuring business cycles: approximate band-pass filters for economic
   time series.
-\newblock {\em Review of economics and statistics\/}~{\em 81\/}(4), 575--593.
+\newblock {\em Review of {E}conomics and {S}tatistics\/}~{\em 81\/}(4),
+  575--593.
 
 \bibitem[\protect\citeauthoryear{Beaudry and Portier}{Beaudry and
   Portier}{2006}]{beaudry2006stock}
@@ -205,6 +206,11 @@ Klenow, P.~J. and B.~A. Malin (2010).
 \newblock In {\em Handbook of {M}onetary {E}conomics}, Volume~3, pp.\
   231--284. Elsevier.
 
+\bibitem[\protect\citeauthoryear{Kreps}{Kreps}{1998}]{kreps1998anticipated}
+Kreps, D.~M. (1998).
+\newblock Anticipated utility and dynamic choice.
+\newblock {\em Econometric Society Monographs\/}~{\em 29}, 242--274.
+
 \bibitem[\protect\citeauthoryear{Kydland and Prescott}{Kydland and
   Prescott}{1977}]{kydland1977rules}
 Kydland, F.~E. and E.~C. Prescott (1977).
@@ -268,7 +274,7 @@ Nakamura, E. and J.~Steinsson (2008).
 Preston, B. (2005).
 \newblock Learning about monetary policy rules when long-horizon expectations
   matter.
-\newblock Mpra paper, University Library of Munich, Germany.
+\newblock {MPRA} paper, University Library of Munich, Germany.
 
 \bibitem[\protect\citeauthoryear{Rotemberg and Woodford}{Rotemberg and
   Woodford}{1997}]{rotemberg1997optimization}
