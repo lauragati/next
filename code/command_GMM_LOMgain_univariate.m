@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -25,13 +25,13 @@ output_table = print_figs;
 save_estim_outputs =0;
 
 skip = 0;
+investigate_loss=0;
 [fs, lw] = plot_configs;
-redo_data_load_and_bootstrap = 0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % % filename ='acf_data_11_Jun_2020'; % real data
-% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
@@ -39,29 +39,29 @@ datestr(now)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
-filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+% filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
 gridspacing = 'uniform'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -2;
+femax = 5; % 3.5
+femin = -femax;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
 Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
-Wmid =0; %1000
+Wmid =1000; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations
-scaleW =1;
+scaleW =0;
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -90,7 +90,7 @@ ndrop = 5 % 0-50
 % return
 
 % Size of cross-section
-N=100
+N=1000
 
 rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
 
@@ -352,8 +352,9 @@ disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
 % the appendix of each figname:
-figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', this_code, '_', todays_date];
+figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
+    '_', this_code, '_', todays_date];
 
 
 % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
@@ -373,8 +374,8 @@ find(k0<0)
 seriesnames = {'\pi', 'x','i'};
 invgain = {'Inverse gain'};
 if skip==0
-    create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
-    create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+    create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', ['sim_obs__alph_opt_randshocks', figspecs], 0)
+    create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', ['sim_obs__alph_opt_randshocks', figspecs], 0)
 end
 
 % Covariogram
@@ -472,7 +473,7 @@ end
 
 %%  investigate loss function for fixing some alphas at true values
 % 28 July 2020
-if skip==0
+if investigate_loss==1
     
     % 1. loss(true coeffs)=0?
     [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);

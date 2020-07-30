@@ -118,42 +118,58 @@ bottom=1in}
 
 
 % Estimated coefficients alpha
-\def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameAlphaHat{command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_2020}
 
 % Comparative statics of optimal policy
 % di/dk
+% This one retired
 \def\fignameDiDk{analyze_opt_policy_ik}
 % di/dpibar
-\def\fignameDiDpibar{analyze_opt_policy_ip}
+% analyze_opt_policy. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameDiDpibar{analyze_opt_policy_ip29_Jul_2020}
 
 % Observables in PEA for TR
-\def\fignamePEAobsTR{implement_anchTC_obs_TR}
+% command_pea_approx_main with knowTR=1, otherwise explode. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx29_Jul_2020}
 % Observables in PEA for anchoring
-\def\fignamePEAobsAnch{implement_anchTC_obs}
+% Materials 37 Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx17_Jul_2020}
 
-% Central bank loss as a function of psi_pi in RE
-\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
-% Central bank loss as a function of psi_pi in anchoring
-\def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+% Central bank loss as a function of psi_pi in RE vs. anchoring
+% plot_sim_loss_approx.m. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29}
+
+% Retired: CB loss RE:\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+% Retired: CB loss anchoring: \def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 
 % Autocovariogram
-\def\fignameAutocov{autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameAutocov{command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}
 
 % Compare PEA and VFI policy for sequence of shocks X1
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_value_outputs_server_inputs_pretty}
+% materials 37, Fig 14. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty}
 % Compare PEA and VFI policy for sequence of shocks X2
-\def\fignamePEAvsVFIsecondX{compare_value_pea_results_value_outputs_server02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty}
+% materials 37, Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAvsVFIsecondX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}
 
 % IRFs anchored vs unanchored
+% done
 \def\fignameIRFanchored{command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFunanchored{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 
 % Cross-sectional average gains for various psi_pi
+% done
 \def\fignameGainPsiSmall{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 \def\fignameGainPsiMedium{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 \def\fignameGainPsiBig{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 
 % IRFs unanchored for various psi_pi
+% done
 \def\fignameIRFpsipiSmall{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFpsipiMedium{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFpsipiBig{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
@@ -564,7 +580,7 @@ The other motivation for the choice of some parameters is ease of interpretation
       \caption{Calibrated parameters}  \label{calibration1}
  \end{table}
 \end{center}
-% TABLE WAS UPDATED 3 JULY 2020. THINK ABOUT CUTTING THE OTHER TABLE.
+% TABLE WAS UPDATED 3 JULY 2020. 
 
 \vspace{-1.0cm}
 
@@ -579,15 +595,15 @@ X_t = (\bar{\pi}_{t-1}, k_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
 As a first step, I plot how the approximated policy function depends on $\bar{\pi}_{t-1}$ and $k_{t-1}$, while keeping all the other states at their mean. One can thus interpret the result, depicted on Fig. \ref{di}, as a partial derivative of the interest rate with respect to $k_{t-1}$ (panel (a)) and $\bar{\pi}_{t-1}$ (panel (b)) respectively.
 
 \begin{figure}[h!]
-\subfigure[$i(k^{-1})$]{\includegraphics[scale=0.17]{\myFigPath \fignameDiDk}}
-\subfigure[$i(\bar{\pi})$]{\includegraphics[scale=0.17]{\myFigPath \fignameDiDpibar}}
-\caption{Comparative statics: policy in function of the endogenous states}
+%\subfigure[$i(k^{-1})$]{\includegraphics[scale=0.17]{\myFigPath \fignameDiDk}} % taking this out b/c policy doesn't depend on this
+\includegraphics[scale=0.21]{\myFigPath \fignameDiDpibar}
+\caption{Comparative statics: optimal policy response as a function of changes in expected mean inflation, \%}
 \label{di}
 \end{figure}
 
 As illustrated by Fig. \ref{di}, optimal interest-rate setting responds linearly and very sensitively to the stance of expectations, $\bar{\pi}_{t-1}$. As panel (b) suggests, if expected mean inflation drifts to just -0.05\%, the interest rate drops to almost -6\%! By contrast, the interest rate response to the gain in isolation is small in magnitude, on the order of $10^{-6}$. 
 
-Let's put some numbers on this, recognizing the fact that the gain and expected mean inflation in the model move in tandem. Regressing $\bar{\pi}$ on $k$ in a sample where $\bar{\pi}$ is always positive reveals that for a unit increase in the gain, the long-run inflation expectation increases by 5pp.\footnote{To be sure, I include the exogenous states in the regressor matrix to control for the effect of forecast errors on $\bar{\pi}$. Note also that whether $\bar{\pi}$ drifts up or down following in increase in the gain depends on the sign of the current forecast error. To control for this, I consider a sample where $\bar{\pi}$ is always positive.} I then compute the average uptick in $k^{-1}$ in the sample, obtaining 0.00088981. This means that on average in the sample, expectations threaten to become unanchored by an upward shift of the gain of approximately 0.0009, which is associated with a drift in $\bar{\pi}$ of 0.0044. The optimal policy function implies an interest rate response of \ppMoveFFR pp. The interpretation is that on average, when expectations threaten to become unanchored upward, the central bank should raise the interest rate by \ppMoveFFR pp.\footnote{Because of the non-monotonicity of the interest rate response to the gain, the optimal change in the interest rate for a same size unanchoring downward is a decrease of 0.4541 pp.} This is a large response; the message is that monetary policy prefers to act aggressively initially to prevent expectations from becoming unanchored. This way, the bank can avoid much larger interventions once expectations are massively unanchored. 
+Let's put some numbers on this, recognizing the fact that the gain and expected mean inflation in the model move in tandem. Regressing $\bar{\pi}$ on $k$ in a sample where $\bar{\pi}$ is always positive reveals that for a unit increase in the gain, the long-run inflation expectation increases by 5 pp.\footnote{To be sure, I include the exogenous states in the regressor matrix to control for the effect of forecast errors on $\bar{\pi}$. Note also that whether $\bar{\pi}$ drifts up or down following in increase in the gain depends on the sign of the current forecast error. To control for this, I consider a sample where $\bar{\pi}$ is always positive.} I then compute the average uptick in $k^{-1}$ in the sample, obtaining 0.00088981. This means that on average in the sample, expectations threaten to become unanchored by an upward shift of the gain of approximately 0.0009, which is associated with a drift in $\bar{\pi}$ of 0.0044. The optimal policy function implies an interest rate response of \ppMoveFFR pp. The interpretation is that on average, when expectations threaten to become unanchored upward, the central bank should raise the interest rate by \ppMoveFFR pp.\footnote{Because of the non-monotonicity of the interest rate response to the gain, the optimal change in the interest rate for a same size unanchoring downward is a decrease of 0.4541 pp.} This is a large response; the message is that monetary policy prefers to act aggressively initially to prevent expectations from becoming unanchored. This way, the bank can avoid much larger interventions once expectations are massively unanchored. 
 
 This notion is reflected in the fact that the partial derivative of the interest rate policy with respect to the gain is non-monotonic. As panel (a) emphasizes, increases in the gain are associated with increases in the interest rate as long as the gain is small. Once the gain exceeds the value of 0.02, the interest rate response associated with increases in the gain becomes negative. This non-monotonicity is due to the fact that high gains lead to oscillatory forecast errors, which feed back into the observables, increasing inflation and output gap volatility. Therefore the central bank acts aggressively in the moment expectations are becoming unanchored to prevent unanchoring. Once expectations are already unanchored, fighting this becomes too costly in terms of inflation and output gap volatility, prompting the bank's less aggressive response. 
 
@@ -600,16 +616,16 @@ We can see from the policy function how optimal policy resolves the tradeoff: it
 The presence of this volatility tradeoff also implies that optimal policy aggressiveness is yet again time-varying: the same shock involves a stronger interest rate response if expectations threaten to unanchor than otherwise. This result emerges clearly if one considers another way to investigate optimal policy in the model. I thus next compare the evolution of observables conditional on a particular history of exogenous disturbances across two specifications of monetary policy: one that follows the target criterion in (\ref{target}) and one that follows a Taylor-rule with parameter values given in Table \ref{calibration1}.\footnote{Given that in my calibration the central bank does not attach any weight to interest rate stabilization ($\lambda_i=0$), this choice of Taylor-rule coefficients would not be optimal in the RE version of the model, since $\lambda_i=0$ implies infinity as the optimal choice for both $\psi_{\pi}$ and $\psi_x$. My choice of $\lambda_i=0$ is motivated by keeping the interpretation as simple as possible.}
 
 \begin{figure}[h!]
-\subfigure[]{\includegraphics[scale=0.24]{\myFigPath \fignamePEAobsTR}}
+\subfigure[Taylor rule in effect and common knowledge]{\includegraphics[scale=0.29]{\myFigPath \fignamePEAobsTR}}
 \hfill % this is great to intro space between subfigures
-\subfigure[]{\includegraphics[scale=0.24]{\myFigPath \fignamePEAobsAnch}}
-\caption{}
+\subfigure[Optimal policy]{\includegraphics[scale=0.24]{\myFigPath \fignamePEAobsAnch}}
+\caption{Evolution of observables for policy following a Taylor rule against optimal policy}
 \label{pea_TCvsTR}
 \end{figure}
 
 
 
-Fig. \ref{pea_TCvsTR} depicts the evolution of inflation, the output gap and the interest rate conditional on a sequence of exogenous disturbances. Panels (a) and (b) show the outcome achieved by adhering to the Taylor rule and the target criterion (\ref{target}) respectively. One clearly sees the features of optimal policy under anchoring compared to a standard Taylor-rule approach. Due to the low value of $\psi_x$ here, the Taylor-rule-following central bank resolves the inflation-output gap tradeoff by allowing the output gap to sink far into negative territory and instead stabilizing inflation. Instead, optimal policy uses the interest rate tool much more aggressively to achieve a nearly identical inflation series, yet a much more stable output gap series. In particular early in the sample, the central bank is willing to raise and lower the interest rate massively in order to eliminate any potential of large-scale unanchoring. But even late in the sample, the interest rate can fluctuate wildly between $\pm5\%$ in order to quench any potential unanchoring brought about by unforecastable disturbances. Thus one observes both features of optimal policy foreshadowed in the previous discussions: i) anchoring alleviates the intratemporal tradeoff between inflation and the output gap, ii) there is an intertemporal volatility tradeoff between the short-run cost and the long-run benefit of anchoring expectations, for which reason the central bank prefers to avoid expectations getting unanchored in the first place. A time-varying level of aggressiveness is the result.
+Fig. \ref{pea_TCvsTR} depicts the evolution of inflation, the output gap and the interest rate conditional on a sequence of exogenous disturbances. Panels (a) and (b) show the outcome achieved by adhering to a publicly announced and internalized Taylor rule and the target criterion (\ref{target}) respectively.\footnote{If the private sector does not know that a Taylor rule is in effect, the model displays explosive dynamics. The reason is that since in this specification, only the inflation intercept is learned, absent knowledge of the Taylor rule, the private sector's beliefs would not span the set of model-consistent ones.} One clearly sees the features of optimal policy under anchoring compared to a standard Taylor-rule approach. Due to the low value of $\psi_x$ here, the Taylor-rule-following central bank resolves the inflation-output gap tradeoff by allowing the output gap to sink far into negative territory and instead stabilizing inflation. Instead, optimal policy uses the interest rate tool much more aggressively to achieve a nearly identical inflation series, yet a much more stable output gap series. In particular early in the sample, the central bank is willing to raise and lower the interest rate massively in order to eliminate any potential of large-scale unanchoring. But even late in the sample, the interest rate can fluctuate wildly between $\pm5\%$ in order to quench any potential unanchoring brought about by unforecastable disturbances. Thus one observes both features of optimal policy foreshadowed in the previous discussions: i) anchoring alleviates the intratemporal tradeoff between inflation and the output gap, ii) there is an intertemporal volatility tradeoff between the short-run cost and the long-run benefit of anchoring expectations, for which reason the central bank prefers to avoid expectations getting unanchored in the first place. A time-varying level of aggressiveness is the result.
 
 % Comparisons to a TR?
 
@@ -623,16 +639,17 @@ I compute the optimal Taylor rule coefficient on inflation numerically by minimi
 Table \ref{par_opt} presents an overview of the optimal Taylor rule coefficient $\psi_{\pi}$ for the rational expectations and anchoring models. The table also compares the baseline parameterization with several alternatives. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$) or the nominal interest rate ($\lambda_i =0$), $\psi_{\pi}^{RE}$ is infinity. This is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence is violated does not pose a problem. Similarly, if the monetary authority is willing to allow the nominal interest rate to fluctuate vastly in order to stabilize inflation, this also allows the central bank to be infinitely aggressive on inflation. 
 
 
-% CUSUM-criterion results, 5 June 2020
+% Approx-crit of Materials 37 results, 29 July 2020
 \begin{center}
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }
  & $\psi^{*,RE}_{\pi}$ & $\psi^{*,anchoring}_{\pi}$  \\  \hline
-  Baseline  & $\infty$  & 1.0228 \\  \hline
-%  $\psi_{x} =1$  & $\infty$  & 1 \\  \hline
- $\lambda_x =1 $ & 1.1284  & 1.0046 \\  \hline
- $\lambda_i =1 $ &  1  & 1.019 \\  \hline
-%  $\lambda_x =1, \lambda_i =1.6092 $ & $\infty$  &  1.1580 \\  \hline
+  $\lambda_x =0, \lambda_i =0 $     & $\infty$  & $\infty$ \\  \hline
+%  Baseline (lamx=0.05, lami=0)  & $1.8581$  & 1.034 \\  \hline
+ $\lambda_x =1, \lambda_i =0 $ & 1  & 1 \\  \hline
+ $\lambda_x =0, \lambda_i =1 $ &  1  & 1.029 \\  \hline
+  $\lambda_x =1, \lambda_i =1 $ &  1  & 1 \\  \hline
+
 \end{tabular}     
       \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  \label{par_opt}
  \end{table}
@@ -647,8 +664,12 @@ This echoes the analytical results of Section \ref{implement}: the anchoring mec
 
 
 \begin{figure}[h!]
-\subfigure[RE]{\includegraphics[scale = 0.14]{\myFigPath \fignameCBlossRE}}
-\subfigure[Anchoring]{\includegraphics[scale = 0.14]{\myFigPath \fignameCBlossAnch}}
+\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale = 0.22]{\myFigPath \fignameCBlossnilnil}}
+\hfill
+\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale = 0.22]{\myFigPath \fignameCBlossonenil}}
+\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale = 0.22]{\myFigPath \fignameCBlossnilone}}
+\hfill
+\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale = 0.22]{\myFigPath \fignameCBlossoneone}}
 \caption{Central bank loss as a function of $\psi_{\pi}$}
 \floatfoot{Sample length is $T=400$ with a cross-section of $N=100$.}
 \label{fig_loss}

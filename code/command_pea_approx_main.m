@@ -92,7 +92,7 @@ g_fe = gradient(k1_opt);
 alph = alph_opt_mean;
 
 
-
+% return
 
 %% Parameters, RE model and Taylor rule
 T = 100
@@ -123,6 +123,7 @@ rng(2)
 e = randn(ne,T+ndrop);
 % zero out the monpol shock
 e(2,:) = zeros(1,T+ndrop);
+v = zeros(ne+1,T+ndrop);
 
 % Params for the general learning code
 constant_only = 1; % learning constant only (vector learning)
@@ -160,16 +161,16 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 disp('Initial simul using TR - this should explode b/c agents don''t know the TR')
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e, knowTR,mpshock);
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 1,mpshock);
 % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 % return
 % %%% when saving to draft or presentations, use these 3 lines below
-% cd '/Users/lauragati/Dropbox/BC_Research/next/code'
-% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
-% create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+cd '/Users/lauragati/Dropbox/BC_Research/next/code'
+create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
+create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 
-% return
+return
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that

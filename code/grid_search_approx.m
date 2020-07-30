@@ -26,24 +26,70 @@ skip_old_stuff = 1;
 %% Parameters
 
 % Load estimated LOM gain coefficents
-filename = 'best_n100_29_Jun_2020'; % materials35 candidate
+% filename = 'best_n100_29_Jun_2020'; % materials35 candidate
+% load([filename,'.mat'])
+% alph_best = output{1};
+% resnorm = output{2};
+% alph = alph_best(:,1);
+% % grab the rest from materials35, part 2.5
+% nfe=5;
+% k1min = 0;
+% k1max= 1;
+% femax = 3.5;
+% femin = -femax;
+% % and from materials35, intro
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
+
+filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
 load([filename,'.mat'])
-alph_best = output{1};
-resnorm = output{2};
-alph = alph_best(:,1);
-% grab the rest from materials35, part 2.5
-nfe=5;
-k1min = 0;
-k1max= 1;
-femax = 3.5;
-femin = -femax;
-% and from materials35, intro
-fegrid = linspace(femin,femax,nfe);
-x = cell(1,1);
-x{1} = fegrid;
+% Structure of saved file:
+% estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+fegrid_fine = estim_outputs{1};
+ng_fine     = estim_outputs{2};
+k1_opt      = estim_outputs{3};
+alph_opt_mean = estim_outputs{4};
+x             = estim_outputs{5};
+estim_configs = estim_outputs{6};
+learn_configs = estim_outputs{7};
+nfe            = estim_configs{1};
+gridspacing    = estim_configs{2};
+femax          = estim_configs{3};
+femin          = estim_configs{4};
+ub             = estim_configs{5};
+lb             = estim_configs{6};
+Wprior         = estim_configs{7};
+Wdiffs2        = estim_configs{8};
+Wmid           = estim_configs{9};
+Wmean          = estim_configs{10};
+T_est          = estim_configs{11};
+ndrop_est      = estim_configs{12};
+N_est          = estim_configs{13};
+eN_est         = estim_configs{14};
+rngsetting_est = estim_configs{15};
+param       = learn_configs{1};
+PLM_name    = learn_configs{2};
+gain_name   = learn_configs{3};
+knowTR_est  = learn_configs{4};
+mpshock_est = learn_configs{5};
+
+% return
+fegrid_uneven = x{1};
+fegrid = fegrid_uneven;
+% % If you wanna use the uniform grid, then uncomment the following 3 lines:
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
+
+alph = alph_opt_mean;
 
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+
+
+[param, setp, param_names, param_values_str, param_titles] = parameters_next; % use ones from estimation!
 ne = 3;
 
 burnin = 0;

@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -29,7 +29,9 @@ sig_u = param.sig_u;
 ns = 2;
 sgrid = linspace(-sig_r,sig_r,ns);
 
-value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
+% value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
+value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain % materials 37
+
 load([value_output_name, '.mat'])
 
 pp     = value_sols{1};
@@ -41,7 +43,9 @@ pgrid  = value_sols{6};
 % k1grid = value_sols{7};
 
 % take the history of states from parametric expectations
-pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
+% pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
+pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0) % materials 37
+
 % load('inputs.mat')
 load([pea_output_name, '.mat'])
 e = output{1};
@@ -67,7 +71,7 @@ ssim = e(:,2:end-1);
 
 
 n = 10;
-pibvals = linspace(-1, 1, n); % most values in simulations are between these
+pibvals = linspace(-0.1, 0.1, n); % most values in simulations are between these
 pmean = zeros(1,n);
 smean = zeros(1,n);
 

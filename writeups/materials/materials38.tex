@@ -454,12 +454,37 @@ Didn't converge!
 \subfigure[$\hat{\alpha}$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_24_Jul_2020}}
 %\hfill
 \subfigure[Autocovariogram]{\includegraphics[scale=\myBiggerFigScale]{\myFigPath autocovariogram_constant_only_pi_only_N_1000_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_24_Jul_2020}}
-\caption{Estimates for $N=1000$, \colorbox{yellow}{ incl. SPF 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, 5 knots, \colorbox{yellow}{ $fe \in(-2,2)$}}
+\caption{Estimates for $N=1000$, \colorbox{yellow}{ incl. SPF 1-step ahead forecasts of inflation}, imposing convexity with weight 100K, 5 knots, \colorbox{yellow}{ $fe \in(-5,5)$}}
 \end{figure}
 
+\clearpage
+\subsection{Choose one real data specification for ZEW application draft}
 
+\begin{figure}[h!]
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Don't scale W}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Scale W}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Don't scale W}, \colorbox{yellow}{0 at 0 imposed with weight 1000}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Scale W},  \colorbox{yellow}{0 at 0 imposed with weight 1000}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_1_command_GMM_LOMgain_univariate_29_Jul_2020}}
+%\hfill
+\caption{Estimates for $N=100$, incl. SPF 1-step ahead forecasts of inflation, imposing convexity with weight 100K, 5 knots, $fe \in(-2,2)$, $N$ simulations to estimate mean moments once}
+\end{figure}
 
+\begin{figure}[h!]
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Don't scale W}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{Scale W}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5femax_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_1_command_GMM_LOMgain_univariate_29_Jul_2020}}
 
+\caption{Estimates for $N=100$, incl. SPF 1-step ahead forecasts of inflation, imposing convexity with weight 100K, 0 at 0 with weight 1000, 5 knots, $fe \in(-5,5)$}
+\end{figure}
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{$fe \in(-2,2)$}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_1000_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\subfigure[$\hat{\alpha}$,  \colorbox{yellow}{$fe \in(-5,5)$}]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alph_opt_constant_only_pi_only_N_1000_nfe_5femax_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_command_GMM_LOMgain_univariate_29_Jul_2020}}
+\caption{Estimates for $N=1000$ using chosen specifications: incl. SPF 1-step ahead forecasts of inflation, imposing convexity with weight 100K, 0 at 0 with weight 1000, 5 knots, don't scale W}
+\end{figure}
+Panel a took 70 min, Panel b 340 min!
+
+I think they're plain awful, so I'm just gonna use the Materials 37 results, where I at least already have done the PEA and VFI. 
 %\begin{figure}[h!]
 %\subfigure[$\alpha^{true}, \alpha_0, mean(\hat{\alpha})$]{\includegraphics[scale=\myTinyFigScale]{\myFigPath alphas_constant_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}}
 %%\hfill

@@ -8,6 +8,7 @@
 \contentsline {subsection}{\numberline {1.6}Loss for holding $\alpha $s at true values, and varying one at a time}{10}{subsection.1.6}
 \contentsline {section}{\numberline {2}For me: Simulated ``true'' data}{11}{section.2}
 \contentsline {section}{\numberline {3}Real data with the SPF}{22}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{25}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{25}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{26}{appendix.C}
+\contentsline {subsection}{\numberline {3.1}Choose one real data specification for ZEW application draft}{25}{subsection.3.1}
+\contentsline {section}{\numberline {A}Model summary}{27}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{27}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{28}{appendix.C}
