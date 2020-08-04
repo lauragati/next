@@ -169,7 +169,9 @@ ysim(:,t+1) = gx*xsim(:,t+1);
 
 % Add measurement error to observables
 ysim = ysim + v(1:3,:);
+if size(v,1)>ny
 phi_seq(1,1,:) = squeeze(phi_seq(1,1,:)) + v(4,:)';
+end
 
 %Drop ndrop periods from simulation
 xsim = xsim(:,ndrop+1:end);

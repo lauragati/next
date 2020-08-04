@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}Look into measurement error}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Autocovariograms w/ and w/o measurement error, not using expectations data}{2}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Put expectations back in: w/ measurement error, or w/o}{4}{subsubsection.1.1.1}
+\contentsline {subsection}{\numberline {1.2}Loss for holding $\alpha $s at true values, and varying one at a time}{5}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Reference: materials 38}{5}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Loss when not using expectations data, all else same as Materials 38}{6}{subsubsection.1.2.2}
+\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{9}{appendix.C}

@@ -22,13 +22,10 @@ skip = 1;
 [fs, lw] = plot_configs;
 datestr(now)
 
-do21 = 0;
-do22 = 0;
-do23 = 0;
-do24 = 0;
-do25 = 1;
 
 save_stuff=0;
+
+
 
 %%
 

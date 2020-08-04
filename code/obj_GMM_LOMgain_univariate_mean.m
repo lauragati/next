@@ -1,4 +1,6 @@
-function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,N,alph0,Wprior)
+function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
+    use_expectations_data,N,alph0,Wprior)
+
 % alph are the coefficients, x is the grid
 % 20 July 2020
 % same as obj_GMM_LOMgain_univariate_mean, except simulates the model N
@@ -34,12 +36,17 @@ else
         
         % Do not filter data and estimate VARs if the current coefficients
         % alpha lead to an explosive learning simulation
-        if isinf(max(k)) || min(k)<0
+        if isinf(max(k)) || min(k)<0 || max(size(k)) > T
             % just skip
             
         else
             k1(:,n) = 1./k(1:end-1); % cut off last period where k is unset
-            y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+            if use_expectations_data == 0
+                y_data = y(:,1:end-1);
+            else
+                y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+            end
+
             nobs = size(y_data,1);
             FEt_1(:,:,n) = fe;
             % Filter the simulated data
@@ -73,7 +80,7 @@ else
             % Compute the model-implied moments
             % compute moments, Om, as the autocovariances of the data for lags
             % 0,1,...,K
-            K=4;
+            K=4;%4
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
             [~,B,~,sigma] = sr_var(filt', p);
@@ -106,6 +113,7 @@ else
     end
     Om = nanmean(Om_n,2);
     k1 = nanmean(k1,2);
+    
     
     % additional moments
     % 15 July 2020 correction for convexity moment (see Notes)

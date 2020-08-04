@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -24,29 +24,31 @@ output_table = print_figs;
 
 save_estim_outputs =0;
 
-skip = 0;
-investigate_loss=0;
+skip = 1;
+investigate_loss=1;
 [fs, lw] = plot_configs;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % % filename ='acf_data_11_Jun_2020'; % real data
-filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
-% filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
+% % % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
 % filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
-% % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+% % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05).
-% filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+% % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
+filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
+
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
 gridspacing = 'uniform'; % uniform or uneven
 % grids for fe_{t|t-1}
-femax = 5; % 3.5
+femax = 2; % 3.5
 femin = -femax;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
@@ -54,14 +56,16 @@ lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
 Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
-Wmid =1000; %1000
+Wmid =0; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
-cross_section = 'Nsimulations'; % Nestimations or Nsimulations
-scaleW =0;
+cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
+scaleW =0; %0
+use_expectations_data=1; %1
+sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
@@ -90,15 +94,32 @@ ndrop = 5 % 0-50
 % return
 
 % Size of cross-section
-N=1000
+N=100
+
+if use_expectations_data==0 % take out moments pertaining to expectations
+    Ommatrix = reshape(Om,nobs,nobs,K+1);
+    % do the same for the bootstrapped variances
+    nboot=size(Om_boot,2);
+    Om_boot_matrix = reshape(Om_boot, nobs,nobs,K+1, nboot);
+    nobs = 3;
+    Ommatrix_net = Ommatrix(1:nobs,1:nobs,:);
+    Om_boot_matrix_net = Om_boot_matrix(1:nobs,1:nobs,:,:);
+    Om = vec(Ommatrix_net);
+    [omb_m, omb_n, ~, ~] = size(Om_boot_matrix_net);
+    Om_boot = reshape(Om_boot_matrix_net,omb_m*omb_n*(K+1), nboot);
+    
+end
+
+% return
 
 rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
 
 
 % gen all the N sequences of shocks at once.
 eN = randn(3,T+ndrop,N);
-vN = randn(nobs,T+ndrop,N); % measurement error
+vN = sig_v*randn(nobs,T+ndrop,N); % measurement error
 
+% return
 
 if contains(filename,'sim')
     alph_true = acf_outputs{8};
@@ -204,6 +225,7 @@ ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
+
 % return
 
 %% GMM
@@ -223,10 +245,9 @@ switch cross_section
         e0 = squeeze(eN(:,:,1));
         v0 = squeeze(vN(:,:,1));
         % Compute the objective function one time with some values
-        [res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+        [res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data);
         disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
-        
-        
+                
         Om1      = nan(length(Om0),N);
         residual = zeros(length(res0),N);
         res1     = nan(size(residual));
@@ -238,7 +259,7 @@ switch cross_section
             e_n = squeeze(eN(:,:,n));
             v_n = squeeze(vN(:,:,n));
             %Declare a function handle for optimization problem
-            objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean);
+            objh = @(alph) obj_GMM_LOMgain_univariate(alph,x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data);
             try
                 [alph_opt(:,n),resnorm(n),residual(:,n),flag(n)] = lsqnonlin(objh,alph0,lb,ub,options);
             catch err
@@ -254,7 +275,7 @@ switch cross_section
             
             if flag(n) >0
                 % Om0 and Om1 are the model-implied moments, initial and optimal
-                [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean);
+                [res1(:,n), Om1(:,n), FE(:,:,n)] = obj_GMM_LOMgain_univariate(alph_opt(:,n),x,fegrid_fine,param,gx,hx,eta,e_n,v_n,T,ndrop,PLM,gain,p,Om,W1,0,Wmid,Wmean,use_expectations_data);
             end
         end
         toc
@@ -279,19 +300,21 @@ switch cross_section
         end
         resnorm_mean
         
-        plot_fe_histograms(FE);
-        figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
-            '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
-        if contains(filename,'sim')==1
-            figname = [this_code, '_histogram_FE_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+        if skip==0
+            plot_fe_histograms(FE);
+            figname = [this_code, '_histogram_FE_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
                 '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
-        end
-        if print_figs ==1
-            disp(figname)
-            cd(figpath)
-            export_fig(figname)
-            cd(current_dir)
-            close
+            if contains(filename,'sim')==1
+                figname = [this_code, '_histogram_FE_sim_','nfe_', num2str(nfe), '_loss_', num2str(floor(min(resnorm_mean))),...
+                    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', todays_date];
+            end
+            if print_figs ==1
+                disp(figname)
+                cd(figpath)
+                export_fig(figname)
+                cd(current_dir)
+                close
+            end
         end
         
         Om1mean = nanmean(Om1,2);
@@ -326,14 +349,14 @@ switch cross_section
         %         return
         
         % Compute the objective function one time with some values
-        [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-        
+        [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+
         %Declare a function handle for optimization problem
-        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
         tic
         [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
         toc
-        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
         
         flag
         nancount = sum(sum(isnan(Om_n)));
@@ -345,23 +368,27 @@ switch cross_section
         
 end
 
+%% Plots
+% the appendix of each FIGNAME:
+figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
+    '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
+    '_', this_code, '_', todays_date];
+
+
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt_mean);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
-% the appendix of each figname:
-figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-    '_', this_code, '_', todays_date];
 
-
-% if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
-figname = ['alph_opt_',figspecs];
-create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
-% end
-
+if skip==0
+    % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
+    figname = ['alph_opt_',figspecs];
+    create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
+    % end
+end
 
 % how does the model behave for estimated alpha?
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_opt_mean,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,...
@@ -473,16 +500,23 @@ end
 
 %%  investigate loss function for fixing some alphas at true values
 % 28 July 2020
+% takes about 90 sec.
 if investigate_loss==1
+    datestr(now)
+    
+    figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
+    '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
+    '_', this_code, '_', todays_date];
     
     % 1. loss(true coeffs)=0?
-    [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+    [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
     % res_true all aren't zero, as Peter said that they better be. Maybe
     % with N=1000?
     
     % 2. What does the loss look like?
     nrange =10;
-    incr=0.001;%0.001
+    incr=0.01;%0.001
     %     alphi_values =linspace(0,0.06,nrange);
     obj = nan(length(alph_true),nrange);
     tic
@@ -496,7 +530,7 @@ if investigate_loss==1
         end
         for j=1:nrange
             alph(i) = alphi_values(i,j);
-            res = obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+            res = obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             obj(i,j) = sum(res.^2);
         end
     end
@@ -511,6 +545,8 @@ if investigate_loss==1
         ax = gca; % current axes
         ax.FontSize = fs;
         set(gca,'TickLabelInterpreter', 'latex');
+        ax.XAxis.Exponent = 0;
+%         ax.YAxis.Exponent = 0; 
         grid on
         grid minor
     end

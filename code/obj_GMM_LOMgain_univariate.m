@@ -1,4 +1,4 @@
-function [res, Om, FEt_1] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,v,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,alph0,Wprior)
+function [res, Om, FEt_1] = obj_GMM_LOMgain_univariate(alph,x,xxgrid,param,gx,hx,eta,e,v,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,use_expectations_data,alph0,Wprior)
 % alph are the coefficients, x is the grid
 % 9 June 2020
 % Update 17 June 2020: rewritten to work with lsqnonlin
@@ -25,8 +25,12 @@ else
     
     % Simulate data given parameters
     [~, y, k,phi,~,~,FEt_1] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
-    % add one-step forecast to data
-    y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+    
+    if use_expectations_data == 0
+        y_data = y(:,1:end-1);
+    else     % add one-step forecast to data
+        y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+    end
     nobs = size(y_data,1);
 
     k1 = 1./k(1:end-1); % cut off last period where k is unset

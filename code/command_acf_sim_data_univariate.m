@@ -19,6 +19,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
+save_data =0;
 datestr(now)
 
 %% 1.) Simulate data and filter it
@@ -93,7 +94,10 @@ T=156; % true dataset is shorter when expectations are in it (SPF, before it was
 % gen all the N sequences of shocks at once.
 rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
-v = randn(ny+1,T+ndrop); % measurement error on the observables
+v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
+
+
+
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
 
 % return
@@ -156,7 +160,7 @@ lost_periods = lost_periods_BK;
 
 % compute moments, Om, as the autocovariances of the data for lags
 % 0,1,...,K
-K=4;
+K=4;%4
 % Take the initial data, estimate a VAR
 max_lags = 16;
 [AIC,BIC,HQ] = aic_bic_hq(filt_data',max_lags);
@@ -202,7 +206,7 @@ Om = vec(Gamj);
 % Resample the residuals and use beta_ols from VAR to create nboot new samples.
 nboot =10000;
 q=16; % blocksize
-nburn = 1000;
+nburn = 1000;%1000
 which_correction ='blocks';
 disp(datestr(now))
 disp('Creating the bootstrapped sample: takes about 60 sec')
@@ -210,7 +214,7 @@ tic
 [dataset_boot] = data_boot(B,nburn,res,nboot,which_correction,q);
 toc
 % Autocov matrix from bootstrapped sample for lags 0,...,K
-K = 4;
+K = 4;%4
 Gamj = zeros(nobs,nobs,K+1,nboot);
 Om_boot = zeros(length(Om),nboot);
 tic
@@ -251,7 +255,11 @@ parfor i=1:nboot
     %     Om_boot(:,i) = vec(Gamj_own_booti);
 end
 toc
-filename = ['acf_sim_univariate_data_', todays_date];
-acf_outputs = {Om, Om_boot,nobs,p,K, filt_data, lost_periods, alph_true, nfe};
-save([filename,'.mat'],'acf_outputs')
-disp(['Saving as ' filename])
+
+if save_data==1
+    
+    filename = ['acf_sim_univariate_data_', todays_date];
+    acf_outputs = {Om, Om_boot,nobs,p,K, filt_data, lost_periods, alph_true, nfe};
+    save([filename,'.mat'],'acf_outputs')
+    disp(['Saving as ' filename])
+end
