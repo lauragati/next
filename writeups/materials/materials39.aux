@@ -45,31 +45,37 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Loss for $N=100$, \color@box {}{yellow}{NOT} using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, , truth with $nfe=5, fe \in (-2,2)$\relax }}{6}{figure.caption.6}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\color@box{}{yellow}{w/o measurement error}}}}{6}{figure.caption.7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Loss for $N=100$, \color@box {}{yellow}{using 1-step ahead forecasts of inflation}, estimate mean moments once, imposing convexity with weight 100K, , truth with $nfe=5, fe \in (-2,2)$\relax }}{7}{figure.caption.7}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}}
-\newlabel{A1}{{A.1}{8}{Model summary}{equation.A.1}{}}
-\newlabel{A2}{{A.2}{8}{Model summary}{equation.A.2}{}}
-\newlabel{TR}{{A.3}{8}{Model summary}{equation.A.3}{}}
-\newlabel{PLM}{{A.4}{8}{Model summary}{equation.A.4}{}}
-\newlabel{A5}{{A.5}{8}{Model summary}{equation.A.5}{}}
-\newlabel{A6}{{A.6}{8}{Model summary}{equation.A.6}{}}
-\newlabel{A7}{{A.7}{8}{Model summary}{equation.A.7}{}}
-\newlabel{A8}{{A.8}{8}{Model summary}{equation.A.8}{}}
-\newlabel{A9}{{A.9}{8}{Model summary}{equation.A.9}{}}
-\newlabel{A10}{{A.10}{8}{Model summary}{equation.A.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}}
-\newlabel{target_crit_levels}{{B}{8}{Target criterion}{appendix.B}{}}
-\newlabel{target}{{{B.1}}{8}{Target criterion}{AMS.9}{}}
-\newlabel{target_interpretation}{{{B.2}}{8}{Target criterion}{AMS.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{9}{appendix.C}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Decreasing gain learning}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Mean gain}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Constant gain learning}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Mean gain}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {CEMP criterion (vector)}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Mean gain}}}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces IRFs and gain history (sample means) \relax }}{9}{figure.caption.12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {CUSUM criterion (vector)}}}{9}{figure.caption.13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Mean gain}}}{9}{figure.caption.13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Smooth criterion, approximated, using $\alpha ^{true}= (0.05;0.025;0;0.025;0.05)$, on $fe \in (-2,2)$.}}}{9}{figure.caption.13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Mean gain}}}{9}{figure.caption.13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces IRFs and gain history (sample means), continued \relax }}{10}{figure.caption.13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Get rid of $k^{-1}$ in learning code, just use $k$ (``uninvert $k$'')}{8}{subsubsection.1.2.3}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\color@box{}{yellow}{estimate moments N times (N estimations)}, loss $\approx 740$ }}}{8}{figure.caption.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{8}{figure.caption.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\color@box{}{yellow}{estimate mean moments once (N simulations)}, loss $\approx 944$ }}}{8}{figure.caption.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {}}}{8}{figure.caption.8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces $N=100$, w/o expectations data, w/o measurement error, imposing convexity with weight 100K, truth with $nfe=5, fe \in (-2,2)$\relax }}{8}{figure.caption.8}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}}
+\newlabel{A1}{{A.1}{9}{Model summary}{equation.A.1}{}}
+\newlabel{A2}{{A.2}{9}{Model summary}{equation.A.2}{}}
+\newlabel{TR}{{A.3}{9}{Model summary}{equation.A.3}{}}
+\newlabel{PLM}{{A.4}{9}{Model summary}{equation.A.4}{}}
+\newlabel{A5}{{A.5}{9}{Model summary}{equation.A.5}{}}
+\newlabel{A6}{{A.6}{9}{Model summary}{equation.A.6}{}}
+\newlabel{A7}{{A.7}{9}{Model summary}{equation.A.7}{}}
+\newlabel{A8}{{A.8}{9}{Model summary}{equation.A.8}{}}
+\newlabel{A9}{{A.9}{9}{Model summary}{equation.A.9}{}}
+\newlabel{A10}{{A.10}{9}{Model summary}{equation.A.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}}
+\newlabel{target_crit_levels}{{B}{9}{Target criterion}{appendix.B}{}}
+\newlabel{target}{{{B.1}}{9}{Target criterion}{AMS.10}{}}
+\newlabel{target_interpretation}{{{B.2}}{9}{Target criterion}{AMS.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{10}{appendix.C}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Decreasing gain learning}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Mean gain}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Constant gain learning}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Mean gain}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {CEMP criterion (vector)}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {Mean gain}}}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces IRFs and gain history (sample means) \relax }}{10}{figure.caption.13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {CUSUM criterion (vector)}}}{10}{figure.caption.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Mean gain}}}{10}{figure.caption.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Smooth criterion, approximated, using $\alpha ^{true}= (0.05;0.025;0;0.025;0.05)$, on $fe \in (-2,2)$.}}}{10}{figure.caption.14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Mean gain}}}{10}{figure.caption.14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces IRFs and gain history (sample means), continued \relax }}{11}{figure.caption.14}}

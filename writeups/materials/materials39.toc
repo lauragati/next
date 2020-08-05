@@ -4,6 +4,7 @@
 \contentsline {subsection}{\numberline {1.2}Loss for holding $\alpha $s at true values, and varying one at a time}{5}{subsection.1.2}
 \contentsline {subsubsection}{\numberline {1.2.1}Reference: materials 38}{5}{subsubsection.1.2.1}
 \contentsline {subsubsection}{\numberline {1.2.2}Loss when not using expectations data, all else same as Materials 38}{6}{subsubsection.1.2.2}
-\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{9}{appendix.C}
+\contentsline {subsubsection}{\numberline {1.2.3}Get rid of $k^{-1}$ in learning code, just use $k$ (``uninvert $k$'')}{8}{subsubsection.1.2.3}
+\contentsline {section}{\numberline {A}Model summary}{9}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{9}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{10}{appendix.C}

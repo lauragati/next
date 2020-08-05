@@ -62,7 +62,7 @@ Wmean=0;%100, 0
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
-cross_section = 'Nestimations'; % Nestimations or Nsimulations (default)
+cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
 scaleW =0; %0
 use_expectations_data=0; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
@@ -94,7 +94,7 @@ ndrop = 5 % 0-50
 % return
 
 % Size of cross-section
-N=10
+N=100
 
 if use_expectations_data==0 % take out moments pertaining to expectations
     Ommatrix = reshape(Om,nobs,nobs,K+1);

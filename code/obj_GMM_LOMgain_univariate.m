@@ -24,7 +24,8 @@ else
     mpshock=1;
     
     % Simulate data given parameters
-    [~, y, k,phi,~,~,FEt_1] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
+%     [~, y, k,phi,~,~,FEt_1] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
+    [~, y, k,phi,~,~,FEt_1] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
     
     if use_expectations_data == 0
         y_data = y(:,1:end-1);

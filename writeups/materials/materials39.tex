@@ -219,6 +219,16 @@ Note: If I don't use expectations variables, the tiny $W$ issue disappears. So t
 \item also reversed: now middle $\alpha$s identified, although a little too low, but the sides don't seem so
 \end{itemize}
 
+\newpage
+\subsubsection{Get rid of $k^{-1}$ in learning code, just use $k$ (``uninvert $k$'')}
+
+\begin{figure}[h!]
+\subfigure[\colorbox{yellow}{estimate moments N times (N estimations)}, loss $\approx 740$ ]{\includegraphics[scale=0.2]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_740_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020}}
+\subfigure[]{\includegraphics[scale=0.22]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_740_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020}}
+\subfigure[\colorbox{yellow}{estimate mean moments once (N simulations)}, loss $\approx 944$ ]{\includegraphics[scale=0.2]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020}}
+\subfigure[]{\includegraphics[scale=0.22]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020}}
+\caption{$N=100$, w/o expectations data, w/o measurement error, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page
 \afterpage{\blankpage}
