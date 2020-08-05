@@ -32,8 +32,8 @@ else
     parfor n=1:N
         e_n = squeeze(eN(:,:,n));
         v_n = squeeze(vN(:,:,n));
-%         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
-        [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+        [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+%         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
         
         % Do not filter data and estimate VARs if the current coefficients
         % alpha lead to an explosive learning simulation
