@@ -13,7 +13,7 @@ param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.rho_r = 0; %0
 param.rho_i = 0; % 0.6 CEMP: 0.877, not a perfect mapping, but the MC process, standing in for demand. Too much: set 0.7 to get monpol shock to increase i on impact
 param.rho_u = 0; %0
-% param.rho = 0; % persistence of lag of interest rate
+param.rho = 0; % persistence of lag of interest rate (keep uncommented to check old codes with A-matrices)
 param.sig_r = 1;%1 to facilitate IRFs. 0.1; %?
 param.sig_i = 1; %0 to turn it off for optimal monpol. 1 to facilitate IRFs.  0.359 = sig_e from CEMP, standing in for the demand shock
 param.sig_u = 1; %1 to facilitate IRFs.  0.277 = sig_mu from CEMP, the cost-push shock

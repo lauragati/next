@@ -74,7 +74,7 @@ else
         K=4;
         % Take the initial data, estimate a VAR
         % using the same lags p, K as for the real data
-        [A,B,res,sigma] = sr_var(filt', p);
+        [~,B,~,sigma] = sr_var(filt', p);
         
         % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
         PHI = B(2:end,:)';

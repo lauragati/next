@@ -146,7 +146,6 @@ for t = 1:T-1
             
         end
         evening_fcst(:,t) = phi*[1;xsim(:,t)]; % 23 Jan 2020 version
-        % evening_fcst(:,t) = phi*[1;xsim(:,t-1)]; % this should be xsim(:,t)
         
         phi_seq(:,:,t) = phi; % store phis 
         % check convergence
@@ -156,7 +155,7 @@ for t = 1:T-1
     
     %Simulate transition with shock
     %%% here is the addition of the impulse
-    if t+1==dt
+    if t+1==dt % dt = dt+ndrop (see top of code)
         e(:,t+1) = e(:,t+1)+x0';
     end
     %%%

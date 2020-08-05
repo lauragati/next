@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 AUG 2020 17:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 AUG 2020 08:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -944,40 +944,40 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_783_gridspa
+<../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_787_gridspa
 cing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0_use
-_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png, id=49, 1064.97874
+_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png, id=49, 1064.97874
 pt x 687.56876pt>
-File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_783_gr
+File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_787_gr
 idspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_
-0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png Graphic file 
+0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png Graphic file 
 (type png)
 
-<use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_783_gri
+<use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_787_gri
 dspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0
-_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png>
+_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png>
 Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
-femax_2_loss_783_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_
-0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_202
+femax_2_loss_787_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_
+0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_202
 0.png used on input line 147.
 (pdftex.def)             Requested size: 212.99197pt x 137.5113pt.
 
 <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
-s_783_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expec
-tations_0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png, id=5
+s_787_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expec
+tations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png, id=5
 0, 1048.91875pt x 733.74126pt>
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
-2_loss_783_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_
-expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png 
+2_loss_787_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_
+expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png 
 Graphic file (type png)
 
 <use ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2
-_loss_783_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_e
-xpectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png>
+_loss_787_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_e
+xpectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png>
 Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
-y_N_100_nfe_5femax_2_loss_783_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestima
+y_N_100_nfe_5femax_2_loss_787_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestima
 tions_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univaria
-te_04_Aug_2020.png used on input line 148.
+te_05_Aug_2020.png used on input line 148.
 (pdftex.def)             Requested size: 230.76283pt x 161.42357pt.
 
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspaci
@@ -1034,12 +1034,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_783_grid
+[2 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_787_grid
 spacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0_
-use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png (PNG copy)> <..
+use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png (PNG copy)> <..
 /../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_7
-83_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectat
-ions_0_use_meas_error_0_command_GMM_LOMgain_univariate_04_Aug_2020.png (PNG cop
+87_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectat
+ions_0_use_meas_error_0_command_GMM_LOMgain_univariate_05_Aug_2020.png (PNG cop
 y)> <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grids
 pacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_scaleW_0_use_expectations_0_u
 se_meas_error_1_command_GMM_LOMgain_univariate_04_Aug_2020.png (PNG copy)> <../
@@ -1578,7 +1578,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 338.
 Here is how much of TeX's memory you used:
  20206 strings out of 493089
  389042 string characters out of 6134842
- 457105 words of memory out of 5000000
+ 457104 words of memory out of 5000000
  23213 multiletter control sequences out of 15000+600000
  14780 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1604,7 +1604,7 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials39.pdf (11 pages, 2048710 bytes).
+Output written on materials39.pdf (11 pages, 2048771 bytes).
 PDF statistics:
  266 PDF objects out of 1000 (max. 8388607)
  202 compressed objects within 3 object streams

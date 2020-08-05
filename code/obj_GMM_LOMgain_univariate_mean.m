@@ -3,7 +3,7 @@ function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,
 
 % alph are the coefficients, x is the grid
 % 20 July 2020
-% same as obj_GMM_LOMgain_univariate_mean, except simulates the model N
+% same as obj_GMM_LOMgain_univariate.m, except simulates the model N
 % times and calculates mean moments
 
 
@@ -33,6 +33,7 @@ else
         e_n = squeeze(eN(:,:,n));
         v_n = squeeze(vN(:,:,n));
         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+        
         
         % Do not filter data and estimate VARs if the current coefficients
         % alpha lead to an explosive learning simulation
