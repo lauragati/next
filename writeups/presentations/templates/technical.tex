@@ -185,6 +185,27 @@
 
 
 %%%%%%%%%%%%%%%%%%%%
+% All the pre-defined stuff was updated 6 Aug 2020, and corresponds to the July Draft, version 30 July 2020.
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update 30 July 2020
+
+% mean estimated alpha
+\def\meanalph{(0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.02 }
+% for 1% fe, you get a change in pibar of
+\def\betPibFe{0.0877 } % analyze_opt_policy.m
+
+% pp forecast error that unanchors
+\def\ppFEunanchors{1 }
+% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors
+\def\ppMoveFFR{8.77 }
+
+%%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
 %%%%%%%%%%%%%%%%%%%%
 
@@ -195,42 +216,59 @@
 
 
 % Estimated coefficients alpha
-\def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameAlphaHat{command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_2020}
 
 % Comparative statics of optimal policy
 % di/dk
+% This one retired
 \def\fignameDiDk{analyze_opt_policy_ik}
 % di/dpibar
-\def\fignameDiDpibar{analyze_opt_policy_ip}
+% analyze_opt_policy. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameDiDpibar{analyze_opt_policy_ip29_Jul_2020}
 
 % Observables in PEA for TR
-\def\fignamePEAobsTR{implement_anchTC_obs_TR}
+% command_pea_approx_main with knowTR=1, otherwise explode. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx29_Jul_2020}
 % Observables in PEA for anchoring
-\def\fignamePEAobsAnch{implement_anchTC_obs}
+% Materials 37 Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx17_Jul_2020}
 
-% Central bank loss as a function of psi_pi in RE
-\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
-% Central bank loss as a function of psi_pi in anchoring
-\def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+% Central bank loss as a function of psi_pi in RE vs. anchoring
+% plot_sim_loss_approx.m. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+% Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29}
+
+% Retired: CB loss RE:\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+% Retired: CB loss anchoring: \def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 
 % Autocovariogram
-\def\fignameAutocov{autocovariogram_constant_only_pi_only_N_100_nfe_5_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nestimations_command_GMM_LOMgain_univariate_23_Jul_2020}
+% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignameAutocov{command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}
 
 % Compare PEA and VFI policy for sequence of shocks X1
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_value_outputs_server_inputs_pretty}
+% materials 37, Fig 14. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty}
 % Compare PEA and VFI policy for sequence of shocks X2
-\def\fignamePEAvsVFIsecondX{compare_value_pea_results_value_outputs_server02_Jun_2020_14_58_12_pea_outputs_30_May_2020_10_18_28_pretty}
+% materials 37, Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
+\def\fignamePEAvsVFIsecondX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}
 
 % IRFs anchored vs unanchored
+% done
 \def\fignameIRFanchored{command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFunanchored{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 
 % Cross-sectional average gains for various psi_pi
+% done
 \def\fignameGainPsiSmall{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 \def\fignameGainPsiMedium{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 \def\fignameGainPsiBig{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
 
 % IRFs unanchored for various psi_pi
+% done
 \def\fignameIRFpsipiSmall{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFpsipiMedium{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
 \def\fignameIRFpsipiBig{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
@@ -315,7 +353,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 	\frametitle{Preview of results}
 	
 	\begin{itemize}
-	\item A \colorbox{yellow}{1\%-point} forecast error unanchors expectations
+	\item \ppFEunanchors pp forecast error unanchors expectations
 
 	
 	\
@@ -377,12 +415,11 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	
-	\colorbox{yellow}{TO DO}
+	\frametitle{Unanchoring in the data}
 
 \begin{figure}[h!]
 \includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-\caption{Unanchoring as a function of forecast errors in inflation (\%-point)}
+\caption{Unanchoring as a function of forecast errors in inflation (pp)}
 \label{epi}
 \end{figure}
 
@@ -787,11 +824,10 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Optimal policy I - responding to unanchoring }
-\colorbox{yellow}{TO DO} 
 	
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallerFigScale]{\myFigPath \fignameDiDpibar}
-\caption{Comparative statics of the policy function: $\partial i / \partial \bar{\pi}$ if all other states are kept at their mean}
+\includegraphics[scale=\mySmallFigScale]{\myFigPath \fignameDiDpibar}
+\caption{Comparative statics of the policy function: $\partial i / \partial \bar{\pi}$}
 \end{figure} % Materials 35
 
 \end{frame}
@@ -800,34 +836,33 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Optimal policy II - a particular history }
-\colorbox{yellow}{TO DO} 
 	
 \begin{figure}[h!]
 %\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
 %\hfill
-\subfigure[Observables]{\includegraphics[scale=0.09]{\myFigPath implement_anchTC_obs_approx17_Jul_2020_15_34_46}}
-\subfigure[Gain]{\includegraphics[scale=0.09]{\myFigPath implement_anchTC_invgain17_Jul_2020_15_34_46}}
+\subfigure[Optimal policy]{\includegraphics[scale=0.125]{\myFigPath \fignamePEAobsAnch}}
 \hfill
-\subfigure[$\bar{\pi}$]{\includegraphics[scale=0.09]{\myFigPath implement_anchTC_pibar17_Jul_2020_15_34_46}}
-\caption{Optimal policy solution conditional on a particular evolution of shocks} % from Materials 37
+\subfigure[Taylor rule]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
+\caption{Observables conditional on a particular evolution of shocks} 
 \end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+
+
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Optimal policy III - optimal Taylor-rule coefficients}
-\colorbox{yellow}{TO DO} 
 	
 \begin{figure}[h!]
-\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale=0.09]{\myFigPath plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_01}}
-\hfill
-\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale=0.09]{\myFigPath plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_01}}
-\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale=0.09]{\myFigPath plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_01}}
-\hfill
-\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale=0.09]{\myFigPath plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_01}}
-\caption{CB loss as a function of $\psi_{\pi}$ for various weights on $x$ and $i$ in the central bank's loss}
+\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilnil}}
+%\hfill
+\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossonenil}}
+\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilone}}
+%\hfill
+\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossoneone}}
+\caption{CB loss as a function of $\psi_{\pi}$}
 \end{figure} % Materials 35
 
 \end{frame}
@@ -857,7 +892,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 
 \
 
-\item For a 1\%-point positive (negative) forecast error, raises (lowers) interest rate by \colorbox{yellow}{\%-point}
+\item For a \ppFEunanchors pp positive (negative) forecast error, raises (lowers) interest rate by \ppMoveFFR pp
 \end{itemize}
 
 

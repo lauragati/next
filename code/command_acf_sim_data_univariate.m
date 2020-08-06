@@ -30,7 +30,7 @@ datestr(now)
 % Create grids
 nfe = 5 % 6,9,12,15
 % grids for f_{t|t-1}
-femax = 2;
+femax = 0.5;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
@@ -92,7 +92,7 @@ ndrop = 5 % 0-50
 
 T=156; % true dataset is shorter when expectations are in it (SPF, before it was 233)
 % gen all the N sequences of shocks at once.
-rng(0)
+rng(0) %rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 
@@ -107,8 +107,12 @@ create_pretty_plot_x(fegrid,alph_true',figname,print_figs)
 
 seriesnames = {'\pi', 'x','i'};
 invgain = {'Inverse gain'};
-create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_plot1_',PLM_name,'_', todays_date], 0)
+create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_true_obs_sim_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_true_gain_sim_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(squeeze(FEt_10(1,:)),{'fe'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
+
+
 
 % return
 

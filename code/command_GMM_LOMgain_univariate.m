@@ -36,11 +36,11 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % % % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05). W/ measurement error
 % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-% filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
+filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
 
 
 %%%%%%%%%%%%%%%%%%%
@@ -63,8 +63,8 @@ Wmean=0;%100, 0
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
-scaleW =0; %0
-use_expectations_data=0; %1
+scaleW =1; %0
+use_expectations_data=1; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
@@ -136,19 +136,47 @@ end
 % or N. 0 -> N-1, 1 -> N. The third argument, DIM, says along which
 % dimension to take the variance.
 W = diag(var(Om_boot,0,2));
+
+% % Check where the not-rescaling or rescaling causes problems
+X=W;
+scaler = floor(log10(min(diag(W))));
+% a=10^(abs(scaler));
+a=10;
+Y = a*X;
+1./Y == (1/a) ./X % aha! Not always true! 
+inv(Y) == 1/a *inv(X) % but it's b/c 1/a is too close to zero. 
+
+1/a *inv(X) == inv(a*X) % not always true either! So this means that inverting the unrescaled W indeed caused troubles!
+1/a ./X == 1./(a*X) 
+inv(Y) == inv(a*X) % this is always true: so once you scale X, inverting works the way it should. But not before.
+
+inv(X)./inv(Y)
+inv(X)/inv(Y) 
+
+% '/' is much more accurate than inv() or ^(-1)!
+X = [1,2; 3,4]
+inv(X) % correct
+1./X % incorrect wtf!
+inv(X) == 1./X % aren't equal!!!
+
 % If W really small, scale it up by the exponent of the smallest value
 % get exponent of 10 in the smallest diagonal element
 % return
 if scaleW==1
     scaler = floor(log10(min(diag(W))));
     if scaler < 0
+        W_alt = W.* 10^(abs(scaler)); % just to check elementwise, but it gives the same thing
         W = W* 10^(abs(scaler));
     end
 end
 W1 = W^(-1);
-% W1 = eye(size(W1)); % let's see if sim data does any better if the Fischer info doesn't blow up --> improves fit of model
 
-% return
+% % Just checking that it's true for W1 too, and it is
+% W1 == 1/a *inv(X) % not always tru
+% W1 == inv(a*X) % this is always true
+
+
+return
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
