@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Loss when varying one parameter, more details}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}$N=1000$ for $N$ simulations, one estimation}{7}{subsection.1.1}
+\contentsline {section}{\numberline {A}Model summary}{8}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{8}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{9}{appendix.C}

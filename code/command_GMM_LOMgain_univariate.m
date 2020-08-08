@@ -36,11 +36,11 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % % % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05). W/ measurement error
 % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
+% filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
 
 
 %%%%%%%%%%%%%%%%%%%
@@ -63,8 +63,8 @@ Wmean=0;%100, 0
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
-scaleW =1; %0
-use_expectations_data=1; %1
+scaleW =0; %0
+use_expectations_data=0; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
@@ -137,27 +137,27 @@ end
 % dimension to take the variance.
 W = diag(var(Om_boot,0,2));
 
-% % Check where the not-rescaling or rescaling causes problems
-X=W;
-scaler = floor(log10(min(diag(W))));
-% a=10^(abs(scaler));
-a=10;
-Y = a*X;
-1./Y == (1/a) ./X % aha! Not always true! 
-inv(Y) == 1/a *inv(X) % but it's b/c 1/a is too close to zero. 
-
-1/a *inv(X) == inv(a*X) % not always true either! So this means that inverting the unrescaled W indeed caused troubles!
-1/a ./X == 1./(a*X) 
-inv(Y) == inv(a*X) % this is always true: so once you scale X, inverting works the way it should. But not before.
-
-inv(X)./inv(Y)
-inv(X)/inv(Y) 
-
-% '/' is much more accurate than inv() or ^(-1)!
-X = [1,2; 3,4]
-inv(X) % correct
-1./X % incorrect wtf!
-inv(X) == 1./X % aren't equal!!!
+% % % Check where the not-rescaling or rescaling causes problems
+% X=W;
+% scaler = floor(log10(min(diag(W))));
+% % a=10^(abs(scaler));
+% a=10;
+% Y = a*X;
+% 1./Y == (1/a) ./X % aha! Not always true!
+% inv(Y) == 1/a *inv(X) % but it's b/c 1/a is too close to zero.
+%
+% 1/a *inv(X) == inv(a*X) % not always true either! So this means that inverting the unrescaled W indeed caused troubles!
+% 1/a ./X == 1./(a*X)
+% inv(Y) == inv(a*X) % this is always true: so once you scale X, inverting works the way it should. But not before.
+%
+% inv(X)./inv(Y)
+% inv(X)/inv(Y)
+%
+% % '/' is much more accurate than inv() or ^(-1)!
+% X = [1,2; 3,4]
+% inv(X) % correct
+% 1./X % incorrect wtf!
+% inv(X) == 1./X % aren't equal!!!
 
 % If W really small, scale it up by the exponent of the smallest value
 % get exponent of 10 in the smallest diagonal element
@@ -176,7 +176,7 @@ W1 = W^(-1);
 % W1 == inv(a*X) % this is always true
 
 
-return
+% return
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
@@ -277,7 +277,7 @@ switch cross_section
         % Compute the objective function one time with some values
         [res0, Om0] = obj_GMM_LOMgain_univariate(alph0,x,fegrid_fine,param,gx,hx,eta,e0,v0,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data);
         disp(['Truth at e(:,:,1) has a residual of ', num2str(sum(res0.^2))])
-                
+        
         Om1      = nan(length(Om0),N);
         residual = zeros(length(res0),N);
         res1     = nan(size(residual));
@@ -320,7 +320,7 @@ switch cross_section
         alph_sorted = sort(alph_opt_conv,2);
         med_idx = size(alph_sorted,2)/2;
         if isinteger(med_idx)
-            alph_opt_med = (alph_sorted(:,med_idx) + alph_sorted(:,med_idx+1))/2           
+            alph_opt_med = (alph_sorted(:,med_idx) + alph_sorted(:,med_idx+1))/2
         else
             alph_opt_med = alph_sorted(:,ceil(med_idx))
             
@@ -534,9 +534,9 @@ if investigate_loss==1
     datestr(now)
     
     figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-    '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
-    '_', this_code, '_', todays_date];
+        '_gridspac_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
+        '_use_exp_', num2str(use_expectations_data), '_use_meas_err_', num2str(sig_v), ...
+        '_', this_code, '_', todays_date];
     
     % 1. loss(true coeffs)=0?
     [res_at_true, Om_at_true, FE_at_true, Om_n_at_true] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
@@ -546,10 +546,10 @@ if investigate_loss==1
     
     % 2. What does the loss look like?
     nrange =10;
-    incr=0.01;%0.001
+    incr=0.005;%0.02, 0.001
     %     alphi_values =linspace(0,0.06,nrange);
     alphi_values = nan(length(alph_true),nrange);
-
+    
     obj = nan(length(alph_true),nrange);
     tic
     for i=1:length(alph_true)
@@ -578,16 +578,16 @@ if investigate_loss==1
         ax.FontSize = fs;
         set(gca,'TickLabelInterpreter', 'latex');
         ax.XAxis.Exponent = 0;
-        ax.YRuler.Exponent = 0; % turns off scientific notation        
+        ax.YRuler.Exponent = 0; % turns off scientific notation
         grid on
         grid minor
     end
     sgt = sgtitle(['$\alpha^{true} = $', num2str(alph_true')]);
     sgt.FontSize =fs;
     sgt.Interpreter = 'latex';
-%     figname = ['loss_for_indi_alphas_others_at_true_',figspecs];
-    figname = ['loss_for_indi_alphas_others_at_true_dontrescale_',figspecs];
-    
+    incr_str = strrep(num2str(incr), '.','_');
+    figname = ['loss_increment_',incr_str,'_', figspecs];
+    % change of name, otherwise it was too long for export_fig
     
     if print_figs ==1
         disp(figname)
@@ -597,6 +597,69 @@ if investigate_loss==1
         close
     end
     
+    %% Now look at individual alphas - meaning have a personalized range for each element of alpha
+    datestr(now)
+    nrange =10;
+    alphi_values = nan(length(alph_true),nrange);
+    obj_indi = nan(length(alph_true),nrange);
+    
+%     Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
+%     Wmid =0; %1000
+    
+    
+    tic
+    for i=1:length(alph_true)
+        alph = alph_true;
+        % try to center the range tightly around the true value
+        if i==1 || i==5
+            alphi_values(i,:) = linspace(0.03, 0.045, nrange)'; % linspace(0.03, 0.045, nrange)' ; linspace(0.005, 0.025, nrange)'       scaleW: linspace(0.0499, 0.055, nrange)', measerror:linspace(0.049, 0.06, nrange)'
+        elseif i==2 || i==4
+            alphi_values(i,:) = linspace(0.01, 0.025, nrange)';%linspace(0.01, 0.025, nrange)' , meas.error: linspace(0, 0.02, nrange)'
+        elseif i==3
+            alphi_values(i,:) = linspace(0, 0.001,nrange)'; %linspace(0, 0.001,nrange)', add_exp: linspace(0, 0.03,nrange)'
+        end
+        for j=1:nrange
+            alph(i) = alphi_values(i,j);
+            res = obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            obj_indi(i,j) = sum(res.^2);
+        end
+    end
+    toc
+    
+    figure
+    set(gcf,'color','w'); % sets white background color
+    set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+    for i=1:length(alph_true)
+        subplot(2,3,i)
+        plot(alphi_values(i,:),obj_indi(i,:), 'linewidth', lw);
+        ax = gca; % current axes
+        ax.FontSize = fs;
+        set(gca,'TickLabelInterpreter', 'latex');
+        ax.XAxis.Exponent = 0;
+%         ax.YRuler.Exponent = 0; % turns off scientific notation
+        grid on
+        grid minor
+    end
+    sgt = sgtitle(['$\alpha^{true} = $', num2str(alph_true')]);
+    sgt.FontSize =fs;
+    sgt.Interpreter = 'latex';
+    
+     figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
+        '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
+        '_', this_code, '_', todays_date];
+    
+    
+    figname = ['loss_indi_nrange', num2str(nrange), '_', figspecs];
+    % change of name, otherwise it was too long for export_fig
+    
+    if print_figs ==1
+        disp(figname)
+        cd(figpath)
+        export_fig(figname)
+        cd(current_dir)
+        close
+    end
     
 end
 %% save estimation outputs
