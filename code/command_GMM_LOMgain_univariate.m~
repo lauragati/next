@@ -604,7 +604,7 @@ if investigate_loss==1
     
     %% Now look at individual alphas - meaning have a personalized range for each element of alpha
     datestr(now)
-    nrange =10;
+    nrange =20;
     alphi_values = nan(length(alph_true),nrange);
     obj_indi = nan(length(alph_true),nrange);
     
@@ -617,7 +617,7 @@ if investigate_loss==1
         alph = alph_true;
         % try to center the range tightly around the true value
         if i==1 || i==5
-            alphi_values(i,:) = linspace(0.0499, 0.055, nrange)'; % linspace(0.03, 0.045, nrange)' ; linspace(0.005, 0.025, nrange)'       scaleW: linspace(0.0499, 0.055, nrange)', measerror:linspace(0.049, 0.06, nrange)'
+            alphi_values(i,:) = linspace(0.04, 0.0, nrange)'; % linspace(0.03, 0.045, nrange)' ; linspace(0.005, 0.025, nrange)'       scaleW: linspace(0.0499, 0.055, nrange)', measerror:linspace(0.049, 0.06, nrange)'
         elseif i==2 || i==4
             alphi_values(i,:) = linspace(0.01, 0.03, nrange)';%linspace(0.01, 0.025, nrange)' , meas.error: linspace(0, 0.02, nrange)'
         elseif i==3

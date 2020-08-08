@@ -112,9 +112,10 @@ create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain appr
 create_plot_observables(squeeze(FEt_10(1,:)),{'fe'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
 create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
 
+figure
+hist(squeeze(FEt_10(1,:)))
 
-
-% return
+return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
