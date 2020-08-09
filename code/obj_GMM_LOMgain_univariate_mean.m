@@ -85,6 +85,9 @@ else
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
             [~,B,~,sigma] = sr_var(filt', p);
+%             [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt', p, 0.001);
+%             B = B_ridge;
+%             sigma = sigma_ridge;
             
             % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
             PHI = B(2:end,:)';

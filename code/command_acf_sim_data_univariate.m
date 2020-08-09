@@ -114,8 +114,8 @@ create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estim
 
 figure
 hist(squeeze(FEt_10(1,:)))
-
-return
+close all
+% return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
@@ -172,7 +172,15 @@ max_lags = 16;
 p =min([AIC,BIC,HQ]);
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
-[A,B,res,sigma] = sr_var(filt_data', p);
+[~,B,res,sigma] = sr_var(filt_data', p);
+[B_RF,res_RF,sigma_RF] = rf_var(filt_data', p);
+
+return
+
+% % ridge regression VAR
+% [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt_data', p, 0.001);
+% B = B_ridge;
+% sigma = sigma_ridge;
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
 c = B(1,:); % coefficients of the constant
@@ -203,7 +211,7 @@ Om = vec(Gamj);
 % Om = vec(Gamj_own);
 
 
-% return
+return
 
 %% 2.) Bootstrap the data, and get variance of moments (autocovariances from 0 to lag K) from the bootstrapped sample
 % This section is inspired by main_file_SVAR_just_IT_controllingNEWS.m in my work with Marco
@@ -231,13 +239,17 @@ parfor i=1:nboot
     %         max_lags = 16;
     %         [AIC,BIC,HQ] = aic_bic_hq(squeeze(dataset_boot(:,:,i)),max_lags);
     %         p = min([AIC,BIC,HQ]); % lag selection (p) is the lag
-    [A,B,res,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
+    
+    % OLS or ridge
+%     [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
+    [B,res,sigma] = rf_var(squeeze(dataset_boot(:,:,i)), p);
+%     [~,B,~,sigma] = sr_var_ridge(squeeze(dataset_boot(:,:,i)), p, 0.001);
     
     % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
     c = B(1,:); % coefficients of the constant
     PHI = B(2:end,:)';
     F = [PHI; [eye(nobs*(p-1)), zeros(nobs*(p-1),nobs)]];
-    v = [res'; zeros(nobs*(p-1),size(res',2))];
+%     v = [res'; zeros(nobs*(p-1),size(res',2))];
     Q = [[sigma, zeros(nobs,nobs*(p-1))]; zeros(nobs*(p-1),nobs*p)];
     % check sizes
     np = nobs*p;

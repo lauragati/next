@@ -166,7 +166,7 @@ bottom=1in}
 \begin{figure}[h!]
 \subfigure[\colorbox{yellow}{A shorter dataset w/o expectations} ]{\includegraphics[scale=0.26]{\myFigPath loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
 \subfigure[\colorbox{yellow}{A shorter dataset adding expectations} ]{\includegraphics[scale=0.26]{\myFigPath loss_indi_nrange20_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
-\subfigure[\colorbox{yellow}{A shorter dataset adding expectations, rescaling W} ]{\includegraphics[scale=0.26]{\myFigPath loss_indi_nrange20_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
+\subfigure[\colorbox{yellow}{A shorter dataset adding expectations, rescaling W} ]{\includegraphics[scale=0.26]{\myFigPath loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
 \caption{Variations III}
 \end{figure}
 
@@ -182,6 +182,66 @@ bottom=1in}
 \subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_1000_nfe_5femax_2_loss_1196_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
 \subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_1000_nfe_5femax_2_loss_1196_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
 \caption{\colorbox{yellow}{NOT} using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\clearpage
+\subsection{Expectations}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_5243_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_5243_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{using 1-step ahead forecasts of inflation}, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+
+\clearpage
+\subsection{Expectations and rescaling}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{using 1-step ahead forecasts of inflation, rescaling W}, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\clearpage
+\subsection{Expectations and ridge}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_17370525_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_17370525_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_1_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{using 1-step ahead forecasts of inflation, ridge regression for data generation and estimation}, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\clearpage
+\subsection{Take a deep breath: what have I learned?}
+\begin{enumerate}
+\item Some indication that the measurement error is screwed up, but I can bypass it, so ignore for now.
+\item Rescaling might exit too soon. Main problem is it shouldn't change the \emph{shape} of the loss function, but does. Yet no indication of numerical matrix inversion problems. I don't understand.
+\item Indication that something is screwed up with the expectations, potentially connected with the rescaling. Ridge didn't really help either. 
+\item Loss function indicates that the parameters \emph{are} identified. However, since loss is greater at true values than at estimated ones, it seems that the truth is a local, not a global min. I need to i) use some tricks to find this min ii) understand why this min isn't the global. I have a hypothesis: \\
+I think expectations in the true data aren't very large, and thus also aren't fluctuating enough. This screws up the moments somehow, but it also means that the estimation wants to set the $\alpha$s corresponding to large forecast errors to a low value, b/c otherwise it would cause fluctuations that aren't there in the data. Combined with the zero-neighborhood problem, the flat estimate is the result.
+\end{enumerate}
+
+
+\clearpage
+\subsection{0 at 0}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_1031_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_1031_gridspacing_uniform_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{0 at 0 imposed with weight 1000} not using 1-step ahead forecasts of inflation, not rescaling W, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\clearpage
+\subsection{0 at 0, more convexity}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_1038_gridspacing_uniform_Wdiffs2_1000000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_1038_gridspacing_uniform_Wdiffs2_1000000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{0 at 0 imposed with weight 1000} not using 1-step ahead forecasts of inflation, not rescaling W, estimate mean moments once, imposing convexity with weight 1000K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
+\end{figure}
+
+\clearpage
+\subsection{Identity weighting matrix}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.3]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.44]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_09_Aug_2020}}
+\caption{\colorbox{yellow}{identity weighting matrix}, not using 1-step ahead forecasts of inflation, not rescaling W, estimate mean moments once, imposing convexity with weight 1000K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

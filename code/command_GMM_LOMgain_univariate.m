@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -36,12 +36,12 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % % % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05). W/ measurement error
 % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
-filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
-
+% filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
+% filename = 'acf_sim_univariate_data_09_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no, RIDGE.
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -63,14 +63,14 @@ Wmean=0;%100, 0
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
-scaleW =1; %0
-use_expectations_data=1; %1
+scaleW =0; %0
+use_expectations_data=0; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
 options = optimoptions('lsqnonlin');
 options = optimoptions(options, 'display', 'iter');
-options.TolFun= 1e-9; % objective function tolerance, default 1.0000e-06
+% options.TolFun= 1e-9; % objective function tolerance, default 1.0000e-06
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in
 % optimoptions, not in optimset. It pertains to first order optimality
 % measure. Default 1.0000e-06
@@ -179,7 +179,7 @@ W1 = W^(-1);
 % % Just checking that it's true for W1 too, and it is
 % W1 == 1/a *inv(X) % not always tru
 % W1 == inv(a*X) % this is always true
-
+W1=eye(size(W1));
 
 % return
 
@@ -380,9 +380,11 @@ switch cross_section
         %         max(diffOm)
         %         return
         
+        dbstop if warning
         % Compute the objective function one time with some values
         [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
         resnorm0 = sum(res0.^2)
+        
         %Declare a function handle for optimization problem
         objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
         tic
@@ -583,7 +585,7 @@ if investigate_loss==1
         ax.FontSize = fs;
         set(gca,'TickLabelInterpreter', 'latex');
         ax.XAxis.Exponent = 0;
-        ax.YRuler.Exponent = 0; % turns off scientific notation
+%         ax.YRuler.Exponent = 0; % turns off scientific notation
         grid on
         grid minor
     end
@@ -613,15 +615,15 @@ if investigate_loss==1
     
     
     tic
-    for i=1:4:5 %1:length(alph_true)
+    for i=1:5 %1:length(alph_true)
         alph = alph_true;
         % try to center the range tightly around the true value
         if i==1 || i==5
-            alphi_values(i,:) = linspace(0.0499, 0.055, nrange)'; % linspace(0.03, 0.045, nrange)' ; linspace(0.005, 0.025, nrange)'       scaleW: linspace(0.0499, 0.055, nrange)', measerror:linspace(0.049, 0.06, nrange)'
+            alphi_values(i,:) = linspace(0, 0.01, nrange)'; % linspace(0.03, 0.045, nrange)' ; linspace(0.005, 0.025, nrange)'       scaleW: linspace(0.0499, 0.055, nrange)', measerror:linspace(0.049, 0.06, nrange)'
         elseif i==2 || i==4
-            alphi_values(i,:) = linspace(0.01, 0.03, nrange)';%linspace(0.01, 0.025, nrange)' , meas.error: linspace(0, 0.02, nrange)'
+            alphi_values(i,:) = linspace(0, 0.01, nrange)';%linspace(0.01, 0.025, nrange)' , meas.error: linspace(0, 0.02, nrange)'
         elseif i==3
-            alphi_values(i,:) = linspace(0, 0.03,nrange)'; %linspace(0, 0.001,nrange)', add_exp: linspace(0, 0.03,nrange)'
+            alphi_values(i,:) = linspace(0, 0.01,nrange)'; %linspace(0, 0.001,nrange)', add_exp: linspace(0, 0.03,nrange)'
         end
         for j=1:nrange
             alph(i) = alphi_values(i,j);
