@@ -1,4 +1,4 @@
-% command_sim_data_univariate.m
+% command_acf_sim_data_univariate.m
 % Takes about 90 seconds altogether.
 clearvars
 close all
@@ -19,7 +19,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
-save_data =0;
+save_data =1;
 datestr(now)
 
 %% 1.) Simulate data and filter it
@@ -30,7 +30,7 @@ datestr(now)
 % Create grids
 nfe = 5 % 6,9,12,15
 % grids for f_{t|t-1}
-femax = 0.5;
+femax = 2;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
@@ -114,7 +114,7 @@ create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estim
 
 figure
 hist(squeeze(FEt_10(1,:)))
-close all
+% close all
 % return
 
 ng_fine = 100;
@@ -173,9 +173,10 @@ p =min([AIC,BIC,HQ]);
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
 [~,B,res,sigma] = sr_var(filt_data', p);
-[B_RF,res_RF,sigma_RF] = rf_var(filt_data', p);
+% [B_RF,res_RF,sigma_RF] = rf_var(filt_data', p);
 
-return
+
+% return
 
 % % ridge regression VAR
 % [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt_data', p, 0.001);
@@ -211,7 +212,7 @@ Om = vec(Gamj);
 % Om = vec(Gamj_own);
 
 
-return
+% return
 
 %% 2.) Bootstrap the data, and get variance of moments (autocovariances from 0 to lag K) from the bootstrapped sample
 % This section is inspired by main_file_SVAR_just_IT_controllingNEWS.m in my work with Marco
@@ -241,8 +242,8 @@ parfor i=1:nboot
     %         p = min([AIC,BIC,HQ]); % lag selection (p) is the lag
     
     % OLS or ridge
-%     [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
-    [B,res,sigma] = rf_var(squeeze(dataset_boot(:,:,i)), p);
+    [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
+%     [B,res,sigma] = rf_var(squeeze(dataset_boot(:,:,i)), p);
 %     [~,B,~,sigma] = sr_var_ridge(squeeze(dataset_boot(:,:,i)), p, 0.001);
     
     % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)

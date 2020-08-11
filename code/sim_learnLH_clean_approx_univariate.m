@@ -103,7 +103,13 @@ for t = 1:T-1
 %                 fex = ysim(2,t)-(a(2) + b(2,:)*xsim(:,t-1)); % output gap fe
 %                 disp(t)
                 if isnan(fe)
-                    disp('fe was nan, setting loss = 1e+10')
+                    disp(['fe was nan in individual simulation, t = ', num2str(t), ', setting diff to all Inf'])
+                    diff = inf(size(diff));
+                    if k(:,t-1) < 0
+                        disp('k_{t-1} < 0')
+                    end
+                    disp(num2str(alph'))
+                    disp('%%%%%%%%%%%%%%%%%%%%')
 %                     warning('fe is nan')
                     return
                     

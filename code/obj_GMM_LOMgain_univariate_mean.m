@@ -1,4 +1,4 @@
-function [res, Om, FEt_1, Om_n] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
+function [res, Om, FEt_1, Om_n, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
     use_expectations_data,N,alph0,Wprior)
 
 % alph are the coefficients, x is the grid
@@ -17,7 +17,8 @@ end
 % check "global" nonnegativity of k1
 k10 = ndim_simplex_eval(x,xxgrid(:)',alph);
 if min(k10)<0
-    res = 1e+10*ones(size(Om_data));
+%     res = 1e+10*ones(size(Om_data));
+    res = nan*ones(size(Om_data));
     disp('k1 was negative on fine grid, not even bothering to do simulation')
 else
     
@@ -29,15 +30,29 @@ else
     Om_n = nan(numel(Om_data),N);
     FEt_1 = nan(ny,T,N);
     k1 = nan(T-1,N);
+    expl_sim_counter = 0;
+    expl_k_counter = 0;
+    neg_k_counter = 0;
     parfor n=1:N
         e_n = squeeze(eN(:,:,n));
         v_n = squeeze(vN(:,:,n));
-        [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
-%         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+        [~, y, k,phi,~,~,fe, diffs] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
+        %         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
         
         % Do not filter data and estimate VARs if the current coefficients
-        % alpha lead to an explosive learning simulation
-        if isinf(max(k)) || min(k)<0 || max(size(k)) > T
+        % lead to exploding k...
+        if isinf(max(k))
+            expl_k_counter = expl_k_counter+1;
+            
+        elseif min(k)<0 && sum(isinf(diffs))>1 % negative k and explose fe
+            neg_k_counter = neg_k_counter+1;
+            expl_sim_counter = expl_sim_counter+1;
+            
+        elseif min(k)<0
+            neg_k_counter = neg_k_counter+1; % negative k only
+            
+        elseif sum(isinf(diffs))>1 % or to exploding forecast errors only
+            expl_sim_counter = expl_sim_counter+1;
             % just skip
             
         else
@@ -47,7 +62,7 @@ else
             else
                 y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
             end
-
+            
             nobs = size(y_data,1);
             FEt_1(:,:,n) = fe;
             % Filter the simulated data
@@ -85,9 +100,9 @@ else
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
             [~,B,~,sigma] = sr_var(filt', p);
-%             [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt', p, 0.001);
-%             B = B_ridge;
-%             sigma = sigma_ridge;
+            %             [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt', p, 0.001);
+            %             B = B_ridge;
+            %             sigma = sigma_ridge;
             
             % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
             PHI = B(2:end,:)';
@@ -151,6 +166,15 @@ else
     res(end+1) = Wmean*calibrated_moment;
     res(end+1) = Wmid*alph_mid;
     res(end+1:end+nfx2) = Wdiffs2*diffs2_moment;
+    
+    if expl_sim_counter > 0 || expl_k_counter > 0 || neg_k_counter > 0
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+        disp(['alpha was ', num2str(alph')]);
+        disp([num2str(expl_sim_counter/N *100) ,'% of simulated histories exploded'])
+        disp([num2str(expl_k_counter/N *100) ,'% of simulated histories had exploding k'])
+        disp([num2str(neg_k_counter/N *100) ,'% of simulated histories had k < 0 '])
+    end
+    
     
 end
 end
