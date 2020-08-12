@@ -303,8 +303,19 @@ I implement additional restrictions by adding elements to the residuals vector $
 where $W^{convexity}$ is a manually specified weight.
 \end{itemize}
 
+Rescaling: when some elements of $\Sigma$ are very small, $W$ becomes large. This shouldn't be a problem if the fact that some elements of $\Sigma$ are close to zero doesn't cause numerical issues during inversion. Therefore what I do:
+\begin{itemize}
+\item Find smallest element of $\Sigma$, and write it as some number times $10^s, s<0$. 
+\item $W^{rescaled} = (\Sigma \times 10^{|s|})^{-1}$
+\end{itemize}
 
 
+I've checked:
+\begin{itemize}
+\item $W W^{-1} = I$ and $W^{rescaled} (W^{rescaled})^{-1} = I$
+\item $L(W) = L(W^{rescaled}) \times (10^{|s|})^2$
+\item What does cause problems in Matlab: $(a\Sigma)^{-1} \neq \frac{1}{a}\Sigma^{-1}$ if $a$ close to zero.
+\end{itemize}
 
 
 
