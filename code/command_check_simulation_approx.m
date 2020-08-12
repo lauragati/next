@@ -19,7 +19,7 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-skip = 1;
+skip = 0;
 [fs, lw] = plot_configs;
 datestr(now)
 
@@ -117,7 +117,7 @@ if skip==0
     
     %% I) Check simulation at truth for various error sequences.
     
-    alph_true = [0.05;0.025;0;0.025;0.05];
+    alph_true = 2.5*[0.05;0.025;0;0.025;0.05];
     y = zeros(nobs,T,N);
     k = zeros(T,N);
     pibar = zeros(T,N);
@@ -218,6 +218,8 @@ if skip==0
     end
     
 end
+
+return
 %% Check cross-sections for various alphas
 alph_true = [0.05;0.025;0;0.025;0.05];
 

@@ -8,13 +8,16 @@
 \BOOKMARK [1][-]{section.4}{Look into behavior of simulation as a function of shocks and s}{}% 8
 \BOOKMARK [2][-]{subsection.4.1}{Cross-section for true}{section.4}% 9
 \BOOKMARK [2][-]{subsection.4.2}{Cross-sectional simulations moving particular elements of \040at a time}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Some additional estimation exercises for the N simulations strategy with settings preceding those of the previous section}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{N=1000}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{Expectations}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.3}{Expectations and rescaling}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.4}{0 at 0}{section.5}% 15
-\BOOKMARK [2][-]{subsection.5.5}{0 at 0, more convexity}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.6}{Identity weighting matrix}{section.5}% 17
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 18
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 19
-\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 20
+\BOOKMARK [1][-]{section.5}{Only \040corresponding to large forecast errors}{}% 11
+\BOOKMARK [1][-]{section.6}{Notes on the GMM weighting matrix}{}% 12
+\BOOKMARK [1][-]{section.7}{Some additional estimation exercises for the N simulations strategy with settings preceding those of the previous section}{}% 13
+\BOOKMARK [2][-]{subsection.7.1}{Real data with s out in the edges, as above}{section.7}% 14
+\BOOKMARK [2][-]{subsection.7.2}{N=1000}{section.7}% 15
+\BOOKMARK [2][-]{subsection.7.3}{Expectations}{section.7}% 16
+\BOOKMARK [2][-]{subsection.7.4}{Expectations and rescaling}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.5}{0 at 0}{section.7}% 18
+\BOOKMARK [2][-]{subsection.7.6}{0 at 0, more convexity}{section.7}% 19
+\BOOKMARK [2][-]{subsection.7.7}{Identity weighting matrix}{section.7}% 20
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 21
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 22
+\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 23

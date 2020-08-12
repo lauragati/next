@@ -148,6 +148,7 @@ bottom=0.5in}
 \caption{Loss for $N=100$, \colorbox{yellow}{NOT} using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$}
 \end{figure}
 
+\clearpage
 \subsection{Convexity and 0 at 0 restrictions}
 \begin{figure}[h!]
 \subfigure[\colorbox{yellow}{Shutting of the convexity moment (weight 0)}]{\includegraphics[scale=0.32]{\myFigPath loss_indi_nrange20_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_uniform_Wdiffs2_0_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}
@@ -224,22 +225,86 @@ For every evaluation of the loss function, very many simulations explode.
 \subfigure[]{\includegraphics[height=10cm, width=15cm]{\myFigPath k1_scenario_1__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath pibar_scenario_1__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath fe_scenario_1__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
-\caption{Cross-sectional means when varying $\alpha_{1,5}, N=100$, $\alpha=(0.05,0.025,0,0.025,0.05)$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
+\caption{Cross-sectional means when varying $\alpha_{1,5}, N=100$, $\alpha=(\colorbox{yellow}{0.05},0.025,0,0.025,\colorbox{yellow}{0.05})$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
 \end{figure}
 
 \begin{figure}[h!]
 \subfigure[]{\includegraphics[scale=0.42]{\myFigPath k1_scenario_2__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath pibar_scenario_2__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath fe_scenario_2__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
-\caption{Cross-sectional means when varying $\alpha_{2,4}, N=100$, $\alpha=(0.05,0.025,0,0.025,0.05)$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
+\caption{Cross-sectional means when varying $\alpha_{2,4}, N=100$, $\alpha=(0.05,\colorbox{yellow}{0.025},0,\colorbox{yellow}{0.025},0.05)$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
 \end{figure}
 
 \begin{figure}[h!]
 \subfigure[]{\includegraphics[scale=0.42]{\myFigPath k1_scenario_3__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath pibar_scenario_3__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
 \subfigure[]{\includegraphics[scale=0.24]{\myFigPath fe_scenario_3__constant_only_pi_only_N_100_nfe_5_femax_2_command_check_simulation_approx_11_Aug_2020}}
-\caption{Cross-sectional means when varying $\alpha_{3}, N=100$, $\alpha=(0.05,0.025,0,0.025,0.05)$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
+\caption{Cross-sectional means when varying $\alpha_{3}, N=100$, $\alpha=(0.05,0.025,\colorbox{yellow}{0},0.025,0.05)$, $nfe=5, fe \in(-2,2)$, \texttt{rng(1)}}
 \end{figure}
+
+\clearpage
+\section{Only $\alpha$ corresponding to large forecast errors}
+
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_05_15}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_944_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_05_15}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{gridpoints $= [-2,-1.5,0,1.5,2]$}}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_938_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_13_33}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_938_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_13_33}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$}}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_4femax_2_loss_947_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_26_44}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_4femax_2_loss_947_gridspacing_manual_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_26_44}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{gridpoints $= [-4,-3,3,4]$ (no zero-point)}}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_1040_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_31_07}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_1040_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_31_07}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000}}
+\end{figure}
+
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_48_50}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_48_50}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, truth with $nfe=5, fe \in(-2,2)$, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000,} \colorbox{yellow}{true parameters scaled up by 4}}
+\end{figure}
+
+
+\clearpage
+\section{Notes on the GMM weighting matrix}
+
+The loss function takes the form:
+\begin{align}
+L = (\Omega^{data} - \Omega^{model}) W (\Omega^{data} - \Omega^{model})' 
+\end{align}
+where $\Omega$ are the moments and $W$ is the weighting matrix. Let $\Sigma \equiv Var(\Omega^{data, bootstrap})$. Then $W = \Sigma^{-1}$.
+
+For \texttt{lsqnonlin}, I write the residuals of the objective function as
+\begin{align}
+R = (vec(\Omega^{data}) - vec(\Omega^{model})) diag(W)
+\end{align}
+
+I implement additional restrictions by adding elements to the residuals vector $R$ with a manually specified weight. For example, the convexity restriction is added as follows:
+\begin{itemize}
+\item For each guess $\alpha$, compute $g''_i$, numerical second derivatives of the anchoring function. There are always \texttt{numel(alpha)-2} of those, so if I estimate 5 knots, there are 3 second derivatives, $i=1,2,3$. 
+\item For $i=1,2,3$, add the following elements to the residuals vector $R$: 
+\begin{equation}
+\begin{cases} (g''_i)^2 W^{convexity} \quad \quad \text{if} \quad \quad g''_i < 0 \\
+0  \quad \quad \text{otherwise} \end{cases}
+\end{equation}
+where $W^{convexity}$ is a manually specified weight.
+\end{itemize}
+
+
+
 
 
 
@@ -252,6 +317,15 @@ For every evaluation of the loss function, very many simulations explode.
 %%%%%%%%%%%%%%%%%%%%%%%%%   FOR ME
 \clearpage
 \section{Some additional estimation exercises for the N simulations strategy with settings preceding those of the previous section}
+
+\subsection{Real data with $\alpha$s out in the edges, as above}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, real data, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000}, $N=100$}
+\end{figure}
+
+\clearpage
 \subsection{$N=1000$}
 \begin{figure}[h!]
 \subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_1000_nfe_5femax_2_loss_1196_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_07_Aug_2020}}

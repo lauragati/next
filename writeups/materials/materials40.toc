@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Loss when varying one parameter, more details}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Convexity and 0 at 0 restrictions}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.1}Convexity and 0 at 0 restrictions}{3}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Measurement error and rescale W}{4}{subsection.1.2}
 \contentsline {subsection}{\numberline {1.3}Add expectations w/ and w/o rescaling W}{5}{subsection.1.3}
 \contentsline {subsection}{\numberline {1.4}Loss w/o expectations but $N=1000$}{6}{subsection.1.4}
@@ -8,13 +8,16 @@
 \contentsline {section}{\numberline {4}Look into behavior of simulation as a function of shocks and $\alpha $s}{9}{section.4}
 \contentsline {subsection}{\numberline {4.1}Cross-section for $\alpha ^{true}$}{9}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Cross-sectional simulations moving particular elements of $\alpha $ at a time}{10}{subsection.4.2}
-\contentsline {section}{\numberline {5}Some additional estimation exercises for the N simulations strategy with settings preceding those of the previous section}{13}{section.5}
-\contentsline {subsection}{\numberline {5.1}$N=1000$}{13}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Expectations}{14}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Expectations and rescaling}{15}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}0 at 0}{16}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}0 at 0, more convexity}{17}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Identity weighting matrix}{18}{subsection.5.6}
-\contentsline {section}{\numberline {A}Model summary}{19}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{19}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{20}{appendix.C}
+\contentsline {section}{\numberline {5}Only $\alpha $ corresponding to large forecast errors}{13}{section.5}
+\contentsline {section}{\numberline {6}Notes on the GMM weighting matrix}{18}{section.6}
+\contentsline {section}{\numberline {7}Some additional estimation exercises for the N simulations strategy with settings preceding those of the previous section}{19}{section.7}
+\contentsline {subsection}{\numberline {7.1}Real data with $\alpha $s out in the edges, as above}{19}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}$N=1000$}{20}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Expectations}{21}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Expectations and rescaling}{22}{subsection.7.4}
+\contentsline {subsection}{\numberline {7.5}0 at 0}{23}{subsection.7.5}
+\contentsline {subsection}{\numberline {7.6}0 at 0, more convexity}{24}{subsection.7.6}
+\contentsline {subsection}{\numberline {7.7}Identity weighting matrix}{25}{subsection.7.7}
+\contentsline {section}{\numberline {A}Model summary}{26}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{26}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{27}{appendix.C}

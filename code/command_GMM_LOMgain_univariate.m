@@ -30,24 +30,24 @@ investigate_loss=0;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-% % filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_11_Jun_2020'; % real data
 % filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
 % % % filename = 'acf_sim_univariate_data_04_Jul_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5), new parameters, rng(0)
-% filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
+filename = 'acf_sim_univariate_data_06_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); see Notes 6 July 2020
 % % % filename = 'acf_sim_univariate_data_mean_21_Jul_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_22_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05). W/ measurement error
 % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
 % filename = 'acf_sim_univariate_data_09_Aug_2020'; % simulated data, nfe=5, fe=(-0.5,0.5), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no, RIDGE.
-filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
+% filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
-gridspacing = 'uniform'; % uniform or uneven
+gridspacing = 'manual'; % uniform or uneven, or manual
 % grids for fe_{t|t-1}
 femax = 2; % 3.5
 femin = -femax;
@@ -182,6 +182,7 @@ W1 = W^(-1);
 % W1 == inv(a*X) % this is always true
 % W1=eye(size(W1));
 
+
 % return
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
@@ -233,7 +234,10 @@ switch gridspacing
     case 'uneven'
         fegrid = uneven_grid(femin,femax,nfe)
     case 'manual'
-        fegrid = [-2,-1,1,2]
+%         fegrid = [-2,-1,1,2]
+%         fegrid = [-2,-1.5,0,1.5,2]
+        fegrid = [-4,-3,0,3,4]
+%         fegrid = [-4,-3, 3,4]
 end
 % map to ndim_simplex
 x = cell(1,1);
@@ -262,7 +266,21 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 % % extrapolation works beautifully
 % ndim_simplex_eval(x,[-3:1:3],alph0)
 
-% return
+
+% Can recover scaling factor?
+res0 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+resnorm0 = sum(res0.^2);
+
+scaler = floor(log10(min(diag(sigboot))));
+sclf = 10^(abs(scaler));
+res1 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,inv(W*sclf),Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+resnorm1 = sum(res1.^2);
+
+resnorm0 - resnorm1*sclf
+resnorm0 - resnorm1*sclf^2 % yes you do
+
+
+return
 
 %% GMM
 
@@ -409,7 +427,7 @@ end
 figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
     '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
     '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
-    '_', this_code, '_', todays_date];
+    '_', this_code, '_', nowstr];
 
 
 % Let's add the final output to the finer sample
@@ -545,7 +563,7 @@ if investigate_loss==1
     figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
         '_gridspac_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
         '_use_exp_', num2str(use_expectations_data), '_use_meas_err_', num2str(sig_v), ...
-        '_', this_code, '_', todays_date];
+        '_', this_code, '_', nowstr];
     
     % 1. loss(true coeffs)=0?
     [res_at_true, Om_at_true, FE_at_true, Om_n_at_true, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);

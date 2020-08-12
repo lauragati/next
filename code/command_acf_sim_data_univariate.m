@@ -35,8 +35,8 @@ femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 
 rng(0)
-% alph_true = [0.1;0.05;0.001;0.00001;0.02;0.09];
 alph_true = [0.05;0.025;0;0.025;0.05];
+
 % alph_true = (0.005*fegrid.^2)';
 
 % map to ndim_simplex
@@ -92,7 +92,7 @@ ndrop = 5 % 0-50
 
 T=156; % true dataset is shorter when expectations are in it (SPF, before it was 233)
 % gen all the N sequences of shocks at once.
-rng(0) %rng(0)
+rng(2) %rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 
@@ -115,7 +115,7 @@ create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estim
 figure
 hist(squeeze(FEt_10(1,:)))
 % close all
-% return
+return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);
