@@ -114,8 +114,8 @@ create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estim
 
 figure
 hist(squeeze(FEt_10(1,:)))
-% close all
-return
+close all
+% return
 
 ng_fine = 100;
 fegrid_fine = linspace(femin,femax,ng_fine);

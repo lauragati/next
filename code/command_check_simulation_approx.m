@@ -24,7 +24,6 @@ skip = 0;
 datestr(now)
 
 
-save_stuff=0;
 
 
 %% Params, initialization
@@ -39,7 +38,7 @@ sig_v=0;
 nobs=3;
 
 T=155
-N=100
+N=1
 ndrop = 5
 
 rng(1) % rng(1)  vs. rng('default')=rng(0) is the one that was used to generate the true data.
@@ -117,7 +116,7 @@ if skip==0
     
     %% I) Check simulation at truth for various error sequences.
     
-    alph_true = 2.5*[0.05;0.025;0;0.025;0.05];
+    alph_true = [0.05;0.025;0;0.025;0.05];
     y = zeros(nobs,T,N);
     k = zeros(T,N);
     pibar = zeros(T,N);

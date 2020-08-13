@@ -1,0 +1,7 @@
+\BOOKMARK [1][-]{section.1}{What I need for identification}{}% 1
+\BOOKMARK [1][-]{section.2}{Only \040corresponding to large forecast errors are identified - Figure 15 from Materials 40}{}% 2
+\BOOKMARK [1][-]{section.3}{GMM weighting matrix mystery solved: I didn't scale the weight on the convexity moments}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Taking square root of elements of W}{section.3}% 4
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 5
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 6
+\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 7
