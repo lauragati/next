@@ -19,7 +19,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
-save_data =1;
+save_data =0;
 datestr(now)
 
 %% 1.) Simulate data and filter it
@@ -180,8 +180,10 @@ p =min([AIC,BIC,HQ]);
 
 % % ridge regression VAR
 % [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt_data', p, 0.001);
-% B = B_ridge;
-% sigma = sigma_ridge;
+[B_ridge,~,sigma_ridge] = rf_var_ridge(filt_data', p, 0.001); % save a few miliseconds
+B = B_ridge;
+sigma = sigma_ridge;
+% return
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
 c = B(1,:); % coefficients of the constant
@@ -242,9 +244,9 @@ parfor i=1:nboot
     %         p = min([AIC,BIC,HQ]); % lag selection (p) is the lag
     
     % OLS or ridge
-    [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
+%     [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
 %     [B,res,sigma] = rf_var(squeeze(dataset_boot(:,:,i)), p);
-%     [~,B,~,sigma] = sr_var_ridge(squeeze(dataset_boot(:,:,i)), p, 0.001);
+    [B,~,sigma] = rf_var_ridge(squeeze(dataset_boot(:,:,i)), p, 0.001);
     
     % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
     c = B(1,:); % coefficients of the constant
