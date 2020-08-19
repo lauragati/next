@@ -2,6 +2,8 @@
 \contentsline {section}{\numberline {2}Only $\alpha $ corresponding to large forecast errors are identified - Figure 15 from Materials 40}{3}{section.2}
 \contentsline {section}{\numberline {3}GMM weighting matrix mystery solved: I didn't scale the weight on the convexity moments}{4}{section.3}
 \contentsline {subsection}{\numberline {3.1}Taking square root of elements of $W$}{4}{subsection.3.1}
-\contentsline {section}{\numberline {A}Model summary}{6}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{6}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{7}{appendix.C}
+\contentsline {section}{\numberline {4}Increasing variance of shocks}{6}{section.4}
+\contentsline {section}{\numberline {5}Trying to estimate shock variances too}{8}{section.5}
+\contentsline {section}{\numberline {A}Model summary}{10}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{10}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{11}{appendix.C}

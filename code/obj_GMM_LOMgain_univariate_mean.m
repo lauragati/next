@@ -99,8 +99,8 @@ else
             K=4;%4
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
-%             [~,B,~,sigma] = sr_var(filt', p);
-            [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+            [~,B,~,sigma] = sr_var(filt', p);
+%             [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
             
             
             % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)

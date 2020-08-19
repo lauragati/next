@@ -42,14 +42,14 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
 % % % % % % filename = 'acf_sim_univariate_data_09_Aug_2020'; % simulated data, nfe=5, fe=(-0.5,0.5), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no, RIDGE.
-% filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
+filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
 % % % % % % filename = 'acf_sim_univariate_data_13_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2. (RIDGE)
-filename = 'acf_sim_univariate_data_18_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2, lam =0.001 (corrected (now standardized regressors) RIDGE)
+% filename = 'acf_sim_univariate_data_18_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2, lam =0.001 (corrected (now standardized regressors) RIDGE)
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
 nfe = 5 % 5,7,9
-gridspacing = 'uniform'; % uniform or uneven, or manual
+gridspacing = 'manual'; % uniform or uneven, or manual
 % grids for fe_{t|t-1}
 femax = 2; % 3.5
 femin = -femax;
@@ -59,13 +59,17 @@ lb = zeros(nfe,1); %0
 % weights on additional moments
 Wprior=0;%0
 Wdiffs2= 100000;%100000, seems like 100K is sufficient, or even 10K
-Wmid =0; %1000
+Wmid =1000; %1000
 Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
+est_shocks = 1;
+if est_shocks==1
+    cross_section = 'Nsimulations';
+end
 scaleW =0; %0
 use_expectations_data=0; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
@@ -286,8 +290,8 @@ sclf = 10^(abs(scaler));
 res1 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,sqrt(inv(W*sclf)),Wdiffs2,Wmid,Wmean,use_expectations_data,N);
 resnorm1 = sum(res1.^2);
 
-resnorm0 - resnorm1*sclf
-resnorm0 - resnorm1*sclf^2 % yes you do
+% resnorm0 - resnorm1*sclf
+% resnorm0 - resnorm1*sclf^2 % yes you do
 
 
 % return
@@ -384,60 +388,92 @@ switch cross_section
         
         
     case 'Nsimulations'
-        
-        % Testing whether moments converge to something as N--> inf, and it
-        % seems yes, at N=1000.
-        %         N=100; % N=10000: errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient? It seems so: plots on top, max(diff=0.0109)
-        %         rng(1)
-        %         eN1 = randn(3,T+ndrop,N);
-        %         vN1 = randn(nobs,T+ndrop,N);
-        %
-        %         rng(2)
-        %         eN2 = randn(3,T+ndrop,N);
-        %         vN2 = randn(nobs,T+ndrop,N);
-        %
-        %         tic
-        %         [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-        %         [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
-        %         toc
-        %
-        %         diffOm = Om1-Om2;
-        %
-        %         figure
-        %         plot(Om1)
-        %         hold on
-        %         plot(Om2)
-        %         max(diffOm)
-        %         return
-        
-        dbstop if warning
-        % Compute the objective function one time with some values
-        [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-        resnorm0 = sum(res0.^2)
-        
-        %Declare a function handle for optimization problem
-        objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-        tic
-        [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
-        toc
-        [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-        
-        flag
-        nancount = sum(sum(isnan(Om_n)));
-        nanpercent = nancount/numel(Om_n)
-        % treat the single outcomes as the mean outcomes
-        alph_opt_mean = alph_opt;
-        Om1mean = Om1;
-        resnorm_mean = resnorm
+        if est_shocks==0
+            % Testing whether moments converge to something as N--> inf, and it
+            % seems yes, at N=1000.
+            %         N=100; % N=10000: errors on the order of 0.005, plots almost on top of each other, max(diff)=0.0083. That seems sufficient. Is N=1000 sufficient? It seems so: plots on top, max(diff=0.0109)
+            %         rng(1)
+            %         eN1 = randn(3,T+ndrop,N);
+            %         vN1 = randn(nobs,T+ndrop,N);
+            %
+            %         rng(2)
+            %         eN2 = randn(3,T+ndrop,N);
+            %         vN2 = randn(nobs,T+ndrop,N);
+            %
+            %         tic
+            %         [res1, Om1, FE1, Om_n1] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN1,vN1,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+            %         [res2, Om2, FE2, Om_n2] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN2,vN2,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,N);
+            %         toc
+            %
+            %         diffOm = Om1-Om2;
+            %
+            %         figure
+            %         plot(Om1)
+            %         hold on
+            %         plot(Om2)
+            %         max(diffOm)
+            %         return
+            
+            dbstop if warning
+            % Compute the objective function one time with some values
+            [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            resnorm0 = sum(res0.^2)
+            
+            %Declare a function handle for optimization problem
+            objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            tic
+            [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
+            toc
+            [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            
+            flag
+            nancount = sum(sum(isnan(Om_n)));
+            nanpercent = nancount/numel(Om_n)
+            % treat the single outcomes as the mean outcomes
+            alph_opt_mean = alph_opt;
+            Om1mean = Om1;
+            resnorm_mean = resnorm
+            
+        elseif est_shocks==1
+            disp('Estimating shock volatilities too')
+            sig0 = 0.1*ones(nx,1);
+            ub_sig = 8*ones(nx,1);
+            lb_sig = 0*ones(nx,1);
+            
+            % call thet the full estimated parameter vector
+            thet0 = [sig0; alph0]; 
+            ub = [ub_sig;ub];
+            lb = [lb_sig;lb];
+            
+            [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean_shocks(thet0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            resnorm0 = sum(res0.^2)
+            
+            %Declare a function handle for optimization problem
+            objh = @(thet) obj_GMM_LOMgain_univariate_mean_shocks(thet,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            tic
+            [thet_opt,resnorm,residual,flag] = lsqnonlin(objh,thet0,lb,ub,options);
+            toc
+            [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean_shocks(thet_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            
+            flag
+            nancount = sum(sum(isnan(Om_n)));
+            nanpercent = nancount/numel(Om_n)
+            % treat the single outcomes as the mean outcomes
+            sig_opt = thet_opt(1:3)
+            alph_opt_mean = thet_opt(4:end);
+            Om1mean = Om1;
+            resnorm_mean = resnorm
+            
+        end
         
 end
 
 %% Plots
 % the appendix of each FIGNAME:
-figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
-    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-    '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
-    '_', this_code, '_', nowstr];
+figspecs = ['N_', num2str(N),'_nfe_', num2str(nfe), ...
+    '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', this_code, '_', nowstr];
+%'_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
+
 
 
 % Let's add the final output to the finer sample
@@ -570,10 +606,8 @@ end
 if investigate_loss==1
     datestr(now)
     
-    figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
-        '_gridspac_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-        '_use_exp_', num2str(use_expectations_data), '_use_meas_err_', num2str(sig_v), ...
-        '_', this_code, '_', nowstr];
+    figspecs = ['N_', num2str(N),'_nfe_', num2str(nfe), ...
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', this_code, '_', nowstr];
     
     % 1. loss(true coeffs)=0?
     [res_at_true, Om_at_true, FE_at_true, Om_n_at_true, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
@@ -644,27 +678,6 @@ if investigate_loss==1
     alphi_values = nan(length(alph_true),nrange);
     obj_indi = nan(length(alph_true),nrange);
     
-    Wdiffs2= 0;%100000, seems like 100K is sufficient, or even 10K
-    %     Wmid =0; %1000
-    
-    scaleW=1;
-    sigboot = diag(var(Om_boot,0,2));
-    W = sigboot;
-%     W = eye(size(W));
-    if scaleW==1
-        scaler = floor(log10(min(diag(sigboot))));
-        if scaler < 0
-            W_alt = W.* 10^(abs(scaler)); % just to check elementwise, but it gives the same thing
-            W = W* 10^(abs(scaler));
-        end
-    end
-    sclf=10^(abs(scaler));
-    W1 = W^(-1);
-    W1 = sqrt(W1); % elementwise sqrt.
-    
-%     max(max(diag(W1))) / min(min(diag(W1)))
-%     W1 - sqrt(inv(sigboot*sclf))
-%     W1 - sqrt(1/sclf * inv(sigboot))
     
     tic
     for i=1:5 %1:length(alph_true)
@@ -706,17 +719,8 @@ if investigate_loss==1
     sgt.FontSize =fs;
     sgt.Interpreter = 'latex';
     
-    try
-        figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),'_loss_', num2str(floor(min(resnorm_mean))),...
-            '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-            '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
-            '_', this_code, '_', nowstr];
-    catch
-        figspecs = [PLM_name,'_', 'N_', num2str(N),'_nfe_', num2str(nfe), 'femax_', num2str(femax),...
-            '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section,'_', 'scaleW_',num2str(scaleW), ...
-            '_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
-            '_', this_code, '_', nowstr];
-    end
+    figspecs = ['N_', num2str(N),'_nfe_', num2str(nfe), ...
+        '_gridspacing_', gridspacing, '_Wdiffs2_', num2str(Wdiffs2),'_Wmid_', num2str(Wmid), '_', cross_section, '_', this_code, '_', nowstr];
     
     
     figname = ['loss_indi_nrange', num2str(nrange), '_', figspecs];

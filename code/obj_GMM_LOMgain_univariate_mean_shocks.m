@@ -1,11 +1,10 @@
-function [res, Om, FEt_1, Om_n, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
+function [res, Om, FEt_1, Om_n, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean_shocks(thet,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
     use_expectations_data,N,alph0,Wprior)
 
 % alph are the coefficients, x is the grid
-% 20 July 2020
-% same as obj_GMM_LOMgain_univariate.m, except simulates the model N
-% times and calculates mean moments
-
+% 18 August 2020
+% same as obj_GMM_LOMgain_univariate_mean.m, except estimates sig, the
+% volatilities of the structural shocks
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -13,6 +12,15 @@ if nargin < max_no_inputs
     Wprior = 0;
     alph0 = 0;
 end
+
+% Split up the full parameter vector
+sigs = thet(1:3);
+alph = thet(4:end);
+param.sig_r = sigs(1);
+param.sig_u = sigs(2);
+param.sig_i = sigs(3);
+
+
 
 % check "global" nonnegativity of k1
 k10 = ndim_simplex_eval(x,xxgrid(:)',alph);
@@ -99,8 +107,8 @@ else
             K=4;%4
             % Take the initial data, estimate a VAR
             % using the same lags p, K as for the real data
-%             [~,B,~,sigma] = sr_var(filt', p);
-            [~,B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+            [~,B,~,sigma] = sr_var(filt', p);
+%             [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
             
             
             % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -174,6 +182,9 @@ else
         disp([num2str(neg_k_counter/N *100) ,'% of simulated histories had k < 0 '])
     end
     
+    param
+    thet
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     
 end
 end

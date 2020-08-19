@@ -186,10 +186,43 @@ bottom=0.5in}
 \item How do I know? I've plotted the losses w/ and w/o rescaling when setting the weight on the convexity moment to zero and I see absolutely no change on the shape of the loss function!
 \end{itemize}
 
+\newpage
+\section{Increasing variance of shocks}
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.24]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.24]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21}}
+\subfigure[Loss function]{\includegraphics[scale=0.34]{\myFigPath loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$, taking square root of elements of $W$, $\sigma_u=2$, ridge regression with $\lambda=0.001$ for data generation and estimation.}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.24]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.24]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$, taking square root of elements of $W$, $\sigma_u=2$, ridge regression with $\lambda=0.001$ for data generation and estimation, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000} }
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.24]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.24]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, truth with $nfe=5, fe \in(-2,2)$, taking square root of elements of $W$, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000} }
+\end{figure}
+
+\clearpage
+\section{Trying to estimate shock variances too}
+There are three shocks: natural rate shock, cost-push shock and monetary policy shock. I'm fixing the truth to $\sigma_j=1, \quad j=,r,u,i$, and using $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ (the original ``truth'' scaled up by a factor of 4).
 
 
+\begin{figure}[h!]
+\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13}}
+\caption{Reference Fig: Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at $fe$=[-2,1,0,1,2].}
+\end{figure}
 
-
+\begin{figure}[h!]
+\subfigure[Estimated parameters, $\hat{\sigma_j}=0.1 \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at \newline $fe$=[-2,1,0,1,2],  \colorbox{yellow}{estimating $\sigma_j$ too} }
+\end{figure}
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page

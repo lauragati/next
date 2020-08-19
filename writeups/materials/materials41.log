@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 AUG 2020 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 AUG 2020 20:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -968,7 +968,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspaci
 ng_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use
-_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_48_50.png, id=61, 1
+_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_48_50.png, id=71, 1
 065.9825pt x 687.56876pt>
 File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grid
 spacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_
@@ -987,7 +987,7 @@ femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_
 <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
 s_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expec
 tations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_48_50.
-png, id=62, 1048.91875pt x 733.74126pt>
+png, id=72, 1048.91875pt x 733.74126pt>
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
 2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_
 expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_08_4
@@ -1022,7 +1022,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspaci
 ng_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use
-_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13.png, id=75, 1
+_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13.png, id=85, 1
 050.92625pt x 687.56876pt>
 File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grid
 spacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_
@@ -1041,7 +1041,7 @@ femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_
 <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
 s_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expec
 tations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13.
-png, id=76, 1048.91875pt x 733.74126pt>
+png, id=86, 1048.91875pt x 733.74126pt>
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
 2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_
 expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_3
@@ -1067,7 +1067,7 @@ xpectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37
 _13.png (PNG copy)>]
 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_6_gridspaci
 ng_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_m
-eas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_29_03.png, id=84, 106
+eas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_29_03.png, id=94, 106
 4.97874pt x 687.56876pt>
 File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_6_grid
 spacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_
@@ -1086,7 +1086,7 @@ use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_
 <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
 s_6_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expecta
 tions_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_29_03.pn
-g, id=85, 1048.91875pt x 733.74126pt>
+g, id=95, 1048.91875pt x 733.74126pt>
 File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
 2_loss_6_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_ex
 pectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_29_
@@ -1104,7 +1104,7 @@ _13_Aug_2020_11_29_03.png used on input line 177.
 
 <../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_grid
 spacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_
-use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_13_33_28.png, id=86
+use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_13_33_28.png, id=96
 , 1022.82124pt x 715.67375pt>
 File: ../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2
 _gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectatio
@@ -1122,7 +1122,7 @@ eW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_
 
 <../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_grid
 spacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_use_expectations_0_
-use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_13_33_28.png, id=87
+use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_13_33_28.png, id=97
 , 1022.82124pt x 715.67375pt>
 File: ../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2
 _gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_1_use_expectatio
@@ -1152,28 +1152,244 @@ _expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_13_
 33_28.png (PNG copy)> <../../figures/loss_indi_nrange10_constant_only_pi_only_N
 _100_nfe_5femax_2_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW
 _1_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_20
-20_13_33_28.png (PNG copy)>]pdfTeX warning (ext4): destination with the same id
-entifier (name{page.5}) has been already used, duplicate ignored
+20_13_33_28.png (PNG copy)>]
+<../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspaci
+ng_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_use_m
+eas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.png, id=107, 10
+64.97874pt x 687.56876pt>
+File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grid
+spacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_
+use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.png Graphi
+c file (type png)
+
+<use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grids
+pacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_u
+se_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.png>
+Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
+femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_
+use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_
+12_25_21.png used on input line 192.
+(pdftex.def)             Requested size: 255.60011pt x 165.01987pt.
+
+<../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
+s_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expecta
+tions_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.pn
+g, id=108, 1048.91875pt x 733.74126pt>
+File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
+2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_ex
+pectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_
+21.png Graphic file (type png)
+
+<use ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2
+_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_exp
+ectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_2
+1.png>
+Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
+y_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulati
+ons_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate
+_18_Aug_2020_12_25_21.png used on input line 193.
+(pdftex.def)             Requested size: 251.74564pt x 176.1015pt.
+
+<../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_loss
+_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectat
+ions_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.png
+, id=109, 930.47626pt x 715.67375pt>
+File: ../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2
+_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_exp
+ectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_2
+1.png Graphic file (type png)
+
+<use ../../figures/loss_indi_nrange10_constant_only_pi_only_N_100_nfe_5femax_2_
+loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expe
+ctations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21
+.png>
+Package pdftex.def Info: ../../figures/loss_indi_nrange10_constant_only_pi_only
+_N_100_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulatio
+ns_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_
+18_Aug_2020_12_25_21.png used on input line 194.
+(pdftex.def)             Requested size: 316.35774pt x 243.32585pt.
+
+<../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspaci
+ng_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use
+_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10.png, id=110, 
+1065.9825pt x 687.56876pt>
+File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grid
+spacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_
+0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10.png Grap
+hic file (type png)
+
+<use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grids
+pacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0
+_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10.png>
+Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
+femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_
+0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_202
+0_14_35_10.png used on input line 199.
+(pdftex.def)             Requested size: 255.84102pt x 165.01987pt.
+
+<../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2_los
+s_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expec
+tations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35_10.
+png, id=111, 1048.91875pt x 733.74126pt>
+File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
+2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_
+expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_3
+5_10.png Graphic file (type png)
+
+<use ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2
+_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_e
+xpectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_14_35
+_10.png>
+Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
+y_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimula
+tions_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univaria
+te_18_Aug_2020_14_35_10.png used on input line 200.
+(pdftex.def)             Requested size: 251.74564pt x 176.1015pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_N
+simulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25.png, id=112, 10
+65.9825pt x 687.56876pt>
+File: ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1
+000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25.png Graphi
+c file (type png)
+
+<use ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_10
+00_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25.png>
+Package pdftex.def Info: ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wd
+iffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_
+19_34_25.png used on input line 205.
+(pdftex.def)             Requested size: 255.84102pt x 165.01987pt.
+
+<../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_10000
+0_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25.pn
+g, id=113, 1048.91875pt x 733.74126pt>
+File: ../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_
+100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_
+25.png Graphic file (type png)
+
+<use ../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_1
+00000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_2
+5.png>
+Package pdftex.def Info: ../../figures/autocovariogram_sim_N_100_nfe_5_gridspac
+ing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate
+_18_Aug_2020_19_34_25.png used on input line 206.
+(pdftex.def)             Requested size: 251.74564pt x 176.1015pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_gridsp
+acing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_expectations_0_us
+e_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_21.png (PNG cop
+y)> <../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2
+_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_scaleW_0_use_exp
+ectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug_2020_12_25_2
+1.png (PNG copy)> <../../figures/loss_indi_nrange10_constant_only_pi_only_N_100
+_nfe_5femax_2_loss_0_gridspacing_uniform_Wdiffs2_100000_Wmid_0_Nsimulations_sca
+leW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_18_Aug
+_2020_12_25_21.png (PNG copy)>] [7 <../../figures/alphas_constant_only_pi_only_
+N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulati
+ons_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate
+_18_Aug_2020_14_35_10.png (PNG copy)> <../../figures/autocovariogram_sim_consta
+nt_only_pi_only_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmi
+d_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LO
+Mgain_univariate_18_Aug_2020_14_35_10.png (PNG copy)> <../../figures/alphas_N_1
+00_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_L
+OMgain_univariate_18_Aug_2020_19_34_25.png (PNG copy)> <../../figures/autocovar
+iogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations
+_command_GMM_LOMgain_univariate_18_Aug_2020_19_34_25.png (PNG copy)>]
+File: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grid
+spacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_
+0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13.png Grap
+hic file (type png)
+
+<use ../../figures/alphas_constant_only_pi_only_N_100_nfe_5femax_2_loss_0_grids
+pacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0
+_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37_13.png>
+Package pdftex.def Info: ../../figures/alphas_constant_only_pi_only_N_100_nfe_5
+femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_
+0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_202
+0_11_37_13.png used on input line 216.
+(pdftex.def)             Requested size: 336.30327pt x 220.02649pt.
+File: ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_
+2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_
+expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_3
+7_13.png Graphic file (type png)
+
+<use ../../figures/autocovariogram_sim_constant_only_pi_only_N_100_nfe_5femax_2
+_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_e
+xpectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_13_Aug_2020_11_37
+_13.png>
+Package pdftex.def Info: ../../figures/autocovariogram_sim_constant_only_pi_onl
+y_N_100_nfe_5femax_2_loss_0_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimula
+tions_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univaria
+te_13_Aug_2020_11_37_13.png used on input line 217.
+(pdftex.def)             Requested size: 335.66086pt x 234.802pt.
+
+<../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_N
+simulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24.png, id=134, 10
+50.92625pt x 687.56876pt>
+File: ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1
+000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24.png Graphi
+c file (type png)
+
+<use ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_10
+00_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24.png>
+Package pdftex.def Info: ../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wd
+iffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_
+20_18_24.png used on input line 222.
+(pdftex.def)             Requested size: 336.30327pt x 220.02649pt.
+
+<../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_10000
+0_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24.pn
+g, id=135, 1048.91875pt x 733.74126pt>
+File: ../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_
+100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_
+24.png Graphic file (type png)
+
+<use ../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_1
+00000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_2
+4.png>
+Package pdftex.def Info: ../../figures/autocovariogram_sim_N_100_nfe_5_gridspac
+ing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate
+_18_Aug_2020_20_18_24.png used on input line 223.
+(pdftex.def)             Requested size: 335.66086pt x 234.802pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8
+
+] [9 <../../figures/alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1
+000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24.png (PNG c
+opy)> <../../figures/autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2
+_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18
+_24.png (PNG copy)>]pdfTeX warning (ext4): destination with the same identifier
+ (name{page.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.201     \clearpage
-                     [5
+l.234     \clearpage
+                     [9
 
-] [6]
+] [10]
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_only_pi_
-only_2020_07_07.png, id=121, 1421.31pt x 824.07875pt>
+only_2020_07_07.png, id=174, 1421.31pt x 824.07875pt>
 File: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_onl
 y_pi_only_2020_07_07.png Graphic file (type png)
 
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_only
 _pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_dgain_constant_only_pi_only_2020_07_07.png used on input line 285.
+_dgain_constant_only_pi_only_2020_07_07.png used on input line 318.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_dgain_constant_only_pi_only_p
 arams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_
-lami_0_2020_07_07.png, id=122, 1418.29875pt x 841.1425pt>
+lami_0_2020_07_07.png, id=175, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IRFs_approx_pretty_invgain_dgain_constant_only_pi_o
 nly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_
 0_05_lami_0_2020_07_07.png Graphic file (type png)
@@ -1183,23 +1399,23 @@ ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
 _05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_dgain
 _constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettild
-e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 287.
+e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 320.
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_only_pi_
-only_2020_07_07.png, id=123, 1421.31pt x 824.07875pt>
+only_2020_07_07.png, id=176, 1421.31pt x 824.07875pt>
 File: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_onl
 y_pi_only_2020_07_07.png Graphic file (type png)
 
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_cgain_constant_only
 _pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_cgain_constant_only_pi_only_2020_07_07.png used on input line 288.
+_cgain_constant_only_pi_only_2020_07_07.png used on input line 321.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_cgain_constant_only_pi_only_p
 arams_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_
-lami_0_2020_07_07.png, id=124, 1412.27625pt x 841.1425pt>
+lami_0_2020_07_07.png, id=177, 1412.27625pt x 841.1425pt>
 File: ../../figures/command_IRFs_approx_pretty_invgain_cgain_constant_only_pi_o
 nly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_
 0_05_lami_0_2020_07_07.png Graphic file (type png)
@@ -1209,23 +1425,23 @@ ly_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0
 _05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_cgain
 _constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettild
-e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 290.
+e_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 323.
 (pdftex.def)             Requested size: 225.96881pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_constant
-_only_pi_only_2020_07_07.png, id=125, 1421.31pt x 824.07875pt>
+_only_pi_only_2020_07_07.png, id=178, 1421.31pt x 824.07875pt>
 File: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_con
 stant_only_pi_only_2020_07_07.png Graphic file (type png)
 
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCEMP_cons
 tant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critCEMP_constant_only_pi_only_2020_07_07.png used on input line 291.
+_again_critCEMP_constant_only_pi_only_2020_07_07.png used on input line 324.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_again_critCEMP_constant_only_
 pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_l
-amx_0_05_lami_0_2020_07_07.png, id=126, 1418.29875pt x 841.1425pt>
+amx_0_05_lami_0_2020_07_07.png, id=179, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IRFs_approx_pretty_invgain_again_critCEMP_constant_
 only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_
 0_8_lamx_0_05_lami_0_2020_07_07.png Graphic file (type png)
@@ -1235,23 +1451,23 @@ nly_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0
 _8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critCEMP_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16
-_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 293.
+_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 326.
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_constan
-t_only_pi_only_2020_07_07.png, id=127, 1421.31pt x 824.07875pt>
+t_only_pi_only_2020_07_07.png, id=180, 1421.31pt x 824.07875pt>
 File: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_co
 nstant_only_pi_only_2020_07_07.png Graphic file (type png)
 
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_con
 stant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critCUSUM_constant_only_pi_only_2020_07_07.png used on input line 299.
+_again_critCUSUM_constant_only_pi_only_2020_07_07.png used on input line 332.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
 <../../figures/command_IRFs_approx_pretty_invgain_again_critCUSUM_constant_only
 _pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_
-lamx_0_05_lami_0_2020_07_07.png, id=128, 1418.29875pt x 841.1425pt>
+lamx_0_05_lami_0_2020_07_07.png, id=181, 1418.29875pt x 841.1425pt>
 File: ../../figures/command_IRFs_approx_pretty_invgain_again_critCUSUM_constant
 _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap
 _0_8_lamx_0_05_lami_0_2020_07_07.png Graphic file (type png)
@@ -1261,22 +1477,22 @@ only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_
 0_8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critCUSUM_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_1
-6_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 301.
+6_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 334.
 
 (pdftex.def)             Requested size: 226.93243pt x 134.58554pt.
 
 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critsmooth_consta
-nt_only_pi_only_2020_07_07.png, id=129, 1421.31pt x 824.07875pt>
+nt_only_pi_only_2020_07_07.png, id=182, 1421.31pt x 824.07875pt>
 File: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critsmooth_c
 onstant_only_pi_only_2020_07_07.png Graphic file (type png)
 
 <use ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critsmooth_co
 nstant_only_pi_only_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_RIR_LH_monpol
-_again_critsmooth_constant_only_pi_only_2020_07_07.png used on input line 302.
+_again_critsmooth_constant_only_pi_only_2020_07_07.png used on input line 335.
 (pdftex.def)             Requested size: 227.41425pt x 131.85529pt.
 
-Underfull \hbox (badness 1067) in paragraph at lines 302--302
+Underfull \hbox (badness 1067) in paragraph at lines 335--335
 []\OT1/cmr/m/n/9 (c) Smooth cri-te-rion, ap-prox-i-mated, us-ing $\OML/cmm/m/it
 /9 [] \OT1/cmr/m/n/9 =
  []
@@ -1284,7 +1500,7 @@ Underfull \hbox (badness 1067) in paragraph at lines 302--302
 
 <../../figures/command_IRFs_approx_pretty_invgain_again_critsmooth_constant_onl
 y_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8
-_lamx_0_05_lami_0_2020_07_07.png, id=130, 1438.37375pt x 841.1425pt>
+_lamx_0_05_lami_0_2020_07_07.png, id=183, 1438.37375pt x 841.1425pt>
 File: ../../figures/command_IRFs_approx_pretty_invgain_again_critsmooth_constan
 t_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_ka
 p_0_8_lamx_0_05_lami_0_2020_07_07.png Graphic file (type png)
@@ -1294,14 +1510,14 @@ _only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap
 _0_8_lamx_0_05_lami_0_2020_07_07.png>
 Package pdftex.def Info: ../../figures/command_IRFs_approx_pretty_invgain_again
 _critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_
-16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 304
+16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png used on input line 337
 .
 (pdftex.def)             Requested size: 230.1445pt x 134.58554pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7
+[11
 
  <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_dgain_constant_only_pi
 _only_2020_07_07.png (PNG copy)> <../../figures/command_IRFs_approx_pretty_invg
@@ -1315,29 +1531,29 @@ Fs_approx_pretty_RIR_LH_monpol_again_critCEMP_constant_only_pi_only_2020_07_07.
 png (PNG copy)> <../../figures/command_IRFs_approx_pretty_invgain_again_critCEM
 P_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettil
 de_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 310.
- [8 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_con
-stant_only_pi_only_2020_07_07.png (PNG copy)> <../../figures/command_IRFs_appro
-x_pretty_invgain_again_critCUSUM_constant_only_pi_only_params_psi_pi_1_5_psi_x_
-0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png (
-PNG copy)> <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critsm
-ooth_constant_only_pi_only_2020_07_07.png (PNG copy)> <../../figures/command_IR
-Fs_approx_pretty_invgain_again_critsmooth_constant_only_pi_only_params_psi_pi_1
-_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07
-_07.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 310.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
+ [12 <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_critCUSUM_co
+nstant_only_pi_only_2020_07_07.png (PNG copy)> <../../figures/command_IRFs_appr
+ox_pretty_invgain_again_critCUSUM_constant_only_pi_only_params_psi_pi_1_5_psi_x
+_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_07_07.png 
+(PNG copy)> <../../figures/command_IRFs_approx_pretty_RIR_LH_monpol_again_crits
+mooth_constant_only_pi_only_2020_07_07.png (PNG copy)> <../../figures/command_I
+RFs_approx_pretty_invgain_again_critsmooth_constant_only_pi_only_params_psi_pi_
+1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_05_lami_0_2020_0
+7_07.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
  (./materials41.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 310.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 310.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `materials41.out' has not changed.
-(rerunfilecheck)             Checksum: 01CF2D1E8E3D00D7D42F0D570D314673;612.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 310.
+(rerunfilecheck)             Checksum: B28F8E12CFB1B9C532D124407B9227C5;749.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
  ) 
 Here is how much of TeX's memory you used:
- 20156 strings out of 493089
- 379479 string characters out of 6134842
- 456228 words of memory out of 5000000
- 23188 multiletter control sequences out of 15000+600000
+ 20225 strings out of 493089
+ 388661 string characters out of 6134842
+ 456243 words of memory out of 5000000
+ 23226 multiletter control sequences out of 15000+600000
  17081 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,14n,54p,557b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1360,10 +1576,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on materials41.pdf (9 pages, 1348657 bytes).
+Output written on materials41.pdf (13 pages, 1925600 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 52 named destinations out of 1000 (max. 500000)
- 159 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 285 PDF objects out of 1000 (max. 8388607)
+ 221 compressed objects within 3 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 220 words of extra memory for PDF output out of 10000 (max. 10000000)
 
