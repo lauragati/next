@@ -218,11 +218,43 @@ There are three shocks: natural rate shock, cost-push shock and monetary policy 
 \caption{Reference Fig: Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at $fe$=[-2,1,0,1,2].}
 \end{figure}
 
+\clearpage 
 \begin{figure}[h!]
-\subfigure[Estimated parameters, $\hat{\sigma_j}=0.1 \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24}}
-\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_18_Aug_2020_20_18_24}}
+\subfigure[Estimated parameters, $\hat{\sigma_j}=0.1 \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_08_48_19}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_08_48_19}}
 \caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at \newline $fe$=[-2,1,0,1,2],  \colorbox{yellow}{estimating $\sigma_j$ too} }
 \end{figure}
+
+Stopped prematurely! The $\hat{\sigma}_j \approx 0.4$. Increasing \texttt{MaxFunEvals} 3 times, and still iterates out. Let's try 100 times the default finite difference step size. 
+
+\clearpage 
+\begin{figure}[h!]
+\subfigure[Estimated parameters, $\hat{\sigma_j}=(3.53;   0.94;   0.75) \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_10_36_15}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_10_36_15}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at \newline $fe$=[-2,1,0,1,2],  \colorbox{yellow}{estimating $\sigma_j$ too, $h \equiv $ finite difference step size = 100K$\times$ default} }
+\end{figure}
+
+Improvement doesn't continue if I raise the finite difference step size to 1M$\times$default. I then get no movement from initial $\alpha_0$, and I get $\hat{\sigma_j}=(3.94;    1;    0.64)$. I also tried having $h=$ 1M$\times$default for $\sigma_j$, but default for the $\alpha$s. Surprisingly, that doesn't do as well as having a uniformly larger stepsize. The reverse does almost as well as a uniformly larger $h$.
+
+\clearpage 
+\begin{figure}[h!]
+\subfigure[Estimated parameters, $\hat{\sigma_j}=(1.56;    0.98;    0.87) \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_13_27_08}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_13_27_08}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at \newline $fe$=[-2,1,0,1,2],  \colorbox{yellow}{estimating $\sigma_j$ too, $h \equiv $ finite difference step size = 100K$\times$ default, initialize $\sigma_j$ at truth, 1} }
+\end{figure}
+
+Still did not converge.
+
+
+\clearpage 
+\begin{figure}[h!]
+\subfigure[Estimated parameters, $\hat{\sigma_j}=(2.87;    1.14;    0.83) \; \forall j$ (= initial value) ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_13_47_13}}
+\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_19_Aug_2020_13_47_13}}
+\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, taking square root of elements of $W$, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, gridpoints $= [-4,-3,0,3,4]$  $\alpha^{true}=[0.2,0.1,0,0.1,0.2]$ at \newline $fe$=[-2,1,0,1,2],  \colorbox{yellow}{estimating $\sigma_j$ too, $h \equiv $ finite difference step size = 100K$\times$ default, initialize $\sigma_j$ at 2} }
+\end{figure}
+
+Still did not converge.
+
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page

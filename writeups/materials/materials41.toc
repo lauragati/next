@@ -4,6 +4,6 @@
 \contentsline {subsection}{\numberline {3.1}Taking square root of elements of $W$}{4}{subsection.3.1}
 \contentsline {section}{\numberline {4}Increasing variance of shocks}{6}{section.4}
 \contentsline {section}{\numberline {5}Trying to estimate shock variances too}{8}{section.5}
-\contentsline {section}{\numberline {A}Model summary}{10}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{10}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{11}{appendix.C}
+\contentsline {section}{\numberline {A}Model summary}{13}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{13}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{14}{appendix.C}

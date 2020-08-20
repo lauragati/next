@@ -19,6 +19,7 @@ alph = thet(4:end);
 param.sig_r = sigs(1);
 param.sig_u = sigs(2);
 param.sig_i = sigs(3);
+eta = eye(size(hx)).*sigs;
 
 
 
@@ -182,9 +183,6 @@ else
         disp([num2str(neg_k_counter/N *100) ,'% of simulated histories had k < 0 '])
     end
     
-    param
-    thet
-    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-    
+   
 end
 end

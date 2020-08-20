@@ -81,10 +81,13 @@ options = optimoptions(options, 'display', 'iter');
 % options.OptimalityTolerance = 1e-9; % this is the guy you can access in
 % optimoptions, not in optimset. It pertains to first order optimality
 % measure. Default 1.0000e-06
-options.MaxFunEvals = 700;
+options.MaxFunEvals = 700; % 700
 % options.MaxIter = 1200;
 % options.TolX = 1e-9; % step tolerance: default 1.0000e-06
 options.UseParallel = 0; % 2/3 of the time
+h_sig = 100000;
+h_alph= 100000;
+options.FiniteDifferenceStepSize = sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps)
 %%%%%%%%%%%%%%%%%%%
 
 load([filename, '.mat'])
@@ -436,7 +439,7 @@ switch cross_section
             
         elseif est_shocks==1
             disp('Estimating shock volatilities too')
-            sig0 = 0.1*ones(nx,1);
+            sig0 = 2*ones(nx,1);
             ub_sig = 8*ones(nx,1);
             lb_sig = 0*ones(nx,1);
             
@@ -459,7 +462,7 @@ switch cross_section
             nancount = sum(sum(isnan(Om_n)));
             nanpercent = nancount/numel(Om_n)
             % treat the single outcomes as the mean outcomes
-            sig_opt = thet_opt(1:3)
+            sig_opt = thet_opt(1:3)'
             alph_opt_mean = thet_opt(4:end);
             Om1mean = Om1;
             resnorm_mean = resnorm
