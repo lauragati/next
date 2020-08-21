@@ -4,7 +4,8 @@
 % In addition, this version does that for the univariate anchoring function
 % 21 June 2020
 % Udpdate 22 July 2020: added measurement error v
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,v,knowTR,mpshock, dt, x0)
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff, explode_count, negk_count, explode_t, negk_t] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,v,...
+    knowTR,mpshock, dt, x0)
 
 this_code = mfilename;
 max_no_inputs = nargin(this_code);
@@ -67,6 +68,11 @@ om = eta*eta';
 thet = 0; % CEMP don't really help with this, but I think zero is ok.
 % thet = thettilde; % actually it's quite sensitive to where you initialize it.
 %%%
+explode_count=0;
+negk_count =0;
+explode_t = zeros(T,1);
+negk_t = zeros(T,1);
+
 
 %Simulate, with learning
 for t = 1:T-1
@@ -101,28 +107,46 @@ for t = 1:T-1
             elseif crit == 3 % smooth criterion
                 fe = ysim(1,t)-(a(1) + b(1,:)*xsim(:,t-1));
 %                 fex = ysim(2,t)-(a(2) + b(2,:)*xsim(:,t-1)); % output gap fe
-%                 disp(t)
-                if isnan(fe)
-                    disp(['fe was nan in individual simulation, t = ', num2str(t), ', setting diff to all Inf'])
-                    diff = inf(size(diff));
-                    if k(:,t-1) < 0
-                        disp('k_{t-1} < 0')
-                    end
-                    disp(num2str(alph'))
-                    disp('%%%%%%%%%%%%%%%%%%%%')
-%                     warning('fe is nan')
-                    return
-                    
+
+                % let's try to catch explosive paths
+                fe_thresh = 5;
+                if abs(fe) > fe_thresh
+                    tfek1 = [t;fe; inv(k(:,t-1))];
+%                     if explode_count == 0
+%                         disp(['Setting fe to upper threshold. t, fe, k1_{t-1} : ', num2str(tfek1'), '; and obs: ', num2str(ysim(:,t-1)')])
+%                     end
+                    fe = sign(fe)*fe_thresh;
+                    explode_count=explode_count+1;
+                    explode_t(t) =t;
                 end
-%                  if t==223
-%                      dbstop
-%                         warning('t=223')
-%                  end
-%                 dbstop in ndim_simplex_eval at 54 if t==13
-%                 dbstop in sim_learnLH_clean_approx at 104 if t==13
+                
                 fk = fk_smooth_approx_univariate(alph,x,fe);
+                
+
+                
+%                 fk_thresh = 5.8824; % corresponds to a gain of 0.17
+%                 if fk < fk_thresh
+%                     tfek1 = [t;fe; inv(fk)];
+%                     if already_exploded == 0
+%                         disp(['Setting fk to a lower threshold. t, fe, k1_t : ', num2str(tfek1'), '; and obs: ', num2str(ysim(:,t-1)')])
+%                     end
+%                     fk = fk_thresh;
+%                     already_exploded=1;
+%                 end
+
+                
             end
             k(:,t) = fk;
+            if k(:,t) < 0
+                disp(['Negative gain k^-1 = ', num2str(inv(k(:,t))), ', fe = ', num2str(fe)])
+                disp(['t = ', num2str(t)])
+                disp(['k^-1_{t-1} = ', num2str(inv(k(:,t-1)))])
+                disp('setting k^-1 to 0')
+                k(:,t) = 10^16;
+                negk_count = negk_count+1;
+                negk_t(t) =t;
+
+            end
         elseif gain==3 % constant gain
             k(:,t) = gbar^(-1);
         end

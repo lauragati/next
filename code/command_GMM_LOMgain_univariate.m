@@ -66,7 +66,7 @@ Wmean=0;%100, 0
 % alph0 = 0.1*ones(nfe,1);
 use_smart_alph0=1;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
-est_shocks = 1;
+est_shocks = 0;
 if est_shocks==1
     cross_section = 'Nsimulations';
 end
@@ -82,12 +82,12 @@ options = optimoptions(options, 'display', 'iter');
 % optimoptions, not in optimset. It pertains to first order optimality
 % measure. Default 1.0000e-06
 options.MaxFunEvals = 700; % 700
-% options.MaxIter = 1200;
+% options.MaxIter = 33;
 % options.TolX = 1e-9; % step tolerance: default 1.0000e-06
 options.UseParallel = 0; % 2/3 of the time
 h_sig = 100000;
 h_alph= 100000;
-options.FiniteDifferenceStepSize = sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps)
+% options.FiniteDifferenceStepSize = sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps)
 %%%%%%%%%%%%%%%%%%%
 
 load([filename, '.mat'])
@@ -273,7 +273,6 @@ if use_smart_alph0==1
 end
 
 
-
 % Finer sample
 ng_fine = 100;
 broaden = 2
@@ -284,14 +283,14 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 % ndim_simplex_eval(x,[-3:1:3],alph0)
 
 
-% Can recover scaling factor?
-res0 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-resnorm0 = sum(res0.^2);
-
-scaler = floor(log10(min(diag(sigboot))));
-sclf = 10^(abs(scaler));
-res1 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,sqrt(inv(W*sclf)),Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-resnorm1 = sum(res1.^2);
+% % Can recover scaling factor?
+% res0 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+% resnorm0 = sum(res0.^2);
+% % return
+% scaler = floor(log10(min(diag(sigboot))));
+% sclf = 10^(abs(scaler));
+% res1 = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,sqrt(inv(W*sclf)),Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+% resnorm1 = sum(res1.^2);
 
 % resnorm0 - resnorm1*sclf
 % resnorm0 - resnorm1*sclf^2 % yes you do
@@ -422,6 +421,9 @@ switch cross_section
             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             resnorm0 = sum(res0.^2)
             
+            [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            resnorm0 = sum(res0.^2)
+%             return
             %Declare a function handle for optimization problem
             objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             tic
