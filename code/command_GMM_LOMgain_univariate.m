@@ -416,7 +416,7 @@ switch cross_section
             %         max(diffOm)
             %         return
             
-            dbstop if warning
+%             dbstop if warning
             % Compute the objective function one time with some values
             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             resnorm0 = sum(res0.^2)
@@ -429,7 +429,7 @@ switch cross_section
             tic
             [alph_opt,resnorm,residual,flag] = lsqnonlin(objh,alph0,lb,ub,options);
             toc
-            [res1, Om1, FE, Om_n] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+            [res1, Om1, FE, Om_n, explode_t, negk_t] = obj_GMM_LOMgain_univariate_mean(alph_opt,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             
             flag
             nancount = sum(sum(isnan(Om_n)));
@@ -516,9 +516,9 @@ end
 Gamj = reshape(Om,nobs,nobs,K+1);
 Gamj0 = reshape(Om0,nobs,nobs,K+1);
 Gamj1 = reshape(Om1mean,nobs,nobs,K+1);
-cvgram = zeros(nobs,K+1,nobs);
-cvgram0 = zeros(nobs,K+1,nobs);
-cvgram1 = zeros(nobs,K+1,nobs);
+% cvgram = zeros(nobs,K+1,nobs);
+% cvgram0 = zeros(nobs,K+1,nobs);
+% cvgram1 = zeros(nobs,K+1,nobs);
 
 titles = {'$\pi_t$', '$x_t$', '$i_t$', '$E_t\pi_{t+1}$'};
 titles_k = {'$\pi_{t-k}$', '$x_{t-k}$', '$i_{t-k}$', '$E_{t-k}\pi_{t-k+1}$'};

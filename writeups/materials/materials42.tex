@@ -162,8 +162,26 @@ bottom=0.5in}
 \begin{figure}[h!]
 \subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_20_Aug_2020_19_52_22}}
 \subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_20_Aug_2020_19_52_22}}
-\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, taking square root of elements of W, w/o measurement error, gridpoints at $fe = [-4,-3,0,3,4]$  true parameters (0.2;    0.1;         0;    0.1;    0.2) at $fe$ (-2,-1,0,1,2)}
+\caption{\colorbox{yellow}{Setting $|fe|>5$ to 5, $k^{-1}<0$ to 0.} Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, with 0 at 0 imposed with weight 1000, taking square root of elements of W, w/o measurement error, gridpoints at $fe = [-4,-3,0,3,4]$  true parameters (0.2;    0.1;         0;    0.1;    0.2) at $fe$ (-2,-1,0,1,2)}
 \end{figure}
+
+Experimented with a $fe$-threshold of 8 or 10, but those are more off ($\hat{\alpha}$ lower than $\alpha^{true}$ at the edges). Same holds for a threshold of 3. The threshold seems to be a balance-act between allowing volatile histories to happen, but not allowing explosions to screw up the moments. 
+
+\clearpage
+\section{Model moments against data moments - varying shock volatilities}
+
+\begin{figure}[h!]
+\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,1,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_10_54}}
+\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,8,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_19_23}}
+\caption{}
+\end{figure}
+
+\begin{figure}[h!]
+\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (0.1,8,0.1)$ - really indifferent to cost-push and monpol shocks?]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_21_56}}
+\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,8,1)$]{\includegraphics[scale=0.32]{\myFigPath placeholder}}
+\caption{}
+\end{figure}
+
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % adds blank page

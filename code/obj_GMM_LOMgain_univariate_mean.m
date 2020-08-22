@@ -1,4 +1,4 @@
-function [res, Om, FEt_1, Om_n, expl_sim_counter] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
+function [res, Om, FEt_1, Om_n, explode_t, negk_t] = obj_GMM_LOMgain_univariate_mean(alph,x,xxgrid,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om_data, W1,Wdiffs2,Wmid,Wmean,...
     use_expectations_data,N,alph0,Wprior)
 
 % alph are the coefficients, x is the grid
@@ -20,6 +20,7 @@ if min(k10)<0
     %     res = 1e+10*ones(size(Om_data));
     res = nan*ones(size(Om_data));
     disp('k1 was negative on fine grid, not even bothering to do simulation')
+    disp(num2str(alph'))
 else
     
     [ny, ~] = size(gx);
@@ -30,9 +31,6 @@ else
     Om_n = nan(numel(Om_data),N);
     FEt_1 = nan(ny,T,N);
     k1 = nan(T-1,N);
-    expl_sim_counter = 0;
-    expl_k_counter = 0;
-    neg_k_counter = 0;
     explode_count = zeros(1,N);
     negk_count = zeros(1,N);
     explode_t = zeros(T+ndrop,N);
@@ -88,8 +86,17 @@ else
         K=4;%4
         % Take the initial data, estimate a VAR
         % using the same lags p, K as for the real data
-        [~,B,~,sigma] = sr_var(filt', p);
-        %             [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+        
+%         [~,B,~,sigma] = sr_var(filt', p);
+        
+        try
+            [~,B,~,sigma] = sr_var(filt', p);
+            [msg,warnID] = lastwarn;
+            warning('error', warnID)
+        catch
+            disp('Switching to ridge')
+            [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+        end
         
         
         % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -161,13 +168,13 @@ else
         disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
         disp(['alpha was ', num2str(alph')]);
         if sum(explode_count>0) > 0
-            disp([num2str(sum(explode_count>0)/N *100) ,'% of simulated histories had exploding fe'])
+            disp([num2str(sum(explode_count>0)/N *100) ,'% of simulated histories crossed the fe-threshold'])
         end
         if sum(negk_count>0) > 0
             disp([num2str(sum(negk_count>0)/N *100) ,'% of simulated histories had k < 0 '])
         end
         if nr_more_expl >0
-            disp([num2str(nr_more_expl/N *100) ,'% of simulated histories had k < 0 '])
+            disp([num2str(nr_more_expl/N *100) ,'% of simulated histories crossed the fe-threshold at several times t'])
         end
     end
     
