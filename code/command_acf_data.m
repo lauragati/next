@@ -1,7 +1,18 @@
+clearvars
+close all
+clc
+
+% Add all the relevant paths and grab the codename
+this_code = mfilename;
+[current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
+todays_date = strrep(datestr(today), '-','_');
+nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
+
 %% 1.) Get real data and filter it
     % Suppose we have real data (in logs)
     y_data = get_data;
     [ny,T] = size(y_data)
+%     return
 %     return
     % Filter the data
     % HP filter
@@ -28,10 +39,10 @@
     end
         lost_periods_BK = 2*K;
 
-    % % Plot filtered series
-    create_plot_observables(c_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'HP-filtered cycle', [this_code, '_HPall_', todays_date], 0)
-    create_plot_observables(v_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'Hamilton-filtered cycle', [this_code, '_Hamiltonall_', todays_date], 0)
-    create_plot_observables(ystar_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'BK-filtered cycle', [this_code, '_BKall_', todays_date], 0)
+%     % % Plot filtered series
+%     create_plot_observables(c_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'HP-filtered cycle', [this_code, '_HPall_', nowstr], 0)
+%     create_plot_observables(v_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'Hamilton-filtered cycle', [this_code, '_Hamiltonall_', nowstr], 0)
+%     create_plot_observables(ystar_data,{'\pi', 'x', 'i', 'E(\pi)'}, 'BK-filtered cycle', [this_code, '_BKall_', nowstr], 0)
 
 
 %     return
@@ -129,6 +140,8 @@
         Om_boot(:,i) = vec(Gamj_booti);
     end
     toc
+    
+%     return
     filename = ['acf_data_', todays_date];
     acf_outputs = {Om, Om_boot,ny,p,K, filt_data, lost_periods};
     save([filename,'.mat'],'acf_outputs')

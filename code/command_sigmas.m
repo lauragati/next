@@ -22,16 +22,15 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-save_estim_outputs =0;
 
 skip = 1;
-investigate_loss=0;
 [fs, lw] = plot_configs;
 datestr(now)
 
 %% Compute weighting matrix and initialize alpha
-filename ='acf_data_11_Jun_2020'; % real data
+% filename ='acf_data_11_Jun_2020'; % real data
 % filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename = 'acf_data_23_Aug_2020'; % real data with SPF expectation in it but qoq annualized inflation rates and expectations
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
@@ -71,7 +70,7 @@ if est_shocks==1
     cross_section = 'Nsimulations';
 end
 scaleW =0; %0
-use_expectations_data=0; %1
+use_expectations_data=1; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
@@ -238,14 +237,19 @@ fegrid_fine = linspace(femin-broaden,femax+broaden,ng_fine);
 k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 %% Generate moments for a single simulation of the true model
-alph_true = [0.2,0.1,0,0.1,0.2]';
+
+print_figs=0
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-print_figs=0
-sig_r = 1;
-sig_u = 1;
-sig_i = 4;
-eta = eye(nx).*[sig_r, sig_i, sig_u]';
+alph_true = 5*[0.2,0.1,0,0.1,0.2]';
+% alph_true = [1.0000    0.5000         0    0.5000    1.0000];
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+sig_r = 0.01;
+sig_i = 2;
+sig_u = 0.5;
+
+eta = eye(nx).*[sig_r, sig_i, sig_u]'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 rng(2) %rng(0)
@@ -255,10 +259,16 @@ v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
 
 % This is the only new thing: add one-step ahead expectation to data (with iid shocks, it's just pibar, see Materials38, Point 3)
-% y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))'];
-% Don't use expectations right now
-y_data = y0(:,1:end-1);
+if use_expectations_data==1
+    y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))'];
+    % annualize inflation and inflation expectations like in get_data.m
+    y_data([1,4], :) = ((y_data([1,4], :)/100+1).^4 -1)*100;
 
+elseif use_expectations_data==0
+    % Don't use expectations
+    y_data = y0(:,1:end-1);
+    y_data(1, :) = ((y_data(1, :)/100+1).^4 -1)*100;
+end
 [nobs,T] = size(y_data)
 
 
@@ -287,16 +297,11 @@ p =min([AIC,BIC,HQ]);
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
 [~,B,res,sigma] = sr_var(filt_data', p);
-% [B_RF,res_RF,sigma_RF] = rf_var(filt_data', p);
-
 
 % return
 
 % % ridge regression VAR
-% % [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt_data', p, 0.001);
-% [B_ridge,~,sigma_ridge] = rf_var_ridge(filt_data', p, 0.001); % save a few miliseconds
-% B = B_ridge;
-% sigma = sigma_ridge;
+% [B,~,sigma] = rf_var_ridge(filt_data', p, 0.001); 
 % return
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)

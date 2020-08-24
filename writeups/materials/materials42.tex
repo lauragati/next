@@ -126,7 +126,7 @@ bottom=0.5in}
 
 \linespread{1.0}
 
-\title{Materials 42 - More volatile world}
+\title{Materials 42 - Reverting to a first-pass calibration}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -149,16 +149,7 @@ bottom=0.5in}
 \end{figure}
 
 \clearpage
-\section{Reference figures: autocovariances in real data}
-
-\begin{figure}[h!]
-\includegraphics[scale=0.32]{\myFigPath autocovariogram_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}
-\caption{Autocovariogram in real data (Fig 16 in Materials 40) (ignore the red and yellow lines)}
-\end{figure}
-
-
-\clearpage
-\section{Trying not to punch holes into the loss}
+\section{A correction for the loss: treating explosive or negative gain paths}
 \begin{figure}[h!]
 \subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_20_Aug_2020_19_52_22}}
 \subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_20_Aug_2020_19_52_22}}
@@ -168,19 +159,57 @@ bottom=0.5in}
 Experimented with a $fe$-threshold of 8 or 10, but those are more off ($\hat{\alpha}$ lower than $\alpha^{true}$ at the edges). Same holds for a threshold of 3. The threshold seems to be a balance-act between allowing volatile histories to happen, but not allowing explosions to screw up the moments. 
 
 \clearpage
-\section{Model moments against data moments - varying shock volatilities}
+\section{Calibrating shock volatilities to match autocovariances of $\pi, x, i$}
+Keep $\alpha$ fix at (0.2,0.1,0,0.1,0.2)
 
 \begin{figure}[h!]
-\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,1,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_10_54}}
-\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,8,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_19_23}}
+\subfigure[$(\sigma_r, \sigma_i, \sigma_u) = (1,1,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_10_54}}
+\subfigure[$(\sigma_r, \sigma_i, \sigma_u) = (1,1,1)$, \colorbox{yellow}{Using annualized quarterly percent changes for inflation and inflation expectations}]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_12_15_47}}
+\caption{}
+\end{figure}
+Don't understand why autocovariance of $x$ and $i$ is changing. Can it be because I have fewer periods in the real data (I think it's only 2 fewer)? Or has there been data revision in the 3 months since I downloaded the data last? 
+
+
+\begin{figure}[h!]
+\subfigure[$(\sigma_r, \sigma_i, \sigma_u) = (0.01,2,0.5)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_12_33_51}}
+%\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,1,1)$, \colorbox{yellow}{Using annualized quarterly percent changes for inflation and inflation expectations}]{\includegraphics[scale=0.32]{\myFigPath placeholder}}
 \caption{}
 \end{figure}
 
+
+\clearpage
+\section{Calibrating $\alpha$s to match autocovariances of $\pi, \E(\pi)$}
+Keep $\sigma_r, \sigma_i, \sigma_u$ fix at (0.01, 2, 0.5).
+
+
 \begin{figure}[h!]
-\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (0.1,8,0.1)$ - really indifferent to cost-push and monpol shocks?]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_21_Aug_2020_11_21_56}}
-\subfigure[$(\sigma_r, \sigma_u, \sigma_i) = (1,8,1)$]{\includegraphics[scale=0.32]{\myFigPath placeholder}}
-\caption{}
+\subfigure[$\alpha = (0.2,0.1,0,0.1,0.2)$]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_00_19}}
+\subfigure[$\alpha = (1,0.5,0,0.5,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_12_22}}
+\caption{\colorbox{yellow}{Using expectations (estimating VAR using ridge regression with ridge parameter 0.001 if unstable)} }
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Figures for 23 August calibration
+
+% PEA figures
+%compare_value_pea_results_approx_value_outputs_approx23_Aug_2020_14_50_26_pea_outputs_approx23_Aug_2020_14_38_14_pretty_23_Aug_2020_15_09_34
+%implement_anchTC_obs_approx23_Aug_2020_15_09_34
+%implement_anchTC_invgain23_Aug_2020_15_09_34
+%implement_anchTC_pibar23_Aug_2020_15_09_34
+
+%implement_anchTC_obs_TR_approx23_Aug_2020
+%implement_anchTC_invgain_TR_approx23_Aug_2020
+
+% analyze_opt_policy_ip23_Aug_2020
+
+% estimate from Materials 40
+%\subsection{Real data with $\alpha$s out in the edges, as above}
+%\begin{figure}[h!]
+%\subfigure[Estimated parameters ]{\includegraphics[scale=0.32]{\myFigPath alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}}
+%\subfigure[Autocovariogram ]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}}
+%\caption{Not using 1-step ahead forecasts of inflation, estimate mean moments once, imposing convexity with weight 100K, w/o measurement error, real data, \colorbox{yellow}{gridpoints $= [-4,-3,0,3,4]$ with 0 at 0 imposed with weight 1000}, $N=100$}
+%\end{figure}
+
 
 
 %%%%%%%%%%%               BLANK   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

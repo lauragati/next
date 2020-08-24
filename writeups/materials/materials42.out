@@ -1,7 +1,7 @@
 \BOOKMARK [1][-]{section.1}{Reference figures: best estimation so far}{}% 1
-\BOOKMARK [1][-]{section.2}{Reference figures: autocovariances in real data}{}% 2
-\BOOKMARK [1][-]{section.3}{Trying not to punch holes into the loss}{}% 3
-\BOOKMARK [1][-]{section.4}{Model moments against data moments - varying shock volatilities}{}% 4
+\BOOKMARK [1][-]{section.2}{A correction for the loss: treating explosive or negative gain paths}{}% 2
+\BOOKMARK [1][-]{section.3}{Calibrating shock volatilities to match autocovariances of , x, i}{}% 3
+\BOOKMARK [1][-]{section.4}{Calibrating s to match autocovariances of , `39`42`"613A``45`47`"603AE\(\)}{}% 4
 \BOOKMARK [1][-]{appendix.A}{Model summary}{}% 5
 \BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 6
 \BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 7

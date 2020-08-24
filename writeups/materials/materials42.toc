@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Reference figures: best estimation so far}{2}{section.1}
-\contentsline {section}{\numberline {2}Reference figures: autocovariances in real data}{3}{section.2}
-\contentsline {section}{\numberline {3}Trying not to punch holes into the loss}{4}{section.3}
-\contentsline {section}{\numberline {4}Model moments against data moments - varying shock volatilities}{5}{section.4}
+\contentsline {section}{\numberline {2}A correction for the loss: treating explosive or negative gain paths}{3}{section.2}
+\contentsline {section}{\numberline {3}Calibrating shock volatilities to match autocovariances of $\pi , x, i$}{4}{section.3}
+\contentsline {section}{\numberline {4}Calibrating $\alpha $s to match autocovariances of $\pi , \E (\pi )$}{6}{section.4}
 \contentsline {section}{\numberline {A}Model summary}{7}{appendix.A}
 \contentsline {section}{\numberline {B}Target criterion}{7}{appendix.B}
 \contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{8}{appendix.C}

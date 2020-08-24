@@ -50,7 +50,8 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_server32_accelerated';
 % value_output_name = 'value_outputs_30_May_2020_10_42_12';
 % value_output_name = 'value_outputs_server02_Jun_2020_14_58_12'; % 8x8x2x2 grid - works! 90 min
-value_output_name = 'value_outputs_server02_Jun_2020_18_21_35'; %16x16x2x2 -works! grid 15 hours.
+% value_output_name = 'value_outputs_server02_Jun_2020_18_21_35'; %16x16x2x2 -works! grid 15 hours.
+value_output_name = 'value_outputs_approx23_Aug_2020_14_50_26'; % August 23 2020 calibration
 load([value_output_name, '.mat'])
 
 pp     = value_sols{1};
@@ -59,15 +60,15 @@ it     = value_sols{3};
 pibp   = value_sols{4};
 k1p    = value_sols{5};
 pgrid  = value_sols{6};
-k1grid = value_sols{7};
+% k1grid = value_sols{7};
 
 
 %%
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_29_May_2020_14_42_56'; %X1
 % pea_output_name = 'pea_outputs_30_May_2020_10_18_28'; %X2
-pea_output_name = 'pea_outputs_14_Jun_2020_09_56_33'; % constant-only, pi-only PLM
-% pea_output_name = 'inputs'; % X1
+% pea_output_name = 'pea_outputs_14_Jun_2020_09_56_33'; % constant-only, pi-only PLM
+pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % using calibrated alpha and sig
 load([pea_output_name, '.mat'])
 e = output{1};
 ysim7 = output{2};

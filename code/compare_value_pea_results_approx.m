@@ -48,7 +48,8 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
 % value_output_name = 'value_outputs_approx17_Jul_2020_14_27_00'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=4
 % value_output_name = 'value_outputs_approx17_Jul_2020_16_13_24'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=6
-value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=8
+% value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=8
+value_output_name = 'value_outputs_approx23_Aug_2020_14_50_26'; % 23 August 2020 calibration 
 
 
 load([value_output_name, '.mat'])
@@ -66,7 +67,8 @@ pgrid  = value_sols{6};
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
 % pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0)
-pea_output_name = 'pea_outputs_approx17_Jul_2020_15_28_03'; % univariate approximated LOM gain, improved estimation, rng(2)
+% pea_output_name = 'pea_outputs_approx17_Jul_2020_15_28_03'; % univariate approximated LOM gain, improved estimation, rng(2)
+pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
 
 load([pea_output_name, '.mat'])
 e = output{1};

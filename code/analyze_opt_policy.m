@@ -30,7 +30,8 @@ ns = 2;
 sgrid = linspace(-sig_r,sig_r,ns);
 
 % value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
-value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain % materials 37
+% value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain % materials 37
+value_output_name = 'value_outputs_approx23_Aug_2020_14_50_26'; % 23 August 2020 calibration 
 
 load([value_output_name, '.mat'])
 
@@ -44,7 +45,10 @@ pgrid  = value_sols{6};
 
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
-pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0) % materials 37
+% pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0) % materials 37
+pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+
+
 
 % load('inputs.mat')
 load([pea_output_name, '.mat'])
@@ -61,12 +65,12 @@ k1sim = 1./k7(2:end-1);
 pibsim = squeeze(phi7(1,1,2:end-1))';
 
 % cheeck max, mean and min in simulation
-max(k1sim) % 0.2699
-mean(k1sim) % 0.0092
-min(k1sim) % 7.7349e-04
-max(pibsim) % 0.0156, 0.2136
-mean(pibsim) % -0.0012, 0.1945
-min(pibsim) % -0.0438, -0.0931
+% max(k1sim) % 0.2699
+% mean(k1sim) % 0.0092
+% min(k1sim) % 7.7349e-04
+% max(pibsim) % 0.0156, 0.2136
+% mean(pibsim) % -0.0012, 0.1945
+% min(pibsim) % -0.0438, -0.0931
 ssim = e(:,2:end-1);
 
 

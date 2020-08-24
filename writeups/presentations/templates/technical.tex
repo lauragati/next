@@ -184,26 +184,26 @@
 %\newtheorem{corollary}{Corollary}
 
 
-%%%%%%%%%%%%%%%%%%%%
-% All the pre-defined stuff was updated 6 Aug 2020, and corresponds to the July Draft, version 30 July 2020.
 
 %%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL VARIABLE NUMBERS HERE
 %%%%%%%%%%%%%%%%%%%%
 
-% numbers update 30 July 2020
+% numbers update: 23 August 2020 using 23 August calibration, except mean estimate of alpha
+% The figures are listed in Materials42 (commented tho)
 
 % mean estimated alpha
-\def\meanalph{(0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)}
+\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
 % for 1% fe, you get a gain of
-\def\oneppFEgives{0.02 }
+\def\oneppFEgives{0.05}
 % for 1% fe, you get a change in pibar of
-\def\betPibFe{0.0877 } % analyze_opt_policy.m
+\def\betPibFe{0.1161} % analyze_opt_policy.m
+% DIDNT UPDATE BODY TEXT NOR ABSTRACT
 
 % pp forecast error that unanchors
 \def\ppFEunanchors{1 }
 % raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors
-\def\ppMoveFFR{8.77 }
+\def\ppMoveFFR{11.61 }
 
 %%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
@@ -217,44 +217,34 @@
 
 % Estimated coefficients alpha
 % materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignameAlphaHat{command_GMM_LOMgain_univariate_alph_opt_loss_273_nfe_7_16_Jul_2020}
+\def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}
 
 % Comparative statics of optimal policy
-% di/dk
-% This one retired
-\def\fignameDiDk{analyze_opt_policy_ik}
 % di/dpibar
-% analyze_opt_policy. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignameDiDpibar{analyze_opt_policy_ip29_Jul_2020}
+\def\fignameDiDpibar{analyze_opt_policy_ip23_Aug_2020}
 
 % Observables in PEA for TR
-% command_pea_approx_main with knowTR=1, otherwise explode. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx29_Jul_2020}
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx23_Aug_2020}
 % Observables in PEA for anchoring
-% Materials 37 Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignamePEAobsAnch{implement_anchTC_obs_approx17_Jul_2020}
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx23_Aug_2020_15_09_34}
 
 % Central bank loss as a function of psi_pi in RE vs. anchoring
-% plot_sim_loss_approx.m. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_0_2020_07_29}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_0_2020_07_29}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_0_lami_1_2020_07_29}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_lamx_1_lami_1_2020_07_29}
-
-% Retired: CB loss RE:\def\fignameCBlossRE{plot_sim_loss_pretty_loss_RE_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
-% Retired: CB loss anchoring: \def\fignameCBlossAnch{plot_sim_loss_pretty_loss_again_critCUSUM_constant_only_T_400_N_100_burnin_0_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+% Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_23}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_23}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_23}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_23}
+% Note: it may not look it, but RE optimum is always around 1.4
 
 % Autocovariogram
-% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignameAutocov{command_GMM_LOMgain_univariate_autocovariogram_nfe_7_loss_273_gridspacing_uneven_Wdiffs2_10000_Wmid_1000_16_Jul_2020}
+\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_00_19}
 
 % Compare PEA and VFI policy for sequence of shocks X1
-% materials 37, Fig 14. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_11_40_09_pretty}
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx23_Aug_2020_14_50_26_pea_outputs_approx23_Aug_2020_14_38_14_pretty_23_Aug_2020_15_09_34}
 % Compare PEA and VFI policy for sequence of shocks X2
-% materials 37, Fig 16. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignamePEAvsVFIsecondX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}
+% retired
+%\def\fignamePEAvsVFIsecondX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}
 
 % IRFs anchored vs unanchored
 % done
@@ -840,7 +830,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \begin{figure}[h!]
 %\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
 %\hfill
-\subfigure[Optimal policy]{\includegraphics[scale=0.125]{\myFigPath \fignamePEAobsAnch}}
+\subfigure[Optimal policy]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsAnch}}
 \hfill
 \subfigure[Taylor rule]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
 \caption{Observables conditional on a particular evolution of shocks} 
@@ -856,12 +846,12 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 	\frametitle{Optimal policy III - optimal Taylor-rule coefficients}
 	
 \begin{figure}[h!]
-\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilnil}}
-%\hfill
-\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossonenil}}
-\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilone}}
-%\hfill
-\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossoneone}}
+\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale=0.25]{\myFigPath \fignameCBlossnilnil}}
+%%\hfill
+%\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossonenil}}
+%\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilone}}
+%%\hfill
+%\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossoneone}}
 \caption{CB loss as a function of $\psi_{\pi}$}
 \end{figure} % Materials 35
 

@@ -88,12 +88,26 @@ fegrid = fegrid_uneven;
 alph = alph_opt_mean;
 
 
+%% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+
+alph = [1.0000    0.5000         0    0.5000    1.0000]'
+fegrid = [-4,-3,0,3,4]
+x{1} = fegrid;
+
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
+
+sig_r = 0.01;
+sig_i = 2;
+sig_u = 0.5;
+
+eta = eye(3).*[sig_r, sig_i, sig_u]'
+
 
 %%
 
-% [param, set, param_names, param_values_str, param_titles] = parameters_next; % use the ones from estimation
-sig_r = param.sig_r;
-sig_u = param.sig_u;
+% % [param, set, param_names, param_values_str, param_titles] = parameters_next; % use the ones from estimation
+% sig_r = param.sig_r;
+% sig_u = param.sig_u;
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -107,8 +121,10 @@ np = 8;
 % pgrid = linspace(-100,100,np); doesn't help
 % pgrid = linspace(-4,4,np); % this doesn't
 % pgrid = linspace(-1.2,1.2,np); % this doesn't
-pgrid = linspace(-1,1,np); % this seems to work
+% pgrid = linspace(-1,1,np); % this seems to work
 % pgrid = linspace(-0.2,0.2,np); % this seems to work
+pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
+
 
 
 ns = 2;

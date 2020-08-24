@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -94,6 +94,20 @@ alph = alph_opt_mean;
 
 % return
 
+%% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+
+alph = [1.0000    0.5000         0    0.5000    1.0000]'
+fegrid = [-4,-3,0,3,4]
+x{1} = fegrid;
+
+[param, set, param_names, param_values_str, param_titles] = parameters_next;
+
+sig_r = 0.01;
+sig_i = 2;
+sig_u = 0.5;
+
+eta = eye(3).*[sig_r, sig_i, sig_u]'
+
 %% Parameters, RE model and Taylor rule
 T = 100
 N=1; % truly this is 1.
@@ -107,9 +121,9 @@ residnames = {'IS', 'PC', 'TR'};
 ndrop =0; ne=3;
 % [param, set, param_names, param_values_str, param_titles] = parameters_next; % now using the ones from the estimation
 
-sig_r = param.sig_r;
-sig_i = param.sig_i;
-sig_u = param.sig_u;
+% sig_r = param.sig_r;
+% sig_i = param.sig_i;
+% sig_u = param.sig_u;
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
