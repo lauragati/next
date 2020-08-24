@@ -471,141 +471,20 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
-
-\begin{itemize}
-\item If use $\E$ (rational expectations, RE) \\
-
-\
-
-Model solution 
- \begin{align}
- s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
- y_t & = g s_t \label{obs_RE}
- \end{align}
-
-
-$s_t \equiv $ states \\
-$y_t \equiv $ jumps \\
-$\epsilon_t \equiv $ disturbances
-\
-
-\pause
-
-\
-
-\item If use $\hat{\E} \rightarrow$ private sector does not know (\ref{obs_RE}) \\
-
-\
-
-$\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
-
-\end{itemize}
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Adaptive learning}
-	\label{adaptive_learning}
-
-\begin{itemize}
-\item Postulate linear functional relationship instead of (\ref{obs_RE}):
-
-\begin{equation}
-\hat{\E}_t y_{t+1} = \textcolor{brownreddark}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
-\end{equation}
-
-\
-
-\pause
-
-In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \quad \forall t$
-
-\
-
-\pause
-  
-
-
-\item Note: \textcolor{brownreddark}{misspecified}	$\rightarrow$ not model-consistent (not RE) 
-
-\
-
-\pause
-
-
-\item Estimate $a, b$ using recursive least squares (RLS)
-
-
-\end{itemize}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Recursive least squares}
-	\label{RLS_special}
-	
-	\
-	
-Jumps are: $(\pi, x, i)'$ 	
-
-\
-\pause
-\
-
-Special case: learn only intercept of inflation:
-
-\begin{equation}
-a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\; h \quad \forall t
-\end{equation}
-
-\
-\pause
-\
-
-$\rightarrow$ RLS
-\begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
-\end{equation}
- 
- \
- 
- $k_t \in (0,1)$ gain \\
- $b_1$ first row of $b$
-\vfill 
-
-\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
-
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%  	
-\begin{frame}
-	\frametitle{Anchoring mechanism: endogenous gain}
-	\label{anchoring1}
+	\frametitle{Long-run expectations can unanchor}\label{anchoring_simple}
 
 
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} + \textcolor{brownreddark}{k_t}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} + \textcolor{brownreddark}{k_t} \; fe_{t|t-1}
 \end{equation}
 
 \
 
 \
 
-$k_t = \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})}$: anchoring function
+$k_t = \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})}$: anchoring function \hfill \hyperlink{expectations_details}{\beamergotobutton{Details on model of expectations}}
 \pause
 \begin{equation}
  \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})} = \alpha b(fe_{t|t-1})\label{gain}
@@ -1000,6 +879,148 @@ fe_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \fr
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}\label{expectations_details}
+
+\begin{itemize}
+\item If use $\E$ (rational expectations, RE) \\
+
+\
+
+Model solution 
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+$s_t \equiv $ states \\
+$y_t \equiv $ jumps \\
+$\epsilon_t \equiv $ disturbances
+\
+
+%\pause
+
+\
+
+\item If use $\hat{\E} \rightarrow$ private sector does not know (\ref{obs_RE}) \\
+
+\
+
+$\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring_simple}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Adaptive learning}
+	\label{adaptive_learning}
+
+\begin{itemize}
+\item Postulate linear functional relationship instead of (\ref{obs_RE}):
+
+\begin{equation}
+\hat{\E}_t y_{t+1} = \textcolor{brownreddark}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
+\end{equation}
+
+\
+
+%\pause
+
+In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \quad \forall t$
+
+\
+
+%\pause
+  
+
+
+\item Note: \textcolor{brownreddark}{misspecified}	$\rightarrow$ not model-consistent (not RE) 
+
+\
+
+%\pause
+
+
+\item Estimate $a, b$ using recursive least squares (RLS)
+
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring_simple}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Recursive least squares}
+	\label{RLS_special}
+	
+	\
+	
+Jumps are: $(\pi, x, i)'$ 	
+
+\
+%\pause
+\
+
+Special case: learn only intercept of inflation:
+
+\begin{equation}
+a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\; h \quad \forall t
+\end{equation}
+
+\
+%\pause
+\
+
+$\rightarrow$ RLS
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\end{equation}
+ 
+ \
+ 
+ $k_t \in (0,1)$ gain \\
+ $b_1$ first row of $b$
+\vfill 
+
+\vfill 
+\hyperlink{anchoring_simple}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Recursive least squares algorithm}
+	\label{RLS}
+
+
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+
+
+\vfill 
+\hyperlink{anchoring_simple}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -1067,26 +1088,6 @@ $\omega_t$ estimated forecast-error variance
 \vfill
 
 \hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}[plain]  % remove progress bar from appendix
-	\frametitle{Recursive least squares algorithm}
-	\label{RLS}
-
-
-\begin{align}
-\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
-R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
-\end{align}
-
-
-\vfill
-
-\hyperlink{RLS_special}{\beamerreturnbutton{Return}}	
 
 
 \end{frame}

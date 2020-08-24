@@ -656,11 +656,11 @@ The message is that if policy is restricted to be time-invariant in the sense of
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }
  & $\psi^{*,RE}_{\pi}$ & $\psi^{*,Anchoring}_{\pi}$  \\  \hline
-  $\lambda_x =0, \lambda_i =0 $     & $\infty$  & $\infty$ \\  \hline
- Baseline ($\lambda_x =0.05, \lambda_i =0$)  & $1.8581$  & 1.034 \\  \hline
- $\lambda_x =1, \lambda_i =0 $ & 1  & 1 \\  \hline
- $\lambda_x =0, \lambda_i =1 $ &  1  & 1.029 \\  \hline
-  $\lambda_x =1, \lambda_i =1 $ &  1  & 1 \\  \hline
+  $\lambda_x =0, \lambda_i =0 $     & $\infty$  & $1.1435$ \\  \hline
+ Baseline ($\lambda_x =0.05, \lambda_i =0$)  & $3.2051 $  & 1.0384\\  \hline
+ $\lambda_x =1, \lambda_i =0 $ & 1.4265 & 1.0054 \\  \hline
+ $\lambda_x =0, \lambda_i =1 $ &  1.4268  & 1.1586 \\  \hline
+  $\lambda_x =1, \lambda_i =1 $ &  1.3798  & 1.0094 \\  \hline
 \end{tabular}     
       \caption{Optimal coefficient on inflation, RE against anchoring for alternative parameters}  
       \label{psi_pi_opt}
@@ -705,10 +705,10 @@ As depicted in the previous section, employing a Taylor rule as a monetary polic
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }
  & RE & Anchoring \\  \hline
-  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0$     & 46.7290  & 55.3100 \\  \hline
- RE-optimal* Taylor rule with $\psi_{\pi} =1.8581, \psi_{x} = 0$   &46.5180  &  61.3064 \\  \hline
- Anchoring-optimal* Taylor rule with $\psi_{\pi} =1.034, \psi_{x} = 0$   & 47.7175  & 48.2510\\  \hline
- Optimal policy & na.  & $\approx 0.74$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline
+  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0$     & 19.2074  & $\infty $\\  \hline
+ RE-optimal* Taylor rule with $\psi_{\pi} =3.2051, \psi_{x} = 0$   &18.1168  &  $\infty $ \\  \hline
+ Anchoring-optimal* Taylor rule with $\psi_{\pi} =1.084, \psi_{x} = 0$   & 20.0059  &  22.5743\\  \hline
+ Optimal policy & na.  & $\approx 19.3928$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline
 \end{tabular}     
       \caption{Loss, RE against anchoring for alternative specifications of monetary policy}  
       \floatfoot{* ``$x$-optimal'' refers to a Taylor rule optimal under model $x$, rational expectations or anchoring, for baseline parameters.}

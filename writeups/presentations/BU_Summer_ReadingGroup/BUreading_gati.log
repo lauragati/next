@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 AUG 2020 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 AUG 2020 17:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**technical.tex
-(./technical.tex
+**BUreading_gati.tex
+(./BUreading_gati.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/beamer.cls
@@ -1217,7 +1217,7 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (./technical.aux
+ (./BUreading_gati.aux
 
 LaTeX Warning: Label `epi' multiply defined.
 
@@ -1225,7 +1225,7 @@ LaTeX Warning: Label `epi' multiply defined.
 LaTeX Warning: Label `g' multiply defined.
 
 )
-\openout1 = `technical.aux'.
+\openout1 = `BUreading_gati.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 284.
 LaTeX Font Info:    ... okay on input line 284.
@@ -1324,9 +1324,9 @@ LaTeX Info: Redefining \ref on input line 284.
 LaTeX Info: Redefining \pageref on input line 284.
 LaTeX Info: Redefining \nameref on input line 284.
 
-(./technical.out) (./technical.out)
+(./BUreading_gati.out) (./BUreading_gati.out)
 \@outlinefile=\write5
-\openout5 = `technical.out'.
+\openout5 = `BUreading_gati.out'.
 
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
@@ -1402,7 +1402,7 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.12} into
 your preamble.
  on input line 284.
 
-(./technical.nav) [1
+(./BUreading_gati.nav) [1
 
 ]
 LaTeX Font Info:    Try loading font information for U+msa on input line 315.
@@ -1443,7 +1443,7 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
 
 [5
 
-] (./technical.toc) [6
+] (./BUreading_gati.toc) [6
 
 ]
 <../../../figures/alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gr
@@ -1474,7 +1474,7 @@ l.418 \end{frame}
  <../../../figures/alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_g
 ridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectatio
 ns_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29.png (
-PNG copy)>] (./technical.toc) [8
+PNG copy)>] (./BUreading_gati.toc) [8
 
 ] [9
 
@@ -1489,10 +1489,10 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 509.
  [11
 
-] [12
-
 ]
-[13
+[12
+
+] [13
 
 ] [14
 
@@ -1512,10 +1512,10 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 
 ] [22
 
-] (./technical.toc) [23
+] (./BUreading_gati.toc)
+[23
 
-]
-[24
+] [24
 
 ] [25
 
@@ -1528,7 +1528,7 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
 
 ] [27
 
-] (./technical.toc) [28
+] (./BUreading_gati.toc) [28
 
 ] [29
 
@@ -1620,10 +1620,12 @@ tant_only_pi_only_lamx0_lami0_2020_08_23.png Graphic file (type png)
 ant_only_pi_only_lamx0_lami0_2020_08_23.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_pretty_losses_ag
 ain_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_23.png used on input l
-ine 867.
-(pdftex.def)             Requested size: 299.87831pt x 195.04736pt.
+ine 873.
+(pdftex.def)             Requested size: 267.74965pt x 174.15019pt.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 873.
 
-Overfull \vbox (3.17569pt too high) detected at line 867
+Overfull \vbox (5.99843pt too high) detected at line 873
  []
 
 [33
@@ -1632,7 +1634,7 @@ Overfull \vbox (3.17569pt too high) detected at line 867
 _only_pi_only_lamx0_lami0_2020_08_23.png (PNG copy)>]
 <../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critC
 USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_
-thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=345, 142
+thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=347, 142
 1.31pt x 824.07875pt>
 File: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_
 critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0
@@ -1645,10 +1647,8 @@ ritCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_202
-0_06_05.png used on input line 883.
+0_06_05.png used on input line 889.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 883.
 File: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_
 critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_
 145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png Graphic 
@@ -1660,12 +1660,12 @@ ritCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_1
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020
-_06_05.png used on input line 883.
+_06_05.png used on input line 889.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 
 <../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critC
 USUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_the
-tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=346, 1421.3
+tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=348, 1421.3
 1pt x 824.07875pt>
 File: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_
 critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_14
@@ -1678,10 +1678,10 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_0
-6_05.png used on input line 883.
+6_05.png used on input line 889.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 
-Overfull \vbox (32.86603pt too high) detected at line 883
+Overfull \vbox (32.86603pt too high) detected at line 889
  []
 
 [34
@@ -1704,7 +1704,7 @@ pt>
 File: ../../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
  <use ../../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../../figures/cleaned_epi10_2020_07_28.png used on 
-input line 976.
+input line 982.
 (pdftex.def)             Requested size: 267.49872pt x 173.89926pt.
  [37
 
@@ -1716,7 +1716,7 @@ input line 976.
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1072 \end{frame}
+l.1078 \end{frame}
                    [40
 
 ] [41
@@ -1733,36 +1733,36 @@ l.1072 \end{frame}
 
 ]
 \tf@nav=\write6
-\openout6 = `technical.nav'.
+\openout6 = `BUreading_gati.nav'.
 
 \tf@toc=\write7
-\openout7 = `technical.toc'.
+\openout7 = `BUreading_gati.toc'.
 
 \tf@snm=\write8
-\openout8 = `technical.snm'.
+\openout8 = `BUreading_gati.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1269.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1269.
- (./technical.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1269.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1269.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1275.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1275.
+ (./BUreading_gati.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1275.
 
-Package rerunfilecheck Info: File `technical.out' has not changed.
+Package rerunfilecheck Info: File `BUreading_gati.out' has not changed.
 (rerunfilecheck)             Checksum: FEC069DF9539C4CEA5F06B74C401D830;288.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1269.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1275.
  ) 
 Here is how much of TeX's memory you used:
  32315 strings out of 493089
- 755324 string characters out of 6134842
+ 755439 string characters out of 6134842
  953908 words of memory out of 5000000
  34927 multiletter control sequences out of 15000+600000
  33238 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,18n,79p,941b,910s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,79p,946b,910s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local
@@ -1789,7 +1789,7 @@ lic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 /urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/pa
 latino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/
 uplri8a.pfb>
-Output written on technical.pdf (46 pages, 970010 bytes).
+Output written on BUreading_gati.pdf (46 pages, 970376 bytes).
 PDF statistics:
  563 PDF objects out of 1000 (max. 8388607)
  461 compressed objects within 5 object streams

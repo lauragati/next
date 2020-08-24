@@ -127,6 +127,7 @@ eN = randn(ne,T,N);
 %Optimization Parameters
 options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
+options.UseParallel=true;
 
 %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
 
@@ -145,7 +146,7 @@ eta = eye(3).*[sig_r, sig_i, sig_u]'
 setp.sig_r = sig_r;
 setp.sig_i = sig_i;
 setp.sig_u = sig_u;
-setp.lamx  = 0;
+setp.lamx  = 0.05;
 setp.lami  = 0;
 
 %% Fmincon
@@ -156,7 +157,7 @@ tic
 % ub = [1.2,1];
 % lb = [1.01,-.01];
 varp0 = 1.5;
-ub = 10; % 1.5
+ub = 1.4; % 1.5
 lb = 1.00001;
 %Compute the objective function one time with some values
 loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,gain, alph,x, knowTR);
@@ -180,8 +181,9 @@ tic
 % ub = [1.2,1];
 % lb = [1.01,-.01];
 % varp0 = 1.5;
-% ub = 10; % 1.5
-% lb = 1.001;
+% do separate bounds for RE
+ub = 10; % 1.5
+lb = 1.001;
 %Compute the objective function one time with some values
 loss = objective_CB_RE(varp0,setp,eN,burnin);
 
@@ -197,3 +199,41 @@ loss_at_psi_RE = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x,
 disp(['RE loss at learning-optimal psi_pi = ', num2str(loss_at_psi_learn)])
 disp(['Learning loss at RE-optimal psi_pi = ', num2str(loss_at_psi_RE)])
 
+%% Loss at psi_pi = 1.5, RE- and Anchoring-optimal psi_pi for the baseline parameters of lamx = 0.05, lami = 0
+
+% psi_pi=1.5
+RE_loss_at15   = objective_CB_RE(1.5,setp,eN,burnin)
+Anch_loss_at15 = objective_CB_approx(1.5,setp,eN,burnin,PLM,gain, alph,x, knowTR)
+
+% psi_pi = RE-optimal
+RE_loss_at_REopt   = objective_CB_RE(par_opt_RE,setp,eN,burnin)
+Anch_loss_at_REopt = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x, knowTR)
+
+% psi_pi = anch-optimal
+RE_loss_at_Anchopt   = objective_CB_RE(par_opt,setp,eN,burnin)
+Anch_loss_at_Anchopt = objective_CB_approx(par_opt,setp,eN,burnin,PLM,gain, alph,x, knowTR)
+
+%% Loss under optimal policy:
+
+pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+load([pea_output_name, '.mat'])
+ysim7 = output{2};
+
+% Really we'd need a cross-section of PEA results to invoke the loss
+% function:
+% EL = loss_CB(setp,ysim7)
+
+% I'll do this manually here for the single history we have available
+X2 = ysim7(2,:).^2;
+PI2 = ysim7(1,:).^2;
+I2  = ysim7(3,:).^2;
+bet = setp.bet;
+bett = bet.^(1:100);
+period_loss = bett .* (PI2 + setp.lamx*X2 + setp.lami*I2);
+loss = sum(period_loss)
+
+% Take care of that in PEA we have 100 periods, while here we considered 400
+bett2 = bet.^(1:T);
+period_loss = bett2 .* repmat(PI2 + setp.lamx*X2 + setp.lami*I2,1,4);
+loss = sum(period_loss);
+estimate_loss_optimal_policy = loss
