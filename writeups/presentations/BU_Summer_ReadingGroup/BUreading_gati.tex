@@ -231,10 +231,11 @@
 % Central bank loss as a function of psi_pi in RE vs. anchoring
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_23}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_23}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_23}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_23}
+% Note 25 August: update with convention: RE red, anchoring blue.
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_25}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_25}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_25}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_25}
 % Note: it may not look it, but RE optimum is always around 1.4
 
 % Autocovariogram
@@ -814,6 +815,44 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
+	\frametitle{Calibration}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+ $\beta$ & 0.99 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
+ $\psi_x$ & 0   & coefficient of the output gap in Taylor rule*  \\\hline %% <---- Diffs. wrt calibration2
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline %% <----
+%& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+% $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
+%  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
+    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+    $\sigma_r$ & 0.1 & standard deviation of natural rate shock  \\ \hline
+    $\sigma_i$ &  2  &standard deviation of monetary policy shock*  \\ \hline %% <----
+    $\sigma_u$ & 0.5 & standard deviation of cost-push shock   \\ \hline  
+    $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
+    $\hat{\alpha}$ & (1; 0.5; 0; 0.5; 1) & approximating coefficients in anchoring function \\ \hline   
+    %$\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
+%    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
+%    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
+\end{tabular}     
+%      \caption{Calibrated parameters} 
+       \label{calibration}
+      % \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
+ \end{table}
+\end{center}
+% TABLE WAS UPDATED 3 JULY 2020. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
 	\frametitle{Optimal policy I - responding to unanchoring }
 	
 \begin{figure}[h!]
@@ -861,14 +900,9 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 	\frametitle{Optimal policy III - optimal Taylor-rule coefficients}
 	
 \begin{figure}[h!]
-\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale=0.25]{\myFigPath \fignameCBlossnilnil}}
-%%\hfill
-%\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossonenil}}
-%\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossnilone}}
-%%\hfill
-%\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale=0.11]{\myFigPath \fignameCBlossoneone}}
-\caption{CB loss as a function of $\psi_{\pi}$}
-\end{figure} % Materials 35
+\includegraphics[scale=0.25]{\myFigPath \fignameCBlossnilnil}
+\caption{CB loss as a function of inflation-coefficient in Taylor rule ($\psi_{\pi}$), for $\lambda_x = 0$}
+\end{figure} 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%

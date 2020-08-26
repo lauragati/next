@@ -144,10 +144,11 @@ bottom=1in}
 % Central bank loss as a function of psi_pi in RE vs. anchoring
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_23}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_23}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_23}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_23}
+% Note 25 August: update with convention: RE red, anchoring blue.
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_25}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_25}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_25}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_25}
 % Note: it may not look it, but RE optimum is always around 1.4
 
 
@@ -651,7 +652,7 @@ The main observation however is that in terms of optimal Taylor-coefficient on i
 
 The message is that if policy is restricted to be time-invariant in the sense of always responding to inflation by the same factor, then there is nothing that policy can do to take the anchoring expectation formation into account. This is reinforced in Fig. \ref{fig_loss} which plots the central bank's loss in the RE and anchoring models as a function of $\psi_{\pi}$ for various values of $\lambda_x$ and $\lambda_i$. The figure makes clear that while the central bank's loss has the same first derivatives across the two models, the loss in the anchoring model always exceeds that under rational expectations. As discussed in Section \ref{implement}, this is because the central bank adhering to a Taylor rule permits more volatility in the anchoring model than under RE. 
 
-% Approx-crit of Materials 37 results, 29 July 2020
+
 \begin{center}
 \begin{table}[h!]
 \begin{tabular}{ c | c | c }

@@ -145,7 +145,7 @@ setp.sig_r = sig_r;
 setp.sig_i = sig_i;
 setp.sig_u = sig_u;
 setp.lamx  = 1;
-setp.lami  = 0;
+setp.lami  = 1;
 
 % return
 
@@ -214,6 +214,6 @@ if print_figs==1
 %     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
     
     figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', num2str(setp.lamx), '_lami', num2str(setp.lami), '_', date_today];
-    y = [loss_RE; loss];
-    create_pretty_plot_x_holdon(xseries,y,{'RE', 'Anchoring'},figname,print_figs)
+    y = [loss; loss_RE];
+    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},figname,print_figs)
 end
