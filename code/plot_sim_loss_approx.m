@@ -16,7 +16,7 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -127,25 +127,41 @@ knowTR=1
 
 % vN=zeros(ne+1,T,N);
 
-%% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+% %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+% 
+% alph = [1.0000    0.5000         0    0.5000    1.0000]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
+% 
+% sig_r = 0.01;
+% sig_i = 2;
+% sig_u = 0.5;
+% 
+% eta = eye(3).*[sig_r, sig_i, sig_u]'
+% 
+% setp.sig_r = sig_r;
+% setp.sig_i = sig_i;
+% setp.sig_u = sig_u;
+% setp.lamx  = 1;
+% setp.lami  = 1;
+% 
+% % return
 
-alph = [1.0000    0.5000         0    0.5000    1.0000]'
+%% 27 August 2020: calibration C (Materials 43)
+
+alph = [0.8    0.4         0    0.4    0.8]'
 fegrid = [-4,-3,0,3,4]
 x{1} = fegrid;
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-sig_r = 0.01;
-sig_i = 2;
-sig_u = 0.5;
+setp.lamx  = 0.05;
+setp.lami  = 0;
 
-eta = eye(3).*[sig_r, sig_i, sig_u]'
+pis_x_here = 0.3;
 
-setp.sig_r = sig_r;
-setp.sig_i = sig_i;
-setp.sig_u = sig_u;
-setp.lamx  = 1;
-setp.lami  = 1;
 
 % return
 
@@ -163,7 +179,7 @@ if compute_loss==1
     loss = zeros(1,M);
     loss_RE = zeros(1,M);
     psi_pi_vals = linspace(1,1.4,M);
-    pis_x_here = 0;
+%     pis_x_here = 0;
     parfor m=1:M
         if mod(m,10)==0
             disp(['Iteration ', num2str(m), ' out of ', num2str(M)])
@@ -195,6 +211,7 @@ if print_figs==0
     figtitle = ['CB loss as a function of \psi_{\pi} ; ' , gain_title];
     create_plot(xseries,yseries,seriesnames,figname,0,figtitle)
     
+%     return
     yseries=loss_RE;
     seriesnames = 'Loss RE';
     figname = [this_code, '_', 'loss','_', 'RE', '_',relevant_params, '_', date_today];

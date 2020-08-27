@@ -19,7 +19,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
-save_data =0;
+save_data =1;
 datestr(now)
 
 %% 1.) Simulate data and filter it
@@ -38,7 +38,9 @@ fegrid = [-4,-3,0,3,4]
 rng(0)
 % alph_true = [0.05;0.025;0;0.025;0.05]; % the old truth
 % alph_true = [1;0.5;0;0.5;1]; % Calibration A of Materials 42 for fe = (-4,-3, 0, 3, 4)
-alph_true = [0.6;0.3;0;0.3;0.6]; % Calibration B of Materials 42 for fe = (-4,-3, 0, 3, 4)
+% alph_true = [0.6;0.3;0;0.3;0.6]; % Calibration B of Materials 42 for fe = (-4,-3, 0, 3, 4)
+alph_true = [0.8;0.4;0;0.4;0.8]; % Calibration C of Materials 43 for fe = (-4,-3, 0, 3, 4)
+
 
 
 % alph_true = (0.005*fegrid.^2)';
@@ -104,9 +106,10 @@ v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
 
-% Annualize inflation and inflation expectations as in get_data
+% Annualize inflation and inflation expectations as in get_data and
+% interest rate too for the model!
 % annualized q-o-q percent change (See Annualizing Data from Dallas Fed)
-y0(1,:) = ((y0(1,:)/100+1).^4 -1)*100;
+y0([1,3],:) = ((y0([1,3],:)/100+1).^4 -1)*100;
 pibar = squeeze(phi0(1,1,:));
 pibar = ((pibar/100+1).^4 -1)*100;
 % do I need to annualize fe too???? I'd think so
@@ -289,7 +292,7 @@ toc
 
 if save_data==1
     
-    filename = ['acf_sim_univariate_data', todays_date];
+    filename = ['acf_sim_univariate_data_calibC_', todays_date];
     acf_outputs = {Om, Om_boot,nobs,p,K, filt_data, lost_periods, alph_true, nfe};
     save([filename,'.mat'],'acf_outputs')
     disp(['Saving as ' filename])

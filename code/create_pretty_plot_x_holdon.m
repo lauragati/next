@@ -27,7 +27,8 @@ set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
 legend(h, legendentries, 'location', 'southoutside', 'interpreter', 'latex')
-    legend('boxoff')
+legend('boxoff')
+ax.XAxis.Limits = round(x([1,end]),1); % this is like the 'keeplimits' for dateticks
 
 
 if print_figs ==1

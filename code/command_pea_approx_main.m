@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -93,20 +93,28 @@ alph = alph_opt_mean;
 
 
 % return
+% 
+% %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+% 
+% alph = [1.0000    0.5000         0    0.5000    1.0000]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, set, param_names, param_values_str, param_titles] = parameters_next;
+% 
+% sig_r = 0.01;
+% sig_i = 2;
+% sig_u = 0.5;
+% 
+% eta = eye(3).*[sig_r, sig_i, sig_u]'
 
-%% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+%% 27 August 2020: calibration C (Materials 43)
 
-alph = [1.0000    0.5000         0    0.5000    1.0000]'
+alph = [0.8    0.4         0    0.4    0.8]'
 fegrid = [-4,-3,0,3,4]
 x{1} = fegrid;
 
-[param, set, param_names, param_values_str, param_titles] = parameters_next;
-
-sig_r = 0.01;
-sig_i = 2;
-sig_u = 0.5;
-
-eta = eye(3).*[sig_r, sig_i, sig_u]'
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
 %% Parameters, RE model and Taylor rule
 T = 100
@@ -121,9 +129,9 @@ residnames = {'IS', 'PC', 'TR'};
 ndrop =0; ne=3;
 % [param, set, param_names, param_values_str, param_titles] = parameters_next; % now using the ones from the estimation
 
-% sig_r = param.sig_r;
-% sig_i = param.sig_i;
-% sig_u = param.sig_u;
+sig_r = param.sig_r;
+sig_i = param.sig_i;
+sig_u = param.sig_u;
 
 % RE model
 [fyn, fxn, fypn, fxpn] = model_NK(param);
@@ -133,7 +141,7 @@ SIG = eye(nx).*[sig_r, sig_i, sig_u]';
 eta = SIG; %just so you know
 
 % Generate innovations
-rng(2)
+rng(4) % rng(2) default
 e = randn(ne,T+ndrop);
 % zero out the monpol shock
 e(2,:) = zeros(1,T+ndrop);
@@ -175,22 +183,27 @@ n_inputs = sum(s_inputs); % the number of input series
 
 % an initial simulation using the Taylor rule
 disp('Initial simul using TR - this should explode b/c agents don''t know the TR')
-[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 1,mpshock);
-% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
-% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
-% return
-% %%% when saving to draft or presentations, use these 3 lines below
-cd '/Users/lauragati/Dropbox/BC_Research/next/code'
-create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
-create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+[x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
 
-return
+% % Annualize pi and i
+% y0([1,3],:) = ((y0([1,3],:)/100+1).^4 -1)*100;
+
+% % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
+% % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+% % return
+% % %%% when saving to draft or presentations, use these 3 lines below
+% cd '/Users/lauragati/Dropbox/BC_Research/next/code'
+% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
+% create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+
+% return
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
 % just causes errors that by construction fsolve can't close
 seq0 = zeros(n_inputs,T);
 seq0(:,2:end) = y0(i_inputs,2:end);
+
 
 
 %% Parameterized expectations
@@ -231,7 +244,6 @@ while crit > 1e-6 && iter < maxiter
     BET(:,iter) = bet; % storing betas
     % Now solve model equations given conjectured E 
     objh = @(seq) objective_seq_clean_parametricE_approx(seq,bet,n_inputs,param,gx,hx,eta,PLM,gain,T,ndrop,e, alph,x,fegrid, g_fe, knowTR);
-    
     tic
     [seq_opt, resids_opt, flag] = fsolve(objh,seq0crop, options);
     toc

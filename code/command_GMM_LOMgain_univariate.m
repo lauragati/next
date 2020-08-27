@@ -47,6 +47,7 @@ datestr(now)
 % filename = 'acf_sim_univariate_data_18_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2, lam =0.001 (corrected (now standardized regressors) RIDGE)
 filename = 'acf_sim_univariate_data_calibA_26_Aug_2020'; % simulated data, Calibration A of Materials 42 for alphas and sigmas, lam =0.001 standardized-regressors-RIDGE
 % filename = 'acf_sim_univariate_data_calibB_26_Aug_2020'; % simulated data, Calibration B of Materials 42 for alphas and sigmas, psi_x=1, lam =0.001 standardized-regressors-RIDGE
+% filename = 'acf_sim_univariate_data_calibC_27_Aug_2020'; % simulated data, Calibration C of Materials 43 for alphas and sigmas, psi_x=0.3, beta=0.98, lam=0.001 standardized-regressors-RIDGE (now the interest rate is annualized too)
 
 %%%%%%%%%%%%%%%%%%%
 % Grid

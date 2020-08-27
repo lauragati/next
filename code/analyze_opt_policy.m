@@ -31,7 +31,8 @@ sgrid = linspace(-sig_r,sig_r,ns);
 
 % value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
 % value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain % materials 37
-value_output_name = 'value_outputs_approx23_Aug_2020_14_50_26'; % 23 August 2020 calibration 
+% value_output_name = 'value_outputs_approx27_Aug_2020_14_18_38'; % Calibration C of Materials 43;  pgrid = linspace(-0.1,0.1,np); 
+value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
 
 load([value_output_name, '.mat'])
 
@@ -46,7 +47,10 @@ pgrid  = value_sols{6};
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
 % pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0) % materials 37
-pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+% pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
+% pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
+% pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
 
 
 
@@ -84,6 +88,13 @@ ppi = csapi({pgrid,sgrid,sgrid,sgrid,sgrid},it);
 
 %hold every state at their means, just move pibar
 i_p = fnval(ppi,[pibvals;smean;smean;smean;smean]);
+
+% % Annualization of inflation and interest rate - I won't do it b/c it
+% would need to scale up pibvals too
+% i_p =  ((i_p/100+1).^4 -1)*100;
+% pibvals =  ((pibvals/100+1).^4 -1)*100;
+
+
 create_pretty_plot_x(pibvals,i_p,[this_code, '_ip', todays_date],print_figs)
 
 

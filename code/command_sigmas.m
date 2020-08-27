@@ -240,14 +240,16 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-alph_true = 5*[0.2,0.1,0,0.1,0.2]';
+alph_true = 4*[0.2,0.1,0,0.1,0.2]';
 % alph_true = [1.0000    0.5000         0    0.5000    1.0000];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 sig_r = 0.01;
-sig_i = 2;
+sig_i = 0.01;
 sig_u = 0.5;
 
 eta = eye(nx).*[sig_r, sig_i, sig_u]'
+
+param.psi_x = 0.3;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 rng(2) %rng(0)
@@ -259,13 +261,13 @@ v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 % This is the only new thing: add one-step ahead expectation to data (with iid shocks, it's just pibar, see Materials38, Point 3)
 if use_expectations_data==1
     y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))'];
-    % annualize inflation and inflation expectations like in get_data.m
-    y_data([1,4], :) = ((y_data([1,4], :)/100+1).^4 -1)*100;
+    % annualize inflation, interest rate and inflation expectations like in get_data.m
+    y_data([1,3,4], :) = ((y_data([1,3,4], :)/100+1).^4 -1)*100;
 
 elseif use_expectations_data==0
     % Don't use expectations
     y_data = y0(:,1:end-1);
-    y_data(1, :) = ((y_data(1, :)/100+1).^4 -1)*100;
+    y_data([1,3], :) = ((y_data([1,3], :)/100+1).^4 -1)*100;
 end
 [nobs,T] = size(y_data)
 
@@ -299,7 +301,7 @@ p =min([AIC,BIC,HQ]);
 % return
 
 % % ridge regression VAR
-% [B,~,sigma] = rf_var_ridge(filt_data', p, 0.001); 
+[B,~,sigma] = rf_var_ridge(filt_data', p, 0.001); 
 % return
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)

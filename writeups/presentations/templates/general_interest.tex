@@ -189,21 +189,22 @@
 % DEFINE ALL VARIABLE NUMBERS HERE
 %%%%%%%%%%%%%%%%%%%%
 
-% numbers update: 23 August 2020 using 23 August calibration, except mean estimate of alpha
-% The figures are listed in Materials42 (commented tho)
+% numbers update: 27 August 2020 using Calibration C from Materials 43
 
+% Empirical numbers
 % mean estimated alpha
 \def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
 % for 1% fe, you get a gain of
 \def\oneppFEgives{0.05}
-% for 1% fe, you get a change in pibar of
-\def\betPibFe{0.1161} % analyze_opt_policy.m
-% DIDNT UPDATE BODY TEXT NOR ABSTRACT
-
 % pp forecast error that unanchors
 \def\ppFEunanchors{1 }
-% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors
-\def\ppMoveFFR{11.61 }
+
+% Optimal policy numbers
+% for 1% fe, you get a change in pibar of
+\def\betPibFe{0.0906 } % analyze_opt_policy.m
+% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
+\def\ppMoveFFR{4.53 }
 
 %%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
@@ -221,31 +222,29 @@
 
 % Comparative statics of optimal policy
 % di/dpibar
-\def\fignameDiDpibar{analyze_opt_policy_ip23_Aug_2020}
+\def\fignameDiDpibar{analyze_opt_policy_ip27_Aug_2020}
 
 % Observables in PEA for TR
-\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx23_Aug_2020}
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx27_Aug_2020}
 % Observables in PEA for anchoring
-\def\fignamePEAobsAnch{implement_anchTC_obs_approx23_Aug_2020_15_09_34}
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx27_Aug_2020_16_21_47}
 
 % Central bank loss as a function of psi_pi in RE vs. anchoring
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
 % Note 25 August: update with convention: RE red, anchoring blue.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_25}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_25}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_25}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_25}
-% Note: it may not look it, but RE optimum is always around 1.4
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_27}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_27}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_27}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_27}
+
+
 
 % Autocovariogram
-\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_00_19}
+\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_27_Aug_2020_11_29_47}
 
-% Compare PEA and VFI policy for sequence of shocks X1
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx23_Aug_2020_14_50_26_pea_outputs_approx23_Aug_2020_14_38_14_pretty_23_Aug_2020_15_09_34}
-% Compare PEA and VFI policy for sequence of shocks X2
-% retired
-%\def\fignamePEAvsVFIsecondX{compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}
+% Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx27_Aug_2020_14_28_32_pea_outputs_approx27_Aug_2020_14_45_53_pretty_27_Aug_2020_16_21_47}
 
 % IRFs anchored vs unanchored
 % done

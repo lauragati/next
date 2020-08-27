@@ -129,25 +129,25 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 options.UseParallel=true;
 
-%% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+% %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
+% 
+% alph = [1.0000    0.5000         0    0.5000    1.0000]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-alph = [1.0000    0.5000         0    0.5000    1.0000]'
+%% 27 August 2020: calibration C (Materials 43)
+
+alph = [0.8    0.4         0    0.4    0.8]'
 fegrid = [-4,-3,0,3,4]
 x{1} = fegrid;
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-sig_r = 0.01;
-sig_i = 2;
-sig_u = 0.5;
-
-eta = eye(3).*[sig_r, sig_i, sig_u]'
-
-setp.sig_r = sig_r;
-setp.sig_i = sig_i;
-setp.sig_u = sig_u;
 setp.lamx  = 0.05;
 setp.lami  = 0;
+
 
 %% Fmincon
 % dbstop if caught error
@@ -157,8 +157,8 @@ tic
 % ub = [1.2,1];
 % lb = [1.01,-.01];
 varp0 = 1.5;
-ub = 1.4; % 1.5
-lb = 1.00001;
+ub = 2; % 1.5
+lb = 1;
 %Compute the objective function one time with some values
 loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,gain, alph,x, knowTR);
 
@@ -169,7 +169,8 @@ objh = @(varp) objective_CB_approx(varp,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
-disp(['Learning: psi_pi_opt = ', num2str(par_opt), ', L(psi_pi_opt) = ', num2str(loss_opt)])
+disp(['Learning: psi_pi_opt = ', num2str(par_opt)])
+disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 
 
@@ -183,7 +184,7 @@ tic
 % varp0 = 1.5;
 % do separate bounds for RE
 ub = 10; % 1.5
-lb = 1.001;
+lb = 1;
 %Compute the objective function one time with some values
 loss = objective_CB_RE(varp0,setp,eN,burnin);
 
@@ -193,12 +194,10 @@ objh = @(varp) objective_CB_RE(varp,setp,eN,burnin);
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
-disp(['RE: psi_pi_opt = ', num2str(par_opt_RE), ', L(psi_pi_opt) = ', num2str(loss_opt_RE)])
-loss_at_psi_learn = objective_CB_RE(par_opt,setp,eN,burnin);
-loss_at_psi_RE = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x, knowTR);
-disp(['RE loss at learning-optimal psi_pi = ', num2str(loss_at_psi_learn)])
-disp(['Learning loss at RE-optimal psi_pi = ', num2str(loss_at_psi_RE)])
+disp(['RE: psi_pi_opt = ', num2str(par_opt_RE)])
 
+
+return
 %% Loss at psi_pi = 1.5, RE- and Anchoring-optimal psi_pi for the baseline parameters of lamx = 0.05, lami = 0
 
 % psi_pi=1.5
@@ -213,9 +212,12 @@ Anch_loss_at_REopt = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alp
 RE_loss_at_Anchopt   = objective_CB_RE(par_opt,setp,eN,burnin)
 Anch_loss_at_Anchopt = objective_CB_approx(par_opt,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 
+
 %% Loss under optimal policy:
 
-pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+% pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
+
 load([pea_output_name, '.mat'])
 ysim7 = output{2};
 

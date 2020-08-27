@@ -6,7 +6,7 @@ sig_i = setp.sig_i;
 sig_u = setp.sig_u;
 
 % an admittedly awkward structure to sub in the variable params
- setp.psi_pi = varp(1);
+setp.psi_pi = varp(1);
 %  setp.('psi_x') = varp(2); % only optimize over psi_pi for now
 
 param = setp;
@@ -28,12 +28,17 @@ y= zeros(ny,T,N);
 for n=1:N
     e = squeeze(eN(:,:,n));
     
-%     [~, y(:,:,n)] = sim_learnLH_clean_approx(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,knowTR,mpshock);
+    %     [~, y(:,:,n)] = sim_learnLH_clean_approx(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,knowTR,mpshock);
     % should use ... univariate.m to use univariate anchoring function, but there may be a problem with this code...
     
     v = zeros(4,T);
     try
-    [~, y(:,:,n), ~, ~, ~, ~, ~,~, explode_count, negk_count, explode_t, negk_t] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,v,knowTR,mpshock);
+        [~, y(:,:,n), ~, ~, ~, ~, ~,~, explode_count, negk_count, explode_t, negk_t] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,v,knowTR,mpshock);
+        
+%         % Annualize inflation and interest rate - might not need to since it just scales up loss
+%         y([1,3],:) = ((y([1,3],:)/100+1).^4 -1)*100;
+       
+        
     catch err
         disp(['Exploded (fe input to ndim_simplex was nan: history n = ', num2str(n)])
         fprintf(1,'The identifier was:\n%s',err.identifier);
