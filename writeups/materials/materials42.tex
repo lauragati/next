@@ -184,10 +184,25 @@ Keep $\sigma_r, \sigma_i, \sigma_u$ fix at (0.01, 2, 0.5).
 
 \begin{figure}[h!]
 \subfigure[$\alpha = (0.2,0.1,0,0.1,0.2)$]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_00_19}}
-\subfigure[$\alpha = (1,0.5,0,0.5,1)$]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_12_22}}
+\subfigure[$\alpha = (1,0.5,0,0.5,1)$, let's call this Calibration A]{\includegraphics[scale=0.32]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_23_Aug_2020_14_12_22}}
 \caption{\colorbox{yellow}{Using expectations (estimating VAR using ridge regression with ridge parameter 0.001 if unstable)} }
 \end{figure}
 
+\clearpage
+\subsection{An alternative with $\psi_x = 1$ (Calibration B)}
+\begin{figure}[h!]
+\subfigure[$\alpha = (0.6,0.3,0,0.3,0.6)$, $(\sigma_r, \sigma_i, \sigma_u) =$ (0.01, 0.01, 0.5)]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_26_Aug_2020_08_49_10}}
+\caption{\colorbox{yellow}{$\psi_x = 1$} }
+\end{figure}
+
+\clearpage
+\section{Estimate when true data is generated from Calibration A and B}
+
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_26_Aug_2020_08_49_10}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_26_Aug_2020_08_49_10}}
+\caption{Calibration A, not using expectations}
+\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%
 % Figures for 23 August calibration
 

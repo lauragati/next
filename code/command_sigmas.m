@@ -238,8 +238,6 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 %% Generate moments for a single simulation of the true model
 
-print_figs=0
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 alph_true = 5*[0.2,0.1,0,0.1,0.2]';

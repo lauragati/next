@@ -42,9 +42,11 @@ datestr(now)
 % % % % % % filename = 'acf_sim_univariate_data_mean_26_Jul_2020'; % simulated data with expectation in it, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); moments generated as average of 100 simulated datasets from true params
 % filename = 'acf_sim_univariate_data_04_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no!
 % % % % % % filename = 'acf_sim_univariate_data_09_Aug_2020'; % simulated data, nfe=5, fe=(-0.5,0.5), alph_true = (0.05; 0.025; 0; 0.025; 0.05); Expectations, yes, measurement error, no, RIDGE.
-filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
+% filename = 'acf_sim_univariate_data_10_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = 4*(0.05; 0.025; 0; 0.025; 0.05); referring to point (R,b) in my notes.
 % % % % % % filename = 'acf_sim_univariate_data_13_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2. (RIDGE)
 % filename = 'acf_sim_univariate_data_18_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2, lam =0.001 (corrected (now standardized regressors) RIDGE)
+filename = 'acf_sim_univariate_data_calibA_26_Aug_2020'; % simulated data, Calibration A of Materials 42 for alphas and sigmas, lam =0.001 standardized-regressors-RIDGE
+% filename = 'acf_sim_univariate_data_calibB_26_Aug_2020'; % simulated data, Calibration B of Materials 42 for alphas and sigmas, psi_x=1, lam =0.001 standardized-regressors-RIDGE
 
 %%%%%%%%%%%%%%%%%%%
 % Grid
@@ -197,7 +199,7 @@ W1 = sqrt(W1); % elementwise sqrt.
 % Also per Ryan meeting 12 August 2020:
 maxSig = max(max(diag(sigboot)));
 minSig = min(min(diag(sigboot)));
-maxminratio = maxSig/minSig; % it's < 10e+6 if no expectations are used, on the order of 9e+7 if expectations are used
+maxminratio = maxSig/minSig; % Should be and is < 10e+6 if no expectations are used, on the order of 9e+7 or 1e+8 if expectations are used
 
 
 % return
@@ -421,8 +423,8 @@ switch cross_section
             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             resnorm0 = sum(res0.^2)
             
-            [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
-            resnorm0 = sum(res0.^2)
+%             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
+%             resnorm0 = sum(res0.^2)
 %             return
             %Declare a function handle for optimization problem
             objh = @(alph) obj_GMM_LOMgain_univariate_mean(alph,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
@@ -583,7 +585,8 @@ if contains(filename,'sim')
     figure
     set(gcf,'color','w'); % sets white background color
     set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-    plot(linspace(femin,femax,length(alph_true)),alph_true, 'linewidth',lw); hold on
+%     plot(linspace(femin,femax,length(alph_true)),alph_true, 'linewidth',lw); hold on
+    plot(fegrid,alph_true, 'linewidth',lw); hold on
     plot(fegrid, alph0, 'linewidth',lw)
     plot(fegrid, alph_opt_mean, 'linewidth',lw)
     %     plot(fegrid, alph_opt_med, 'linewidth',lw)

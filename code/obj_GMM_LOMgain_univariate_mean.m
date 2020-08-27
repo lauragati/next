@@ -36,7 +36,7 @@ else
     explode_t = zeros(T+ndrop,N);
     negk_t = zeros(T+ndrop,N);
     
-    parfor n=1:N
+    for n=1:N
         %         disp(['n = ', num2str(n)])
         e_n = squeeze(eN(:,:,n));
         v_n = squeeze(vN(:,:,n));
@@ -44,14 +44,24 @@ else
         %         [~, y, k,phi,~,~,fe] = sim_learnLH_clean_approx_univariate_uninvertk(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e_n,v_n, knowTR,mpshock);
         
         k1(:,n) = 1./k(1:end-1); % cut off last period where k is unset
+        
+        % Annualize inflation and inflation expectations
+        y(1,:) = ((y(1,:)/100+1).^4 -1)*100;
+        pibar = squeeze(phi(1,1,:));
+        pibar = ((pibar/100+1).^4 -1)*100;
+        fe = ((fe/100+1).^4 -1)*100;
+        
         if use_expectations_data == 0
             y_data = y(:,1:end-1);
         else
             y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
         end
         
+        
         nobs = size(y_data,1);
         FEt_1(:,:,n) = fe;
+        
+       
         % Filter the simulated data
         % % 1) HP filter
         % g = nan(size(y));
@@ -88,15 +98,16 @@ else
         % using the same lags p, K as for the real data
         
 %         [~,B,~,sigma] = sr_var(filt', p);
+        [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
         
-        try
-            [~,B,~,sigma] = sr_var(filt', p);
-            [msg,warnID] = lastwarn;
-            warning('error', warnID)
-        catch
-            disp('Switching to ridge')
-            [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
-        end
+%         try
+%             [~,B,~,sigma] = sr_var(filt', p);
+%             [msg,warnID] = lastwarn;
+%             warning('error', warnID)
+%         catch
+%             disp('Switching to ridge')
+%             [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+%         end
         
         
         % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)

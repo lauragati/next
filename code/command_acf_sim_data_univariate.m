@@ -33,9 +33,13 @@ nfe = 5 % 6,9,12,15
 femax = 2;
 femin = -femax;
 fegrid = linspace(femin,femax,nfe);
+fegrid = [-4,-3,0,3,4]
 
 rng(0)
-alph_true = [0.05;0.025;0;0.025;0.05];
+% alph_true = [0.05;0.025;0;0.025;0.05]; % the old truth
+% alph_true = [1;0.5;0;0.5;1]; % Calibration A of Materials 42 for fe = (-4,-3, 0, 3, 4)
+alph_true = [0.6;0.3;0;0.3;0.6]; % Calibration B of Materials 42 for fe = (-4,-3, 0, 3, 4)
+
 
 % alph_true = (0.005*fegrid.^2)';
 
@@ -100,6 +104,14 @@ v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 
 [x0, y0, k0, phi0, FA0, FB0, FEt_10, diff0] = sim_learnLH_clean_approx_univariate(alph_true,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v,knowTR,mpshock);
 
+% Annualize inflation and inflation expectations as in get_data
+% annualized q-o-q percent change (See Annualizing Data from Dallas Fed)
+y0(1,:) = ((y0(1,:)/100+1).^4 -1)*100;
+pibar = squeeze(phi0(1,1,:));
+pibar = ((pibar/100+1).^4 -1)*100;
+% do I need to annualize fe too???? I'd think so
+FEt_10(1,:) = ((FEt_10(1,:)/100+1).^4 -1)*100;
+
 % return
 % The truth in plots
 figname = [this_code, '_alph_true_', todays_date];
@@ -110,10 +122,13 @@ invgain = {'Inverse gain'};
 create_plot_observables(y0,seriesnames, 'Simulation using estimated LOM-gain approx', [this_code, '_true_obs_sim_',PLM_name,'_', todays_date], 0)
 create_plot_observables(1./k0,invgain, 'Simulation using estimated LOM-gain approx', [this_code, '_true_gain_sim_',PLM_name,'_', todays_date], print_figs)
 create_plot_observables(squeeze(FEt_10(1,:)),{'fe'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
-create_plot_observables(squeeze(phi0(1,1,:))',{'pibar'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
+create_plot_observables(pibar',{'pibar'}, 'Simulation using estimated LOM-gain approx', [this_code, '_true_fe_sim_',PLM_name,'_', todays_date], print_figs)
 
 figure
 hist(squeeze(FEt_10(1,:)))
+
+% return
+%%
 close all
 % return
 
@@ -173,16 +188,13 @@ p =min([AIC,BIC,HQ]);
 % A is the impact matrix, identified via Cholesky, B is the beta_ols, res are
 % the residuals, sigma is the estimated VC matrix.
 [~,B,res,sigma] = sr_var(filt_data', p);
-% [B_RF,res_RF,sigma_RF] = rf_var(filt_data', p);
 
 
 % return
 
 % % ridge regression VAR
-% [~,B_ridge,~,sigma_ridge] = sr_var_ridge(filt_data', p, 0.001);
-[B_ridge,~,sigma_ridge] = rf_var_ridge(filt_data', p, 0.001); % save a few miliseconds
-B = B_ridge;
-sigma = sigma_ridge;
+[B,~,sigma] = rf_var_ridge(filt_data', p, 0.001); % save a few miliseconds
+
 % return
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -245,7 +257,6 @@ parfor i=1:nboot
     
     % OLS or ridge
 %     [~,B,~,sigma] = sr_var(squeeze(dataset_boot(:,:,i)), p);
-%     [B,res,sigma] = rf_var(squeeze(dataset_boot(:,:,i)), p);
     [B,~,sigma] = rf_var_ridge(squeeze(dataset_boot(:,:,i)), p, 0.001);
     
     % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -278,7 +289,7 @@ toc
 
 if save_data==1
     
-    filename = ['acf_sim_univariate_data_', todays_date];
+    filename = ['acf_sim_univariate_data', todays_date];
     acf_outputs = {Om, Om_boot,nobs,p,K, filt_data, lost_periods, alph_true, nfe};
     save([filename,'.mat'],'acf_outputs')
     disp(['Saving as ' filename])

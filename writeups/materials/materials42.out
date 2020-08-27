@@ -2,6 +2,8 @@
 \BOOKMARK [1][-]{section.2}{A correction for the loss: treating explosive or negative gain paths}{}% 2
 \BOOKMARK [1][-]{section.3}{Calibrating shock volatilities to match autocovariances of , x, i}{}% 3
 \BOOKMARK [1][-]{section.4}{Calibrating s to match autocovariances of , `39`42`"613A``45`47`"603AE\(\)}{}% 4
-\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 5
-\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 6
-\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{An alternative with x = 1 \(Calibration B\)}{section.4}% 5
+\BOOKMARK [1][-]{section.5}{Estimate when true data is generated from Calibration A and B}{}% 6
+\BOOKMARK [1][-]{appendix.A}{Model summary}{}% 7
+\BOOKMARK [1][-]{appendix.B}{Target criterion}{}% 8
+\BOOKMARK [1][-]{appendix.C}{Impulse responses to iid monpol shocks across a wide range of learning models}{}% 9
