@@ -207,6 +207,30 @@
 \def\ppMoveFFR{4.53 }
 
 %%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update: 27 August 2020 using Calibration C from Materials 43
+
+% Empirical numbers
+% mean estimated alpha
+\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.05}
+% pp forecast error that unanchors
+\def\ppFEunanchors{1 }
+
+% retired
+%% for 1% fe, you get a change in pibar of
+%\def\betPibFe{0.0906 } % analyze_opt_policy.m
+%% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
+%\def\ppMoveFFR{4.53 }
+
+% raise/lower interest rate by x pp when when LR-exp move by 0.1
+\def\movei{5 }
+
+%%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
 %%%%%%%%%%%%%%%%%%%%
 
@@ -297,13 +321,23 @@ An Endogenous Gain Learning Model}
 \begin{frame}\label{motivation}
 	
 \begin{quote}
-Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
-Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019.}
+Inflation that runs below its desired level can lead to an unwelcome fall in longer-term inflation expectations, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.[...] Well-anchored inflation expectations are critical[.]  \\
+Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020.} % Jackson Hole
 \end{quote}	
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}\label{TIPS}
+	
 
 \begin{figure}[h!]
 \includegraphics[scale = \myTinyFigScale]{\myFigPath \fignameMarketEPi}
-\caption{Market-based inflation expectations, 10 year, average, \%}
+\caption{Expectations of average inflation over 10 years (market-based, \%)}
 \label{epi}
 \end{figure}
 
@@ -344,13 +378,13 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 	\frametitle{Preview of results}
 	
 	\begin{itemize}
-	\item \ppFEunanchors pp forecast error unanchors expectations
-
-	
-	\
-	
-	\
-	
+%%	\item \ppFEunanchors pp forecast error unanchors expectations
+%
+%	
+%	\
+%	
+%	\
+%	
 	\item Optimal monetary policy responsiveness time-varying 
 	
 	\
@@ -364,6 +398,13 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 	
 	\
 	\item[$\hookrightarrow$] Optimal policy aggressive when expectations unanchor, dovish when anchored
+	
+	\
+	
+	\
+	
+%	\item[$\hookrightarrow$]  E.g. for a 0.1 pp fall in long-run inflation expectations, lowers interest rate by \movei pp
+
 
 	\end{itemize}
 
@@ -384,7 +425,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 
 \
 
-\item \textbf{Econometric learning}
+\item \textbf{Adaptive learning}
 \item[] Evans \& Honkapohja (2001, 2006), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Eusepi \& Preston (2011), Milani (2007, 2014), Lubik \& Matthes (2018), Mele et al (2019)
 
 \
@@ -399,6 +440,39 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Chall
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Outline}
+
+\begin{enumerate}
+\item Unanchoring in the data
+
+\
+
+\
+
+\item Model of anchoring expectations
+
+\
+
+\
+
+\item Solving the Ramsey problem
+
+\
+
+\
+
+\item Implementing optimal policy
+\end{enumerate}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Unanchoring in the data}
@@ -533,7 +607,7 @@ In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \qu
   
 
 
-\item Note: \textcolor{brownreddark}{misspecified}	$\rightarrow$ not model-consistent (not RE) 
+\item[] \textcolor{brownreddark}{$a$}	$\rightarrow$ concept of long-run expectations in the model
 
 \
 
@@ -567,6 +641,12 @@ Special case: learn only intercept of inflation:
 \begin{equation}
 a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\; h \quad \forall t
 \end{equation}
+
+\
+\pause
+\
+
+ \textcolor{brownreddark}{$\bar{\pi}_{t-1}$}: long-run inflation expectations $\rightarrow$ anchoring
 
 \
 \pause
@@ -819,7 +899,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \begin{center}
 \begin{table}
 \begin{tabular}{ c | c  | l }
- $\beta$ & 0.99 & stochastic discount factor \\  \hline
+ $\beta$ & 0.98 & stochastic discount factor \\  \hline
  $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
  $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
  $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
@@ -832,8 +912,8 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
     $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
     $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
     $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
-    $\sigma_r$ & 0.1 & standard deviation of natural rate shock  \\ \hline
-    $\sigma_i$ &  2  &standard deviation of monetary policy shock*  \\ \hline %% <----
+    $\sigma_r$ & 0.01 & standard deviation of natural rate shock  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation of monetary policy shock*  \\ \hline %% <----
     $\sigma_u$ & 0.5 & standard deviation of cost-push shock   \\ \hline  
     $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
     $\hat{\alpha}$ & (1; 0.5; 0; 0.5; 1) & approximating coefficients in anchoring function \\ \hline   
@@ -871,7 +951,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 %\hfill
 \subfigure[Optimal policy]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsAnch}}
 \hfill
-\subfigure[Taylor rule with 1.5 and 0 coefficients on inflation and the output gap]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
+\subfigure[Taylor rule with 1.5 and 0.3 coefficients on inflation and the output gap]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
 \caption{Observables conditional on a particular evolution of shocks} 
 \end{figure}
 
@@ -888,6 +968,24 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \caption{Impulse responses after a contractionary monetary policy shock}
 \label{IRF}
 \end{figure}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Intertemporal volatility tradeoff: term structure of expectations}
+\begin{itemize}
+\item[] IS- and Phillips curve:	
+ \begin{align*}
+x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor{brownreddark}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big)   \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+\end{align*}
+
+
+\end{itemize}
+
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -926,7 +1024,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 	\frametitle{Conclusion}
 	
 \begin{itemize}
-\item Interaction between monetary policy and anchoring 
+\item First theory of monetary policy for potentially unanchored expectations 
 
 \
 
@@ -945,7 +1043,9 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 
 \
 
-\item For a \ppFEunanchors pp positive (negative) forecast error, raises (lowers) interest rate by \ppMoveFFR pp
+\item Future work: how to anchor at zero-lower bound?
+
+%\item For a 0.1 pp drift in long-run inflation expectations, changes interest rate by \movei pp
 \end{itemize}
 
 

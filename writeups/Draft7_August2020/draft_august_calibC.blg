@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: draft_august_calibB.aux
+The top-level auxiliary file: draft_august_calibC.aux
 The style file: chicago.bst
 Database file #1: ../../literature/ref_next.bib
 Warning--empty booktitle in andreasen2018tips
@@ -14,45 +14,45 @@ Warning--can't use both author and editor fields in evans2013bayesian
 Warning--can't use both volume and number fields in lucas1976econometric
 Warning--no number and no volume in mele2019perils
 Warning--page numbers missing in mele2019perils
-You've used 51 entries,
+You've used 52 entries,
             2861 wiz_defined-function locations,
-            919 strings with 12415 characters,
-and the built_in function-call counts, 34982 in all, are:
-= -- 3047
-> -- 2360
-< -- 11
-+ -- 698
-- -- 846
-* -- 3034
-:= -- 6328
-add.period$ -- 156
-call.type$ -- 51
-change.case$ -- 351
-chr.to.int$ -- 51
-cite$ -- 62
-duplicate$ -- 964
-empty$ -- 2191
-format.name$ -- 982
-if$ -- 6494
+            925 strings with 12608 characters,
+and the built_in function-call counts, 35857 in all, are:
+= -- 3133
+> -- 2412
+< -- 12
++ -- 714
+- -- 866
+* -- 3097
+:= -- 6472
+add.period$ -- 160
+call.type$ -- 52
+change.case$ -- 358
+chr.to.int$ -- 52
+cite$ -- 63
+duplicate$ -- 995
+empty$ -- 2248
+format.name$ -- 1006
+if$ -- 6674
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 54
-newline$ -- 257
-num.names$ -- 510
-pop$ -- 252
+missing$ -- 55
+newline$ -- 262
+num.names$ -- 520
+pop$ -- 260
 preamble$ -- 1
-purify$ -- 660
+purify$ -- 673
 quote$ -- 0
-skip$ -- 1050
+skip$ -- 1085
 stack$ -- 0
-substring$ -- 2037
-swap$ -- 327
-text.length$ -- 11
+substring$ -- 2089
+swap$ -- 341
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 960
+type$ -- 980
 warning$ -- 11
-while$ -- 546
+while$ -- 559
 width$ -- 0
-write$ -- 679
+write$ -- 694
 (There were 11 warnings)
