@@ -1,7 +1,7 @@
 \beamer@slide {motivation}{2}
 \beamer@slide {TIPS}{3}
 \beamer@slide {epi}{3}
-\beamer@slide {epi}{9}
+\beamer@slide {pi_epi}{9}
 \beamer@slide {HH}{11}
 \beamer@slide {lifetime_U}{11}
 \beamer@slide {BC}{11}
@@ -20,8 +20,9 @@
 \beamer@slide {target}{28}
 \beamer@slide {no_commitment}{30}
 \beamer@slide {calibration}{33}
-\beamer@slide {IRF}{36}
-\beamer@slide {IRF_unanchored_psi}{39}
+\beamer@slide {IRF}{35}
+\beamer@slide {IRF_unanchored_psi}{38}
+\beamer@slide {table_welfare}{39}
 \beamer@slide {app_TIPS}{42}
 \beamer@slide {epi_cleaned}{42}
 \beamer@slide {oscillatory}{43}

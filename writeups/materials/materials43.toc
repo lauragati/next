@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Annualize the interest rate in the model}{2}{section.1}
 \contentsline {section}{\numberline {2}Estimate when true data is generated from Calibration C}{3}{section.2}
-\contentsline {section}{\numberline {A}Model summary}{4}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{4}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{5}{appendix.C}
+\contentsline {section}{\numberline {A}Model summary}{5}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{5}{appendix.B}
+\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{6}{appendix.C}

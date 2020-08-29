@@ -239,6 +239,10 @@
 % cleaned from liq premium
 \def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
 
+% Unanchoring in the data
+\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+
 
 % Estimated coefficients alpha
 % materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
@@ -321,7 +325,8 @@ An Endogenous Gain Learning Model}
 \begin{frame}\label{motivation}
 	
 \begin{quote}
-Inflation that runs below its desired level can lead to an unwelcome fall in longer-term inflation expectations, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.[...] Well-anchored inflation expectations are critical[.]  \\
+Inflation that runs below its desired level can lead to an unwelcome fall in longer-term inflation expectations, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.
+[...] Well-anchored inflation expectations are critical[.]  \\
 Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020.} % Jackson Hole
 \end{quote}	
 
@@ -336,8 +341,8 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	
 
 \begin{figure}[h!]
-\includegraphics[scale = \myTinyFigScale]{\myFigPath \fignameMarketEPi}
 \caption{Expectations of average inflation over 10 years (market-based, \%)}
+\includegraphics[scale = \myTinyFigScale]{\myFigPath \fignameMarketEPi}
 \label{epi}
 \end{figure}
 
@@ -377,6 +382,8 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \begin{frame}
 	\frametitle{Preview of results}
 	
+	\vspace{0.5cm}
+	
 	\begin{itemize}
 %%	\item \ppFEunanchors pp forecast error unanchors expectations
 %
@@ -392,7 +399,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	\
 	
 	
-	\item[$\hookrightarrow$] Unanchored expectations introduce intertemporal stabilization and volatility tradeoffs, latter matters more 
+	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
 	
 	\
 	
@@ -404,6 +411,14 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	\
 	
 %	\item[$\hookrightarrow$]  E.g. for a 0.1 pp fall in long-run inflation expectations, lowers interest rate by \movei pp
+
+	\item Taylor rule policy less aggressive on inflation than under rational expectations
+	
+	\
+	
+	\
+	
+	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule involves 50\% less loss from volatility
 
 
 	\end{itemize}
@@ -480,17 +495,35 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Unanchoring in the data}
+%	\frametitle{Unanchoring in the data}
 
 \begin{figure}[h!]
-\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-\caption{Learning gain as a function of forecast errors in inflation (pp)}
-\label{epi}
+\caption{Inflation and expectations}
+\includegraphics[scale = 0.24]{\myFigPath \fignameEpiData}
+\label{pi_epi}
 \end{figure}
 
+\vspace{0.1cm}
 
+Second half of sample:
+
+1 pp forecast error $\rightarrow$ 4 bp revision in long-run expectations (p-val 0.0016)
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Unanchoring in the data}
+%
+%\begin{figure}[h!]
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
+%\caption{Learning gain as a function of forecast errors in inflation (pp)}
+%\label{epi}
+%\end{figure}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Model of anchoring expectations}
@@ -916,7 +949,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
     $\sigma_i$ &  0.01  &standard deviation of monetary policy shock*  \\ \hline %% <----
     $\sigma_u$ & 0.5 & standard deviation of cost-push shock   \\ \hline  
     $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
-    $\hat{\alpha}$ & (1; 0.5; 0; 0.5; 1) & approximating coefficients in anchoring function \\ \hline   
+    $\hat{\alpha}$ & (0.8; 0.4; 0; 0.4; 0.8) & approximating coefficients in anchoring function \\ \hline   
     %$\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
 %    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
 %    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
@@ -926,13 +959,13 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
       % \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
  \end{table}
 \end{center}
-% TABLE WAS UPDATED 3 JULY 2020. 
+% TABLE WAS UPDATED 29 AUGUST 2020. 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Optimal policy I - responding to unanchoring }
+	\frametitle{Optimal policy - responding to unanchoring }
 	
 \begin{figure}[h!]
 \includegraphics[scale=\mySmallFigScale]{\myFigPath \fignameDiDpibar}
@@ -942,21 +975,21 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Optimal policy II - a particular history }
-	
-\begin{figure}[h!]
-%\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Optimal policy II - a particular history }
+%	
+%\begin{figure}[h!]
+%%\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
+%%\hfill
+%\subfigure[Optimal policy]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsAnch}}
 %\hfill
-\subfigure[Optimal policy]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsAnch}}
-\hfill
-\subfigure[Taylor rule with 1.5 and 0.3 coefficients on inflation and the output gap]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
-\caption{Observables conditional on a particular evolution of shocks} 
-\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
+%\subfigure[Taylor rule with 1.5 and 0.3 coefficients on inflation and the output gap]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
+%\caption{Observables conditional on a particular evolution of shocks} 
+%\end{figure}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -993,11 +1026,11 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Optimal policy III - optimal Taylor-rule coefficients}
+	\frametitle{Optimal Taylor-coefficient on inflation}
 	
 \begin{figure}[h!]
+\caption{Central bank loss as a function of $\psi_{\pi} (\lambda_x = 0)$}
 \includegraphics[scale=0.28]{\myFigPath \fignameCBlossnilnil}
-\caption{CB loss as a function of $\psi_{\pi} (\lambda_x = 0)$}
 \end{figure} 
 
 \end{frame}
@@ -1021,7 +1054,38 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
+	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
+	
+% command_welfare.m: evaluate the loss for optimal policy
+\begin{center}
+\begin{table}[h!]
+\begin{tabular}{ c | c | c }
+ & RE & Anchoring \\  \hline
+%  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0.3$     & 5.3805  & 8.3714 \\  \hline
+ RE-optimal coefficient: $\psi_{\pi} =2.21$   &5.3148 &  13.6380 \\  \hline
+ Anchoring-optimal coefficient: $\psi_{\pi} =1.1$   & 5.4868  &  6.1446 \\  \hline
+% Optimal policy & na.  & $\approx 19.3928$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline  % For Calibration C, the estimate in grid_search_approx.m is 7, so I don't want to speak about it. command_welfare.m gives you 11.8336, so I don't wanna speak about it either. Also that took 19 min, whereas the PEA algorithm takes about 1 min! WTF?
+\end{tabular}     
+      \caption{Loss, RE against anchoring for baseline calibration}  
+      \label{table_welfare}
+ \end{table}
+\end{center}
+
+\
+
+\
+
+$\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}$ reduces losses by 50\%
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
 	\frametitle{Conclusion}
+
+\vspace{0.5cm}
 	
 \begin{itemize}
 \item First theory of monetary policy for potentially unanchored expectations 
@@ -1038,6 +1102,12 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 \
 
 \item Frontloads aggressive interest rate response to suppress potential unanchoring
+
+\
+
+\
+
+\item Matters: already anchoring-optimal Taylor rule reduces losses by 50\%
 
 \
 

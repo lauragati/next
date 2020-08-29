@@ -87,10 +87,14 @@ plot(time, spf10(1:end-1), 'linewidth', lw);
 ax = gca; % current axes
 ax.FontSize = fs;
 datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
 set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
-legend('CPI inflation (yoy, \%)', '1-year ahead SPF (annual, \%)', '10-year expected average inflation (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('CPI inflation (yoy, \%)', '1-year ahead forecast, SPF (annual, \%)', '10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
 legend('boxoff')
 
 figname = ['epi_in_data_', figspecs];
@@ -103,7 +107,7 @@ if print_figs ==1
     close
 end
 
-
+% return
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
@@ -112,6 +116,10 @@ plot(time, fe, 'linewidth', lw); hold on
 ax = gca; % current axes
 ax.FontSize = fs;
 datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
 set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
@@ -128,8 +136,17 @@ if print_figs ==1
     close
 end
 
-%% Regress LR-E on fe
+figure
+histogram(fe)
 
-mdl = fitlm(fe,infl)
+%% Regress LR-E on fe
+% first half of sample
+mdl = fitlm(fe(1:T/2),spf10(2:T/2+1))
+
+% second half of sample
+mdl = fitlm(fe(T/2+1:end),spf10(T/2+2:end))
+
+
+
 
 

@@ -36,7 +36,7 @@ else
     explode_t = zeros(T+ndrop,N);
     negk_t = zeros(T+ndrop,N);
     
-    for n=1:N
+    parfor n=1:N
         %         disp(['n = ', num2str(n)])
         e_n = squeeze(eN(:,:,n));
         v_n = squeeze(vN(:,:,n));
@@ -45,16 +45,16 @@ else
         
         k1(:,n) = 1./k(1:end-1); % cut off last period where k is unset
         
-        % Annualize inflation and inflation expectations
-        y(1,:) = ((y(1,:)/100+1).^4 -1)*100;
-        pibar = squeeze(phi(1,1,:));
+        % Annualize inflation and inflation expectations and interest rates
+        y([1,3],:) = ((y([1,3],:)/100+1).^4 -1)*100;
+        pibar = squeeze(phi(1,1,1:end-1))';
         pibar = ((pibar/100+1).^4 -1)*100;
         fe = ((fe/100+1).^4 -1)*100;
         
         if use_expectations_data == 0
             y_data = y(:,1:end-1);
         else
-            y_data = [y(:,1:end-1); squeeze(phi(1,1,1:end-1))'];
+            y_data = [y(:,1:end-1); pibar];
         end
         
         
