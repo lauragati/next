@@ -159,13 +159,46 @@ bottom=0.5in}
 \begin{figure}[h!]
 \subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_29_Aug_2020_12_50_04}}
 \subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_29_Aug_2020_12_50_04}}
-\caption{Calibration C}
+\caption{Calibration C, ridge tuning = 0.001}
 \end{figure}
 
+
 \begin{figure}[h!]
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath placeholder}}
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath placeholder}}
-\caption{Calibration C, \colorbox{yellow}{Use expectations}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_16_13_47}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_16_13_47}}
+\caption{Calibration C, ridge tuning = 0.001, \colorbox{yellow}{initialize at truth} (get the same thing if initialize above truth)}
+\end{figure}
+
+\clearpage %% with expectations
+
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_11_34_39}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_11_34_39}}
+\caption{Calibration C, \colorbox{yellow}{Use expectations, ridge tuning = 0.01}}
+\end{figure}
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_11_48_33}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_11_48_33}}
+\caption{Calibration C, \colorbox{yellow}{Use expectations, ridge tuning = 0.01, rescale W (new method)}}
+\end{figure}
+
+Increased minimum stepsize, functional value tolerance, finite difference stepsize, but to no avail.  
+
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_14_31_06}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_14_31_06}}
+\caption{Calibration C, \colorbox{yellow}{Use expectations, ridge tuning = 0.01, rescale W (new method), initialize at truth}}
+\end{figure}
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alphas_N_1000_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_14_34_43}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_sim_N_1000_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_31_Aug_2020_14_34_43}}
+\caption{Calibration C, \colorbox{yellow}{Use expectations, ridge tuning = 0.01, rescale W (new method), initialize at truth, N=1000}}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%
 

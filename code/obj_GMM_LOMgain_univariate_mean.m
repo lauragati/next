@@ -98,7 +98,7 @@ else
         % using the same lags p, K as for the real data
         
 %         [~,B,~,sigma] = sr_var(filt', p);
-        [B,~,sigma] = rf_var_ridge(filt', p, 0.001);
+        [B,~,sigma] = rf_var_ridge(filt', p, 0.001);% 0.001
         
 %         try
 %             [~,B,~,sigma] = sr_var(filt', p);

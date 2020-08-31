@@ -54,8 +54,8 @@ filename = 'acf_sim_univariate_data_calibC_27_Aug_2020'; % simulated data, Calib
 nfe = 5 % 5,7,9
 gridspacing = 'manual'; % uniform or uneven, or manual
 % grids for fe_{t|t-1}
-femax = 2; % 3.5
-femin = -femax;
+% femax = 2; % 3.5
+% femin = -femax;
 % upper and lower bounds for estimated coefficients
 ub = ones(nfe,1); %1
 lb = zeros(nfe,1); %0
@@ -67,14 +67,18 @@ Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
-use_smart_alph0=1;% default
+alph0 = [1,0.5,0,0.5,1]'
+% alph0 = [0.8,0.4,0,0.4,0.8]'
+
+use_smart_alph0=0;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
 est_shocks = 0;
 if est_shocks==1
     cross_section = 'Nsimulations';
 end
 scaleW =0; %0
-use_expectations_data=1; %1
+ryans_rescale = 0; % Per Ryan meeting 12 August 2020.
+use_expectations_data=0; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
@@ -89,8 +93,8 @@ options.MaxFunEvals = 700; % 700
 % options.TolX = 1e-9; % step tolerance: default 1.0000e-06
 options.UseParallel = 0; % 2/3 of the time
 h_sig = 100000;
-h_alph= 100000;
-% options.FiniteDifferenceStepSize = sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps)
+h_alph= 100;%100000
+% options.FiniteDifferenceStepSize = sqrt(eps)*[h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps); sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]
 %%%%%%%%%%%%%%%%%%%
 
 load([filename, '.mat'])
@@ -198,10 +202,25 @@ W1 = W^(-1);
 W1 = sqrt(W1); % elementwise sqrt.
 
 % Also per Ryan meeting 12 August 2020:
-maxSig = max(max(diag(sigboot)));
-minSig = min(min(diag(sigboot)));
+diag_sigboot = diag(sigboot);
+maxSig = max(max(diag_sigboot));
+minSig = min(min(diag_sigboot));
 maxminratio = maxSig/minSig; % Should be and is < 10e+6 if no expectations are used, on the order of 9e+7 or 1e+8 if expectations are used
 
+if ryans_rescale==1
+% Ryan's rescaling strategy
+threshold_ratio = 10e6;
+sigdiffs = maxSig ./ diag_sigboot;
+% how many too small elements do we have
+n_problems = sum(sigdiffs > threshold_ratio);
+% find the n problematic elements
+where = find(sigdiffs > threshold_ratio, n_problems, 'first');
+% fix the problematic elements of sigma to be 1/10000 the largest element
+% of sigma.
+diag_sigboot(where) = maxSig/10000;
+W = diag(diag_sigboot);
+W1 = inv(W);
+end
 
 % return
 
@@ -275,7 +294,8 @@ if use_smart_alph0==1
     alph0 = ndim_simplex(x,xxgrid(:)',k1);
 end
 
-
+femin = min(fegrid);
+femax = max(fegrid);
 % Finer sample
 ng_fine = 100;
 broaden = 2
@@ -424,6 +444,7 @@ switch cross_section
             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph0,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
             resnorm0 = sum(res0.^2)
             
+%             return
 %             [res0, Om0, FE0, Om_n0] = obj_GMM_LOMgain_univariate_mean(alph_true,x,fegrid_fine,param,gx,hx,eta,eN,vN,T,ndrop,PLM,gain,p,Om,W1,Wdiffs2,Wmid,Wmean,use_expectations_data,N);
 %             resnorm0 = sum(res0.^2)
 %             return
