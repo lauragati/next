@@ -19,12 +19,11 @@ stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_IRFs=1;
+plot_IRFs=0;
 plot_simulated_sequence = 0;
-plot_gains=1;
+plot_gains=0;
 plot_gain_IRF = 0;
-plot_IRFs_anch = 0; % conditional on being anchored when shock hits, not trivial for smooth anchoring
-skip_old_stuff = 1;
+plot_IRFs_anch = 1; % conditional on being anchored when shock hits, not trivial for smooth anchoring
 
 %% Parameters
 tic
@@ -62,6 +61,15 @@ x = cell(1,1);
 x{1} = fegrid;
 alph_true = [0.05;0.025;0;0.025;0.05];
 alph=alph_true;
+
+%% 27 August 2020: calibration C (Materials 43)
+
+alph = [0.8    0.4         0    0.4    0.8]'
+fegrid = [-4,-3,0,3,4]
+x{1} = fegrid;
+
+[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+
 
 %% Model selection and informational assumption
 
@@ -107,7 +115,7 @@ GIR_Y_LH = zeros(ny,h,N,nd);
 GIR_k = zeros(h,N,nd);
 k = zeros(T,N);
 ks= zeros(T,N);
-anch = zeros(1,N); % indicator for whether that sequence was anchored when the shock hit
+k_dt = zeros(1,N); % gain when the shock hit
 
 % warning off
 for s=2  %2->zoom in on monetary policy shock
@@ -136,6 +144,8 @@ for s=2  %2->zoom in on monetary policy shock
         iry = iry';
         RE_fcsts = gx*hx*irx';
         
+
+        
         % Learning
         for t=1:nd
             dt = dt_vals(t);
@@ -145,7 +155,7 @@ for s=2  %2->zoom in on monetary policy shock
             if gain ~= again_critsmooth
                 [~, ys_LH, ks(:,n), ~, ~, ~, ~, diffs] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,knowTR,mpshock, dt, x0);
             else
-                [~, ys_LH, ks(:,n), ~, ~, ~, ~,diffs] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock,dt,x0);
+                [~, ys_LH, ks(:,n), ~, ~, ~, ~,diffs, ~,~,~,~,k_dt(n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock,dt,x0);
             end
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
@@ -154,11 +164,25 @@ for s=2  %2->zoom in on monetary policy shock
         
     end
 end
+
+% Gather the gains when the shock hit and calculate 10 and 90 percentile in
+% the cross-section
+k1_dt_sort = sort(1./k_dt);
+if mod(N,10)~=0
+    k1_10 = k1_dt_sort(floor(N/10)+1);
+    k1_90 = k1_dt_sort(ceil(9*N/10)+1);
+elseif mod(N,10)==0
+    k1_10 = (k1_dt_sort(floor(N/10)) + k1_dt_sort(floor(N/10)+1)) /2;
+    k1_90 = (k1_dt_sort(ceil(9*N/10)) + k1_dt_sort(ceil(9*N/10)+1)) /2;
+end
+well_anch_idx = find(1./k_dt <= k1_10);
+unanch_idx = find(1./k_dt >= k1_90);
+
 % warning on
 % Construct RIRs by simple method: means (Option 1)
 RIR_Y_LH = squeeze(mean(GIR_Y_LH,3));
-% RIR_anch = squeeze(mean(GIR_Y_LH(:,:,find(anch)),3));
-% RIR_unanch = squeeze(mean(GIR_Y_LH(:,:,find(anch-1)),3));
+RIR_anch = squeeze(mean(GIR_Y_LH(:,:,well_anch_idx),3));
+RIR_unanch = squeeze(mean(GIR_Y_LH(:,:,unanch_idx),3));
 RIR_k = squeeze(mean(GIR_k,2));
 RIR_kinv = RIR_k;
 % only invert for nonzero elements
@@ -171,11 +195,13 @@ if stop_before_plots==1
     return
 end
 
-
+% return
 %% Plots
 
 shocknames = {'natrate', 'monpol','costpush'};
-titles_obs = {'Inflation','Output gap','Interest rate'};
+% titles_obs = {'Inflation','Output gap','Interest rate'};
+titles_obs = {'$\pi$','$x$','$i$'};
+
 titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
 titles_LH = {'fa', 'fb'};
 titles_FEs = {'FE^m_t(\pi_{t+1})', 'FE^e_t(\pi_{t+1})'};
@@ -267,7 +293,8 @@ if plot_IRFs_anch==1
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', anchored'];
         %         figtitle = '';
         %         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
-        create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,figname,print_figs)
+        xplus = 5;
+        create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
         
         clear series
         % 6) IRF: OBSERVABLES LH against RE, unanchored
@@ -282,7 +309,7 @@ if plot_IRFs_anch==1
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];
         %         figtitle = '';
         %         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
-        create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,figname,print_figs)
+        create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
     end
 end
 

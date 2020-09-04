@@ -1,4 +1,4 @@
-function create_pretty_subplots_holdon(y1,y2,seriesnames,legendentries,figname,print_figs)
+function create_pretty_subplots_holdon(y1,y2,seriesnames,legendentries,xlab,xplus,figname,print_figs)
 % y = ny x T
 [ny,T] = size(y1);
 
@@ -23,13 +23,17 @@ for i=1:ny
     h2(i) =   plot(y2(i,:), 'linewidth', lw);
     plot(zeros(1,T), 'k--', 'linewidth',lw)
     ax = gca; % current axes
-    ax.FontSize = fs;
+    ax.FontSize = fs/2;
     set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
-    title(seriesnames{i}, 'interpreter', 'latex')
+    title(seriesnames{i}, 'interpreter', 'latex', 'fontsize', fs)
     legend([h1(i), h2(i)], legendentries, 'location', 'southoutside', 'interpreter', 'latex')
     legend('boxoff')
+    if nargin == max_no_inputs
+    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs/2.5);
+    xl.Position(1) = xplus + xl.Position(1);
+    end
 end
 
 

@@ -4,7 +4,7 @@
 % In addition, this version does that for the univariate anchoring function
 % 21 June 2020
 % Udpdate 22 July 2020: added measurement error v
-function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff, explode_count, negk_count, explode_t, negk_t] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,v,...
+function [xsim, ysim, k, phi_seq, FA, FB, FEt_1,diff, explode_count, negk_count, explode_t, negk_t, k_dt] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T,ndrop,e,v,...
     knowTR,mpshock, dt, x0)
 
 this_code = mfilename;
@@ -187,6 +187,7 @@ for t = 1:T-1
     %%% here is the addition of the impulse
     if t+1==dt % dt = dt+ndrop (see top of code)
         e(:,t+1) = e(:,t+1)+x0';
+        k_dt = k(:,t); % gather the gain when the shock hits 
     end
     %%%
     xsim(:,t+1) = xesim + eta*e(:,t+1);

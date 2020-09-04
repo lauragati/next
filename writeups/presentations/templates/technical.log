@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 SEP 2020 11:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 SEP 2020 09:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1224,21 +1224,21 @@ LaTeX Warning: Label `g' multiply defined.
 )
 \openout1 = `technical.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 293.
-LaTeX Font Info:    ... okay on input line 293.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 293.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 294.
+LaTeX Font Info:    ... okay on input line 294.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 294.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
@@ -1307,7 +1307,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box93
-Package hyperref Info: Link coloring OFF on input line 293.
+Package hyperref Info: Link coloring OFF on input line 294.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1317,9 +1317,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count220
 )
-LaTeX Info: Redefining \ref on input line 293.
-LaTeX Info: Redefining \pageref on input line 293.
-LaTeX Info: Redefining \nameref on input line 293.
+LaTeX Info: Redefining \ref on input line 294.
+LaTeX Info: Redefining \pageref on input line 294.
+LaTeX Info: Redefining \nameref on input line 294.
 
 (./technical.out) (./technical.out)
 \@outlinefile=\write5
@@ -1328,41 +1328,41 @@ LaTeX Info: Redefining \nameref on input line 293.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/ppl/m/n on input line 293.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 293.
+(Font)                  OT1/cmr/m/n --> OT1/ppl/m/n on input line 294.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 293.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 293.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 293.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 294.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 293.
+(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 293.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 293.
+(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 294.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/ppl/m/it on input line 293.
+(Font)                  OT1/cmr/m/it --> OT1/ppl/m/it on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/ppl/m/it on input line 293.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 293.
+(Font)                  OT1/cmr/bx/it --> OT1/ppl/m/it on input line 294.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 293.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 293.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 294.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/ppl/m/n --> OT1/ppl/bx/n on input line 293.
+(Font)                  OT1/ppl/m/n --> OT1/ppl/bx/n on input line 294.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 293.
+(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 293.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/ppl/bx/n --> OT1/ppl/bx/n on input line 293.
+(Font)                  OT1/ppl/bx/n --> OT1/ppl/bx/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 293.
+(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 293.
+(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 294.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/pcr/m/n --> OT1/pcr/bx/n on input line 293.
+(Font)                  OT1/pcr/m/n --> OT1/pcr/bx/n on input line 294.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translato
 r-basic-dictionary/translator-basic-dictionary-English.dict
@@ -1388,7 +1388,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 r-theorem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 293.
+LaTeX Info: Redefining \includegraphics on input line 294.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1397,17 +1397,17 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.12} into 
 your preamble.
- on input line 293.
+ on input line 294.
 
 (./technical.nav) [1
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 317.
+LaTeX Font Info:    Try loading font information for U+msa on input line 318.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 317.
+LaTeX Font Info:    Try loading font information for U+msb on input line 318.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1422,27 +1422,27 @@ File: ../../../figures/lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_
 <use ../../../figures/lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_2
 4_50.png>
 Package pdftex.def Info: ../../../figures/lr_epi_in_data_command_anchoring_in_d
-ata_03_Sep_2020_09_24_50.png used on input line 335.
+ata_03_Sep_2020_09_24_50.png used on input line 336.
 (pdftex.def)             Requested size: 269.25528pt x 172.1427pt.
  [3
 
  <../../../figures/lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_24_5
 0.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 361.
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 362.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 361.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 362.
  [4
 
 ] [5
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 437.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 438.
 
 [6
 
@@ -1459,7 +1459,7 @@ File: ../../../figures/epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_
 <use ../../../figures/epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_4
 1.png>
 Package pdftex.def Info: ../../../figures/epi_in_data_command_anchoring_in_data
-_29_Aug_2020_12_10_41.png used on input line 488.
+_29_Aug_2020_12_10_41.png used on input line 489.
 (pdftex.def)             Requested size: 254.3956pt x 169.11525pt.
  [9
 
@@ -1474,11 +1474,11 @@ ng (PNG copy)>] [10
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 620.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 621.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 620.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 621.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 620.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 621.
  [14
 
 ] [15
@@ -1515,9 +1515,9 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 866.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 867.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 866.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 867.
  [30
 
 ] [31
@@ -1529,24 +1529,28 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
 ] [34
 
 ]
-Overfull \hbox (7.6506pt too wide) in paragraph at lines 982--982
+Overfull \hbox (7.6506pt too wide) in paragraph at lines 983--983
  [] 
  []
 
 [35
 
 ]
-<../../../figures/analyze_opt_policy_ip27_Aug_2020.png, id=355, 1063.975pt x 71
-8.685pt>
-File: ../../../figures/analyze_opt_policy_ip27_Aug_2020.png Graphic file (type 
+<../../../figures/analyze_opt_policy_ip04_Sep_2020.png, id=355, 1063.975pt x 79
+1.95876pt>
+File: ../../../figures/analyze_opt_policy_ip04_Sep_2020.png Graphic file (type 
 png)
- <use ../../../figures/analyze_opt_policy_ip27_Aug_2020.png>
-Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip27_Aug_2020.png 
-used on input line 994.
-(pdftex.def)             Requested size: 265.9931pt x 179.6708pt.
- [36
+ <use ../../../figures/analyze_opt_policy_ip04_Sep_2020.png>
+Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip04_Sep_2020.png 
+used on input line 995.
+(pdftex.def)             Requested size: 265.9931pt x 197.9892pt.
 
- <../../../figures/analyze_opt_policy_ip27_Aug_2020.png (PNG copy)>]
+Overfull \vbox (6.11752pt too high) detected at line 995
+ []
+
+[36
+
+ <../../../figures/analyze_opt_policy_ip04_Sep_2020.png (PNG copy)>]
 <../../../figures/command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUS
 UM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_the
 tbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png, id=362, 1421.3
@@ -1562,7 +1566,7 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_a
 nch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_
 5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_0
-6_05.png used on input line 1024.
+6_05.png used on input line 1025.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 
 <../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critC
@@ -1580,7 +1584,7 @@ ritCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_1
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020
-_06_05.png used on input line 1024.
+_06_05.png used on input line 1025.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
  [37
 
@@ -1602,10 +1606,10 @@ tant_only_pi_only_lamx0_05_lami0_2020_09_03.png Graphic file (type png)
 ant_only_pi_only_lamx0_05_lami0_2020_09_03.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_pretty_losses_ag
 ain_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_03.png used on inpu
-t line 1055.
+t line 1056.
 (pdftex.def)             Requested size: 294.81944pt x 201.23042pt.
 
-Overfull \vbox (9.35875pt too high) detected at line 1055
+Overfull \vbox (9.35875pt too high) detected at line 1056
  []
 
 [39
@@ -1627,10 +1631,10 @@ ritCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_202
-0_06_05.png used on input line 1071.
+0_06_05.png used on input line 1072.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1071.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1072.
 File: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_
 critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_
 145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png Graphic 
@@ -1642,7 +1646,7 @@ ritCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_1
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020
-_06_05.png used on input line 1071.
+_06_05.png used on input line 1072.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 
 <../../../figures/command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critC
@@ -1660,10 +1664,10 @@ _thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05.png>
 Package pdftex.def Info: ../../../figures/command_IFS_anchoring_pretty_RIR_LH_u
 nanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_
 2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_0
-6_05.png used on input line 1071.
+6_05.png used on input line 1072.
 (pdftex.def)             Requested size: 156.34457pt x 90.64894pt.
 
-Overfull \vbox (32.86603pt too high) detected at line 1071
+Overfull \vbox (32.86603pt too high) detected at line 1072
  []
 
 [40
@@ -1688,7 +1692,7 @@ pt>
 File: ../../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
  <use ../../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../../figures/cleaned_epi10_2020_07_28.png used on 
-input line 1229.
+input line 1230.
 (pdftex.def)             Requested size: 267.49872pt x 173.89926pt.
  [44
 
@@ -1700,7 +1704,7 @@ input line 1229.
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1325 \end{frame}
+l.1326 \end{frame}
                    [47
 
 ] [48
@@ -1725,11 +1729,11 @@ l.1325 \end{frame}
 \tf@snm=\write8
 \openout8 = `technical.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1522.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1522.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1523.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1523.
  (./technical.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1522.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1522.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1523.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1523.
 
 Package rerunfilecheck Info: File `technical.out' has not changed.
 (rerunfilecheck)             Checksum: FEC069DF9539C4CEA5F06B74C401D830;288.
@@ -1737,7 +1741,7 @@ Package rerunfilecheck Info: File `technical.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1522.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1523.
  ) 
 Here is how much of TeX's memory you used:
  32347 strings out of 493089
@@ -1773,7 +1777,7 @@ lic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 /urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/pa
 latino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/
 uplri8a.pfb>
-Output written on technical.pdf (53 pages, 879750 bytes).
+Output written on technical.pdf (53 pages, 883732 bytes).
 PDF statistics:
  615 PDF objects out of 1000 (max. 8388607)
  507 compressed objects within 6 object streams

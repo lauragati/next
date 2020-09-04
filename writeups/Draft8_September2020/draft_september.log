@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  3 SEP 2020 11:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 SEP 2020 09:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -654,15 +654,15 @@ _2020_09_16_29.png used on input line 435.
 ridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectatio
 ns_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29.png (
 PNG copy)>] [13] [14] [15] [16] [17] [18] [19] [20]
-<../../figures/analyze_opt_policy_ip27_Aug_2020.png, id=590, 1063.975pt x 718.6
-85pt>
-File: ../../figures/analyze_opt_policy_ip27_Aug_2020.png Graphic file (type png
+<../../figures/analyze_opt_policy_ip04_Sep_2020.png, id=590, 1063.975pt x 791.9
+5876pt>
+File: ../../figures/analyze_opt_policy_ip04_Sep_2020.png Graphic file (type png
 )
- <use ../../figures/analyze_opt_policy_ip27_Aug_2020.png>
-Package pdftex.def Info: ../../figures/analyze_opt_policy_ip27_Aug_2020.png use
+ <use ../../figures/analyze_opt_policy_ip04_Sep_2020.png>
+Package pdftex.def Info: ../../figures/analyze_opt_policy_ip04_Sep_2020.png use
 d on input line 621.
-(pdftex.def)             Requested size: 255.35922pt x 172.48792pt.
- [21 <../../figures/analyze_opt_policy_ip27_Aug_2020.png (PNG copy)>]
+(pdftex.def)             Requested size: 255.35922pt x 190.07399pt.
+ [21 <../../figures/analyze_opt_policy_ip04_Sep_2020.png (PNG copy)>]
 <../../figures/implement_anchTC_obs_TR_approx27_Aug_2020.png, id=619, 1054.9412
 5pt x 754.82pt>
 File: ../../figures/implement_anchTC_obs_TR_approx27_Aug_2020.png Graphic file 
@@ -694,7 +694,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [24]
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
-y_pi_only_lamx0_lami0_2020_09_03.png, id=669, 1065.9825pt x 688.5725pt>
+y_pi_only_lamx0_lami0_2020_09_03.png, id=668, 1065.9825pt x 688.5725pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_lamx0_lami0_2020_09_03.png Graphic file (type png)
 
@@ -706,7 +706,7 @@ _critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_03.png used on input line
 (pdftex.def)             Requested size: 213.19272pt x 137.71205pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
-y_pi_only_lamx1_lami0_2020_09_03.png, id=670, 1073.00874pt x 689.57625pt>
+y_pi_only_lamx1_lami0_2020_09_03.png, id=669, 1073.00874pt x 689.57625pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_lamx1_lami0_2020_09_03.png Graphic file (type png)
 
@@ -718,7 +718,7 @@ _critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_03.png used on input line
 (pdftex.def)             Requested size: 214.59795pt x 137.9128pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
-y_pi_only_lamx0_lami1_2020_09_03.png, id=671, 1054.94125pt x 688.5725pt>
+y_pi_only_lamx0_lami1_2020_09_03.png, id=670, 1054.94125pt x 688.5725pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_lamx0_lami1_2020_09_03.png Graphic file (type png)
 
@@ -730,7 +730,7 @@ _critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_03.png used on input line
 (pdftex.def)             Requested size: 210.98451pt x 137.71205pt.
 
 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_onl
-y_pi_only_lamx1_lami1_2020_09_03.png, id=672, 1074.0125pt x 688.5725pt>
+y_pi_only_lamx1_lami1_2020_09_03.png, id=671, 1074.0125pt x 688.5725pt>
 File: ../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
 t_only_pi_only_lamx1_lami1_2020_09_03.png Graphic file (type png)
 
@@ -740,14 +740,18 @@ Package pdftex.def Info: ../../figures/plot_sim_loss_approx_pretty_losses_again
 _critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_03.png used on input line
  687.
 (pdftex.def)             Requested size: 214.79869pt x 137.71205pt.
- [25 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constan
-t_only_pi_only_lamx0_lami0_2020_09_03.png (PNG copy)> <../../figures/plot_sim_l
-oss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_202
-0_09_03.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_again
-_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_03.png (PNG copy)> <../..
-/figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_o
-nly_lamx1_lami1_2020_09_03.png (PNG copy)>] [26] [27] [28] [29] [30] (./draft_s
-eptember.bbl [31
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25] [26 <../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_con
+stant_only_pi_only_lamx0_lami0_2020_09_03.png (PNG copy)> <../../figures/plot_s
+im_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0
+_2020_09_03.png (PNG copy)> <../../figures/plot_sim_loss_approx_pretty_losses_a
+gain_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_03.png (PNG copy)> <.
+./../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_
+pi_only_lamx1_lami1_2020_09_03.png (PNG copy)>] [27] [28] [29] [30]
+(./draft_september.bbl [31
 
 ] [32] [33]) [34]
 <../../figures/cleaned_epi10_2020_07_28.png, id=784, 1069.9975pt x 695.59875pt>
@@ -966,6 +970,9 @@ Package rerunfilecheck Info: File `draft_september.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1076.
  ) 
 Here is how much of TeX's memory you used:
@@ -999,7 +1006,7 @@ st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist
 onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_september.pdf (49 pages, 1565437 bytes).
+Output written on draft_september.pdf (49 pages, 1569408 bytes).
 PDF statistics:
  1184 PDF objects out of 1200 (max. 8388607)
  1079 compressed objects within 11 object streams
