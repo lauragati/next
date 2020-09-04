@@ -184,6 +184,28 @@
 %\newtheorem{corollary}{Corollary}
 
 
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update: 27 August 2020 using Calibration C from Materials 43
+
+% Empirical numbers
+% mean estimated alpha
+\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.05}
+% pp forecast error that unanchors
+\def\ppFEunanchors{1 }
+
+% Optimal policy numbers
+% for 1% fe, you get a change in pibar of
+\def\betPibFe{0.0906 } % analyze_opt_policy.m
+% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
+\def\ppMoveFFR{4.53 }
+
 %%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL VARIABLE NUMBERS HERE
 %%%%%%%%%%%%%%%%%%%%
@@ -217,9 +239,6 @@
 % cleaned from liq premium
 \def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
 
-% SPF long-run-e
-\def\fignameSPFEPi{lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_24_50}
-
 % Unanchoring in the data
 \def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
 \def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
@@ -242,11 +261,11 @@
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
 % Note 25 August: update with convention: RE red, anchoring blue.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_03}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_03}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_03}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_03}
-\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_03}
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_08_27}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_08_27}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_08_27}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_08_27}
+
 
 
 % Autocovariogram
@@ -285,7 +304,7 @@
 An Endogenous Gain Learning Model}
 % note: in the [] you can put a short title to be displayed in the footer
 
-\date[]{TO DO April 15, 2020}
+\date[]{Dissertation Workshop \\ \vspace{0.25cm} September 1, 2020}
 % note: in the [] you can put a short date to be displayed in the footer
 
 %%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
@@ -322,8 +341,8 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	
 
 \begin{figure}[h!]
-\caption{Expectations of average inflation over 10 years}
-\includegraphics[scale = 0.25]{\myFigPath \fignameSPFEPi}
+\caption{Expectations of average inflation over 10 years (market-based, \%)}
+\includegraphics[scale = \myTinyFigScale]{\myFigPath \fignameMarketEPi}
 \label{epi}
 \end{figure}
 
@@ -342,7 +361,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	\frametitle{This project}
 	
 	\begin{itemize}
-	\item How to conduct monetary policy in interaction with the anchoring expectation formation?
+	\item How to conduct optimal monetary policy in interaction with the anchoring expectation formation?
 	%How does a concern to anchor expectations affect the conduct of monetary policy?	
 	
 	\
@@ -375,12 +394,12 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 %	
 	\item Optimal monetary policy responsiveness time-varying 
 	
-%	\
-%	
-%	\
-%	
-%	
-%	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
+	\
+	
+	\
+	
+	
+	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
 	
 	\
 	
@@ -399,7 +418,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	
 	\
 	
-	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 90\% of loss from volatility
+	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule involves 50\% less loss from volatility
 
 
 	\end{itemize}
@@ -484,34 +503,11 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \label{pi_epi}
 \end{figure}
 
+\vspace{0.1cm}
 
-\end{frame}
-%%%%%%%%%%%%%%%%%
+Second half of sample:
 
-%%%%%%% Slide %%%%%%
-\begin{frame}
-%	\frametitle{Unanchoring in the data}
-
-
-Second half of sample: estimate
-
-\begin{align*}
-\bar{\pi}_t = & \beta_0 + \beta_1 fe_{t|t-1} + \epsilon_t \numberthis \\
-\\
-\bar{\pi}_t & \equiv \E_t(\pi_{t+10})\numberthis \\
-fe_{t|t-1} & \equiv \pi_t - \E_{t-1}(\pi_t) \numberthis
-\end{align*}
-
-\
-
-\
-
-$\hat{\beta}_1 = 0.04 \quad $  (p-value: 0.0016)
-
-\
-
-
-1 pp forecast error $\rightarrow$ 4 bp revision in long-run expectations
+1 pp forecast error $\rightarrow$ 4 bp revision in long-run expectations (p-val 0.0016)
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
@@ -725,16 +721,16 @@ $\rightarrow$ RLS
 $k_t = \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})}$: anchoring function
 \pause
 \begin{equation}
- \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})} = \sum_i\alpha_i b_i(fe_{t|t-1})\label{gain}
+ \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})} = \alpha b(fe_{t|t-1})\label{gain}
 \end{equation}
 
 \
 
-$ b_i(fe_{t|t-1}) = $ basis, here: second order spline (piecewise linear) \\
+$ b(fe_{t|t-1}) = $ basis, here: second order spline (piecewise linear) \\
 
 \
 
-$\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimation
+$\alpha  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimation
 
 \vfill 
 
@@ -808,7 +804,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 	\frametitle{Target criterion}
 	\label{anchTC}
 	
-	\begin{prop} 
+	\begin{result} 
 
 \
 
@@ -826,7 +822,7 @@ In the model with anchoring, monetary policy optimally brings about the followin
 \
 
 where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, $\; \prod_{j=0}^{0} \equiv 1 \; $ and $b_1$ is the first row of $b$.
-	\end{prop}
+	\end{result}
 
 \vspace{-0.1cm}
 
@@ -914,7 +910,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 
 \
 
-\item[] $\hookrightarrow$ solve using parameterized expectations (PEA)
+\item[] $\hookrightarrow$ solve using parameterized expectations (PEA) and value function iteration (VFI)
 
 \
 
@@ -931,54 +927,39 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Calibration - parameters from the literature}
+	\frametitle{Calibration}
 
 \begin{center}
 \begin{table}
 \begin{tabular}{ c | c  | l }
-\hline
  $\beta$ & 0.98 & stochastic discount factor \\  \hline
  $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
  $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
  $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
  $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
- $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule*  \\\hline 
- $\bar{g}$ & $0.145$  & initial value of the gain \\\hline 
- $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  
- $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline 
- $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
- $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
-   \end{tabular}     
-   \label{calibration_lit}
- \end{table}
-\end{center}
-% TABLES WERE UPDATED 29 AUGUST 2020. 
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Calibration - matching moments}
-
-\begin{center}
-\begin{table}
-\begin{tabular}{ c | c  | l }
-\hline
+ $\psi_x$ & 0   & coefficient of the output gap in Taylor rule*  \\\hline %% <---- Diffs. wrt calibration2
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline %% <----
+%& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+% $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
+%  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
+    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
     $\sigma_r$ & 0.01 & standard deviation of natural rate shock  \\ \hline
-    $\sigma_i$ &  0.01  &standard deviation of monetary policy shock*  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation of monetary policy shock*  \\ \hline %% <----
     $\sigma_u$ & 0.5 & standard deviation of cost-push shock   \\ \hline  
+    $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
     $\hat{\alpha}$ & (0.8; 0.4; 0; 0.4; 0.8) & approximating coefficients in anchoring function \\ \hline   
+    %$\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
+%    $\rho_k$ & 0.5 & persistence of the gain in the smooth anchoring function   \\ \hline  % <----
+%    $\gamma_k$ & 0.001 & weight on squared forecast errors in the smooth anchoring function   \\ \hline   % <----
 \end{tabular}     
+%      \caption{Calibrated parameters} 
        \label{calibration}
+      % \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
  \end{table}
 \end{center}
-
-\
-
-\
-
-
-Picked to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
+% TABLE WAS UPDATED 29 AUGUST 2020. 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
@@ -988,7 +969,7 @@ Picked to match the autocovariances of inflation, output gap, interest rate and 
 	
 \begin{figure}[h!]
 \includegraphics[scale=\mySmallFigScale]{\myFigPath \fignameDiDpibar}
-\caption{Policy function: $i(\bar{\pi}, \text{all other states at their means})$}
+\caption{Comparative statics of the policy function: $\partial i / \partial \bar{\pi}$}
 \end{figure} 
 
 \end{frame}
@@ -1048,8 +1029,8 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 	\frametitle{Optimal Taylor-coefficient on inflation}
 	
 \begin{figure}[h!]
-\caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.28]{\myFigPath \fignameCBlossbaseline}
+\caption{Central bank loss as a function of $\psi_{\pi} (\lambda_x = 0)$}
+\includegraphics[scale=0.28]{\myFigPath \fignameCBlossnilnil}
 \end{figure} 
 
 \end{frame}
@@ -1075,43 +1056,17 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 \begin{frame}
 	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
 	
-%% command_welfare.m: evaluate the loss for optimal policy
-%\begin{center}
-%\begin{table}[h!]
-%\begin{tabular}{ c | c | c }
-% & RE & Anchoring \\  \hline
-%%  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0.3$     & 5.3805  & 8.3714 \\  \hline
-% RE-optimal coefficient: $\psi_{\pi} =2.21$   &5.3148 &  13.6380 \\  \hline
-% Anchoring-optimal coefficient: $\psi_{\pi} =1.1$   & 5.4868  &  6.1446 \\  \hline
-%% Optimal policy & na.  & $\approx 19.3928$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline  % For Calibration C, the estimate in grid_search_approx.m is 7, so I don't want to speak about it. command_welfare.m gives you 11.8336, so I don't wanna speak about it either. Also that took 19 min, whereas the PEA algorithm takes about 1 min! WTF?
-%\end{tabular}     
-%      \caption{Loss, RE against anchoring for baseline calibration}  
-%      \label{table_welfare}
-% \end{table}
-%\end{center}
-
-RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
-
-\
-
-Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$
-
-\
-
-\
-
-\
-
-
+% command_welfare.m: evaluate the loss for optimal policy
 \begin{center}
 \begin{table}[h!]
-      \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
-
 \begin{tabular}{ c | c | c }
-%\hline
-Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ \\  \hline
- 13.6380  & 6.1446 & 5.3148  \\  \hline
+ & RE & Anchoring \\  \hline
+%  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0.3$     & 5.3805  & 8.3714 \\  \hline
+ RE-optimal coefficient: $\psi_{\pi} =2.21$   &5.3148 &  13.6380 \\  \hline
+ Anchoring-optimal coefficient: $\psi_{\pi} =1.1$   & 5.4868  &  6.1446 \\  \hline
+% Optimal policy & na.  & $\approx 19.3928$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline  % For Calibration C, the estimate in grid_search_approx.m is 7, so I don't want to speak about it. command_welfare.m gives you 11.8336, so I don't wanna speak about it either. Also that took 19 min, whereas the PEA algorithm takes about 1 min! WTF?
 \end{tabular}     
+      \caption{Loss, RE against anchoring for baseline calibration}  
       \label{table_welfare}
  \end{table}
 \end{center}
@@ -1120,7 +1075,7 @@ Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE
 
 \
 
-$\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}^A$ gets 90\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
+$\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}$ reduces losses by 50\%
 
 
 \end{frame}

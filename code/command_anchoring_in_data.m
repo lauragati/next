@@ -13,7 +13,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -77,6 +77,42 @@ timestr = datestr(time,'yyyy-qq');
 
 %% Do some nice interesting plots
 figspecs = [this_code, '_', nowstr];
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time, spf10(1:end-1), 'linewidth', lw); 
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% ylab = ylabel('\%', 'interpreter', 'latex');
+% % Rotate ylabel and put it on top
+% ylab.Position
+% ylab.Rotation = 0
+% ylab.Position(1) = ylab.Position(1) - 500; % move left
+% ylab.Position(2) = ylab.Position(2)*1.3; % move up
+
+legend('10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
+
+figname = ['lr_epi_in_data_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% return
 
 figure
 set(gcf,'color','w'); % sets white background color

@@ -1,4 +1,4 @@
-function create_pretty_plot_x_holdon(x,y,legendentries,figname,print_figs)
+function create_pretty_plot_x_holdon(x,y,legendentries,xlab, ylab,xlmult, ylmult, figname,print_figs)
 % create a single plot with several series on it (no subplots here!)
 % y = ny x T
 [ny,T] = size(y);
@@ -29,7 +29,15 @@ grid minor
 legend(h, legendentries, 'location', 'southoutside', 'interpreter', 'latex')
 legend('boxoff')
 ax.XAxis.Limits = round(x([1,end]),1); % this is like the 'keeplimits' for dateticks
-
+if nargin == max_no_inputs
+    xl = xlabel(xlab,'interpreter', 'latex');
+    xl.Position(1) = xlmult* abs(xl.Position(1));
+    
+    yl = ylabel(ylab,'interpreter', 'latex');
+    yl.Rotation = 0; % rotate
+    yl.Position(1) = ylmult(1) * yl.Position(1); % move left
+    yl.Position(2) = ylmult(2) * yl.Position(2); % move up
+end
 
 if print_figs ==1
     disp(figname)

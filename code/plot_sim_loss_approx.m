@@ -157,8 +157,8 @@ x{1} = fegrid;
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-setp.lamx  = 0.05;
-setp.lami  = 0;
+setp.lamx  = 1;
+setp.lami  = 1;
 
 pis_x_here = 0.3;
 
@@ -178,7 +178,7 @@ if compute_loss==1
     M = 30;%30
     loss = zeros(1,M);
     loss_RE = zeros(1,M);
-    psi_pi_vals = linspace(1,1.4,M);
+    psi_pi_vals = linspace(1,2,M);
 %     pis_x_here = 0;
     parfor m=1:M
         if mod(m,10)==0
@@ -230,7 +230,11 @@ if print_figs==1
 %     figname = [this_code, '_pretty', '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
 %     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
     
-    figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', num2str(setp.lamx), '_lami', num2str(setp.lami), '_', date_today];
+    figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
     y = [loss; loss_RE];
-    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},figname,print_figs)
+    % 
+    xlmult = 1.3;
+    ylmult = [1.12, 3]; % delete it
+%     ylmult = [1.1, 1.5]; % lamx = 0.05
+    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},'$\psi_{\pi}$','Loss',xlmult, ylmult, figname,print_figs)
 end

@@ -31,7 +31,7 @@ sgrid = linspace(-sig_r,sig_r,ns);
 
 % value_output_name = 'value_outputs_approx30_Jun_2020_10_19_45'; % univariate approximated LOM gain
 % value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain % materials 37
-% value_output_name = 'value_outputs_approx27_Aug_2020_14_18_38'; % Calibration C of Materials 43;  pgrid = linspace(-0.1,0.1,np); 
+% value_output_name = 'value_outputs_approx27_Aug_2020_14_18_38'; % Calibration C of Materials 43;  pgrid = linspace(-0.1,0.1,np);
 value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
 
 load([value_output_name, '.mat'])
@@ -47,7 +47,7 @@ pgrid  = value_sols{6};
 % take the history of states from parametric expectations
 % pea_output_name = 'pea_outputs_approx30_Jun_2020_09_39_12'; % univariate approximated LOM gain
 % pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0) % materials 37
-% pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration 
+% pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration
 pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
@@ -94,9 +94,11 @@ i_p = fnval(ppi,[pibvals;smean;smean;smean;smean]);
 % i_p =  ((i_p/100+1).^4 -1)*100;
 % pibvals =  ((pibvals/100+1).^4 -1)*100;
 
+xlplus = [0.1, 0.3];
+ylplus = [0.02, 6.1]; 
+create_pretty_plot_x(pibvals,i_p,'$\bar{\pi}$','$i(\bar{\pi}, \cdot)$',xlplus, ylplus,[this_code, '_ip', todays_date],print_figs)
 
-create_pretty_plot_x(pibvals,i_p,[this_code, '_ip', todays_date],print_figs)
-
+return
 
 %% Regress i on pi and x - this is just to see that under optimal policy, the CB responds much more to inflation and x than under TR
 X = [ones(size(i_pe)); ysim7(1,2:end-1); ysim7(2,2:end-1)]';
@@ -134,7 +136,7 @@ R2 = 1 - SSR/SST;
 mdl = fitlm(X(:,2:end),Y)
 
 % Calculation 30 July 2020
-% So if pibt_1 = 0, and forecast error increases by 1, 
+% So if pibt_1 = 0, and forecast error increases by 1,
 % we know from the estimated figure that the gain increases to 0.02, so the
 % change in pibar wrt fe is:
 betPibFe = 0.02*bet_ols(2)+bet_ols(4);
