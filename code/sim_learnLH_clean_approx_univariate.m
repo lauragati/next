@@ -187,6 +187,7 @@ for t = 1:T-1
     %%% here is the addition of the impulse
     if t+1==dt % dt = dt+ndrop (see top of code)
         e(:,t+1) = e(:,t+1)+x0';
+    elseif t==dt
         k_dt = k(:,t); % gather the gain when the shock hits 
     end
     %%%

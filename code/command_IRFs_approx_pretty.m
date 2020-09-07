@@ -14,16 +14,16 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
 plot_IRFs=0;
 plot_simulated_sequence = 0;
-plot_gains=0;
+plot_gains=1;
 plot_gain_IRF = 0;
-plot_IRFs_anch = 1; % conditional on being anchored when shock hits, not trivial for smooth anchoring
+plot_IRFs_anch = 0; % conditional on being anchored when shock hits, not trivial for smooth anchoring
 
 %% Parameters
 tic
@@ -70,6 +70,13 @@ x{1} = fegrid;
 
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
+%% Varying stuff
+
+% 2 std-dev monpol shock
+sig_i = 2*sig_i;
+param.sig_i = sig_i;
+
+% param.psi_pi = 1.01; %1.01, 2
 
 %% Model selection and informational assumption
 
@@ -165,6 +172,11 @@ for s=2  %2->zoom in on monetary policy shock
     end
 end
 
+% Annualize inflation and interest rates
+GIR_Y_LH([1,3],:,:) =  ((GIR_Y_LH([1,3],:,:)/100+1).^4 -1)*100;
+iry([1,3],:,:) =  ((iry([1,3],:,:)/100+1).^4 -1)*100;
+
+
 % Gather the gains when the shock hit and calculate 10 and 90 percentile in
 % the cross-section
 k1_dt_sort = sort(1./k_dt);
@@ -218,6 +230,8 @@ for i=1:size(param_names_vals,2)
     relevant_params = [relevant_params, '_', param_names_vals{i}];
 end
 
+figspecs = ['_',this_code, '_', date_today];
+
 if plot_IRFs==1
     for t=1:nd % for the two diff times of imposing the shock
         dt = dt_vals(t);
@@ -258,11 +272,11 @@ if plot_gains==1
     yseries=mean(1./k,2)';
     xseries=1:T;
     seriesnames = 'k^{-1}';
-    figname = [this_code, '_', 'invgain','_', gain_name, '_', PLM_name ,  '_', relevant_params,'_', date_today];
+    figname = ['gain_sim_psi_pi_' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];
     figtitle = ['Gains ; ' , gain_title];
-    %     figtitle = '';
-    %     create_plot(xseries,yseries,seriesnames,figname,print_figs,figtitle)
-    create_pretty_plot_x(xseries, yseries,figname,print_figs)
+    xlplus = [200,0.001];
+    ylplus = [-100,0];
+    create_pretty_plot_x(xseries, yseries,'Quarters','$k$',xlplus,ylplus,figname,print_figs)
     
 end
 
@@ -285,14 +299,10 @@ if plot_IRFs_anch==1
         % 5) IRF: OBSERVABLES LH against RE, anchored
         series1 = RIR_anch(:,:,t);
         series2 = iry;
-        figname = [this_code, '_', 'RIR_LH_anch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', ...
-            'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(ndrop),'_', ...
-            relevant_params, '_date_',date_today];
+        figname = ['RIR_anch_psi_pi' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', anchored'];
-        %         figtitle = '';
-        %         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
         xplus = 5;
         create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
         
@@ -300,10 +310,7 @@ if plot_IRFs_anch==1
         % 6) IRF: OBSERVABLES LH against RE, unanchored
         series1 = RIR_unanch(:,:,t);
         series2 = iry;
-        figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', ...
-            'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(ndrop),'_', ...
-            relevant_params, '_date_',date_today];
-        %         figname = [this_code, '_', 'RIR_LH_unanch_' shocknames{s}, '_', gain_name, '_', PLM_name , '_', param_names_vals{1}, '_', date_today];
+        figname = ['RIR_unanch_psi_pi' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];

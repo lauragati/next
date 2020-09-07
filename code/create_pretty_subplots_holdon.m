@@ -20,10 +20,10 @@ set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 for i=1:ny
     subplot(1,ny,i)
     h1(i) =   plot(y1(i,:), 'linewidth', lw); hold on
-    h2(i) =   plot(y2(i,:), 'linewidth', lw);
+    h2(i) =   plot(y2(i,:), 'linewidth', lw, 'linestyle', '--');
     plot(zeros(1,T), 'k--', 'linewidth',lw)
     ax = gca; % current axes
-    ax.FontSize = fs/2;
+    ax.FontSize = fs/1.2;
     set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
@@ -31,9 +31,11 @@ for i=1:ny
     legend([h1(i), h2(i)], legendentries, 'location', 'southoutside', 'interpreter', 'latex')
     legend('boxoff')
     if nargin == max_no_inputs
-    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs/2.5);
+    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs/2);
     xl.Position(1) = xplus + xl.Position(1);
     end
+%     ax.YAxis.Exponent = 0;
+%     ax.YRuler.Exponent = 0; % turns off scientific notation
 end
 
 

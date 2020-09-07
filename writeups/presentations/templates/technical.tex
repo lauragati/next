@@ -257,21 +257,18 @@
 \def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx27_Aug_2020_14_28_32_pea_outputs_approx27_Aug_2020_14_45_53_pretty_27_Aug_2020_16_21_47}
 
 % IRFs anchored vs unanchored
-% done
-\def\fignameIRFanchored{command_IFS_anchoring_pretty_RIR_LH_anch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
-\def\fignameIRFunanchored{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
 
 % Cross-sectional average gains for various psi_pi
-% done
-\def\fignameGainPsiSmall{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
-\def\fignameGainPsiMedium{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
-\def\fignameGainPsiBig{command_IFS_anchoring_pretty_invgain_again_critCUSUM_constant_only_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_2020_06_05}
+\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_07}
 
 % IRFs unanchored for various psi_pi
-% done
-\def\fignameIRFpsipiSmall{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_01_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
-\def\fignameIRFpsipiMedium{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_1_5_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
-\def\fignameIRFpsipiBig{command_IFS_anchoring_pretty_RIR_LH_unanch_monpol_again_critCUSUM_constant_only_T_400_N_1000_burnin_5_params_psi_pi_2_psi_x_0_gbar_0_145_thetbar_16_thettilde_2_5_kap_0_8_lamx_0_lami_0_date_2020_06_05}
+\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_07}
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -516,21 +513,7 @@ $\hat{\beta}_1 = 0.04 \quad $  (p-value: 0.0016)
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-%\begin{frame}
-%	\frametitle{Unanchoring in the data}
-%
-%\begin{figure}[h!]
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-%\caption{Learning gain as a function of forecast errors in inflation (pp)}
-%\label{epi}
-%\end{figure}
-%
-%
-%\end{frame}
-%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Model of anchoring expectations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -711,6 +694,39 @@ $\rightarrow$ RLS
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
+	\frametitle{Decreasing versus constant gain}
+	\label{cgain_dgain}
+	
+Decreasing gain learning:
+
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\frac{1}{t} \; fe_{t|t-1}
+\end{equation}
+ 
+ \
+ 
+ $\rightarrow$ consider sample mean of full sample of forecast errors
+ 
+\
+
+\
+
+\
+
+Constant gain learning:
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; fe_{t|t-1}
+\end{equation}
+
+ \
+ 
+ $\rightarrow$ consider sample mean of most recent observations only 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
 	\frametitle{Anchoring mechanism: endogenous gain}
 	\label{anchoring1}
 
@@ -745,6 +761,22 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Anchoring function in the data}
+%
+%\begin{figure}[h!]
+%\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
+%\caption{Learning gain as a function of forecast errors in inflation (pp)}
+%\label{epi}
+%\end{figure}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -1016,8 +1048,8 @@ Picked to match the autocovariances of inflation, output gap, interest rate and 
 	\frametitle{The intertemporal volatility tradeoff}
 
 \begin{figure}[h!]
-\subfigure[Expectations anchored]{\includegraphics[scale = 0.11]{\myFigPath \fignameIRFanchored}}
-\subfigure[Expectations unanchored]{\includegraphics[scale = 0.11]{\myFigPath \fignameIRFunanchored}}
+\subfigure[Expectations anchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFanchored}}
+\subfigure[Expectations unanchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFunanchored}}
 \caption{Impulse responses after a contractionary monetary policy shock}
 \label{IRF}
 \end{figure}	
@@ -1061,9 +1093,10 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 	\frametitle{The intertemporal volatility tradeoff - again}
 
 \begin{figure}[h!]
-\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.11]{\myFigPath \fignameIRFpsipiSmall}}
-\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.11]{\myFigPath \fignameIRFpsipiMedium}}
-\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.11]{\myFigPath \fignameIRFpsipiBig}}
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
+%\hfill
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
 \caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
 %\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
 \label{IRF_unanchored_psi}
