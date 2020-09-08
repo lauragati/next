@@ -1,4 +1,4 @@
-function create_pretty_plot_holdon(y,legendentries,figname,print_figs)
+function create_pretty_plot_holdon(y,legendentries,xlab,ylab,xlplus, ylplus,figname,print_figs)
 % create a single plot with several series on it (no subplots here!)
 % y = ny x T
 [ny,T] = size(y);
@@ -27,7 +27,20 @@ set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
 legend(h, legendentries, 'location', 'southoutside', 'interpreter', 'latex')
-    legend('boxoff')
+legend('boxoff')
+
+if nargin == max_no_inputs
+    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*3/4);
+    xl.Position(1) = xlplus(1) + xl.Position(1);
+    xl.Position(2) = xlplus(2) + xl.Position(2);
+    
+    
+    yl = ylabel(ylab,'interpreter', 'latex');
+    yl.Rotation = 0; % rotate
+    yl.Position(1) = ylplus(1) + yl.Position(1); % move left
+    yl.Position(2) = ylplus(2) + yl.Position(2); % move up
+    
+end
 
 
 if print_figs ==1

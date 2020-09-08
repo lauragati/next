@@ -363,6 +363,7 @@ for i=1:nobs
         ax = gca; % current axes
         ax.FontSize = fs*3/4;
         ax.YRuler.Exponent = 0; % turns off scientific notation
+%         xlabel('Lags', 'interpreter', 'latex', 'fontsize', fs/2)
         set(gca,'TickLabelInterpreter', 'latex');
         grid on
         grid minor

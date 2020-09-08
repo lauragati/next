@@ -1,4 +1,4 @@
-function create_pretty_subplots(y,seriesnames,figname,print_figs)
+function create_pretty_subplots(y,seriesnames,xlab,ylab,xlplus, ylplus,figname,print_figs)
 % y = ny x T
 [ny,T] = size(y);
 
@@ -27,6 +27,20 @@ for i=1:ny
     grid on
     grid minor
     title(seriesnames{i}, 'interpreter', 'latex')
+    
+    if nargin == max_no_inputs
+        xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*3/4);
+        xl.Position(1) = xlplus(1) + xl.Position(1);
+        xl.Position(2) = xlplus(2) + xl.Position(2);
+        
+        
+        yl = ylabel(ylab,'interpreter', 'latex');
+        yl.Rotation = 0; % rotate
+        yl.Position(1) = ylplus(1) + yl.Position(1); % move left
+        yl.Position(2) = ylplus(2) + yl.Position(2); % move up
+        
+    end
+    
 end
 
 

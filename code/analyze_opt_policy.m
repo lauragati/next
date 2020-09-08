@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -77,7 +77,7 @@ pibsim = squeeze(phi7(1,1,2:end-1))';
 % min(pibsim) % -0.0438, -0.0931
 
 % get 10th and 90th percentile of k1 (measures of anchored and unanchored)
-k1sim_sort = sort(k(:,n));
+k1sim_sort = sort(k1sim);
 if mod(T,10)~=0
     k1_10 = k1sim_sort(floor(T/10)+1);
     k1_90 = k1sim_sort(ceil(9*T/10)+1);

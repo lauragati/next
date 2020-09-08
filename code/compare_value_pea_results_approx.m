@@ -109,9 +109,17 @@ policies = [i_pe; i_vi];
 
 
 % % save some nice plots for draft and prezis
-create_pretty_plot_holdon(policies, {'PEA', 'VFI'},[this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
-create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'}, ['implement_anchTC_obs_approx', nowstr], print_figs)
-create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), ['implement_anchTC_invgain', nowstr], print_figs)
-create_pretty_plot_x(1:T,pibsim, ['implement_anchTC_pibar', nowstr], print_figs)
+xlab = 'Quarters';
+ylab = 'dont display';
+
+xlplus = [45,0.01];
+ylplus = [-400,0];
+create_pretty_plot_holdon(policies, {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
+create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx', nowstr], print_figs)
+
+xlplus = [45,0.0025];
+ylplus = [-100,0];
+create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), xlab,ylab,xlplus, ylplus,['implement_anchTC_invgain', nowstr], print_figs)
+create_pretty_plot_x(1:T,pibsim,xlab,ylab,xlplus, ylplus,['implement_anchTC_pibar', nowstr], print_figs)
 
 
