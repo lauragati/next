@@ -183,6 +183,12 @@ mdl = fitlm(fe(1:T/2),spf10(2:T/2+1))
 mdl = fitlm(fe(T/2+1:end),spf10(T/2+2:end))
 
 
+%% NY FED SCE
+
+xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/NY_Fed_SCE/FRBNY-SCE-Data_edited.xlsx';
+sheet = 'distr';
+[num,txt,raw] = xlsread(xlsx_file);
+
 
 
 

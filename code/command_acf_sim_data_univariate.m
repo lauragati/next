@@ -19,7 +19,7 @@ output_table = print_figs;
 skip = 1;
 [fs, lw] = plot_configs;
 redo_data_load_and_bootstrap = 0;
-save_data =1;
+save_data =0;
 datestr(now)
 
 %% 1.) Simulate data and filter it
@@ -35,7 +35,6 @@ femin = -femax;
 fegrid = linspace(femin,femax,nfe);
 fegrid = [-4,-3,0,3,4]
 
-rng(0)
 % alph_true = [0.05;0.025;0;0.025;0.05]; % the old truth
 % alph_true = [1;0.5;0;0.5;1]; % Calibration A of Materials 42 for fe = (-4,-3, 0, 3, 4)
 % alph_true = [0.6;0.3;0;0.3;0.6]; % Calibration B of Materials 42 for fe = (-4,-3, 0, 3, 4)
@@ -98,7 +97,7 @@ ndrop = 5 % 0-50
 
 T=156; % true dataset is shorter when expectations are in it (SPF, before it was 233)
 % gen all the N sequences of shocks at once.
-rng(2) %rng(0)
+rng(0) %rng(0)
 e = randn(ne,T+ndrop); % turned monpol shocks on in smat.m to avoid stochastic singularity!
 v = 0*randn(ny+1,T+ndrop); % measurement error on the observables
 
@@ -142,7 +141,9 @@ k10 = ndim_simplex_eval(x,fegrid_fine(:)',alph_true);
 
 
 % This is the only new thing: add one-step ahead expectation to data (with iid shocks, it's just pibar, see Materials38, Point 3)
-y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))'];
+% y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))']; % this was the unannualized one
+y_data = [y0(:,1:end-1); pibar(1:end-1)'];
+
 [nobs,T] = size(y_data)
 
 % Filter the data
@@ -292,7 +293,7 @@ toc
 
 if save_data==1
     
-    filename = ['acf_sim_univariate_data_calibC_', todays_date];
+    filename = ['acf_sim_univariate_data', todays_date];
     acf_outputs = {Om, Om_boot,nobs,p,K, filt_data, lost_periods, alph_true, nfe};
     save([filename,'.mat'],'acf_outputs')
     disp(['Saving as ' filename])

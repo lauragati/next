@@ -31,7 +31,7 @@ datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % filename ='acf_data_11_Jun_2020'; % real data
-% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).
@@ -47,9 +47,10 @@ datestr(now)
 % filename = 'acf_sim_univariate_data_18_Aug_2020'; % simulated data, nfe=5, fe=(-2,2), alph_true = (0.05; 0.025; 0; 0.025; 0.05); sig_u = 2, lam =0.001 (corrected (now standardized regressors) RIDGE)
 % filename = 'acf_sim_univariate_data_calibA_26_Aug_2020'; % simulated data, Calibration A of Materials 42 for alphas and sigmas, lam =0.001 standardized-regressors-RIDGE
 % filename = 'acf_sim_univariate_data_calibB_26_Aug_2020'; % simulated data, Calibration B of Materials 42 for alphas and sigmas, psi_x=1, lam =0.001 standardized-regressors-RIDGE
-filename = 'acf_sim_univariate_data_calibC_27_Aug_2020'; % simulated data, Calibration C of Materials 43 for alphas and sigmas, psi_x=0.3, beta=0.98, lam=0.001 standardized-regressors-RIDGE (now the interest rate is annualized too)
-
+% filename = 'acf_sim_univariate_data_calibC_27_Aug_2020'; % simulated data, Calibration C of Materials 43 for alphas and sigmas, psi_x=0.3, beta=0.98, lam=0.001 standardized-regressors-RIDGE (now the interest rate is annualized too)
+% filename = 'acf_sim_univariate_data_calibC_09_Sep_2020'; % same as above, only now pibar should be annualized and rng(0)
 %%%%%%%%%%%%%%%%%%%
+
 % Grid
 nfe = 5 % 5,7,9
 gridspacing = 'manual'; % uniform or uneven, or manual
@@ -67,8 +68,13 @@ Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
-alph0 = [1,0.5,0,0.5,1]'
-% alph0 = [0.8,0.4,0,0.4,0.8]'
+% % alph0 = [1,0.5,0,0.5,1]'
+alph0 = [0.8,0.4,0,0.4,0.8]'
+% alph0 = [0.6,0.3,0,0.3,0.6]'
+% alph0 = [0.3,0.1,0,0.1,0.3]'
+
+
+
 
 use_smart_alph0=0;% default
 cross_section = 'Nsimulations'; % Nestimations or Nsimulations (default)
@@ -78,7 +84,7 @@ if est_shocks==1
 end
 scaleW =0; %0
 ryans_rescale = 0; % Per Ryan meeting 12 August 2020.
-use_expectations_data=0; %1
+use_expectations_data=1; %1
 sig_v = 0; %0 vs 1 variance of measurement error: set to zero to shut measurement error off (default)
 
 %Optimization Parameters
@@ -113,7 +119,7 @@ ndrop = 5 % 0-50
 % return
 
 % Size of cross-section
-N=100
+N=1000
 
 if use_expectations_data==0 % take out moments pertaining to expectations
     Ommatrix = reshape(Om,nobs,nobs,K+1);
@@ -206,6 +212,7 @@ diag_sigboot = diag(sigboot);
 maxSig = max(max(diag_sigboot));
 minSig = min(min(diag_sigboot));
 maxminratio = maxSig/minSig; % Should be and is < 10e+6 if no expectations are used, on the order of 9e+7 or 1e+8 if expectations are used
+%  is < 10e+6 if expectations are annualized too in the true data!
 
 if ryans_rescale==1
 % Ryan's rescaling strategy
@@ -511,11 +518,16 @@ disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 disp('Is optimal k1 ever negative?')
 find(k1_opt<0)
 
-
-if skip==0
+do_opt_plot=1;
+if do_opt_plot==1
     % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
     figname = ['alph_opt_',figspecs];
-    create_pretty_plot_x(fegrid,alph_opt_mean',figname,print_figs)
+    xlab = 'Forecast error';
+    ylab = 'Gain';
+    xlplus = [0,0];
+    ylplus = [0.8,0.4];
+
+    create_pretty_plot_x(fegrid,alph_opt_mean',xlab,ylab,xlplus, ylplus,figname,print_figs)
     % end
 end
 
