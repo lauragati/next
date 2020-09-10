@@ -119,7 +119,7 @@ ndrop = 5 % 0-50
 % return
 
 % Size of cross-section
-N=1000
+N=100
 
 if use_expectations_data==0 % take out moments pertaining to expectations
     Ommatrix = reshape(Om,nobs,nobs,K+1);
