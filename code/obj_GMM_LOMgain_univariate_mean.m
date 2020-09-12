@@ -166,6 +166,18 @@ else
     % Compute GMM loss, not squared, just weighted ("weighted, not squared")
     devprior = sum(abs(alph0-alph))*Wprior;
     res = (Om_data -Om).*diag(W1);
+    
+    % add manual weight to weight own autocovs more
+    K=4;
+    weight = [1000;100;10;1000]; % by what factor to overweight own autocovs
+    nobs = sqrt(numel(Om)/(K+1));
+    Gamj = reshape(res,nobs,nobs,K+1);
+    Wman = (weight-1).*eye(nobs,nobs)+ones(nobs,nobs);
+    Wman = repmat(Wman,1,K+1);
+    Wman = reshape(Wman, nobs,nobs,K+1);
+    res = vec(Gamj .* Wman);
+
+    
     % add extra moments
     res(end+1) = devprior;
     res(end+1) = Wmean*calibrated_moment;

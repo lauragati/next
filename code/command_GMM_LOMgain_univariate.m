@@ -31,7 +31,9 @@ datestr(now)
 
 %% Compute weighting matrix and initialize alpha
 % filename ='acf_data_11_Jun_2020'; % real data
-filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+% filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename = 'acf_data_23_Aug_2020'; % real data with SPF expectation in it but qoq annualized inflation rates and expectations
+
 % % % % % % filename = 'acf_sim_univariate_data_21_Jun_2020'; % simulated data, nfe = 6. Note: I'm using the large moments vector.
 % % % % % % filename = 'acf_sim_univariate_data_24_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1.
 % % % % % % filename = 'acf_sim_univariate_data_25_Jun_2020'; % simulated data, nfe=6, convex true function, alphas between 0 and 0.1, fe in (-3.5,3.5).

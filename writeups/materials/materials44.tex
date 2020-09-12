@@ -173,18 +173,41 @@ Yes!
 \section{Real data}
 
 \begin{figure}[h!]
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_09_Sep_2020_17_10_09}}
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_09_Sep_2020_17_10_09}}
-\caption{Adopt settings from Fig 2}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_10_10_18}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_10_10_18}}
+\caption{Settings from Fig 2,  \colorbox{yellow}{10 different starting points, showing top 3 (blue is best), $N=100$}}
 \end{figure}
 
-Problem: sensitive to where you initialize.
+Darn. It doesn't hit the moments I want it to. So let's manually re-weight the own-autocovariances.
 
+
+\clearpage
 \begin{figure}[h!]
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_N_1000_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_09_Sep_2020_18_14_59}}
-\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_1000_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_GMM_LOMgain_univariate_09_Sep_2020_18_14_59}}
-\caption{Adopt settings from Fig 2,  \colorbox{yellow}{$N=1000$}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_13_57_47}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_13_57_47}}
+\caption{Settings from Fig 2,  5 different starting points, showing top 3 (blue is best), $N=100$, \colorbox{yellow}{manually putting more weight on own autocovariances}}
 \end{figure}
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_N_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_N_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}}
+\caption{Settings from Fig 2,  5 different starting points, showing top 3 (blue is best),  \colorbox{yellow}{$N=500$},manually putting more weight on own autocovariances}
+\end{figure}
+
+This took 5h:12min.
+
+$\hat{\alpha}_i = (0.3346;    0.2513;    0.001;    0.2399;    0.3277)$
+
+\clearpage
+\begin{figure}[h!]
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}}
+\subfigure[]{\includegraphics[scale=0.34]{\myFigPath autocovariogram_alone_N_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}}
+\caption{Same as the previous, just the best candidate alone}
+\end{figure}
+
+
+
 
 \clearpage
 \section{Policy isn't a function of $k^{-1}_t$}

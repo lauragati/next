@@ -32,7 +32,7 @@ datestr(now)
 
 %% This initialization bit comes straight from command_GMM_LOMgain_univariate.m
 
-filename ='acf_data_21_Jul_2020'; % real data with SPF expectation in it
+filename = 'acf_data_23_Aug_2020'; % real data with SPF expectation in it but qoq annualized inflation rates and expectations
 
 
 % Grid
@@ -52,8 +52,8 @@ Wmean=0;%100, 0
 % rng(8)
 % alph0 = rand(nfe,1);
 % alph0 = 0.1*ones(nfe,1);
-alph0 = [0.8,0.5,0,0.5,0.8]'
-% alph0 = [0.8,0.4,0,0.4,0.8]'
+% alph0 = [0.8,0.5,0,0.5,0.8]'
+alph0 = [0.8,0.4,0,0.4,0.8]'
 % alph0 = [0.6,0.3,0,0.3,0.6]'
 % alph0 = [0.3,0.1,0,0.1,0.3]'
 
@@ -99,7 +99,7 @@ ndrop = 5 % 0-50
 
 
 % Size of cross-section
-N=100
+N=500
 
 if use_expectations_data==0 % take out moments pertaining to expectations
     Ommatrix = reshape(Om_data,nobs,nobs,K+1);
@@ -310,7 +310,7 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 %% Pick nsearch starting values
 
-nsearch = 10;
+nsearch = 5;
 
 
 %Declare a function handle for optimization problem
@@ -375,6 +375,7 @@ k=3;
 alph_k   = alph_conv(:,mink_idx);
 alph_opt = alph_conv(:,min_idx);
 Om_k = Om_conv(:,mink_idx);
+Om_opt = Om_conv(:,min_idx);
 
 
 %% Nice plots of the k best points (also adapted from command_GMM_LOMgain_univariate.m)
@@ -389,7 +390,7 @@ figname = ['alph_opt_',figspecs];
 xlab = 'Forecast error';
 ylab = 'Gain';
 xlplus = [0,0];
-ylplus = [0.8,0.4];
+ylplus = [0.8,0.5];
 legendentries = {};
 
 create_pretty_plot_x_holdon(fegrid,alph_k',legendentries, xlab,ylab,xlplus, ylplus,figname,print_figs)
@@ -397,7 +398,7 @@ create_pretty_plot_x_holdon(fegrid,alph_k',legendentries, xlab,ylab,xlplus, ylpl
 % return
 
 k = size(Om_k,2);
-% 2.) Covariogram
+% 3.) Covariogram
 Gamj_data = reshape(Om_data,nobs,nobs,K+1);
 Gamj_k = reshape(Om_k,nobs,nobs,K+1,k);
 
@@ -449,6 +450,83 @@ if print_figs ==1
     close
 end
 
-% 3) Histogram of converged losses
+% 4) Histogram of converged losses
 figure
 histogram(loss_conv)
+
+return
+%% Plot optimal alpha and covariogram alone
+
+% 1.) optimal alpha
+figname = ['alph_opt_alone',figspecs];
+xlab = 'Forecast error';
+ylab = 'Gain';
+xlplus = [0,0];
+ylplus = [0.85,0.18];
+
+create_pretty_plot_x(fegrid,alph_opt', xlab,ylab,xlplus, ylplus,figname,print_figs)
+
+% return
+
+k = size(Om_k,2);
+% 3.) Covariogram
+Gamj_data = reshape(Om_data,nobs,nobs,K+1);
+Gamj_opt = reshape(Om_opt,nobs,nobs,K+1);
+
+titles = {'$\pi_t$', '$x_t$', '$i_t$', '$E_t\pi_{t+1}$'};
+titles_k = {'$\pi_{t-k}$', '$x_{t-k}$', '$i_{t-k}$', '$E_{t-k}\pi_{t-k+1}$'};
+it=0;
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+for i=1:nobs
+    for j=1:nobs
+        it=it+1;
+        sp(it)=subplot(nobs,nobs,it);
+        pos_sp = get(sp(it), 'position');
+        set(sp(it), 'position', [1, 1, 0.95, 0.95].*pos_sp );
+        z = plot(0:K,zeros(1,K+1), 'k--', 'linewidth',lw); hold on
+        h1 = plot(0:K,squeeze(Gamj_opt(i,j,:)), 'linewidth', lw);
+        h = plot(0:K,squeeze(Gamj_data(i,j,:)), 'linewidth', lw);
+        
+        ax = gca; % current axes
+        ax.FontSize = fs*3/4;
+        ax.YRuler.Exponent = 0; % turns off scientific notation
+        set(gca,'TickLabelInterpreter', 'latex');
+        grid on
+        grid minor
+        title([titles{i}, ' vs. ', titles_k{j}],'interpreter', 'latex', 'fontsize', fs*2/4)
+    end
+end
+% To avoid an undefined property 'NumColumns' on the server:
+if contains(current_dir, 'BC_Research') % local
+    lh = legend([h, h1],{'Data', 'Estimate'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'NumColumns',3, 'Box', 'off');
+elseif contains(current_dir, 'gsfs0') % sirius server
+    lh = legend([h, h1],{'Data', 'Estimate'},'interpreter', 'latex','Position',[0.45 -0.05 0.1 0.2], 'Box', 'off');
+end
+
+
+% Note position: left, bottom, width, height
+figname = ['autocovariogram_alone_' figspecs];
+if contains(filename,'sim')==1
+    figname = ['autocovariogram_sim_', figspecs];
+end
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% save estimation outputs
+save_estim_outputs =1
+if save_estim_outputs==1
+    rngsetting=rng;
+    estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+    learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+    estim_outputs = {fegrid_fine, ng_fine, alph_opt, alph_k, ALPH0, x, estim_configs, learn_configs};
+    filename = ['estim_LOMgain_outputs_univariate_coax', nowstr];
+    save([filename, '.mat'], 'estim_outputs')
+    disp(['Saving as ' filename])
+end
