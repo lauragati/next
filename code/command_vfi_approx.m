@@ -42,20 +42,21 @@ output_table = print_figs;
 % alph = alph_opt;
 
 
-filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
 % estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
-% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
-% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+% learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, alph_opt, alph_k, ALPH0, x, estim_configs, learn_configs};
 fegrid_fine = estim_outputs{1};
 ng_fine     = estim_outputs{2};
-k1_opt      = estim_outputs{3};
-alph_opt_mean = estim_outputs{4};
-x             = estim_outputs{5};
-estim_configs = estim_outputs{6};
-learn_configs = estim_outputs{7};
+alph_opt      = estim_outputs{3};
+alph_k        = estim_outputs{4};
+ALPH0         = estim_outputs{5};
+x             = estim_outputs{6};
+estim_configs = estim_outputs{7};
+learn_configs = estim_outputs{8};
 nfe            = estim_configs{1};
 gridspacing    = estim_configs{2};
 femax          = estim_configs{3};
@@ -78,16 +79,28 @@ knowTR_est  = learn_configs{4};
 mpshock_est = learn_configs{5};
 
 % return
-fegrid_uneven = x{1};
-fegrid = fegrid_uneven;
-% % If you wanna use the uniform grid, then uncomment the following 3 lines:
+
+fegrid = x{1};
+
+
+% fegrid_uneven = x{1};
+% fegrid = fegrid_uneven;
+% If you wanna use the uniform grid, then uncomment the following 3 lines:
 % fegrid = linspace(femin,femax,nfe);
 % x = cell(1,1);
 % x{1} = fegrid;
 
-alph = alph_opt_mean;
+% evaluate gradients of estimated LOM gain beforehand
+k1_opt = ndim_simplex_eval(x,fegrid_fine,alph_opt);
+g_fe = gradient(k1_opt);
 
 
+alph = alph_opt;
+
+
+% return
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
 % 
 % alph = [1.0000    0.5000         0    0.5000    1.0000]'
@@ -102,13 +115,14 @@ alph = alph_opt_mean;
 % 
 % eta = eye(3).*[sig_r, sig_i, sig_u]'
 
-%% 27 August 2020: calibration C (Materials 43)
-
-alph = [0.8    0.4         0    0.4    0.8]'
-fegrid = [-4,-3,0,3,4]
-x{1} = fegrid;
-
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% 27 August 2020: calibration C (Materials 43)
+% 
+% alph = [0.8    0.4         0    0.4    0.8]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
 
 %%
@@ -128,10 +142,11 @@ sig_u = param.sig_u;
 np = 8;
 % pgrid = linspace(-100,100,np); doesn't help
 % pgrid = linspace(-4,4,np); % this doesn't
+% pgrid = linspace(-2,2,np); % this doesn't
 % pgrid = linspace(-1.2,1.2,np); % this doesn't
 % pgrid = linspace(-1,1,np); % this seems to work
-pgrid = linspace(-0.2,0.2,np); % this seems to work
-% pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
+% pgrid = linspace(-0.2,0.2,np); % this seems to work
+pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
 
 
 

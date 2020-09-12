@@ -14,16 +14,16 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
 plot_IRFs=0;
 plot_simulated_sequence = 0;
-plot_gains=1;
 plot_gain_IRF = 0;
-plot_IRFs_anch = 0; % conditional on being anchored when shock hits, not trivial for smooth anchoring
+plot_IRFs_anch = 1; % conditional on being anchored when shock hits, not trivial for smooth anchoring
+plot_gains=1;
 
 %% Parameters
 tic
@@ -52,23 +52,65 @@ again_critCUSUM = 22;
 again_critsmooth = 23;
 cgain = 3;
 
-% this here is the 'truth' in acf_sim_univariate_data_06_Jul_2020.
-nfe=5;
-femax = 2;
-femin = -femax;
-fegrid = linspace(femin,femax,nfe);
-x = cell(1,1);
-x{1} = fegrid;
-alph_true = [0.05;0.025;0;0.025;0.05];
-alph=alph_true;
+filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% load the saved stuff
+load([filename,'.mat'])
+% Structure of saved file:
+% estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
+% learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, alph_opt, alph_k, ALPH0, x, estim_configs, learn_configs};
+fegrid_fine = estim_outputs{1};
+ng_fine     = estim_outputs{2};
+alph_opt      = estim_outputs{3};
+alph_k        = estim_outputs{4};
+ALPH0         = estim_outputs{5};
+x             = estim_outputs{6};
+estim_configs = estim_outputs{7};
+learn_configs = estim_outputs{8};
+nfe            = estim_configs{1};
+gridspacing    = estim_configs{2};
+femax          = estim_configs{3};
+femin          = estim_configs{4};
+ub             = estim_configs{5};
+lb             = estim_configs{6};
+Wprior         = estim_configs{7};
+Wdiffs2        = estim_configs{8};
+Wmid           = estim_configs{9};
+Wmean          = estim_configs{10};
+T_est          = estim_configs{11};
+ndrop_est      = estim_configs{12};
+N_est          = estim_configs{13};
+eN_est         = estim_configs{14};
+rngsetting_est = estim_configs{15};
+param       = learn_configs{1};
+PLM_name    = learn_configs{2};
+gain_name   = learn_configs{3};
+knowTR_est  = learn_configs{4};
+mpshock_est = learn_configs{5};
 
-%% 27 August 2020: calibration C (Materials 43)
+% return
+alph=alph_opt;
+fegrid = x{1};
 
-alph = [0.8    0.4         0    0.4    0.8]'
-fegrid = [-4,-3,0,3,4]
-x{1} = fegrid;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % this here is the 'truth' in acf_sim_univariate_data_06_Jul_2020.
+% nfe=5;
+% femax = 2;
+% femin = -femax;
+% fegrid = linspace(femin,femax,nfe);
+% x = cell(1,1);
+% x{1} = fegrid;
+% alph_true = [0.05;0.025;0;0.025;0.05];
+% alph=alph_true;
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% 27 August 2020: calibration C (Materials 43)
+% 
+% alph = [0.8    0.4         0    0.4    0.8]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
 %% Varying stuff
 
@@ -76,7 +118,7 @@ x{1} = fegrid;
 sig_i = 2*sig_i;
 param.sig_i = sig_i;
 
-% param.psi_pi = 1.01; %1.01, 2
+param.psi_pi = 2; %1.01, 2
 
 %% Model selection and informational assumption
 
@@ -274,7 +316,7 @@ if plot_gains==1
     seriesnames = 'k^{-1}';
     figname = ['gain_sim_psi_pi_' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];
     figtitle = ['Gains ; ' , gain_title];
-    xlplus = [200,0.001];
+    xlplus = [200,0.0002];
     ylplus = [-100,0];
     create_pretty_plot_x(xseries, yseries,'Quarters','$k$',xlplus,ylplus,figname,print_figs)
     

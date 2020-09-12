@@ -4,4 +4,3 @@
 \contentsline {section}{\numberline {3}Policy isn't a function of $k^{-1}_t$}{9}{section.3}
 \contentsline {section}{\numberline {A}Model summary}{10}{appendix.A}
 \contentsline {section}{\numberline {B}Target criterion}{10}{appendix.B}
-\contentsline {section}{\numberline {C}Impulse responses to iid monpol shocks across a wide range of learning models}{11}{appendix.C}

@@ -27,12 +27,12 @@ set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
 if nargin == max_no_inputs
-    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*3/4);
+    xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*4/5);
     xl.Position(1) = xlplus(1) + xl.Position(1);
     xl.Position(2) = xlplus(2) + xl.Position(2);
 
     
-    yl = ylabel(ylab,'interpreter', 'latex', 'fontsize', fs*3/4);
+    yl = ylabel(ylab,'interpreter', 'latex', 'fontsize', fs*4/5);
     yl.Rotation = 0; % rotate
     yl.Position(1) = ylplus(1) + yl.Position(1); % move left
     yl.Position(2) = ylplus(2) + yl.Position(2); % move up

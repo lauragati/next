@@ -195,7 +195,7 @@
 \def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
 \def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
 % for 1% fe, you get a gain of
-\def\oneppFEgives{0.05}
+\def\oneppFEgives{0.05 }
 % pp forecast error that unanchors
 \def\ppFEunanchors{1 }
 
@@ -226,49 +226,52 @@
 
 
 % Estimated coefficients alpha
-% materials 37, Fig 13. Mean(alph) = (0.3509;0.1427;0.0180;0.0005;0.0204;0.1406;0.3411)
-\def\fignameAlphaHat{alph_opt_constant_only_pi_only_N_100_nfe_5femax_2_loss_382_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_scaleW_0_use_expectations_0_use_meas_error_0_command_GMM_LOMgain_univariate_12_Aug_2020_09_16_29}
+\def\fignameAlphaHat{alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}
+% Autocovariogram
+\def\fignameAutocov{autocovariogram_alone_N_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}
 
 % Comparative statics of optimal policy
 % di/dpibar
-\def\fignameDiDpibar{analyze_opt_policy_ip04_Sep_2020}
-
+% not annualized
+\def\fignameDiDpibar{analyze_opt_policy_ip12_Sep_2020}
 
 % Observables in PEA for TR
-\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx27_Aug_2020}
+% annualized
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx12_Sep_2020}
 % Observables in PEA for anchoring
-\def\fignamePEAobsAnch{implement_anchTC_obs_approx27_Aug_2020_16_21_47}
+% annualized
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx12_Sep_2020_09_57_17}
+
+% Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
+% annualized
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx12_Sep_2020_09_29_49_pea_outputs_approx12_Sep_2020_09_15_24_pretty_12_Sep_2020_09_57_17}
 
 % Central bank loss as a function of psi_pi in RE vs. anchoring
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
 % Note 25 August: update with convention: RE red, anchoring blue.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_03}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_03}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_03}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_03}
-\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_03}
-
-
-% Autocovariogram
-\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_27_Aug_2020_11_29_47}
-
-% Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx27_Aug_2020_14_28_32_pea_outputs_approx27_Aug_2020_14_45_53_pretty_27_Aug_2020_16_21_47}
+\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_12}
+\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_12}
+\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_12}
+\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
+\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_12}
 
 % IRFs anchored vs unanchored
-\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
-\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
+% annualized
+\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12}
 
 % Cross-sectional average gains for various psi_pi
-\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_07}
-\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_07}
-\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_07}
+% not annualized
+\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_12}
 
 % IRFs unanchored for various psi_pi
-\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_07}
+% annualized
+\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_12}
 \def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
-\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_07}
+\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_12}
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -986,32 +989,47 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
  \end{table}
 \end{center}
 % TABLES WERE UPDATED 29 AUGUST 2020. 
+
+\
+
+\small{* pertains to sections where Taylor rule is in effect}
+
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Calibration - matching moments}
 
+\small{
 \begin{center}
 \begin{table}
 \begin{tabular}{ c | c  | l }
 \hline
-    $\sigma_r$ & 0.01 & standard deviation of natural rate shock  \\ \hline
-    $\sigma_i$ &  0.01  &standard deviation of monetary policy shock*  \\ \hline
-    $\sigma_u$ & 0.5 & standard deviation of cost-push shock   \\ \hline  
-    $\hat{\alpha}$ & (0.8; 0.4; 0; 0.4; 0.8) & approximating coefficients in anchoring function \\ \hline   
+    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock*  \\ \hline
+    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
+    $\hat{\alpha}_i$ &  (0.33;    0.25;    0.001;    0.24;    0.33) & coefficients in anchoring function \\ \hline   
 \end{tabular}     
        \label{calibration}
  \end{table}
 \end{center}
+}
 
 \
 
 \
 
 
-Picked to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
+Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\alpha}_i$) to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
+
+\
+
+\
+
+\small{* pertains to sections where Taylor rule is in effect}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
@@ -1128,7 +1146,7 @@ RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
 
 \
 
-Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$
+Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09$
 
 \
 
@@ -1144,7 +1162,7 @@ Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$
 \begin{tabular}{ c | c | c }
 %\hline
 Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ \\  \hline
- 13.6380  & 6.1446 & 5.3148  \\  \hline
+ 9.6901  &  5.8296 & 5.3148  \\  \hline
 \end{tabular}     
       \label{table_welfare}
  \end{table}

@@ -25,36 +25,21 @@ skip_old_stuff = 1;
 
 %% Parameters
 
-% Load estimated LOM gain coefficents
-% filename = 'best_n100_29_Jun_2020'; % materials35 candidate
-% load([filename,'.mat'])
-% alph_best = output{1};
-% resnorm = output{2};
-% alph = alph_best(:,1);
-% % grab the rest from materials35, part 2.5
-% nfe=5;
-% k1min = 0;
-% k1max= 1;
-% femax = 3.5;
-% femin = -femax;
-% % and from materials35, intro
-% fegrid = linspace(femin,femax,nfe);
-% x = cell(1,1);
-% x{1} = fegrid;
-
-filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
 % estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
-% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
-% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+% learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, alph_opt, alph_k, ALPH0, x, estim_configs, learn_configs};
 fegrid_fine = estim_outputs{1};
 ng_fine     = estim_outputs{2};
-k1_opt      = estim_outputs{3};
-alph_opt_mean = estim_outputs{4};
-x             = estim_outputs{5};
-estim_configs = estim_outputs{6};
-learn_configs = estim_outputs{7};
+alph_opt      = estim_outputs{3};
+alph_k        = estim_outputs{4};
+ALPH0         = estim_outputs{5};
+x             = estim_outputs{6};
+estim_configs = estim_outputs{7};
+learn_configs = estim_outputs{8};
 nfe            = estim_configs{1};
 gridspacing    = estim_configs{2};
 femax          = estim_configs{3};
@@ -77,19 +62,14 @@ knowTR_est  = learn_configs{4};
 mpshock_est = learn_configs{5};
 
 % return
-fegrid_uneven = x{1};
-fegrid = fegrid_uneven;
-% % If you wanna use the uniform grid, then uncomment the following 3 lines:
-% fegrid = linspace(femin,femax,nfe);
-% x = cell(1,1);
-% x{1} = fegrid;
 
-alph = alph_opt_mean;
+fegrid = x{1};
+alph = alph_opt;
 
 
 
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next; % use ones from estimation!
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next; % use ones from estimation!
 ne = 3;
 
 burnin = 0;
@@ -129,6 +109,7 @@ options = optimset('fmincon');
 options = optimset(options, 'TolFun', 1e-9, 'display', 'iter');
 options.UseParallel=true;
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
 % 
 % alph = [1.0000    0.5000         0    0.5000    1.0000]'
@@ -137,18 +118,23 @@ options.UseParallel=true;
 % 
 % [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-%% 27 August 2020: calibration C (Materials 43)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% 27 August 2020: calibration C (Materials 43)
+% 
+% alph = [0.8    0.4         0    0.4    0.8]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-alph = [0.8    0.4         0    0.4    0.8]'
-fegrid = [-4,-3,0,3,4]
-x{1} = fegrid;
 
+%% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-setp.lamx  = 0.05;
-setp.lami  = 0;
+setp.lamx  = 1;
+setp.lami  = 1;
 
-
+disp(datestr(now))
 %% Fmincon
 % dbstop if caught error
 % takes about 3 min
@@ -157,7 +143,7 @@ tic
 % ub = [1.2,1];
 % lb = [1.01,-.01];
 varp0 = 1.5;
-ub = 2; % 1.5
+ub = 5; % 1.5
 lb = 1;
 %Compute the objective function one time with some values
 loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,gain, alph,x, knowTR);
@@ -205,6 +191,8 @@ RE_loss_at15   = objective_CB_RE(1.5,setp,eN,burnin)
 Anch_loss_at15 = objective_CB_approx(1.5,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 
 % psi_pi = RE-optimal
+par_opt_RE = 2.2098;
+par_opt = 1.0877;
 RE_loss_at_REopt   = objective_CB_RE(par_opt_RE,setp,eN,burnin)
 Anch_loss_at_REopt = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 

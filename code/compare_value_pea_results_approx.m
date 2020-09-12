@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -51,7 +51,11 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_approx17_Jul_2020_16_37_34'; % univariate approximated LOM gain, improved estimation, pbar in (-1,1), np=8
 % value_output_name = 'value_outputs_approx23_Aug_2020_14_50_26'; % 23 August 2020 calibration 
 % value_output_name = 'value_outputs_approx27_Aug_2020_14_18_38'; % Calibration C of Materials 43;  pgrid = linspace(-0.1,0.1,np); 
-value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
+% value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
+% value_output_name = 'value_outputs_approx12_Sep_2020_09_41_01'; % Sept 15 estimation of Materials 44; pgrid = linspace(-0.1,0.1,np);
+% value_output_name = 'value_outputs_approx12_Sep_2020_09_19_47'; % Sept 15 estimation of Materials 44; pgrid = linspace(-0.2,0.2,np);
+value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
+
 
 
 
@@ -72,9 +76,11 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx17_Jul_2020_11_40_09'; % univariate approximated LOM gain, improved estimation, rng(0)
 % pea_output_name = 'pea_outputs_approx17_Jul_2020_15_28_03'; % univariate approximated LOM gain, improved estimation, rng(2)
 % pea_output_name = 'pea_outputs_approx23_Aug_2020_14_38_14'; % 23 August 2020 calibration
-pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
+% pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
+pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
+
 
 
 
@@ -103,9 +109,9 @@ i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
 
-% % Annualization of inflation and interest rate
-% ysim7([1,3],:) = ((ysim7([1,3],:)/100+1).^4 -1)*100;
-% policies =  ((policies/100+1).^4 -1)*100;
+% Annualization of inflation and interest rate
+ysim7([1,3],:) = ((ysim7([1,3],:)/100+1).^4 -1)*100;
+policies =  ((policies/100+1).^4 -1)*100;
 
 
 % % save some nice plots for draft and prezis
@@ -117,6 +123,7 @@ ylplus = [-400,0];
 create_pretty_plot_holdon(policies, {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
 create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx', nowstr], print_figs)
 
+return
 xlplus = [45,0.0025];
 ylplus = [-100,0];
 create_pretty_plot_x(1:length(k7)-1,1./k7(1:end-1), xlab,ylab,xlplus, ylplus,['implement_anchTC_invgain', nowstr], print_figs)

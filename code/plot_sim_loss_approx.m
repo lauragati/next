@@ -26,43 +26,21 @@ compute_loss=1;
 
 %% Parameters
 
-% % Load estimated LOM gain coefficents
-% filename = 'best_n100_29_Jun_2020'; % materials35 candidate
-% load([filename,'.mat'])
-% alph_best = output{1};
-% resnorm = output{2};
-% alph = alph_best(:,1);
-% 
-% % alph= [0.0674
-% %     0.0168
-% %     0
-% %     0.0168
-% %     0.0674]; % default*5
-% 
-% % grab the rest from materials35, part 2.5
-% nfe=5;
-% k1min = 0;
-% k1max= 1;
-% femax = 3.5;
-% femin = -femax;
-% % and from materials35, intro
-% fegrid = linspace(femin,femax,nfe);
-% x = cell(1,1);
-% x{1} = fegrid;
-
-filename = 'estim_LOMgain_outputs_univariate16_Jul_2020_15_25_10'; % materials37 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
 % estim_configs={nfe,gridspacing,femax,femin,ub,lb,Wprior,Wdiffs2,Wmid,Wmean,T,ndrop,N,eN, rngsetting};
-% learn_configs = {param, PLM_name, gain_name, knowTR, mpshock};
-% estim_outputs = {fegrid_fine, ng_fine, k1_opt, alph_opt_mean, x, estim_configs, learn_configs};
+% learn_configs = {param,PLM_name, gain_name, knowTR, mpshock};
+% estim_outputs = {fegrid_fine, ng_fine, alph_opt, alph_k, ALPH0, x, estim_configs, learn_configs};
 fegrid_fine = estim_outputs{1};
 ng_fine     = estim_outputs{2};
-k1_opt      = estim_outputs{3};
-alph_opt_mean = estim_outputs{4};
-x             = estim_outputs{5};
-estim_configs = estim_outputs{6};
-learn_configs = estim_outputs{7};
+alph_opt      = estim_outputs{3};
+alph_k        = estim_outputs{4};
+ALPH0         = estim_outputs{5};
+x             = estim_outputs{6};
+estim_configs = estim_outputs{7};
+learn_configs = estim_outputs{8};
 nfe            = estim_configs{1};
 gridspacing    = estim_configs{2};
 femax          = estim_configs{3};
@@ -85,16 +63,11 @@ knowTR_est  = learn_configs{4};
 mpshock_est = learn_configs{5};
 
 % return
-fegrid_uneven = x{1};
-fegrid = fegrid_uneven;
-% % If you wanna use the uniform grid, then uncomment the following 3 lines:
-% fegrid = linspace(femin,femax,nfe);
-% x = cell(1,1);
-% x{1} = fegrid;
 
-alph = alph_opt_mean;
+fegrid = x{1};
+alph = alph_opt;
 
-[param, setp, param_names, param_values_str, param_titles] = parameters_next;
+% [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 ne = 3;
 
 burnin = 0;
@@ -127,6 +100,7 @@ knowTR=1
 
 % vN=zeros(ne+1,T,N);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
 % 
 % alph = [1.0000    0.5000         0    0.5000    1.0000]'
@@ -149,18 +123,21 @@ knowTR=1
 % 
 % % return
 
-%% 27 August 2020: calibration C (Materials 43)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% 27 August 2020: calibration C (Materials 43)
+% 
+% alph = [0.8    0.4         0    0.4    0.8]'
+% fegrid = [-4,-3,0,3,4]
+% x{1} = fegrid;
+% 
 
-alph = [0.8    0.4         0    0.4    0.8]'
-fegrid = [-4,-3,0,3,4]
-x{1} = fegrid;
-
+%% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
-
-setp.lamx  = 1;
-setp.lami  = 1;
-
-pis_x_here = 0.3;
+% 
+% setp.lamx  = 0;
+% setp.lami  = 0;
+% 
+pis_x_here = param.psi_x;
 
 
 % return
@@ -168,6 +145,7 @@ pis_x_here = 0.3;
 %% Compute loss as a function of psi_pi and psi_x=0
 % dbstop if caught error
 if compute_loss==1
+    disp(datestr(now))
     % gen all the N sequences of shocks at once.
     rng(0)
     eN = randn(ne,T,N);
@@ -233,8 +211,7 @@ if print_figs==1
     figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
     y = [loss; loss_RE];
     % 
-    xlmult = 1.3;
-    ylmult = [1.12, 3]; % delete it
-%     ylmult = [1.1, 1.5]; % lamx = 0.05
-    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},'$\psi_{\pi}$','Loss',xlmult, ylmult, figname,print_figs)
+    xlplus = [0.5,0.0002];
+    ylplus = [-100,0]; % delete this one
+    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
 end

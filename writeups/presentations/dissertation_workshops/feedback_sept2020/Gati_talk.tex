@@ -1,0 +1,151 @@
+%2multibyte Version: 5.50.0.2960 CodePage: 65001
+\documentclass{article}%
+\usepackage{amsmath}%
+\setcounter{MaxMatrixCols}{30}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.50.0.2960}
+%TCIDATA{Codepage=65001}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+%TCIDATA{Created=Friday, September 11, 2020 11:55:52}
+%TCIDATA{LastRevised=Saturday, September 12, 2020 12:39:10}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%BeginMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+%EndMSIPreambleData
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\begin{document}
+\section{Muth: rational and adaptive expectations}
+
+JASA: adaptive expectations are rational if variable is sum of unobserved
+permanent and transitory components. \ Adjustment coefficient is between 0 and
+1, with higher values when permanent component's innovation is more important.
+
+\section{Phelps: learning and optimal policy}
+
+Today's expectation about tomorrow's inflation%
+\[
+e_{t}=e_{t-1}+g(\pi_{t}-e_{t-1})+z_{et}%
+\]
+
+
+Phelps' Phillips Curve:
+\[
+\pi_{t}=\kappa x_{t}+e_{t-1}+z_{\pi t}%
+\]
+
+
+Note that these specifications mean that $e_{t-1}$ is key state
+variable.\bigskip
+
+Policy objective (inflation bad, output good)%
+\[
+E_{t}\sum_{j=0}^{\infty}\beta^{j}u(\pi_{t+j},x_{t+j})
+\]
+
+
+Authority knows $z$ when making date t decisions (this is vector Markov).
+
+\bigskip
+
+Bellman equation
+\[
+V(e_{t-1},z_{t})=\max\{u(\pi_{t},x_{t})+\beta E_{t}V(e_{t},z_{t+1}%
+)|(e_{t-1},z_{t})\}
+\]
+subject to (2) which is a flow constraint and (1) which is essentially a
+transition equation. 
+
+\bigskip
+
+With standard $u$ approximation, problem looks LQ. With constant gain $g$ less
+than 1, this is essentially a modern version of Phelp's original analysis. 
+
+
+
+\subsection{Empirical questions: }
+
+What is empirical performance of (1) on survey expectations for various $g$?
+\ How important are expectations shocks?\bigskip
+
+\subsection{Quantitative model questions:}
+
+Is there an optimal steady state rate of inflation in the absence of shocks?
+If so, how does it depend on model parameters?
+
+What is the nature of transitional dynamics? How do these depend on $g$? 
+
+What is the nature of response to expectations shocks?
+
+What is the nature of response to "price shocks"?
+
+\bigskip
+
+What are the gaps between (1) and rational inflation expectations if the above
+model is true?
+
+\bigskip
+
+In this model, would a rational observer ever have a reason to view inflation
+as "unanchored?"
+
+\bigskip
+
+\section{Nonlinear Expectations}
+
+Forecasters (Stock and Watson) have modified Muth's model to allow for
+evolution of permanent and temporary components. \ 
+
+With expectations measures, one can determine if agent's beliefs indicate a
+role for nonlinearity. \ Seems like a natural benchmark exercise to motivate
+further work with model.
+
+How different is Phelps model if $g(\pi-e)$ is made nonlinear in manner
+compatible with evidence from US and other countries? \ Is there a potential
+for multiple steady states, i.e., inflation and expected inflation that are
+permanently different? \ Is this "unanchored expectations?"
+
+\bigskip
+
+\section{Forward-looking Phillips Curve}
+\[
+\pi_{t}=\kappa x_{t}+e_{t}+z_{\pi t}%
+\]
+Key element is now that $e_{t}$ moves with $\pi_{t}$: 
+
+(a)\qquad Change in "slope" with fixed gain, where slope effect depends on $g$
+
+(b)\qquad Nonlinearity with variable gain. \ 
+
+\bigskip
+
+Can (b) lead to "unanchored expectations" as discussed previously?\ 
+
+
+\end{document}
