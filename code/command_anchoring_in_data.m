@@ -13,7 +13,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -81,7 +81,7 @@ figspecs = [this_code, '_', nowstr];
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time, spf10(1:end-1), 'linewidth', lw); 
+plot(time, spf10(1:end-1), 'linewidth', lw);
 ax = gca; % current axes
 ax.FontSize = fs;
 datetick('x','yyyy', 'keeplimits')
@@ -118,8 +118,8 @@ figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 plot(time, infl, 'linewidth', lw); hold on
-plot(time, spf1(1:end-1), 'linewidth', lw); 
-plot(time, spf10(1:end-1), 'linewidth', lw); 
+plot(time, spf1(1:end-1), 'linewidth', lw);
+plot(time, spf10(1:end-1), 'linewidth', lw);
 ax = gca; % current axes
 ax.FontSize = fs;
 datetick('x','yyyy', 'keeplimits')
@@ -185,10 +185,119 @@ mdl = fitlm(fe(T/2+1:end),spf10(T/2+2:end))
 
 %% NY FED SCE
 
-xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/NY_Fed_SCE/FRBNY-SCE-Data_edited.xlsx';
+xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/NY_Fed_SCE/edited.xlsx';
+
+sheet = 'expectations';
+[num,txt,raw] = xlsread(xlsx_file, sheet);
+% Median 3-year ahead inflation expectations
+sce_1median = num(:,end);
+
+sheet = 'uncertainty';
+[num,txt,raw] = xlsread(xlsx_file, sheet);
+% Median uncertainty around 3-year ahead
+sce_unc_median = num(:,end);
+
 sheet = 'distr';
-[num,txt,raw] = xlsread(xlsx_file);
+% % of responses in the ranges (-Inf, 0)	[0,1)	[1,2)	[2,3)	[3,4)	[4, Inf)
+[num,txt,raw] = xlsread(xlsx_file, sheet);
+sce_distr = num(:,8:end);
 
+dates_sce = num(:,1);
+dates_sce = num2str(dates_sce);
+dates_sce = [dates_sce(:,1:4), repmat('-',size(dates_sce,1),1), dates_sce(:,5:end)];
+dates_sce = datenum(dates_sce);
+dates_sce_str = datestr(dates_sce, 'yyyy-mm');
 
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(dates_sce, sce_1median, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend('NY Fed SCE median 3-year ahead inflation expectations (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
 
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(dates_sce, sce_unc_median, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend('NY Fed SCE median 3-year ahead uncertainty', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
 
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+for d=1:size(sce_distr,2)
+    h(d) = plot(dates_sce, sce_distr(:,d), 'linewidth', lw); hold on
+end
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% title('NY Fed SCE 3-year ahead bins (yoy, \%)', 'interpreter', 'latex')
+legend(h, '(-$\infty$,0)', '[0,1)','[1,2)', '[2,3)', '[3,4)', '(4, $\infty$)','location', 'southoutside', 'interpreter', 'latex', 'NumColumns',6)
+legend('boxoff')
+
+figname = ['distrib_all_', figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Replot the distribution for the 0,1 and 3,4 bins
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+hlow = plot(dates_sce, sce_distr(:,2), 'linewidth', lw); hold on
+hhigh = plot(dates_sce, sce_distr(:,end-1), 'linewidth', lw);
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% title('NY Fed SCE 3-year ahead bins (yoy, \%)', 'interpreter', 'latex')
+legend([hlow, hhigh], '[0,1)', '[3,4)', 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns',2)
+legend('boxoff')
+
+figname = ['distrib_topbottom_', figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
