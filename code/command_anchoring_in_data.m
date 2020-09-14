@@ -13,7 +13,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -66,7 +66,6 @@ infl = infl_yoy;
 fe = infl - spf1(1:end-1);
 
 
-
 % Thus the sample is in the end from 1992-Q1 to 2020-Q2
 y = [infl, spf1(1:end-1), fe];
 [T,n] = size(y);
@@ -102,46 +101,27 @@ grid minor
 legend('10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
 legend('boxoff')
 
-figname = ['lr_epi_in_data_', figspecs];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
 % return
 
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time, infl, 'linewidth', lw); hold on
-plot(time, spf1(1:end-1), 'linewidth', lw);
-plot(time, spf10(1:end-1), 'linewidth', lw);
-ax = gca; % current axes
-ax.FontSize = fs;
-datetick('x','yyyy', 'keeplimits')
-% The next three lines force the figure to start where the data starts
-xaxislimits= get(gca,'XLim');
-xaxislimits(1) = time(1);
-set(gca, 'XLim', xaxislimits);
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-legend('CPI inflation (yoy, \%)', '1-year ahead forecast, SPF (annual, \%)', '10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
-legend('boxoff')
+% figure
+% set(gcf,'color','w'); % sets white background color
+% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+% plot(time, infl, 'linewidth', lw); hold on
+% plot(time, spf1(1:end-1), 'linewidth', lw);
+% plot(time, spf10(1:end-1), 'linewidth', lw);
+% ax = gca; % current axes
+% ax.FontSize = fs;
+% datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = time(1);
+% set(gca, 'XLim', xaxislimits);
+% set(gca,'TickLabelInterpreter', 'latex');
+% grid on
+% grid minor
+% legend('CPI inflation (yoy, \%)', '1-year ahead forecast, SPF (annual, \%)', '10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+% legend('boxoff')
 
-figname = ['epi_in_data_', figspecs];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
 
 % return
 figure
@@ -162,15 +142,6 @@ grid minor
 legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
 legend('boxoff')
 
-figname = ['fe_in_data_', figspecs];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
 
 figure
 histogram(fe)
@@ -182,6 +153,28 @@ mdl = fitlm(fe(1:T/2),spf10(2:T/2+1))
 % second half of sample
 mdl = fitlm(fe(T/2+1:end),spf10(T/2+2:end))
 
+% omit first fraction of sample
+mdl = fitlm(fe(28+1:end),spf10(28+2:end))
+
+% time(28+1) '1999-Q1'
+
+% Let's implement a rolling regression
+n_windows = 3;
+length_window = T/n_windows;
+idx_window = 1:T/n_windows:T;
+% add the last
+idx_window = [idx_window, T];
+
+bet_win = zeros(n_windows,1);
+for i=1:n_windows
+    X = fe(idx_window(i)+1:idx_window(i+1));
+    Y = spf10(idx_window(i)+2:idx_window(i+1)+1);
+    bet_win(i) = (X'*X) \ (X'*Y);
+end
+% not providing great evidence here
+
+
+% return
 
 %% NY FED SCE
 
@@ -190,7 +183,7 @@ xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/NY_Fed_SCE/edite
 sheet = 'expectations';
 [num,txt,raw] = xlsread(xlsx_file, sheet);
 % Median 3-year ahead inflation expectations
-sce_1median = num(:,end);
+sce_3median = num(:,end);
 
 sheet = 'uncertainty';
 [num,txt,raw] = xlsread(xlsx_file, sheet);
@@ -211,7 +204,7 @@ dates_sce_str = datestr(dates_sce, 'yyyy-mm');
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(dates_sce, sce_1median, 'linewidth', lw); hold on
+plot(dates_sce, sce_3median, 'linewidth', lw); hold on
 % plot(x,zeros(1,T), 'k--', 'linewidth',lw)
 ax = gca; % current axes
 ax.FontSize = fs;
@@ -264,14 +257,6 @@ grid minor
 legend(h, '(-$\infty$,0)', '[0,1)','[1,2)', '[2,3)', '[3,4)', '(4, $\infty$)','location', 'southoutside', 'interpreter', 'latex', 'NumColumns',6)
 legend('boxoff')
 
-figname = ['distrib_all_', figspecs];
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
 
 % Replot the distribution for the 0,1 and 3,4 bins
 figure
@@ -293,7 +278,250 @@ grid minor
 legend([hlow, hhigh], '[0,1)', '[3,4)', 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns',2)
 legend('boxoff')
 
-figname = ['distrib_topbottom_', figspecs];
+
+%% Livingston
+
+
+xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/Livingston/medians.xlsx';
+
+sheet = 'CPI';
+[num,txt,raw] = xlsread(xlsx_file, sheet);
+% Median 3-year ahead inflation expectations
+liv_10y = num(:,end);
+liv_10y = liv_10y(~isnan(liv_10y));
+
+
+xlsx_file = '/Users/lauragati/Dropbox/BC_Research/next/data/raw/Livingston/Dispersion1.xlsx';
+
+sheet = 'CPI10Y';
+[num,txt,raw] = xlsread(xlsx_file, sheet);
+% Median 3-year ahead inflation expectations
+liv_10y_IQR = num(:,end);
+liv_10y_IQR = liv_10y_IQR(~isnan(liv_10y_IQR));
+
+start_liv = datenum('1991-Q2', 'yyyy-qq');
+end_liv = datenum('2020-Q2', 'yyyy-qq');
+
+time_liv = linspace(start_liv, end_liv,numel(liv_10y));
+datestr(time_liv, 'yyyy-qq'); % it has small errors
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_liv, liv_10y, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = dates_sce(1);
+% set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend('Livingston median 10-year ahead CPI inflation expectations (\%)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_liv, liv_10y_IQR, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = dates_sce(1);
+% set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend('Livingston 10-year ahead CPI inflation expectations, interquartile range', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
+
+%% inflation expectations, market based
+url = 'https://fred.stlouisfed.org/'; % frequency is daily!
+c = fred(url);
+series = 'T10YIE';
+d = fetch(c,series);
+time_breakeven10  = d.Data(:,1);
+breakeven10 = d.Data(:,2);
+
+series = 'T20YIEM';
+d = fetch(c,series);
+time_breakeven20  = d.Data(:,1);
+breakeven20 = d.Data(:,2);
+
+series = 'T30YIEM';
+d = fetch(c,series);
+time_breakeven30  = d.Data(:,1);
+breakeven30 = d.Data(:,2);
+
+close(c)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% For prezi & paper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if print_figs==1
+    close all
+else
+    disp('not displaying prezi plots')
+    return
+end
+
+
+%% The regression plot using CPI inflation and SPF 1- and 10-year ahead
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time, infl, 'linewidth', lw); hold on
+plot(time, spf1(1:end-1), 'linewidth', lw);
+plot(time, spf10(1:end-1), 'linewidth', lw);
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend('CPI inflation (yoy, \%)', '1-year ahead forecast, SPF (annual, \%)', '10-year expected average, SPF (annual, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
+
+
+figname = ['regression_plot_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% Plot Livingston and SPF 10 y-ahead next to each other
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+hliv = plot(time_liv, liv_10y, 'linewidth', lw); hold on
+hspf = plot(time, spf10(1:end-1), 'linewidth', lw);
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = dates_sce(1);
+% set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% title('Median 10-year ahead CPI inflation expectations (annual, \%)', 'interpreter', 'latex')
+legend([hliv, hspf],'Livingston', 'Survey of Professional Forecasters (SPF)', 'location', 'southoutside', 'interpreter', 'latex')
+legend('boxoff')
+
+figname = ['epi_in_data_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% Plot 3 breakeven inflation series next to each other
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+hbe10 = plot(time_breakeven10, breakeven10, 'linewidth', lw);hold on
+hbe20 = plot(time_breakeven20, breakeven20, 'linewidth', lw);
+hbe30 = plot(time_breakeven30, breakeven30, 'linewidth', lw);
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% title('Median 10-year ahead CPI inflation expectations (annual, \%)', 'interpreter', 'latex')
+legend([hbe10, hbe20,hbe30],'10-year', '20-year','30-year', 'location', 'southoutside', 'interpreter', 'latex','NumColumns',3)
+legend('boxoff')
+
+figname = ['epi_be_in_data_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+%% Plot NY FED SCE distribution (3-year ahead infl-E)
+% Replot the distribution for the 0,1 and 3,4 bins
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+hlow = plot(dates_sce, sce_distr(:,2), 'linewidth', lw); hold on
+hhigh = plot(dates_sce, sce_distr(:,end-1), 'linewidth', lw);
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = dates_sce(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% title('NY Fed SCE 3-year ahead bins (yoy, \%)', 'interpreter', 'latex')
+legend([hlow, hhigh], '[0,1)', '[3,4)', 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns',2)
+legend('boxoff')
+
+figname = ['SCE_distrib_topbottom_', figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+
+%% Livingston IQR (10-year ahead)
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time_liv, liv_10y_IQR, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = dates_sce(1);
+% set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% legend('Livingston 10-year ahead CPI inflation expectations, interquartile range', 'location', 'southoutside', 'interpreter', 'latex')
+% legend('boxoff')
+
+figname = ['Livingston_IQR_', figspecs];
 if print_figs ==1
     disp(figname)
     cd(figpath)

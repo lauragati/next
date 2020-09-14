@@ -123,21 +123,50 @@ bottom=1in}
 \def\movei{5 }
 
 %%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update: 27 August 2020 using Calibration C from Materials 43
+
+% Empirical numbers
+% mean estimated alpha
+\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.05 }
+% pp forecast error that unanchors
+\def\ppFEunanchors{1 }
+
+% retired
+%% for 1% fe, you get a change in pibar of
+%\def\betPibFe{0.0906 } % analyze_opt_policy.m
+%% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
+%\def\ppMoveFFR{4.53 }
+
+% raise/lower interest rate by x pp when when LR-exp move by 0.1
+\def\movei{5 }
+
+%%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
 %%%%%%%%%%%%%%%%%%%%
 
-% Market-based expectations
+% Market-based expectations (aren't used in prezi right now)
 \def\fignameMarketEPi{epi10_2020_06_04}
 % cleaned from liq premium
 \def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+\def\fignameMarketEPiMoreHorizons{epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
 
 % SPF long-run-e
-\def\fignameSPFEPi{lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_24_50}
+\def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
 
 % Unanchoring in the data
-\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
-\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
-
+%\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+%\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+\def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}

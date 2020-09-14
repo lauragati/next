@@ -212,18 +212,23 @@
 % DEFINE ALL FIGNAMES HERE
 %%%%%%%%%%%%%%%%%%%%
 
-% Market-based expectations
+% Market-based expectations (aren't used in prezi right now)
 \def\fignameMarketEPi{epi10_2020_06_04}
 % cleaned from liq premium
 \def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+\def\fignameMarketEPiMoreHorizons{epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
 
 % SPF long-run-e
-\def\fignameSPFEPi{lr_epi_in_data_command_anchoring_in_data_03_Sep_2020_09_24_50}
+\def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
 
 % Unanchoring in the data
-\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
-\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
-
+%\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+%\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+\def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}
@@ -324,7 +329,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 \begin{figure}[h!]
 \caption{Expectations of average inflation over 10 years}
-\includegraphics[scale = 0.25]{\myFigPath \fignameSPFEPi}
+\includegraphics[scale = 0.25]{\myFigPath \fignameSPFLiv}
 \label{epi}
 \end{figure}
 
@@ -481,7 +486,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 \begin{figure}[h!]
 \caption{Inflation and expectations}
-\includegraphics[scale = 0.24]{\myFigPath \fignameEpiData}
+\includegraphics[scale = 0.24]{\myFigPath \fignameRegressionPlot}
 \label{pi_epi}
 \end{figure}
 
@@ -491,14 +496,14 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-%	\frametitle{Unanchoring in the data}
 
 
-Second half of sample: estimate
+For 1999-Q1 onward, estimate
 
 \begin{align*}
 \bar{\pi}_t = & \beta_0 + \beta_1 fe_{t|t-1} + \epsilon_t \numberthis \\
 \\
+ \text{where}&\\
 \bar{\pi}_t & \equiv \E_t(\pi_{t+10})\numberthis \\
 fe_{t|t-1} & \equiv \pi_t - \E_{t-1}(\pi_t) \numberthis
 \end{align*}
@@ -507,14 +512,44 @@ fe_{t|t-1} & \equiv \pi_t - \E_{t-1}(\pi_t) \numberthis
 
 \
 
-$\hat{\beta}_1 = 0.04 \quad $  (p-value: 0.0016)
+$\hat{\beta}_1 = 0.06 \quad $  (p-value: 0.000017)
 
 \
 
 
-1 pp forecast error $\rightarrow$ 4 bp revision in long-run expectations
+1 pp forecast error $\rightarrow$ 6 bp revision in long-run expectations
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%%	\frametitle{Unanchoring in the data}
+%
+%
+%\begin{figure}[h!]
+%\caption{Livingston Survey of Firms: \newline Interquartile range of 10-year ahead inflation expectations}
+%\includegraphics[scale = 0.24]{\myFigPath \fignameLivIQR}
+%\label{LivIQR}
+%\end{figure}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+%	\frametitle{Unanchoring in the data}
+
+\begin{figure}[h!]
+\caption{New York Fed Survey of Consumers: \newline Percent of respondents indicating 3-year ahead inflation will be in a particular range}
+\includegraphics[scale = 0.24]{\myFigPath \fignameSCEdistrib}
+\label{SCEdistrib}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
 
 
 \section{Model of anchoring expectations}
@@ -765,19 +800,19 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-%\begin{frame}
-%	\frametitle{Anchoring function in the data}
-%
-%\begin{figure}[h!]
-%\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-%\caption{Learning gain as a function of forecast errors in inflation (pp)}
-%\label{epi}
-%\end{figure}
-%
-%
-%\end{frame}
-%%%%%%%%%%%%%%%%%%
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring function in the data}
+
+\begin{figure}[h!]
+\includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
+\caption{Learning gain as a function of forecast errors in inflation (pp)}
+\label{epi}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
