@@ -21,7 +21,7 @@
 \usepackage[capposition=top]{floatrow}
 \usepackage{amssymb}
 %\usepackage[capposition=top]{floatrow}
-%\usepackage{palatino} % hell yeah, it looks great
+\usepackage{palatino} % hell yeah, it looks great
 
 
 \def \myFigPath {../../figures/} 
@@ -112,30 +112,6 @@ bottom=1in}
 \def\oneppFEgives{0.08}
 % pp forecast error that unanchors (that causes a gain of 0.05)
 \def\ppFEunanchors{0.5 }
-
-% retired
-%% for 1% fe, you get a change in pibar of
-%\def\betPibFe{0.0906 } % analyze_opt_policy.m
-%% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
-%\def\ppMoveFFR{4.53 }
-
-% raise/lower interest rate by x pp when when LR-exp move by 0.1
-\def\movei{5 }
-
-%%%%%%%%%%%%%%%%%%%%
-% DEFINE ALL VARIABLE NUMBERS HERE
-%%%%%%%%%%%%%%%%%%%%
-
-% numbers update: 27 August 2020 using Calibration C from Materials 43
-
-% Empirical numbers
-% mean estimated alpha
-\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
-\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
-% for 1% fe, you get a gain of
-\def\oneppFEgives{0.05 }
-% pp forecast error that unanchors
-\def\ppFEunanchors{1 }
 
 % retired
 %% for 1% fe, you get a change in pibar of
@@ -256,9 +232,9 @@ Jerome Powell, Chairman of the Federal Reserve\footnote{Federal Reserve ``Confer
 %Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019, Opening Remarks.}
 %\end{quote}
 
-When Fed Chairman Jerome Powell announced mid-2019 the Federal Reserve's intention to review its policy framework, his words echoed the common sentiment among central bankers that anchoring inflation expectations is ``at the heart'' of monetary policy. Yet the leading macroeconomic models of monetary policy are based on the assumption of model-consistent expectations. This assumption, often termed ``rational expectations'' (RE), does not capture unanchored expectations because expectations of long-run variables are by assumption equal to their steady state values - indeed, the steady state values ``anchor'' long-run expectations. 
+When Fed Chairman Jerome Powell announced mid-2019 the Federal Reserve's intention to review its policy framework, his words echoed the common sentiment among central bankers that anchoring inflation expectations is ``at the heart'' of monetary policy. Yet the leading macroeconomic models of monetary policy are based on the assumption of model-consistent expectations. This assumption, often termed ``rational expectations'' (RE), does not capture unanchored expectations because expectations of long-run variables are by assumption equal to their steady state values and thus always constant - indeed, the steady state values ``anchor'' long-run expectations. 
 
-But a look at the data reveals that expectations of long-run inflation move around a lot, and, in particular, may not always be anchored at the steady state target of 2\%.\footnote{By ``expectations of long-run inflation'' I mean the private sector's expectation of where inflation will be on average over a longer period in the future. Therefore I also refer to this as ``expected mean inflation.''} Fig. \ref{epi} portrays this series for the last decade in the US. As the figure shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. The Fed's year-long review of its monetary policy framework demonstrates that it considers this a threat to the anchoring of expectations. Chairman Powell describes the Fed's fears in the following terms:
+But a look at the data reveals that expectations of long-run inflation move around a lot, and, in particular, may not always be anchored at the steady state target of 2\%.\footnote{By ``expectations of long-run inflation'' I mean the private sector's expectation of where inflation will be on average over a longer period in the future. Therefore I also refer to this as ``expected mean inflation.''} Fig. \ref{epi} portrays this series for the last decade in the US.\footnote{App. \ref{unanchoring_in_data} presents an overview of alternative measures of long-run inflation expectations in the data.} As the figure shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. The Fed's year-long review of its monetary policy framework demonstrates that it considers this a threat to the anchoring of expectations. Chairman Powell describes the Fed's fears in the following terms:
 
 \begin{figure}[h!]
 \includegraphics[scale = \mySmallFigScale]{\myFigPath \fignameMarketEPi}
@@ -280,7 +256,7 @@ The main contribution of the paper is to investigate how the anchoring expectati
 
 The key takeaway is that monetary policy faces an intertemporal volatility tradeoff due to the anchoring mechanism which it resolves by being exceedingly aggressive on unanchored expectations in the short run. Because of the positive feedback between expectations and observables, anchored expectations yield lower economic volatility than unanchored ones do. But because long-run expectations move more when expectations are unanchored, an aggressive interest rate response meant to anchor expectations induces heightened short-run volatility. Therefore the central bank prefers to avoid unanchoring expectations in the first place, and reacts aggressively to subdue any potential unanchoring. For this reason, to an econometrician estimating central bank behavior using a Taylor-type rule, optimal monetary policy in the anchoring model would appear as a rule with time-varying coefficients. 
 
-Quantitatively, the estimation reveals that already forecast errors above \ppFEunanchors percentage points are sufficient to unanchor expectations. Moreover, the optimal policy implies that if long-run expectations drift down by 0.1 pp, the optimal response is to lower the interest rate by \movei pp.
+Quantitatively, the estimation reveals that already forecast errors above \ppFEunanchors percentage point are sufficient to unanchor expectations. Moreover, the optimal policy implies that if long-run expectations drift down by 0.1 pp, the optimal response is to lower the interest rate by \movei pp.
 
 The remaining results can be summarized as follows.  First, the analytical results show that the optimal Ramsey policy follows a targeting rule that spells out how the intratemporal tradeoff between inflation and unemployment is complimented by novel intertemporal tradeoffs due to the anchoring expectation formation. The extent of these tradeoffs is determined by the current and expected future stance of anchoring. Second, adhering to a Taylor rule is more costly in the anchoring model than it is under rational expectations because a Taylor rule deprives policy from responding to fluctuations in long-run expectations. Lastly, while the fully optimal policy can eliminate the bulk of costly fluctuations, already a change to Taylor-rule coefficients that are optimal under an anchoring expectation formation eliminates 75\% of the additional volatility costs stemming from the anchoring expectation formation. This means that if, as my estimation indicates, the true model of expectations is closer to the anchoring model than to rational expectations, a small policy change of adapting Taylor-rule coefficients to the anchoring model would result in significant improvement in welfare.
 
@@ -821,6 +797,29 @@ Lastly, a foray into the empirics of anchoring expectation formation is importan
 
 % the following command makes equation numbering include the section first, but just for what follows
 \numberwithin{equation}{section}
+
+\section{Alternative measures of long-run inflation expectations}\label{unanchoring_in_data}
+
+Measuring long-run expectations is challenging. In particular, two dimensions of expectations are hard to line up between models and data: the identity of the economic agent forming expectations and the forecast horizon. To start with the former, one would ideally wish to measure the expectations of the private sector, firms and households, since their expectations correspond to the ones present in economic models. As for the forecast horizon, no single horizon is an exact counterpart to the concept of expectations of average inflation. Arguably, the longer the forecast horizon, the closer the measured expectation is to expectations of the average.
+
+\begin{figure}[h!]
+\caption{Alternative long-run inflation expectations measures}
+\subfigure[Market-based inflation expectations from TIPS, various horizons]{\includegraphics[scale = \myFigScale]{\myFigPath \fignameMarketEPiMoreHorizons}}
+\subfigure[10-year ahead inflation expectations of firms (Livingston) and professional forecasters (SPF)]{\includegraphics[scale = \myFigScale]{\myFigPath \fignameSPFLiv}}
+\floatfoot{All inflation rates are annualized percentages. The series are at the following frequency: daily (10-year TIPS), monthly (20- and 30-year TIPS), quarterly (SPF), twice per year (Livingston).}
+\label{epi_alternative}
+\end{figure}
+
+These considerations led me to present the 10-year breakeven inflation series of Fig. \ref{epi} in the main text. There are two main advantages of constructing inflation expectation measures from TIPS. First, since this measure is based on trades that happened in the Treasury market, it pertains to agents who are active in a market where inflation expectations matter. Such expectations are therefore a good proxy for the private sector's expectations in economic models. Second, the fact that breakeven inflation is not elicited from surveys allows the econometrician to bypass many of the challenges that survey data involve. It has been widely documented that survey participants may have poor understanding of the economic concept elicited, may misunderstand the survey questions or be unduly influenced by the wording. Most troubling is the fact that there is no way the econometrician could control for the noise thus introduced in survey data. 
+
+Breakeven inflation measures are not a panacea, however. The illiquidity of TIPS markets introduces a distortion into the measured expectations in the form of a time-varying liquidity premium (App. \ref{TIPS} corrects for this by filtering out an approximate liquidity premium series from the expectation series.) One could also contend that many firms and the majority of households are not active on the TIPS market, and therefore that breakeven inflation is not representative of the economy-wide expectation. For this reason, I also investigate alternative long-run inflation measures.
+
+The forecast horizon is a binding constraint: consumer expectations data have a maximal forecast horizon of three (New York Fed Survey of Consumer Expectations (SCE)) or five years (University of Michigan Survey of Consumers). To have at least a forecast horizon of ten years, I thus resort to the Livingston Survey of the Philadelphia Fed and the Survey of Professional Forecasters (SPF). Fig. \ref{epi_alternative} plots these two series alongside the breakeven inflation series for a horizon of 10, 20 and 30 years.
+
+The breakeven inflation measures are clearly and consistently below the Livingston and SPF measures. Part of this may be driven by liquidity premia, which I control for in App. \ref{TIPS}. At the same time, both the Livingston and the SPF expectations may potentially suffer from representativeness issues. The fact that the two expectations series are so closely aligned indicates that the Livingston survey may only be reaching a subset of firms.\footnote{The category codes of individual survey participates in the Livingston survey seems to underscore this. According to the documentation, the surveyed businesses fall into the following categories: academic institution, commercial banking, consulting, Federal Reserve, government, industry trade group, insurance company, investment banking, labor, nonfinancial business and other.} This subset seems to be highly correlated with the set of professional forecasters filling out the SPF. This is a concern because it suggests that the elicited expectations may not be representative of the economy-wide firm expectations. Moreover, if professional forecasters respond to the survey by running a (by assumption stationary) econometric model, then the survey responses may not even accurately reflect their held beliefs.
+
+But all these caveats notwithstanding, there is a single element that is consistent across all of these measures of long-run inflation expectations: following 2010, they all shift downward. In other words, they all show responsiveness to the fact that the Federal Reserve has undershot the 2\% inflation target. Thus they convey the very same message of Fig \ref{epi}: long-run expectations incorporate recent observations and shift accordingly. That is, expectations not only have a potential to unanchor, but in recent years may be threatening to do so in response to the Fed missing its inflation target.
+
 
 \section{Filtering out liquidity risk from TIPS}\label{TIPS} 
 Some caution is needed when inferring inflation expectations from TIPS. The underlying idea is that the difference between real (indexed to inflation) and nominal yields should be a good metric for the market's expectations of inflation on average for the duration of the particular maturity. But since TIPS markets face liquidity issues, especially for seasoned securities, the TIPS yield also incorporates a liquidity premium. The positive bias in the TIPS yield thus leads to a negative bias in expected inflation.
