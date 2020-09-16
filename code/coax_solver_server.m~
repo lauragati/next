@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -99,7 +99,7 @@ ndrop = 5 % 0-50
 
 
 % Size of cross-section
-N=1000
+N=100
 
 if use_expectations_data==0 % take out moments pertaining to expectations
     Ommatrix = reshape(Om_data,nobs,nobs,K+1);
@@ -331,6 +331,7 @@ flag = zeros(1,nsearch);
 ALPH0 = alph0.^(1:nsearch);
 
 
+return
 start_search = datetime('now');
 for i=1:nsearch
     alph0 = ALPH0(:,i);

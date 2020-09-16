@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Model of anchoring expectations: key elements}{19}{0}{1}
+\beamer@sectionintoc {2}{Features of optimal policy under anchoring expectation formation}{28}{0}{2}

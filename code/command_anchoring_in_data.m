@@ -13,7 +13,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
