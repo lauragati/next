@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 SEP 2020 21:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 SEP 2020 19:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1433,56 +1433,56 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] [6
 
+] [7
+
 pdfTeX warning (ext4): destination with the same identifier (name{standardPC}) 
 has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.400 \end{frame}
-                 ] [7
-
-] [8
+l.403 \end{frame}
+                 ] [8
 
 ] [9
 
 ] [10
 
+] [11
+
 ]
 <../../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.pn
-g, id=102, 1080.035pt x 696.6025pt>
+g, id=108, 1080.035pt x 696.6025pt>
 File: ../../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_
 59.png Graphic file (type png)
 
 <use ../../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_5
 9.png>
 Package pdftex.def Info: ../../../figures/epi_in_data_command_anchoring_in_data
-_14_Sep_2020_18_12_59.png used on input line 419.
+_14_Sep_2020_18_12_59.png used on input line 422.
 (pdftex.def)             Requested size: 270.00809pt x 174.15019pt.
- [11
+ [12
 
  <../../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.p
-ng (PNG copy)>] [12
-
-] [13
+ng (PNG copy)>] [13
 
 ] [14
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 484.
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 487.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 484.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 487.
  [15
 
 ] [16
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 560.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 563.
 
 [17
 
@@ -1504,9 +1504,9 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 702.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 705.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 702.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 705.
  [26
 
 ]
@@ -1515,45 +1515,45 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <5> not available
 ] (./GLMM_sept2020.toc) [28
 
 ]
-<../../../figures/analyze_opt_policy_ip12_Sep_2020.png, id=253, 1063.975pt x 76
+<../../../figures/analyze_opt_policy_ip12_Sep_2020.png, id=252, 1063.975pt x 76
 8.8725pt>
 File: ../../../figures/analyze_opt_policy_ip12_Sep_2020.png Graphic file (type 
 png)
  <use ../../../figures/analyze_opt_policy_ip12_Sep_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip12_Sep_2020.png 
-used on input line 721.
+used on input line 724.
 (pdftex.def)             Requested size: 265.9931pt x 192.21765pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 721.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 724.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 721.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 724.
 
-Overfull \vbox (0.34598pt too high) detected at line 721
+Overfull \vbox (0.34598pt too high) detected at line 724
  []
 
 [29
 
  <../../../figures/analyze_opt_policy_ip12_Sep_2020.png (PNG copy)>]
 <../../../figures/RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12.png,
- id=260, 1072.005pt x 695.59875pt>
+ id=259, 1072.005pt x 695.59875pt>
 File: ../../../figures/RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12
 .png Graphic file (type png)
 
 <use ../../../figures/RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12.
 png>
 Package pdftex.def Info: ../../../figures/RIR_anch_psi_pi1_5_command_IRFs_appro
-x_pretty_2020_09_12.png used on input line 736.
+x_pretty_2020_09_12.png used on input line 739.
 (pdftex.def)             Requested size: 160.79381pt x 104.33531pt.
 
 <../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12.pn
-g, id=261, 1072.005pt x 695.59875pt>
+g, id=260, 1072.005pt x 695.59875pt>
 File: ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_
 12.png Graphic file (type png)
 
 <use ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_1
 2.png>
 Package pdftex.def Info: ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_app
-rox_pretty_2020_09_12.png used on input line 736.
+rox_pretty_2020_09_12.png used on input line 739.
 (pdftex.def)             Requested size: 160.79381pt x 104.33531pt.
  [30
 
@@ -1561,7 +1561,7 @@ rox_pretty_2020_09_12.png used on input line 736.
  (PNG copy)> <../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_
 2020_09_12.png (PNG copy)>]
 <../../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_
-only_pi_only_lamx0_05_lami0_2020_09_12.png, id=269, 1041.8925pt x 688.5725pt>
+only_pi_only_lamx0_05_lami0_2020_09_12.png, id=268, 1041.8925pt x 688.5725pt>
 File: ../../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_cons
 tant_only_pi_only_lamx0_05_lami0_2020_09_12.png Graphic file (type png)
 
@@ -1569,10 +1569,10 @@ tant_only_pi_only_lamx0_05_lami0_2020_09_12.png Graphic file (type png)
 ant_only_pi_only_lamx0_05_lami0_2020_09_12.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_pretty_losses_ag
 ain_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_12.png used on inpu
-t line 750.
-(pdftex.def)             Requested size: 291.7279pt x 192.79898pt.
+t line 758.
+(pdftex.def)             Requested size: 250.05931pt x 165.26077pt.
 
-Overfull \vbox (0.9273pt too high) detected at line 750
+Overfull \vbox (2.53899pt too high) detected at line 758
  []
 
 [31
@@ -1580,49 +1580,35 @@ Overfull \vbox (0.9273pt too high) detected at line 750
  <../../../figures/plot_sim_loss_approx_pretty_losses_again_critsmooth_constant
 _only_pi_only_lamx0_05_lami0_2020_09_12.png (PNG copy)>]
 <../../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_12.p
-ng, id=278, 1063.975pt x 695.59875pt>
+ng, id=277, 1063.975pt x 695.59875pt>
 File: ../../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09
 _12.png Graphic file (type png)
 
 <use ../../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_
 12.png>
 Package pdftex.def Info: ../../../figures/RIR_unanch_psi_pi1_01_command_IRFs_ap
-prox_pretty_2020_09_12.png used on input line 767.
+prox_pretty_2020_09_12.png used on input line 775.
 (pdftex.def)             Requested size: 138.3216pt x 90.431pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 767.
-
-<../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07.pn
-g, id=279, 1047.915pt x 695.59875pt>
-File: ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_
-07.png Graphic file (type png)
-
-<use ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_0
-7.png>
-Package pdftex.def Info: ../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_app
-rox_pretty_2020_09_07.png used on input line 767.
-(pdftex.def)             Requested size: 136.23372pt x 90.431pt.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 775.
 
 <../../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_12.png,
- id=280, 1047.915pt x 695.59875pt>
+ id=278, 1047.915pt x 695.59875pt>
 File: ../../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_12
 .png Graphic file (type png)
 
 <use ../../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_12.
 png>
 Package pdftex.def Info: ../../../figures/RIR_unanch_psi_pi2_command_IRFs_appro
-x_pretty_2020_09_12.png used on input line 767.
+x_pretty_2020_09_12.png used on input line 775.
 (pdftex.def)             Requested size: 136.23372pt x 90.431pt.
-
-Overfull \vbox (32.43015pt too high) detected at line 767
- []
-
-[32
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 775.
+ [32
 
  <../../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_12.
-png (PNG copy)> <../../../figures/RIR_unanch_psi_pi1_5_command_IRFs_approx_pret
-ty_2020_09_07.png (PNG copy)> <../../../figures/RIR_unanch_psi_pi2_command_IRFs
-_approx_pretty_2020_09_12.png (PNG copy)>] [33
+png (PNG copy)> <../../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty
+_2020_09_12.png (PNG copy)>] [33
 
 ] [34
 
@@ -1646,46 +1632,46 @@ Overfull \hbox (39.86916pt too wide) has occurred while \output is active
 
 ]
 <../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59
-.png, id=324, 1058.95625pt x 688.5725pt>
+.png, id=323, 1058.95625pt x 688.5725pt>
 File: ../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_
 12_59.png Graphic file (type png)
 
 <use ../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_1
 2_59.png>
 Package pdftex.def Info: ../../../figures/epi_be_in_data_command_anchoring_in_d
-ata_14_Sep_2020_18_12_59.png used on input line 973.
+ata_14_Sep_2020_18_12_59.png used on input line 982.
 (pdftex.def)             Requested size: 264.73842pt x 172.1427pt.
  [38
 
  <../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_5
 9.png (PNG copy)>]
-<../../../figures/cleaned_epi10_2020_07_28.png, id=332, 1069.9975pt x 695.59875
+<../../../figures/cleaned_epi10_2020_07_28.png, id=331, 1069.9975pt x 695.59875
 pt>
 File: ../../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
  <use ../../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../../figures/cleaned_epi10_2020_07_28.png used on 
-input line 990.
+input line 999.
 (pdftex.def)             Requested size: 267.49872pt x 173.89926pt.
 pdfTeX warning (ext4): destination with the same identifier (name{epi_cleaned})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.990 \end{frame}
+l.999 \end{frame}
                   [39
 
  <../../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>]
 <../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59
-.png, id=339, 1080.035pt x 718.685pt>
+.png, id=338, 1080.035pt x 718.685pt>
 File: ../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_
 12_59.png Graphic file (type png)
 
 <use ../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_1
 2_59.png>
 Package pdftex.def Info: ../../../figures/Livingston_IQR_command_anchoring_in_d
-ata_14_Sep_2020_18_12_59.png used on input line 1008.
+ata_14_Sep_2020_18_12_59.png used on input line 1017.
 (pdftex.def)             Requested size: 259.2137pt x 172.48792pt.
 
-Overfull \vbox (3.61624pt too high) detected at line 1008
+Overfull \vbox (3.61624pt too high) detected at line 1017
  []
 
 
@@ -1698,14 +1684,14 @@ Overfull \hbox (90.35222pt too wide) has occurred while \output is active
  <../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_5
 9.png (PNG copy)>]
 <../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_1
-8_12_59.png, id=348, 1045.9075pt x 689.57625pt>
+8_12_59.png, id=347, 1045.9075pt x 689.57625pt>
 File: ../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2
 020_18_12_59.png Graphic file (type png)
 
 <use ../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_20
 20_18_12_59.png>
 Package pdftex.def Info: ../../../figures/SCE_distrib_topbottom_command_anchori
-ng_in_data_14_Sep_2020_18_12_59.png used on input line 1024.
+ng_in_data_14_Sep_2020_18_12_59.png used on input line 1033.
 (pdftex.def)             Requested size: 251.02293pt x 165.50168pt.
 
 Overfull \hbox (107.17992pt too wide) has occurred while \output is active
@@ -1717,16 +1703,13 @@ Overfull \hbox (107.17992pt too wide) has occurred while \output is active
  <../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_
 18_12_59.png (PNG copy)>] [42
 
-]
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1079.
- [43
+] [43
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{g}) has been
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1120 \end{frame}
+l.1129 \end{frame}
                    [44
 
 ] [45
@@ -1735,7 +1718,7 @@ l.1120 \end{frame}
 
 ]
 <../../../figures/alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_W
-mid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40.png, id=394, 1087
+mid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40.png, id=392, 1087
 .06125pt x 783.92876pt>
 File: ../../../figures/alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100
 000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40.png Graphic 
@@ -1745,13 +1728,13 @@ file (type png)
 00_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40.png>
 Package pdftex.def Info: ../../../figures/alph_opt_aloneN_500_nfe_5_gridspacing
 _manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15
-_46_40.png used on input line 1188.
+_46_40.png used on input line 1197.
 (pdftex.def)             Requested size: 195.66258pt x 141.10109pt.
 pdfTeX warning (ext4): destination with the same identifier (name{epi}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1188 \end{frame}
+l.1197 \end{frame}
                   
 Overfull \hbox (208.14604pt too wide) has occurred while \output is active
  [][]  
@@ -1800,11 +1783,11 @@ Overfull \hbox (325.93987pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `GLMM_sept2020.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1431.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1431.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1440.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1440.
  (./GLMM_sept2020.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1431.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1431.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1440.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1440.
 
 Package rerunfilecheck Info: File `GLMM_sept2020.out' has not changed.
 (rerunfilecheck)             Checksum: E4A5286A277A27139D2196D23DEA0DE5;220.
@@ -1812,13 +1795,13 @@ Package rerunfilecheck Info: File `GLMM_sept2020.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1431.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1440.
  ) 
 Here is how much of TeX's memory you used:
- 32348 strings out of 493089
- 753659 string characters out of 6134842
+ 32343 strings out of 493089
+ 753262 string characters out of 6134842
  954908 words of memory out of 5000000
- 34943 multiletter control sequences out of 15000+600000
+ 34939 multiletter control sequences out of 15000+600000
  34341 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,18n,79p,945b,908s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1851,10 +1834,10 @@ lic/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 latino/uplbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino
 /uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8
 a.pfb>
-Output written on GLMM_sept2020.pdf (54 pages, 963383 bytes).
+Output written on GLMM_sept2020.pdf (54 pages, 911770 bytes).
 PDF statistics:
- 599 PDF objects out of 1000 (max. 8388607)
- 487 compressed objects within 5 object streams
+ 597 PDF objects out of 1000 (max. 8388607)
+ 486 compressed objects within 5 object streams
  158 named destinations out of 1000 (max. 500000)
- 168 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 

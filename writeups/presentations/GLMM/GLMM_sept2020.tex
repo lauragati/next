@@ -313,7 +313,7 @@ An Endogenous Gain Learning Model}
 	
 \begin{quote}
 Inflation that runs below its desired level can lead to an unwelcome fall in \textbf{longer-term inflation expectations}, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.
-[...] Well-anchored inflation expectations are critical[.]  \\
+[...]  \textbf{Well-anchored inflation expectations} are critical[.]  \\
 Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020.} \\
 (Emphases added.)
 % Jackson Hole 
@@ -327,6 +327,16 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 %%%%%%% Slide %%%%%%
 \begin{frame}
 \frametitle{Anchored expectations}
+
+\begin{equation}
+\E_t \pi_{t+1} = \bar{\pi}+ f(shocks)
+\end{equation}
+
+$\bar{\pi} = $ long-run expectations
+
+\
+
+\pause
 	
 \emph{Anchored expectations}: long-run expectations at Fed's target ($\pi^*$) 
 
@@ -353,16 +363,9 @@ $\rightarrow$ short-run expectations ``anchored'' to stable mean:
 \
 
 \begin{equation}
-\E_t \pi_{t+1} = \textcolor{brownreddark}{\bar{\pi}_{t-1}} + f(shocks)
+\E_t \pi_{t+1} = \textcolor{brownreddark}{\bar{\pi}_{t-1}(shocks)} + f(shocks)
 \end{equation}
 
-
-\
-
-
-\begin{equation*}
-\bar{\pi}_{t-1} \neq \pi^* \quad \quad \text{and} \quad \quad \bar{\pi}_{t-1} = h(shocks)
-\end{equation*}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
@@ -445,11 +448,11 @@ $\Rightarrow \hat{\beta}_1 = 0.06 \quad $  (p-value: 0.000017)
 
 $\Rightarrow$ 1 pp forecast error $\rightarrow$ 6 bp revision in long-run expectations
 
-\
-
-\pause
-
-Likely understatement: professional forecasters may run stationary models
+%\
+%
+%\pause
+%
+%Likely understatement: professional forecasters may run stationary models
 
 \vspace{0.5cm}
 
@@ -564,14 +567,14 @@ Likely understatement: professional forecasters may run stationary models
 \begin{frame}
 	\frametitle{Today's talk}
 
+\vspace{0.2cm}
+
 \begin{enumerate}
-\item Model of anchoring expectations: key elements
+\item \hspace{-0.15cm} Model of anchoring expectations: key elements
 
-\
+\vspace{1.2cm}
 
-\
-
-\item Features of optimal policy under anchoring expectation formation
+\item \hspace{-0.15cm} Features of optimal policy under anchoring expectation formation
 
 \end{enumerate}
 
@@ -724,7 +727,7 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{The intertemporal volatility tradeoff}
+	\frametitle{Unanchoring raises volatility}
 
 \begin{figure}[h!]
 \subfigure[Expectations anchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFanchored}}
@@ -741,10 +744,15 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Optimal Taylor-coefficient on inflation}
+
+	\begin{equation}
+	i_t = \psi_{\pi}\pi_t + 0.3 x_t
+	\end{equation}
+
 	
 \begin{figure}[h!]
 \caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.28]{\myFigPath \fignameCBlossbaseline}
+\includegraphics[scale=0.24]{\myFigPath \fignameCBlossbaseline}
 \end{figure} 
 
 \end{frame}
@@ -752,12 +760,12 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{The intertemporal volatility tradeoff - again}
+	\frametitle{Too high $\psi_{\pi}$ induces volatility}
 
 \begin{figure}[h!]
 \subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
 %\hfill
-\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
+%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
 \subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
 \caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
 %\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
@@ -771,6 +779,7 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 \begin{frame}
 	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
 	
+
 
 RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
 

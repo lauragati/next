@@ -141,21 +141,14 @@ eta = SIG; %just so you know
 
 ndrop=0;
 
-start_PEA = datetime('now');
 y= zeros(ny,T,N);
-for n=1:N
-    disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+for n=1%:N
     e = squeeze(eN(:,:,n));
     [~, y(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,g_fe,knowTR,mpshock);
 
 end
-end_PEA = datetime('now');
-duration_PEA_loss = end_PEA - start_PEA
-
 % for T=100, N=1, this takes 78 sec. 
-% for T=100, N=100, it should thus take 130 min
-% for T=400, N=1, it 20 minutes.
-% for T=400, N=100, it should take 34 hours.
+% 
 
-loss_PEA = loss_CB(param,y) 
+EL = loss_CB(param,y); % one time is 0.74 --> so an estimate is this times N=100 = 74.
 
