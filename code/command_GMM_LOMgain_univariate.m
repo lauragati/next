@@ -513,7 +513,6 @@ figspecs = ['N_', num2str(N),'_nfe_', num2str(nfe), ...
 %'_use_expectations_', num2str(use_expectations_data), '_use_meas_error_', num2str(sig_v), ...
 
 
-
 % Let's add the final output to the finer sample
 k1_opt = ndim_simplex_eval(x,fegrid_fine(:)',alph_opt_mean);
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')

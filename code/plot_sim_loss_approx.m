@@ -26,7 +26,9 @@ compute_loss=1;
 
 %% Parameters
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
+
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
@@ -71,7 +73,7 @@ alph = alph_opt;
 ne = 3;
 
 burnin = 0;
-T = 400 % 400
+T = 100 % 400
 % Size of cross-section
 N = 100 %500
 
@@ -209,9 +211,10 @@ if print_figs==1
 %     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
     
     figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
-    y = [loss; loss_RE];
+    loss_opt = 5*ones(size(loss));
+    y = [loss; loss_RE; loss_opt];
     % 
     xlplus = [0.5,0.0002];
     ylplus = [-100,0]; % delete this one
-    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
+    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE', 'Optimal'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
 end

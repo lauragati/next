@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end
@@ -240,8 +240,9 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-alph_true = 4*[0.2,0.1,0,0.1,0.2]';
-% alph_true = [1.0000    0.5000         0    0.5000    1.0000];
+% alph_true = 4*[0.2,0.1,0,0.1,0.2]'; % Calibration C
+alph_true = [0.8161,    0.6133,    0,    0.3342,    0.4452]'; % "complete Materials 44 candidate"
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 sig_r = 0.01;
 sig_i = 0.01;
@@ -389,4 +390,17 @@ if print_figs ==1
     export_fig(figname)
     cd(current_dir)
     close
+end
+
+do_opt_plot=1;
+if do_opt_plot==1
+    % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
+    figname = ['alph_opt_',figspecs];
+    xlab = 'Forecast error';
+    ylab = 'Gain';
+    xlplus = [0,0.02];
+    ylplus = [0.8,0.5];
+
+    create_pretty_plot_x(fegrid,alph_true',xlab,ylab,xlplus, ylplus,figname,print_figs)
+    % end
 end

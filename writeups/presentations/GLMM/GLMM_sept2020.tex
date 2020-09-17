@@ -752,56 +752,46 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 	
 \begin{figure}[h!]
 \caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.24]{\myFigPath \fignameCBlossbaseline}
+\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaseline}
 \end{figure} 
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Too high $\psi_{\pi}$ induces volatility}
-
-\begin{figure}[h!]
-\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
-%\hfill
-%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
-\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
-\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
-%\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
-\label{IRF_unanchored_psi}
-\end{figure}
+\begin{small}
+Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09$. RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$.
+\end{small}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Too high $\psi_{\pi}$ induces volatility}
+%
+%\begin{figure}[h!]
+%\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
+%%\hfill
+%%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
+%\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
+%\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
+%%\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
+%\label{IRF_unanchored_psi}
+%\end{figure}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
+	\frametitle{Losses for various policies}
 	
-
-
-RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
-
-\
-
-Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09$
-
-\
-
-\
-
-\
-
-
 \begin{center}
 \begin{table}[h!]
       \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
 
-\begin{tabular}{ c | c | c }
+\begin{tabular}{ c | c | c | c}
 %\hline
-Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ \\  \hline
- 9.6901  &  5.8296 & 5.3148  \\  \hline
+Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ & Optimal policy \\  \hline
+ 9.6901  &  5.8296 & 5.3148 & $\approx$ 5 \\  \hline
 \end{tabular}     
       \label{table_welfare}
  \end{table}

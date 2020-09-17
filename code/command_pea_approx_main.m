@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 0;
+print_figs        = 1;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -41,7 +41,8 @@ output_table = print_figs;
 % ng_fine = 100;
 % fegrid_fine = linspace(femin,femax,ng_fine);
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
@@ -198,14 +199,18 @@ disp('Initial simul using TR - this should explode b/c agents don''t know the TR
 % % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
 % % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
 % % return
+% 
 % % %%% when saving to draft or presentations, use these 5 lines below
 % xlab = 'Quarters';
 % ylab = 'dont display';
 % xlplus = [45,0.01];
 % ylplus = [-400,0];
-% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
-% % create_pretty_plot_x(1:length(k0),1./k0, ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+% create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_TR_approx',nowstr], print_figs)
 % 
+% xlplus = [20,0.01];
+% create_pretty_subplots(y0(:,1:40),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_TR_approx_40q_',nowstr], print_figs)
+
+
 % return
 
 

@@ -27,7 +27,7 @@ save_stuff=0;
 
 
 
-%%
+%% Estimation and fake data generation
 
 command_GMM_LOMgain_univariate
 
@@ -37,8 +37,33 @@ coax_solver_server % to run the same estimation from different starting points
 
 %% Calibration of sigmas and alphas
 
-command_sigmas.m
+command_sigmas
 
 %% Anchoring in the data
 
 command_anchoring_in_data
+
+%% Optimal policy
+
+command_pea_approx_main
+
+command_vfi_approx
+
+%% Analyze optimal policy
+
+compare_value_pea_results_approx
+
+analyze_opt_policy
+
+%% Plot CB loss, find optimal Taylor-rule coefficient and compute welfare
+
+plot_sim_loss_approx
+
+grid_search_approx
+
+command_welfare
+
+%% IRFs
+
+command_IRFs_approx_pretty
+

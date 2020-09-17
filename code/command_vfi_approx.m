@@ -42,7 +42,9 @@ output_table = print_figs;
 % alph = alph_opt;
 
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
+
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
@@ -146,7 +148,7 @@ np = 8;
 % pgrid = linspace(-1.2,1.2,np); % this doesn't
 % pgrid = linspace(-1,1,np); % this seems to work
 % pgrid = linspace(-0.2,0.2,np); % this seems to work
-pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
+% pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
 
 
 

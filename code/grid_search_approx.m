@@ -25,7 +25,9 @@ skip_old_stuff = 1;
 
 %% Parameters
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
+
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
@@ -73,7 +75,7 @@ alph = alph_opt;
 ne = 3;
 
 burnin = 0;
-T = 400 % 400
+T = 100 % 400
 % Size of cross-section
 N = 100 %500
 
@@ -131,8 +133,10 @@ options.UseParallel=true;
 %% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-setp.lamx  = 1;
-setp.lami  = 1;
+% setp.lamx  = 0;
+% setp.lami  = 1;
+
+% knowTR=0
 
 disp(datestr(now))
 %% Fmincon
@@ -191,8 +195,9 @@ RE_loss_at15   = objective_CB_RE(1.5,setp,eN,burnin)
 Anch_loss_at15 = objective_CB_approx(1.5,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 
 % psi_pi = RE-optimal
-par_opt_RE = 2.2098;
-par_opt = 1.0877;
+% knowTR=1;
+par_opt_RE = 2.2101;
+par_opt = 1.1083;
 RE_loss_at_REopt   = objective_CB_RE(par_opt_RE,setp,eN,burnin)
 Anch_loss_at_REopt = objective_CB_approx(par_opt_RE,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 

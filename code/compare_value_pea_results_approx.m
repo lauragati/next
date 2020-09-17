@@ -54,8 +54,9 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_41_01'; % Sept 15 estimation of Materials 44; pgrid = linspace(-0.1,0.1,np);
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_19_47'; % Sept 15 estimation of Materials 44; pgrid = linspace(-0.2,0.2,np);
-value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
-
+% value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
+% value_output_name = 'value_outputs_approx17_Sep_2020_13_51_53'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.1,0.1,np);
+value_output_name = 'value_outputs_approx17_Sep_2020_14_01_16'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np);
 
 
 
@@ -79,7 +80,8 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_45_53';  % Calibration C of Materials 43; rng(2) default
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
-pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
+% pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
+pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2)
 
 
 
@@ -122,6 +124,12 @@ xlplus = [45,0.01];
 ylplus = [-400,0];
 create_pretty_plot_holdon(policies, {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
 create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx', nowstr], print_figs)
+
+xlplus = [20,0.01];
+ylplus = [-400,0];
+create_pretty_plot_holdon(policies(:,1:40), {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_40q_', nowstr], print_figs)
+create_pretty_subplots(ysim7(:,2:40),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx_40q', nowstr], print_figs)
+
 
 return
 xlplus = [45,0.0025];

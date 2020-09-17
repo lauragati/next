@@ -52,7 +52,9 @@ again_critCUSUM = 22;
 again_critsmooth = 23;
 cgain = 3;
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
+
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:

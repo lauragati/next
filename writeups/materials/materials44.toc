@@ -1,6 +1,6 @@
 \contentsline {section}{\numberline {1}Inconsistency was: didn't annualize expectations in true data}{2}{section.1}
 \contentsline {subsection}{\numberline {1.1}Check with same seed as true data and $N=1$}{4}{subsection.1.1}
 \contentsline {section}{\numberline {2}Real data}{5}{section.2}
-\contentsline {section}{\numberline {3}Policy isn't a function of $k^{-1}_t$}{11}{section.3}
-\contentsline {section}{\numberline {A}Model summary}{12}{appendix.A}
-\contentsline {section}{\numberline {B}Target criterion}{12}{appendix.B}
+\contentsline {section}{\numberline {3}Policy isn't a function of $k^{-1}_t$}{12}{section.3}
+\contentsline {section}{\numberline {A}Model summary}{13}{appendix.A}
+\contentsline {section}{\numberline {B}Target criterion}{13}{appendix.B}

@@ -25,7 +25,9 @@ skip_old_stuff = 1;
 
 %% Parameters
 
-filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+% filename = 'estim_LOMgain_outputs_univariate_coax11_Sep_2020_15_46_40'; % materials44 candidate
+filename = 'estim_LOMgain_outputs_univariate_coax15_Sep_2020_16_14_00'; % complete materials44 candidate (21 Sept draft)
+
 % load the saved stuff
 load([filename,'.mat'])
 % Structure of saved file:
@@ -144,7 +146,10 @@ ndrop=0;
 start_PEA = datetime('now');
 y= zeros(ny,T,N);
 for n=1:N
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
     e = squeeze(eN(:,:,n));
     [~, y(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,g_fe,knowTR,mpshock);
 
