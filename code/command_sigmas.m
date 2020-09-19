@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 if contains(current_dir, 'gsfs0') % sirius server
     print_figs=1;
 end

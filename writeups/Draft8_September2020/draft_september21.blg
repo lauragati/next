@@ -11,48 +11,51 @@ Warning--no journal in dombeck2017effects
 Warning--no number and no volume in dombeck2017effects
 Warning--page numbers missing in dombeck2017effects
 Warning--can't use both author and editor fields in evans2013bayesian
+Warning--no journal in hebden2020robust
+Warning--no number and no volume in hebden2020robust
+Warning--page numbers missing in hebden2020robust
 Warning--can't use both volume and number fields in lucas1976econometric
 Warning--no number and no volume in mele2019perils
 Warning--page numbers missing in mele2019perils
-You've used 53 entries,
+You've used 54 entries,
             2861 wiz_defined-function locations,
-            931 strings with 12745 characters,
-and the built_in function-call counts, 36410 in all, are:
-= -- 3182
-> -- 2438
+            935 strings with 12917 characters,
+and the built_in function-call counts, 37239 in all, are:
+= -- 3238
+> -- 2533
 < -- 12
-+ -- 720
-- -- 876
-* -- 3141
-:= -- 6575
-add.period$ -- 163
-call.type$ -- 53
-change.case$ -- 364
-chr.to.int$ -- 53
-cite$ -- 64
-duplicate$ -- 1013
-empty$ -- 2289
-format.name$ -- 1016
-if$ -- 6773
++ -- 750
+- -- 906
+* -- 3231
+:= -- 6734
+add.period$ -- 165
+call.type$ -- 54
+change.case$ -- 374
+chr.to.int$ -- 54
+cite$ -- 68
+duplicate$ -- 1028
+empty$ -- 2322
+format.name$ -- 1050
+if$ -- 6922
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 56
-newline$ -- 267
-num.names$ -- 530
-pop$ -- 263
+missing$ -- 57
+newline$ -- 271
+num.names$ -- 540
+pop$ -- 271
 preamble$ -- 1
-purify$ -- 685
+purify$ -- 701
 quote$ -- 0
-skip$ -- 1102
+skip$ -- 1119
 stack$ -- 0
-substring$ -- 2125
-swap$ -- 347
+substring$ -- 2145
+swap$ -- 351
 text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1000
-warning$ -- 11
-while$ -- 571
+type$ -- 1020
+warning$ -- 14
+while$ -- 577
 width$ -- 0
-write$ -- 707
-(There were 11 warnings)
+write$ -- 718
+(There were 14 warnings)

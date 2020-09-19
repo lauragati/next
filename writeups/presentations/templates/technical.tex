@@ -52,7 +52,7 @@
 \newdimen\progressbar@tmpdim % auxiliary dimension
 
 \progressbar@pbwd=1.15\linewidth % change width of progress bar
-\progressbar@pbht=0.5ex % change thickness of progress bar
+\progressbar@pbht=0.7ex % change thickness of progress bar
 
 % the progress bar
 \def\progressbar@progressbar{%
@@ -188,22 +188,19 @@
 % DEFINE ALL VARIABLE NUMBERS HERE
 %%%%%%%%%%%%%%%%%%%%
 
-% numbers update: 27 August 2020 using Calibration C from Materials 43
+% numbers update: 17 Sept 2020 using ``complete'' or ``21 Sept" Estimation (N=1000) from Materials 44
 
 % Empirical numbers
 % mean estimated alpha
-\def\meanalph{(0.42; 0.14; 0; 0; 0.1)}
+\def\meanalph{(0.82;    0.61    0;    0.33;    0.45)}
 \def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
 % for 1% fe, you get a gain of
-\def\oneppFEgives{0.05 }
-% pp forecast error that unanchors
-\def\ppFEunanchors{1 }
+\def\oneppFEgives{0.08}
+% pp forecast error that unanchors (that causes a gain of 0.05)
+\def\ppFEunanchors{0.5 }
+\def\bpNegFEunanchors{25}
+\def\bpPosFEunanchors{50}
 
-% retired
-%% for 1% fe, you get a change in pibar of
-%\def\betPibFe{0.0906 } % analyze_opt_policy.m
-%% raise/lower interest rate by x pp when fe moves up/down by \ppFEunanchors, that is, when LR-exp move by \betPibFe
-%\def\ppMoveFFR{4.53 }
 
 % raise/lower interest rate by x pp when when LR-exp move by 0.1
 \def\movei{5 }
@@ -231,54 +228,66 @@
 \def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
 
 % Estimated coefficients alpha
-\def\fignameAlphaHat{alph_opt_aloneN_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}
+\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
 % Autocovariogram
-\def\fignameAutocov{autocovariogram_alone_N_500_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_coax_solver_server_11_Sep_2020_15_46_40}
+\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
 
 % Comparative statics of optimal policy
 % di/dpibar
 % not annualized
-\def\fignameDiDpibar{analyze_opt_policy_ip12_Sep_2020}
+\def\fignameDiDpibar{analyze_opt_policy_ip17_Sep_2020}
 
 % Observables in PEA for TR
 % annualized
-\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx12_Sep_2020}
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020}
+% not annualized
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020_19_29_35}
+%
 % Observables in PEA for anchoring
 % annualized
-\def\fignamePEAobsAnch{implement_anchTC_obs_approx12_Sep_2020_09_57_17}
+% cutting to 40 periods to 
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q17_Sep_2020_19_19_19}
+
+
 
 % Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
 % annualized
-\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx12_Sep_2020_09_29_49_pea_outputs_approx12_Sep_2020_09_15_24_pretty_12_Sep_2020_09_57_17}
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_40q_17_Sep_2020_19_23_04}
 
 % Central bank loss as a function of psi_pi in RE vs. anchoring
 % Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
 % Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
 % Note 25 August: update with convention: RE red, anchoring blue.
-\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_12}
-\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_12}
-\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_12}
-\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
-\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_12}
+% retired
+%\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_12}
+%\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_12}
+%\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_12}
+%\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
+\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_17}
 
 % IRFs anchored vs unanchored
 % annualized
-\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12}
-\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
 
 % Cross-sectional average gains for various psi_pi
 % not annualized
-\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_12}
-\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_12}
-\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_17}
 
 % IRFs unanchored for various psi_pi
 % annualized
-\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_12}
-\def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_07}
-\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_12}
+\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_17}
 
 %%%%%%%%%%%%%%%%%%%%
+
 
 
 \author[]{Laura G\'ati}

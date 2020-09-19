@@ -1,5 +1,5 @@
 function [param, set, param_names, param_values_str, param_titles] = parameters_next
-param.bet  = 0.98;%0.99  Woodford, taken from Chari Kehoe McGrattan 2000. Lowered to 0.97 in Calibration C to dampen fluctuations in x and i
+param.bet  = 0.98;%0.98  0.99-> Woodford, taken from Chari Kehoe McGrattan 2000. Lowered to 0.98 in Calibration C to dampen fluctuations in x and i
 param.sig  = 1; %1 IES=1 (log utility, consistent with balanced growth) Peter: micro estimates= 1/4 or 1/5, asset pricing lit finds 1/100.
 param.alph = 0.5; %0.5 (prob that firm stuck with price), set to correspond to an expected duration of 2 quarters. Collard: estimates of alpha between 0.66-0.75 (adjust prices every 3-4 periods) (slides5_sticky_price_model, slide 43). Rotemberg Woodford 1997 calibrate this as 0.66 on the basis of the frequency of price changes in the US (0.66 -> 3 quarters) (Blinder et al, 1998, table 4.1)
 % param.eta = 1/4; %1/4, inverse of Frisch. won't matter here. The Frisch: 1 or 2 (micro) or 4 (macro) e.g. Basu Lec 9, slide 16 Mac.
@@ -7,7 +7,8 @@ param.om = 1.25;% 1.25 Subsumes all things that go into elasticity of marginal c
 param.thet = 10; %10. price elasticity of demand, Woodford, taken from Chari Kehoe McGrattan 2000.
 param.zeta = (param.om + 1/param.sig)/(1+param.om*param.thet); % parameter of strategic complementarity. If < 1, strat comp in price setting. If >1, strt subs.
 param.kapp = param.zeta * (1-param.alph)*(1-param.alph*param.bet)/param.alph; % Woodford. Interest and Prices, p. 187. % (1-param.alph) was missing, corrected 1 July 2020
-param.psi_x  = 0.3; % 0,1, 0.3 per Calibration C of Materials 43
+% param.kapp = 0.2; % alph needs to be ~0.35 for kapp to be 0.2
+param.psi_x  = 0.3; % 0.3 per Calibration C of Materials 43
 param.psi_pi = 1.5; %1.5
 param.w = 1+param.sig*param.psi_x +param.kapp*param.sig*param.psi_pi;
 param.rho_r = 0; %0

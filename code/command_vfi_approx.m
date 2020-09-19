@@ -147,8 +147,9 @@ np = 8;
 % pgrid = linspace(-2,2,np); % this doesn't
 % pgrid = linspace(-1.2,1.2,np); % this doesn't
 % pgrid = linspace(-1,1,np); % this seems to work
-% pgrid = linspace(-0.2,0.2,np); % this seems to work
+pgrid = linspace(-0.2,0.2,np); % this seems to work
 % pgrid = linspace(-0.1,0.1,np); % Only this works for the calibration of 23 August 2020
+% pgrid = linspace(-0.05,0.05,np);
 
 
 
@@ -173,7 +174,7 @@ crit=1;
 iter=1;
 maxiter=2000; %2000
 epsi=1e-6;
-jj=100;
+jj=100; %100
 datestr(now)
 tic
 i0 = 0; % the steady state value

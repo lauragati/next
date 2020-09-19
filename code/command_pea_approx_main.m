@@ -15,7 +15,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -136,6 +136,11 @@ residnames = {'IS', 'PC', 'TR'};
 % Parameters
 ndrop =0; ne=3;
 % [param, set, param_names, param_values_str, param_titles] = parameters_next; % now using the ones from the estimation
+
+%Experiment with parameters:
+param.bet = 0.95
+% param.sig = 0.1 % no good
+param.kapp = 0.2
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;

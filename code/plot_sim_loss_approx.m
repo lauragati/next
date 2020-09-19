@@ -210,11 +210,15 @@ if print_figs==1
 %     figname = [this_code, '_pretty', '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
 %     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
     
-    figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
-    loss_opt = 5*ones(size(loss));
+    figname = [this_code, '_pretty', '_', 'losses_with_optimal','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
+    loss_opt = 6.0985*ones(size(loss));
     y = [loss; loss_RE; loss_opt];
     % 
     xlplus = [0.5,0.0002];
     ylplus = [-100,0]; % delete this one
     create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE', 'Optimal'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
+    
+    figname = [this_code, '_pretty', '_', 'losses','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
+    y = [loss; loss_RE];
+    create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
 end

@@ -123,28 +123,28 @@ legend('boxoff')
 % legend('boxoff')
 
 
-% return
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time, fe, 'linewidth', lw); hold on
-% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
-ax = gca; % current axes
-ax.FontSize = fs;
-datetick('x','yyyy', 'keeplimits')
-% The next three lines force the figure to start where the data starts
-xaxislimits= get(gca,'XLim');
-xaxislimits(1) = time(1);
-set(gca, 'XLim', xaxislimits);
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
-legend('boxoff')
-
-
-figure
-histogram(fe)
+% % return
+% figure
+% set(gcf,'color','w'); % sets white background color
+% set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+% plot(time, fe, 'linewidth', lw); hold on
+% % plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+% ax = gca; % current axes
+% ax.FontSize = fs;
+% datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+% xaxislimits= get(gca,'XLim');
+% xaxislimits(1) = time(1);
+% set(gca, 'XLim', xaxislimits);
+% set(gca,'TickLabelInterpreter', 'latex');
+% grid on
+% grid minor
+% legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+% legend('boxoff')
+% 
+% 
+% figure
+% histogram(fe)
 
 %% Regress LR-E on fe
 % first half of sample
@@ -374,6 +374,61 @@ else
     return
 end
 
+%% Forecast errors in the SPF data
+
+% return
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time, fe, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+xlabel('Forecast error time series, \%', 'interpreter', 'latex', 'fontsize', fs)
+
+% legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+% legend('boxoff')
+
+figname = ['fe_SPF_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+histogram(fe)
+ax = gca; % current axes
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+xlabel('Forecast error, \%', 'interpreter', 'latex', 'fontsize', fs)
+
+
+figname = ['fe_SPF_hist_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
 
 %% The regression plot using CPI inflation and SPF 1- and 10-year ahead
 

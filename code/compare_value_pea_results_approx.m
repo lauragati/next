@@ -14,7 +14,7 @@ todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -25,10 +25,6 @@ skip = 1;
 [param, set, param_names, param_values_str, param_titles] = parameters_next;
 sig_r = param.sig_r;
 sig_u = param.sig_u;
-
-% RE model
-[fyn, fxn, fypn, fxpn] = model_NK(param);
-[gx,hx]=gx_hx_alt(fyn,fxn,fypn,fxpn);
 
 % Grids
 % nk = 4;
@@ -56,7 +52,7 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_19_47'; % Sept 15 estimation of Materials 44; pgrid = linspace(-0.2,0.2,np);
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
 % value_output_name = 'value_outputs_approx17_Sep_2020_13_51_53'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.1,0.1,np);
-value_output_name = 'value_outputs_approx17_Sep_2020_14_01_16'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np);
+value_output_name = 'value_outputs_approx17_Sep_2020_14_01_16'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np); % baseline
 
 
 
@@ -81,7 +77,16 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
 % pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
-pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2)
+pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2) default
+
+% Play around with calibration to see if you can decrease interest rate
+% fluctuations
+% % pea_output_name = 'pea_outputs_approx19_Sep_2020_10_05_35'; % Sept 21 draft Materials 44; rng(2) % decreased beta=0.95 (that helps)
+% % pea_output_name = 'pea_outputs_approx19_Sep_2020_10_08_24'; % Sept 21 draft Materials 44; rng(2) % decreased beta=0.95, sig=2 (has no effect)
+% % pea_output_name = 'pea_outputs_approx19_Sep_2020_10_11_36'; % Sept 21 draft Materials 44; rng(2) % decreased beta=0.95, sig=0.1 (oh jesus - makes i extremely volatile)
+% % pea_output_name = 'pea_outputs_approx19_Sep_2020_10_16_11'; % Sept 21 draft Materials 44; rng(2) % kapp = 0.5 that certainly pushed everything down
+% % pea_output_name = 'pea_outputs_approx19_Sep_2020_10_23_04'; % Sept 21 draft Materials 44; rng(2) % kapp = 0.2 pushes things down but maybe not enough?
+% pea_output_name = 'pea_outputs_approx19_Sep_2020_10_26_53'; % Sept 21 draft Materials 44; rng(2) % decreased beta=0.95 % kapp = 0.2 (These two together seem sufficient. Question: doe reestimating the model screw it up?)
 
 
 
@@ -105,6 +110,7 @@ ssimt_1 = e(:,1:end-2);
 X = [pibsim; ssim(1,:); ssim(3,:); ssimt_1(1,:); ssimt_1(3,:)];
 
 % approximate policy function
+sgrid =  [-max(max(ssim)), max(max(ssim))]; % <-- we were getting much larger shocks in the sim than the grid (19 Sept 2020)
 % ppi = csapi({k1grid,pgrid,sgrid,sgrid,sgrid,sgrid},it);
 ppi = csapi({pgrid,sgrid,sgrid,sgrid,sgrid},it);
 i_vi = fnval(ppi,X);
@@ -125,12 +131,14 @@ ylplus = [-400,0];
 create_pretty_plot_holdon(policies, {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_', nowstr], print_figs)
 create_pretty_subplots(ysim7(:,2:end-1),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx', nowstr], print_figs)
 
+% only first 40 quarters
+% return
 xlplus = [20,0.01];
 ylplus = [-400,0];
 create_pretty_plot_holdon(policies(:,1:40), {'PEA', 'VFI'},xlab,ylab,xlplus, ylplus, [this_code, '_', value_output_name, '_', pea_output_name, '_pretty_40q_', nowstr], print_figs)
 create_pretty_subplots(ysim7(:,2:40),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_approx_40q', nowstr], print_figs)
 
-
+% Gain and pibar
 return
 xlplus = [45,0.0025];
 ylplus = [-100,0];
