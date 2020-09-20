@@ -192,7 +192,7 @@
 
 % Empirical numbers
 % mean estimated alpha
-\def\meanalph{(0.82;    0.61    0;    0.33;    0.45)}
+\def\meanalph{(0.82;    0.61;    0;    0.33;    0.45)}
 \def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
 % for 1% fe, you get a gain of
 \def\oneppFEgives{0.08}
@@ -326,23 +326,104 @@ An Endogenous Gain Learning Model}
 \begin{frame}\label{motivation}
 	
 \begin{quote}
-Inflation that runs below its desired level can lead to an unwelcome fall in longer-term inflation expectations, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.
-[...] Well-anchored inflation expectations are critical[.]  \\
-Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020.} % Jackson Hole
+Inflation that runs below its desired level can lead to an unwelcome fall in \textbf{longer-term inflation expectations}, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.
+[...]  \textbf{Well-anchored inflation expectations} are critical[.]  \\
+Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020.} \\
+(Emphases added.)
+% Jackson Hole 
 \end{quote}	
 
 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+%%%%%%% Slide %%%%%%
+\begin{frame}
+\frametitle{Anchored expectations}
+
+\begin{equation}
+\E_t \pi_{t+1} = \bar{\pi}+ f(shocks)
+\end{equation}
+
+$\bar{\pi} = $ long-run expectations
+
+\
+
+\pause
+	
+\emph{Anchored expectations}: long-run expectations at Fed's target ($\pi^*$) 
+
+\
+
+\pause
+
+$\rightarrow$ short-run expectations ``anchored'' to stable mean: 
+
+
+\
+
+\begin{equation}
+\E_t \pi_{t+1} = \textcolor{brownreddark}{\pi^*} + f(shocks)
+\end{equation}
+
+\
+
+\pause
+
+\emph{Unanchored expectations}: long-run expectations deviate systematically from the target
+
+
+\
+
+\begin{equation}
+\E_t \pi_{t+1} = \textcolor{brownreddark}{\bar{\pi}_{t-1}(shocks)} + f(shocks)
+\end{equation}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
-\begin{frame}\label{TIPS}
+\begin{frame}
+\frametitle{Unwelcome fall in longer-term inflation expectations}
+
+A standard Phillips curve with expectations anchored at the 2\% target	
+\begin{align*}
+\pi_t & = \kappa x_t + \beta \E_t \pi_{t+1} + u_t \label{standardPC} \numberthis \\
+\onslide<2->{\pi_t & = \kappa x_t + \beta (2\% + f(shocks)) + u_t \numberthis \label{standardPC} }
+\end{align*}
+
+
+\
+
+\pause
+\pause
+
+The Fed's uneasiness: public thinks inflation averages only 1\%
+
+\begin{align}
+\underset{ \onslide<4->{\textcolor{brownreddark}{\downarrow}}} {\pi_t} & = \kappa x_t + \beta (\underset{\downarrow \onslide<5->{\textcolor{aquamarinegreen}{\downarrow}}}{1\%}  + f(shocks)) + u_t 
+\end{align}
+
+\
+
+\pause
+\pause
+\pause
+
+$\rightarrow$ unanchored expectations can cause a deflationary spiral
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}\label{LRE_drifting_down}
+\frametitle{Long-run expectations drifting down?}
 	
 
 \begin{figure}[h!]
-\caption{Expectations of average inflation over 10 years}
+\caption{Expectations of average inflation over 10 years ($\bar{\pi}$ in data)}
 \includegraphics[scale = 0.25]{\myFigPath \fignameSPFLiv}
 \label{epi}
 \end{figure}
@@ -352,6 +433,89 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 \vspace{-0.5cm}
 \hfill \hyperlink{app_TIPS}{\beamergotobutton{TIPS}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%\frametitle{Long-run expectations moving systematically?}\label{systematically}
+%
+%\
+%
+%SPF: for 1999-Q1 onward, estimate
+%
+%\begin{align*}
+%\bar{\pi}_t = & \beta_0 + \beta_1 f_{t|t-1} + \epsilon_t \numberthis \\
+%\end{align*}
+%
+%where $\bar{\pi}_t  \equiv \E_t(\pi_{t+10})$ and $f_{t|t-1}  \equiv \pi_t - \E_{t-1}(\pi_t) $ (forecast error)
+%
+%
+%\
+%\pause
+%\
+%
+%$\Rightarrow \hat{\beta}_1 = 0.06 \quad $  (P-value: 0.000017)
+%
+%\
+%
+%
+%$\Rightarrow$ 1 pp forecast error $\rightarrow$ 6 bp revision in long-run expectations
+%
+%%\
+%%
+%%\pause
+%%
+%%Likely understatement: professional forecasters may run stationary models
+%
+%%\vspace{0.5cm}
+%%
+%%\hfill \hyperlink{further_evidence}{\beamergotobutton{Further evidence}}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+\frametitle{Long-run expectations moving systematically?}\label{rolling}
+
+\
+
+Individual SPF forecasts: for 1991-Q4 onward, estimate rolling regression
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
+\end{align*}
+
+where $w$ indexes windows of 19 quarters length
+
+
+\
+\pause
+\
+
+\small{
+\begin{center}
+\begin{table}
+\caption{Rolling regression coefficients}
+\begin{tabular}{ c | l  }
+\hline
+Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
+   1991-Q4 & $0.0687^{**} $ \\ \hline
+   1996-Q3 & $0.0464^{***} $ \\ \hline
+    2001-Q2 & $0.0116$     \\ \hline
+    2006-Q1 & $0.0061$       \\ \hline  
+    2010-Q4 &  $0.0135 $   \\ \hline   
+    2015-Q3 &  $0.0496^{***}$ \\ \hline   
+\end{tabular}     
+\caption*{\footnotesize{\emph{*** significance at 1\% ** significance at 5\%}}}
+       \label{table_rolling}
+ \end{table}
+\end{center}
+}
+
+\vspace{-0.9cm}
+
+\hfill \hyperlink{further_evidence}{\beamergotobutton{Further evidence}}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
@@ -369,7 +533,9 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	
 	\
 
-	\item Model of anchoring expectation formation as an endogenous gain adaptive learning scheme
+	\item Model of anchoring expectation formation as an extension to adaptive learning \\
+	$\hookrightarrow$ twist: systematic fluctuations in long-run expectations
+	
 	
 	\
 	
@@ -379,7 +545,10 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 	\end{itemize}
 	\end{frame}
-	%%%%%%%% Slide %%%%%%
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Preview of results}
 	
@@ -393,7 +562,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 %	
 %	\
 %	
-	\item Optimal monetary policy responsiveness time-varying 
+%	\item Optimal monetary policy responsiveness time-varying 
 	
 %	\
 %	
@@ -401,11 +570,11 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 %	
 %	
 %	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
-	
-	\
-	
-	\
-	\item[$\hookrightarrow$] Optimal policy aggressive when expectations unanchor, dovish when anchored
+%	
+%	\
+%	
+%	\
+	\item Optimal policy aggressive when expectations unanchor, accommodates when anchored
 	
 	\
 	
@@ -419,7 +588,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 	
 	\
 	
-	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 90\% of loss from volatility
+	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 84\% of loss from volatility
 
 
 	\end{itemize}
@@ -433,8 +602,11 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \begin{frame}
 	\frametitle{Related literature}
 
+\
+
+\footnotesize{
 \begin{itemize}
-\item \textbf{Optimal monetary policy in New Keynesian models}
+\item \textbf{Optimal monetary policy in the New Keynesian model}
 \item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
 
 \
@@ -442,17 +614,24 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \
 
 \item \textbf{Adaptive learning}
-\item[] Evans \& Honkapohja (2001, 2006), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Eusepi \& Preston (2011), Milani (2007, 2014), Lubik \& Matthes (2018), Mele et al (2019)
+\item[] Evans \& Honkapohja (2001, 2006), Sargent (1999), Primiceri (2006), Lubik \& Matthes (2018), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Mele et al (2019), Eusepi \& Preston (2011), Milani (2007, 2014)
 
 \
 
 \
 
 \item \textbf{Anchoring and the Phillips curve} 
-\item[] Sargent (1999), Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Gobbi et al (2019), Carvalho et al (2019)
+\item[] Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Gobbi et al (2019), Carvalho et al (2019)
+
+\
+
+\
+
+\item \textbf{Reputation} 
+\item[] Barro (1986), Cho \& Matsui (1995)
 \end{itemize}
 
-
+}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -461,111 +640,32 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \begin{frame}
 	\frametitle{Structure of talk}
 
+% redefine margin locally - nice. finally it lines up with the TOC
+\setlength{\leftmargini}{12pt}
 \begin{enumerate}
-\item Unanchoring in the data
+\item \hspace{-0.15cm} Model of anchoring expectations
 
-\
+\vspace{0.75cm}
 
-\
+\item \hspace{-0.15cm} Solving the Ramsey problem
 
-\item Model of anchoring expectations
+\vspace{0.75cm}
 
-\
+\item \hspace{-0.15cm} Implementing optimal policy
 
-\
+\vspace{0.75cm}
 
-\item Solving the Ramsey problem
+\item \hspace{-0.15cm} Approximating optimal policy with a Taylor rule
 
-\
 
-\
 
-\item Implementing optimal policy
 \end{enumerate}
 
 
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Unanchoring in the data}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}
-%	\frametitle{Unanchoring in the data}
-
-\begin{figure}[h!]
-\caption{Inflation and expectations}
-\includegraphics[scale = 0.24]{\myFigPath \fignameRegressionPlot}
-\label{pi_epi}
-\end{figure}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}
-
-
-For 1999-Q1 onward, estimate
-
-\begin{align*}
-\bar{\pi}_t = & \beta_0 + \beta_1 fe_{t|t-1} + \epsilon_t \numberthis \\
-\\
- \text{where}&\\
-\bar{\pi}_t & \equiv \E_t(\pi_{t+10})\numberthis \\
-fe_{t|t-1} & \equiv \pi_t - \E_{t-1}(\pi_t) \numberthis
-\end{align*}
-
-\
-
-\
-
-$\hat{\beta}_1 = 0.06 \quad $  (p-value: 0.000017)
-
-\
-
-
-1 pp forecast error $\rightarrow$ 6 bp revision in long-run expectations
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-%\begin{frame}
-%%	\frametitle{Unanchoring in the data}
-%
-%
-%\begin{figure}[h!]
-%\caption{Livingston Survey of Firms: \newline Interquartile range of 10-year ahead inflation expectations}
-%\includegraphics[scale = 0.24]{\myFigPath \fignameLivIQR}
-%\label{LivIQR}
-%\end{figure}
-%
-%
-%\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}
-%	\frametitle{Unanchoring in the data}
-
-\begin{figure}[h!]
-\caption{New York Fed Survey of Consumers: \newline Percent of respondents indicating 3-year ahead inflation will be in a particular range}
-\includegraphics[scale = 0.24]{\myFigPath \fignameSCEdistrib}
-\label{SCEdistrib}
-\end{figure}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-
-
 \section{Model of anchoring expectations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -668,11 +768,6 @@ $\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
 \hat{\E}_t y_{t+1} = \textcolor{brownreddark}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
 \end{equation}
 
-\
-
-\pause
-
-In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \quad \forall t$
 
 \
 
@@ -681,6 +776,20 @@ In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \qu
 
 
 \item[] \textcolor{brownreddark}{$a$}	$\rightarrow$ concept of long-run expectations in the model
+
+\
+
+\pause
+
+In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \quad \forall t$
+
+
+\
+
+\pause
+
+
+\item[$\rightarrow$] In RE, expectations anchored by assumption
 
 \
 
@@ -727,7 +836,7 @@ a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\;
 
 $\rightarrow$ RLS
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; fe_{t|t-1} \text{, forecast error} } 
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; f_{t|t-1} \text{, forecast error} } 
 \end{equation}
  
  \
@@ -752,7 +861,7 @@ $\rightarrow$ RLS
 Decreasing gain learning:
 
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\frac{1}{t} \; fe_{t|t-1}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\frac{1}{t} \; f_{t|t-1}
 \end{equation}
  
  \
@@ -761,13 +870,15 @@ Decreasing gain learning:
  
 \
 
+\pause
+
 \
 
 \
 
 Constant gain learning:
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; fe_{t|t-1}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; f_{t|t-1}
 \end{equation}
 
  \
@@ -791,19 +902,25 @@ Constant gain learning:
 
 \
 
-$k_t = \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})}$: anchoring function
+$k_t = \textcolor{brownreddark}{\mathbf{g}(f_{t|t-1})}$: anchoring function
 \pause
 \begin{equation}
- \textcolor{brownreddark}{\mathbf{g}(fe_{t|t-1})} = \sum_i\alpha_i b_i(fe_{t|t-1})\label{gain}
+ \textcolor{brownreddark}{\mathbf{g}(f_{t|t-1})} = \sum_i\gamma_i b_i(f_{t|t-1})\label{gain}
 \end{equation}
 
 \
 
-$ b_i(fe_{t|t-1}) = $ basis, here: second order spline (piecewise linear) \\
+$ b_i(f_{t|t-1}) = $ basis, here: second order spline (piecewise linear) \\
 
 \
 
-$\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimation
+$\gamma_i  = $ approximating coefficients \\$\quad \hookrightarrow$ estimate $\hat{\gamma}$ via simulated method of moments (SMM)
+
+\
+
+\
+
+Target autocovariances of inflation, output gap, federal funds rate and 1-year ahead SPF inflation expectations at lags $0, \dots, 4$
 
 \vfill 
 
@@ -820,10 +937,33 @@ $\alpha_i  = $ approximating coefficients, here: use $\hat{\alpha}$ from estimat
 
 \begin{figure}[h!]
 \includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-\caption{Learning gain as a function of forecast errors in inflation (pp)}
+\caption{Learning gain as a function of forecast errors in inflation in \%}
 \label{epi}
 \end{figure}
 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Forecast errors in the data}
+
+\begin{figure}[h!]
+\caption{Time series and distribution of 1-year ahead forecast errors in the SPF}
+\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
+\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPFhist}}
+\label{fe_in_data}
+\end{figure}
+
+\
+
+\pause
+Typical forecast error $\approx -0.5$ pp \pause $\quad \rightarrow$ gain of 0.1 
+
+\
+
+\pause $\Rightarrow$ 5 bp shift down in long-run expectations
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
@@ -925,8 +1065,8 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 	\frametitle{Two layers of intertemporal stabilization tradeoffs}
 \small{
 \begin{align*}
-& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ fe_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
+& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ f_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
 \end{align*}
 
 \
@@ -1027,7 +1167,6 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
  $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
  $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
  $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
- $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule*  \\\hline 
  $\bar{g}$ & $0.145$  & initial value of the gain \\\hline 
  $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  
  $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline 
@@ -1056,10 +1195,11 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \begin{table}
 \begin{tabular}{ c | c  | l }
 \hline
+ $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule*  \\\hline 
     $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
     $\sigma_i$ &  0.01  &standard deviation, monetary policy shock*  \\ \hline
     $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
-    $\hat{\alpha}_i$ &  (0.33;    0.25;    0.001;    0.24;    0.33) & coefficients in anchoring function \\ \hline   
+    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
 \end{tabular}     
        \label{calibration}
  \end{table}
@@ -1071,7 +1211,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \
 
 
-Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\alpha}_i$) to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
+Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\gamma}_i$) to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
 
 \
 
@@ -1087,37 +1227,27 @@ Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\alpha}_i$) to match the
 	\frametitle{Optimal policy - responding to unanchoring }
 	
 \begin{figure}[h!]
-\includegraphics[scale=\mySmallFigScale]{\myFigPath \fignameDiDpibar}
+\includegraphics[scale=0.2]{\myFigPath \fignameDiDpibar}
 \caption{Policy function: $i(\bar{\pi}, \text{all other states at their means})$}
 \end{figure} 
+
+\
+
+\pause
+
+$\rightarrow$ For 5 bp drop in $\bar{\pi}$, lower $i$ by 2.5 pp
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%%%% Slide %%%%%%
-%\begin{frame}
-%	\frametitle{Optimal policy II - a particular history }
-%	
-%\begin{figure}[h!]
-%%\subfigure[Policy function: PEA against VFI]{\includegraphics[scale=\myTinyFigScale]{\myFigPath compare_value_pea_results_approx_value_outputs_approx17_Jul_2020_14_27_00_pea_outputs_approx17_Jul_2020_15_28_03_pretty_17_Jul_2020_15_34_46}}
-%%\hfill
-%\subfigure[Optimal policy]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsAnch}}
-%\hfill
-%\subfigure[Taylor rule with 1.5 and 0.3 coefficients on inflation and the output gap]{\includegraphics[scale=0.148]{\myFigPath \fignamePEAobsTR}}
-%\caption{Observables conditional on a particular evolution of shocks} 
-%\end{figure}
-%
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{The intertemporal volatility tradeoff}
+	\frametitle{Unanchoring causes volatility}
 
 \begin{figure}[h!]
 \subfigure[Expectations anchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFanchored}}
 \subfigure[Expectations unanchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFunanchored}}
-\caption{Impulse responses after a contractionary monetary policy shock}
+\caption{Impulse responses after a contractionary monetary policy shock when policy follows a Taylor rule}
 \label{IRF}
 \end{figure}	
 
@@ -1126,12 +1256,12 @@ Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\alpha}_i$) to match the
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Intertemporal volatility tradeoff: term structure of expectations}
+	\frametitle{Why so volatile? Term structure of expectations}
 \begin{itemize}
 \item[] IS- and Phillips curve:	
  \begin{align*}
-x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor{brownreddark}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big)   \\
-\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+x_t &=  -\sigma i_t +\textcolor{brownreddark}{\hat{\E}_t \sum_{T=t}^{\infty}} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)   \\
+\pi_t &= \kappa x_t +\textcolor{brownreddark}{\hat{\E}_t \sum_{T=t}^{\infty}} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
 \end{align*}
 
 
@@ -1142,6 +1272,44 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Why oscillatory? Intertemporal anticipation effects}
+\begin{itemize}
+\item[] IS- and Phillips curve:	
+ \begin{align*}
+x_t &=  -\sigma \textcolor{dodgerblue}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor{brownreddark}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big)   \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+\end{align*}
+
+\
+
+\
+
+\pause 
+
+\begin{itemize}
+\item  \textcolor{brownreddark}{Additional channel of policy}
+
+\
+
+\pause 
+\item  \textcolor{brownreddark}{Only if policy reaction function internalized}
+\end{itemize}
+
+
+
+
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Approximating optimal policy with a Taylor rule}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -1149,15 +1317,21 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 	
 \begin{figure}[h!]
 \caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.28]{\myFigPath \fignameCBlossbaseline}
+\includegraphics[scale=0.24]{\myFigPath \fignameCBlossbaseline}
 \end{figure} 
+
+
+\small{
+Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09 \quad \quad $ RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
+}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{The intertemporal volatility tradeoff - again}
+	\frametitle{Respond but not too much}
 
 \begin{figure}[h!]
 \subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
@@ -1176,42 +1350,14 @@ x_t &=  -\sigma \textcolor{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \b
 \begin{frame}
 	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
 	
-%% command_welfare.m: evaluate the loss for optimal policy
-%\begin{center}
-%\begin{table}[h!]
-%\begin{tabular}{ c | c | c }
-% & RE & Anchoring \\  \hline
-%%  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0.3$     & 5.3805  & 8.3714 \\  \hline
-% RE-optimal coefficient: $\psi_{\pi} =2.21$   &5.3148 &  13.6380 \\  \hline
-% Anchoring-optimal coefficient: $\psi_{\pi} =1.1$   & 5.4868  &  6.1446 \\  \hline
-%% Optimal policy & na.  & $\approx 19.3928$ \footnote{An estimate based on a single evaluation of the loss function for a PEA-optimal simulation.} \\  \hline  % For Calibration C, the estimate in grid_search_approx.m is 7, so I don't want to speak about it. command_welfare.m gives you 11.8336, so I don't wanna speak about it either. Also that took 19 min, whereas the PEA algorithm takes about 1 min! WTF?
-%\end{tabular}     
-%      \caption{Loss, RE against anchoring for baseline calibration}  
-%      \label{table_welfare}
-% \end{table}
-%\end{center}
-
-RE-optimal coefficient: $\psi_{\pi}^{RE} =2.21$
-
-\
-
-Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09$
-
-\
-
-\
-
-\
-
-
 \begin{center}
 \begin{table}[h!]
       \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
 
-\begin{tabular}{ c | c | c }
+\begin{tabular}{ c | c | c | c}
 %\hline
-Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ \\  \hline
- 9.6901  &  5.8296 & 5.3148  \\  \hline
+Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ & Optimal policy \\  \hline
+ 14.2633  &  6.0228 & 4.4866 & 6.0985 \\  \hline
 \end{tabular}     
       \label{table_welfare}
  \end{table}
@@ -1221,7 +1367,17 @@ Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE
 
 \
 
-$\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}^A$ gets 90\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
+\pause
+
+$\rightarrow$ Optimal policy or anchoring-optimal $\psi_{\pi}^A$ gets 84\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
+
+\
+
+\pause
+
+\
+
+Optimal policy vs. Taylor rule? $\rightarrow$ is reaction function internalized or not
 
 
 \end{frame}
@@ -1240,26 +1396,28 @@ $\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}^A$ gets 90\% 
 
 \
 
-\item Optimal policy conditions on stance of current and expected future anchoring
-\item[] \hspace{4cm} $\hookrightarrow$ determine intertemporal tradeoffs
+
+\item Optimal policy frontloads aggressive interest rate response to suppress potential unanchoring
 
 \
 
 \
 
-\item Frontloads aggressive interest rate response to suppress potential unanchoring
+\item Matters: already anchoring-optimal Taylor rule reduces losses by 84\%
 
 \
 
 \
 
-\item Matters: already anchoring-optimal Taylor rule reduces losses by 50\%
+\item Future work
+\begin{itemize}
+\item[$\hookrightarrow$] Better approximation to optimal policy than Taylor rule?
 
 \
 
-\
+\item[$\hookrightarrow$]  How to anchor at zero-lower bound?
+\end{itemize}
 
-\item Future work: how to anchor at zero-lower bound?
 
 %\item For a 0.1 pp drift in long-run inflation expectations, changes interest rate by \movei pp
 \end{itemize}
@@ -1314,21 +1472,73 @@ $\rightarrow$ If model is anchoring, anchoring-optimal $\psi_{\pi}^A$ gets 90\% 
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
-\frametitle{Correcting the TIPS from liquidity risk}
+\frametitle{Breakeven inflation}
 	\label{app_TIPS}
 
 \begin{figure}[h!]
-\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
-\caption{Market-based inflation expectations, 10 year, average, \%}
+\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiMoreHorizons} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, various horizons, \%}
 %\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
 \label{epi_cleaned}
 \end{figure}
 
 \vfill 
-\hyperlink{motivation}{\beamerreturnbutton{Return}}	
+\hyperlink{LRE_drifting_down}{\beamerreturnbutton{Return}}	
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Correcting the TIPS from liquidity risk}
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, 10 year, \%}
+%\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+\vfill 
+\hyperlink{LRE_drifting_down}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Further evidence}\label{further_evidence}
+
+
+\begin{figure}[h!]
+\caption{Livingston Survey of Firms: \newline Interquartile range of 10-year ahead inflation expectations}
+\includegraphics[scale = 0.24]{\myFigPath \fignameLivIQR}
+\label{LivIQR}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+%	\frametitle{Unanchoring in the data}
+
+\begin{figure}[h!]
+\caption{New York Fed Survey of Consumers: \newline Percent of respondents indicating 3-year ahead inflation will be in a particular range}
+\includegraphics[scale = 0.24]{\myFigPath \fignameSCEdistrib}
+\label{SCEdistrib}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -1346,9 +1556,9 @@ Solve for the time series of expectations $f_t$
 f_t = \underbrace{\frac{1-k^{-1}}{1-k^{-1}\beta}}_{\approx 1}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
 \end{equation}
 
-Solve for forecast error $fe_t \equiv \pi_t - f_{t-1}$:
+Solve for forecast error $f_t \equiv \pi_t - f_{t-1}$:
 \begin{equation}
-fe_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t 
+f_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t 
 \end{equation}
 
 \end{frame}
@@ -1406,8 +1616,8 @@ $T(\phi)$ mapping from PLM to ALM
 
 \item CUSUM-criterion
 \begin{align}
-\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
-\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1})
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(f_{t|t-1} f_{t|t-1}'  -\omega_{t-1})\\
+\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(f_{t|t-1}'\omega_t^{-1}f_{t|t-1} -\theta_{t-1})
 \end{align}
 
 \
@@ -1511,9 +1721,9 @@ f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb
 	\label{generalTC}
 
 \begin{align*}
-\varphi_{6,t} & = -c fe_{t|t-1} x_{t+1} + \bigg(1+ \frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}) -fe_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} \\
-& -\frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1})\varphi_{6,t+2} \numberthis \label{6'} \\
-0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{fe_{t|t-1}}\varphi_{6,t+1}\numberthis \label{1'}
+\varphi_{6,t} & = -c f_{t|t-1} x_{t+1} + \bigg(1+ \frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}) -f_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} \\
+& -\frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1})\varphi_{6,t+2} \numberthis \label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{f_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{f_{t|t-1}}\varphi_{6,t+1}\numberthis \label{1'}
 \end{align*}
 $\varphi_{6,t}$ Lagrange multiplier on anchoring function
 
@@ -1521,7 +1731,7 @@ $\varphi_{6,t}$ Lagrange multiplier on anchoring function
 
 The solution to (\ref{1'}) is given by:
 \begin{equation}
-\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{fe_{t+j|t+j-1}}}{\frac{k_{t+j}}{fe_{t+j|t+j-1}} + \mathbf{g}_{\pi, t+j}} \label{sol1'}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{f_{t+j|t+j-1}}}{\frac{k_{t+j}}{f_{t+j|t+j-1}} + \mathbf{g}_{\pi, t+j}} \label{sol1'}
 \end{equation}
 
 

@@ -43,6 +43,8 @@ command_sigmas
 
 command_anchoring_in_data
 
+command_anchoring_in_data_individual
+
 %% Optimal policy
 
 command_pea_approx_main

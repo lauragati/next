@@ -106,7 +106,7 @@ bottom=1in}
 
 % Empirical numbers
 % mean estimated alpha
-\def\meanalph{(0.82;    0.61    0;    0.33;    0.45)}
+\def\meanalph{(0.82;    0.61;    0;    0.33;    0.45)}
 \def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
 % for 1% fe, you get a gain of
 \def\oneppFEgives{0.08}
@@ -404,7 +404,7 @@ Assuming that agents know the evolution of states, that is they have knowledge o
 \hat{\E}_t z_{t+k} = a_{t-1} + b_{t-1}h^{k-1}s_t  \quad \forall k\geq 1 \label{PLM_fcst_general}
 \end{equation}
 
-The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $fe_{t|t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
+The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $f_{t|t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
 \begin{align}
 \phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \label{RLS} \\
 R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
@@ -413,12 +413,12 @@ where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and 
 
 \subsection{Endogenous gain as anchoring mechanism}
 
-The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = (k_{t-1}^{-1}+1)^{-1}$. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} to allow firms and households in the model to choose the value of the gain. I use the following endogenous gain specification: let $fe_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = (k_{t-1}^{-1}+1)^{-1}$. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} to allow firms and households in the model to choose the value of the gain. I use the following endogenous gain specification: let $f_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
 \begin{equation}
-k_t  = \mathbf{g}(k_{t-1},fe_{t|t-1}) 
+k_t  = \mathbf{g}(k_{t-1},f_{t|t-1}) 
 \label{anchoring}
 \end{equation}
-where $\mathbf{g(\cdot)}$ is a smooth, increasing function in both arguments that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms.\footnote{Equation (\ref{anchoring}) nests decreasing gains or constant gains as special cases. In both cases, the derivative of the anchoring function with respect to its second argument is 0, but a decreasing gain implies $\mathbf{g}(k_{t-1},fe_{t|t-1})  = (k_{t-1}^{-1}+1)^{-1}$, while a constant gain sets $\mathbf{g}(k_{t-1},fe_{t|t-1})  = \bar{g}$.}. I let my choice of functional form for $\mathbf{g(\cdot)}$ be guided by data, wherefore I start my inquiry by estimating the anchoring function (see Section \ref{estimation}).
+where $\mathbf{g(\cdot)}$ is a smooth, increasing function in both arguments that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms.\footnote{Equation (\ref{anchoring}) nests decreasing gains or constant gains as special cases. In both cases, the derivative of the anchoring function with respect to its second argument is 0, but a decreasing gain implies $\mathbf{g}(k_{t-1},f_{t|t-1})  = (k_{t-1}^{-1}+1)^{-1}$, while a constant gain sets $\mathbf{g}(k_{t-1},f_{t|t-1})  = \bar{g}$.}. I let my choice of functional form for $\mathbf{g(\cdot)}$ be guided by data, wherefore I start my inquiry by estimating the anchoring function (see Section \ref{estimation}).
 
 Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. For a given previous gain, if agents observe small forecast errors, $\mathbf{g(\cdot)}$ is small. Firms and households thus use a small gain to update their forecasting rule, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's long-run expectations of the observables are stable. 
 
@@ -448,14 +448,14 @@ The numerical analysis of monetary policy requires a functional specification fo
 Because the analytical results in Section \ref{ramsey} are based on a specification of the gain as a function of forecast errors only, I here present estimation results for that restricted specification.\footnote{Estimates of the general functional form are available on request.} Since the shape of the anchoring function is meaningful, I employ a piecewise linear approximation of the form:
 
 \begin{equation}
-\mathbf{g}(fe_{t|t-1}) = \sum_i \gamma_i b_i(fe_{t|t-1})\label{gain}
+\mathbf{g}(f_{t|t-1}) = \sum_i \gamma_i b_i(f_{t|t-1})\label{gain}
 \end{equation}
 
 Here $b_i(\cdot)$ is a second order spline basis and $\gamma$ is a vector of approximating coefficients. The index $i$ refers to the breakpoints of the piecewise linear approximation. I estimate $\gamma$ by simulated method of moments \`a la \cite{lee1991simulation}, \cite{duffie1990simulated} and \cite{smith1993SMM}, targeting the autocovariance structure of the observables of the model and expectations. In particular, the observables are CPI inflation from the Bureau of Labor Statistics (BEA), the output gap and the federal funds rate from the Board of Governors of the Federal Reserve System. For expectations, I rely on 12-month-ahead inflation forecasts from the Survey of Professional Forecasters (SPF).\footnote{The output gap measure is constructed as the difference between real GDP from the Bureau of Economic Analysis (BEA) and the Congressional Budget Office's (CBO) estimate of real potential output.} The dataset is quarterly and ranges from 1981-Q3 to 2020-Q1. App. \ref{SMM} contains a detailed description of the estimation methodology.
 
 \begin{figure}[h!]
 \includegraphics[scale=0.3]{\myFigPath \fignameAlphaHat}
-\caption{Estimated $\hat{\alpha}$: $k_t$ as a function of $fe_{t|t-1}$}
+\caption{Estimated $\hat{\alpha}$: $k_t$ as a function of $f_{t|t-1}$}
 \label{alpha_hat}
 \floatfoot{Estimates for 5 knots, cross-section of size $N=1000$}
 \end{figure}
@@ -466,7 +466,7 @@ Before interpreting the estimated anchoring function, it is helpful to work out 
 
 An intuitive interpretation of the gain is that its inverse gives the number of past observations the private sector uses to form its current forecasts.  \cite{eusepi2011expectations}'s number, 0.002, thus implies that firms and households, if they see no forecast errors, rely on the last 125 years of data.\footnote{The frequency of my model and data, like that of  \cite{eusepi2011expectations}, is quarterly.} By contrast, the consensus number of 0.05 translates to using five years of data. 
 
-Seen from both of these perspectives, 0.05 seems like a gain large enough to correspond to unanchored expectations. With this benchmark number in mind, the message of Fig. \ref{alpha_hat} seems stark: the estimated coefficients are very large. The highest gain value in my estimation, 0.82, can be interpreted as seeing forecast errors of 4 pp in absolute value prompting the private sector to discount any observations older than about 5 months. That is a very short time. 
+Seen from both of these perspectives, a gain of 0.05 corresponds to a sizable amount of unanchoring. With this benchmark number in mind, the message of Fig. \ref{alpha_hat} seems stark: the estimated coefficients are very large. The highest gain value in my estimation, 0.82, can be interpreted as seeing forecast errors of 4 pp in absolute value prompting the private sector to discount any observations older than about 5 months. That is a very short time. 
 
 \begin{figure}[h!]
 \caption{Forecast errors in the SPF data}
@@ -476,9 +476,9 @@ Seen from both of these perspectives, 0.05 seems like a gain large enough to cor
 \floatfoot{Forecast errors constructed as the difference between inflation and previous period's SPF forecast. Annualized percentage points.}
 \end{figure}
 
-Presumably, such large forecast errors are rare, however. In fact, Fig. \ref{feSPF} confirms that this is indeed the case in the SPF data. As shown on the left panel, forecast errors are always below 4 percentage points in absolute value, the largest being an error of -3.31 pp. Instead, as the right panel clarifies, 79.8\% of forecast errors in the sample fall in the bin of $[-1, 1]$ percentage points. The prevalence of forecast errors of this magnitude in the data is helpful to interpret the estimated $\hat{\gamma}$. As seen on Fig. \ref{alpha_hat}, there is an interesting asymmetry in the estimated coefficients. Negative forecast errors of only 0.5 pp raise the gain to 0.05, while for positive forecast errors, a 1 percentage point error is necessary for the same increase in the gain. Consistent with the findings of \cite{hebden2020robust}, this indicates that long-run expectations are more sensitive to negative than to positive surprises.
+Presumably, such large forecast errors are rare, however. In fact, Fig. \ref{feSPF} confirms that this is indeed the case in the SPF data since the 1990s.\footnote{I am focusing on a shorter sample here than what I used for the estimation exercise. Including the Volcker deflation in the estimation sample makes sense because it introduces more variation in the data. When interpreting the current stance of expectations, however, it is reasonable consider a subsample in which the general environment is not in transition.} As shown on the left panel, in this time period, forecast errors are always below 4 percentage points in absolute value, the largest being an error of -3.31 pp. Instead, as the right panel clarifies, 79.8\% of forecast errors in the sample fall in the bin of $[-1, 1]$ percentage points. The prevalence of forecast errors of this magnitude in the data is helpful to interpret the estimated $\hat{\gamma}$. As seen on Fig. \ref{alpha_hat}, there is an interesting asymmetry in the estimated coefficients. Negative forecast errors of 1 pp raise the gain to 0.2, while for positive forecast errors, a little more than 2 percentage point error is necessary for the same increase in the gain. Consistent with the findings of \cite{hebden2020robust}, this indicates that long-run expectations are more sensitive to negative than to positive surprises.
 
-Given that only 11.4\% of forecast errors in the sample exceed 1 percentage point, this suggests that an upward unanchoring of expectations is definitely not a threat. However, the mean forecast error in the sample is -0.1362 pp, suggesting that observing negative surprises is common in the sample. In fact, 35.1\% of forecast errors are below -0.5 pp. Thus the data suggest substantial possibility for a downward unanchoring of expectations. 
+Given that only 11.4\% of forecast errors in the sample exceed $+$1 percentage point, this suggests that an upward unanchoring of expectations is definitely not the main threat. However, the mean forecast error in the sample is -0.1362 pp, suggesting that negative surprises are common in the sample. In fact, 35.1\% of forecast errors are below -0.5 pp. An inflation surprise of -0.5 pp results in a gain of 0.1, meaning that the private sector only takes the most recent 10 quarters into account. Furthermore, the model implies a downward shift in long-run inflation expectations of 5 basis points as a result. Thus the data suggest substantial possibility for a downward unanchoring of expectations. 
 
 
  %%%%%%%%%%%%%%%%%%            RESULTS            %%%%%%%%%%%%%%%%%% 
@@ -519,16 +519,16 @@ As foreshadowed above, the nonlinearity of the model due to the anchoring functi
 To simplify the analytical treatment, I make three additional assumptions compared to the baseline model. First, I assume that only the inflation process is learned; expectations about the output gap and the interest rate are rational evaluations of the infinite sum of future expectations.\footnote{By ``rational'' I here mean the expectations that agents would hold in the rational expectations equilibrium (REE). Because the model is not in the REE, these ``rational'' expectations are not model-consistent.}  Second, I assume that only the constant of the inflation process is learned. These simplifications allow me to focus on the minimal deviation from rational expectations necessary to discuss the unanchoring of inflation expectations. Third, I consider a specification of the anchoring function where the current gain depends on the most recent forecast error only:\footnote{These assumptions are made for algebraic convenience only and do not alter the qualitative implications of the model. For analytical results for the more general version of the anchoring function, see App. \ref{app_generalTC}.}
 
 \begin{equation}
-k_t = \mathbf{g}(fe_{t|t-1}) \label{anchoring_simple}
+k_t = \mathbf{g}(f_{t|t-1}) \label{anchoring_simple}
 \end{equation}
 The solution of the Ramsey problem under these assumptions is stated in the following proposition.
 
 \begin{prop} Target criterion in the anchoring model \\
 The targeting rule in the simplified learning model with anchoring is given by
 \begin{align*}
-& \pi_t = -\frac{\lambda_x}{\kappa}x_t + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - fe_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}}) \bigg)
+& \pi_t = -\frac{\lambda_x}{\kappa}x_t + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}}) \bigg)
  \numberthis \label{target} \\
- & \text{with} \quad \quad fe_{t+j|t+j-1} = \pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j}
+ & \text{with} \quad \quad f_{t+j|t+j-1} = \pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j}
 \end{align*}
 
 For the derivation, see Appendix \ref{app_midsimple_problem}. For a general target criterion without assumption (\ref{anchoring_simple}), see Appendix \ref{app_generalTC}. Note the notation that $\prod_{j=1}^{0} \equiv 1$.
@@ -536,7 +536,7 @@ For the derivation, see Appendix \ref{app_midsimple_problem}. For a general targ
 \end{prop}
 The interpretation of Equation (\ref{target}) is that the \emph{intra}temporal tradeoff between inflation and the output gap due to cost-push shocks is complemented by two \emph{intertemporal} tradeoffs: one due to learning in general, and one due to anchoring in particular. 
 
-The first intertemporal effect comes from the current level of the gain,  $k_t$, which captures how far learning is from converging to rational expectations. The second intertemporal tradeoff is manifest in the derivative of the anchoring function today,  $\mathbf{g}_{\pi,t}$, as well as in all expected levels and changes in the gain in the future in the expression $(1-k_{t+1+j}- fe_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}})$ in the second bracket on the right-hand side. These expressions say that the presence of anchoring qualify the first intertemporal tradeoff because now the degree and direction in which the gain changes today and is expected to change in the future matter too. In other words, the central bank needs to consider whether its chosen interest rate sequence contributes to anchoring expectations in future periods, or whether it actually serves to unanchor them.
+The first intertemporal effect comes from the current level of the gain,  $k_t$, which captures how far learning is from converging to rational expectations. The second intertemporal tradeoff is manifest in the derivative of the anchoring function today,  $\mathbf{g}_{\pi,t}$, as well as in all expected levels and changes in the gain in the future in the expression $(1-k_{t+1+j}- f_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}})$ in the second bracket on the right-hand side. These expressions say that the presence of anchoring qualify the first intertemporal tradeoff because now the degree and direction in which the gain changes today and is expected to change in the future matter too. In other words, the central bank needs to consider whether its chosen interest rate sequence contributes to anchoring expectations in future periods, or whether it actually serves to unanchor them.
 
 Let me investigate these channels in isolation. To see exactly what the role of anchoring is in the target criterion, consider first the special case of exogenous gain adaptive learning, for simplicity with a constant gain specification.\footnote{The intuition is identical if the public were using a decreasing gain but the mathematics would not convey that same intuition as cleanly.} In this case the anchoring function and the forecast error are irrelevant (since $\mathbf{g_i}=0, i=\pi,\bar{\pi}$) and (\ref{target}) boils down to
 \begin{align}
@@ -818,7 +818,7 @@ Taken together, these results suggest that optimal policy aggressiveness should 
 \section{Conclusion}\label{conclusion}
 Central bankers frequently voice a concern to anchor expectations. Absent a behavioral theory of anchored expectations, it is difficult to understand how such a concern affects the conduct of monetary policy. This paper lays out a simple behavioral theory of anchoring expectation formation based on adaptive learning models with an endogenous gain. The estimation of the anchoring function and the analysis of the Ramsey policy through analytical and numerical methods yields a number of differences compared to the rational expectations version of the model. 
 
-The main message is that policy is time-varying because it responds to the unanchoring of expectations. Optimal policy involves responding to a 1 percentage point rise (fall) in expected mean inflation by raising (lowering) the interest rate by \movei pp, depending on the sign of the forecast error. The estimation of the anchoring function indicates that the central bank should be more vary of causing negative inflation surprises, as already a negative forecast error of half a percentage point leads to a considerable degree of unanchoring. For positive forecast errors, the same gain requires a forecast error double this size. 
+The main message is that policy is time-varying because it responds to the unanchoring of expectations. Optimal policy involves responding to a 1 percentage point rise (fall) in expected mean inflation by raising (lowering) the interest rate by \movei pp, depending on the sign of the forecast error. The estimation of the anchoring function indicates that the central bank should be more vary of causing negative inflation surprises, as already a negative forecast error of half a percentage point leads to a sizable degree of unanchoring. For positive forecast errors, the same gain requires a forecast error double this size. 
 
 Optimal policy in the anchoring model is time-consistent, for which reason it can be expressed as a purely forward-looking target criterion for the policymaker to follow. The target criterion prescribes how the policymaker can exploit the learning mechanism to spread out the effect of shocks over time, adding an intertemporal channel to the tradeoff between inflation and the output gap. The sensitivity of the policy function to the stance of anchoring highlights, however, that there is no free lunch: the monetary authority needs to dampen volatility at the same time as guard against the possibility of unanchoring expectations. Thus optimal policy faces an intertemporal volatility tradeoff in which long-run stability can only be achieved at the cost of short-run volatility.
 
@@ -932,13 +932,13 @@ G_{t-1} & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(
 \section{Alternative specifications for the anchoring function}\label{alternative_criteria}
 The general law of motion for the gain in the main text is given by Equation (\ref{anchoring}), reproduced here for convenience:
 \begin{equation}
-k_t  = \mathbf{g}(k_{t-1},fe_{t|t-1}) 
+k_t  = \mathbf{g}(k_{t-1},f_{t|t-1}) 
 \end{equation}
 
 The baseline specification of the anchoring function $\mathbf{g}$ (Equation (\ref{gain}) in the main text) is \begin{equation}
-\mathbf{g} = \alpha b(fe_{t|t-1})
+\mathbf{g} = \alpha b(f_{t|t-1})
 \end{equation}
-where $ b(fe_{t|t-1})$ is the second order spline basis and $\hat{\alpha}$ are the coefficients estimated in Section \ref{estimation}.
+where $ b(f_{t|t-1})$ is the second order spline basis and $\hat{\alpha}$ are the coefficients estimated in Section \ref{estimation}.
 
 To my knowledge, there are only two other papers that consider an endogenous gain as a model for anchored expectations. The first one, more related to this paper, is \cite{carvalho2019anchored}. In their model, the anchoring function is a discrete choice function as follows. Let $\theta_t$ be a criterion to be defined. Then, for a threshold value $\tilde{\theta}$, the gain evolves according to
 \begin{align*}
@@ -953,10 +953,10 @@ where $\Sigma$ is the VC matrix of shocks, $\phi_{t-1}$ is the estimated matrix 
 
 As a robustness check, \cite{carvalho2019anchored} also compute an alternative criterion.\footnote{Note that for both criteria, I present the matrix generalizations of the scalar versions considered by \cite{carvalho2019anchored}.} Let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
 \begin{align}
-\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}(fe_{t|t-1} fe_{t|t-1}'  -\omega_{t-1})\\
-\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}(fe_{t|t-1}'\omega_t^{-1}fe_{t|t-1} -\theta_{t-1}) \label{cusum_crit}
+\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}(f_{t|t-1} f_{t|t-1}'  -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}(f_{t|t-1}'\omega_t^{-1}f_{t|t-1} -\theta_{t-1}) \label{cusum_crit}
 \end{align}
-where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $fe_{t|t-1}$ is the most recent forecast error, realized at time $t$. Indeed, this is a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.}
+where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $f_{t|t-1}$ is the most recent forecast error, realized at time $t$. Indeed, this is a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.}
 
 It is interesting to compare the two discrete anchoring functions with my smooth specification. On the one hand, the \cite{carvalho2019anchored}'s preferred specification requires the private sector to evaluate model-consistent expectations, which runs counter to the maintained informational assumptions. It is more consistent with the present model, then, to assume that firms and households employ a statistical test of structural change, as is the case with the CUSUM-based and smooth functions. These are therefore more appealing on conceptual grounds.
 
@@ -974,10 +974,10 @@ where $y_{t-1}$ denotes the output gap and $A,B,C$ and $D$ are parameters.
 \section{Estimation procedure}\label{SMM}
 The estimation of Section \ref{estimation} is a simulated method of moments (SMM) exercise. As elaborated in the main text, I target the autocovariances of CPI inflation, the output gap, the federal funds rate and the 12-months ahead inflation forecasts coming from the Survey of Professional Forecasters. For the autocovariances, I consider lags $0, \dots, 4$. The target moment vector, $\Omega$, is the vectorized autocovariance matrices for the lags considered, $80\times1$. 
 
-For each proposed coefficient vector $\alpha$, the estimation procedure consists of simulating the model conditional on $\alpha$, the calibrated parameters $\theta$ and $N$ different sequences of disturbances, computing model-implied moments for each simulation, and lastly choosing $\alpha$ such that the squared distance between the data- and model-implied mean moments is minimized. Thus
+For each proposed coefficient vector $\gamma$, the estimation procedure consists of simulating the model conditional on $\gamma$, the calibrated parameters $\theta$ and $N$ different sequences of disturbances, computing model-implied moments for each simulation, and lastly choosing $\alpha$ such that the squared distance between the data- and model-implied mean moments is minimized. Thus
 
 \begin{equation}
-\hat{\alpha} = \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\alpha, \theta, \{e^n_t\}_{t=1}^{T})\bigg)' W^{-1} \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\alpha, \theta,  \{e^n_t\}_{t=1}^{T})\bigg)
+\hat{\gamma} = \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\gamma, \theta, \{e^n_t\}_{t=1}^{T})\bigg)' W^{-1} \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\gamma, \theta,  \{e^n_t\}_{t=1}^{T})\bigg)
 \end{equation}
 
 where the observed data is of length $T=151$ quarters. Here $\{e^n_t\}_{t=1}^{T}$ is a sequence of disturbances of the same length as the data; note that I use a cross-section of $N$ such sequences and take average moments across the cross-section to wash out the effects of particular disturbances. Experimentation with the number $N$ led me to choose $N=1000$, as estimates no longer change upon selecting larger $N$.
@@ -1031,28 +1031,28 @@ Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed th
 \section{A target criterion for an anchoring mechanism specified in terms of gain changes}\label{app_generalTC}
 Consider the general anchoring mechanism of Equation (\ref{anchoring}):
 \begin{equation}
-k_t = \rho_kk_{t-1} + \mathbf{g}(fe_{t|t-1})
+k_t = \rho_kk_{t-1} + \mathbf{g}(f_{t|t-1})
 \end{equation}
 With this assumption, the FOCs of the Ramsey problem are
 \begin{align}
 & 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -k_t \varphi_{5,t} - \mathbf{g}_{\pi,t}\varphi_{6,t}  = 0 \label{gaspar22_general}\\
 & c x_{t+1} + \varphi_{5,t} -(1-k_t)\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21_general}\\
-& \varphi_{6,t} \; \textcolor{brownreddark}{+\; \varphi_{6,t+1}} = fe_{t|t-1} \varphi_{5,t} \label{constraints_general}
+& \varphi_{6,t} \; \textcolor{brownreddark}{+\; \varphi_{6,t+1}} = f_{t|t-1} \varphi_{5,t} \label{constraints_general}
 \end{align}
-where the red multiplier is the new element vis-\`a-vis the case where the anchoring function is specified in levels ($k_t = \mathbf{g}(fe_{t|t-1})$), and I'm using the shorthand notation
+where the red multiplier is the new element vis-\`a-vis the case where the anchoring function is specified in levels ($k_t = \mathbf{g}(f_{t|t-1})$), and I'm using the shorthand notation
 \begin{align}
 c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa} \\ 
-fe_{t|t-1} & = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
+f_{t|t-1} & = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
 \end{align}
 (\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi,t}$ is high in absolute value).
 One can simplify this three-equation-system to:
 \begin{align}
-\varphi_{6,t} & = -c fe_{t|t-1} x_{t+1} + \bigg(1+ \frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}^{-1}) -fe_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} -\frac{fe_{t|t-1}}{fe_{t+1|t}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
-0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{fe_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{fe_{t|t-1}}\varphi_{6,t+1}\label{1'}
+\varphi_{6,t} & = -c f_{t|t-1} x_{t+1} + \bigg(1+ \frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}^{-1}) -f_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} -\frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{f_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{f_{t|t-1}}\varphi_{6,t+1}\label{1'}
 \end{align}
 Thus a central bank that follows the target criterion has to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
 \begin{equation}
-\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{fe_{t+j|t}}}{\frac{k_{t+j}}{fe_{t+j|t}} + \mathbf{g}_{\pi,t+j}} \label{sol1'}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{f_{t+j|t}}}{\frac{k_{t+j}}{f_{t+j|t}} + \mathbf{g}_{\pi,t+j}} \label{sol1'}
 \end{equation}
 The interpretation of (\ref{sol1'}) is that the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the central bank always hits the target ($\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0, \; \forall i$); or expectations are always anchored ($k_{t+j}=0, \; \forall j$). 
 
@@ -1063,10 +1063,10 @@ x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatr
 \pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_{a,t} + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (I_{3} - \alpha \beta h)^{-1}  s_t \label{A10} \numberthis\\
 f_{a,t} & = \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  + b(I_{3} - \alpha\beta h)^{-1}s_t \numberthis \\
 f_{b,t} & = \frac{1}{1-\beta}\bar{\pi}_{t-1}  + b(I_{3} - \beta h)^{-1}s_t  \label{A8} \numberthis \\
- fe_{t|t-1} &  = \pi_t - (\bar{\pi}_{t-1}+b_1 s_{t-1}) \label{A7} \numberthis \\
- k^{-1}_t & = \gamma_k fe_{t|t-1}^2 \numberthis  \\
+ f_{t|t-1} &  = \pi_t - (\bar{\pi}_{t-1}+b_1 s_{t-1}) \label{A7} \numberthis \\
+ k^{-1}_t & = \gamma_k f_{t|t-1}^2 \numberthis  \\
  \bar{\pi}_{t} &  = \bar{\pi}_{t-1} +k_tfe_{t|t-1} \numberthis \\
- \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+fe_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (fe_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+ \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (f_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
 \bigg\} \numberthis \label{B1}
 \end{align*}
 
@@ -1104,9 +1104,9 @@ Combining the two equations allows one to solve for the time series of expectati
 \begin{equation}
 f_t = \frac{1-k^{-1}}{1-k^{-1}\beta}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
 \end{equation}
-which, for $\beta$ close but smaller than 1, is a near-unit-root process. (In fact, if the gain were to go to zero, this would be a unit root process.) Defining the forecast error as $fe_{t|t-1} \equiv \pi_t - f_{t-1}$, one obtains
+which, for $\beta$ close but smaller than 1, is a near-unit-root process. (In fact, if the gain were to go to zero, this would be a unit root process.) Defining the forecast error as $f_{t|t-1} \equiv \pi_t - f_{t-1}$, one obtains
 \begin{equation}
-fe_{t|t-1} = -\frac{1-\beta}{1-k^{-1}\beta}f_{t-1} + \frac{1}{1-k^{-1}\beta}u_t \label{oscillating_fe}
+f_{t|t-1} = -\frac{1-\beta}{1-k^{-1}\beta}f_{t-1} + \frac{1}{1-k^{-1}\beta}u_t \label{oscillating_fe}
 \end{equation}
 Equation (\ref{oscillating_fe}) shows that in this simple model, the forecast error loads on a near-unit-root process with a coefficient that is negative and less than one in absolute value. Damped oscillations are the result. 
 

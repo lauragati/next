@@ -1,6 +1,6 @@
 \beamer@endinputifotherversion {3.36pt}
 \select@language {english}
-\beamer@sectionintoc {1}{Unanchoring in the data}{8}{0}{1}
-\beamer@sectionintoc {2}{Model of anchoring expectations}{12}{0}{2}
-\beamer@sectionintoc {3}{Solving the Ramsey problem}{30}{0}{3}
-\beamer@sectionintoc {4}{Implementing optimal policy}{35}{0}{4}
+\beamer@sectionintoc {1}{Model of anchoring expectations}{20}{0}{1}
+\beamer@sectionintoc {2}{Solving the Ramsey problem}{44}{0}{2}
+\beamer@sectionintoc {3}{Implementing optimal policy}{49}{0}{3}
+\beamer@sectionintoc {4}{Approximating optimal policy with a Taylor rule}{60}{0}{4}

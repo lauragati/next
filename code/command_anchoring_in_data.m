@@ -174,7 +174,18 @@ end
 % not providing great evidence here
 
 
-% return
+% Try changes
+% full sample
+mdl = fitlm(fe,spf10(2:end)-spf10(1:end-1))
+
+% first half of sample
+mdl = fitlm(fe(1:T/2),spf10(2:T/2+1)-spf10(2-1:T/2+1-1) )
+
+% second half of sample
+mdl = fitlm(fe(T/2+1:end),spf10(T/2+2:end)-spf10(T/2+2-1:end-1))
+% no they're not good
+
+return
 
 %% NY FED SCE
 
