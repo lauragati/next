@@ -137,10 +137,10 @@ residnames = {'IS', 'PC', 'TR'};
 ndrop =0; ne=3;
 % [param, set, param_names, param_values_str, param_titles] = parameters_next; % now using the ones from the estimation
 
-%Experiment with parameters:
-param.bet = 0.95
-% param.sig = 0.1 % no good
-param.kapp = 0.2
+% %Experiment with parameters:
+% param.bet = 0.95
+% % param.sig = 0.1 % no good
+% param.kapp = 0.2
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;
@@ -182,7 +182,7 @@ s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 % Specify info assumption on the Taylor rule and not to include a monpol
 % shock
-knowTR =0
+knowTR =1
 mpshock=0
 %%%%%%%%%%%%%%%%%%%
 

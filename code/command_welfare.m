@@ -123,7 +123,7 @@ disp('%%%%%%%%%%%%%%%% Optimal PEA policy %%%%%%%%%%%%%%%%')
 %% Optimal PEA policy
 
 % Remove TR
-knowTR=0
+knowTR=1
 mpshock=0
 
 

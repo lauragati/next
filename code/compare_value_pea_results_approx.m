@@ -77,7 +77,10 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_14_56_40';  % Calibration C of Materials 43; rng(3)
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
 % pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
-pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2) default
+pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2) default <---
+
+pea_output_name = 'pea_outputs_approx23_Sep_2020_08_33_28'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1
+
 
 % Play around with calibration to see if you can decrease interest rate
 % fluctuations
