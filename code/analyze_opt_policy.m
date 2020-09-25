@@ -56,7 +56,7 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
 % pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
 pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2)
-pea_output_name = 'pea_outputs_approx24_Sep_2020_09_11_32'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1 but psi_pi=1.1083 (par_opt)
+% pea_output_name = 'pea_outputs_approx24_Sep_2020_09_11_32'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1 but psi_pi=1.1083 (par_opt)
 
 
 
@@ -77,6 +77,7 @@ T=length(e)-2; % drop the first and last obs
 k1sim = 1./k7(2:end-1);
 pibsim = squeeze(phi7(1,1,2:end-1))';
 
+% plot(pibsim)
 % cheeck max, mean and min in simulation
 % max(k1sim) % 0.2699
 % mean(k1sim) % 0.0092
@@ -111,12 +112,21 @@ ppi = csapi({pgrid,sgrid,sgrid,sgrid,sgrid},it);
 %hold every state at their means, just move pibar
 i_p = fnval(ppi,[pibvals;smean;smean;smean;smean]);
 
+
 % % Annualization of inflation and interest rate - I won't do it b/c it
 % would need to scale up pibvals too
 % i_p =  ((i_p/100+1).^4 -1)*100;
 % pibvals =  ((pibvals/100+1).^4 -1)*100;
 
-xlplus = [0.1, 0.3];
+% 25 Sept 2020:
+% Materials 44 complete: factor = 50 (i = 50*pibar)
+% -||- except knowTR=1: factor = -2.6 (i= -2.6*pibar). Why -? B/c you need
+% to offset anticipation effects!
+stabilizing_factor=2.6;
+i_p = stabilizing_factor * pibvals;
+
+% xlplus = [0.1, 0.3];
+xlplus = [0.1, 0.01];
 ylplus = [0.02, 6.1]; 
 create_pretty_plot_x(pibvals,i_p,'$\bar{\pi}$','$i(\bar{\pi}, \cdot)$',xlplus, ylplus,[this_code, '_ip', todays_date],print_figs)
 

@@ -285,4 +285,79 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+
+%% Same thing just regressing on inflation
+
+infl_rep = repmat(infl,1,n_fcsters);
+for j=1:T-length_win
+%     X = vec(fe(j:j+length_win-1, :));
+    X = vec(infl_rep(j:j+length_win-1, :));
+    Y = vec(LRE(j:j+length_win-1, :));
+    lm = fitlm(X,Y);
+    betahat(j) = lm.Coefficients.Estimate(2);
+    pvals(j)   = lm.Coefficients.pValue(2);
+    N(j)  = lm.NumObservations;
+    R2(j) = lm.Rsquared.Ordinary; % non-adjusted R2
+    sd(j) = sqrt(lm.CoefficientCovariance(2,2));
+    
+%     % upper and lower bounds of 95% CI (assuming beta is normal)
+    ub95(j) = betahat(j) +1.96 * sd(j) ;
+    lb95(j) = betahat(j) -1.96 * sd(j);
+    
+    % upper and lower bounds of 90% CI (assuming beta is normal)
+    ub90(j) = betahat(j) +1.28 * sd(j) ;
+    lb90(j) = betahat(j) -1.28 * sd(j);
+
+end
+
+figspecs = [this_code, '_', nowstr];
+[fs, lw] = plot_configs;
+
+time_cropped = linspace(time(1), time(end), n_win);
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+% plot(time_cropped,ub,'Color', [0.25,0.25,0.25]); hold on
+% plot(time_cropped,lb, 'Color', [0.25,0.25,0.25])
+h = plot(time_cropped,betahat, 'k','linewidth', lw);
+hold on
+% x=0:0.01:2*pi;                  %#initialize x array
+% y1=sin(x);                      %#create first curve
+% y2=sin(x)+.5;                   %#create second curve
+X=[time_cropped,fliplr(time_cropped)];                %#create continuous x value array for plotting
+Y=[ub95',fliplr(lb95')];              %#create y values for out and then back
+f95 = fill(X,Y,[0.25,0.25,0.25],'edgecolor','none');                  %#plot filled area
+% Choose a number between 0 (invisible) and 1 (opaque) for facealpha.  
+set(f95,'facealpha',.25)
+
+X=[time_cropped,fliplr(time_cropped)];                %#create continuous x value array for plotting
+Y=[ub90',fliplr(lb90')];              %#create y values for out and then back
+f90 = fill(X,Y,[0.25,0.25,0.25],'edgecolor','none');                  %#plot filled area
+% Choose a number between 0 (invisible) and 1 (opaque) for facealpha.  
+set(f90,'facealpha',.45)
+
+plot(time_cropped,0*ones(1,length(betahat)), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+legend([h,f95, f90], '$\hat{\beta}_1^w$', '95\% confidence interval','90\% confidence interval','location', 'southoutside', 'interpreter', 'latex', 'NumColumns',3)
+legend('boxoff')
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time_cropped(1);
+xaxislimits(2) = time_cropped(end);
+set(gca, 'XLim', xaxislimits);
+
+figname = ['rolling_overlapping_pi_', figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
     
