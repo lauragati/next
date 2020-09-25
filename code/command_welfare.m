@@ -114,7 +114,7 @@ disp(['(psi_x, lam_x, lam_i)=   ', num2str([param.psi_x, param.lamx, param.lami]
 % gen all the N sequences of shocks at once.
 rng(0)
 eN = randn(ne,T,N);
-% vN = zeros(ne+1,T,N); % deal with this later
+vN = zeros(ne+1,T,N); % deal with this later
 
 
 
@@ -123,10 +123,10 @@ disp('%%%%%%%%%%%%%%%% Optimal PEA policy %%%%%%%%%%%%%%%%')
 %% Optimal PEA policy
 
 % Remove TR
-knowTR=1
+knowTR=0
 mpshock=0
 
-
+% param.lamx=0.06
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % RE model
@@ -145,7 +145,7 @@ ndrop=0;
 
 start_PEA = datetime('now');
 y= zeros(ny,T,N);
-for n=1:N
+for n=1:1%N
     disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
     disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
@@ -164,3 +164,171 @@ duration_PEA_loss = end_PEA - start_PEA
 
 loss_PEA = loss_CB(param,y) 
 
+%% TR
+
+y0= zeros(ny,T,N);
+y1= zeros(ny,T,N);
+
+for n=1:2%N
+    e = squeeze(eN(:,:,n));
+    v = squeeze(vN(:,:,n));
+    [~, y0(:,:,n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 0,mpshock);
+    [~, y1(:,:,n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 1,mpshock);
+    
+end
+
+loss_TR_dontknow = loss_CB(param,y0)
+loss_TR_know = loss_CB(param,y1)
+
+param.psi_pi=1.1083; %lamx=0.05
+% param.psi_pi=1.0091; % lamx=1
+% param.psi_pi= 1.0968; % lamx=0.06
+param.lamx=0.06;
+y2= zeros(ny,T,N);
+for n=1:N
+    e = squeeze(eN(:,:,n));
+    v = squeeze(vN(:,:,n));
+    [~, y2(:,:,n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 1,mpshock);
+    
+end
+
+loss_TR_know_opt = loss_CB(param,y2)
+
+
+%% Consumption equivalents
+
+W_RE = 4.4866;
+W_TR = 6.0228;
+W_opt = 6.0985;
+ce_TR = cons_equivalent_for_log(param,-W_TR,-W_RE)
+ce_opt = cons_equivalent_for_log(param,-W_opt,-W_RE)
+cons_equivalent_for_log(param,-14.2633, -W_RE)
+cons_equivalent_for_log(param,-14.2633, -W_opt)
+
+
+
+
+
+return
+%% knowTR - this section shows that the optimal policy always achieves the same sequence of pi and x
+
+start_PEA = datetime('now');
+ykt= zeros(ny,T,N);
+for n=1:2%N
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
+    e = squeeze(eN(:,:,n));
+    [~, ykt(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,g_fe,1,mpshock);
+
+end
+end_PEA = datetime('now');
+duration_PEA_loss = end_PEA - start_PEA
+
+% for T=100, N=1, this takes 78 sec. 
+% for T=100, N=100, it should thus take 130 min
+% for T=400, N=1, it 20 minutes.
+% for T=400, N=100, it should take 34 hours.
+
+loss_PEA_kt = loss_CB(param,ykt) 
+
+figure
+plot(squeeze(y(3,:,1)))
+hold on
+plot(squeeze(ykt(3,:,1)))
+legend('do not','know TR')
+
+%% param.psi_pi=1.1083; 
+
+param.psi_pi=1.1083; % optimal value from complete Materials 44 candidate
+
+start_PEA = datetime('now');
+y_low= zeros(ny,T,N);
+for n=1:2%N
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
+    e = squeeze(eN(:,:,n));
+    [~, y_low(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,g_fe,0,mpshock);
+
+end
+end_PEA = datetime('now');
+duration_PEA_loss = end_PEA - start_PEA
+
+% for T=100, N=1, this takes 78 sec. 
+% for T=100, N=100, it should thus take 130 min
+% for T=400, N=1, it 20 minutes.
+% for T=400, N=100, it should take 34 hours.
+
+loss_PEA_low = loss_CB(param,y_low) 
+
+
+start_PEA = datetime('now');
+y_low_kt= zeros(ny,T,N);
+for n=1:2%N
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
+    e = squeeze(eN(:,:,n));
+    [~, y_low_kt(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, PLM, gain, T,ndrop,e,g_fe,1,mpshock);
+
+end
+end_PEA = datetime('now');
+duration_PEA_loss = end_PEA - start_PEA
+
+% for T=100, N=1, this takes 78 sec. 
+% for T=100, N=100, it should thus take 130 min
+% for T=400, N=1, it 20 minutes.
+% for T=400, N=100, it should take 34 hours.
+
+loss_PEA_low_kt = loss_CB(param,y_low_kt) 
+
+figure
+plot(squeeze(y_low(3,:,1)))
+hold on
+plot(squeeze(y_low_kt(3,:,1)))
+legend('do not','know TR')
+
+
+figure
+plot(squeeze(y(3,:,1)))
+hold on
+plot(squeeze(ykt(3,:,1)))
+plot(squeeze(y_low(3,:,1)))
+plot(squeeze(y_low_kt(3,:,1)))
+legend('do not','know TR', 'low - do not','low - know TR')
+
+% I get the same welfare because I get the same outcomes, look:
+squeeze(y(1:2,:,1)) - squeeze(ykt(1:2,:,1))
+squeeze(y(1:2,:,1)) - squeeze(y_low(1:2,:,1))
+squeeze(y(1:2,:,1)) - squeeze(y_low_kt(1:2,:,1))
+
+
+
+
+%% constant_only - learn interest rate - this doesn't work here
+
+return 
+start_PEA = datetime('now');
+y_low= zeros(ny,T,N);
+for n=1:2%N
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    disp(['Shock sequence n=', num2str(n), ' out of N=', num2str(N)])
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+
+    e = squeeze(eN(:,:,n));
+    [~, y_learni(:,:,n)] = sim_learnLH_pea_optimal(alph,x,param,gx,hx,SIG, constant_only, gain, T,ndrop,e,g_fe,0,mpshock);
+
+end
+end_PEA = datetime('now');
+duration_PEA_loss = end_PEA - start_PEA
+
+% for T=100, N=1, this takes 78 sec. 
+% for T=100, N=100, it should thus take 130 min
+% for T=400, N=1, it 20 minutes.
+% for T=400, N=100, it should take 34 hours.
+
+loss_PEA_learni = loss_CB(param,y_learni) 

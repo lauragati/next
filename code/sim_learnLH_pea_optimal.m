@@ -19,7 +19,7 @@ n_inputs = sum(s_inputs); % the number of input series
 v=zeros(4,T); % need to deal with the darn measurement error later
 
 % an initial simulation using the Taylor rule
-[~, y0, ~, ~, ~, ~, FEt_10, ~] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, 1,mpshock);
+[~, y0, ~, ~, ~, ~, FEt_10, ~] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,v, knowTR,mpshock);
 
 
 % Note: I'm not inputting anything exogenous for period t=1 b/c that
@@ -31,7 +31,7 @@ seq0(:,2:end) = y0(i_inputs,2:end);
 %% Parameterized expectations
 
 % %Optimization Parameters
-options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'iter');%, 'MaxFunEvals', 4000);
+options = optimoptions('fsolve', 'TolFun', 1e-9, 'display', 'none');%, 'MaxFunEvals', 4000);
 options.UseParallel=true;
 % initDamping = initial value of Levenberg-Marquardt lambda.
 

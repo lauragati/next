@@ -53,6 +53,7 @@ PI = [p*p, p*(1-p); (1-p)*p, (1-p)*(1-p)];
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
 % value_output_name = 'value_outputs_approx17_Sep_2020_13_51_53'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.1,0.1,np);
 value_output_name = 'value_outputs_approx17_Sep_2020_14_01_16'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np); % baseline
+% value_output_name = 'value_outputs_approx24_Sep_2020_22_16_27'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np); knowTR=1 but psi_pi=1.1083 (par_opt) awful!!
 
 
 
@@ -79,7 +80,8 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
 pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2) default <---
 
-pea_output_name = 'pea_outputs_approx23_Sep_2020_08_33_28'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1
+% pea_output_name = 'pea_outputs_approx23_Sep_2020_08_33_28'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1 % it seems just as aggressive, but with opposite sign
+pea_output_name = 'pea_outputs_approx24_Sep_2020_09_11_32'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1 but psi_pi=1.1083 (par_opt)
 
 
 % Play around with calibration to see if you can decrease interest rate
@@ -120,9 +122,9 @@ i_vi = fnval(ppi,X);
 
 policies = [i_pe; i_vi];
 
-% Annualization of inflation and interest rate
-ysim7([1,3],:) = ((ysim7([1,3],:)/100+1).^4 -1)*100;
-policies =  ((policies/100+1).^4 -1)*100;
+% % Annualization of inflation and interest rate
+% ysim7([1,3],:) = ((ysim7([1,3],:)/100+1).^4 -1)*100;
+% policies =  ((policies/100+1).^4 -1)*100;
 
 
 % % save some nice plots for draft and prezis

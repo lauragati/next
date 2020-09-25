@@ -99,6 +99,7 @@ g_fe = gradient(k1_opt);
 
 alph = alph_opt;
 
+param.psi_pi=1.1083; %lamx=0.05
 
 % return
 

@@ -133,7 +133,7 @@ options.UseParallel=true;
 %% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-% setp.lamx  = 0;
+setp.lamx  = 0.06;
 % setp.lami  = 1;
 
 % knowTR=0

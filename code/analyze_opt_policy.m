@@ -35,6 +35,7 @@ sgrid = linspace(-sig_r,sig_r,ns);
 % value_output_name = 'value_outputs_approx27_Aug_2020_14_28_32'; % Calibration C of Materials 43;  pgrid = linspace(-0.2,0.2,np); % nicer int-rate magnitudes
 % value_output_name = 'value_outputs_approx12_Sep_2020_09_29_49'; % Sept 15 estimation of Materials 44; pgrid = linspace(-1,1,np); % honestly I think they're exactly the same
 value_output_name = 'value_outputs_approx17_Sep_2020_14_01_16'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np);
+% value_output_name = 'value_outputs_approx24_Sep_2020_22_16_27'; % Sept 21 draft Materials 44;  pgrid = linspace(-0.2,0.2,np); knowTR=1 but psi_pi=1.1083 (par_opt) awful!!
 
 load([value_output_name, '.mat'])
 
@@ -55,6 +56,7 @@ pgrid  = value_sols{6};
 % pea_output_name = 'pea_outputs_approx27_Aug_2020_15_00_03';  % Calibration C of Materials 43; rng(4)
 % pea_output_name = 'pea_outputs_approx12_Sep_2020_09_15_24';  % Sept 15 estimation of Materials 44; rng(2) default
 pea_output_name = 'pea_outputs_approx17_Sep_2020_13_47_33'; % Sept 21 draft Materials 44; rng(2)
+pea_output_name = 'pea_outputs_approx24_Sep_2020_09_11_32'; % Sept 21 draft Materials 44; rng(2) default, knowTR=1 but psi_pi=1.1083 (par_opt)
 
 
 

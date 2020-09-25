@@ -12,7 +12,9 @@ b = gx*hx;
 % use existing technology to compute these
 [fa, fb] = fafb_anal_constant_free(param,[pibart_1;0;0],b,s,hx);
 
-knowTR=0;
+knowTR=0; % default
+% knowTR=1; % sep 24 2020
+
 z = A9A10(param,hx,fa,fb,s,i, knowTR);
 pi = z(1);
 x  = z(2);

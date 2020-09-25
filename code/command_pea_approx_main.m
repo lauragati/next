@@ -19,6 +19,7 @@ print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
+save_stuff=0;
 
 % Load estimation outputs
 
@@ -141,6 +142,7 @@ ndrop =0; ne=3;
 % param.bet = 0.95
 % % param.sig = 0.1 % no good
 % param.kapp = 0.2
+% param.psi_pi=1.1083; % optimal value from complete Materials 44 candidate
 
 sig_r = param.sig_r;
 sig_i = param.sig_i;
@@ -182,7 +184,7 @@ s_inputs = [1;1;1]; % pi, x, i
 %%%%%%%%%%%%%%%%%%%
 % Specify info assumption on the Taylor rule and not to include a monpol
 % shock
-knowTR =1
+knowTR =0
 mpshock=0
 %%%%%%%%%%%%%%%%%%%
 
@@ -201,17 +203,18 @@ disp('Initial simul using TR - this should explode b/c agents don''t know the TR
 % % Annualize pi and i
 % y0([1,3],:) = ((y0([1,3],:)/100+1).^4 -1)*100;
 % 
-% % create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
-% % create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
-% % return
+% create_plot_observables(y0,seriesnames, 'Simulation using the Taylor rule', ['implement_anchTC_obs_TR_approx',todays_date], print_figs)
+% create_plot_observables(1./k0,invgain, 'Simulation using the Taylor rule', ['implement_anchTC_invgain_TR_approx',todays_date], print_figs)
+% return
 % 
-% % %%% when saving to draft or presentations, use these 5 lines below
+% % % %%% when saving to draft or presentations, use these 5 lines below
 % xlab = 'Quarters';
 % ylab = 'dont display';
 % xlplus = [45,0.01];
 % ylplus = [-400,0];
 % create_pretty_subplots(y0,{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_TR_approx',nowstr], print_figs)
 % 
+% return
 % xlplus = [20,0.01];
 % create_pretty_subplots(y0(:,1:40),{'$\pi$', '$x$','$i$'},xlab,ylab,xlplus, ylplus, ['implement_anchTC_obs_TR_approx_40q_',nowstr], print_figs)
 
@@ -287,7 +290,7 @@ disp(['Elapsed: ' num2str(elapsed_seconds), ' sec.'])
 create_plot_observables(ysim7,seriesnames, 'Simulation using input sequence ', ['implement_anchTC_obs_approx',nowstr], print_figs)
 create_plot_observables(1./k7, invgain,'Simulation using input sequence', ['implement_anchTC_invgain_approx', nowstr], print_figs)
 
-if flag==1 % only save output if last fsolve solved.
+if flag==1 && save_stuff==1 % only save output if last fsolve solved.
 output = {e, ysim7, k7, phi7, seq_opt};
 filename = ['pea_outputs_approx', nowstr, '.mat'];
 save(filename, 'output')
