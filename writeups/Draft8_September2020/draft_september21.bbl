@@ -97,7 +97,7 @@ Calvo, G.~A. (1983).
 \bibitem[\protect\citeauthoryear{Campbell, Evans, Fisher, and
   Justiniano}{Campbell et~al.}{2012}]{campbell2012macroeconomic}
 Campbell, J.~R., C.~L. Evans, J.~D.~M. Fisher, and A.~Justiniano (2012).
-\newblock Macroeconomic effects of federal reserve forward guidance [with
+\newblock Macroeconomic effects of {F}ederal {R}eserve forward guidance [with
   comments and discussion].
 \newblock {\em Brookings Papers on Economic Activity\/}, 1--80.
 
@@ -157,7 +157,7 @@ Dombeck, B. (2017).
 \bibitem[\protect\citeauthoryear{Duffie and Singleton}{Duffie and
   Singleton}{1990}]{duffie1990simulated}
 Duffie, D. and K.~J. Singleton (1990).
-\newblock Simulated moments estimation of markov models of asset prices.
+\newblock Simulated moments estimation of {M}arkov models of asset prices.
 \newblock Technical report, National Bureau of Economic Research.
 
 \bibitem[\protect\citeauthoryear{Eichenbaum, Jaimovich, and Rebelo}{Eichenbaum
@@ -275,9 +275,8 @@ Lucas, R.~E. (1976).
 \newblock In {\em Carnegie-Rochester conference series on public policy},
   Volume~1, pp.\  19--46.
 
-\bibitem[\protect\citeauthoryear{Lucas and Lucas}{Lucas and
-  Lucas}{1987}]{lucas1987models}
-Lucas, R.~E. and Lucas (1987).
+\bibitem[\protect\citeauthoryear{Lucas}{Lucas}{1987}]{lucas1987models}
+Lucas, R.~E. (1987).
 \newblock {\em Models of business cycles}, Volume~26.
 \newblock Basil Blackwell Oxford.
 
@@ -296,7 +295,7 @@ Mackowiak, B. and M.~Wiederholt (2009).
   Reis}{2002}]{mankiw2002sticky}
 Mankiw, N.~G. and R.~Reis (2002).
 \newblock Sticky information versus sticky prices: a proposal to replace the
-  new keynesian phillips curve.
+  {N}ew {K}eynesian {P}hillips curve.
 \newblock {\em The Quarterly Journal of Economics\/}~{\em 117\/}(4),
   1295--1328.
 
