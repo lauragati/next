@@ -1,0 +1,1222 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb,lscape, natbib}
+\usepackage{mathtools}
+\usepackage{subfigure}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[final]{pdfpages}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{natbib} 
+\usepackage{bibentry} 
+\newcommand{\bibverse}[1]{\begin{verse} \bibentry{#1} \end{verse}}
+\newcommand{\vs}{\vspace{.3in}}
+\renewcommand{\ni}{\noindent}
+\usepackage{xr-hyper}
+\usepackage[]{hyperref}
+\usepackage[capposition=top]{floatrow}
+\usepackage{amssymb}
+%\usepackage[capposition=top]{floatrow}
+%\usepackage{palatino} % hell yeah, it looks great
+
+
+\def \myFigPath {../../figures/} 
+% BE CAREFUL WITH FIGNAMES, IN LATEX THEY'RE NOT CASE SENSITIVE!!
+\def \myTablePath {../../tables/} 
+\def \myBibPath {../../literature/} 
+
+
+\definecolor{citec}{rgb}{0,0,.5}
+\definecolor{linkc}{rgb}{0,0,.6}
+\definecolor{bcolor}{rgb}{1,1,1}
+\hypersetup{
+%hidelinks = true
+  colorlinks = true,
+  urlcolor=linkc,
+  linkcolor=linkc,
+  citecolor = citec,
+  filecolor = linkc,
+  pdfauthor={Laura G\'ati},
+}
+
+
+\geometry{left=.83in,right=.89in,top=1in,
+bottom=1in}
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+% New Options
+\newtheorem{prop}{Proposition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{result}{Result}
+
+%\newtheorem{theorem}{Theorem}[section] % the third argument specifies that their number will be adopted to the section
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\declaretheorem{proposition}
+%\linespread{1.3}
+%\raggedbottom
+%\font\reali=msbm10 at 12pt
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.22}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+\newcommand{\code}[1]{\texttt{#1}} %code %
+
+\renewcommand*\contentsname{Overview}
+\setcounter{tocdepth}{2}
+\linespread{1.2}
+
+% a set of nice blue, nice red and nice green
+\definecolor{dodgerblue}{RGB}{16,78,139}
+\definecolor{aquamarinegreen}{RGB}{69,139,116}
+\definecolor{brownredlight}{RGB}{238,59,59}
+\definecolor{brownreddark}{RGB}{205,51,51}
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update: 17 Sept 2020 using ``complete'' or ``21 Sept" Estimation (N=1000) from Materials 44
+
+% Empirical numbers
+% mean estimated alpha
+\def\meanalph{(0.82;    0.61;    0;    0.33;    0.45)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.08}
+% pp forecast error that unanchors (that causes a gain of 0.05)
+\def\ppFEunanchors{0.5 }
+\def\bpNegFEunanchors{25}
+\def\bpPosFEunanchors{50}
+
+
+% raise/lower interest rate by x bp when when LR-exp move by y bp
+\def\movepibar{5 }
+\def\movei{12 }
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL FIGNAMES HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% Market-based expectations (aren't used in prezi right now)
+\def\fignameMarketEPi{epi10_2020_06_04}
+% cleaned from liq premium
+\def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+\def\fignameMarketEPiMoreHorizons{epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
+
+% SPF long-run-e
+\def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameRolling{rolling_overlapping_command_anchoring_in_data_individual_23_Sep_2020_21_04_48}
+\def\fignameRollingPi{rolling_overlapping_pi_command_anchoring_in_data_individual_25_Sep_2020_10_37_43} % regressing on pi
+
+
+% Unanchoring in the data
+%\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+%\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+\def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
+% Estimated coefficients alpha
+\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
+% Autocovariogram
+\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
+
+\def\fignameFeSPF{fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59}
+\def\fignameFeSPFhist{fe_SPF_hist_command_anchoring_in_data_19_Sep_2020_11_45_59}
+
+% Comparative statics of optimal policy
+% di/dpibar
+% not annualized
+\def\fignameDiDpibar{analyze_opt_policy_ip17_Sep_2020}
+% not annualized with stabilizing factor of 2.6 (25 Sept 2020)
+\def\fignameDiDpibarStab{analyze_opt_policy_ip25_Sep_2020}
+
+
+% Observables in PEA for TR
+% annualized
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020}
+% not annualized
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020_19_29_35}
+% not annualized, with psi_pi=1.1083 (opt)
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx24_Sep_2020_09_32_19}
+
+%
+% Observables in PEA for anchoring
+% annualized
+% cutting to 40 periods to 
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q17_Sep_2020_19_19_19}
+% not annualized, with psi_pi=1.1083 (opt) and knowTR=1
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx24_Sep_2020_09_35_43}
+
+
+
+% Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
+% annualized
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_40q_17_Sep_2020_19_23_04}
+
+% Central bank loss as a function of psi_pi in RE vs. anchoring
+% Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
+% Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
+% Note 25 August: update with convention: RE red, anchoring blue.
+% retired
+%\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_12}
+%\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_12}
+%\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_12}
+%\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
+\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+\def\fignameCBlossbaselineWithOptimal{plot_sim_loss_approx_pretty_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+
+% IRFs anchored vs unanchored
+% annualized
+\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+
+% Cross-sectional average gains for various psi_pi
+% not annualized
+\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_17}
+
+% IRFs unanchored for various psi_pi
+% annualized
+\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_09_17}
+
+%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+
+
+\title{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model \\
+\vspace{0.8cm}
+\small{Draft after first reading \\ Preliminary and Incomplete}}
+\author{Laura G\'ati} 
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
+
+\begin{abstract}
+This paper analyzes monetary policy in a behavioral model with potential unanchoring of expectations. The extent to which expectations are anchored is determined in an adaptive learning setting by the private sector's endogenously time-varying learning gain. Within the context of an otherwise standard macro model with nominal rigidities and natural-rate and cost-push shocks, I find that concerns for low volatility lead the central bank to seek to anchor expectations in the long run. However, getting expectations anchored is costlier the more current expectations are unanchored. Therefore optimal policy involves an aggressive interest rate response to any threat of expectations unanchoring. My estimate of the anchoring function and the numerical solution for the optimal policy function together imply that the bank lowers the interest rate by \movei basis points if long-run inflation expectations drop by \movepibar bp. %Moreover, in the presence of an anchoring expectation formation, switching to anchoring-optimal policy eliminates 84\% of welfare losses from additional volatility compared to the rational expectations benchmark.
+\end{abstract}
+
+
+
+%\tableofcontents
+
+%\listoffigures
+
+ %%%%%%%%%%%%%%%%%%           INTRO            %%%%%%%%%%%%%%%%%% 
+\newpage
+\section{Introduction}\label{introduction}
+
+\begin{quote}
+Inflation that runs below its desired level can lead to an unwelcome fall in \emph{longer-term inflation expectations}, which, in turn, can pull actual inflation even lower, resulting in an adverse cycle of ever-lower inflation and inflation expectations.
+[...]  \emph{Well-anchored inflation expectations} are critical[.]  \\
+Jerome Powell, Chairman of the Federal Reserve\footnote{``New Economic Challenges and the Fed's Monetary Policy Review,''  August 27, 2020, Jackson Hole.} \\
+\emph{(Emphases added.)}
+% Jackson Hole 
+\end{quote}	
+
+%\begin{quote}
+%I must - and I do - take seriously the risk that inflation shortfalls that persist even in a robust economy could precipitate a difficult-to-arrest downward drift in inflation expectations. At the heart of [our] review is the evaluation of potential changes to our strategy designed to strengthen the credibility of our [...] 2 percent inflation objective [such that] inflation expectations [remain] well anchored.\\
+%Jerome Powell, Chairman of the Federal Reserve\footnote{Federal Reserve ``Conference on Monetary Policy Strategy, Tools, and Communications Practices,''  June 4, 2019, Opening Remarks.}
+%\end{quote}
+%%\begin{quote}
+%%Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. \\
+%%Jerome Powell, Chairman of the Federal Reserve \footnote{Federal Reserve ``Challenges for Monetary Policy,''  August 23, 2019, Opening Remarks.}
+%%\end{quote}
+
+Fed Chairman Jerome Powell's words echo the common sentiment among central bankers. Indeed, there is broad consensus among policymakers that anchoring inflation expectations is ``at the heart'' of monetary policy.\footnote{Jerome Powell, ``Challenges for Monetary Policy,''  August 23, 2019, Jackson Hole.} As Powell emphasizes, expectations are anchored when long-run expectations do not fluctuate systematically with short-run inflation surprises.\footnote{By ``expectations of long-run inflation'' I mean the private sector's expectation of where inflation will be on average over a longer period in the future. Therefore I also refer to this as ``expected mean inflation.''} The passage thus suggests that the Fed worries about anchoring inflation expectations to the target in order to avoid the adverse cycle of self-enforcing movements in expectations.
+
+%  Yet the leading macroeconomic models of monetary policy are based on the assumption of model-consistent expectations. This assumption, often termed ``rational expectations'' (RE), does not capture unanchored expectations because expectations of long-run variables are by assumption equal to their steady state values and thus always constant - indeed, the steady state values ``anchor'' long-run expectations. 
+
+
+%move around a lot, and, in particular, may not always be anchored at the steady state target of 2\%.Fig. \ref{epi} portrays this series for the last decade in the US.\footnote{App. \ref{unanchoring_in_data} presents an overview of alternative measures of long-run inflation expectations in the data.} As the figure shows, long-run inflation expectations of the public, averaging a little above the 2\% target prior to 2015, display a marked downward drift since 2015. 
+%
+%
+%\begin{figure}[h!]
+%\includegraphics[scale = 0.24]{\myFigPath \fignameSPFLiv}
+%\caption{10 year-ahead CPI inflation forecasts, \%}
+%\floatfoot{App. \ref{unanchoring_in_data} discusses alternative measures of long-run inflation.}
+%\label{epi}
+%\end{figure}
+
+%\begin{figure}[h!]
+%\includegraphics[scale = \mySmallFigScale]{\myFigPath \fignameMarketEPi}
+%\caption{Market-based inflation expectations, 10 year, average, \%}
+%\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year Treasury Inflation Protected Securities (TIPS). App. \ref{unanchoring_in_data} discusses alternative measures of long-run inflation. App. \ref{TIPS} addresses the potential negative bias in the TIPS series.}
+%\label{epi}
+%\end{figure}
+
+A look at the data reveals that the Fed's worry is empirically founded: expectations of long-run inflation indeed exhibit fluctuations in response to inflation deviating from its ``desired level.'' Moreover, the responsiveness of long-run expectations to short-run economic conditions is time-varying. To examine the reduced-form relationship between responsiveness and short-run inflation surprises, consider the following rolling window regression of the individual-level Survey of Professional Forecasters (SPF) 10-year inflation expectation on short-run forecast errors:
+
+\begin{align}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t 
+\label{rolling_reg}
+\end{align}
+Here $w$ indexes windows of 19 quarters length. The forecast error is defined as $f_{t|t-1} = \pi_t - \E_{t-1}\pi_t$ and captures the surprise forecasters encounter when inflation comes in at a different level than what was expected. Fig. \ref{rolling} plots the time series of the estimated coefficient $\hat{\beta}^w_1$, along with 90\% and 95\% confidence intervals.\footnote{Appendix \ref{app_rolling_pi} presents a version of the regression in Equation (\ref{rolling_reg}) with inflation as right-hand-side variable. App. \ref{unanchoring_in_data} discusses alternative measures of long-run inflation expectations.}
+
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.3]{\myFigPath \fignameRolling}
+\caption{Time series of responsiveness of long-run inflation expectations to inflation surprises}
+%\floatfoot{App. \ref{unanchoring_in_data} discusses alternative measures of long-run inflation.}
+\label{rolling}
+\end{figure}
+
+The interpretation of the coefficient $\hat{\beta}^w_1$ is the reduced-form responsiveness of long-run inflation expectations to short-run inflation surprises. As seen on Fig. \ref{rolling}, the responsiveness of long-run inflation expectations varies considerably over time. In particular, one can discern three distinct regimes. Early in the sample, until about 2003, the coefficient is generally positive and significant. This is followed by a period where long-run expectations do not respond significantly to short-run surprises. In recent years, starting in 2013, responsiveness has clearly shifted up, reentering positive territory and brushing statistical significance. 
+
+The data thus suggest that the responsiveness of long-run expectations is time-varying: in some episodes, anchored expectations render long-run expectations unresponsive to surprises in inflation, while in others, varying degrees of unanchoring imply a positive relationship between short-run forecast errors and long-run inflation expectations. Furthermore, as Jerome Powell's comments indicate, central bankers are concerned about such ``unwelcome'' movements in long-run expectations. This begs the question: how should monetary policy respond to the anchoring and unanchoring of inflation expectations?
+
+This is the question the present paper seeks to address. The paper provides the first theory of monetary policy in an environment where expectations may become unanchored. In my behavioral model of expectation formation, the notion of anchoring is the stability of the private sector's long-run inflation expectations. The extent to which expectations are anchored depends on the size of the learning gain, the weight that the public places on current forecast errors when updating its expectation of mean inflation. Since the size of the gain itself depends on forecast errors, the central bank's interest-rate setting interacts with expectation formation, leading to the anchoring or unanchoring of expectations.
+
+The main contribution of the paper is to investigate how the anchoring expectation formation affects the conduct of monetary policy. To this end, I first infer the functional form of the anchoring function - the relationship between forecasting errors and learning gain -  from data. I subsequently solve the Ramsey problem of the central bank in the model of anchoring to present the properties of optimal monetary policy analytically. Due to the endogeneity of the gain, the problem of finding the optimal interest rate setting of the central bank is nonlinear. I therefore rely on global methods to solve for the optimal policy function numerically.
+
+The key takeaway is that monetary policy faces an intertemporal volatility tradeoff due to the anchoring mechanism which it resolves by being exceedingly aggressive on unanchored expectations in the short run. Because of the positive feedback between expectations and observables, anchored expectations yield lower economic volatility than unanchored ones do. But because long-run expectations move more when expectations are unanchored, an aggressive interest rate response meant to anchor expectations induces heightened short-run volatility. Therefore the central bank prefers to avoid unanchoring expectations in the first place, and reacts aggressively to subdue any potential unanchoring. For this reason, to an econometrician estimating central bank behavior using a Taylor-type rule, optimal monetary policy in the anchoring model would appear as a rule with time-varying coefficients. 
+
+Quantitatively, the estimation reveals that in general, forecast errors above 50 basis points are sufficient to considerably unanchor expectations. Interestingly, negative inflation surprises unanchor about twice as much as positive ones do, suggesting that undershooting the central bank's target is more dangerous in terms of unanchoring expectations than overshooting it. Moreover, the optimal policy implies that if long-run expectations drift down by \movepibar bp, the amount implied by the most frequent forecast errors in my sample, the optimal response is to lower the interest rate by \movei bp.
+
+The remaining results can be summarized as follows.  First, the analytical results show that the optimal Ramsey policy follows a targeting rule that spells out how the intratemporal tradeoff between inflation and unemployment is complimented by novel intertemporal tradeoffs due to the anchoring expectation formation. The extent of these tradeoffs is determined by the current and expected future stance of anchoring and it turn specifies how much the central bank should smooth the effect of shocks over time. Second, because the anchoring model involves ceteris paribus more volatility than rational expectations, monetary policy specified as a Taylor rule implies a lower response coefficient on inflation than under rational expectations. Lastly, optimal policy eliminates a very large portion of the additional volatility costs stemming from the anchoring expectation formation. This means that if, as my estimation indicates, the true model of expectations is closer to the anchoring model than to rational expectations, already a small policy change of adapting Taylor-rule coefficients to the anchoring model would result in significant improvements in welfare.
+
+ %%%%%%%%%%%%%%%%%%           RELATED LITERATURE            %%%%%%%%%%%%%%%%%% 
+%\subsection{Related literature}
+
+The model I use to study the interaction between monetary policy and anchoring is a behavioral version of the standard New Keynesian (NK) model of the type widely used for monetary policy analysis. Monetary policy in the rational expectations (RE) version of this model has been studied extensively, for example in \cite{clarida1999science} or \cite{woodford2011interest}, whose exposition I follow. The formulation of a target criterion to implement optimal policy is in the tradition of \cite{svensson1999inflation}.
+
+The behavioral part of the model is the departure from rational expectations on the part of the private sector. Instead, I allow the private sector to form expectations via an adaptive learning scheme, where the learning gain - the parameter governing the extent to which forecasting rules are updated - is endogenous. The learning framework represents an extension to the adaptive learning literature advocated in the book by \cite{evans_honkapohja2001}. This literature replaces the rational expectations assumption by postulating an ad-hoc forecasting rule, the perceived law of motion (PLM), as the expectation-formation process. Agents use the PLM to form expectations and update it in every period using recursive estimation techniques. My contribution to this literature is to study optimal monetary policy in a learning model with an endogenous gain.
+
+Adaptive learning is an attractive alternative to rational expectations for several reasons. 
+First of all, many studies document the ability of adaptive learning models to match empirical properties of both expectations and macro aggregates. \cite{milani2007expectations}, for example, demonstrates that estimated constant gain learning models match the persistence of inflation without recourse to backward-looking elements in the Phillips curve. \cite{eusepi2011expectations} show how a calibrated adaptive learning version of the real business cycle (RBC) model outperforms the rational expectations version. In particular, even with a small gain, the learning model leads to persistent and hump-shaped responses to iid shocks, resolving the long-standing critique of RBC models of \cite{cogley1993impulse}. 
+
+Having an endogenous gain improves the empirical properties of adaptive learning models further. \cite{milani2014learning} documents that endogenous gain models can generate endogenous time-varying volatility  in models without any exogenous time-variance. Additionally, the first paper to introduce the idea of an endogenous gain as a model of an anchoring expectation formation, \cite{carvalho2019anchored}, estimates the evolution of the endogenous gain for the last fifty years in the US. Not only does the model display excellent out-of-sample forecasting performance in terms of matching long-run expectations, but the estimated gain time series invites a reinterpretation of the Great Inflation as a period of unanchored expectations. %\cite{carvalho2019anchored} thus provide empirical backing to the ideas popularized by \cite{sargent1999} that the conquest of American inflation consisted of anchoring inflation expectations.
+
+Thirdly, an extensive experimental literature in the spirit of \cite{anufriev2012evolutionary} demonstrates that simple adaptive learning rules provide the best fit among competing models to how individuals form expectations in controlled lab settings. In fact, the idea that individuals in the economy do not know the true underlying model and thus rely on simple, estimated heuristics to form expectations is intuitive from an economic perspective. Economists do not know the true model of the economy, so why should firms and households? And just like an econometrician estimates statistical models to form forecasts of relevant variables, it is reasonable to suppose that the private sector does so too.
+
+Clearly, my work is also related to the literature attempting to explain features of macro data using departures from the full information rational expectations (FIRE) paradigm. This literature consists of two main lines of attack. The first is questioning the assumption of full information. In this body of work, information is either not fully or not symmetrically available, or information acquisition is costly (\cite{mankiw2002sticky}, \cite{sims2003}, \cite{mackowiak2009optimal}, \cite{angeletos2009policy}). The second strand of this literature, to which this paper belongs, instead emphasizes that expectation formation departs from rational expectations. This literature takes the empirical results of \cite{coibion2015information} as its point of departure: rational expectations cannot explain the systematic relationship between forecast errors and news, as captured by forecast revisions. 
+
+Arguably the leading candidate of nonrational expectation formation is the diagnostic expectations approach, advocated by \cite{bordalo2018over} and \cite{bordalo2018diagnostic}. The reason the anchoring expectation formation entertained here is better suited to my purpose is that whether it predicts over- or underreaction to news is not static, but time-varying. This allows my model to both capture anchoring, periods where long-run expectations appear detached from fundamentals, as well as episodes of very sensitive reaction in expectations, that is, unanchoring.
+
+Adaptive learning models have been the object of scrutiny in the past, perhaps most prominently in \cite{sargent1999}. The main focus of \cite{sargent1999} is very different from mine, however. His interest is in conducting an empirical horserace between two alternative explanations of the Great Inflation. The first one is one in which the Federal Reserve embraced the natural rate hypothesis as a result of understanding that a private sector with rational expectations implies no exploitable tradeoff between inflation and unemployment. In the alternative story, the Fed is unaware that the private sector has rational expectations and therefore comes to discover the natural rate hypothesis as it tries to exploit an inflation-unemployment tradeoff that turns out not to be exploitable. 
+
+Sargent's question then is whether an adaptive learning of the natural rate hypothesis could have lead first to high inflation (yes), followed by inflation brought under control (no). My focus is different. Based on the reduced-form empirical evidence of Fig. \ref{rolling}, I entertain an anchoring expectation formation on the part of the private sector and ask what the implications for optimal monetary policy are.
+
+The last point of connection is the literature on central bank reputation under incomplete information (\cite{barro1986}). The emphasis in that literature is on the inability of the private sector to discern whether the central banker is a discretionary or a commitment type. This incompleteness in information incentivizes the discretionary type to masquerade as the commitment type, building up reputation to mislead the learning process of the private sector. But the type of issues that are the concern of my paper arise regardless of the policymaker's type, and thus the nature of the policy problem is fundamentally different. For example, when observing 1\% inflation compared to a target of 2\%, what the private sector in my model cannot distinguish between is whether inflation is only temporarily or permanently below target. Such departures from the target occur as a result of exogenous shocks, and irrespective of whether the target is high or low. Thus both the commitment and discretion types of \cite{barro1986} would be faced with the issue of large forecast errors unanchoring expectations, pushing inflation away from their respective targets.
+
+The paper is structured as follows. Section \ref{NK} introduces the model. Section \ref{learning} describes the learning framework and spells out the anchoring mechanism. Section \ref{estimation} estimates the anchoring function. Section \ref{analytical} presents the results in four parts. First, Section \ref{ramsey} discusses an analytical characterization of the Ramsey policy. Second, Section \ref{implement} solves for the interest rate sequence that implements the optimal Ramsey allocation using global methods. Third, Section \ref{opt_TR} investigates the optimal choice of response coefficients if monetary policy is restricted to follow a Taylor rule. Fourth, Section \ref{welfare} examines the welfare gains of switching to the optimal policy under anchoring. Section \ref{conclusion} concludes.
+
+ %%%%%%%%%%%%%%%%%%           NK MODEL            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{The model}\label{NK}
+Apart from expectation formation, the model is a standard New Keynesian (NK) model with nominal frictions \`a la \cite{calvo1983staggered}. The advantage of having a standard NK backbone to the model is that one can neatly isolate the way the anchoring mechanism alters the behavior of the model. Since the mechanics of the rational expectations version of this model are well understood, I only lay out the model briefly and pinpoint the places where the assumption of nonrational expectations matters.\footnote{For the specifics of the NK model the reader is referred to \cite{woodford2011interest}.}
+\subsection{Households}
+The representative household is infinitely-lived and maximizes expected discounted lifetime utility from consumption net of the disutility of supplying labor hours:
+\begin{equation}
+\hat{\E}_t\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\label{lifetime_U}
+\end{equation}
+$U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor respectively and $\beta$ is the discount factor of the household. $h^i_t(j)$ denotes the supply of labor hours of household $i$ at time $t$ to the production of good $j$, and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $t$,  $C_t^i$, is a Dixit-Stiglitz composite of all goods in the economy:
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+$\theta>1$ is the elasticity of substitution between the varieties of consumption goods. Denoting by $p_t(j)$ the time-$t$ price of good $j$, the aggregate price level in the economy can then be written as
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+The budget constraint of household $i$ is given by
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + \int_0^1 w_t(j)h^i_t(j) + \Pi_t^i(j)  dj-T_t -P_tC^i_t
+ \label{BC}
+\end{equation}
+where $\Pi_t^i(j)$ denotes profits from firm $j$ remitted to household $i$, $T_t$ taxes, and $B^i_t$ the riskless bond purchases at time $t$.\footnote{For ease of exposition I have suppressed potential money assets here. This has no bearing on the model implications since it represents the cashless limit of an economy with explicit money balances.}
+
+The only difference to the standard New Keynesian model is the expectations operator, $\hat{\E}$. This is the subjective expectations operator that differs from its rational expectations counterpart, $\E$, in that it does not encompass knowledge of the model. In particular, households have no knowledge of the fact that they are identical. By extension, they also do not internalize that they hold identical beliefs about the evolution of the economy. As we will see in Section \ref{FOCs}, this has implications for their forecasting behavior and will result in decision rules that differ from those of the rational expectations version of the model.
+
+\subsection{Firms}
+
+Firms are monopolistically competitive producers of the differentiated varieties $y_t(j)$. The production technology of firm $j$ is $y_t(j)=A_tf(h_t(j))$, whose inverse, $f^{-1}(\cdot)$, signifies the amount of labor input. Noting that $A_t$ is the level of technology and that $w_t(j)$ is the wage per labor hour, firm $j$ profits at time $t$ can be written as
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+Firm $j$'s problem then is to set the price of the variety it produces, $p_t(j)$, to maximize the present discounted value of profit streams
+\begin{equation}
+\hat{\E}_t\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\label{lifetime_profits}
+\end{equation}
+subject to the downward-sloping demand curve
+\begin{equation}
+y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
+\end{equation}
+where 
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+is the stochastic discount factor from households. Nominal frictions enter the model through the parameter $\alpha$ in Equation (\ref{lifetime_profits}). This is the Calvo probability that firm $j$ is not able to adjust its price in a given period. 
+
+Analogously to households, the setup of the production side of the economy is standard up to the expectation operator. Also here the model-consistent expectations operator $\E$ has been replaced by the subjective expectations operator $\hat{\E}$. This implies that firms, like households, do not know the model equations and fail to internalize that they are identical. Thus their decision rules, just like those of the households, will be distinct from their rational expectations counterparts. 
+
+\subsection{Aggregate laws of motion}\label{FOCs}
+The model solution procedure entails deriving first-order conditions, taking a loglinear approximation around the nonstochastic steady state and imposing market clearing conditions to reduce the system to two equations, the New Keynesian Phillips curve and IS curve. The presence of subjective expectations, however, implies that firms and households are not aware of the fact that they are identical. Thus, as \cite{preston2005} points out, imposing market clearing conditions in the expectations of agents is inconsistent with the assumed information structure.\footnote{The target of \cite{preston2005}'s critique is the Euler-equation approach as exemplified for example by \cite{bullard2002learning}. This approach involves writing down the loglinearized first-order conditions of the model, and simply replacing the rational expectations operators with subjective ones. In a separate paper, I demonstrate that the Euler-equation approach is not only inconsistent on conceptual grounds as \cite{preston2005} shows, but also delivers substantially different quantitative dynamics in a simulated New Keynesian model. Thus relying on the Euler-equation approach when investigating the role of learning is not only incorrect in terms of microfoundations, but also leads to mistaken quantitative inferences. In the context of this model, the problem becomes more acute when expectations are unanchored.} 
+
+Instead, I prevent firms and households from internalizing market clearing conditions.\footnote{There are several ways of doing this. An alternative to \cite{preston2005}'s long-horizon approach pursued here is the shadow price learning framework advocated by \cite{evans2009SP}.} As \cite{preston2005} demonstrates, this leads to long-horizon forecasts showing up in firms' and households' first-order conditions. As a consequence, instead of the familiar expressions, the NKIS and NKPC take the following form:
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+Here $x_t$, $\pi_t$ and $i_t$ are the log-deviations of the output gap, inflation and the nominal interest rate from their steady state values, and $\sigma$ is the intertemporal elasticity of substitution.\footnote{I am using standard CRRA utility of the form $U(c_t) = \frac{c_t^{1-\sigma}}{1-\sigma}$.} The variables $r_t^n$ and $u_t$ are exogenous disturbances representing a natural rate shock and a cost-push shock respectively. 
+
+The laws of motion (\ref{NKIS}) and (\ref{NKPC}) are obtained by deriving individual firms' and households' decision rules, which involve long-horizon expectations, and aggregating across the cross-section. Importantly, agents in the economy have no knowledge of these relations since they do not know that they are identical and thus are not able to impose market clearing conditions required to arrive at (\ref{NKIS}) and (\ref{NKPC}). Thus, although the evolution of the observables $(\pi,x)$ is governed by the exogenous state variables $(r^n, u)$ and long-horizon expectations via these two equations, agents in the economy are unaware of this. As I will spell out more formally in Section \ref{learning}, it is indeed the equilibrium mapping between states and jump variables the agents are attempting to learn.\footnote{The learning of (\ref{NKIS}) and (\ref{NKPC}) is complicated by the fact that the current stance of expectations figures into the equations, resulting in the well-known positive feedback effects of learning.} 
+
+To simplify notation, I gather the exogenous state variables in the vector $s_t$ and observables in the vector $z_t$ as
+\begin{equation}
+s_t =  \begin{bmatrix}r_t^n \\ \bar{i}_t \\ u_t \end{bmatrix} \quad \quad \quad \quad  z_t = \begin{bmatrix}\pi_t \\ x_t \\ i_t \end{bmatrix}
+\end{equation}
+where $\bar{i}_t$ is a shock to the interest rate that only shows up in the model for particular specifications of monetary policy.\footnote{For generality, I treat the exogenous state vector as three-dimensional throughout the paper, even when the monetary policy shock is absent.} This allows me to denote long-horizon expectations by 
+ \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } z_{T+1} \quad \quad \quad \quad f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } z_{T+1} \label{fafb}
+\end{align}
+As detailed in App. \ref{app_compact}, one can use this notation to reformulate the laws of motion of jump variables (Equations (\ref{NKIS}), (\ref{NKPC}) and (\ref{TR})) compactly as
+\begin{equation}
+z_t  = A_af_{a,t} + A_b f_{b,t} + A_s s_t \label{LOM_LR} \\
+\end{equation}
+where the matrices $A_i, \; i=\{a,b,s\}$ gather coefficients and are given in App. \ref{app_compact}. Assuming that exogenous variables evolve according to independent AR(1) processes, I write the state transition matrix equation as
+ \begin{equation}
+ s_t  = h s_{t-1} + \epsilon_t  \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0}, \Sigma) \label{LOM_s}
+ \end{equation}
+where $h$ gathers the autoregressive coefficients $\rho_j$, $\epsilon_t$ the Gaussian innovations $\varepsilon_t^j$, and $\eta$ the standard deviations $\sigma_t^j$, for $j=\{r,i,u\}$. $\Sigma = \eta \eta'$  is the variance-covariance matrix of disturbances.\footnote{For the sake of conciseness, I have suppressed the expressions for these in the main text. See App. \ref{app_compact}.}
+
+
+ %%%%%%%%%%%%%%%%%%           LEARNING            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Learning with an anchoring mechanism}\label{learning}
+The informational assumption of the model is that agents have no knowledge of the equilibrium mapping between states and jumps in the model. Without knowing the form of the observation equation, then, they are not able to form rational expectations forecasts.
+%\footnote{To see this, observe that an agent with rational expectations would internalize all of the rational expectations state-space system. Therefore, she would use the state transition equation (\ref{LOM_s}) together with the observation equation (\ref{RE_obs}) in App. \ref{app_FG} to forecast future jumps as $\E_t z_{t+k} = g^{RE}\E_ts_{t+k} = g^{RE}h^{k}s_t$, where $g^{RE}$ is the mapping between states and jumps under rational expectations. Agents in the learning model however do not know (\ref{RE_obs}) and are thus indeed unable to form the rational expectations forecast.} 
+Instead, agents postulate an ad-hoc forecasting relationship between states and jumps and seek to refine it in light of incoming data. In other words, they act like an econometrician: they estimate a simple statistical model and attempt to improve the fit of their model.
+\subsection{Perceived law of motion}
+I assume agents consider a forecasting model for jumps of the form
+\begin{equation}
+\hat{\E}_{t}z_{t+1} = a_{t-1} + b_{t-1} s_{t} \label{PLM}  
+\end{equation}
+where $a$ and $b$ are estimated coefficients of dimensions $3\times1$ and $3\times3$ respectively. This perceived law of motion (PLM) reflects the assumption that agents forecast jumps using a linear function of current states and a constant, with last period's estimated coefficients. Summarizing the estimated coefficients as $\phi_{t-1} \equiv \begin{bmatrix}a_{t-1} & b_{t-1}\end{bmatrix}$, here $3\times 4$, I can rewrite Equation (\ref{PLM}) as 
+\begin{equation} 
+\hat{\E}_t z_{t+1} = \phi_{t-1}\begin{bmatrix} 1 \\ s_{t} \end{bmatrix} \label{PLMcompact}
+\end{equation}
+I also assume that 
+\begin{equation}
+\hat{\E}_{t}{\phi_{t+k}} = \phi_{t} \quad \forall \; k\geq0 
+\end{equation}
+This assumption, known in the learning literature as anticipated utility (\cite{kreps1998anticipated}), means that agents fail to internalize that they will update the forecasting rule in the future. This is the most behavioral element in the expectation-formation process since it postulates that agents think differently about their own behavior than how they actually act. Clearly, this poses a higher level of irrationality than not knowing the model and using statistical techniques to attempt to learn it. Because it has been demonstrated not to alter the dynamics of the linearized model (\cite{sargent1999}), anticipated utility has become a standard assumption in the adaptive learning literature in order to simplify the algebra.
+
+Assuming that agents know the evolution of states, that is they have knowledge of Equation (\ref{LOM_s})\footnote{This is another common simplifying assumption in studies of adaptive learning. In an extension, I relax this assumption and find that it has similar implications as having agents learn the Taylor rule: initial responses to shocks lack intertemporal expectation effects, but these reemerge as the evolution of state variables is learned.}, the PLM together with anticipated utility implies that $k$-period ahead forecasts are constructed as
+\begin{equation}
+\hat{\E}_t z_{t+k} = a_{t-1} + b_{t-1}h^{k-1}s_t  \quad \forall k\geq 1 \label{PLM_fcst_general}
+\end{equation}
+
+The timing assumptions of the model are as follows. In the beginning of period $t$, the current state $s_t$ is realized. Agents then form expectations according to (\ref{PLM}) using last period's estimate $\phi_{t-1}$ and the current state $s_t$. Given exogenous states and expectations, today's jump vector $z_t$ is realized. This allows agents to evaluate the most recent forecast error $f_{t|t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix}$ to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(z_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \label{RLS} \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+where $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi_t$. A low gain, by contrast, means that the current forecast error only has a small effect on $\phi_t$.
+
+\subsection{Endogenous gain as anchoring mechanism}
+
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = (k_{t-1}^{-1}+1)^{-1}$. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} to allow firms and households in the model to choose the value of the gain. I use the following endogenous gain specification: let $f_{t|t-1}$ denote the forecast error of time $t$ variables given information at $t-1$. Then the gain evolves as
+\begin{equation}
+k_t  = \mathbf{g}(k_{t-1},f_{t|t-1}) 
+\label{anchoring}
+\end{equation}
+where $\mathbf{g(\cdot)}$ is a smooth, increasing function in both arguments that I refer to as the anchoring function. App. \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms.\footnote{Equation (\ref{anchoring}) nests decreasing gains or constant gains as special cases. In both cases, the derivative of the anchoring function with respect to its second argument is 0, but a decreasing gain implies $\mathbf{g}(k_{t-1},f_{t|t-1})  = (k_{t-1}^{-1}+1)^{-1}$, while a constant gain sets $\mathbf{g}(k_{t-1},f_{t|t-1})  = \bar{g}$.}. I let my choice of functional form for $\mathbf{g(\cdot)}$ be guided by data, wherefore I start my inquiry by estimating the anchoring function (see Section \ref{estimation}).
+
+Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. For a given previous gain, if agents observe small forecast errors, $\mathbf{g(\cdot)}$ is small. Firms and households thus use a small gain to update their forecasting rule, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's long-run expectations of the observables are stable. 
+
+By contrast, observing large forecast errors leads to $\mathbf{g}(\cdot)$ being sufficiently large so that the gain increases. This corresponds to assigning a higher weight to more recent observations than old ones. Such a forecasting scheme outperforms a lower gain scheme when the environment is volatile, reflecting a possible regime switch. If the previous DGP has been replaced by a new one, having a high gain allows agents to discount old observations generated by the previous DGP, and rely more on the newest observations that come from the current DGP. In this way, agents can learn the new DGP faster, correcting their previously held long-run expectations. This is the case of \emph{unanchored expectations}, and it induces long-run expectations to drift away from their previous values. 
+
+It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping between states and jumps than they previously maintained. Private sector forecasts will thus drift in the direction of the update, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. However, it is not obvious that the central bank prefers to anchor expectations at all points in time because regime shifts in model parameters might warrant letting the private sector learn the new DGP fast. Indeed, the contribution of this paper is to analyze formally the nature of the monetary policy problem when expectation formation is characterized by the  anchoring mechanism.
+
+\subsection{Actual law of motion}
+To complete the model, I now use the specifics of the anchoring expectation formation to characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
+\begin{equation}
+f_{a,t} \equiv \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta h)^{-1}s_t \quad \quad \quad f_{b,t} \equiv \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta h)^{-1}s_t  \label{fafb_anal}
+\end{equation}
+Substituting these into the law of motion of observables (Equation (\ref{LOM_LR})) yields the actual law of motion (ALM):
+\begin{equation}
+z_t = g_{t-1}^l \begin{bmatrix} 1 \\ s_t
+\end{bmatrix}
+\label{ALM}
+\end{equation}
+where $g^l$ is a $3\times4$ matrix given in App. \ref{app_FG}. Thus, instead of the state-space solution of the RE version of the model (Equations (\ref{LOM_s}) and (\ref{RE_obs})), the state-space solution for the learning model is characterized by the pair of equations (\ref{LOM_s}) and (\ref{ALM}). 
+
+
+ %%%%%%%%%%%%%%%%%%           ESTIMATION            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Estimating the anchoring function}\label{estimation}
+The numerical analysis of monetary policy requires a functional specification for the anchoring function $\mathbf{g}(\cdot)$ of Equation (\ref{anchoring}). But one may be interested in the form of the anchoring function in its own right because it carries the answer to a question crucial to central bankers: for what sign and size of forecast errors do expectations become unanchored?
+
+Because the analytical results in Section \ref{ramsey} are based on a specification of the gain as a function of forecast errors only, I here present estimation results for that restricted specification.\footnote{Estimates of the general functional form are available on request.} Since the shape of the anchoring function is meaningful, I employ a piecewise linear approximation of the form:
+
+\begin{equation}
+\mathbf{g}(f_{t|t-1}) = \sum_i \gamma_i b_i(f_{t|t-1})\label{gain}
+\end{equation}
+
+Here $b_i(\cdot)$ is a second order spline basis and $\gamma$ is a vector of approximating coefficients. The index $i$ refers to the breakpoints of the piecewise linear approximation. I estimate $\gamma$ by simulated method of moments \`a la \cite{lee1991simulation}, \cite{duffie1990simulated} and \cite{smith1993SMM}, targeting the autocovariance structure of the observables of the model and expectations. In particular, the observables are CPI inflation from the Bureau of Labor Statistics (BEA), the output gap and the federal funds rate from the Board of Governors of the Federal Reserve System. For expectations, I rely on 12-month-ahead inflation forecasts from the Survey of Professional Forecasters (SPF).\footnote{The output gap measure is constructed as the difference between real GDP from the Bureau of Economic Analysis (BEA) and the Congressional Budget Office's (CBO) estimate of real potential output.} The dataset is quarterly and ranges from 1981-Q3 to 2020-Q1. App. \ref{SMM} contains a detailed description of the estimation methodology.
+
+Furthermore, the estimation relies on a calibration of the parameters pertaining to the New Keynesian backbone of the model. For this, I split the parameters in two subsets. The first is calibrated using values from the literature, while the second is calibrated to match the moments outlined above. Tables \ref{calibration} and \ref{calibration_moments} show the the two subsets of calibrated parameters respectively. As Table \ref{calibration} depicts, I adopt standard parameters from the literature where possible. In particular, for $\beta, \sigma$ and other parameters underlying $\kappa$, the slope of the Phillips curve, I rely on the parameterization of \cite{chari2000sticky}, advocated in \cite{woodford2011interest}.
+
+The composite parameter $\kappa$ is given by  $\kappa = \frac{(1-\alpha)(1-\alpha\beta)}{\alpha} \zeta$, where $\zeta$ is a measure of strategic complementarity in price setting. Assuming specific factor markets, constant desired markups with respect to output levels and no intermediate inputs, $\zeta = \frac{\omega + \sigma^{-1}}{1+\omega\theta}$. Here $\theta$ is the price elasticity of demand and $\omega$ is the elasticity of the marginal cost function with respect to output. \cite{chari2000sticky}'s calibration involves  $\theta =10, \sigma =1, \omega = 1.25, \beta = 0.99$, so that together with my choice of $\alpha$, $\kappa$ is pinned down. Note that I lower $\beta$ slightly (0.98 instead of \cite{chari2000sticky}'s 0.99). This allows the model to better match the autocovariance structure of the output gap because it lowers the pass-through of long-horizon expectations in the IS-curve.
+
+The probability of not adjusting prices, $\alpha$, is set to match an average price duration of two quarters, which is a little below the numbers found in empirical studies.\footnote{On the lower end, \cite{bils2004some} find a mean duration of 4.3 months and \cite{klenow2010microeconomic} 6.9 months. \cite{klenow2008state} and \cite{nakamura2008five} agree on between 7-9 months, while \cite{eichenbaum2011reference}'s number is 10.6 months.} In the literature, the average price duration is a little above 7 months. My number for $\alpha$ corresponds to 6 months. I choose the lower end of this spectrum in order to allow the learning mechanism, and not price stickiness, to drive the bulk of the model's persistence.
+
+I set $\lambda_x$ to 0.05, the value estimated by \cite{rotemberg1997optimization}. A low, nonzero value for $\lambda_x$ is also desirable because it implies that a concern for output gap stabilization is not the main driver of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) is not trivial either.
+
+To simplify the numerical analysis as well as interpretation, I restrict the shocks to be iid. The volatilities of the disturbances and, where applicable, the output-coefficient of the Taylor rule, are set to match the autocovariances of Baxter-King filtered inflation, output gap and interest rate series. As shown in Table \ref{calibration_moments}, this implies standard deviations of 0.01 for the natural rate and monetary policy shock and 0.5 for the cost-push shock. In sections of the paper where I assume a Taylor rule, the matching exercise results in a 0.3 coefficient on the output gap, and unless otherwise specified, I set the inflation coefficient of the Taylor rule to 1.5, the value recommended by \cite{taylor1993discretion}. Note that the asterisks in Tables \ref{calibration} and \ref{calibration_moments} demarcate parameters that pertain to the Taylor rule and thus only to sections of the paper which assume that a Taylor rule is in effect.
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+\hline
+ $\beta$ & 0.98 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline %% <----
+%& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
+% $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
+%  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
+    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
+    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+    $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
+%    $\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
+\end{tabular}     
+      \caption{Parameters calibrated from literature}  \label{calibration}
+%       \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
+ \end{table}
+\end{center}
+% TABLE WAS UPDATED 27 AUGUST 2020.  (Calibration C, Materials 43) AND 17? SEPT 2020 (complete alpha_hat from Materials 44)
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+\hline
+    $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule*  \\\hline %% <---- Diffs. wrt calibration2
+    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock*  \\ \hline
+    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
+    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
+\end{tabular}     
+      \caption{Parameters set to match data moments}  \label{calibration_moments}
+       \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
+ \end{table}
+\end{center}
+
+\vspace{-2.2cm}
+
+I initialize the value of the gain at $\bar{g}=0.145$, the value for the gain corresponding to unanchored expectations estimated by \cite{carvalho2019anchored}. If the anchoring function were discrete, as in \cite{carvalho2019anchored}, this parameter would have important implications for model dynamics because in that case the gain is restricted to take on this value if it is nondecreasing.\footnote{See App. \ref{alternative_criteria} for alternative specifications of the anchoring function, such as that of \cite{carvalho2019anchored}.} However, since I rely on an approximation of a continuous anchoring function, $\bar{g}$ does not have a strong bearing on model dynamics. The target criterion (\ref{target}) requires that the derivatives of the anchoring function exist, wherefore a smooth specification makes sense. Moreover, in estimating the functional form of the anchoring rule, I allow the data to speak to the numerical choice of the approximating coefficients $\hat{\gamma}$, thereby avoiding difficult calibration choices without precedents. The estimated values for the approximating coefficients are displayed in the last row of Table \ref{calibration_moments}. For a detailed discussion of these, the reader is referred to Section \ref{estimation}.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.3]{\myFigPath \fignameAlphaHat}
+\caption{Estimated $\hat{\alpha}$: $k_t$ as a function of $f_{t|t-1}$}
+\label{alpha_hat}
+\floatfoot{Estimates for 5 knots, cross-section of size $N=1000$}
+\end{figure}
+
+Having discussed the calibration, I am ready to turn to the estimation of the anchoring function. Fig. \ref{alpha_hat} presents the estimated coefficients: $\hat{\gamma}=$ \meanalph. The interpretation of the elements of $\hat{\gamma}$ is the value of the gain the private sector choses when it observes a forecast error of a particular magnitude. For example, a forecast error of -4 pp in inflation is associated with a gain of 0.82. 
+
+Before interpreting the estimated anchoring function, it is helpful to work out what amounts to a large gain. In particular, since the gain is the model's metric of the extent of unanchoring, from what size of the gain should one consider expectations to be significantly unanchored? The consensus in the literature on estimating learning gains is that if the true model is one with constant gain learning, then the gain lies between 0.01-0.05. On the higher end, \cite{branch2006simple} estimate a constant gain on inflation of 0.062. \cite{milani2007expectations} finds 0.0183. The estimates of the maximal value for endogenous gains lie somewhat higher, at 0.082 in \cite{milani2014learning} and at 0.145 in \cite{carvalho2019anchored}. Calibrated models tend to use the consensus values between 0.01-0.05, with the number 0.05 having attained particular prominence. However, \cite{eusepi2011expectations} find that the value of 0.002 is sufficient to significantly alter the dynamic behavior of a standard RBC model. 
+
+An intuitive interpretation of the gain is that its inverse gives the number of past observations the private sector uses to form its current forecasts.  \cite{eusepi2011expectations}'s number, 0.002, thus implies that firms and households, if they see no forecast errors, rely on the last 125 years of data.\footnote{The frequency of my model and data, like that of  \cite{eusepi2011expectations}, is quarterly.} By contrast, the consensus number of 0.05 translates to using five years of data. 
+
+Seen from both of these perspectives, a gain of 0.05 corresponds to a sizable amount of unanchoring. With this benchmark number in mind, the message of Fig. \ref{alpha_hat} seems stark: the estimated coefficients are very large. The highest gain value in my estimation, 0.82, can be interpreted as seeing forecast errors of 4 pp in absolute value prompting the private sector to discount any observations older than about 5 months. That is a very short time. 
+
+\begin{figure}[h!]
+\caption{Forecast errors in the SPF data}
+\subfigure[]{\includegraphics[scale=0.2]{\myFigPath \fignameFeSPF}}
+\subfigure[]{\includegraphics[scale=0.2]{\myFigPath \fignameFeSPFhist}}
+\label{feSPF}
+\floatfoot{Forecast errors constructed as the difference between inflation and previous period's SPF forecast. Annualized percentage points.}
+\end{figure}
+
+Presumably, such large forecast errors are rare, however. In fact, Fig. \ref{feSPF} confirms that this is indeed the case in the SPF data since the 1990s.\footnote{I am focusing on a shorter sample here than what I used for the estimation exercise. Including the Volcker deflation in the estimation sample makes sense because it introduces more variation in the data. When interpreting the current stance of expectations, however, it is reasonable consider a subsample in which the general environment is not in transition.} As shown on the left panel, in this time period, forecast errors are always below 4 percentage points in absolute value, the largest being an error of -3.31 pp. Instead, as the right panel clarifies, 79.8\% of forecast errors in the sample fall in the bin of $[-1, 1]$ percentage points. The prevalence of forecast errors of this magnitude in the data is helpful to interpret the estimated $\hat{\gamma}$. As seen on Fig. \ref{alpha_hat}, there is an interesting asymmetry in the estimated coefficients. Negative forecast errors of 1 pp raise the gain to 0.2, while for positive forecast errors, a little more than 2 percentage point error is necessary for the same increase in the gain. Consistent with the findings of \cite{hebden2020robust}, this indicates that long-run expectations are more sensitive to negative than to positive surprises.
+
+Given that only 11.4\% of forecast errors in the sample exceed $+$1 percentage point, this suggests that an upward unanchoring of expectations is definitely not the main threat currently. However, the mean forecast error in the sample is -0.1362 pp, suggesting that negative surprises are common in the sample. In fact, 35.1\% of forecast errors are below -0.5 pp. An inflation surprise of -0.5 pp results in a gain of 0.1, meaning that the private sector only takes the most recent 10 quarters into account. Furthermore, the model implies a downward shift in long-run inflation expectations of 5 basis points as a result. Thus the data suggest substantial possibility for a downward unanchoring of expectations. 
+
+
+ %%%%%%%%%%%%%%%%%%            RESULTS            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Monetary policy and anchoring}\label{analytical}
+
+This section sets up and solves the optimal monetary policy problem in the model with the anchoring expectation formation. In Section \ref{ramsey}, I begin by analyzing the Ramsey problem of determining optimal paths for the endogenous variables that policy seeks to bring about.  While the anchoring mechanism introduces substantial nonlinearity into the model, it is possible to derive analytically an optimal target criterion for the policymaker to follow. As we shall see, the optimal rule prescribes for monetary policy to act conditionally on the stance of expectations, and will thus be time-varying. In particular, whether expectations are anchored or not matters for the extent to which there is a tradeoff between inflation and output gap stabilization, and also for the volatility cost of getting expectations anchored.  
+
+I then turn to the question of how to implement optimal policy. Section \ref{implement} uses global methods to solve for the interest rate sequence that implements the target criterion. The optimal sequence is contrasted with a Taylor rule with standard parameters. I then discuss the properties that the optimal interest rate policy should have. 
+
+Since history-dependence is not a feature of the optimal solution, purely forward-looking Taylor rules are no longer excluded from the class of rules that can implement the Ramsey solution. In Section \ref{opt_TR}, I therefore restrict attention to Taylor-type feedback rules for the interest rate. I solve for the optimal Taylor-rule coefficient on inflation numerically and investigate how this choice affects the anchoring mechanism. As I expand upon further in Section \ref{welfare}, an identical Taylor rule involves higher fluctuations in the anchoring model than under rational expectations because it does not allow the central bank to respond to long-run expectations. At the same time, it involves responding to inflation even in periods when expectations are anchored, causing excess volatility. For this reason, substantial welfare-improvements are open to the policymaker ready to reconsider the current Taylor-rule coefficients or the policy function more broadly.
+
+  %%%%%%%%%%%%%%%%%%           MON.POL. PROBLEM            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\subsection{The Ramsey policy under anchoring}\label{ramsey}
+I assume the monetary authority seeks to maximize welfare of the representative household under commitment. As shown in \cite{woodford2011interest}, a second-oder Taylor approximation of household utility delivers a central bank loss function of the form
+\begin{equation}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{(\pi_T-\pi^*)^2 +\lambda_x(x_T - x^*)^2 \} \label{CBloss}
+\end{equation}
+%\begin{equation}
+%L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
+%\end{equation}
+where $\lambda_x$ is the weight the central bank assigns to stabilizing the output gap and $\pi^*$ and $x^*$ are the central bank's targets.\footnote{One can show that, as in the rational expectations version of the model, the optimal inflation and output gap targets are zero.} The central bank's problem, then, is to determine paths for inflation, the output gap and the interest rate that minimize the loss in Equation (\ref{CBloss}), subject to the model equations (\ref{NKIS}) and (\ref{NKPC}), as well as the evolution of long-horizon expectations, spelled out in Section \ref{learning}. A second question is how to implement the optimal allocation; that is, to find a response function for the policy instrument $i_t$ that implements the optimal sequences of the observables.
+
+While for most of the paper I consider a general specification for monetary policy, in Section \ref{opt_TR}, I will restrict attention to a standard Taylor rule:
+\begin{equation}
+i_t = \psi_{\pi}(\pi_t -\pi^*) + \psi_{x} (x_t -x^*) + \bar{i}_t  \label{TR}
+\end{equation}
+where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively. Lastly, $\bar{i}_t$ is a monetary policy shock. I also assume that when the Taylor rule is in effect, the central bank publicly announces this. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning.\footnote{In an extension I consider the case where the Taylor rule is not known (or not believed) by the public and therefore is learned together with the relations (\ref{NKIS}) and (\ref{NKPC}). This dampens intertemporal expectation effects as long as the Taylor rule is not learned; afterwards, the model dynamics are identical to those of the baseline. For more on this, see Section \ref{opt_TR}.} 
+ 
+
+% %%%%%%%%%%%%%%%%%%           TARGET CRITERION            %%%%%%%%%%%%%%%%%% 
+
+\subsubsection{Optimal Ramsey policy as a target criterion}
+
+As foreshadowed above, the nonlinearity of the model due to the anchoring function prevents a full analytical solution to the Ramsey problem. Therefore I now characterize the first-order conditions of the problem analytically, and proceed in Section \ref{implement} to solve the full problem numerically. The details of the derivations are given in Appendix \ref{app_midsimple_problem}, which also illustrates how the endogeneity of the gain introduces nonlinearity into the model. 
+
+To simplify the analytical treatment, I make three additional assumptions compared to the baseline model. First, I assume that only the inflation process is learned; expectations about the output gap and the interest rate are rational evaluations of the infinite sum of future expectations.\footnote{By ``rational'' I here mean the expectations that agents would hold in the rational expectations equilibrium (REE). Because the relevant equilibrium concept of the model is in general not the REE, these ``rational'' expectations are not model-consistent.}  Second, I assume that only the constant of the inflation process is learned. These simplifications allow me to focus on the minimal deviation from rational expectations necessary to discuss the unanchoring of inflation expectations. Third, I consider a specification of the anchoring function where the current gain depends on the most recent forecast error only:\footnote{These assumptions are made for algebraic convenience only and do not alter the qualitative implications of the model. For analytical results for the more general version of the anchoring function, see App. \ref{app_generalTC}.}
+
+\begin{equation}
+k_t = \mathbf{g}(f_{t|t-1}) \label{anchoring_simple}
+\end{equation}
+The solution of the Ramsey problem under these assumptions is stated in the following proposition.
+
+\begin{prop} Target criterion in the anchoring model \\
+The targeting rule in the simplified learning model with anchoring is given by
+\begin{align*}
+& \pi_t = -\frac{\lambda_x}{\kappa}x_t + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}}) \bigg)
+ \numberthis \label{target} \\
+ & \text{with} \quad \quad f_{t+j|t+j-1} = \pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j}
+\end{align*}
+
+For the derivation, see Appendix \ref{app_midsimple_problem}. For a general target criterion without assumption (\ref{anchoring_simple}), see Appendix \ref{app_generalTC}. Note the notation that $\prod_{j=1}^{0} \equiv 1$.
+\label{result_target_anchoring}
+\end{prop}
+The interpretation of Equation (\ref{target}) is that the \emph{intra}temporal tradeoff between inflation and the output gap due to cost-push shocks is complemented by two \emph{intertemporal} tradeoffs: one due to learning in general, and one due to anchoring in particular. 
+
+The first intertemporal effect comes from the current level of the gain,  $k_t$, which captures how far learning is from converging to rational expectations. The second intertemporal tradeoff is manifest in the derivative of the anchoring function today,  $\mathbf{g}_{\pi,t}$, as well as in all expected levels and changes in the gain in the future in the expression $(1-k_{t+1+j}- f_{t+j|t+j-1}\mathbf{g_{\bar{\pi},t+j}})$ in the second bracket on the right-hand side. These expressions say that the presence of anchoring qualify the first intertemporal tradeoff because now the degree and direction in which the gain changes today and is expected to change in the future matter too. In other words, the central bank needs to consider whether its chosen interest rate sequence contributes to anchoring expectations in future periods, or whether it actually serves to unanchor them.
+
+Let me investigate these channels in isolation. To see exactly what the role of anchoring is in the target criterion, consider first the special case of exogenous gain adaptive learning, for simplicity with a constant gain specification.\footnote{The intuition is identical if the public were using a decreasing gain but the mathematics would not convey that same intuition as cleanly.} In this case the anchoring function and the forecast error are irrelevant (since $\mathbf{g_i}=0, i=\pi,\bar{\pi}$) and (\ref{target}) boils down to
+\begin{align}
+\pi_t  = -\frac{\lambda_x}{\kappa}x_t + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} k
+\bigg(\sum_{i=1}^{\infty}x_{t+i}(1-k)^i \bigg)
+\label{target_molnar} % I think this is still correct, despite the corrections of March 30, 2020.
+\end{align}
+which is the analogue of \cite{gaspar2010inflation}'s Equation (24).\footnote{In their Handbook chapter, \cite{gaspar2010inflation} provide a parsimonious treatment of \cite{molnar2014optimal}. I am referring to their expression for the target criterion because \cite{molnar2014optimal} do not provide one explicitly.} This result, found also by \cite{molnar2014optimal}, suggests that already the presence of learning by itself is responsible for the first intertemporal tradeoff between inflation and output gap stabilization. The fact that the central bank now has future output gaps as a margin of adjustment means that it does not have to face the full tradeoff in the current period. Learning allows the central bank to improve the current output gap without sacrificing inflation stability today; however, this results in a worsened tradeoff in the future. In other words, adaptive learning by itself allows the central bank to postpone the current tradeoff to later periods. 
+
+Intuitively, this happens because adaptive expectations are slow in converging to rational expectations. In the transition, the private sector's expectations do not adjust to fully internalize the intratemporal tradeoff. This gives the monetary authority room to transfer the tradeoff to the future.
+
+Contrasting Equations (\ref{target_molnar}) and (\ref{target}) highlights the role of anchoring. With anchoring, the extent to which policy can transfer the intratemporal tradeoff to future periods depends not only on the stance of the learning process, as in (\ref{target_molnar}), but also on whether expectations are anchored or not and in which direction they are moving. In fact, not only the current stance and change of anchoring matters, but also all expected future levels and changes. 
+
+Anchoring, however, complicates the possibility of transferring today's tradeoff to the future. One can see this in the fact that forecast errors and the derivatives of the anchoring function are able to flip the sign of the second term in (\ref{target}). This means that anchoring can alleviate or worsen the intertemporal tradeoff. To see the intuition, consider the equation system of first-order conditions from solving the Ramsey problem. While the full system is presented in App. \ref{app_midsimple_problem}, let us focus solely on Equation (\ref{gaspar22}), the equation governing the dynamics of observables in the model:
+\begin{equation}
+2\pi_t = - 2\frac{\lambda_x}{\kappa}x_t +\varphi_{5,t} k_t + \varphi_{6,t} \mathbf{g}_{\pi,t} 
+\end{equation}
+The Lagrange multipliers $\varphi_5 \geq 0$ and $\varphi_6 \geq 0$ are the multipliers of the RLS updating and the anchoring function respectively. This equation, upon substitution of the solutions for the two multipliers, yields the target criterion. It is therefore easy to read off the intuition at a glance. First, since $\varphi_{5,t}k_t > 0$, one immediately obtains the above-discussed conclusion that as long as the adaptive learning equation is a constraint to the policymaker ($\varphi_{5,t} > 0$), the central bank has more room to transfer the contemporaneous tradeoff between inflation and the output gap to the future.\footnote{Strictly speaking, $\varphi_5$ and $\varphi_6$ are never zero in this model. The reason is that exogenous disturbances induce unforecastable variation throughout the lifetime of the economy. Thus, at any point in time, forecast errors can emerge that will unanchor expectations, restarting the learning process. This is in stark contrast with \cite{carvalho2019anchored}, where the anchoring function is the map between the PLM and the expected ALM and thus only depends on the endogenous component of the forecast error. Therefore, in their model, absent regime switches, expectations can never become unanchored once learning has converged.}
+
+However, whether the anchoring equation alleviates or exacerbates the inflation-output gap tradeoff depends on the sign of $\mathbf{g_{\pi,t}}$. If the derivative is positive, the effect is the same as above, and the central bank has more leeway to postpone the tradeoff to the future. By contrast, if the derivative is negative, that is expectations are becoming anchored, the intratemporal tradeoff is worsened.
+
+Why do unanchored expectations give the central bank the possibility to postpone its current inflation-output gap tradeoff? The reason is that when expectations become unanchored, the learning process is restarted. A not-yet converged learning process implies, as discussed above, that postponing the tradeoff is possible. Restarting the convergence process thus unlocks this possibility. 
+
+This seems to suggest that from a smoothing standpoint, the central bank should prefer to have unanchored expectations. As will be shown in Sections \ref{implement}-\ref{opt_TR}, volatility considerations will suggest otherwise. But in fact, even the smoothing viewpoint involves some ambiguity on whether expectations should be anchored from the perspective of the central bank. Clearly, the central bank prefers to face a learning process that on the one hand has not yet converged, and on the other is converging only slowly. A high gain under unanchored expectations implies both a sizable distance from convergence as well as faster learning and thus faster convergence. Therefore, ideally the central bank would like to have expectations anchored but the gain far from zero; a contradiction. Once the gain approaches zero, only unanchored expectations can raise it again to restart the learning process. But once the gain is large, the only way to slow down learning is to anchor expectations, that is, to lower the gain.
+
+
+\subsubsection{Time-consistence of optimal plans under adaptive learning}
+Now simplify the target criterion further, assuming that learning has converged, $k_t = \mathbf{g_\pi} = 0$. We are left with 
+\begin{equation}
+\pi_t  = -\frac{\lambda_x}{\kappa}x_t \label{cgg_discretion}
+\end{equation}
+which corresponds to the optimal discretionary solution for rational expectations in \cite{clarida1999science}. This is formalized in the following proposition.
+
+\begin{prop} Coincidence of commitment and discretion under adaptive learning \\
+In an adaptive learning model with exogenous or endogenous gain, the optimal Ramsey policies under commitment and discretion coincide. The optimal Ramsey plan is more akin to discretion than to commitment as it does not involve making promises about future policy actions. Optimal policy is thus not subject to the time-inconsistency problem of \cite{kydland1977rules}.
+\label{result_no_commitment}
+\end{prop}
+
+To illustrate this result in a parsimonious manner, consider a simplified version of the model. The planner chooses $\{\pi_t, x_t, f_t, k_t\}_{t=t_0}^{\infty}$ to minimize
+ \begin{align*}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta e_t +u_t) \\ &+ \varphi_{2,t}(e_t - e_{t-1} -k_t(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t - \mathbf{g}(\pi_t - e_{t-1})) \bigg\}
+ \end{align*}
+ where the IS-curve, $x_t = \E_t x_{t+1}+\sigma e_t -\sigma i_t +\sigma r_t^n$, is a non-binding constraint, and is therefore excluded from the problem. $\varphi_i$ are Lagrange-multipliers and $\E_t x_{t+1}$ is rational.\footnote{Again, the use of the term ``rational'' in this context reflects corresponding to expectations in a REE.} In this simplified setting, $e_t$ is a stand-in variable capturing inflation expectations and evolves according to a recursive least squares algorithm. The anchoring function $\mathbf{g}(\cdot)$ specifies how the gain $k_t$ changes as a function of the current forecast error according to assumption (\ref{anchoring_simple}).\footnote{Here I maintain assumption (\ref{anchoring_simple}) for presentational purposes. It has no bearing on the results.} Note that the problem involves commitment because the monetary authority internalizes the effects of its actions both on the evolution of expectations and on that of the gain. 
+ 
+ After some manipulation, first-order conditions reduce to:
+ \begin{align}
+  2\pi_t +2\frac{\lambda_x}{\kappa}x_t -\varphi_{2,t}(k_t + \mathbf{g_{\pi}}(\pi_t -e_{t-1}))& = 0 \label{simpleFOC1} \\
+  -2\beta\frac{\lambda_x}{\kappa}x_t + \varphi_{2,t} -\varphi_{2,t+1}(1-k_{t+1} -\mathbf{g_{f}}(\pi_{t+1} -e_{t})) & = 0 \label{simpleFOC2} 
+ \end{align}
+Inspection of this system reveals that, unlike the rational expectations case ($e_t = \E_t{\pi_{t+1}}$), the optimal solution does not involve lagged multipliers.\footnote{This echoes the findings of \cite{molnar2014optimal}.} This implies that the monetary authority cannot condition the optimal time path of inflation and the output gap on the past; optimal policy is not history-dependent. 
+
+The intuition for this result is easy to see if one compares rational expectations and learning in an infinitely repeated game setting. Under rational expectations, the lagged multiplier appears in the solution because expected inflation is a jump variable. This reflects that expectations fulfill a form of optimality, rendering the private sector a strategic player. The adjustment of expectations under rational expectations enables the central bank to make promises about future policy that are incorporated into expectations. 
+
+Not so for adaptive expectations. Learning agents look exclusively to past data to form expectations. Their expectations thus cannot incorporate the policymaker's promises about the future course of policy. In fact, a private sector with adaptive expectations has a pre-specified, non-strategic expectation formation. Therefore, households and firms act as an automaton, leaving the central bank unable to make promises that have any effect on expectations.\footnote{\cite{mele2019perils} report a similar finding in a decreasing gain learning model. Their terminology of contrasting ``inflation-targeting'' with ``price-level targeting" policy rules renders the connection to commitment less immediate, but it is helpful to recall that in the rational expectations NK model, optimal discretionary monetary policy involves inflation stabilization, while optimal commitment entails full price-level stabilization.}
+
+Should we be surprised that adaptive learning involves no distinction between discretion and commitment? Not at all if we recall that the rational expectations revolution had as one of its aims to remedy this feature of expectations. The seminal Lucas-critique, for instance, emphasizes that reduced-form regressions are not ideal guiding principles for policy precisely because they miss the time-varying nature of estimated coefficients due to model-consistent expectations that incorporate promises about policy action (\cite{lucas1976econometric}).
+
+One might be concerned that a model of anchoring that is not immune to the Lucas-critique may not be a desirable normative model for policy. But recall that the anchoring model is a description of the economy in transition, not of one at its ergodic mean. It characterizes expectation formation en route to becoming model-consistent as the private sector learns the underlying DGP. In the long run, then, rational expectations offers a good characterization of the expectation formation of learning agents. It is in the short run that the predictions of the two expectations schemes differ. Data suggest that in terms of positive implications, learning models fare much better than rational expectations models do. Since the seminal work by \cite{coibion2015information}, rational expectations has been rejected in numerous empirical papers. At the same time, the literature cited in the Introduction demonstrates the success of learning models in fitting both the properties of expectations in the data and in improving the business cycle dynamics of other model variables. 
+
+There are also avenues to address the Lucas-critique in learning models. One option is to reintroduce a sense of optimality to expectation formation directly, as in the literature on central bank reputation. (See \cite{cho1995induction} and \cite{ireland2000expectations}). Another possible remedy is to retain a sufficient degree of forward-looking expectations as in the finite-horizon planning approach advocated by \cite{woodford2019monetary}. A third possibility is to model communication by the central bank in the form of news shocks that enter the state vector, and thus show up in the information set of agents, as in \cite{dombeck2017effects}. All in all, Proposition \ref{result_no_commitment} does not render the advances of the rational expectations revolution void. Instead, it points to the fact in the short run, expectations too slow to update fully will quantitatively resemble adaptive expectations. Thus in the short run, the policy predictions of adaptive expectations may be more quantitatively relevant than what is generally acknowledged.
+
+
+%%%%%%%%%%%%%%%%%%           IMPLEMENTING THE TC           %%%%%%%%%%%%%%%%%% 
+
+\subsection{Implementing the Ramsey policy: the optimal interest rate sequence}\label{implement}
+Having a characterization of optimal policy in the anchoring model as a first-order condition, the next relevant question is how the central bank should set its interest rate tool in order to implement the target criterion in (\ref{target}). In other words, we would like to know what time-path of interest rates implements the optimal sequence of inflation and output gaps. As emphasized in Section \ref{ramsey}, the nonlinearity of the model does not admit an analytical answer to this question. I therefore solve for the optimal interest rate policy numerically using global methods. 
+
+App. \ref{pea} outlines my preferred solution procedure, the parameterized expectations approach, while App. \ref{vfi} gives the details of the parametric value function iteration approach I implement as a robustness check. The main output of this procedure is an approximation of the optimal interest rate policy as a function of the vector of state variables. Due to Assumption (\ref{anchoring_simple}), the relevant state variables are expected mean inflation and the exogenous states at time $t$ and $t-1$, rendering the state vector five-dimensional:\footnote{In the general specification without Assumption (\ref{anchoring_simple}), the lagged gain would also be a relevant state variable.}
+
+\begin{equation}
+X_t = (\bar{\pi}_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})
+\end{equation}
+
+As a first step, I plot how the approximated policy function depends on $\bar{\pi}_{t-1}$, while keeping all the other states at their mean. The result, depicted on Fig. \ref{di}, suggests that optimal interest-rate setting responds linearly and very sensitively to the stance of expectations, $\bar{\pi}_{t-1}$. If expected mean inflation decreases by \movepibar basis points, the interest rate drops by about \movei bp.\footnote{This result is qualified in the general specification of the model where the private sector learns about all observables, not just inflation. In that case, interest rate expectations play a major role in determining forecasts of future inflation and thus add a stabilizing channel that is absent from the current specification. In the more general case, then, smaller responses in the current interest rate are sufficient. In subsequent discussions of optimal policy, I refer to this phenomenon as ``the stabilizing effect of interest rate expectations.'' \label{footnote_why_nonstationary}} 
+
+\begin{figure}[h!]
+%\subfigure[$i(k^{-1})$]{\includegraphics[scale=0.17]{\myFigPath \fignameDiDk}} % taking this out b/c policy doesn't depend on this
+%\includegraphics[scale=0.24]{\myFigPath \fignameDiDpibar}
+\includegraphics[scale=0.24]{\myFigPath \fignameDiDpibarStab}
+\caption{Policy function: $i(\bar{\pi}, \text{all other states at their means})$, \%}
+\label{di}
+\end{figure}
+
+This is a large response. Clearly, optimal policy involves subduing unanchored expectations by injecting massive negative feedback to the system. One may then wonder why optimal policy is so aggressive on unanchored expectations when the analysis of the target criterion in Section \ref{ramsey} suggested that learning can alleviate the stabilization tradeoff between output and inflation. 
+
+The reason is that the anchoring expectation formation introduces another intertemporal tradeoff to monetary policy: a volatility tradeoff. One can see this on Fig. \ref{IRF_main}, portraying the dynamics of the system following a two-standard-deviation contractionary monetary policy shock, conditional on a Taylor rule with baseline parameters. The panels contrast the rational expectations version of the model with the anchoring expectation formation, for anchored and unanchored expectations respectively. 
+
+The same shock that for anchored expectations results in dynamics mirroring those under rational expectations triggers a larger, much more persistent and oscillatory response if expectations are unanchored.\footnote{As periodically noted in the adaptive learning literature, constant gain learning models have a tendency to produce impulse responses that exhibit damped oscillations. Authors making explicit note of this phenomenon include \cite{evans_honkapohja2001}, \cite{evans2013bayesian} and \cite{anufriev2012evolutionary}. The reason is that under an adaptive learning framework, forecast errors following an impulse are oscillatory.  In fact, the higher the learning gain, the higher the amplitude of forecast error oscillations. App. \ref{app_oscillations} presents a simple illustration for why this is the case.} The difference stems from the fact that if expectations are anchored, stable expectations lower the pass-through between shocks and observables. However, sufficiently large shocks can unanchor expectations, enabling them to act as a positive feedback loop between shocks and observables. Having unanchored expectations, then, comes at a volatility cost in the central bank's target variables. This volatility cost dictates that, in the long run, the central bank wishes to have expectations anchored. 
+
+\begin{figure}[h!]
+\subfigure[RE against anchoring, expectations anchored]{\includegraphics[scale = \mySmallFigScale]{\myFigPath \fignameIRFanchored}}
+\subfigure[RE against anchoring, expectations unanchored]{\includegraphics[scale = \mySmallFigScale]{\myFigPath \fignameIRFunanchored}}
+\caption{Impulse responses after a contractionary monetary policy shock}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$. The remark on whether expectations are anchored or not refers to whether the gain is below the 10th percentile or above the 90th percentile of simulated gains at the time the shock hits.}
+\label{IRF_main}
+\end{figure}
+
+From the viewpoint of the central bank, this problem is amplified by the fact that anchoring expectations itself comes at a convex volatility cost. Anchoring expectations requires an aggressive interest response because by these means the central bank can introduce negative feedback to the system. But, as seen on Fig. \ref{IRF_main}, innovations to the interest rate surprise the private sector, raising forecast errors. The more unanchored expectations are, the more volatility the interest rate movement inflicts on the economy.
+
+We can see from the policy function how optimal policy resolves this tradeoff: it reacts extremely aggressively to movements in long-run expectations. This way, the central bank hopes to avoid even larger interventions that would become necessary were expectations to unanchor further. To avoid having to pay so high a price, the central bank is extra aggressive in the short run to prevent massive unanchoring from ever materializing. Thus the optimal response to the volatility tradeoff is to temporarily increase volatility in order to reduce it in the long-run. In this way, the central bank's aggressiveness in the model is driven by the desire to prevent upward (downward) drifting long-run expectations from becoming a self-fulfilling inflationary (deflationary) spiral, resembling the idea advocated by \cite{goodfriend1993interest} that the central bank moves to offset ``inflation scare'' (or ``deflation scare") episodes.
+
+The presence of the volatility tradeoff also implies that optimal policy aggressiveness is yet again time-varying: the same shock involves a stronger interest rate response if expectations threaten to unanchor than otherwise. To see this, consider another way to investigate optimal policy in the model. Fig. \ref{pea_TCvsTR} compares the evolution of observables conditional on a particular history of exogenous disturbances across two specifications of monetary policy: one that follows the target criterion in (\ref{target}) and one that follows a Taylor-rule with parameter values given in Tables \ref{calibration} and \ref{calibration_moments}, and with an inflation coefficient of $\psi_{\pi} = 1.1083$, optimized for the anchoring model (see Section \ref{opt_TR}).
+
+\begin{figure}[h!]
+\subfigure[Taylor rule in effect and common knowledge]{\includegraphics[scale=0.22]{\myFigPath \fignamePEAobsTR}}
+\hfill % this is great to intro space between subfigures
+\subfigure[Optimal policy]{\includegraphics[scale=0.22]{\myFigPath \fignamePEAobsAnch}}
+\caption{Evolution of observables for policy following a Taylor rule against optimal policy}
+\label{pea_TCvsTR}
+\end{figure}
+
+Panels (a) and (b) show the outcome achieved by adhering to a publicly announced and internalized Taylor rule and the target criterion (\ref{target}) respectively.\footnote{If the private sector does not know that a Taylor rule is in effect, the model displays explosive dynamics. The reason is that since in this specification only the inflation intercept is learned, absent knowledge of the Taylor rule, the private sector's beliefs would not span the set of model-consistent ones. (See the discussion in Footnote \ref{footnote_why_nonstationary}.) Therefore the figure displays a specification with a Taylor rule that is assumed to be known by the public. For comparability, the same assumption is made for optimal policy. %This issue resurfaces in the discussion of the welfare losses associated with various policies in the model.
+\label{footnote_i_expectations} }
+As opposed to the Taylor-rule specification, optimal policy uses the interest rate tool much more aggressively because it responds to unanchored expectations. This way, it subdues inflation and output gap volatility simultaneously because it brings inflation expectations under control. The central bank is willing to raise the interest rate massively in order to eliminate any potential of large-scale unanchoring. When expectations become anchored, the interest rate can retreat to zero. However, the central bank remains ever alert to change it again if it sees a threat of unanchoring.\footnote{Following the prescription of the optimal policy function, the interest rate tracks long-run expectations of inflation, scaled up. This feature is specific to the special case of the model where only inflation is learned because, as discussed in Footnotes \ref{footnote_why_nonstationary} and \ref{footnote_i_expectations}, in this case interest rate expectations cannot internalize policy. Since the stabilizing effect of interest rate expectations is absent here, the central bank is forced to rely on the interest rate alone to offset fluctuations in long-run expectations.}
+
+% Comparisons to a TR:
+Clearly, the main drawback of the Taylor rule is that it does not take the evolution of expectations into account. Thus it misses the opportunity offered by the target criterion in Equation (\ref{target}) to smooth out the inflation-output tradeoff, and it also results in higher overall economic volatility than optimal policy does. The key intuition is that the main driver of volatility in the model is the positive feedback loop between expectations and outcomes. By responding aggressively to long-run expectations, optimal policy can dampen the positive feedback without causing excess volatility when there is no threat of unanchoring. 
+
+  
+%%%%%%%%%%%%%%%%%%           OPTIMAL TAYLOR RULE           %%%%%%%%%%%%%%%%%% 
+\subsection{Optimal Taylor rule under anchoring}\label{opt_TR}
+Monetary policy is often formulated using a Taylor rule. Proponents of such a characterization, like \cite{taylor1993discretion} himself, emphasize the benefits of having a simple, time-invariant and easily verifiable rule. Also in the anchoring model, a policymaker may thus be interested in using a Taylor-type approximation to optimal policy in order to combine the benefits of having a simple, yet near-optimal rule.\footnote{Recall from \cite{woodford2011interest} that even under rational expectations, a standard Taylor rule is not fully optimal because its purely forward-looking nature precludes the use of promises of future policy. Since Proposition \ref{result_no_commitment} tells us that in the anchoring model there is no distinction between commitment and discretion, this point may be less relevant here than for rational expectations.} Therefore I now consider the restricted set of Taylor-type policy rules and ask what value of the time-invariant Taylor-rule coefficient on inflation is optimal in the case of the anchoring model.
+
+I compute the optimal Taylor rule coefficient on inflation numerically by minimizing the central bank's expected loss in a cross-section of $N=100$ simulations of both the rational expectations and learning versions of the model. I continue to use the calibration of Tables \ref{calibration} and \ref{calibration_moments} and to parameterize the anchoring function using the estimated $\hat{\gamma}$ from Section \ref{estimation}.
+
+Table \ref{psi_pi_opt} presents the optimal Taylor rule coefficient $\psi_{\pi}$ for the rational expectations and anchoring models. The table also compares the baseline parameterization with an alternative in which the central bank attaches no weight to output gap stabilization. One notices that if the central bank has no concern to stabilize the output gap ($\lambda_x = 0$), $\psi_{\pi}$ is infinity for RE, but strictly below infinity for the anchoring model. For the rational expectations version of the model, this is because if the central bank suffers no loss upon output variation, then the fact that the divine coincidence is violated does not pose a problem. An infinite inflation coefficient then allows the authority to eliminate inflation fluctuations altogether.
+
+\begin{center}
+\begin{table}[h!]
+\begin{tabular}{ c | c | c }
+ & $\psi^{*,RE}_{\pi}$ & $\psi^{*,Anchoring}_{\pi}$  \\  \hline
+ Baseline ($\lambda_x =0.05$)  & 2.2101   & 1.1083\\  \hline
+ $\lambda_x =0$     & $\infty$  & 1.4421 \\  \hline
+
+% $\lambda_x =1, \lambda_i =0 $ & 1 & 1.0058 \\  \hline
+% $\lambda_x =0, \lambda_i =1 $ &  1  & 1.063\\  \hline
+%  $\lambda_x =1, \lambda_i =1 $ &  1 & 1.0135 \\  \hline
+\end{tabular}     
+      \caption{Optimal coefficient on inflation, RE against anchoring for alternative weights on output}  
+      \label{psi_pi_opt}
+ \end{table}
+\end{center}
+% Table updated 12 Sept 2020
+
+Not so for the anchoring model. Even for $\lambda_x = 0$, the optimal inflation coefficient is below infinity. Also for the baseline calibration, the monetary authority finds it optimal to choose a significantly lower $\psi_{\pi}$ in the anchoring model than under RE. Why this is the case can be gleaned from Fig. \ref{fig_loss}, which depicts the central bank's loss as a function of the inflation coefficient $\psi_{\pi}$ for the baseline calibration. %The figure also shows the loss obtained under the fully optimal policy.
+
+As seen on Fig. \ref{fig_loss}, both models predict a sharp increase in the loss as $\psi_{\pi}$ is lowered for low values of $\psi_{\pi}$. This is intuitive: the lower $\psi_{\pi}$, the more inflation fluctuation the central bank tolerates. This leads to losses in both models. In the anchoring model, the loss is further increased by the fact that inflation volatility leads to higher forecast errors. This implies higher fluctuations in expectations, which in turn feed back into inflation. In this manner, the positive feedback loop in the anchoring model in general leads to higher inflation fluctuations in the anchoring model than in the RE version, resulting in a higher loss as well. 
+
+\begin{figure}[h!]
+%\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossnilnil}}
+%\hfill
+%\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossonenil}}
+%\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossnilone}}
+%\hfill
+%\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossoneone}}
+\includegraphics[scale = 0.25]{\myFigPath \fignameCBlossbaseline}
+\caption{Central bank loss as a function of $\psi_{\pi}$}
+\floatfoot{Sample length is $T=100$ with a cross-section of $N=100$. For a comparison of the loss for the fully optimal policy and the anchoring-optimal Taylor rule, see Section \ref{welfare}. }
+\label{fig_loss}
+\end{figure}
+
+%\clearpage
+
+
+But Fig. \ref{fig_loss} has a more surprising implication too. As opposed to RE, the loss is strongly convex in the anchoring model. In fact, this remains the case also if the central bank has no concern for output gap stabilization ($\lambda_x = 0$). In the anchoring model, then, the losses caused by tolerating too much inflation volatility cannot be eliminated by raising $\psi_{\pi}$ infinitely. This means that beyond a threshold, raising $\psi_{\pi}$ actually increases inflation volatility, instead of decreasing it. For this reason, as seen in Table \ref{psi_pi_opt}, the optimal choice involves a much smaller inflation coefficient under anchoring than under RE (1.1 instead of 2.2). How does this come about?
+
+The mechanism is the following. As the IS-curve of Equation (\ref{NKIS}) makes explicit, the private sector relies on expectations of not just future inflation and output gaps, but also of interest rates when choosing its actions today. A high $\psi_{\pi}$, together with the assumption that the private sector knows the Taylor rule, means that if conditions today cause the private sector to expect high inflation in the future, the private sector will internalize future policy responses and therefore also expect high interest rates down the line. This implies a shift in the entire term structure of expectations, adding fuel to the positive feedback between expectations and outcomes. But not only that. The fact that agents can anticipate future policy actions induces oscillatory expectations, as adverse shocks today are expected to be offset by expansionary policy, et vice versa.\footnote{The impulse responses in App. \ref{app_oscillations} illustrate the relationship between $\psi_{\pi}$ and volatility, confirming the present intuition. In a more general specification of the model where the private sector does not initially know the Taylor rule, impulse responses take time to become oscillatory because as long as the Taylor rule is not yet learned, intertemporal anticipation effects cannot play out. But eventually as the Taylor rule is internalized, impulse responses oscillate exactly as in the present, special case of the model.} In the case of the private sector internalizing the policymaker's reaction function, then, anticipation effects of future interest rates plays a key role in determining the conduct of policy.
+
+We can see how this plays out by contrasting impulse responses of the model for various levels of inflation aggressiveness $\psi_{\pi}$, depicted on Fig. \ref{IRF_unanchored_psi_main}. A small value of $\psi_{\pi} = 1.01$ imposes too little negative feedback to get inflation back to its pre-shock value fast. A too high value of $\psi_{\pi}$ has the contrary effect: the impulse responses overshoot. In fact, the higher $\psi_{\pi}$, the larger the overshooting. This highlights the anticipation effects of future interest rates. When the contractionary monetary policy shock hits, inflation and the output gap fall on impact. By the next period, expectations update, initially implying lower future inflation and output gaps. But an internalized Taylor rule means that the private sector connects low future inflation with expansionary policy going forward. This expectation causes the overshoot.
+
+The model dynamics here resemble the predictions of \cite{ball1994credible} of expansionary disinflation. \cite{ball1994credible} observes that an overlooked fact about rational expectations New Keynesian models is their implication of expansionary disinflations. Since the prediction that disinflation is costless, indeed expansionary, is at odds with data, Ball concludes that central bank announcements must suffer from credibility issues that render expectations unresponsive to the announcement of coming disinflation.
+
+Note that in the present context, when expectations are anchored (Panel (a) of Fig. \ref{IRF_main}), impulse responses do not exhibit oscillations. However, when expectations are unanchored (Panel (b) of Fig. \ref{IRF_main}), impulse responses look exactly as \cite{ball1994credible} predicts: we obtain an expansionary disinflation. The absence of the ``Ball-effect" from the anchored expectations impulse responses indicates that the key difference between Ball's interpretation and my model is what channel generates the unresponsiveness of expectations. Thus I arrive at a different conclusion than \cite{ball1994credible}; instead of credibility issues, it is anchored expectations that are responsible for the absence of expansionary disinflations.
+
+\begin{figure}[h!]
+\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.20]{\myFigPath \fignameIRFpsipiSmall}}
+\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.20]{\myFigPath \fignameIRFpsipiMedium}}
+\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.20]{\myFigPath \fignameIRFpsipiBig}}
+\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
+\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=100$.}
+\label{IRF_unanchored_psi_main}
+\end{figure}
+
+
+In contrast to the conventional wisdom in the adaptive learning literature, as exemplified for example by \cite{orphanides2004imperfect}, I thus find that monetary policy specified as a Taylor rule should be \emph{less} aggressive on inflation than what would be optimal under rational expectations. Technically speaking, the difference stems from two sources. The first is whether one models the aggregate relationships of the model as corresponding to the learning assumptions concerning individual agents. As suggested in Section \ref{learning}, the majority of the papers in the learning literature consider Euler-equation learning. This implies that long-horizon expectations do not enter the IS- and Phillips curves. 
+
+By contrast, relying on \cite{preston2005}'s long-horizon learning approach reintroduces the full term structure of expectations into the IS- and Phillips curves and thus assigns a role to interest rate expectations. \cite{eusepi2018limits} is the first to use the long-horizon approach to investigate the interaction between long-horizon learning and interest rate expectations. Unsurprisingly, they reach the same conclusions as I do: anticipation effects coming from interest rate expectations force the central bank to be less aggressive on inflation than it would under rational expectations.
+
+Secondly, the anchoring mechanism is responsible. Standard specifications of the gain in the adaptive learning tradition involve no channel through which monetary policy could affect the learning of agents. Whether the gain is constant or deterministically decreasing, there is no link between the interest-rate setting of the central bank and the gain. 
+
+Here, however, the anchoring mechanism relates the gain to forecast errors. Forecast errors, in turn, arise as a function of central bank action, in particular of whether the central bank is able keep inflation at the private sector's perceived mean. Movements in the interest rate, then, are a double-edged sword: in contributing to get inflation to the target, they can close forecast errors and thus stabilize long-run expectations. But any central bank intervention also results in adjustments in expectations (either because it takes the private sector by surprise, or because the private sector understands its implications for future policy), increasing the volatility of observables.
+
+This highlights that the time-varying nature of optimal policy is its key characteristic. The ability to take the stance of anchoring into account is what enables the central bank to be exceedingly aggressive if and only if expectations are about to unanchor, and maintain a dovish stance otherwise. Thus it seems reasonable to expect that if the central bank were allowed to select time-varying Taylor-rule coefficients, it would choose low coefficients when expectations are anchored and high ones when expectations show signs of unanchoring. Such a central bank, as well as one following the optimal policy, would appear to the econometrician as time-varying, echoing the findings of \cite{LUBIK201685}.
+
+
+%%%%%%%%%%%%%%%%%%           WELFARE LOSSES            %%%%%%%%%%%%%%%%%% 
+\subsection{Welfare gains from optimal policy}\label{welfare}
+
+How much can welfare be improved by implementing the optimal policy under anchoring? 
+%And how well does an anchoring-optimal Taylor rule do? 
+Table \ref{table_welfare} computes consumption equivalents for optimal policy in the anchoring model against the rational expectations version of the model with an RE-optimal Taylor rule (top row) and against an RE-optimal Taylor rule in the anchoring model (bottom). For these calculations, I continue to use the calibrated parameters from Tables \ref{calibration}-\ref{calibration_moments} and $\hat{\gamma}$ from the estimation in Section \ref{estimation}.
+
+% command_welfare.m: evaluate the loss for optimal policy
+\begin{center}
+\begin{table}[h!]
+\begin{tabular}{ c | c}
+ Policy-model pair against alternative policy-model pair& Consumption equivalent \\  \hline
+ %RE-optimal* Taylor rule against RE-optimal RE  &   0.2160 \\  \hline
+% Anchoring-optimal* Taylor rule      &  6.0228\\  \hline
+Optimal policy against RE-optimal RE & 0.0328 \\  \hline  
+Optimal policy against RE-optimal anchoring  & 0.1774 \\  \hline  
+\end{tabular}     
+      \caption{Consumption equivalent with RE-optimal RE model as alternative }  
+      \floatfoot{``$x$-optimal'' refers to a Taylor rule optimal under model $x$, rational expectations or anchoring.}
+      \label{table_welfare}
+ \end{table}
+\end{center}
+% Table updated 24 Sept 2020
+
+The first row of Table \ref{table_welfare} reiterates that the anchoring model is fundamentally more volatile than the rational expectations counterpart. If the RE-optimal choice of the Taylor-coefficient on inflation is chosen in the two models, consumers would be willing to give up 3.28\% of lifetime consumption to be in the rational expectations model rather than the anchoring one. But if the model of expectation formation is anchoring, by how much can policy increase welfare?
+
+That is the question the second row answers. Its message is that consumers in the anchoring model with an RE-optimal Taylor rule would be willing to forego more than 17\% of lifetime consumption to instead be in a model with monetary policy pursuing the optimal policy. Comparing to \cite{lucas1987models}'s conclusion that eliminating business cycles only amounts to 0.008\% of lifetime consumption, this number is very large. It points to that policy tailored to the rational expectations version of the New Keynesian model does a really bad job of smoothing out fluctuations when expectation formation departs from RE in the way entertained here. 
+
+%% command_welfare.m: evaluate the loss for optimal policy
+%\begin{center}
+%\begin{table}[h!]
+%\begin{tabular}{ c | c | c }
+% & RE & Anchoring \\  \hline
+%%  Taylor rule with $\psi_{\pi} =1.5, \psi_{x} = 0.3$     & 4.5421  & 8.5141 \\  \hline
+% RE-optimal* Taylor rule with $\psi_{\pi} =2.2101, \psi_{x} = 0.3$   & 4.4866 &  14.2633 \\  \hline
+% Anchoring-optimal* Taylor rule with $\psi_{\pi} =1.1083, \psi_{x} = 0.3$   & 4.6267  &  6.0228\\  \hline
+%Optimal policy\footnote{The form of the policy function is assumed not to be known by the private sector.} 
+% & - & 6.0985 \\  \hline  
+%\end{tabular}     
+%      \caption{Loss, RE against anchoring for alternative specifications of monetary policy}  
+%      \floatfoot{* ``$x$-optimal'' refers to a Taylor rule optimal under model $x$, rational expectations or anchoring.}
+%      \label{table_welfare}
+% \end{table}
+%\end{center}
+%% Table updated 12 Sept 2020
+
+%On average, using the same Taylor-rule specification incurs more than 2.2 times higher losses under the anchoring model than under rational expectations. This corroborates the findings of Section \ref{opt_TR} that suggested that using a Taylor rule is in general costlier under anchoring than under RE because the anchoring expectation formation involves more volatility than RE does. Conditional on choosing a Taylor rule, the losses in the anchoring model go down significantly if the authority chooses the anchoring-optimal inflation coefficient. In particular, the central bank can cut welfare losses in half by selecting the anchoring-optimal $\psi_{\pi}$.
+%
+%If a policymaker thus opts to conduct monetary policy via a Taylor rule, the coefficient on inflation should be chosen in accordance with the true model of expectation formation. Moreover, choosing the anchoring-optimal $\psi_{\pi}$ can nearly restore the volatility that would have prevailed under the rational expectations model with an RE-optimal coefficient. In particular, if the RE-optimal coefficient is chosen and the model is RE, the welfare loss is given by 4.4866. For the same coefficient, the loss is 14.2633 if the model instead is the anchoring model. In this case, opting instead for the anchoring-optimal coefficient pushes down the loss to 6.0228. This is more than 84\% of the distance between losses under RE! The implication is that adapting anchoring-appropriate policy involves substantial gains in welfare.
+
+%Given that the anchoring-optimal Taylor rule is so potent in reducing welfare losses, it may seem puzzling that the fully optimal policy does not involve further welfare gains. In particular, as foreshadowed by Fig \ref{fig_loss}, the loss associated with optimal policy is slightly above that of the anchoring-optimal Taylor rule, exceeding the latter by about 0.07. The comparison between the anchoring-optimal Taylor rule and the fully optimal policy is a little misleading, however. The reason is that the two policies are based on differing assumptions regarding interest rate expectations. As discussed also in Footnotes \ref{footnote_why_nonstationary} and \ref{footnote_i_expectations}, when the law of motion of inflation is the only relationship that is learned, the Taylor rule policy requires assuming that the Taylor rule is known because otherwise no model solution exists.\footnote{Again, this is not the case if the interest rate evolution is also the object of learning.} Clearly, assuming knowledge of the Taylor rule in the case of the optimal policy, however, would be inconsistent. More importantly, because optimal policy is a fixed point conditional on expectations, imposing knowledge of the optimal policy function would violate the maintained assumptions on the private sector's beliefs, as it would impose full knowledge of all aggregate relationships in the model. 
+%
+%Put more simply, the necessarily different assumptions on interest rate expectations render the comparison of welfare under the Taylor rule and the optimal policy problematic. However, the difference this introduces is economically meaningful. Intuitively, since the difference across the two assumptions is whether interest rate expectations internalize policy or not, the fact that the not fully optimal Taylor rule policy can squeeze welfare losses even below the optimal policy suggests expectations of the interest rate play a key role in stabilizing economic outcomes. This implies that the Taylor rule exerts a stabilizing effect via two channels: movements in the interest rate today and anticipated movements in the future. The optimal policy, instead, only has access to the first of these two channels. What this uncovers, then, is how beneficial it is for policymakers to communicate the form of their response function for the interest rate. Doing so allows the central bank to make use of the stabilizing effect of expectations of future policy. It is reasonable to expect, then, that the implementation of such communication in the case of the optimal policy would lead to further improvements in welfare.
+
+
+
+
+ %%%%%%%%%%%%%%%%%%           CONCLUSION            %%%%%%%%%%%%%%%%%% 
+%\newpage
+\section{Conclusion}\label{conclusion}
+Central bankers frequently voice a concern to anchor expectations. Absent a theory of anchored expectations, it is difficult to understand how such a concern affects the conduct of monetary policy. This paper lays out a simple behavioral model of anchoring expectation formation based on adaptive learning with an endogenous gain. The estimation of the anchoring function and the analysis of the Ramsey policy through analytical and numerical methods yields a number of differences compared to the rational expectations version of the model. 
+
+The main message is that policy is time-varying because it responds to the unanchoring of expectations. Optimal policy involves responding to a \movepibar basis point rise (fall) in expected mean inflation by raising (lowering) the interest rate by \movei bp, depending on the sign of the forecast error. The estimation of the anchoring function indicates that the central bank should be more vary of causing negative inflation surprises, as already a negative forecast error of half a percentage point leads to a sizable degree of unanchoring. For positive forecast errors, the same gain requires a forecast error double this size. 
+
+Optimal policy in the anchoring model is time-consistent, for which reason it can be expressed as a purely forward-looking target criterion. The target criterion prescribes how the policymaker can exploit the learning mechanism to spread out the effect of shocks over time, adding an intertemporal channel to the tradeoff between inflation and the output gap. The sensitivity of the policy function to the stance of anchoring highlights, however, that there is no free lunch: the monetary authority needs to dampen volatility at the same time as guard against the possibility of unanchoring expectations. Thus optimal policy faces an intertemporal volatility tradeoff in which long-run stability can only be achieved at the cost of short-run volatility.
+
+Furthermore, 
+%even small changes to the Fed's policy framework yield significant welfare improvements. In particular, adopting an anchoring-optimal Taylor rule gets rid of 84\% of the excess volatility loss compared to what would prevail under rational expectations. 
+optimal policy involves significant welfare gains as measured by the consumption equivalent between an RE-optimal Taylor rule and optimal policy.
+Thus, my model corroborates Jerome Powell's assessment in the Introduction that ensuring that expectations are well anchored should indeed be ``at the heart'' of the Fed's policy review.
+
+A number of interesting questions emerge from the analysis of monetary policy and the anchoring expectation formation. One may wonder whether the central bank can use tools other than its leading interest rate to anchor expectations. Especially concerns around a binding zero lower bound would motivate the use of alternative monetary policy tools. Thus the interaction between anchoring and central bank communication, in particular forward guidance, would be worthwhile to examine. An interesting avenue for future research, then, would be to make explicit the communication policy of the central bank to investigate whether anchoring expectation formation could help to resolve the forward guidance puzzle. 
+
+This, however, requires overcoming the implication of Proposition \ref{result_no_commitment} that adaptive expectations are not able to incorporate any information that is not embedded in the current state vector. One option is to model central bank communication similarly to news shocks in the sense of \cite{beaudry2006stock}. In this case, the anchoring model is likely to deliver differing predictions regarding the effectiveness of Delphic versus Odyssean forward guidance (\cite{campbell2012macroeconomic}) because sharing the central bank's forecasts would not constitute a questioning of the interest rate reaction function, while committing to a future interest rate path would.
+
+In general, extensions to the anchoring expectation formation proposed here would be of interest. The choice of the gain could be endogenized using approaches that allow the private sector to choose its forecasting behavior in an optimizing fashion, perhaps by selecting among competing forecasting models as in \cite{Branch2011} or by choosing the size of the gain to minimize the estimated forecast error variance. 
+
+Lastly, a foray into the empirics of anchoring expectation formation is important to get a clearer idea of the expectation formation process of the public. In practice, it is likely that this process is heterogenous, not just across households and firms, but also within various demographic groups or sectors of the economy. If so, then monetary policy would need to collect and monitor a host of long-run expectations time series to manage the challenge of keeping expectations anchored. 
+
+
+
+ %%%%%%%%%%%%%%%%%%           BIBLIOGRAPHY            %%%%%%%%%%%%%%%%%% 
+\clearpage
+\newpage
+\bibliographystyle{chicago}
+\bibliography{\myBibPath ref_next}
+%\nocite{*} % uncomment if you wanna include everything that's in the references
+
+ %%%%%%%%%%%%%%%%%%           APPENDIX            %%%%%%%%%%%%%%%%%% 
+\newpage
+\appendix
+
+% the following command makes equation numbering include the section first, but just for what follows
+\numberwithin{equation}{section}
+
+\section{Rolling regression with inflation as explanatory variable}\label{app_rolling_pi}
+
+Replacing the forecast error with realized CPI inflation, Equation (\ref{rolling_reg}) becomes 
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 \pi_t + \epsilon_t 
+\label{rolling_reg_pi}
+\end{align*}
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.3]{\myFigPath \fignameRollingPi}
+\caption{Time series of responsiveness of long-run inflation expectations to inflation}
+%\floatfoot{App. \ref{unanchoring_in_data} discusses alternative measures of long-run inflation.}
+\label{rolling_pi}
+\end{figure}
+
+The time series of the estimate $\hat{\beta}^w_1$ is depicted in Fig. \ref{rolling_pi}. Qualitatively, the same conclusion obtains as in the specification with forecast errors as regressor: the coefficients are time-varying in size and statistical significance. The size of the coefficients is also similar, except that initially the estimation uncertainty around the point estimate is much larger than for the baseline specification. The two specifications disagree about the timing of the succession of anchoring and unanchoring episodes, but the general conclusion of time-varying sensitivity of long-run inflation expectations is robust. 
+
+
+\section{Alternative measures of long-run inflation expectations}\label{unanchoring_in_data}
+
+Measuring long-run expectations is challenging. In particular, two dimensions of expectations are hard to line up between models and data: the identity of the economic agent forming expectations and the forecast horizon. To start with the former, one would ideally wish to measure the expectations of the private sector, firms and households, since their expectations correspond to the ones present in economic models. As for the forecast horizon, no single horizon is an exact counterpart to the concept of expectations of average inflation. Arguably, the longer the forecast horizon, the closer the measured expectation is to expectations of the average.
+
+\begin{figure}[h!]
+\caption{Alternative long-run inflation expectations measures}
+\subfigure[Market-based inflation expectations from TIPS, various horizons]{\includegraphics[scale = \myFigScale]{\myFigPath \fignameMarketEPiMoreHorizons}}
+\subfigure[10-year ahead inflation expectations of firms (Livingston) and professional forecasters (SPF)]{\includegraphics[scale = \myFigScale]{\myFigPath \fignameSPFLiv}}
+\floatfoot{All inflation rates are annualized percentages. The series are at the following frequency: daily (10-year TIPS), monthly (20- and 30-year TIPS), quarterly (SPF), twice per year (Livingston).}
+\label{epi_alternative}
+\end{figure}
+
+These considerations can lead the researcher to utilize breakeven inflation, that is, the difference between Treasury yields and Treasury Inflation Protected Securities (TIPS) (top panel of Fig. \ref{epi_alternative}). There are two main advantages of constructing inflation expectation measures from TIPS. First, since this measure is based on trades that happened in the Treasury market, it pertains to agents who are active in a market where inflation expectations matter. Such expectations are therefore a good proxy for the private sector's expectations in economic models. Second, the fact that breakeven inflation is not elicited from surveys allows the econometrician to bypass many of the challenges that survey data involve. It has been widely documented that survey participants may have poor understanding of the economic concept elicited, may misunderstand the survey questions or be unduly influenced by the wording. Most troubling is the fact that there is no way the econometrician could control for the noise thus introduced in survey data. 
+
+Breakeven inflation measures are not a panacea, however. The illiquidity of TIPS markets introduces a distortion into the measured expectations in the form of a time-varying liquidity premium (App. \ref{TIPS} corrects for this by filtering out an approximate liquidity premium series from the 10-year expectation series.) One could also contend that many firms and the majority of households are not active on the TIPS market, and therefore that breakeven inflation is not representative of the economy-wide expectation. For this reason, I turn to alternative long-run inflation measures.
+
+The forecast horizon is a binding constraint: consumer expectations data have a maximal forecast horizon of three (New York Fed Survey of Consumer Expectations (SCE)) or five years (University of Michigan Survey of Consumers). To have at least a forecast horizon of ten years, I thus resort to the Livingston Survey of the Philadelphia Fed and the Survey of Professional Forecasters (SPF). Another advantage of the SPF is that comprehensive individual-level data is available, a feature which I exploit for the regressions in the Introduction and in App. \ref{app_rolling_pi}. 
+
+Fig. \ref{epi_alternative} plots the breakeven inflation series for a horizon of 10, 20 and 30 years (top panel) alongside Livingston and SPF (bottom panel). The breakeven inflation measures are clearly and consistently below the Livingston and SPF measures. Part of this may be driven by liquidity premia, which I control for in App. \ref{TIPS}. At the same time, both the Livingston and the SPF expectations may potentially suffer from representativeness issues. The fact that the two expectations series are so closely aligned indicates that the Livingston survey may only be reaching a subset of firms.\footnote{The category codes of individual survey participates in the Livingston survey seems to underscore this. According to the documentation, the surveyed businesses fall into the following categories: academic institution, commercial banking, consulting, Federal Reserve, government, industry trade group, insurance company, investment banking, labor, non-financial business and other.} This subset seems to be highly correlated with the set of professional forecasters filling out the SPF. This is a concern because it suggests that the elicited expectations may not be representative of the economy-wide firm expectations. Moreover, if professional forecasters respond to the survey by running a (by assumption stationary) econometric model, then the survey responses may not even accurately reflect their held beliefs.
+
+But all these caveats notwithstanding, there is a single element that is consistent across all of these measures of long-run inflation expectations: following 2010, they all shift downward. In other words, they all show responsiveness to the fact that the Federal Reserve has undershot the 2\% inflation target. Given that the Livingston and SPF measures are initially above the 2\% target, one may argue that expectations are only adjusting following the 2012 announcement of an official target on the part of the Fed. 
+
+However, the 2\% target was already understood prior to the 2012 announcement. Moreover, the Fed's target is specified in terms of PCE inflation, while the Livingston and SPF forecasts pertain to CPI inflation. The fact that the latter tends to be higher than the former also helps to explain why expectations of CPI inflation are above the Fed's PCE inflation target. 
+
+\section{Filtering out liquidity risk from TIPS}\label{TIPS} 
+Some caution is needed when inferring inflation expectations from TIPS. The underlying idea is that the difference between real (indexed to inflation) and nominal yields should be a good metric for the market's expectations of inflation on average for the duration of the particular maturity. But since TIPS markets face liquidity issues, especially for seasoned securities, the TIPS yield also incorporates a liquidity premium. The positive bias in the TIPS yield thus leads to a negative bias in expected inflation.
+
+To gauge the presence of liquidity risk in TIPS, I rely on \cite{andreasen2018tips}'s estimation of the liquidity premium. Since their series only covers the period between July 11,1997 - Dec 27, 2013, I make use of the fact that they demonstrate a high correlation between liquidity risk and uncertainty. In particular, a regression of their average TIPS liquidity premium measure on the VIX index and controls yields an estimated coefficient of 0.85 (significant at the 1 percent level), with a constant of -5.21. Thus I can use the VIX to back out a fitted \cite{andreasen2018tips} estimate of the TIPS liquidity premium after 2013. Doing so, I subtract this fitted liquidity premium series from the TIPS yields, allowing me to construct an estimate of breakeven inflation corrected for the liquidity risk bias. Fig. \ref{epi_cleaned} presents the original breakeven inflation series, along with the bias-corrected estimate.
+
+\begin{figure}[h!]
+\includegraphics[scale = \myFigScale]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, 10 year, average, \%}
+\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+In line with \cite{andreasen2018tips}'s findings, I obtain a negative bias in the inflation expectations series throughout the sample. This bias averages -0.0966 pp, which is sizable, but not as significant as one might have suspected. Also in analogy with \cite{andreasen2018tips}'s results, I find that liquidity issues in the TIPS market pose a bigger problem in recessions, when the market worries more about future TIPS becoming illiquid. In particular once the COVID-shock raises worries at the end of the sample, the estimated liquidity premium hits its highest value of 0.6508 pp. Even this large upward correction in breakeven inflation does not change the overall picture, however. The conclusion that long-run inflation expectations trend downward in the second half of the decade remains solid. 
+
+\section{Compact model notation}\label{app_compact} 
+The A-matrices are given by
+\begin{align}
+A_a & = \begin{pmatrix} g_{\pi a} \\ g_{x a} \\ \psi_{\pi}g_{\pi a} + \psi_xg_{x a}
+\end{pmatrix}
+\quad A_b = \begin{pmatrix} g_{\pi b} \\ g_{x b} \\ \psi_{\pi}g_{\pi b} + \psi_xg_{x b}
+\end{pmatrix}
+ \quad A_s = \begin{pmatrix} g_{\pi s} \\ g_{x s} \\ \psi_{\pi}g_{\pi s} + \psi_xg_{x s} + \begin{bmatrix} 0 & 1& 0\end{bmatrix}
+\end{pmatrix} \\
+g_{\pi a} & =(1-\frac{\kappa\sigma\psi_{\pi}}{w} )  \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix} \\
+g_{x a} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix}(1-\alpha)\beta, \kappa\alpha\beta, 0 \end{bmatrix}\\
+g_{\pi b} & = \frac{\kappa}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix}\\
+g_{x b} & = \frac{1}{w} \begin{bmatrix}\sigma(1-\beta\psi_{\pi}), (1-\beta-\beta\sigma\psi_x, 0 \end{bmatrix} \\
+g_{\pi s} & = (1-\frac{\kappa\sigma\psi_{\pi}}{w} )\begin{bmatrix} 0&0&1 \end{bmatrix} (I_3 - \alpha\beta h)^{-1} -\frac{\kappa\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix} (I_3 -\beta h)^{-1}\\
+g_{x s} & =  \frac{-\sigma\psi_{\pi}}{w} \begin{bmatrix} 0&0&1 \end{bmatrix}(I_3 - \alpha\beta h)^{-1}  -\frac{\sigma}{w}\begin{bmatrix} -1&1&0 \end{bmatrix}(I_3 -\beta h)^{-1}\\
+w & = 1+\sigma\psi_x +\kappa\sigma\psi_{\pi}
+\end{align}
+The matrices of the state transition equation (\ref{LOM_s}) are
+ \begin{align}
+ h  & \equiv \begin{pmatrix} \rho_r & 0 & 0 \\ 0& \rho_i & 0 \\ 0&0& \rho_u 
+ \end{pmatrix}  \quad 
+ \epsilon_t \equiv \begin{pmatrix}\varepsilon_t^{r} \\ \varepsilon_t^{i}  \\ \varepsilon_t^{u} 
+ \end{pmatrix}  \quad  \text{and } \quad \eta  \equiv \begin{pmatrix} \sigma_r & 0 & 0 \\ 0& \sigma_i & 0 \\ 0&0& \sigma_u 
+ \end{pmatrix} 
+ \end{align}
+Note that this is the formulation for the case where a Taylor rule is in effect and is known by the private sector. It is straightforward to remove any of these two assumptions.
+
+
+
+\section{The observation matrix for learning}\label{app_FG}
+Instead of the matrix $g$ in the rational expectations observation equation
+\begin{equation}
+z_t = g s_t \label{RE_obs}
+\end{equation}
+agents in the anchoring model use the estimated matrix $g^l$
+\begin{equation}
+g_{t-1}^l = \begin{bmatrix} F_{t-1} & G_{t-1} \end{bmatrix}
+\end{equation}
+with
+\begin{align}
+F_{t-1} & = \bigg(A_a \frac{1}{1-\alpha\beta} + A_b\frac{1}{1-\beta} \bigg)a_{t-1}\\
+G_{t-1} & = A_a b_{t-1}\bigg(I_3 - \alpha\beta h \bigg)^{-1} + A_b b_{t-1}\bigg(I_3 - \beta h \bigg)^{-1} + A_s
+\end{align}
+
+\section{Alternative specifications for the anchoring function}\label{alternative_criteria}
+The general law of motion for the gain in the main text is given by Equation (\ref{anchoring}), reproduced here for convenience:
+\begin{equation}
+k_t  = \mathbf{g}(k_{t-1},f_{t|t-1}) 
+\end{equation}
+
+The baseline specification of the anchoring function $\mathbf{g}$ (Equation (\ref{gain}) in the main text) is \begin{equation}
+\mathbf{g} = \alpha b(f_{t|t-1})
+\end{equation}
+where $ b(f_{t|t-1})$ is the second order spline basis and $\hat{\alpha}$ are the coefficients estimated in Section \ref{estimation}.
+
+To my knowledge, there are only two other papers that consider an endogenous gain as a model for anchored expectations. The first one, more related to this paper, is \cite{carvalho2019anchored}. In their model, the anchoring function is a discrete choice function as follows. Let $\theta_t$ be a criterion to be defined. Then, for a threshold value $\tilde{\theta}$, the gain evolves according to
+\begin{align*}
+k_t & = \begin{cases} (k_{t-1}+1)^{-1} \quad \text{if} \quad \theta_t < \tilde{\theta}  \\ \bar{g}  \quad \text{otherwise.}\numberthis \label{anchoring_kinked}
+\end{cases} 
+\end{align*}
+In other words, agents choose a decreasing gain when the criterion $\theta_t$ is lower than the threshold $\tilde{\theta}$; otherwise they choose a constant gain. The criterion employed by \cite{carvalho2019anchored} is computed as the absolute difference between subjective and model-consistent expectations, scaled by the variance of shocks:
+\begin{equation}
+\theta_t = \max | \Sigma^{-1} ( \phi_{t-1} - \begin{bmatrix} F_{t-1} & G_{t-1} \end{bmatrix}) |
+\end{equation}
+where $\Sigma$ is the VC matrix of shocks, $\phi_{t-1}$ is the estimated matrix and $[F,G]$ is the ALM (see App. \ref{app_FG}).
+
+As a robustness check, \cite{carvalho2019anchored} also compute an alternative criterion.\footnote{Note that for both criteria, I present the matrix generalizations of the scalar versions considered by \cite{carvalho2019anchored}.} Let $\omega_t$ denote agents' time $t$ estimate of the forecast error variance and $\theta_t$ be a statistic evaluated by agents in every period as
+\begin{align}
+\omega_t & =  \omega_{t-1} + \tilde{\kappa} k_{t-1}(f_{t|t-1} f_{t|t-1}'  -\omega_{t-1})\\
+\theta_t & =  \theta_{t-1} + \tilde{\kappa} k_{t-1}(f_{t|t-1}'\omega_t^{-1}f_{t|t-1} -\theta_{t-1}) \label{cusum_crit}
+\end{align}
+where $\tilde{\kappa}$ is a parameter that allows agents to scale the gain compared to the previous estimation and $f_{t|t-1}$ is the most recent forecast error, realized at time $t$. Indeed, this is a multivariate time series version of the squared CUSUM test.\footnote{See \cite{brown1975techniques} and \cite{lutkepohl2013introduction} for details.}
+
+It is interesting to compare the two discrete anchoring functions with my smooth specification. On the one hand, the \cite{carvalho2019anchored}'s preferred specification requires the private sector to evaluate model-consistent expectations, which runs counter to the maintained informational assumptions. It is more consistent with the present model, then, to assume that firms and households employ a statistical test of structural change, as is the case with the CUSUM-based and smooth functions. These are therefore more appealing on conceptual grounds.
+
+On the other hand, simulation of the model using the different anchoring specifications reveals that \cite{carvalho2019anchored}'s preferred functional form leads to the opposite comparative statics of anchoring with respect to monetary policy aggressiveness as the smooth or the CUSUM-based specifications. In particular, while policy that is more aggressive on inflation (a higher $\psi_{\pi}$ in the Taylor rule) leads to more anchoring in a model with the smooth or the CUSUM-inspired criterion. If one uses \cite{carvalho2019anchored}'s criterion, the same comparative static involves \emph{less} anchoring. This comes from the fact that \cite{carvalho2019anchored}'s criterion endows the private sector with capabilities to disentangle volatility due to the learning mechanism from that owing to exogenous disturbances. Thus agents in the \cite{carvalho2019anchored} model are able to make more advanced inferences about the performance of their forecasting rule and understand that a higher $\psi_{\pi}$ causes more learning-induced volatility. This is however not possible for agents who process data in real time without knowledge of the model. Therefore my smooth and the discrete CUSUM-inspired specifications are preferable both on conceptual and quantitative grounds.
+
+Whether one relies on the discrete CUSUM or my smooth anchoring function, then, is a question of application. The analytical analysis of this paper requires derivatives of the anchoring function to exist. In such a case, the smooth specification is necessary. The discrete choice specification is easier to work with when computing moments conditional whether expectations are anchored or not because it only requires keeping track of two discrete cases.
+
+The second paper with an anchoring function is \cite{gobbi2019monetary}. In their model, which is a three-equation New Keynesian model, firms and households entertain the possibility that the model may switch from a ``normal'' regime to a liquidity trap regime that the authors name the ``new normal.'' Expectations are a probability-weighted average of the regime-specific expectations. The concept of unanchoring in the model is when $p$, the probability of the liquidity trap regime, rises significantly. The function governing the evolution of $p$, which \cite{gobbi2019monetary} refer to as the deanchoring function (DA), is the analogy to my anchoring function. The authors use the following logistic specification for the DA function:
+
+\begin{equation}
+ p = h(y_{t-1}) = A + \frac{B C e^{-D y_{t-1}}}{( C e^{-D y_{t-1}}+1)^2}
+\end{equation}
+where $y_{t-1}$ denotes the output gap and $A,B,C$ and $D$ are parameters.
+
+\section{Estimation procedure}\label{SMM}
+The estimation of Section \ref{estimation} is a simulated method of moments (SMM) exercise. As elaborated in the main text, I target the autocovariances of CPI inflation, the output gap, the federal funds rate and the 12-months ahead inflation forecasts coming from the Survey of Professional Forecasters. For the autocovariances, I consider lags $0, \dots, 4$. The target moment vector, $\Omega$, is the vectorized autocovariance matrices for the lags considered, $80\times1$. 
+
+For each proposed coefficient vector $\gamma$, the estimation procedure consists of simulating the model conditional on $\gamma$, the calibrated parameters $\theta$ and $N$ different sequences of disturbances, computing model-implied moments for each simulation, and lastly choosing $\alpha$ such that the squared distance between the data- and model-implied mean moments is minimized. Thus
+
+\begin{equation}
+\hat{\gamma} = \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\gamma, \theta, \{e^n_t\}_{t=1}^{T})\bigg)' W^{-1} \bigg(\Omega^{data}-\frac{1}{N}\sum_{n=1}^N\Omega^{model}(\gamma, \theta,  \{e^n_t\}_{t=1}^{T})\bigg)
+\label{GMM_loss}
+\end{equation}
+
+where the observed data is of length $T=151$ quarters. Here $\{e^n_t\}_{t=1}^{T}$ is a sequence of disturbances of the same length as the data; note that I use a cross-section of $N$ such sequences and take average moments across the cross-section to wash out the effects of particular disturbances. Experimentation with the number $N$ led me to choose $N=1000$, as estimates no longer change upon selecting larger $N$.
+
+Before computing moments, I filter both the observed and model-generated data using the \cite{baxter1999measuring} filter, with thresholds at 6 and 32 quarters and truncation at 12 lags, the recommended values of the authors. I then compute the moments by fitting a reduced-form VAR to the filtered series and using the estimated coefficients to back out autocovariances.  Because there are four observables to three structural shocks and occasionally low volatility in the expectation series, I estimate the VAR coefficients by ridge regression with a tuning parameter of 0.001. This is to ensure that the VAR coefficients are estimated with a lower standard error, so that estimated variances of the moments are more accurate. As the weighting matrix of the quadratic form in the moments, I use the inverse of the estimated variances of the target moments, $W^{-1}$, computed from 10000 bootstrapped samples.  
+
+To improve identification, I also impose restrictions on the estimates. First, I require that the $\alpha$-coefficients be convex, that is, that larger forecast errors in absolute value be associated with higher gains. Second, since forecast errors close to zero render the size of the gain irrelevant (cf. the learning equation (\ref{RLS})), I impose that the coefficient associated with a zero forecast error should be zero. Both restrictions are implemented with weights penalizing the loss function, and the weights are selected by experimentation. 
+
+Both additional assumptions reflect properties that the anchoring function should reasonably exhibit. The convexity assumption captures the very notion that larger forecast errors in absolute value suggest bigger changes to the forecasting procedure are necessary. This is thus a very natural requirement. As for the zero gain for zero forecast error assumption, the idea here is to supply the estimation with information where it is lacking. Since the updating of learning coefficients corresponds to gain times forecast error, as Equation (\ref{RLS}) recalls, a zero forecast error supplies no information for the value of the gain. To impose a zero value here also seems natural, given that since forecast errors switch sign at zero, one would expect the zero forecast error point to be an inflection point in the anchoring function. By the same token, \cite{gobbi2019monetary} also impose a related restriction when they require that their deanchoring function should yield a zero value at the zero input. Lastly, the objective function does not deteriorate upon imposing either assumption, suggesting that they are not at odds with the data.
+
+Lastly, I supply 100 different initial points and select the estimate involving the lowest value for the loss (\ref{GMM_loss}). Fig. \ref{autocovariogram} presents the autocovariances of the observed variables for the estimated coefficients so obtained.
+
+
+\begin{figure}[h!]
+\includegraphics[scale=0.35]{\myFigPath \fignameAutocov}
+\caption{Autocovariogram}
+\label{autocovariogram}
+\floatfoot{Estimates for $N=1000$}
+\end{figure}
+
+\section{The policy problem in the simplified baseline model }\label{app_midsimple_problem}
+Denote by $\mathbf{g}_{i,t} \in (0,1), \; i=\pi, \bar{\pi}$, the potentially time-varying derivatives of the anchoring function $\mathbf{g}$. In this simplified setting, $\bar{\pi}_t = e_1 a_t$, the estimated constant for the inflation process. $e_i$ is a selector vector, selecting row $i$ of the subsequent matrix. I also use the notation $b_i \equiv e_i b$.   The planner chooses $\{\pi_t, x_t, f_{a,t},  f_{b,t}, \bar{\pi}_t, k_t\}_{t=t_0}^{\infty}$ to minimize
+
+ \begin{align}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{  (\pi_t^2  + \lambda_x x_t^2 )  \\
+ & + \varphi_{1,t} \bigg(\pi_t - \kappa x_t -(1-\alpha)\beta f_{a,t} -\kappa\alpha\beta b_2 (I_3 - \alpha\beta h)^{-1}s_t - e_3(I_3 - \alpha\beta h)^{-1}s_t \bigg) \label{midsimple_first}\\
+ & + \varphi_{2,t} \bigg(x_t + \sigma i_t -\sigma f_{b,t}  -  (1-\beta)b_2 (I_3 - \beta h)^{-1}s_t + \sigma\beta b_3 (I_3 - \beta h)^{-1}s_t -\sigma e_1(I_3 - \beta h)^{-1}s_t  \big)\bigg) \\
+ & +  \varphi_{3,t}  \bigg(f_{a,t} - \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \alpha\beta h)^{-1}s_t  \bigg) \\
+ & + \varphi_{4,t}  \bigg(f_{b,t} - \frac{1}{1-\beta}\bar{\pi}_{t-1}  - b_1(I_3 - \beta h)^{-1}s_t \bigg)  \\
+  & + \varphi_{5,t}  \bigg(  \bar{\pi}_{t} - \bar{\pi}_{t-1} - k_t\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)   \bigg)  \\
+  & + \varphi_{6,t}  \bigg(k_t - \mathbf{g}(\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1})  \bigg)
+  \bigg\} \label{midsimple_last}
+\end{align}
+where $\rho_i$ are Lagrange-multipliers on the constraints.
+After a little bit of simplifying, the first-order conditions boil down to the following three equations:
+\begin{align}
+& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -\varphi_{5,t} k_t - \varphi_{6,t} \mathbf{g}_{\pi,t} = 0 \label{gaspar22}\\
+& -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa}x_{t+1} + \varphi_{5,t} -(1-k_t)\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21}\\
+& \varphi_{6,t} = (\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}) \varphi_{5,t} \label{constraints}
+\end{align}
+Note that Equation (\ref{gaspar22}) is the analogue of \cite{gaspar2010inflation}'s Equation (22) (or, equivalently, of  \cite{molnar2014optimal}'s (16)), except that there is an additional multiplier, $\varphi_6$. This multiplier reflects the fact that in addition to the constraint coming from the expectation process itself, with shadow value $\varphi_5$, learning involves the gain equation as a constraint as well. One can also clearly read off Proposition \ref{result_no_commitment}: when the learning process has converged such that neither expectations nor the gain process are constraints ($\varphi_5 =\varphi_6 = 0$), the discretionary inflation-output gap tradeoff familiar from \cite{clarida1999science} obtains. Combining the above three equations and solving for $\varphi_{5,t}$, using the notation that $\prod_{j=1}^{0} \equiv 1$, one obtains the target criterion (\ref{target}).
+
+The system of first-order conditions (\ref{simpleFOC1})-(\ref{simpleFOC2}) and model equations for this simplified system also reveal how the endogenous gain introduces nonlinearity to the equation system. In particular, notice how in equations (\ref{simpleFOC1})-(\ref{simpleFOC2}), the gain $k_t$ shows up multiplicatively with the Lagrange multiplier, $\varphi_{2,t}$. In fact, the origin of the problem is the recursive least squares learning equation for the learning coefficient $f_t$
+\begin{equation}
+f_t = f_{t-1} + k_t(\pi_t - f_{t-1}) \label{simpleRLS}
+\end{equation}
+where the first interaction terms between the gain and other endogenous variables show up. This results in an equation system of nonlinear difference equations that does not admit an analytical solution. 
+
+Considering equation (\ref{simpleRLS}) is instructive to see how it is indeed the endogeneity of the gain that causes these troubles. Were we to specify a constant gain setup, $k_t$ would merely equal the constant $\bar{g}$ and the anchoring function $\mathbf{g}$ would trivially reduce to zero as well. In such a case, all interaction terms would reduce to multiplication between endogenous variables and parameters; linearity would be restored and a solution for the optimal time paths of endogenous variables would be obtainable. Similarly, a decreasing gain specification would also be manageable since for all $t$, the gain would simply be given by $t^{-1}$, and the anchoring function would also be deterministic and exogenous. 
+
+\section{A target criterion for an anchoring mechanism specified in terms of gain changes}\label{app_generalTC}
+Consider the general anchoring mechanism of Equation (\ref{anchoring}):
+\begin{equation}
+k_t = \rho_kk_{t-1} + \mathbf{g}(f_{t|t-1})
+\end{equation}
+With this assumption, the FOCs of the Ramsey problem are
+\begin{align}
+& 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t -k_t \varphi_{5,t} - \mathbf{g}_{\pi,t}\varphi_{6,t}  = 0 \label{gaspar22_general}\\
+& c x_{t+1} + \varphi_{5,t} -(1-k_t)\varphi_{5,t+1} +\mathbf{g}_{\bar{\pi},t}\varphi_{6,t+1} = 0 \label{gaspar21_general}\\
+& \varphi_{6,t} \; \textcolor{brownreddark}{+\; \varphi_{6,t+1}} = f_{t|t-1} \varphi_{5,t} \label{constraints_general}
+\end{align}
+where the red multiplier is the new element vis-\`a-vis the case where the anchoring function is specified in levels ($k_t = \mathbf{g}(f_{t|t-1})$), and I am using the shorthand notation
+\begin{align}
+c & = -\frac{2(1-\alpha)\beta}{1-\alpha\beta}\frac{\lambda_x}{\kappa} \\ 
+f_{t|t-1} & = \pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}
+\end{align}
+(\ref{gaspar22}) says that in anchoring, the discretion tradeoff is complemented with tradeoffs coming from learning ($\varphi_{5,t}$), which are more binding when expectations are unanchored ($k_{t}^{-1}$ high). Moreover, the change in the anchoring of expectations imposes an additional constraint ($\varphi_{6,t}$), which is more strongly binding if the gain responds strongly to inflation ($\mathbf{g}_{\pi,t}$ is high in absolute value).
+One can simplify this three-equation-system to:
+\begin{align}
+\varphi_{6,t} & = -c f_{t|t-1} x_{t+1} + \bigg(1+ \frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}^{-1}) -f_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} -\frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}^{-1})\varphi_{6,t+2}\label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{f_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{f_{t|t-1}}\varphi_{6,t+1}\label{1'}
+\end{align}
+Thus a central bank that follows the target criterion has to compute $\varphi_{6,t}$ as the solution to (\ref{1'}), and then evaluate (\ref{6'}) as a target criterion. The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{f_{t+j|t}}}{\frac{k_{t+j}}{f_{t+j|t}} + \mathbf{g}_{\pi,t+j}} \label{sol1'}
+\end{equation}
+The interpretation of (\ref{sol1'}) is that the anchoring constraint is not binding ($\varphi_{6,t}=0$) if the central bank always hits the target ($\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i} = 0, \; \forall i$); or expectations are always anchored ($k_{t+j}=0, \; \forall j$). 
+
+\section{Parameterized expectations algorithm (PEA)} \label{pea}
+The objective of the parameterized expectations algorithm is to solve for the sequence of interest rates that solves the model equations including the target criterion, representing the first-order condition of the Ramsey problem. For convenience, I list the model equations:
+\begin{align*}
+x_t &=  -\sigma i_t + \begin{bmatrix} \sigma & 1-\beta & -\sigma\beta \end{bmatrix} f_{b,t} + \sigma \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} (I_{3} - \beta h)^{-1} s_t \label{A9} \numberthis \\
+\pi_t &= \kappa x_t  + \begin{bmatrix} (1-\alpha)\beta & \kappa\alpha\beta & 0 \end{bmatrix}  f_{a,t} + \begin{bmatrix} 0 & 0 & 1 \end{bmatrix}  (I_{3} - \alpha \beta h)^{-1}  s_t \label{A10} \numberthis\\
+f_{a,t} & = \frac{1}{1-\alpha\beta}\bar{\pi}_{t-1}  + b(I_{3} - \alpha\beta h)^{-1}s_t \numberthis \\
+f_{b,t} & = \frac{1}{1-\beta}\bar{\pi}_{t-1}  + b(I_{3} - \beta h)^{-1}s_t  \label{A8} \numberthis \\
+ f_{t|t-1} &  = \pi_t - (\bar{\pi}_{t-1}+b_1 s_{t-1}) \label{A7} \numberthis \\
+ k_t & = \sum_i \gamma_i b_i(f_{t|t-1}) \numberthis  \\
+ \bar{\pi}_{t} &  = \bar{\pi}_{t-1} +k_tfe_{t|t-1} \numberthis \\
+ \pi_t & = -\frac{\lambda_x}{\kappa}\bigg\{x_t - \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t} \bigg) \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j}^{-1} - (f_{t+1+j|t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\bigg\} \numberthis \label{B1}
+\end{align*}
+
+Denote the expectation on the right hand side of (\ref{B1}) as $E_t$. The idea of the PEA is to approximate this expectation and to solve model equations given the approximation $\hat{E}_t$. The algorithm is as follows:\footnote{For a thorough treatment of the PEA, the interested reader is referred to \cite{christiano2000occasionally}.}
+\begin{enumerate}
+\item[Objective:] Obtain the sequence $\{i_t\}_{t=1}^T$ that solves Equations (\ref{A9}) - (\ref{B1}) for a history of exogenous shocks $\{s_t\}_{t=1}^T$ of length $T$. 
+\item Conjecture an initial expectation $\hat{E}_t=\beta^0 s(X_t)$. \\
+The expectation is approximated as a projection on a basis, $s(X_t)$, where $\beta^0$ are initial projection coefficients, and $X_t = (k_t,\bar{\pi}_{t-1}, r^n_t, u_t)$ is the state vector. I use a monomial basis consisting of the first, second and third powers of $X_t$.
+\item Solve model equations given conjectured $\hat{E}_t$ for a given sequence of shocks $\{s_t\}_{t=1}^T$.\\
+Compute residuals to the model equations (\ref{A9}) - (\ref{B1}) given $\{s_t\}_{t=1}^T$ and $\{\hat{E}_t\}_{t=1}^T$. Obtain a sequence $\{i_t\}_{t=1}^T$ that sets the residuals to zero. The output of this step is $\{v_t\}_{t=1}^T$, the simulated history of endogenous variables (\cite{christiano2000occasionally} refer to this as a ``synthetic time series"). 
+\item Compute realized analogues of $\{E_t\}_{t=1}^T$ given $\{v_t\}_{t=1}^T$.
+\item Update $\beta$ regressing the synthetic $E_t$ on $s(X_t)$.\\
+The coefficient update is $\beta^{i+1} = (s(X_t)'s(X_t))^{-1}s(X_t)'E_t$. Then iterate until convergence by evaluating at every step $||\beta^i-\beta^{i+1}||$.
+\end{enumerate}
+
+\section{Parametric value function iteration} \label{vfi}
+This is an alternative approach I implement as a robustness check to the PEA. The objective is thus the same: to obtain the interest rate sequence that solves the model equations. The general value function iteration (VFI) approach is fairly standard, for which reason I refer to the \cite{judd1998numerical} textbook for details. Specific to my application is that the state vector is five-dimensional, $X_t = (\bar{\pi}_{t-1}, r^n_t, u_t, r^n_{t-1}, u_{t-1})$, and that I approximate the value function using a cubic spline. Thus the output of the algorithm is a cubic spline approximation of the value function and a policy function for each node on the grid of states. Next, I interpolate the policy function using a cubic spline as well. As a last step I pass the state vector from the PEA simulation, obtaining an interest rate sequence conditional on the history of states. Fig. \ref{compare_pea_vfi} shows the resulting interest rate sequence, obtained through the two approaches, conditional on a  simulated sequence for the exogenous states.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.25]{\myFigPath \fignamePEAvsVFIfirstX}
+\caption{Policy function for a particular history of states, PEA against VFI}
+\label{compare_pea_vfi}
+\end{figure}
+
+
+\section{Oscillatory dynamics in adaptive learning models} \label{app_oscillations}
+Here I present an illustration for why adaptive learning models produce oscillatory impulse responses if the gain is high enough. Consider a stylized adaptive learning model in two equations:
+\begin{align}
+\pi_t & = \beta f_t + u_t \label{simple_NKPC} \\
+f_t & = f_{t-1} + k(\pi_t - f_{t-1}) \label{simple_expectations}
+\end{align}
+The reader can recognize in (\ref{simple_NKPC}) a simplified Phillips curve in which I am abstracting from output gaps to keep the presentation as clear as possible. Like in the simple model of Section \ref{ramsey} in the main text, $f_t$ represents the one-period inflation expectation $\hat{\E}_t \pi_{t+1}$. (\ref{simple_expectations}), then, represents the simplest possible recursive updating of the expectations $f_t$. My notation of the gain as $k$ indicates a constant gain specification, but the intuition remains unchanged for decreasing (or endogenous) gains. 
+
+Combining the two equations allows one to solve for the time series of expectations
+\begin{equation}
+f_t = \frac{1-k}{1-k\beta}f_{t-1} + \frac{k}{1-k\beta}u_t
+\end{equation}
+which, for $\beta$ close but smaller than 1, is a near-unit-root process. (In fact, if the gain were to go to zero, this would be a unit root process.) Defining the forecast error as $f_{t|t-1} \equiv \pi_t - f_{t-1}$, one obtains
+\begin{equation}
+f_{t|t-1} = -\frac{1-\beta}{1-k\beta}f_{t-1} + \frac{1}{1-k\beta}u_t \label{oscillating_fe}
+\end{equation}
+Equation (\ref{oscillating_fe}) shows that in this simple model, the forecast error loads on a near-unit-root process with a coefficient that is negative and less than one in absolute value. Damped oscillations are the result. 
+
+Note that even if the gain would converge to zero, the coefficient on $f_{t-1}$ would be negative and less than one in absolute value. Thus even for decreasing gain learning, one obtains oscillations, but the lower the gain, the more damped the oscillations become. This corroborates my findings in the impulse responses of Fig. \ref{IRF_main}. But importantly, the opposite extreme, when $k\rightarrow 1$, results in a coefficient of exactly $-1$, giving perpetual oscillations. This clearly illustrates how the oscillatory behavior of impulse responses comes from the oscillations in the forecast error that obtain when the gain is sufficiently large. 
+
+
+
+
+\end{document}
+
+
+
+
+
