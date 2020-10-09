@@ -7,22 +7,23 @@
 \BOOKMARK [2][-]{subsection.3.1}{Perceived law of motion}{section.3}% 7
 \BOOKMARK [2][-]{subsection.3.2}{Endogenous gain as anchoring mechanism}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.3}{Actual law of motion}{section.3}% 9
-\BOOKMARK [1][-]{section.4}{Estimating the anchoring function}{}% 10
-\BOOKMARK [1][-]{section.5}{Monetary policy and anchoring}{}% 11
-\BOOKMARK [2][-]{subsection.5.1}{The Ramsey policy under anchoring}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.2}{Implementing the Ramsey policy: the optimal interest rate sequence}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.3}{Optimal Taylor rule under anchoring}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.4}{Welfare gains from optimal policy}{section.5}% 15
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Rolling regression with inflation as explanatory variable}{}% 17
-\BOOKMARK [1][-]{appendix.B}{Alternative measures of long-run inflation expectations}{}% 18
-\BOOKMARK [1][-]{appendix.C}{Filtering out liquidity risk from TIPS}{}% 19
-\BOOKMARK [1][-]{appendix.D}{Compact model notation}{}% 20
-\BOOKMARK [1][-]{appendix.E}{The observation matrix for learning}{}% 21
-\BOOKMARK [1][-]{appendix.F}{Alternative specifications for the anchoring function}{}% 22
-\BOOKMARK [1][-]{appendix.G}{Estimation procedure}{}% 23
-\BOOKMARK [1][-]{appendix.H}{The policy problem in the simplified baseline model }{}% 24
-\BOOKMARK [1][-]{appendix.I}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 25
-\BOOKMARK [1][-]{appendix.J}{Parameterized expectations algorithm \(PEA\)}{}% 26
-\BOOKMARK [1][-]{appendix.K}{Parametric value function iteration}{}% 27
-\BOOKMARK [1][-]{appendix.L}{Oscillatory dynamics in adaptive learning models}{}% 28
+\BOOKMARK [2][-]{subsection.3.4}{Simplifying assumptions}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Estimating the anchoring function}{}% 11
+\BOOKMARK [1][-]{section.5}{Monetary policy and anchoring}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{The Ramsey policy under anchoring}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Implementing the Ramsey policy: the optimal interest rate sequence}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Optimal Taylor rule under anchoring}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.4}{Welfare gains from optimal policy}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [1][-]{appendix.A}{Rolling regression with inflation as explanatory variable}{}% 18
+\BOOKMARK [1][-]{appendix.B}{Alternative measures of long-run inflation expectations}{}% 19
+\BOOKMARK [1][-]{appendix.C}{Filtering out liquidity risk from TIPS}{}% 20
+\BOOKMARK [1][-]{appendix.D}{Compact model notation}{}% 21
+\BOOKMARK [1][-]{appendix.E}{The observation matrix for learning}{}% 22
+\BOOKMARK [1][-]{appendix.F}{Alternative specifications for the anchoring function}{}% 23
+\BOOKMARK [1][-]{appendix.G}{Estimation procedure}{}% 24
+\BOOKMARK [1][-]{appendix.H}{The policy problem in the simplified baseline model }{}% 25
+\BOOKMARK [1][-]{appendix.I}{A target criterion for an anchoring mechanism specified in terms of gain changes}{}% 26
+\BOOKMARK [1][-]{appendix.J}{Parameterized expectations algorithm \(PEA\)}{}% 27
+\BOOKMARK [1][-]{appendix.K}{Parametric value function iteration}{}% 28
+\BOOKMARK [1][-]{appendix.L}{Oscillatory dynamics in adaptive learning models}{}% 29
