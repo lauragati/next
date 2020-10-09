@@ -146,7 +146,7 @@ bottom=1in}
 \def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
 
 % Estimated coefficients alpha
-\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
+\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45}
 % Autocovariogram
 \def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
 
@@ -610,7 +610,7 @@ Here $b_i(\cdot)$ is a piecewise linear basis and $\gamma$ is a vector of approx
 \floatfoot{Estimates for 5 knots, cross-section of size $N=1000$}
 \end{figure}
 
-Fig. \ref{alpha_hat} presents the estimated coefficients: $\hat{\gamma}=$ \meanalph. The interpretation of the elements of $\hat{\gamma}$ is the value of the gain the private sector choses when it observes a forecast error of a particular magnitude. For example, a forecast error of -4 pp in inflation is associated with a gain of 0.82. 
+Fig. \ref{alpha_hat} presents the estimated coefficients: $\hat{\gamma}=$ \meanalph. The circles indicate the nodes of the piecewise linear approximation. The interpretation of the elements of $\hat{\gamma}$ is the value of the gain the private sector choses when it observes a forecast error of a particular magnitude. For example, a forecast error of -4 pp in inflation is associated with a gain of 0.82. 
 
 Before interpreting the estimated anchoring function, it is helpful to work out what amounts to a large gain. In particular, since the gain is the model's metric of the extent of unanchoring, from what size of the gain should one consider expectations to be significantly unanchored? The consensus in the literature on estimating learning gains is that if the true model is one with constant gain learning, then the gain lies between 0.01-0.05. On the higher end of the empirical estimates, \cite{branch2006simple} obtain a constant gain on inflation of 0.062. \cite{milani2007expectations} finds 0.0183. The estimates of the maximal value for endogenous gains lie somewhat higher, at 0.082 in \cite{milani2014learning} and at 0.145 in \cite{carvalho2019anchored}. Calibrated models tend to use the consensus values between 0.01-0.05, with the number 0.05 having attained particular prominence. However, \cite{eusepi2011expectations} find that the value of 0.002 is sufficient to significantly alter the dynamic behavior of a standard RBC model. 
 

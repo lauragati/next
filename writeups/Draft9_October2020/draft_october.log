@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 OCT 2020 14:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 OCT 2020 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -653,20 +653,20 @@ Overfull \vbox (1.08702pt too high) has occurred while \output is active []
 
 [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
 <../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000
-_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png, id=488, 1066.98625pt x 7
+_Nsimulations_command_sigmas_09_Oct_2020_15_08_45.png, id=488, 1066.98625pt x 7
 65.86125pt>
 File: ../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid
-_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png Graphic file (type p
+_1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45.png Graphic file (type p
 ng)
 
 <use ../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_
-1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png>
+1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45.png>
 Package pdftex.def Info: ../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_
-Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png u
+Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45.png u
 sed on input line 607.
 (pdftex.def)             Requested size: 320.09834pt x 229.76015pt.
  [16 <../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid
-_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png (PNG copy)>]
+_1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45.png (PNG copy)>]
 <../../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png, id=50
 9, 1059.96pt x 755.82375pt>
 File: ../../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png G
@@ -903,10 +903,6 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1268.
 
 Package rerunfilecheck Info: File `draft_october.out' has not changed.
 (rerunfilecheck)             Checksum: 2566EDCDA70828A6F075A445E53A6770;2301.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1268.
  ) 
 Here is how much of TeX's memory you used:
@@ -937,7 +933,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_october.pdf (51 pages, 1357749 bytes).
+Output written on draft_october.pdf (51 pages, 1358431 bytes).
 PDF statistics:
  1228 PDF objects out of 1440 (max. 8388607)
  1124 compressed objects within 12 object streams

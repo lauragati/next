@@ -19,6 +19,7 @@ set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 for i=1:ny
     plot(x,y(i,:), 'linewidth', lw); hold on
+%     plot(x,y(i,:), 'linewidth', lw, 'marker', 'o', 'markersize', 8); hold on % uncomment when plotting the estimated alpha
 end
 % plot(x,zeros(1,T), 'k--', 'linewidth',lw)
 ax = gca; % current axes
