@@ -51,12 +51,6 @@ Bils, M. and P.~J. Klenow (2004).
 \newblock Some evidence on the importance of sticky prices.
 \newblock {\em Journal of {P}olitical {E}conomy\/}~{\em 112\/}(5), 947--985.
 
-\bibitem[\protect\citeauthoryear{Bordalo, Gennaioli, Ma, and Shleifer}{Bordalo
-  et~al.}{2018}]{bordalo2018over}
-Bordalo, P., N.~Gennaioli, Y.~Ma, and A.~Shleifer (2018).
-\newblock Over-reaction in macroeconomic expectations.
-\newblock Technical report, National Bureau of Economic Research.
-
 \bibitem[\protect\citeauthoryear{Bordalo, Gennaioli, and Shleifer}{Bordalo
   et~al.}{2018}]{bordalo2018diagnostic}
 Bordalo, P., N.~Gennaioli, and A.~Shleifer (2018).
@@ -298,6 +292,12 @@ Mankiw, N.~G. and R.~Reis (2002).
   {N}ew {K}eynesian {P}hillips curve.
 \newblock {\em The Quarterly Journal of Economics\/}~{\em 117\/}(4),
   1295--1328.
+
+\bibitem[\protect\citeauthoryear{Marcet and Nicolini}{Marcet and
+  Nicolini}{2003}]{marcet2003recurrent}
+Marcet, A. and J.~P. Nicolini (2003).
+\newblock Recurrent hyperinflations and learning.
+\newblock {\em American Economic Review\/}~{\em 93\/}(5), 1476--1498.
 
 \bibitem[\protect\citeauthoryear{Mele, Moln{\'a}r, and Santoro}{Mele
   et~al.}{2019}]{mele2019perils}

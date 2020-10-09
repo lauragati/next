@@ -459,47 +459,55 @@ f_{t|t-1} \equiv z_t - \phi_{t-1}\begin{bmatrix} 1\\ s_{t-1}\end{bmatrix} \label
 to update their forecasting rule. The estimate is updated according to the following recursive least-squares algorithm:
 \begin{align}
 \phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}f_{t|t-1}' \bigg)' \label{RLS}, \\
-R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg).
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg). \label{R}
 \end{align}
 Here $R_t$ is the $4\times 4$ variance-covariance matrix of the regressors and $k_t$ is the learning gain, specifying to what extent the updated estimate loads on the forecast error. Clearly, a high gain implies high loadings and thus strong changes in the estimated coefficients $\phi_t$. A low gain, by contrast, means that a given forecast error only has a small effect on $\phi_t$.
 
 \subsection{Endogenous gain as anchoring mechanism}
 
-The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = (k_{t-1}^{-1}+1)^{-1}$. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} in allowing the gain to fluctuate in a time-varying way in response to short-run forecast errors. I use the following endogenous gain specification: I assume the gain evolves as
+The vast majority of the learning literature specifies the gain either as a constant, $\bar{g}$, or decreasing with time, so that $k_t = t^{-1}$, where $t$ indexes time. Instead, to capture the notion of anchoring, I follow \cite{carvalho2019anchored} in allowing the gain to fluctuate in a time-varying way in response to short-run forecast errors. I use the following endogenous gain specification: I assume the gain evolves as
 \begin{equation}
 k_t  = \mathbf{g}(k_{t-1},f_{t|t-1}), 
 \label{anchoring}
 \end{equation}
-where $\mathbf{g(\cdot)}$ is a smooth function. I refer to $ \mathbf{g}(\cdot)$ as the anchoring function. Notice that this function is a extension of the conventional decreasing or constant gain specifications, as it nests both as special cases. A decreasing gain implies $\mathbf{g}(k_{t-1},f_{t|t-1})  = (k_{t-1}^{-1}+1)^{-1}$ while a constant gain sets $\mathbf{g}(k_{t-1},f_{t|t-1})  = \bar{g}$. Furthermore, in both special cases, $g_2 = 0$.
+where $\mathbf{g(\cdot)}$ is a smooth function. I refer to $ \mathbf{g}(\cdot)$ as the anchoring function. Notice that this function is an extension of the conventional decreasing or constant gain specifications, as it nests both as special cases. A decreasing gain implies $\mathbf{g}(k_{t-1},f_{t|t-1})  = t^{-1}$, while a constant gain sets $\mathbf{g}(k_{t-1},f_{t|t-1})  = \bar{g}$. Furthermore, in both special cases, $\mathbf{g}_1 = \mathbf{g}_2 = 0$.
 
-I make the following assumptions on the function $\mathbf{g(\cdot)}$:
+By contrast, my novel specification entails the following assumptions on the function $\mathbf{g(\cdot)}$:
 
 \begin{align}
-\mathbf{g}_1 & \geq 0 \label{ass_g1} \\
-\mathbf{g}_{22} & \geq 0 \label{ass_g2}
+\mathbf{g}_1 & \geq 0 \label{ass_g1}, \\
+\mathbf{g}_{22} & \geq 0 \label{ass_g2}.
 \end{align}
+Equation (\ref{ass_g1}) says that the current value of the gain depends positively on its past value. In a similar vein, Equation (\ref{ass_g2}) suggests that $\mathbf{g}(\cdot)$ is convex in its second argument. In other words, the gain is increasing in the absolute value of forecast errors. 
+
+% interpretation
+The novelty of specifying the evolution of the gain using (\ref{anchoring}) with the properties in (\ref{ass_g1}) and (\ref{ass_g2}) is that it offers a time- and state-dependent model of private sector learning. In both of the standard, exogenous gain schemes the gain is divorced from the current environment. It either decreases deterministically ($k_t = t^{-1}$), or is a constant ($k_t = \bar{g}$). This means that the private sector's learning is static and not state-dependent in the sense that a volatile environment results in the same learning pattern as a stable one. My specification, instead, allows the private sector to learn in a time-varying and state-dependent way. When high volatility results in large forecast errors in absolute value, the anchoring function outputs a larger gain than when forecast errors are close to zero. Thus the learning coefficients $a_t$ and $b_t$ respond more to forecast errors in volatile states of the world than in stable ones. The time-varying nature of the gain therefore generates periods of well-anchored expectations (low gain) as well as highly unanchored episodes (high gain). The model thus interprets the gain as a metric of the extent of unanchoring. 
+
+% practically
+My anchoring mechanism also displays desirable empirical features. First, as demonstrated by \cite{milani2014learning}, endogenous gain learning models can match time-varying volatility in the data, a feature that constant gain learning models cannot account for. More importantly, since $a_t$ is my model's expression for long-run expectations, the fact that the gain is a convex function of forecast errors allows the model to match the time-varying sensitivity of long-term inflation expectations documented in Fig. \ref{rolling}.
+
+% CEMP
+I am not the first to postulate an endogenous gain. In fact, \cite{milani2014learning}'s estimation is based on an endogenous gain scheme introduced by \cite{marcet2003recurrent}. Furthermore, \cite{carvalho2019anchored} are the first to lay out an endogenous gain specification as a model of anchored expectations. The novelty of my endogenous gain model is that, as opposed to \cite{carvalho2019anchored}, the anchoring function $\mathbf{g}(\cdot)$ is a smooth function. In \cite{carvalho2019anchored}'s specification, discussed in detail in Appendix \ref{alternative_criteria}, $\mathbf{g}(\cdot)$ is a discrete function of the endogenous component of forecast errors. In their partial equilibrium model, firms use a constant gain if the endogenous component of forecast errors exceeds a given threshold, otherwise they use a decreasing gain. 
+
+Assuming instead that $\mathbf{g}(\cdot)$ is a smooth function is useful for two reasons. First, since the derivatives of $\mathbf{g}(\cdot)$ exist, this formulation allows me to consider the Ramsey problem of the monetary authority. This is thus a necessary condition to be able to study optimal monetary policy in the model, which is the main contribution of the paper. Second, the smoothness of $\mathbf{g}(\cdot)$ renders the size of the gain a meaningful metric of the degree of unanchoring. By contrast, in \cite{carvalho2019anchored}'s model, expectations are either fully anchored or unanchored. My model thus provides more flexibility regarding the extent of unanchoring, in line with the evidence on varying degrees of responsiveness of long-run expectations to short-run mistakes. 
+
+My smooth specification of $\mathbf{g}(\cdot)$ also allows me to take the anchoring function to the data. As discussed in Section \ref{estimation}, I employ a semi-nonparametric approach to back out the functional form of $\mathbf{g}(\cdot)$ from the data. I then use the estimates to calibrate my model to carry out the numerical analysis of monetary policy.
 
 
- Appendix \ref{alternative_criteria} compares alternative specifications for $\mathbf{g(\cdot)}$ and discusses the motivation behind using specific functional forms. I let my choice of functional form for $\mathbf{g(\cdot)}$ be guided by data, wherefore I start my inquiry by estimating the anchoring function (see Section \ref{estimation}).
-
-Having an endogenous gain has the interpretation of agents being able to adapt their forecasting behavior to the volatility of their environment. For a given previous gain, if agents observe small forecast errors, $\mathbf{g(\cdot)}$ is small. Firms and households thus use a small gain to update their forecasting rule, reflecting their belief that the underlying data-generating process (DGP) has not changed compared to their earlier held beliefs. I refer to this case as \emph{anchored expectations} because it captures the notion that the private sector's long-run expectations of the observables are stable. 
-
-By contrast, observing large forecast errors leads to $\mathbf{g}(\cdot)$ being sufficiently large so that the gain increases. This corresponds to assigning a higher weight to more recent observations than old ones. Such a forecasting scheme outperforms a lower gain scheme when the environment is volatile, reflecting a possible regime switch. If the previous DGP has been replaced by a new one, having a high gain allows agents to discount old observations generated by the previous DGP, and rely more on the newest observations that come from the current DGP. In this way, agents can learn the new DGP faster, correcting their previously held long-run expectations. This is the case of \emph{unanchored expectations}, and it induces long-run expectations to drift away from their previous values. 
-
-It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping between states and jumps than they previously maintained. Private sector forecasts will thus drift in the direction of the update, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. However, it is not obvious that the central bank prefers to anchor expectations at all points in time because regime shifts in model parameters might warrant letting the private sector learn the new DGP fast. Indeed, the contribution of this paper is to analyze formally the nature of the monetary policy problem when expectation formation is characterized by the  anchoring mechanism.
+It is intuitive why the central bank might care whether expectations are anchored or not. When expectations are unanchored at time $t$, the private sector believes that the true DGP involves a different mapping between states and jumps than they previously maintained. Private sector forecasts will thus drift in the direction of the update, implying that the observables will also shift in the same direction owing to the law of motion (\ref{LOM_LR}). From the perspective of the central bank, stabilization of the observables therefore implies stabilization of expectations. Indeed, the contribution of this paper is to analyze formally the nature of the monetary policy problem when expectations are formed using the anchoring mechanism in Equation (\ref{anchoring}).
 
 \subsection{Actual law of motion}
 To complete the model, I now use the specifics of the anchoring expectation formation to characterize the evolution of the jump variables under learning. Using the PLM from Equation (\ref{PLM}), I write the long-horizon expectations in (\ref{fafb}) as
 \begin{equation}
-f_{a,t} \equiv \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta h)^{-1}s_t \quad \quad \quad f_{b,t} \equiv \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta h)^{-1}s_t  \label{fafb_anal}
+f_{a,t} \equiv \frac{1}{1-\alpha\beta}a_{t-1}  + b_{t-1}(I_3 - \alpha\beta h)^{-1}s_t \quad \quad \text{and} \quad \quad f_{b,t} \equiv \frac{1}{1-\beta}a_{t-1}  + b_{t-1}(I_3 - \beta h)^{-1}s_t  \label{fafb_anal}.
 \end{equation}
 Substituting these into the law of motion of observables (Equation (\ref{LOM_LR})) yields the actual law of motion (ALM):
 \begin{equation}
 z_t = g_{t-1}^l \begin{bmatrix} 1 \\ s_t
-\end{bmatrix}
+\end{bmatrix},
 \label{ALM}
 \end{equation}
-where $g^l$ is a $3\times4$ matrix given in Appendix \ref{app_FG}. Thus, instead of the state-space solution of the RE version of the model (Equations (\ref{LOM_s}) and (\ref{RE_obs})), the state-space solution for the learning model is characterized by the pair of equations (\ref{LOM_s}) and (\ref{ALM}). 
+where $g^l$ is a $3\times4$ matrix given in Appendix \ref{app_FG}. Thus, instead of the state-space solution of the RE version of the model (Equations (\ref{LOM_s}) and (\ref{RE_obs})), the state-space solution for the learning model is characterized by the pair of equations (\ref{LOM_s}) and (\ref{ALM}), together with the PLM (\ref{PLM_fcst_general}), the learning equations (\ref{RLS}) and (\ref{R}), as well as the anchoring function (\ref{anchoring}). 
 
 \subsection{Simplifying assumptions}
 To simplify the analytical work in Section \ref{ramsey}, I make two assumptions that I maintain for the rest of the paper.
@@ -515,30 +523,29 @@ The rationale behind this assumption is that it is the smallest possible deviati
 % g depends on fe only
 \begin{ass}{$\mathbf{g}_1 = 0.$}\label{ass_glevels}
 \end{ass}
-The interpretation of this assumption on the anchoring function is that the current gain depends only on forecast errors, not on its own past level. The motivation is to simplify the analytical solution of the Ramsey problem in Section \ref{ramsey}. Appendix \ref{app_generalTC} provides a treatment of the Ramsey problem with the general specification of the anchoring function. As seen in the Appendix, the economics of the solution does not depend on this assumption.
+The interpretation of this assumption on the anchoring function is that the current gain depends only on forecast errors, not on its own past level. The motivation is to simplify the analytical solution of the Ramsey problem in Section \ref{ramsey}. Appendix \ref{app_generalTC} provides a treatment of the Ramsey problem with the general specification of the anchoring function, relaxing Assumption \ref{ass_glevels}. As seen in the Appendix, this does not change the mechanics nor the intuition behind the solution of the Ramsey problem. 
+
+% tractability
 
  %%%%%%%%%%%%%%%%%%           ESTIMATION            %%%%%%%%%%%%%%%%%% 
 %\newpage
-\section{Estimating the anchoring function}\label{estimation}
-The numerical analysis of monetary policy requires a functional specification for the anchoring function $\mathbf{g}(\cdot)$ of Equation (\ref{anchoring}). But one may be interested in the form of the anchoring function in its own right because it carries the answer to a question crucial to central bankers: for what sign and size of forecast errors do expectations become unanchored?
+\section{Quantification of learning channel}\label{estimation}
+The numerical analysis of monetary policy requires a functional specification for the anchoring function $\mathbf{g}(\cdot)$ of Equation (\ref{anchoring}). For this reason, I back out the functional form of $\mathbf{g}(\cdot)$ from data. Apart from its usefulness for numerical analysis, the form of the anchoring function is interesting in its own right because it describes empirical properties of the anchoring of expectations. In particular, central bankers may want to know how much forecast errors of a particular sign and magnitude unanchor expectations. 
 
-Because the analytical results in Section \ref{ramsey} are based on a specification of the gain as a function of forecast errors only, I here present estimation results for that restricted specification.\footnote{Estimates of the general functional form are available on request.} Since the shape of the anchoring function is meaningful, I employ a piecewise linear approximation of the form:
+I carry out the estimation in two steps. I first calibrate the parameters of the underlying New Keynesian model. Conditional on these parameter values, I estimate the anchoring function by simulated method of moments \`a la \cite{lee1991simulation}, \cite{duffie1990simulated} and \cite{smith1993SMM}. I target the autocovariance structure of the Baxter-King filtered observables of the model and expectations. The observables are CPI inflation from the Bureau of Labor Statistics (BEA), the output gap and the federal funds rate from the Board of Governors of the Federal Reserve System.\footnote{The output gap measure is constructed as the difference between real GDP from the Bureau of Economic Analysis (BEA) and the Congressional Budget Office's (CBO) estimate of real potential output.} For expectations, I rely on 12-month-ahead inflation forecasts from the Survey of Professional Forecasters (SPF). The dataset is quarterly and ranges from 1981-Q3 to 2020-Q1. Appendix \ref{SMM} contains a detailed description of the estimation methodology.
 
-\begin{equation}
-\mathbf{g}(f_{t|t-1}) = \sum_i \gamma_i b_i(f_{t|t-1})\label{gain}
-\end{equation}
 
-Here $b_i(\cdot)$ is a second order spline basis and $\gamma$ is a vector of approximating coefficients. The index $i$ refers to the breakpoints of the piecewise linear approximation. I estimate $\gamma$ by simulated method of moments \`a la \cite{lee1991simulation}, \cite{duffie1990simulated} and \cite{smith1993SMM}, targeting the autocovariance structure of the observables of the model and expectations. In particular, the observables are CPI inflation from the Bureau of Labor Statistics (BEA), the output gap and the federal funds rate from the Board of Governors of the Federal Reserve System. For expectations, I rely on 12-month-ahead inflation forecasts from the Survey of Professional Forecasters (SPF).\footnote{The output gap measure is constructed as the difference between real GDP from the Bureau of Economic Analysis (BEA) and the Congressional Budget Office's (CBO) estimate of real potential output.} The dataset is quarterly and ranges from 1981-Q3 to 2020-Q1. Appendix \ref{SMM} contains a detailed description of the estimation methodology.
 
-Furthermore, the estimation relies on a calibration of the parameters pertaining to the New Keynesian backbone of the model. For this, I split the parameters in two subsets. The first is calibrated using values from the literature, while the second is calibrated to match the moments outlined above. Tables \ref{calibration} and \ref{calibration_moments} show the the two subsets of calibrated parameters respectively. As Table \ref{calibration} depicts, I adopt standard parameters from the literature where possible. In particular, for $\beta, \sigma$ and other parameters underlying $\kappa$, the slope of the Phillips curve, I rely on the parameterization of \cite{chari2000sticky}, advocated in \cite{woodford2011interest}.
+\subsection{Calibration}
+For the calibration of the NK backbone of the model, I split the parameters in two subsets. The first is calibrated using values from the literature, while the second is calibrated to match the moments outlined above. Tables \ref{calibration} and \ref{calibration_moments} show the two subsets of calibrated parameters respectively. As Table \ref{calibration} depicts, I adopt standard parameters from the literature where possible. In particular, for $\beta, \sigma$ and other parameters underlying $\kappa$, the slope of the Phillips curve, I rely on the parameterization of \cite{chari2000sticky}, advocated in \cite{woodford2011interest}.
 
 The composite parameter $\kappa$ is given by  $\kappa = \frac{(1-\alpha)(1-\alpha\beta)}{\alpha} \zeta$, where $\zeta$ is a measure of strategic complementarity in price setting. Assuming specific factor markets, constant desired markups with respect to output levels and no intermediate inputs, $\zeta = \frac{\omega + \sigma^{-1}}{1+\omega\theta}$. Here $\theta$ is the price elasticity of demand and $\omega$ is the elasticity of the marginal cost function with respect to output. \cite{chari2000sticky}'s calibration involves  $\theta =10, \sigma =1, \omega = 1.25, \beta = 0.99$, so that together with my choice of $\alpha$, $\kappa$ is pinned down. Note that I lower $\beta$ slightly (0.98 instead of \cite{chari2000sticky}'s 0.99). This allows the model to better match the autocovariance structure of the output gap because it lowers the pass-through of long-horizon expectations in the IS-curve.
 
-The probability of not adjusting prices, $\alpha$, is set to match an average price duration of two quarters, which is a little below the numbers found in empirical studies.\footnote{On the lower end, \cite{bils2004some} find a mean duration of 4.3 months and \cite{klenow2010microeconomic} 6.9 months. \cite{klenow2008state} and \cite{nakamura2008five} agree on between 7-9 months, while \cite{eichenbaum2011reference}'s number is 10.6 months.} In the literature, the average price duration is a little above 7 months. My number for $\alpha$ corresponds to 6 months. I choose the lower end of this spectrum in order to allow the learning mechanism, and not price stickiness, to drive the bulk of the model's persistence.
+The probability of not adjusting prices, $\alpha$, is set to match an average price duration of two quarters, which is slightly below the numbers found in empirical studies.\footnote{On the lower end of the empirical values for $\alpha$, \cite{bils2004some} find a mean duration of 4.3 months and \cite{klenow2010microeconomic} 6.9 months. \cite{klenow2008state} and \cite{nakamura2008five} agree on between 7-9 months, while \cite{eichenbaum2011reference}'s number is 10.6 months.} In the literature, the average price duration is a little above 7 months. My number for $\alpha$ corresponds to 6 months. I choose the lower end of this spectrum in order to allow the learning mechanism, and not price stickiness, to drive the bulk of the model's persistence.
 
-I set $\lambda_x$ to 0.05, the value estimated by \cite{rotemberg1997optimization}. A low, nonzero value for $\lambda_x$ is also desirable because it implies that a concern for output gap stabilization is not the main driver of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) is not trivial either.
-
-To simplify the numerical analysis as well as interpretation, I restrict the shocks to be iid. The volatilities of the disturbances and, where applicable, the output-coefficient of the Taylor rule, are set to match the autocovariances of Baxter-King filtered inflation, output gap and interest rate series. As shown in Table \ref{calibration_moments}, this implies standard deviations of 0.01 for the natural rate and monetary policy shock and 0.5 for the cost-push shock. In sections of the paper where I assume a Taylor rule, the matching exercise results in a 0.3 coefficient on the output gap, and unless otherwise specified, I set the inflation coefficient of the Taylor rule to 1.5, the value recommended by \cite{taylor1993discretion}. Note that the asterisks in Tables \ref{calibration} and \ref{calibration_moments} demarcate parameters that pertain to the Taylor rule and thus only to sections of the paper which assume that a Taylor rule is in effect.
+I set $\lambda_x$ to 0.05, the value estimated by \cite{rotemberg1997optimization}. 
+%A low, nonzero value for $\lambda_x$ is also desirable because it implies that a concern for output gap stabilization is not the main driver of the central bank's actions, yet the right hand side of the target criterion in (\ref{target}) is not trivial either.
+To simplify the numerical analysis as well as interpretation, I restrict the shocks to be iid. The volatilities of the disturbances and, where applicable, the output-coefficient of the Taylor rule, are set to match the above-mentioned moments. As shown in Table \ref{calibration_moments}, this implies standard deviations of 0.01 for the natural rate and monetary policy shock and 0.5 for the cost-push shock. In sections of the paper where I assume a Taylor rule, the moment-matching exercise results in a 0.3 coefficient on the output gap. The last parameter of the New Keynesian core is the inflation coefficient of the Taylor rule, $\psi_{\pi}$. Unless otherwise specified, I set $\psi_{\pi}$ to 1.5, the value recommended by \cite{taylor1993discretion}. Note that the asterisks in Tables \ref{calibration} and \ref{calibration_moments} demarcate parameters that pertain to the Taylor rule and thus only to sections of the paper which assume that a Taylor rule is in effect.
 
 \begin{center}
 \begin{table}
@@ -553,9 +560,9 @@ To simplify the numerical analysis as well as interpretation, I restrict the sho
 %& & \\ [-1em] % this adds an extra empty row, and decreases its size, so it looks as if thetbar's row was higher
 % $\tilde{\theta}$ &  2.5  & threshold value for criterion of endogenous gain choice \\ \hline %% <----
 %  $\tilde{\kappa}$ &  0.2  & scaling parameter of gain for forecast error variance estimation \\ \hline %% <----
-    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
-    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
-    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+%    $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline %% <---
+%    $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+%    $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
     $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  % <----
 %    $\lambda_i$ & 0 & weight on the interest rate in central bank loss   \\ \hline  
 \end{tabular}     
@@ -573,7 +580,7 @@ To simplify the numerical analysis as well as interpretation, I restrict the sho
     $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
     $\sigma_i$ &  0.01  &standard deviation, monetary policy shock*  \\ \hline
     $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
-    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
+   % $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
 \end{tabular}     
       \caption{Parameters set to match data moments}  \label{calibration_moments}
        \floatfoot{*Parameters with an asterisk refer to sections of the paper where a Taylor rule is in effect.}
@@ -582,7 +589,19 @@ To simplify the numerical analysis as well as interpretation, I restrict the sho
 
 \vspace{-2.2cm}
 
-I initialize the value of the gain at $\bar{g}=0.145$, the value for the gain corresponding to unanchored expectations estimated by \cite{carvalho2019anchored}. If the anchoring function were discrete, as in \cite{carvalho2019anchored}, this parameter would have important implications for model dynamics because in that case the gain is restricted to take on this value if it is nondecreasing.\footnote{See Appendix \ref{alternative_criteria} for alternative specifications of the anchoring function, such as that of \cite{carvalho2019anchored}.} However, since I rely on an approximation of a continuous anchoring function, $\bar{g}$ does not have a strong bearing on model dynamics. The target criterion (\ref{target}) requires that the derivatives of the anchoring function exist, wherefore a smooth specification makes sense. Moreover, in estimating the functional form of the anchoring rule, I allow the data to speak to the numerical choice of the approximating coefficients $\hat{\gamma}$, thereby avoiding difficult calibration choices without precedents. The estimated values for the approximating coefficients are displayed in the last row of Table \ref{calibration_moments}. For a detailed discussion of these, the reader is referred to Section \ref{estimation}.
+I initialize the value of the gain at $\bar{g}=0.145$. This is \cite{carvalho2019anchored}'s estimate for the case of unanchored expectations in their discrete anchoring function model. In the case of a discrete anchoring function, as in \cite{carvalho2019anchored}, this parameter has important implications for model dynamics because by construction, the gain takes on this value very frequently. However, since my specification for $\mathbf{g}(\cdot)$ is smooth, $\bar{g}$ does not have a strong bearing on model dynamics. 
+
+\subsection{Estimation}
+
+In inferring the functional form of the anchoring function $\mathbf{g}(\cdot)$, I proceed as follows. First, since the analysis in Section \ref{analytical} relies on Assumptions  \ref{ass_copo} and \ref{ass_glevels}, I similarly impose these on the estimation. In other words, I seek to back out the functional form of the relationship between the size of the gain and forecast errors in inflation, $k_t = \mathbf{g}(f_{t|t-1})$. 
+
+To be as close as possible to a non-parametric estimate of $\mathbf{g}(\cdot)$, while at the same time preserve the shape of the function, I employ a piecewise linear approximation of the form:
+
+\begin{equation}
+\mathbf{g}(f_{t|t-1}) = \sum_i \gamma_i b_i(f_{t|t-1})\label{gain}.
+\end{equation}
+Here $b_i(\cdot)$ is a piecewise linear basis and $\gamma$ is a vector of approximating coefficients. The index $i$ refers to the breakpoints of the piecewise linear approximation. As explained above, I estimate $\gamma$ by simulated method of moments, targeting the autocovariance structure of the observables of the model and expectations.
+
 
 \begin{figure}[h!]
 \includegraphics[scale=0.3]{\myFigPath \fignameAlphaHat}
@@ -591,11 +610,11 @@ I initialize the value of the gain at $\bar{g}=0.145$, the value for the gain co
 \floatfoot{Estimates for 5 knots, cross-section of size $N=1000$}
 \end{figure}
 
-Having discussed the calibration, I am ready to turn to the estimation of the anchoring function. Fig. \ref{alpha_hat} presents the estimated coefficients: $\hat{\gamma}=$ \meanalph. The interpretation of the elements of $\hat{\gamma}$ is the value of the gain the private sector choses when it observes a forecast error of a particular magnitude. For example, a forecast error of -4 pp in inflation is associated with a gain of 0.82. 
+Fig. \ref{alpha_hat} presents the estimated coefficients: $\hat{\gamma}=$ \meanalph. The interpretation of the elements of $\hat{\gamma}$ is the value of the gain the private sector choses when it observes a forecast error of a particular magnitude. For example, a forecast error of -4 pp in inflation is associated with a gain of 0.82. 
 
-Before interpreting the estimated anchoring function, it is helpful to work out what amounts to a large gain. In particular, since the gain is the model's metric of the extent of unanchoring, from what size of the gain should one consider expectations to be significantly unanchored? The consensus in the literature on estimating learning gains is that if the true model is one with constant gain learning, then the gain lies between 0.01-0.05. On the higher end, \cite{branch2006simple} estimate a constant gain on inflation of 0.062. \cite{milani2007expectations} finds 0.0183. The estimates of the maximal value for endogenous gains lie somewhat higher, at 0.082 in \cite{milani2014learning} and at 0.145 in \cite{carvalho2019anchored}. Calibrated models tend to use the consensus values between 0.01-0.05, with the number 0.05 having attained particular prominence. However, \cite{eusepi2011expectations} find that the value of 0.002 is sufficient to significantly alter the dynamic behavior of a standard RBC model. 
+Before interpreting the estimated anchoring function, it is helpful to work out what amounts to a large gain. In particular, since the gain is the model's metric of the extent of unanchoring, from what size of the gain should one consider expectations to be significantly unanchored? The consensus in the literature on estimating learning gains is that if the true model is one with constant gain learning, then the gain lies between 0.01-0.05. On the higher end of the empirical estimates, \cite{branch2006simple} obtain a constant gain on inflation of 0.062. \cite{milani2007expectations} finds 0.0183. The estimates of the maximal value for endogenous gains lie somewhat higher, at 0.082 in \cite{milani2014learning} and at 0.145 in \cite{carvalho2019anchored}. Calibrated models tend to use the consensus values between 0.01-0.05, with the number 0.05 having attained particular prominence. However, \cite{eusepi2011expectations} find that the value of 0.002 is sufficient to significantly alter the dynamic behavior of a standard RBC model. 
 
-An intuitive interpretation of the gain is that its inverse gives the number of past observations the private sector uses to form its current forecasts.  \cite{eusepi2011expectations}'s number, 0.002, thus implies that firms and households, if they see no forecast errors, rely on the last 125 years of data.\footnote{The frequency of my model and data, like that of  \cite{eusepi2011expectations}, is quarterly.} By contrast, the consensus number of 0.05 translates to using five years of data. 
+An intuitive interpretation of the gain is that its inverse gives the number of past observations the private sector uses to form its current forecasts.  \cite{eusepi2011expectations}'s number, 0.002, thus implies that firms and households rely on the last 125 years of data. By contrast, the consensus number of 0.05 translates to using five years of data. 
 
 Seen from both of these perspectives, a gain of 0.05 corresponds to a sizable amount of unanchoring. With this benchmark number in mind, the message of Fig. \ref{alpha_hat} seems stark: the estimated coefficients are very large. The highest gain value in my estimation, 0.82, can be interpreted as seeing forecast errors of 4 pp in absolute value prompting the private sector to discount any observations older than about 5 months. That is a very short time. 
 
