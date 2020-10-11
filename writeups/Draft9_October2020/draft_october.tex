@@ -152,6 +152,9 @@ bottom=1in}
 
 \def\fignameFeSPF{fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59}
 \def\fignameFeSPFhist{fe_SPF_hist_command_anchoring_in_data_19_Sep_2020_11_45_59}
+\def\fignameGainSPF{gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39}
+\def\fignameGainSPFhist{gain_SPF_hist_command_anchoring_in_data_11_Oct_2020_11_08_39}
+
 
 % Comparative statics of optimal policy
 % di/dpibar
@@ -619,16 +622,20 @@ An intuitive interpretation of the gain is that its inverse gives the number of 
 Seen from both of these perspectives, a gain of 0.05 corresponds to a sizable amount of unanchoring. With this benchmark number in mind, the message of Fig. \ref{alpha_hat} seems stark: the estimated coefficients are very large. The highest gain value in my estimation, 0.82, can be interpreted as seeing forecast errors of 4 pp in absolute value prompting the private sector to discount any observations older than about 5 months. That is a very short time. 
 
 \begin{figure}[h!]
-\caption{Forecast errors in the SPF data}
+\caption{Forecast errors and implied gain in the SPF data}
 \subfigure[]{\includegraphics[scale=0.2]{\myFigPath \fignameFeSPF}}
-\subfigure[]{\includegraphics[scale=0.2]{\myFigPath \fignameFeSPFhist}}
+\subfigure[]{\includegraphics[scale=0.2]{\myFigPath \fignameGainSPF}}
 \label{feSPF}
 \floatfoot{Forecast errors constructed as the difference between inflation and previous period's SPF forecast. Annualized percentage points.}
 \end{figure}
 
-Presumably, such large forecast errors are rare, however. In fact, Fig. \ref{feSPF} confirms that this is indeed the case in the SPF data since the 1990s.\footnote{I am focusing on a shorter sample here than what I used for the estimation exercise. Including the Volcker deflation in the estimation sample makes sense because it introduces more variation in the data. When interpreting the current stance of expectations, however, it is reasonable consider a subsample in which the general environment is not in transition.} As shown on the left panel, in this time period, forecast errors are always below 4 percentage points in absolute value, the largest being an error of -3.31 pp. Instead, as the right panel clarifies, 79.8\% of forecast errors in the sample fall in the bin of $[-1, 1]$ percentage points. The prevalence of forecast errors of this magnitude in the data is helpful to interpret the estimated $\hat{\gamma}$. As seen on Fig. \ref{alpha_hat}, there is an interesting asymmetry in the estimated coefficients. Negative forecast errors of 1 pp raise the gain to 0.2, while for positive forecast errors, a little more than 2 percentage point error is necessary for the same increase in the gain. Consistent with the findings of \cite{hebden2020robust}, this indicates that long-run expectations are more sensitive to negative than to positive surprises.
+Presumably, such large forecast errors are rare, however. In fact, Fig. \ref{feSPF} confirms that this is indeed the case in the SPF data since the 1990s. As shown on the left panel, in this time period, forecast errors were always below 4 percentage points in absolute value, the largest being an error of -3.31 pp. The right panel depicts the time series for the gain implied by the model and the estimated $\hat{\gamma}$. The mean and median values of the gain, 0.121 and 0.098 respectively, suggest that there is substantial sensitivity of long-run expectations to forecast errors overall in the data.
 
-Given that only 11.4\% of forecast errors in the sample exceed $+$1 percentage point, this suggests that an upward unanchoring of expectations is definitely not the main threat currently. However, the mean forecast error in the sample is -0.1362 pp, suggesting that negative surprises are common in the sample. In fact, 35.1\% of forecast errors are below -0.5 pp. An inflation surprise of -0.5 pp results in a gain of 0.1, meaning that the private sector only takes the most recent 10 quarters into account. Furthermore, the model implies a downward shift in long-run inflation expectations of 5 basis points as a result. Thus the data suggest substantial possibility for a downward unanchoring of expectations. 
+Clearly, the main feature of the gain is that it is time-varying. Periods of near-zero values are frequently followed by high values around or above 0.1. The negative inflation surprises brought on by the Great Recession and the Covid-19 crisis unsurprisingly result in very large gains, almost 0.7 and around 0.35 respectively, yielding highly unanchored expectations. More surprising is the fact that the decade-long boom between 2010 and 2020 also involves a very unanchored episode. In fact, the gain in 2015 is above 0.4, exceeding its 2020 value. Moreover, following 2015, the gain remained elevated for almost five years. By contrast, after the Great Recession, expectations recovered fast and by 2010 looked very well-anchored. 
+
+On the one hand, this suggests that the impact effect of exogenous shocks on the anchoring of expectations are not smaller than the effects of the Fed missing its inflation target. On the other hand, a potentially more alarming implication is that failing to get inflation back up to target seems to go hand-in-hand with persistently unanchored expectations. Thus central bank misses may result in unanchoring that is more difficult to combat than that following exogenous shocks.
+
+The three sizable unanchoring episodes since 2008 may also stem from a change in the pattern of forecast errors. Up to 2008, most forecast errors were positive and small in magnitude. This reversed in 2008. Not only were most post-2008 forecast errors negative, but they were also larger than the positive surprises. This connects with the finding that unanchoring is asymmetric. Notice that, as seen on Fig. \ref{alpha_hat}, negative inflation surprises raise the gain about twice as much as positive ones do. Consistent with the findings of \cite{hebden2020robust}, this indicates that long-run expectations are more sensitive to negative than to positive surprises. This implies, then, that not only is the magnitude of forecast errors after 2008 responsible for the spikes in the gain, but also that inflation consistently turned out to be lower than what the public had expected. 
 
 
  %%%%%%%%%%%%%%%%%%            RESULTS            %%%%%%%%%%%%%%%%%% 
@@ -639,25 +646,31 @@ This section sets up and solves the optimal monetary policy problem in the model
 
 I then turn to the question of how to implement optimal policy. Section \ref{implement} uses global methods to solve for the interest rate sequence that implements the target criterion. The optimal sequence is contrasted with a Taylor rule with standard parameters. I then discuss the properties that the optimal interest rate policy should have. 
 
-Since history-dependence is not a feature of the optimal solution, purely forward-looking Taylor rules are no longer excluded from the class of rules that can implement the Ramsey solution. In Section \ref{opt_TR}, I therefore restrict attention to Taylor-type feedback rules for the interest rate. I solve for the optimal Taylor-rule coefficient on inflation numerically and investigate how this choice affects the anchoring mechanism. As I expand upon further in Section \ref{welfare}, an identical Taylor rule involves higher fluctuations in the anchoring model than under rational expectations because it does not allow the central bank to respond to long-run expectations. At the same time, it involves responding to inflation even in periods when expectations are anchored, causing excess volatility. For this reason, substantial welfare-improvements are open to the policymaker ready to reconsider the current Taylor-rule coefficients or the policy function more broadly.
+The optimal interest rate policy will thus be a nonlinear function of all the states in the model - a complicated object to compute. In practice, however, monetary policy is most commonly modeled using time-invariant rules like the Taylor rule that are simple to compute and to communicate to the public. In Section \ref{opt_TR}, I therefore restrict attention to Taylor-type feedback rules for the interest rate. I solve for the optimal Taylor-rule coefficient on inflation numerically and investigate how this choice affects the anchoring mechanism. As I expand upon further in Section \ref{welfare}, a Taylor rule with given coefficients involves higher fluctuations in the anchoring model than under rational expectations because it does not allow the central bank to respond to long-run expectations. At the same time, it involves responding to inflation even in periods when expectations are anchored, causing excess volatility. For this reason, substantial welfare-improvements are open to the policymaker ready to reconsider the current Taylor-rule coefficients or the policy function more broadly.
 
   %%%%%%%%%%%%%%%%%%           MON.POL. PROBLEM            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \subsection{The Ramsey policy under anchoring}\label{ramsey}
 I assume the monetary authority seeks to maximize welfare of the representative household under commitment. As shown in \cite{woodford2011interest}, a second-oder Taylor approximation of household utility delivers a central bank loss function of the form
 \begin{equation}
-L^{CB} =\E_t \sum_{T=t}^{\infty}\{(\pi_T-\pi^*)^2 +\lambda_x(x_T - x^*)^2 \} \label{CBloss}
+L^{CB} =\E_t \sum_{T=t}^{\infty}\{(\pi_T-\pi^*)^2 +\lambda_x(x_T - x^*)^2 \} \label{CBloss},
 \end{equation}
 %\begin{equation}
 %L^{CB} =\E_t \sum_{T=t}^{\infty}\{\pi_T^2 +\lambda_x(x_T - x^*)^2 +\lambda_i(i_T - i^*)\} \label{CBloss}
 %\end{equation}
-where $\lambda_x$ is the weight the central bank assigns to stabilizing the output gap and $\pi^*$ and $x^*$ are the central bank's targets.\footnote{One can show that, as in the rational expectations version of the model, the optimal inflation and output gap targets are zero.} The central bank's problem, then, is to determine paths for inflation, the output gap and the interest rate that minimize the loss in Equation (\ref{CBloss}), subject to the model equations (\ref{NKIS}) and (\ref{NKPC}), as well as the evolution of long-horizon expectations, spelled out in Section \ref{learning}. A second question is how to implement the optimal allocation; that is, to find a response function for the policy instrument $i_t$ that implements the optimal sequences of the observables.
+where $\lambda_x$ is the weight the central bank assigns to stabilizing the output gap.\footnote{The rational expectations New Keynesian model implies that $\lambda_x = \frac{\kappa}{\theta}$, contradicting estimated values for $\lambda_x$.} Just as under rational expectations, one can show that it is optimal to set the central bank's targets, $\pi^*$ and $x^*$,  to zero. The central bank's problem, then, is to determine paths for inflation, the output gap and the interest rate that minimize the loss in Equation (\ref{CBloss}), subject to the model equations (\ref{NKIS}) and (\ref{NKPC}), as well as the evolution of long-horizon expectations, spelled out in Section \ref{learning}. The full statement of the Ramsey problem is as follows:
 
-While for most of the paper I consider a general specification for monetary policy, in Section \ref{opt_TR}, I will restrict attention to a standard Taylor rule:
-\begin{equation}
-i_t = \psi_{\pi}(\pi_t -\pi^*) + \psi_{x} (x_t -x^*) + \bar{i}_t  \label{TR}
-\end{equation}
-where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively. Lastly, $\bar{i}_t$ is a monetary policy shock. I also assume that when the Taylor rule is in effect, the central bank publicly announces this. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning.\footnote{In an extension I consider the case where the Taylor rule is not known (or not believed) by the public and therefore is learned together with the relations (\ref{NKIS}) and (\ref{NKPC}). This dampens intertemporal expectation effects as long as the Taylor rule is not learned; afterwards, the model dynamics are identical to those of the baseline. For more on this, see Section \ref{opt_TR}.} 
+\begin{align*}
+& \min_{ \{z_t, \bar{\pi}_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \text{s.t. model equations (\ref{NKIS}) and (\ref{NKPC})} \\
+& \text{s.t. the PLM (\ref{PLM_fcst_general}), the learning equations (\ref{RLS}) and (\ref{R}), and the anchoring function (\ref{anchoring})}. 
+\end{align*}
+
+
+
+A second question is how to implement the optimal allocation; that is, to find a response function for the policy instrument $i_t$ that implements the optimal sequences of the observables.
+
+
  
 
 % %%%%%%%%%%%%%%%%%%           TARGET CRITERION            %%%%%%%%%%%%%%%%%% 
@@ -809,6 +822,12 @@ Clearly, the main drawback of the Taylor rule is that it does not take the evolu
 %%%%%%%%%%%%%%%%%%           OPTIMAL TAYLOR RULE           %%%%%%%%%%%%%%%%%% 
 \subsection{Optimal Taylor rule under anchoring}\label{opt_TR}
 Monetary policy is often formulated using a Taylor rule. Proponents of such a characterization, like \cite{taylor1993discretion} himself, emphasize the benefits of having a simple, time-invariant and easily verifiable rule. Also in the anchoring model, a policymaker may thus be interested in using a Taylor-type approximation to optimal policy in order to combine the benefits of having a simple, yet near-optimal rule.\footnote{Recall from \cite{woodford2011interest} that even under rational expectations, a standard Taylor rule is not fully optimal because its purely forward-looking nature precludes the use of promises of future policy. Since Proposition \ref{result_no_commitment} tells us that in the anchoring model there is no distinction between commitment and discretion, this point may be less relevant here than for rational expectations.} Therefore I now consider the restricted set of Taylor-type policy rules and ask what value of the time-invariant Taylor-rule coefficient on inflation is optimal in the case of the anchoring model.
+
+In this section, I thus restrict attention to a standard Taylor rule:
+\begin{equation}
+i_t = \psi_{\pi}(\pi_t -\pi^*) + \psi_{x} (x_t -x^*) + \bar{i}_t  \label{TR},
+\end{equation}
+where $\psi_{\pi}$ and $\psi_{x}$ represent the responsiveness of monetary policy to inflation and the output gap respectively. Lastly, $\bar{i}_t$ is a monetary policy shock. I also assume that when the Taylor rule is in effect, the central bank publicly announces this. Thus Equation (\ref{TR}) is common knowledge and is therefore not the object of learning. In an extension, I consider the case where the Taylor rule is not known (or not believed) by the public and therefore is learned together with the relations (\ref{NKIS}) and (\ref{NKPC}). This only changes model dynamics for a short period of time as long as the Taylor rule has not yet been learned. In the approximately five quarters where the public's learning is in progress, the model's responses are dampened; afterwards, the model dynamics are identical to those of the baseline. 
 
 I compute the optimal Taylor rule coefficient on inflation numerically by minimizing the central bank's expected loss in a cross-section of $N=100$ simulations of both the rational expectations and learning versions of the model. I continue to use the calibration of Tables \ref{calibration} and \ref{calibration_moments} and to parameterize the anchoring function using the estimated $\hat{\gamma}$ from Section \ref{estimation}.
 

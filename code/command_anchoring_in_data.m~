@@ -456,70 +456,9 @@ fegrid = [-4,-3,0,3,4];
 x = cell(1,1);
 x{1} = fegrid;
 alph_draft_sept2125 = [0.8161,    0.6133,    0,    0.3342,    0.4452]'; % "complete Materials 44 candidate"
+
 k_ts = ndim_simplex_eval(x,fe',alph_draft_sept2125);
 
-% Compute mean and median gain 
-mean(k_ts)
-sort_k_ts = sort(k_ts);
-if mod(T,2)==1
-    median_k_ts = sort_k_ts(ceil(T/2));
-else
-    median_k_ts = (sort_k_ts(T/2)+sort_k_ts(T/2+1))/2
-end
-
-% Plot ts and histogram of gain
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(time, k_ts, 'linewidth', lw); hold on
-% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
-ax = gca; % current axes
-ax.FontSize = fs;
-datetick('x','yyyy', 'keeplimits')
-% The next three lines force the figure to start where the data starts
-xaxislimits= get(gca,'XLim');
-xaxislimits(1) = time(1);
-set(gca, 'XLim', xaxislimits);
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-xlabel('Gain time series', 'interpreter', 'latex', 'fontsize', fs)
-
-% legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
-% legend('boxoff')
-
-figname = ['gain_SPF_', figspecs];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
-
-
-figure
-set(gcf,'color','w'); % sets white background color
-set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-histogram(k_ts)
-ax = gca; % current axes
-ax.FontSize = fs;
-set(gca,'TickLabelInterpreter', 'latex');
-grid on
-grid minor
-xlabel('Gain', 'interpreter', 'latex', 'fontsize', fs)
-
-
-figname = ['gain_SPF_hist_', figspecs];
-
-if print_figs ==1
-    disp(figname)
-    cd(figpath)
-    export_fig(figname)
-    cd(current_dir)
-    close
-end
 
 
 %% The regression plot using CPI inflation and SPF 1- and 10-year ahead
