@@ -202,8 +202,9 @@
 \def\bpPosFEunanchors{50}
 
 
-% raise/lower interest rate by x pp when when LR-exp move by 0.1
-\def\movei{5 }
+% raise/lower interest rate by x bp when when LR-exp move by y bp
+\def\movepibar{5 }
+\def\movei{12 }
 
 %%%%%%%%%%%%%%%%%%%%
 % DEFINE ALL FIGNAMES HERE
@@ -218,6 +219,8 @@
 
 % SPF long-run-e
 \def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameRolling{rolling_overlapping_command_anchoring_in_data_individual_23_Sep_2020_21_04_48}
+\def\fignameRollingPi{rolling_overlapping_pi_command_anchoring_in_data_individual_25_Sep_2020_10_37_43} % regressing on pi
 
 
 % Unanchoring in the data
@@ -228,30 +231,41 @@
 \def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
 
 % Estimated coefficients alpha
-\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
+\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_09_Oct_2020_15_08_45}
 % Autocovariogram
 \def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
 
 \def\fignameFeSPF{fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59}
 \def\fignameFeSPFhist{fe_SPF_hist_command_anchoring_in_data_19_Sep_2020_11_45_59}
+\def\fignameGainSPF{gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39}
+\def\fignameGainSPFhist{gain_SPF_hist_command_anchoring_in_data_11_Oct_2020_11_08_39}
+
 
 % Comparative statics of optimal policy
 % di/dpibar
 % not annualized
 \def\fignameDiDpibar{analyze_opt_policy_ip17_Sep_2020}
+% not annualized with stabilizing factor of 2.6 (25 Sept 2020)
+\def\fignameDiDpibarStab{analyze_opt_policy_ip25_Sep_2020}
+
 
 % Observables in PEA for TR
 % annualized
-\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020}
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020}
 % not annualized
 %\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020_19_29_35}
+% not annualized, with psi_pi=1.1083 (opt)
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx24_Sep_2020_09_32_19}
+
 %
 % Observables in PEA for anchoring
 % annualized
 % cutting to 40 periods to 
-\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q19_Sep_2020_09_30_01}
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q19_Sep_2020_09_30_01}
 % not annualized
 %\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q17_Sep_2020_19_19_19}
+% not annualized, with psi_pi=1.1083 (opt) and knowTR=1
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx24_Sep_2020_09_35_43}
 
 
 
@@ -272,6 +286,7 @@
 %\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
 \def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
 \def\fignameCBlossbaselineWithOptimal{plot_sim_loss_approx_pretty_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+\def\fignameCBlossbaselineTwoY{plot_sim_loss_approx_2y_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14}
 
 % IRFs anchored vs unanchored
 % annualized
@@ -338,145 +353,11 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \end{frame}
 %%%%%%%%%%%%%%%%%
 %%%%%%% Slide %%%%%%
-\begin{frame}
-\frametitle{Anchored expectations}
 
-\begin{equation}
-\E_t \pi_{t+1} = \bar{\pi}+ f(shocks)
-\end{equation}
-
-$\bar{\pi} = $ long-run expectations
-
-\
-
-\pause
-	
-\emph{Anchored expectations}: long-run expectations at Fed's target ($\pi^*$) 
-
-\
-
-\pause
-
-$\rightarrow$ short-run expectations ``anchored'' to stable mean: 
-
-
-\
-
-\begin{equation}
-\E_t \pi_{t+1} = \textcolor{brownreddark}{\pi^*} + f(shocks)
-\end{equation}
-
-\
-
-\pause
-
-\emph{Unanchored expectations}: long-run expectations deviate systematically from the target
-
-
-\
-
-\begin{equation}
-\E_t \pi_{t+1} = \textcolor{brownreddark}{\bar{\pi}_{t-1}(shocks)} + f(shocks)
-\end{equation}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-\frametitle{Unwelcome fall in longer-term inflation expectations}
-
-A standard Phillips curve with expectations anchored at the 2\% target	
-\begin{align*}
-\pi_t & = \kappa x_t + \beta \E_t \pi_{t+1} + u_t \label{standardPC} \numberthis \\
-\onslide<2->{\pi_t & = \kappa x_t + \beta (2\% + f(shocks)) + u_t \numberthis \label{standardPC} }
-\end{align*}
-
-
-\
-
-\pause
-\pause
-
-The Fed's uneasiness: public thinks inflation averages only 1\%
-
-\begin{align}
-\underset{ \onslide<4->{\textcolor{brownreddark}{\downarrow}}} {\pi_t} & = \kappa x_t + \beta (\underset{\downarrow \onslide<5->{\textcolor{aquamarinegreen}{\downarrow}}}{1\%}  + f(shocks)) + u_t 
-\end{align}
-
-\
-
-\pause
-\pause
-\pause
-
-$\rightarrow$ unanchored expectations can cause a deflationary spiral
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}\label{LRE_drifting_down}
-\frametitle{Long-run expectations drifting down?}
-	
-
-\begin{figure}[h!]
-\caption{Expectations of average inflation over 10 years ($\bar{\pi}$ in data)}
-\includegraphics[scale = 0.25]{\myFigPath \fignameSPFLiv}
-\label{epi}
-\end{figure}
-
-
-%\vfill
-
-\vspace{-0.5cm}
-\hfill \hyperlink{app_TIPS}{\beamergotobutton{TIPS}}
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-%\begin{frame}
-%\frametitle{Long-run expectations moving systematically?}\label{systematically}
-%
-%\
-%
-%SPF: for 1999-Q1 onward, estimate
-%
-%\begin{align*}
-%\bar{\pi}_t = & \beta_0 + \beta_1 f_{t|t-1} + \epsilon_t \numberthis \\
-%\end{align*}
-%
-%where $\bar{\pi}_t  \equiv \E_t(\pi_{t+10})$ and $f_{t|t-1}  \equiv \pi_t - \E_{t-1}(\pi_t) $ (forecast error)
-%
-%
-%\
-%\pause
-%\
-%
-%$\Rightarrow \hat{\beta}_1 = 0.06 \quad $  (P-value: 0.000017)
-%
-%\
-%
-%
-%$\Rightarrow$ 1 pp forecast error $\rightarrow$ 6 bp revision in long-run expectations
-%
-%%\
-%%
-%%\pause
-%%
-%%Likely understatement: professional forecasters may run stationary models
-%
-%%\vspace{0.5cm}
-%%
-%%\hfill \hyperlink{further_evidence}{\beamergotobutton{Further evidence}}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}
-\frametitle{Long-run expectations moving systematically?}\label{rolling}
+\frametitle{Long-run expectations: capturing responsiveness to short-run conditions}
 
 \
 
@@ -486,36 +367,44 @@ Individual SPF forecasts: for 1991-Q4 onward, estimate rolling regression
 \Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
 \end{align*}
 
-where $w$ indexes windows of 19 quarters length
-
-
-\
-\pause
 \
 
-\small{
-\begin{center}
-\begin{table}
-\caption{Rolling regression coefficients}
-\begin{tabular}{ c | l  }
-\hline
-Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
-   1991-Q4 & $0.0687^{**} $ \\ \hline
-   1996-Q3 & $0.0464^{***} $ \\ \hline
-    2001-Q2 & $0.0116$     \\ \hline
-    2006-Q1 & $0.0061$       \\ \hline  
-    2010-Q4 &  $0.0135 $   \\ \hline   
-    2015-Q3 &  $0.0496^{***}$ \\ \hline   
-\end{tabular}     
-\caption*{\footnotesize{\emph{*** significance at 1\% ** significance at 5\%}}}
-       \label{table_rolling}
- \end{table}
-\end{center}
-}
+where $w$ indexes windows of 20 quarters length,
 
-\vspace{-0.9cm}
+\
 
-\hfill \hyperlink{further_evidence}{\beamergotobutton{Further evidence}}
+$f_{t|t-1} \equiv \pi_t - \E_{t-1}(\pi_t) \quad $ individual one-year-ahead forecast error
+
+
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+\frametitle{Time-varying responsiveness}\label{rolling}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.25]{\myFigPath \fignameRolling}
+%\caption{Time series of responsiveness of long-run inflation expectations to inflation surprises}
+\label{rolling}
+\end{figure}
+
+
+
+%\vspace{-0.9cm}
+
+\hfill \hyperlink{further_evidence}{\beamergotobutton{Disagreement measures}}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
@@ -533,15 +422,16 @@ Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
 	
 	\
 
-	\item Model of anchoring expectation formation as an extension to adaptive learning \\
-	$\hookrightarrow$ twist: systematic fluctuations in long-run expectations
+	\item Model of expectations unanchoring  \\
+	$\hookrightarrow$ extension to adaptive learning that captures time-varying responsiveness of long-run expectations
 	
 	
 	\
 	
 	\
 	
-	\item Estimation of the anchoring function: when do expectations become unanchored?
+	\item Estimate how unanchoring takes place in data \\
+	$\hookrightarrow$ quantify novel anchoring channel and use for monetary policy analysis
 
 	\end{itemize}
 	\end{frame}
@@ -554,44 +444,74 @@ Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
 	
 	\vspace{0.5cm}
 	
-	\begin{itemize}
-%%	\item \ppFEunanchors pp forecast error unanchors expectations
+	\begin{enumerate}
+	\item Estimation
+		\begin{itemize}
+		\item Larger mistakes unanchor more
+		
+		\
+		
+		\item Overestimating inflation unanchors more than underestimating it (Hebden et al 2020)
+		
+		\
+		
+		\item On average, people discount observations older than 8 quarters
+		\end{itemize}
+		
+		\
+		
+	\item Optimal policy
+		\begin{itemize}
+		\item Responds aggressively to inflation when unanchored, accommodates inflation when anchored
+		\end{itemize}
+		
+		\
+		
+	\item Taylor rule
+		\begin{itemize}
+		\item Less aggressive on inflation than under rational expectations
+		\end{itemize}
+	\end{enumerate}
+
+	
+%	\begin{itemize}
+%%%	\item \ppFEunanchors pp forecast error unanchors expectations
+%%
+%%	
+%%	\
+%%	
+%%	\
+%%	
+%%	\item Optimal monetary policy responsiveness time-varying 
+%	
+%%	\
+%%	
+%%	\
+%%	
+%%	
+%%	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
+%%	
+%%	\
+%%	
+%%	\
+%	\item Optimal policy aggressive when expectations unanchor, accommodates when anchored
+%	
+%	\
+%	
+%	\
+%	
+%%	\item[$\hookrightarrow$]  E.g. for a 0.1 pp fall in long-run inflation expectations, lowers interest rate by \movei pp
 %
+%	\item Taylor rule policy less aggressive on inflation than under rational expectations
 %	
 %	\
 %	
 %	\
 %	
-%	\item Optimal monetary policy responsiveness time-varying 
-	
-%	\
-%	
-%	\
-%	
-%	
-%	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
-%	
-%	\
-%	
-%	\
-	\item Optimal policy aggressive when expectations unanchor, accommodates when anchored
-	
-	\
-	
-	\
-	
-%	\item[$\hookrightarrow$]  E.g. for a 0.1 pp fall in long-run inflation expectations, lowers interest rate by \movei pp
-
-	\item Taylor rule policy less aggressive on inflation than under rational expectations
-	
-	\
-	
-	\
-	
-	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 84\% of loss from volatility
-
-
-	\end{itemize}
+%	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 84\% of loss from volatility
+%
+%
+%	\end{itemize}
 
 
 \end{frame}
@@ -621,7 +541,7 @@ Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
 \
 
 \item \textbf{Anchoring and the Phillips curve} 
-\item[] Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Gobbi et al (2019), Carvalho et al (2019)
+\item[] Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Hebden et al 2020, Gobbi et al (2019), Carvalho et al (2019)
 
 \
 
@@ -644,6 +564,10 @@ Window (start quarter) & $\hat{\beta}_1^w$   \\ \hline
 \setlength{\leftmargini}{12pt}
 \begin{enumerate}
 \item \hspace{-0.15cm} Model of anchoring expectations
+
+\vspace{0.75cm}
+
+\item \hspace{-0.15cm} Quantification of learning channel
 
 \vspace{0.75cm}
 
@@ -722,32 +646,29 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 \begin{frame}
 	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
 
-\begin{itemize}
-\item If use $\E$ (rational expectations, RE) \\
-
 \
 
-Model solution 
+\begin{itemize}
+\item Model implies mapping between exogenous states ($s_t$) and observables ($y_t \equiv (\pi, x, i)'$)
+
  \begin{align}
- s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+% s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
  y_t & = g s_t \label{obs_RE}
  \end{align}
-
-
-$s_t \equiv $ states \\
-$y_t \equiv $ jumps \\
-$\epsilon_t \equiv $ disturbances
+ 
 \
 
-\pause
+\item Under rational expectations (RE), private sector knows model \\
+$\rightarrow$ knows (\ref{obs_RE}) 
 
+\begin{equation}
+\E_t (y_{t+1}) = g \E(s_{t+1})
+\end{equation}
 \
 
-\item If use $\hat{\E} \rightarrow$ private sector does not know (\ref{obs_RE}) \\
+\item $\hat{\E}$: agents do not internalize that identical $\rightarrow$ do not know aggregate model $\rightarrow$ do not know (\ref{obs_RE}) \\
 
-\
 
-$\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
 
 \end{itemize}
 
@@ -761,7 +682,21 @@ $\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
 	\frametitle{Adaptive learning}
 	\label{adaptive_learning}
 
+\
+
 \begin{itemize}
+\item Agents know exogenous evolution of states
+
+ \begin{align}
+ s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} 
+% y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+\pause
+
+\
+
 \item Postulate linear functional relationship instead of (\ref{obs_RE}):
 
 \begin{equation}
@@ -779,24 +714,12 @@ $\hookrightarrow$ estimate using observed states \& knowledge of (\ref{state})
 
 \
 
-\pause
-
-In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \quad \forall t$
-
-
-\
 
 \pause
 
 
-\item[$\rightarrow$] In RE, expectations anchored by assumption
+\item Estimate $a, b$ using recursive least squares (RLS) using observed states and knowledge of (\ref{state})
 
-\
-
-\pause
-
-
-\item Estimate $a, b$ using recursive least squares (RLS)
 
 
 \end{itemize}
@@ -815,10 +738,9 @@ In RE, $\textcolor{brownreddark}{a_{t-1} = \mathbf{0}}, \quad b_{t-1} = g\;h \qu
 Jumps are: $(\pi, x, i)'$ 	
 
 \
-\pause
 \
 
-Special case: learn only intercept of inflation:
+Assumption: learn only intercept of inflation:
 
 \begin{equation}
 a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\; h \quad \forall t
@@ -930,6 +852,10 @@ Target autocovariances of inflation, output gap, federal funds rate and 1-year a
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quantification of learning channel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}

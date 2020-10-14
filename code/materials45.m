@@ -25,6 +25,7 @@ datestr(now)
 
 save_stuff=0;
 
+return
 
 
 %% Estimation and fake data generation

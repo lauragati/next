@@ -21,6 +21,7 @@
 \usepackage[capposition=top]{floatrow}
 \usepackage{amssymb}
 %\usepackage[capposition=top]{floatrow}
+%\usepackage{times}
 %\usepackage{palatino} % hell yeah, it looks great
 
 
@@ -201,6 +202,7 @@ bottom=1in}
 %\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
 \def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
 \def\fignameCBlossbaselineWithOptimal{plot_sim_loss_approx_pretty_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+\def\fignameCBlossbaselineTwoY{plot_sim_loss_approx_2y_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14}
 
 % IRFs anchored vs unanchored
 % annualized
@@ -229,7 +231,8 @@ bottom=1in}
 \title{Monetary Policy \& Anchored Expectations \\
 An Endogenous Gain Learning Model \\
 \vspace{0.8cm}
-\small{Draft after first reading \\ Preliminary and Incomplete}}
+\small{Draft after first reading \\ Preliminary and Incomplete}
+}
 \author{Laura G\'ati} 
 \date{\today}
 \maketitle
@@ -271,7 +274,7 @@ Jerome Powell, Chairman of the Federal Reserve\footnote{``New Economic Challenge
 
 There is broad consensus among policymakers that anchoring inflation expectations is central to the modern conduct of monetary policy. As Powell emphasizes, policymakers think of expectations as anchored when long-run expectations do not fluctuate systematically with short-run inflation surprises. If long-run expectations did respond to short-term inflation surprises, policymakers fear this would result in an adverse cycle of self-enforcing movements in expectations.
 
-This paper studies the conduct of monetary policy in a New Keynesian model where the degree of expectations anchoring responds endogenously to economic conditions. The main contribution is filling the gap in the theory of monetary policy when expectations can exhibit varying degrees of unanchoring. I propose a novel, quantitatively realistic model of expectation formation which captures the time-varying sensitivity of long-run expectations to short-run conditions. I take the model to the data to quantify my novel anchoring mechanism, and use it to characterize optimal policy analytically and numerically.
+This paper studies the conduct of monetary policy in a New Keynesian model where the degree of expectations anchoring responds endogenously to economic conditions. The main contribution is providing the first theory of monetary policy when expectations can exhibit varying degrees of unanchoring. I propose a novel, quantitatively realistic model of expectation formation which captures the time-varying sensitivity of long-run expectations to short-run conditions. I take the model to the data to quantify my novel anchoring mechanism, and use it to characterize optimal policy analytically and numerically.
 
 In order to provide a convincing analysis of optimal policy, I need a qualitatively and quantitatively realistic model of expectation formation. To this end, I build on new work by \cite{carvalho2019anchored}, who model the anchoring of expectations as a discrete gain function that determines whether agents learn about long-run inflation using a small or large weight on past expectations errors. My methodological contribution is to extend this work along two dimensions. First, I embed an anchoring model of expectation formation in a general equilibrium New Keynesian model, allowing me to formally consider the monetary policy problem. Second, I use a continuous gain function, capturing the time-varying degrees of unanchoring in the data.
 
@@ -831,13 +834,8 @@ Not so for the anchoring model. Even for $\lambda_x = 0$, the optimal inflation 
 As seen on Fig. \ref{fig_loss}, both models predict a sharp increase in the loss as $\psi_{\pi}$ is lowered for low values of $\psi_{\pi}$. This is intuitive: the lower $\psi_{\pi}$, the more inflation fluctuation the central bank tolerates. This leads to losses in both models. In the anchoring model, the loss is further increased by the fact that inflation volatility leads to higher forecast errors. This implies higher fluctuations in expectations, which in turn feed back into inflation. In this manner, the positive feedback loop in the anchoring model in general leads to higher inflation fluctuations in the anchoring model than in the RE version, resulting in a higher loss as well. 
 
 \begin{figure}[h!]
-%\subfigure[$\lambda_x = 0, \lambda_i = 0$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossnilnil}}
-%\hfill
-%\subfigure[$\lambda_x = 1, \lambda_i = 0$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossonenil}}
-%\subfigure[$\lambda_x = 0, \lambda_i = 1$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossnilone}}
-%\hfill
-%\subfigure[$\lambda_x = 1, \lambda_i = 1$]{\includegraphics[scale = 0.2]{\myFigPath \fignameCBlossoneone}}
-\includegraphics[scale = 0.25]{\myFigPath \fignameCBlossbaseline}
+%\includegraphics[scale = 0.25]{\myFigPath \fignameCBlossbaseline}
+\includegraphics[scale = 0.25]{\myFigPath \fignameCBlossbaselineTwoY}
 \caption{Central bank loss as a function of $\psi_{\pi}$}
 \floatfoot{Sample length is $T=100$ with a cross-section of $N=100$.}
 \label{fig_loss}
@@ -937,24 +935,26 @@ That is the question the second row answers. Its message is that consumers in th
  %%%%%%%%%%%%%%%%%%           CONCLUSION            %%%%%%%%%%%%%%%%%% 
 %\newpage
 \section{Conclusion}\label{conclusion}
-Central bankers frequently voice a concern to anchor expectations. Absent a theory of anchored expectations, it is difficult to understand how such a concern affects the conduct of monetary policy. This paper lays out a simple behavioral model of anchoring expectation formation based on adaptive learning with an endogenous gain. The estimation of the anchoring function and the analysis of the Ramsey policy through analytical and numerical methods yields a number of differences compared to the rational expectations version of the model. 
+Central bankers frequently voice a concern to anchor expectations, that is, to render expectations of long-run inflation unresponsive to short-run economic conditions. The contribution of this paper is to lay out a simple behavioral model which captures the time-varying sensitivity of long-run expectations to short-run conditions and to investigate how this affects the conduct of monetary policy. I quantify my novel anchoring mechanism by estimating the form of the function that determines the degree of unanchoring. I use the model to characterize monetary policy both analytically and numerically. 
 
-The main message is that policy is time-varying because it responds to the unanchoring of expectations. Optimal policy involves responding to a \movepibar basis point rise (fall) in expected mean inflation by raising (lowering) the interest rate by \movei bp, depending on the sign of the forecast error. Since negative forecast errors raise the gain by about twice as much as positive ones of the same size do, this implies that policy responds more aggressively to negative surprises. Thus the estimation of the anchoring function indicates that the central bank should especially avoid causing negative inflation surprises, as already a negative forecast error of half a percentage point leads to a sizable degree of unanchoring. For positive forecast errors, the same gain requires a forecast error double this size. 
+The simulated method of moments estimation establishes that the anchoring function provides a realistic description of expectations. On the one hand, expectations become more unanchored when the private sector made larger mistakes in predicting inflation in the past. On the other hand, like in  \cite{hebden2020robust}, negative mistakes unanchor expectations more than positive ones of the same magnitude do. Moreover, I use the estimated anchoring function to back out an implied time series for the gain, the model's metric for the degree of unanchoring. The median gain, 0.098, is in line with estimates in the literature such as \cite{milani2014learning} and \cite{carvalho2019anchored}, and implies that agents in the model discount observations older than 10 quarters when updating their long-run expectations. 
 
-Optimal policy in the anchoring model is time-consistent, for which reason it can be expressed as a purely forward-looking target criterion. The target criterion prescribes how the policymaker can exploit the learning mechanism to spread out the effect of shocks over time, adding an intertemporal channel to the tradeoff between inflation and the output gap. The sensitivity of the policy function to the stance of anchoring highlights, however, that there is no free lunch: the monetary authority needs to dampen volatility at the same time as guard against the possibility of unanchoring expectations. Thus optimal policy faces an intertemporal volatility tradeoff in which long-run stability can only be achieved at the cost of short-run volatility.
+Using the thus quantified model, I provide three sets of results on monetary policy. I first consider the Ramsey policy of the central bank, deriving an analytical target criterion that prescribes how the monetary authority should respond to shocks. I show that the presence of my novel anchoring channel makes it desirable and feasible to smooth out shocks over time. However, the extent this is feasible varies over time in tandem with the current and expected future degree of unanchoring.
 
-Furthermore, 
-%even small changes to the Fed's policy framework yield significant welfare improvements. In particular, adopting an anchoring-optimal Taylor rule gets rid of 84\% of the excess volatility loss compared to what would prevail under rational expectations. 
-optimal policy involves significant welfare gains as measured by the consumption equivalent between an RE-optimal Taylor rule and optimal policy.
-Thus, my model corroborates Jerome Powell's assessment in the Introduction that ensuring that expectations are well anchored should indeed be crucial to the Fed's policy framework.
+Second, I use global methods to solve the nonlinear system of first-order conditions of the Ramsey problem numerically. I thus obtain an approximation to the optimal policy function, providing the fully optimal path of interest rates conditional on the sequence of exogenous disturbances. The optimal policy involves responding aggressively when expectations unanchor in order to suppress the volatility that high degrees of unanchoring cause. By contrast, the central bank need not intervene when expectations are anchored, resulting in accommodating inflation fluctuations in this case. 
 
-A number of interesting questions emerge from the analysis of monetary policy and the anchoring expectation formation. One may wonder whether the central bank can use tools other than its leading interest rate to anchor expectations. Especially concerns around a binding zero lower bound would motivate the use of alternative monetary policy tools. Thus the interaction between anchoring and central bank communication, in particular forward guidance, would be worthwhile to examine. An interesting avenue for future research, then, would be to make explicit the communication policy of the central bank to investigate whether anchoring expectation formation could help to resolve the forward guidance puzzle. 
+Lastly, I explore the implications of the model for the most common specification of monetary policy, the Taylor rule. As my numerical solution for the optimal inflation coefficient demonstrates, the central bank should be less aggressive on inflation in my model than under rational expectations. The reason is that a time-invariant Taylor rule involves the same response to a given movement in inflation regardless of the degree of unanchoring. Therefore, the central bank induces additional volatility into the model even in states of the world when it is unnecessary because expectations are anchored. An optimal inflation coefficient in my model is able to eliminate the majority of such additional volatility.
+
+A number of interesting questions emerge from the analysis of monetary policy and the anchoring expectation formation. One may wonder whether the central bank can use tools other than its leading interest rate to anchor expectations. Especially concerns around a binding zero lower bound would motivate the use of alternative monetary policy tools. Thus the interaction between anchoring and central bank communication, in particular forward guidance, would be worthwhile to examine. In future work, I plan to make explicit the communication policy of the central bank to investigate whether anchoring expectation formation could help to resolve the forward guidance puzzle. 
 
 This, however, requires overcoming the implication of Proposition \ref{result_no_commitment} that adaptive expectations are not able to incorporate any information that is not embedded in the current state vector. One option is to model central bank communication similarly to news shocks in the sense of \cite{beaudry2006stock}. In this case, the anchoring model is likely to deliver differing predictions regarding the effectiveness of Delphic versus Odyssean forward guidance (\cite{campbell2012macroeconomic}) because sharing the central bank's forecasts would not constitute a questioning of the interest rate reaction function, while committing to a future interest rate path would.
 
-From this perspective, it is desirable to extend models of adaptive expectations in general to allow the private sector to internalize promises of the policymaker. As discussed in Section \ref{ramsey}, the inability to incorporate communication stems from the fact that adaptive expectations involves a sub-optimal expectation formation. Viewed from the lens of an infinitely repeated game, the private sector is an automaton. One would thus need to reintroduce some notion of optimality into expectation formation that would render the private sector a strategic player. Such an extension would likely be akin to the reputation-building literature \`a la \cite{cho1995induction} or to the finite planning-horizon model of \cite{woodford2019monetary}. 
+From this perspective, it is desirable to extend models of adaptive expectations in general to allow the private sector to internalize promises of the policymaker. As discussed in Section \ref{ramsey}, the inability to incorporate communication stems from the fact that adaptive expectations involve a sub-optimal expectation formation. Viewed from the lens of an infinitely repeated game, the private sector is an automaton. One would thus need to reintroduce some notion of optimality into expectation formation that would render the private sector a strategic player. Such an extension would likely be akin to the reputation-building literature \`a la \cite{cho1995induction} or to the finite planning-horizon model of \cite{woodford2019monetary}. 
 
-In general, extensions to the anchoring expectation formation proposed here would be of interest. The choice of the gain could be endogenized using approaches that allow the private sector to choose its forecasting behavior in an optimizing fashion, perhaps by selecting among competing forecasting models as in \cite{Branch2011} or by choosing the size of the gain to minimize the estimated forecast error variance. 
+Presumably, there are variables other than long-run inflation where expectations exhibit varying degrees of unanchoring. For instance, fixed exchange rate regimes might become subject to speculative attacks the moment when the peg is no longer believed by the public. Exploring the causes and timing of currency crises is thus a natural application of my model which I plan investigate in future research. 
+
+
+In general, extensions to the anchoring expectation formation proposed here would be of interest. The determination of the gain could be endogenized using approaches that allow the private sector to choose its forecasting behavior in an optimizing fashion, perhaps by selecting among competing forecasting models as in \cite{Branch2011} or by picking the size of the gain to minimize the estimated forecast error variance. 
 
 Lastly, a foray into the empirics of anchoring expectation formation is important to get a clearer idea of the expectation formation process of the public. In practice, it is likely that this process is heterogenous, not just across households and firms, but also within various demographic groups or sectors of the economy. If so, then monetary policy would need to collect and monitor a host of long-run expectations time series to manage the challenge of keeping expectations anchored. 
 

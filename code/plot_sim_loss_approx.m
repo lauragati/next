@@ -104,41 +104,41 @@ knowTR=1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% 23 August 2020: just try the calibrated values in command_simgas.m (Materials 42)
-% 
+%
 % alph = [1.0000    0.5000         0    0.5000    1.0000]'
 % fegrid = [-4,-3,0,3,4]
 % x{1} = fegrid;
-% 
+%
 % [param, setp, param_names, param_values_str, param_titles] = parameters_next;
-% 
+%
 % sig_r = 0.01;
 % sig_i = 2;
 % sig_u = 0.5;
-% 
+%
 % eta = eye(3).*[sig_r, sig_i, sig_u]'
-% 
+%
 % setp.sig_r = sig_r;
 % setp.sig_i = sig_i;
 % setp.sig_u = sig_u;
 % setp.lamx  = 1;
 % setp.lami  = 1;
-% 
+%
 % % return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% 27 August 2020: calibration C (Materials 43)
-% 
+%
 % alph = [0.8    0.4         0    0.4    0.8]'
 % fegrid = [-4,-3,0,3,4]
 % x{1} = fegrid;
-% 
+%
 
 %% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
-% 
+%
 % setp.lamx  = 0;
 % setp.lami  = 0;
-% 
+%
 pis_x_here = param.psi_x;
 
 
@@ -158,8 +158,8 @@ if compute_loss==1
     M = 30;%30
     loss = zeros(1,M);
     loss_RE = zeros(1,M);
-    psi_pi_vals = linspace(1,2,M);
-%     pis_x_here = 0;
+    psi_pi_vals = linspace(1,2.4,M);
+    %     pis_x_here = 0;
     parfor m=1:M
         if mod(m,10)==0
             disp(['Iteration ', num2str(m), ' out of ', num2str(M)])
@@ -191,7 +191,7 @@ if print_figs==0
     figtitle = ['CB loss as a function of \psi_{\pi} ; ' , gain_title];
     create_plot(xseries,yseries,seriesnames,figname,0,figtitle)
     
-%     return
+    %     return
     yseries=loss_RE;
     seriesnames = 'Loss RE';
     figname = [this_code, '_', 'loss','_', 'RE', '_',relevant_params, '_', date_today];
@@ -199,21 +199,55 @@ if print_figs==0
     create_plot(xseries,yseries,seriesnames,figname,0,figtitle)
 end
 
+%% Plots for prezi combined in one
+[fs, lw] = plot_configs;
+linestyles = {'-','-','--', ':'};
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+yyaxis left
+h_anch = plot(psi_pi_vals,loss, 'linewidth', lw);
+set(gca,'TickLabelInterpreter', 'latex');
+yyaxis right
+h_RE = plot(psi_pi_vals,loss_RE,'linestyle', '--', 'linewidth', lw);
+ax = gca; % current axes
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+xl = xlabel('$\psi_{\pi}$', 'interpreter', 'latex');
+xlplus = [0.7,0.0002];
+
+xl.Position(1) = xlplus(1) + xl.Position(1);
+xl.Position(2) = xlplus(2) + xl.Position(2);
+grid on
+grid minor
+legend([h_anch, h_RE], {'Anchoring', 'RE'}, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 2)
+legend('boxoff')
+
+figname = [this_code, '_2y', '_', 'losses_with_optimal','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
 % return
 %% Pretty plots for draft or prezi
 if print_figs==1
-%     figname = [this_code,'_pretty', '_', 'loss','_', gain_name, '_', PLM_name , '_', ...
-%         'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(burnin),'_', ...
-%         relevant_params, '_date_',date_today];
-%     create_pretty_plot_x(xseries, loss,figname,print_figs)
-%     
-%     figname = [this_code, '_pretty', '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
-%     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
+    %     figname = [this_code,'_pretty', '_', 'loss','_', gain_name, '_', PLM_name , '_', ...
+    %         'T_', num2str(T), '_N_', num2str(N), '_burnin_', num2str(burnin),'_', ...
+    %         relevant_params, '_date_',date_today];
+    %     create_pretty_plot_x(xseries, loss,figname,print_figs)
+    %
+    %     figname = [this_code, '_pretty', '_', 'loss_RE','_', gain_name, '_', PLM_name , '_',relevant_params, '_', date_today];
+    %     create_pretty_plot_x(xseries, loss_RE,figname,print_figs)
     
     figname = [this_code, '_pretty', '_', 'losses_with_optimal','_', gain_name, '_', PLM_name , '_','lamx', strrep(num2str(setp.lamx), '.','_'), '_lami', num2str(setp.lami), '_', date_today];
     loss_opt = 6.0985*ones(size(loss));
     y = [loss; loss_RE; loss_opt];
-    % 
+    %
     xlplus = [0.5,0.0002];
     ylplus = [-100,0]; % delete this one
     create_pretty_plot_x_holdon(xseries,y,{'Anchoring', 'RE', 'Optimal'},'$\psi_{\pi}$','Loss',xlplus, ylplus, figname,print_figs)
