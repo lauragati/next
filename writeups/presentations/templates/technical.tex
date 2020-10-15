@@ -93,6 +93,7 @@
 %%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
 % footnote suppressing number
 \newcommand\blfootnote[1]{%
   \begingroup
@@ -112,7 +113,7 @@
 }
 
 
-% Set colors of butthons
+% Set colors of buttons
 \setbeamercolor{button}{bg=dodgerblue,fg=white}
 
 % this removes the blue navigation bar that used to be on the bottom right
@@ -292,6 +293,8 @@
 % annualized
 \def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
 \def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameIRFanchUnanchTogether{RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+
 
 % Cross-sectional average gains for various psi_pi
 % not annualized
@@ -1056,11 +1059,17 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Responding to cost-push shocks}
+	
+	
+
 \small{
 %\begin{align*}
 %& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
 %& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ f_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
 %\end{align*}
+
+% makes the covered stuff appear with a low facealpha (only works with some overlay commands such as onslide (not with only))
+\setbeamercovered{transparent}
 
 \begin{align*}
 & \pi_t  = \only<1>{\textcolor{brownreddark}{-\frac{\lambda_x}{\kappa}x_t} + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
@@ -1075,19 +1084,19 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 \
 
-\only<1>{\textcolor{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\}
+ \onslide<1>{\textcolor<1>{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\}
 
 \
 
 \
 
-\only<2>{\textcolor{brownreddark}{Postpone current tradeoff to future as long as gain $>$ 0} \\}
+\onslide<2>{\textcolor<2>{brownreddark}{Postpone current tradeoff to future as long as gain $>$ 0} \\}
 
 \
 
 \
 
-\only<3>{\textcolor{brownreddark}{Extent to which can postpone depends on not unanchoring too much in future}}
+\onslide<3>{\textcolor<3>{brownreddark}{Extent to which can postpone depends on not unanchoring too much in future}}
 
 }
 \end{frame}
@@ -1175,8 +1184,7 @@ $\rightarrow$ For 5 bp drop in $\bar{\pi}$, lower $i$ by 2.5 pp
 	\frametitle{Unanchoring causes volatility}
 
 \begin{figure}[h!]
-\subfigure[Expectations anchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFanchored}}
-\subfigure[Expectations unanchored]{\includegraphics[scale = 0.15]{\myFigPath \fignameIRFunanchored}}
+\includegraphics[scale = 0.25]{\myFigPath \fignameIRFanchUnanchTogether}
 \caption{Impulse responses after a contractionary monetary policy shock when policy follows a Taylor rule}
 \label{IRF}
 \end{figure}	
@@ -1247,7 +1255,7 @@ x_t &=  -\sigma \textcolor{dodgerblue}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \bet
 	
 \begin{figure}[h!]
 \caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.24]{\myFigPath \fignameCBlossbaseline}
+\includegraphics[scale=0.24]{\myFigPath \fignameCBlossbaselineTwoY}
 \end{figure} 
 
 
