@@ -24,7 +24,11 @@ for i=1:ny
     h2(i) =   plot(y2(i,:), 'linewidth', lw, 'linestyle', '--');
     
     ax = gca; % current axes
-    ax.FontSize = fs/1.2;
+%     ax.Position(1) = ax.Position(1)+0.1; % bottom left x
+    ax.Position(2) = ax.Position(2)+0.1; % bottom left y
+    ax.Position(3) = 0.9*ax.Position(3); % width
+    ax.Position(4) = 0.8*ax.Position(4); % height
+    ax.FontSize = fs/1.5;
     set(gca,'TickLabelInterpreter', 'latex');
     grid on
     grid minor
@@ -35,20 +39,16 @@ for i=1:ny
     xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs/2);
     xl.Position(1) = xplus + xl.Position(1);
     end
-%     ax.YAxis.Exponent = 0;
-%     ax.YRuler.Exponent = 0; % turns off scientific notation
+    ax.YAxis.Exponent = 0;
+    ax.YRuler.Exponent = 0; % turns off scientific notation
 end
 
 % Overall legend
-% add a bit space to the figure
-% fig = gcf;
-% fig.Position(2) = fig.Position(2)+250;
-fig.InnerPosition = 0.9*fig.OuterPosition;
-% add legend
-Lgnd = legend('show',[h1(i), h2(i)], legendentries, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 2);
+Lgnd = legend('show',[h1(i), h2(i)], legendentries, 'fontsize',fs*0.75,'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 2);
 legend('boxoff')
-Lgnd.Position(1) = 0.43;
-Lgnd.Position(2) = -0;
+Lgnd.Position(1) = 0.4; % IRFs
+Lgnd.Position(2) = 0.05;
+
 
 
 if print_figs ==1

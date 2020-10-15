@@ -396,9 +396,9 @@ do_opt_plot=1;
 if do_opt_plot==1
     % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
     figname = ['alph_opt_',figspecs];
-    xlab = 'Forecast error';
+    xlab = 'Forecast error (annualized percentage points)';
     ylab = 'Gain';
-    xlplus = [0,0.02];
+    xlplus = [0,0];
     ylplus = [0.8,0.5];
 
     create_pretty_plot_x(fegrid,alph_true',xlab,ylab,xlplus, ylplus,figname,print_figs)

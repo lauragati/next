@@ -70,3 +70,5 @@ command_welfare
 
 command_IRFs_approx_pretty
 
+command_IRFs_approx_pretty_together
+

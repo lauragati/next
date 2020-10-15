@@ -23,7 +23,7 @@ plot_IRFs=0;
 plot_simulated_sequence = 0;
 plot_gain_IRF = 0;
 plot_IRFs_anch = 1; % conditional on being anchored when shock hits, not trivial for smooth anchoring
-plot_gains=1;
+plot_gains=0;
 
 %% Parameters
 tic
@@ -163,6 +163,7 @@ v = zeros(ne+1, T+ndrop); % shut off measurement error
 nd = size(dt_vals,2);
 d = 1; % the innovation, delta
 GIR_Y_LH = zeros(ny,h,N,nd);
+GIR_Y_cgain = zeros(ny,h,N,nd);
 GIR_k = zeros(h,N,nd);
 k = zeros(T,N);
 ks= zeros(T,N);
@@ -180,13 +181,18 @@ for s=2  %2->zoom in on monetary policy shock
         % Unshocked
         % RE
         [x_RE, y_RE] = sim_model(gx,hx,SIG,T,ndrop,e);
-        % Learning
+        
+        % Anchoring
         %         [x_LH, y_LH, ~, ~, ~, ~, ~, ~, diff,~, k(:,n)] = sim_learnLH(gx,hx,SIG,T+ndrop,ndrop,e, Aa, Ab, As, param, PLM, gain);
         if gain ~= again_critsmooth
             [x_LH, y_LH, k(:,n), ~, ~, ~, ~, diff] = sim_learnLH_clean(param,gx,hx,eta, PLM, gain, T+ndrop,ndrop,e,knowTR,mpshock);
         else
             [x_LH, y_LH, k(:,n), ~, ~, ~, ~,diff] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock);
         end
+        
+        % Cgain learning
+        [x_cgain, y_cgain] = sim_learnLH_clean(param,gx,hx,eta, PLM, cgain, T+ndrop,ndrop,e,knowTR,mpshock);
+        
         % Shocked
         % RE
         % make RE shock the same scale as learning:
@@ -208,9 +214,15 @@ for s=2  %2->zoom in on monetary policy shock
             else
                 [~, ys_LH, ks(:,n), ~, ~, ~, ~,diffs, ~,~,~,~,k_dt(n)] = sim_learnLH_clean_approx_univariate(alph,x,param,gx,hx,eta, PLM, gain,T+ndrop,ndrop,e,v,knowTR,mpshock,dt,x0);
             end
+            
+            % Cgain learning
+            [~, ys_cgain] = sim_learnLH_clean(param,gx,hx,eta, PLM, cgain, T+ndrop,ndrop,e,knowTR,mpshock,dt,x0);
+            
             % Construct GIRs
             GIR_Y_LH(:,:,n,t) = ys_LH(:,dt:dt+h-1) - y_LH(:,dt:dt+h-1);
             GIR_k(:,n,t) = ks(dt:dt+h-1,n) - k(dt:dt+h-1,n);
+            
+            GIR_Y_cgain(:,:,n,t) = ys_cgain(:,dt:dt+h-1) - y_cgain(:,dt:dt+h-1);
         end
         
     end
@@ -219,7 +231,7 @@ end
 % Annualize inflation and interest rates
 GIR_Y_LH([1,3],:,:) =  ((GIR_Y_LH([1,3],:,:)/100+1).^4 -1)*100;
 iry([1,3],:,:) =  ((iry([1,3],:,:)/100+1).^4 -1)*100;
-
+GIR_Y_cgain([1,3],:,:) =  ((GIR_Y_cgain([1,3],:,:)/100+1).^4 -1)*100;
 
 % Gather the gains when the shock hit and calculate 10 and 90 percentile in
 % the cross-section
@@ -227,12 +239,16 @@ k1_dt_sort = sort(1./k_dt);
 if mod(N,10)~=0
     k1_10 = k1_dt_sort(floor(N/10)+1);
     k1_90 = k1_dt_sort(ceil(9*N/10)+1);
+    k1_med =  k1_dt_sort(ceil(5*N/10)+1);
 elseif mod(N,10)==0
     k1_10 = (k1_dt_sort(floor(N/10)) + k1_dt_sort(floor(N/10)+1)) /2;
     k1_90 = (k1_dt_sort(ceil(9*N/10)) + k1_dt_sort(ceil(9*N/10)+1)) /2;
+    k1_med = (k1_dt_sort(ceil(5*N/10)) + k1_dt_sort(ceil(5*N/10)+1)) /2; % 0.0478
+
 end
 well_anch_idx = find(1./k_dt <= k1_10);
 unanch_idx = find(1./k_dt >= k1_90);
+k1_mean = mean(k1_dt_sort);
 
 % warning on
 % Construct RIRs by simple method: means (Option 1)
@@ -243,6 +259,7 @@ RIR_k = squeeze(mean(GIR_k,2));
 RIR_kinv = RIR_k;
 % only invert for nonzero elements
 RIR_kinv(abs(RIR_k) > 0) = 1./RIR_k(abs(RIR_k) > 0);
+RIR_cgain = squeeze(mean(GIR_Y_cgain,3));
 
 disp(['(psi_x, psi_pi, lamx, lami)=   ', num2str([psi_x, psi_pi, lamx, lami])])
 toc
@@ -347,7 +364,7 @@ if plot_IRFs_anch==1
         subplot_names = titles_obs;
         legendnames = {'Anchoring', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', anchored'];
-        xplus = 5;
+        xplus = 4;
         create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
         
         clear series
@@ -362,14 +379,15 @@ if plot_IRFs_anch==1
         %         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
         create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
         
-        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         clear series
         % 7) IRF: OBSERVABLES LH against RE, anchored AND unanchored
         series1 = RIR_anch(:,:,t);
         series2 = iry;
         series3 = RIR_unanch(:,:,t);
+        series4 = RIR_cgain;
         subplot_names = titles_obs;
-        legendnames = {'Anchored', 'RE', 'Unanchored'};
+        legendnames = {'Anchored', 'RE', 'Unanchored', 'Constant gain'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];
         
         % Plot configs
@@ -384,6 +402,7 @@ if plot_IRFs_anch==1
             h1(i) =   plot(series1(i,:), 'linewidth', lw);
             h2(i) =   plot(series2(i,:), 'linewidth', lw, 'linestyle', '--');
             h3(i) =   plot(series3(i,:), 'linewidth', lw, 'marker', 'o');
+            h4(i) =   plot(series4(i,:), 'linewidth', lw, 'linestyle', ':');
             ax = gca; % current axes
             ax.FontSize = fs/1.2;
             set(gca,'TickLabelInterpreter', 'latex');
@@ -405,9 +424,9 @@ if plot_IRFs_anch==1
         fig = gcf;
         fig.Position(3) = fig.Position(3) + 250;
         % add legend
-        Lgnd = legend('show',[h1(i), h2(i), h3(i)], legendnames, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 3);
+        Lgnd = legend('show',[h1(i), h2(i), h3(i), h4(i)], legendnames, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 4);
         legend('boxoff')
-        Lgnd.Position(1) = 0.38;
+        Lgnd.Position(1) = 0.3;
         Lgnd.Position(2) = 0;
         
         figname = ['RIR_together_psi_pi' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];
@@ -418,6 +437,7 @@ if plot_IRFs_anch==1
             cd(current_dir)
             close
         end
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     end
 end
 

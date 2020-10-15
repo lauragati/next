@@ -111,7 +111,8 @@ for t = 1:T-1
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain
-            k(:,t) = gbar^(-1);
+%             k(:,t) = gbar^(-1);
+            k(:,t) = 0.0478^(-1);
         end
         
         % Create forecasts and FE

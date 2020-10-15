@@ -23,6 +23,9 @@ for i=1:ny
 end
 % plot(x,zeros(1,T), 'k--', 'linewidth',lw)
 ax = gca; % current axes
+% % decrease the drawable area when plotting the estimated alpha
+% ax.Position(2) = ax.Position(2)+0.05;
+% ax.Position(4) = 0.9*ax.Position(4);
 ax.FontSize = fs;
 set(gca,'TickLabelInterpreter', 'latex');
 grid on
