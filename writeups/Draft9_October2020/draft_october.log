@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 OCT 2020 17:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 OCT 2020 22:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -659,8 +659,8 @@ sed on input line 587.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [15]
-<../../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png, id=52
-0, 1059.96pt x 755.82375pt>
+<../../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png, id=51
+9, 1059.96pt x 755.82375pt>
 File: ../../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png G
 raphic file (type png)
 
@@ -670,7 +670,7 @@ Package pdftex.def Info: ../../figures/fe_SPF_command_anchoring_in_data_19_Sep_
 (pdftex.def)             Requested size: 211.98824pt x 151.16206pt.
 
 <../../figures/gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39.png, id=
-521, 1077.02374pt x 748.7975pt>
+520, 1077.02374pt x 748.7975pt>
 File: ../../figures/gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39.png
  Graphic file (type png)
 
@@ -890,16 +890,12 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1262.
 
 Package rerunfilecheck Info: File `draft_october.out' has not changed.
 (rerunfilecheck)             Checksum: B3116F6AE53B7CEC26F701EA33405971;2242.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1262.
  ) 
 Here is how much of TeX's memory you used:
  10793 strings out of 493089
  169802 string characters out of 6134842
- 279502 words of memory out of 5000000
+ 279501 words of memory out of 5000000
  13795 multiletter control sequences out of 15000+600000
  16135 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -924,7 +920,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_october.pdf (51 pages, 1402498 bytes).
+Output written on draft_october.pdf (51 pages, 1402403 bytes).
 PDF statistics:
  1251 PDF objects out of 1440 (max. 8388607)
  1134 compressed objects within 12 object streams

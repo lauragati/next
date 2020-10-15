@@ -373,7 +373,7 @@ where $w$ indexes windows of 20 quarters length,
 
 \
 
-$f_{t|t-1} \equiv \pi_t - \E_{t-1}(\pi_t) \quad $ individual one-year-ahead forecast error
+$f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead forecast error
 
 
 
@@ -474,45 +474,6 @@ $f_{t|t-1} \equiv \pi_t - \E_{t-1}(\pi_t) \quad $ individual one-year-ahead fore
 	\end{enumerate}
 
 	
-%	\begin{itemize}
-%%%	\item \ppFEunanchors pp forecast error unanchors expectations
-%%
-%%	
-%%	\
-%%	
-%%	\
-%%	
-%%	\item Optimal monetary policy responsiveness time-varying 
-%	
-%%	\
-%%	
-%%	\
-%%	
-%%	
-%%	\item[$\hookrightarrow$] Novel intertemporal stabilization and volatility tradeoffs, latter matters more 
-%%	
-%%	\
-%%	
-%%	\
-%	\item Optimal policy aggressive when expectations unanchor, accommodates when anchored
-%	
-%	\
-%	
-%	\
-%	
-%%	\item[$\hookrightarrow$]  E.g. for a 0.1 pp fall in long-run inflation expectations, lowers interest rate by \movei pp
-%
-%	\item Taylor rule policy less aggressive on inflation than under rational expectations
-%	
-%	\
-%	
-%	\
-%	
-%	\item[$\hookrightarrow$] Anchoring-optimal Taylor rule eliminates 84\% of loss from volatility
-%
-%
-%	\end{itemize}
-
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -649,7 +610,7 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 \
 
 \begin{itemize}
-\item Model implies mapping between exogenous states ($s_t$) and observables ($y_t \equiv (\pi, x, i)'$)
+\item Model implies mapping between exogenous states $s_t$ and observables $y_t \equiv (\pi, x, i)'$
 
  \begin{align}
 % s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
@@ -662,7 +623,7 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 $\rightarrow$ knows (\ref{obs_RE}) 
 
 \begin{equation}
-\E_t (y_{t+1}) = g \E(s_{t+1})
+\E_t y_{t+1} = g \E s_{t+1}
 \end{equation}
 \
 
@@ -730,12 +691,12 @@ $\rightarrow$ knows (\ref{obs_RE})
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Recursive least squares}
+	\frametitle{Recursive least squares (RLS)}
 	\label{RLS_special}
 	
 	\
 	
-Jumps are: $(\pi, x, i)'$ 	
+Observables are: $(\pi, x, i)'$ 	
 
 \
 \
@@ -777,93 +738,226 @@ $\rightarrow$ RLS
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Decreasing versus constant gain}
+	\frametitle{ Alternatives for the gain }
 	\label{cgain_dgain}
-	
-Decreasing gain learning:
+
+%\begin{small}
+\begin{enumerate}
+\item Decreasing gain:
 
 \begin{equation}
 \bar{\pi}_{t}  =\bar{\pi}_{t-1} +\frac{1}{t} \; f_{t|t-1}
 \end{equation}
+
+ 
+ \only<1-3>{$\bar{\pi}_{t}$ sample mean of full sample of forecast errors}
+ 
+
+
+ \only<4-7>{\textcolor{dodgerblue}{Optimal monetary policy: Mele et al 2019}}
+
+ \
+ 
+ \pause
  
  \
  
- $\rightarrow$ consider sample mean of full sample of forecast errors
- 
-\
-
-\pause
-
-\
-
-\
-
-Constant gain learning:
+ \item Constant gain:
 \begin{equation}
 \bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; f_{t|t-1}
 \end{equation}
+ 
+ \only<2-3>{$\bar{\pi}_{t}$ sample mean of most recent forecast errors only} 
 
+
+
+  \only<5-7>{\textcolor{dodgerblue}{Optimal monetary policy: Moln\'ar \& Santoro 2014}}
+
+  
+    
+ \pause
+ 
  \
  
- $\rightarrow$ consider sample mean of most recent observations only 
+ \
+ 
+ \item Endogenous gain:
+ \begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
+\end{equation}
+
+ \only<6-7>{\textcolor{dodgerblue}{Marcet \& Nicolini 2003, Carvalho et al 2019}}
+ 
+  \only<7>{\textcolor{dodgerblue}{Optimal monetary policy: -}}
+
+
+
+\end{enumerate}
+	
+
+%\end{small}
+
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%% Slide %%%%%%  	
+%%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring mechanism: endogenous gain}
-	\label{anchoring1}
-
-
-\begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} + \textcolor{brownreddark}{k_t}\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)
-\end{equation}
+	\frametitle{Model summary}
+	\label{aggregate_LOMS}
+\begin{itemize}
+\item New Keynesian core: IS and Phillips curves	
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+\hfill \hyperlink{derivations}{\beamergotobutton{Derivations}} \hyperlink{ALMs}{\beamergotobutton{Actual laws of motion}}
 
 \
-
-\
-
-$k_t = \textcolor{brownreddark}{\mathbf{g}(f_{t|t-1})}$: anchoring function
 \pause
-\begin{equation}
- \textcolor{brownreddark}{\mathbf{g}(f_{t|t-1})} = \sum_i\gamma_i b_i(f_{t|t-1})\label{gain}
-\end{equation}
+\item Expectations: 
+\begin{align}
+\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t-1} + b_1 s_t \\
+\bar{\pi}_{t}  &=\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
+\end{align}
 
 \
-
-$ b_i(f_{t|t-1}) = $ basis, here: second order spline (piecewise linear) \\
-
-\
-
-$\gamma_i  = $ approximating coefficients \\$\quad \hookrightarrow$ estimate $\hat{\gamma}$ via simulated method of moments (SMM)
-
-\
-
-\
-
-Target autocovariances of inflation, output gap, federal funds rate and 1-year ahead SPF inflation expectations at lags $0, \dots, 4$
-
-\vfill 
-
-\hfill \hyperlink{g}{\beamergotobutton{Functional forms in literature}}
+\pause
+\item[$\rightarrow$] How should $\{ i_t \}$ be set?
+\end{itemize}
 
 
 
 \end{frame}
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quantification of learning channel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Estimating form of gain function}
+	\label{anchoring1}
+
+
+
+\begin{equation}
+ \mathbf{g}(f_{t|t-1}) = \sum_i\gamma_i b_i(f_{t|t-1})\label{gain}
+\end{equation}
+
+\
+
+\begin{itemize}
+\item $ b_i(f_{t|t-1}) = $ piecewise linear basis
+
+\
+
+\item $\gamma_i  = $ approximating coefficient at node $i$
+
+\
+\pause
+\item[$\hookrightarrow$] Estimate $\hat{\gamma}$ via simulated method of moments \\ (Duffie \& Singleton 1990, Lee \& Ingram 1991, Smith 1993)
+
+\vspace{0.2cm}
+
+\begin{itemize}
+\item Calibrate parameters of New Keynesian core to literature 
+
+\
+
+\item Calibrate variances of disturbances to match moments
+
+\
+\item Estimate $\hat{\gamma}$ to match moments
+\end{itemize}
+
+
+\
+\pause
+\item Moments: autocovariances of inflation, output gap, federal funds rate and 1-year ahead SPF inflation expectations at lags $0, \dots, 4$
+\end{itemize}
+
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Calibration - parameters from the literature}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+\hline
+ $\beta$ & 0.98 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule\\\hline
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline 
+ $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  
+% $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline 
+% $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+% $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+   \end{tabular}     
+   \label{calibration_lit}
+ \end{table}
+\end{center}
+% TABLES WERE UPDATED 29 AUGUST 2020. 
+
+
+
+\
+
+\
+
+Main sources: Chari et al 2000, Woodford 2003, Nakamura \& Steinsson 2008
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Calibration - matching moments}
+
+\small{
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+\hline
+ $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule  \\\hline 
+    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock  \\ \hline
+    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
+    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
+\end{tabular}     
+       \label{calibration}
+ \end{table}
+\end{center}
+}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
 %%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Anchoring function in the data}
+	\frametitle{Estimated form for $\mathbf{g(\cdot)}$}
 
 \begin{figure}[h!]
 \includegraphics[scale = \mySmallerFigScale]{\myFigPath \fignameAlphaHat}
-\caption{Learning gain as a function of forecast errors in inflation in \%}
+\caption{Gain as a function of forecast errors in inflation in \%}
 \label{epi}
 \end{figure}
 
@@ -876,51 +970,23 @@ Target autocovariances of inflation, output gap, federal funds rate and 1-year a
 	\frametitle{Forecast errors in the data}
 
 \begin{figure}[h!]
-\caption{Time series and distribution of 1-year ahead forecast errors in the SPF}
+\caption{Time series of 1-year ahead forecast errors and implied gain in the SPF}
 \subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
-\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPFhist}}
+\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameGainSPF}}
 \label{fe_in_data}
 \end{figure}
 
 \
 
 \pause
-Typical forecast error $\approx -0.5$ pp \pause $\quad \rightarrow$ gain of 0.1 
+Mean gain $\approx 0.12$ \pause $\quad \rightarrow$ discount forecast errors older than 8 quarters 
 
-\
-
-\pause $\Rightarrow$ 5 bp shift down in long-run expectations
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Model summary}
-	\label{aggregate_LOMS}
-\begin{itemize}
-\item IS- and Phillips curve:	
- \begin{align}
-x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
-\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
-\end{align}
-\hfill \hyperlink{derivations}{\beamergotobutton{Derivations}} \hyperlink{ALMs}{\beamergotobutton{Actual laws of motion}}
-
-\
-
-\item  Expectations evolve according to RLS with the endogenous gain given by (\ref{gain})
-
-\
-
-\item[$\rightarrow$] How should $\{ i_t \}$ be set?
-\end{itemize}
 
 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -964,22 +1030,23 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \
 
 In the model with anchoring, monetary policy optimally brings about the following target relationship between inflation and the output gap
-	
+
+%\begin{small}	
 \begin{align*}
-\pi_t  = -\frac{\lambda_x}{\kappa}x_t + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+((\pi_t - \bar{\pi}_{t-1}-b_1 s_{t-1}))\mathbf{g}_{\pi,t}\bigg) \\
-\\
-\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - (\pi_{t+1+j} - \bar{\pi}_{t+j}-b_1 s_{t+j})\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+& \pi_t  = -\frac{\lambda_x}{\kappa}x_t \\
+& + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
  \label{target}
 \end{align*}
-
+%\end{small}
 \
 
 \
 
-where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, $\; \prod_{j=0}^{0} \equiv 1 \; $ and $b_1$ is the first row of $b$.
+where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, and $b_1$ is the first row of $b$.
 	\end{prop}
 
-\vspace{-0.1cm}
+\vfill
 
 \hfill \hyperlink{generalTC}{\beamergotobutton{General case}}
 
@@ -988,30 +1055,39 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Two layers of intertemporal stabilization tradeoffs}
+	\frametitle{Responding to cost-push shocks}
 \small{
+%\begin{align*}
+%& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+%& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ f_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
+%\end{align*}
+
 \begin{align*}
-& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
-& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ f_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
+& \pi_t  = \only<1>{\textcolor{brownreddark}{-\frac{\lambda_x}{\kappa}x_t} + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)}
+\only<2>{-\frac{\lambda_x}{\kappa}x_t \; \textcolor{brownreddark}{ + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)}
+\only<3>{-\frac{\lambda_x}{\kappa}x_t  + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\textcolor{brownreddark}{\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}})} \bigg)}
 \end{align*}
 
 \
 
 \
 
-\textcolor{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\
+\only<1>{\textcolor{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\}
 
 \
 
 \
 
-\textcolor{dodgerblue}{Intertemporal tradeoff: current level and change of the gain } \\
+\only<2>{\textcolor{brownreddark}{Postpone current tradeoff to future as long as gain $>$ 0} \\}
 
 \
 
 \
 
-\textcolor{aquamarinegreen}{Intertemporal tradeoff: future expected levels and changes of the gain}
+\only<3>{\textcolor{brownreddark}{Extent to which can postpone depends on not unanchoring too much in future}}
 
 }
 \end{frame}
@@ -1037,13 +1113,7 @@ where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $
 \end{corollary}
 
 
-\
 
-\
-
-$\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
-
-\vfill
 
 
 
@@ -1080,73 +1150,7 @@ $\hookrightarrow $ Foreshadow: optimal policy aggressiveness time-varying
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Calibration - parameters from the literature}
 
-\begin{center}
-\begin{table}
-\begin{tabular}{ c | c  | l }
-\hline
- $\beta$ & 0.98 & stochastic discount factor \\  \hline
- $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
- $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
- $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
- $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule*\\\hline
- $\bar{g}$ & $0.145$  & initial value of the gain \\\hline 
- $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  
- $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline 
- $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
- $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
-   \end{tabular}     
-   \label{calibration_lit}
- \end{table}
-\end{center}
-% TABLES WERE UPDATED 29 AUGUST 2020. 
-
-\
-
-\small{* pertains to sections where Taylor rule is in effect}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%
-
-%%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Calibration - matching moments}
-
-\small{
-\begin{center}
-\begin{table}
-\begin{tabular}{ c | c  | l }
-\hline
- $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule*  \\\hline 
-    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
-    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock*  \\ \hline
-    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
-    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
-\end{tabular}     
-       \label{calibration}
- \end{table}
-\end{center}
-}
-
-\
-
-\
-
-
-Calibrated ($\sigma_j, \; j=r,i,u$) or estimated ($\hat{\gamma}_i$) to match the autocovariances of inflation, output gap, interest rate and one-period ahead inflation expectations for lags $0, \dots, 4$.
-
-\
-
-\
-
-\small{* pertains to sections where Taylor rule is in effect}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -1272,42 +1276,42 @@ Anchoring-optimal coefficient: $\psi_{\pi}^A =1.09 \quad \quad $ RE-optimal coef
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
-%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
-	
-\begin{center}
-\begin{table}[h!]
-      \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
-
-\begin{tabular}{ c | c | c | c}
-%\hline
-Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ & Optimal policy \\  \hline
- 14.2633  &  6.0228 & 4.4866 & 6.0985 \\  \hline
-\end{tabular}     
-      \label{table_welfare}
- \end{table}
-\end{center}
-
-\
-
-\
-
-\pause
-
-$\rightarrow$ Optimal policy or anchoring-optimal $\psi_{\pi}^A$ gets 84\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
-
-\
-
-\pause
-
-\
-
-Optimal policy vs. Taylor rule? $\rightarrow$ is reaction function internalized or not
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
+%	
+%\begin{center}
+%\begin{table}[h!]
+%      \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
+%
+%\begin{tabular}{ c | c | c | c}
+%%\hline
+%Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ & Optimal policy \\  \hline
+% 14.2633  &  6.0228 & 4.4866 & 6.0985 \\  \hline
+%\end{tabular}     
+%      \label{table_welfare}
+% \end{table}
+%\end{center}
+%
+%\
+%
+%\
+%
+%\pause
+%
+%$\rightarrow$ Optimal policy or anchoring-optimal $\psi_{\pi}^A$ gets 84\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
+%
+%\
+%
+%\pause
+%
+%\
+%
+%Optimal policy vs. Taylor rule? $\rightarrow$ is reaction function internalized or not
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
@@ -1316,32 +1320,45 @@ Optimal policy vs. Taylor rule? $\rightarrow$ is reaction function internalized 
 \vspace{0.5cm}
 	
 \begin{itemize}
-\item First theory of monetary policy for potentially unanchored expectations 
+\item[] First theory of monetary policy for potentially unanchored expectations 
 
 \
 
+\item[] Estimation of unanchoring in the data
+\vspace{0.1cm}
+	\begin{itemize}
+	\item Large and negative surprises unanchor more
+	\vspace{0.1cm}
+
+	\item Estimated gain time series: on average, people only use the last 8 quarters of data
+	\end{itemize}
 \
 
 
-\item Optimal policy frontloads aggressive interest rate response to suppress potential unanchoring
+\item[] Monetary policy
+\vspace{0.1cm}
 
+	\begin{itemize}
+	\item Expectations unanchoring makes smoothing shocks over time possible
+	\vspace{0.1cm}
+
+	\item Optimal policy frontloads aggressive interest rate response to suppress potential unanchoring
+	\vspace{0.1cm}
+
+	\item Taylor rule less aggressive than under rational expectations
+	\end{itemize}
+	
 \
 
-\
 
-\item Matters: already anchoring-optimal Taylor rule reduces losses by 84\%
+\item[] Future work
+\vspace{0.1cm}
 
-\
-
-\
-
-\item Future work
 \begin{itemize}
-\item[$\hookrightarrow$] Better approximation to optimal policy than Taylor rule?
-
-\
-
 \item[$\hookrightarrow$]  How to anchor at zero-lower bound?
+\vspace{0.1cm}
+
+\item[$\hookrightarrow$]  Other applications: currency crises
 \end{itemize}
 
 
