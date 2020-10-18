@@ -158,6 +158,8 @@ if compute_loss==1
     M = 30;%30
     loss = zeros(1,M);
     loss_RE = zeros(1,M);
+    loss_cgain = zeros(1,M);
+
     psi_pi_vals = linspace(1,2.4,M);
     %     pis_x_here = 0;
     parfor m=1:M
@@ -167,6 +169,7 @@ if compute_loss==1
         psi_pi = psi_pi_vals(m);
         loss(m) = objective_CB_approx([psi_pi,pis_x_here],setp,eN,burnin,PLM,gain,alph,x, knowTR);
         loss_RE(m) = objective_CB_RE([psi_pi,pis_x_here],setp,eN,burnin);
+%         loss_cgain(m) = objective_CB_approx([psi_pi,pis_x_here],setp,eN,burnin,PLM,3,alph,x, knowTR);
     end
     toc
 end
@@ -207,7 +210,8 @@ figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 yyaxis left
-h_anch = plot(psi_pi_vals,loss, 'linewidth', lw);
+h_anch = plot(psi_pi_vals,loss, 'linewidth', lw); hold on
+% h_cgain = plot(psi_pi_vals,loss_cgain, 'linewidth', lw);
 set(gca,'TickLabelInterpreter', 'latex');
 yyaxis right
 h_RE = plot(psi_pi_vals,loss_RE,'linestyle', '--', 'linewidth', lw);

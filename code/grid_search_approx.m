@@ -133,7 +133,7 @@ options.UseParallel=true;
 %% Vary stuff
 [param, setp, param_names, param_values_str, param_titles] = parameters_next;
 
-setp.lamx  = 0.06;
+% setp.lamx  = 0.06;
 % setp.lami  = 1;
 
 % knowTR=0
@@ -159,7 +159,7 @@ objh = @(varp) objective_CB_approx(varp,setp,eN,burnin,PLM,gain, alph,x, knowTR)
 % fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
 toc
 
-disp(['Learning: psi_pi_opt = ', num2str(par_opt)])
+disp(['Anchoring: psi_pi_opt = ', num2str(par_opt)])
 disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 
@@ -185,8 +185,30 @@ objh = @(varp) objective_CB_RE(varp,setp,eN,burnin);
 toc
 
 disp(['RE: psi_pi_opt = ', num2str(par_opt_RE)])
+disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
+return
+%% Fmincon cgain
+% takes about 30 sec
+tic
 
+% varp0 = [1.19,0];
+% ub = [1.2,1];
+% lb = [1.01,-.01];
+varp0 = 1.5;
+ub = 5; % 1.5
+lb = 1;
+%Compute the objective function one time with some values
+loss = objective_CB_approx(varp0,setp,eN,burnin,PLM,3, alph,x, knowTR);
+
+% return
+%Declare a function handle for optimization problem
+objh = @(varp) objective_CB_approx(varp,setp,eN,burnin,PLM,gain, alph,x, knowTR);
+[par_opt, loss_opt] = fmincon(objh, varp0, [],[],[],[],lb,ub,[],options);
+% fmincon(FUN,X0,A,B,Aeq,Beq,LB,UB,NONLCON,OPTIONS)
+toc
+
+disp(['Cgain: psi_pi_opt = ', num2str(par_opt)])
 return
 %% Loss at psi_pi = 1.5, RE- and Anchoring-optimal psi_pi for the baseline parameters of lamx = 0.05, lami = 0
 
