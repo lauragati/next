@@ -111,8 +111,9 @@ for t = 1:T-1
             end
             k(:,t) = fk;
         elseif gain==3 % constant gain
-%             k(:,t) = gbar^(-1);
-            k(:,t) = 0.0478^(-1);
+            k(:,t) = gbar^(-1);
+%             k(:,t) = 0.0478^(-1); % to do IRFs with cgain learning with
+%             gain at simulated median
         end
         
         % Create forecasts and FE

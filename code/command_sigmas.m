@@ -264,7 +264,7 @@ if use_expectations_data==1
     y_data = [y0(:,1:end-1); squeeze(phi0(1,1,1:end-1))'];
     % annualize inflation, interest rate and inflation expectations like in get_data.m
     y_data([1,3,4], :) = ((y_data([1,3,4], :)/100+1).^4 -1)*100;
-
+    
 elseif use_expectations_data==0
     % Don't use expectations
     y_data = y0(:,1:end-1);
@@ -302,7 +302,7 @@ p =min([AIC,BIC,HQ]);
 % return
 
 % % ridge regression VAR
-[B,~,sigma] = rf_var_ridge(filt_data', p, 0.001); 
+[B,~,sigma] = rf_var_ridge(filt_data', p, 0.001);
 % return
 
 % Rewrite the VAR(p) as VAR(1) (see Hamilton, p. 273, Mac)
@@ -364,7 +364,7 @@ for i=1:nobs
         ax = gca; % current axes
         ax.FontSize = fs*3/4;
         ax.YRuler.Exponent = 0; % turns off scientific notation
-%         xlabel('Lags', 'interpreter', 'latex', 'fontsize', fs/2)
+        %         xlabel('Lags', 'interpreter', 'latex', 'fontsize', fs/2)
         set(gca,'TickLabelInterpreter', 'latex');
         grid on
         grid minor
@@ -392,6 +392,7 @@ if print_figs ==1
     close
 end
 
+%% Estimated alpha
 do_opt_plot=1;
 if do_opt_plot==1
     % if flag==1 || flag== 2 || flag==3 % only plot if converged to a root
@@ -400,7 +401,48 @@ if do_opt_plot==1
     ylab = 'Gain';
     xlplus = [0,0];
     ylplus = [0.8,0.5];
-
+    
     create_pretty_plot_x(fegrid,alph_true',xlab,ylab,xlplus, ylplus,figname,print_figs)
     % end
+end
+
+%% Estimated alpha as g(.)*fe
+
+% Plot configs
+[fs, lw] = plot_configs;
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(fegrid,alph_true'.*abs(fegrid), 'linewidth', lw); hold on
+%     plot(x,y(i,:), 'linewidth', lw, 'marker', 'o', 'markersize', 8); hold on % uncomment when plotting the estimated alpha
+ax = gca; % current axes
+% decrease the drawable area when plotting the estimated alpha
+ax.Position(2) = ax.Position(2)+0.05;
+ax.Position(4) = 0.9*ax.Position(4);
+ax.FontSize = fs;
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+xlab = 'Forecast error (annualized percentage points)';
+ylab = '$\mathbf{g}(\cdot)f_{t|t-1}$ (annualized percentage points)';
+xlplus = [0,0];
+ylplus = [1.6,2.2];
+xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*4/5);
+xl.Position(1) = xlplus(1) + xl.Position(1);
+xl.Position(2) = xlplus(2) + xl.Position(2);
+
+yl = ylabel(ylab,'interpreter', 'latex', 'fontsize', fs*4/5);
+yl.Rotation = 0; % rotate
+yl.Position(1) = ylplus(1) + yl.Position(1); % move left
+yl.Position(2) = ylplus(2) + yl.Position(2); % move up
+
+
+figname = ['gdot_fe',figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
 end

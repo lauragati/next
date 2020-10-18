@@ -521,6 +521,88 @@ if print_figs ==1
     close
 end
 
+% Compute implies time series of g(.)*fe
+% Plot ts and histogram of gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+plot(time, fe.*k_ts, 'linewidth', lw); hold on
+% plot(x,zeros(1,T), 'k--', 'linewidth',lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+xlabel('$\mathbf{g}(\cdot) f_{t|t-1}$ time series (annualized percentage points)', 'interpreter', 'latex', 'fontsize', fs)
+
+% legend('Forecast errors (yoy, \%)', 'location', 'southoutside', 'interpreter', 'latex')
+% legend('boxoff')
+
+figname = ['gdot_fe_SPF_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% do a single plot that synthetizes fe, gain and g(.)*fe
+% Plot ts and histogram of gain
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+yyaxis left
+plot(time, fe, 'linewidth', lw, 'linestyle', ':'); hold on
+plot(time, fe.*k_ts, 'linewidth', lw,'linestyle', '-');
+ylabel('Annualized percentage points', 'interpreter', 'latex')
+yyaxis right
+plot(time, k_ts, 'linewidth', lw,'linestyle', '-.'); 
+ax = gca; % current axes
+ax.FontSize = fs*4/5;
+datetick('x','yyyy', 'keeplimits')
+% The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+grid on
+grid minor
+% xlabel('Gain time series', 'interpreter', 'latex', 'fontsize', fs)
+
+legend('Forecast errors', 'Change in long-run expectations', 'Gain', 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 3, 'fontsize', fs*4/5)
+legend('boxoff')
+
+figname = ['fe_gain_gdot_fe_SPF_', figspecs];
+
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+
+% Compute mean and median g(.)*fe 
+gdotfe = fe.*k_ts;
+sort_gdotfe = sort(gdotfe);
+mean_gdotfe = mean(gdotfe) % -0.0659
+if mod(T,2)==1
+    median_gdotfe = sort_gdotfe(ceil(T/2));
+else
+    median_gdotfe = (sort_gdotfe(T/2)+sort_gdotfe(T/2+1))/2 % -0.0078
+end
+
+min(gdotfe) % -2.2433
+max(gdotfe) % 0.7458
+
+
 
 %% The regression plot using CPI inflation and SPF 1- and 10-year ahead
 

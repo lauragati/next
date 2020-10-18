@@ -13,7 +13,7 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
@@ -90,7 +90,7 @@ else
 end
 std(pibsim)
 
-% histogram(pibsim)
+histogram(pibsim)
 plot(pibsim)
 
 % changes in pibsim
@@ -109,7 +109,6 @@ std_dpib = std(dpib)
 hist_dpib = histogram(dpib, 48) 
 hist_dpib.BinEdges % the most frequent is the  [-0.0037    0.0034] bin (the mode of the bins)
 max(hist_dpib.Values)/length(dpib)  % about 25% of values are in this bin
-close
 
 % PLOT HISTOGRAM OF CHANGES IN PIBAR %%%%%%%%%%%%%%
 % Plot configs
@@ -198,7 +197,7 @@ ylplus = [0.02, 6.1];
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(pibvals,i_p, 'linewidth', lw)
+plot(pibvals,i_p)
 ax = gca; % current axes
 % % decrease the drawable area when plotting the estimated alpha
 % ax.Position(2) = ax.Position(2)+0.05;
@@ -212,7 +211,7 @@ xl = xlabel('$\bar{\pi}$, percentage points','interpreter', 'latex', 'fontsize',
 % xl.Position(2) = xlplus(2) + xl.Position(2);
 % 
 % 
-yl = ylabel('$i(\bar{\pi}, \cdot)$, percentage points','interpreter', 'latex', 'fontsize', fs*4/5);
+yl = ylabel('Frequency','interpreter', 'latex', 'fontsize', fs*4/5);
 % yl.Rotation = 0; % rotate
 % yl.Position(1) = ylplus(1) + yl.Position(1); % move left
 % yl.Position(2) = ylplus(2) + yl.Position(2); % move up
