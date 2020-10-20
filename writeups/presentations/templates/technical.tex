@@ -154,6 +154,11 @@
 \newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
 \newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
 
+%%\psi_pi lines
+%\newcommand{\psipilineAnch}{\raisebox{2pt}{\tikz{\draw[-,dodgerblue,solid,line width = 1.5pt](0,0) -- (5cm,5cm);}}}
+%\newcommand{\psipilineRE}{\raisebox{2pt}{\tikz{\draw[-,brownredlight,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
 
 % New Commands
 \newcommand{\real}{\hbox{\reali R}}
@@ -230,6 +235,7 @@
 \def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignamePCEcore{PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_24_30}
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_15_Oct_2020_15_02_07}
@@ -364,23 +370,29 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 %%%%%%% Slide %%%%%%
 \begin{frame}
-\frametitle{Long-run expectations: capturing responsiveness to short-run conditions}
+\frametitle{Long-run expectations: responsive to short-run conditions?}
 
 \
 
-Individual SPF forecasts: for 1991-Q4 onward, estimate rolling regression
+Individual-level Survey of Professional Forecasters (SPF): for 1991-Q4 onward, estimate rolling regression
 
 \begin{align*}
 \Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
 \end{align*}
 
+
 \
 
-where $w$ indexes windows of 20 quarters length,
+$\bar{\pi}_t \quad $ 10-year ahead inflation expectation
 
 \
 
 $f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead forecast error
+
+\
+
+$w$ indexes windows of 20 quarters
+
 
 
 
@@ -402,14 +414,14 @@ $f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead foreca
 
 \begin{figure}[h!]
 %\caption{Responsiveness of long-run expectations}
-\includegraphics[scale = 0.25]{\myFigPath \fignameRolling}
-%\caption{Time series of responsiveness of long-run inflation expectations to inflation surprises}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRolling}
+\caption{Time series of $\hat{\beta}_1^w$}
 \label{rolling}
 \end{figure}
 
 
-
-%\vspace{-0.9cm}
+\vfill
+\vspace{-0.9cm}
 
 \hfill \hyperlink{further_evidence}{\beamergotobutton{Disagreement measures}}
 \end{frame}
@@ -621,7 +633,7 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 \
 
 \begin{itemize}
-\item Model implies mapping between exogenous states $s_t$ and observables $y_t \equiv (\pi, x, i)'$
+\item Model implies mapping between exogenous states $s_t$ and observables $y_t \equiv (\pi_t, x_t, i_t)'$
 
  \begin{align}
 % s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
@@ -634,7 +646,7 @@ y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
 $\rightarrow$ knows (\ref{obs_RE}) 
 
 \begin{equation}
-\E_t y_{t+1} = g \E s_{t+1}
+\E_t y_{t+1} = g \E_t s_{t+1}
 \end{equation}
 \
 \pause
@@ -660,7 +672,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 \item Agents know exogenous evolution of states
 
  \begin{align}
- s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} 
+ s_{t+1} & = h s_{t} + \epsilon_{t+1} \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} 
 % y_t & = g s_t \label{obs_RE}
  \end{align}
 
@@ -672,7 +684,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 \item Postulate linear functional relationship instead of (\ref{obs_RE}):
 
 \begin{equation}
-\hat{\E}_t y_{t+1} = \textcolor{brownreddark}{a_{t-1}} + b_{t-1}s_t  \label{PLM_fcst_general}
+\hat{\E}_t y_{t+1} = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t-1}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
 \end{equation}
 
 
@@ -682,15 +694,16 @@ $\rightarrow$ knows (\ref{obs_RE})
   
 
 
-\item[] \textcolor{brownreddark}{$a$}	$\rightarrow$ concept of long-run expectations in the model
+\item[] \textcolor{brownreddark}{$\bar{\pi}_{t-1}$}	$\rightarrow$ concept of long-run inflation expectations in the model
 
 \
 
 
 \pause
 
+\
 
-\item Estimate $a, b$ using recursive least squares (RLS) using observed states and knowledge of (\ref{state})
+\item Estimate $\bar{\pi}_{t-1}$ using recursive least squares (RLS) using observed states and knowledge of (\ref{state})
 
 
 
@@ -704,39 +717,37 @@ $\rightarrow$ knows (\ref{obs_RE})
 \begin{frame}
 	\frametitle{Recursive least squares (RLS)}
 	\label{RLS_special}
-	
-	\
-	
-Observables are: $(\pi, x, i)'$ 	
 
 \
-\
 
-Assumption: learn only intercept of inflation:
-
-\begin{equation}
-a_{t-1} = ( \textcolor{brownreddark}{\bar{\pi}_{t-1}},0,0)', \quad b_{t-1} = g\; h \quad \forall t
-\end{equation}
+ Let $b_1$ denote first row of $g h$.
+ 
+ \
+ 
+ One-period ahead inflation forecast:
+ \begin{equation}
+ \hat{\E}_{t-1}\pi_{t} = \bar{\pi}_{t-1}+b_1 s_{t-1}
+ \end{equation}
 
 \
 \pause
-\
+One-period ahead inflation forecast error:
 
- \textcolor{brownreddark}{$\bar{\pi}_{t-1}$}: long-run inflation expectations $\rightarrow$ anchoring
+ \begin{equation}
+f_{t|t-1}  = \pi_{t} - \big(\bar{\pi}_{t-1}+b_1 s_{t-1}\big)
+ \end{equation}
 
 \
 \pause
-\
+$\rightarrow$ Recursive least squares update for long-run inflation expectations:	
 
-$\rightarrow$ RLS
 \begin{equation}
-\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t \underbrace{\big(\pi_{t} -(\bar{\pi}_{t-1}+b_1 s_{t-1}) \big)}_{\equiv \; f_{t|t-1} \text{, forecast error} } 
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t  f_{t|t-1} 
 \end{equation}
  
  \
  
  $k_t \in (0,1)$ gain \\
- $b_1$ first row of $b$
 \vfill 
 
 \hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
@@ -917,13 +928,14 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \end{center}
 % TABLES WERE UPDATED 29 AUGUST 2020. 
 
-
-
 \
 
 \
 
-Main sources: Chari et al 2000, Woodford 2003, Nakamura \& Steinsson 2008, Carvalho et al 2019
+ Chari et al 2000, Woodford 2003, Nakamura \& Steinsson 2008 \\
+ Carvalho et al 2019
+
+
 
 
 
@@ -1047,7 +1059,7 @@ Main sources: Chari et al 2000, Woodford 2003, Nakamura \& Steinsson 2008, Carva
 
 \
 
-Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$ and define $b_1$ as the first row of $b$. Then monetary policy optimally brings about the following target relationship between inflation and the output gap
+Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$. Then monetary policy optimally brings about the following target relationship between inflation and the output gap
 
 %\begin{small}	
 \begin{align*}
@@ -1069,7 +1081,7 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 \onslide<2>{\textcolor<2>{brownreddark}{Adaptive learning: can move $\E_t x_{t+i}$ too if $k > 0$} \hfill \hyperlink{fullTC}{\beamergotobutton{$\Gamma(k)$}} \\}
 
 
-\onslide<3>{\textcolor<3>{brownreddark}{Endeogenous gain: ability to move $\E_t x_{t+i}$ depends on present and future degree of unanchoring}}
+\onslide<3>{\textcolor<3>{brownreddark}{Endogenous gain: ability to move $\E_t x_{t+i}$ depends on present and future degree of unanchoring}}
 
 \vfill
 
@@ -1190,7 +1202,7 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{Unanchoring causes volatility}
+	\frametitle{Unanchoring causes volatility}\label{IRF1}
 
 \begin{figure}[h!]
 \includegraphics[scale = 0.22]{\myFigPath \fignameIRFanchUnanchTogether}
@@ -1198,6 +1210,9 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 \label{IRF}
 \end{figure}	
 
+\vfill
+\vspace{-0.9cm}
+\hfill \hyperlink{oscillatory}{\beamergotobutton{Why oscillatory?}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
@@ -1236,43 +1251,57 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 %%%%%%%%%%%%%%%%%
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Approximating optimal policy with a Taylor rule}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%% Slide %%%%%%
 %\begin{frame}
-%	\frametitle{Why so volatile? Term structure of expectations}
-%\begin{itemize}
-%\item[] IS- and Phillips curve:	
-% \begin{align*}
-%x_t &=  -\sigma i_t +\textcolor{brownreddark}{\hat{\E}_t \sum_{T=t}^{\infty}} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)   \\
-%\pi_t &= \kappa x_t +\textcolor{brownreddark}{\hat{\E}_t \sum_{T=t}^{\infty}} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
-%\end{align*}
+%	\frametitle{Optimal Taylor-coefficient on inflation}
+%	
+%	\begin{equation}
+%	i_t = \textcolor{aquamarinegreen}{\psi_{\pi}} \pi_t + \psi_x x_t
+%	\end{equation}
 %
+%\pause	
+%\begin{figure}[h!]
+%\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaselineTwoY}
+%\end{figure} 
 %
-%\end{itemize}
+%\pause
+%\small{
+%\textcolor{dodgerblue}{Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$} $\quad \quad $\textcolor{brownreddark}{ RE-optimal coefficient: $\psi_{\pi}^{RE} =2.2$}
+%}
 %
 %
 %
 %\end{frame}
 %%%%%%%%%%%%%%%%%%%
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Approximating optimal policy with a Taylor rule}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%% Slide %%%%%%
 \begin{frame}
 	\frametitle{Optimal Taylor-coefficient on inflation}
 	
 	\begin{equation}
-	i_t = \psi_{\pi} \pi_t + \psi_x x_t
+	i_t = \textcolor{aquamarinegreen}{\psi_{\pi}} \pi_t + \psi_x x_t
 	\end{equation}
 
-	
-\begin{figure}[h!]
-\caption{Central bank loss as a function of $\psi_{\pi}$}
-\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaselineTwoY}
-\end{figure} 
+\pause	
+\centering
+\begin{tikzpicture}
+    \draw (0, 0) node[inner sep=0] {\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaselineTwoY}};
+    \draw (0, 3) node {Figure: Central bank loss as a function of $\psi_{\pi}$};
+    \draw<3>[-,dodgerblue,solid,line width = 1.2pt](-3.4,-1.82) -- (-3.4,2.52);
+    \draw<3>[-,brownreddark,solid,line width = 1.2pt](2.625,-1.82) -- (2.625,2.52);
+\end{tikzpicture}
+
+%%\psi_pi lines
+%\newcommand{\psipilineAnch}{\raisebox{2pt}{\tikz{\draw[-,dodgerblue,solid,line width = 1.5pt](0,0) -- (5cm,5cm);}}}
+%\newcommand{\psipilineRE}{\raisebox{2pt}{\tikz{\draw[-,brownredlight,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
 
 \pause
 \small{
@@ -1280,8 +1309,10 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 }
 
 
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
@@ -1307,10 +1338,11 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 
 \item<2-3> Taylor rule implies interest rate expectation
 	\begin{equation}
-	\textcolor<2>{brownreddark}{\hat{\E}_ti_{t+k}} = \psi_{\pi}\hat{\E}_t \pi_{t+k}+ \hat{\E}_t\psi_x x_{t+k}
+	\textcolor<2>{brownreddark}{\hat{\E}_ti_{t+k}} = \psi_{\pi}\hat{\E}_t \pi_{t+k}+ \psi_x \hat{\E}_t x_{t+k}
 	\end{equation}
 
-\item<3>  \textcolor<3>{brownreddark}{If private sector understands and believes Taylor rule, expected future interest rates additional channel of policy}
+\item<3>  \textcolor<3>{brownreddark}{If private sector understands and believes Taylor rule, expected future interest rates additional channel of policy} \\
+ \textcolor<3>{brownreddark}{(Eusepi, Giannoni \& Preston 2018)}
 
 
 \end{itemize}
@@ -1388,7 +1420,7 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 \vspace{0.1cm}
 
 	\begin{itemize}
-	\item Expectations unanchoring makes smoothing shocks over time possible
+	\item Degree of expectations unanchoring determines extent of smoothing shocks
 	\vspace{0.1cm}
 
 	\item Optimal policy aggressive when unanchored, accommodates otherwise
@@ -1499,8 +1531,8 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 
 
 %%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{Further evidence}\label{further_evidence}
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Further evidence: disagreement}\label{further_evidence}
 
 
 \begin{figure}[h!]
@@ -1531,6 +1563,23 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+%	\frametitle{PCE core against target}\label{further_evidence}
+
+
+\begin{figure}[h!]
+\caption{PCE core inflation against the Fed's target}
+\includegraphics[scale = 0.24]{\myFigPath \fignamePCEcore}
+\label{PCEcore}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -1552,6 +1601,9 @@ Solve for forecast error $f_t \equiv \pi_t - f_{t-1}$:
 \begin{equation}
 f_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t 
 \end{equation}
+
+\vfill 
+\hyperlink{IRF1}{\beamerreturnbutton{Return}}	
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%

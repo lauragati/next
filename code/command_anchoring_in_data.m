@@ -53,10 +53,10 @@ aggregation_method = 'avg';
 
 % CPI inflation
 [output1] = getFredData('CPIAUCSL', observation_start, observation_end, units, frequency, aggregation_method);
-cpi = output1.Data(:,2);
+pce_core = output1.Data(:,2);
 %
-infl_yoy = (cpi(5:end) - cpi(1:end-4))./cpi(1:end-4)*100;
-infl_qoq = (cpi(2:end) - cpi(1:end-1))./cpi(1:end-1)*100; % -> first inflation obs is for 1992-Q1
+infl_yoy = (pce_core(5:end) - pce_core(1:end-4))./pce_core(1:end-4)*100;
+infl_qoq = (pce_core(2:end) - pce_core(1:end-1))./pce_core(1:end-1)*100; % -> first inflation obs is for 1992-Q1
 % annualized q-o-q percent change (See Annualizing Data from Dallas Fed)
 % infl = ((infl_qoq/100+1).^4 -1)*100;
 % infl = infl_qoq;
@@ -758,3 +758,41 @@ if print_figs ==1
     cd(current_dir)
     close
 end
+
+%% PCE core inflation against 2% target
+
+% PCE core inflation
+[output1] = getFredData('DPCCRV1Q225SBEA', observation_start, observation_end, units, frequency, aggregation_method);
+pce_core = output1.Data(:,2);
+pce_core_time = output1.Data(:,1);
+timestr_pce_core = datestr(pce_core_time,'yyyy-qq');
+
+figure
+set(gcf,'color','w'); % sets white background color
+set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+h1= plot(pce_core_time,zeros(1,length(pce_core)), 'k--', 'linewidth',lw); hold on
+h2= plot(pce_core_time,2*ones(1,length(pce_core)), ':', 'linewidth',lw);
+h3 = plot(pce_core_time, pce_core, 'linewidth', lw)
+ax = gca; % current axes
+ax.FontSize = fs;
+datetick('x','yyyy', 'keeplimits')
+% % The next three lines force the figure to start where the data starts
+xaxislimits= get(gca,'XLim');
+xaxislimits(1) = pce_core_time(1);
+set(gca, 'XLim', xaxislimits);
+set(gca,'TickLabelInterpreter', 'latex');
+ylabel('Annualized \%', 'interpreter', 'latex')
+grid on
+grid minor
+legend([h3,h2],'PCE core','Target', 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 2)
+legend('boxoff')
+
+figname = ['PCE_core_target_', figspecs];
+if print_figs ==1
+    disp(figname)
+    cd(figpath)
+    export_fig(figname)
+    cd(current_dir)
+    close
+end
+

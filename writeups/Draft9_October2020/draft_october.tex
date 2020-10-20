@@ -145,6 +145,7 @@ bottom=1in}
 \def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignamePCEcore{PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_24_30}
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_15_Oct_2020_15_02_07}
@@ -340,7 +341,7 @@ The representative household is infinitely-lived and maximizes expected discount
 \hat{\E}_t\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg].
 \label{lifetime_U}
 \end{equation}
-In the above, $U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor respectively and $\beta$ is the discount factor of the household. I am using standard CRRA utility of the form $U(c_t) = \frac{c_t^{1-\sigma}}{1-\sigma}$. $h^i_t(j)$ denotes the supply of labor hours of household $i$ at time $t$ to the production of good $j$, and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $t$,  $C_t^i$, is a Dixit-Stiglitz composite of all goods in the economy:
+In the above, the only non-standard element is the expectations operator, $\hat{\E}$. As detailed in Section \ref{learning}, this operator captures non-rational expectations and is assumed to satisfy the law of iteration expectations. The remaining elements are familiar from the rational expectations version of the NK model. $U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor, respectively, and $\beta$ is the discount factor of the household. I am using standard CRRA utility of the form $U(c_t) = \frac{c_t^{1-\sigma}}{1-\sigma}$. $h^i_t(j)$ denotes the supply of labor hours of household $i$ at time $t$ to the production of good $j$, and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $t$,  $C_t^i$, is a Dixit-Stiglitz composite of all goods in the economy:
 \begin{equation}
 C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit},
 \end{equation}
