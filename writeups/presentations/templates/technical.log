@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 OCT 2020 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 OCT 2020 19:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1225,26 +1225,32 @@ LaTeX Warning: Label `rolling' multiply defined.
 LaTeX Warning: Label `epi_cleaned' multiply defined.
 
 
+LaTeX Warning: Label `rollingPi' multiply defined.
+
+
+LaTeX Warning: Label `rollingPi' multiply defined.
+
+
 LaTeX Warning: Label `g' multiply defined.
 
 )
 \openout1 = `technical.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 341.
-LaTeX Font Info:    ... okay on input line 341.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 341.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 346.
+LaTeX Font Info:    ... okay on input line 346.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 346.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
@@ -1313,7 +1319,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box93
-Package hyperref Info: Link coloring OFF on input line 341.
+Package hyperref Info: Link coloring OFF on input line 346.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1323,9 +1329,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count220
 )
-LaTeX Info: Redefining \ref on input line 341.
-LaTeX Info: Redefining \pageref on input line 341.
-LaTeX Info: Redefining \nameref on input line 341.
+LaTeX Info: Redefining \ref on input line 346.
+LaTeX Info: Redefining \pageref on input line 346.
+LaTeX Info: Redefining \nameref on input line 346.
 
 (./technical.out) (./technical.out)
 \@outlinefile=\write5
@@ -1334,41 +1340,41 @@ LaTeX Info: Redefining \nameref on input line 341.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/ppl/m/n on input line 341.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 341.
+(Font)                  OT1/cmr/m/n --> OT1/ppl/m/n on input line 346.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 341.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 341.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 341.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 346.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 341.
+(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 341.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 341.
+(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 346.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/ppl/m/it on input line 341.
+(Font)                  OT1/cmr/m/it --> OT1/ppl/m/it on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/ppl/m/it on input line 341.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 341.
+(Font)                  OT1/cmr/bx/it --> OT1/ppl/m/it on input line 346.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 341.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 341.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 346.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/ppl/m/n --> OT1/ppl/bx/n on input line 341.
+(Font)                  OT1/ppl/m/n --> OT1/ppl/bx/n on input line 346.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 341.
+(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 341.
+(Font)                  OT1/cmr/bx/n --> OT1/ppl/bx/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/ppl/bx/n --> OT1/ppl/bx/n on input line 341.
+(Font)                  OT1/ppl/bx/n --> OT1/ppl/bx/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 341.
+(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 341.
+(Font)                  OT1/ppl/m/it --> OT1/ppl/bx/it on input line 346.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/pcr/m/n --> OT1/pcr/bx/n on input line 341.
+(Font)                  OT1/pcr/m/n --> OT1/pcr/bx/n on input line 346.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translato
 r-basic-dictionary/translator-basic-dictionary-English.dict
@@ -1394,7 +1400,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 r-theorem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 341.
+LaTeX Info: Redefining \includegraphics on input line 346.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1403,19 +1409,19 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.12} into 
 your preamble.
- on input line 341.
+ on input line 346.
 
 (./technical.nav) [1
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/it' tried instead on input line 366.
-LaTeX Font Info:    Try loading font information for U+msa on input line 366.
+(Font)              Font shape `OT1/ppl/b/it' tried instead on input line 371.
+LaTeX Font Info:    Try loading font information for U+msa on input line 371.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 366.
+LaTeX Font Info:    Try loading font information for U+msb on input line 371.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1432,7 +1438,7 @@ _23_Sep_2020_21_04_48.png Graphic file (type png)
 <use ../../../figures/rolling_overlapping_command_anchoring_in_data_individual_
 23_Sep_2020_21_04_48.png>
 Package pdftex.def Info: ../../../figures/rolling_overlapping_command_anchoring
-_in_data_individual_23_Sep_2020_21_04_48.png used on input line 427.
+_in_data_individual_23_Sep_2020_21_04_48.png used on input line 432.
 (pdftex.def)             Requested size: 248.87054pt x 151.92807pt.
  [4
 
@@ -1441,27 +1447,27 @@ pdfTeX warning (ext4): destination with the same identifier (name{rolling}) has
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.427 \end{frame}
+l.432 \end{frame}
                   <../../../figures/rolling_overlapping_command_anchoring_in_da
 ta_individual_23_Sep_2020_21_04_48.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 463.
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 468.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 463.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 468.
  [5
 
 ]
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 501.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 506.
  [6
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 540.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 545.
 
 [7
 
@@ -1481,9 +1487,9 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 713.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 718.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 713.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 718.
  [15
 
 ] [16
@@ -1534,10 +1540,10 @@ png)
 _1000_Nsimulations_command_sigmas_18_Oct_2020_12_44_38.png>
 Package pdftex.def Info: ../../../figures/gdot_feN_100_nfe_5_gridspacing_manual
 _Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_18_Oct_2020_12_44_38.png 
-used on input line 989.
+used on input line 994.
 (pdftex.def)             Requested size: 246.88312pt x 165.1776pt.
 
-Overfull \vbox (10.90596pt too high) detected at line 989
+Overfull \vbox (10.90596pt too high) detected at line 994
  []
 
 [33
@@ -1552,7 +1558,7 @@ File: ../../../figures/fe_gain_gdot_fe_SPF_command_anchoring_in_data_18_Oct_202
 <use ../../../figures/fe_gain_gdot_fe_SPF_command_anchoring_in_data_18_Oct_2020
 _13_11_56.png>
 Package pdftex.def Info: ../../../figures/fe_gain_gdot_fe_SPF_command_anchoring
-_in_data_18_Oct_2020_13_11_56.png used on input line 1014.
+_in_data_18_Oct_2020_13_11_56.png used on input line 1019.
 (pdftex.def)             Requested size: 247.10393pt x 150.16145pt.
  [34
 
@@ -1579,18 +1585,18 @@ File: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png Graphic file (type
 png)
  <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1200.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1205.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1200.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1205.
 File: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png Graphic file (type 
 png)
 
 <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 
 <../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png, id=414, 1086.057
@@ -1600,14 +1606,14 @@ File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
  (type png)
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
  [42
 
@@ -1618,28 +1624,28 @@ png)
 
 <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png Graphic file (type 
 png)
 
 <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
  (type png)
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
  (type png)
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
  [43
 
@@ -1649,28 +1655,28 @@ png)
 
 <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png Graphic file (type 
 png)
 
 <use ../../../figures/analyze_opt_policy_ip18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_ip18_Oct_2020.png 
-used on input line 1200.
+used on input line 1205.
 (pdftex.def)             Requested size: 165.46104pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
  (type png)
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
 File: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png Graphic file
  (type png)
 
 <use ../../../figures/analyze_opt_policy_hist_pib_18_Oct_2020.png>
 Package pdftex.def Info: ../../../figures/analyze_opt_policy_hist_pib_18_Oct_20
-20.png used on input line 1200.
+20.png used on input line 1205.
 (pdftex.def)             Requested size: 162.9016pt x 113.66978pt.
  [44
 
@@ -1683,7 +1689,7 @@ File: ../../../figures/RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_1
 <use ../../../figures/RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10
 _15.png>
 Package pdftex.def Info: ../../../figures/RIR_together_psi_pi1_5_command_IRFs_a
-pprox_pretty_2020_10_15.png used on input line 1216.
+pprox_pretty_2020_10_15.png used on input line 1221.
 (pdftex.def)             Requested size: 284.86513pt x 173.34816pt.
  [45
 
@@ -1706,10 +1712,10 @@ ooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png Graphic file (type png
 oth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_2y_losses_with_o
 ptimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png use
-d on input line 1313.
+d on input line 1318.
 (pdftex.def)             Requested size: 247.32477pt x 151.4864pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1313.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1318.
  [49
 
  <../../../figures/plot_sim_loss_approx_2y_losses_with_optimal_again_critsmooth
@@ -1722,7 +1728,7 @@ ooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png Graphic file (type png
 oth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_2y_losses_with_o
 ptimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png use
-d on input line 1313.
+d on input line 1318.
 (pdftex.def)             Requested size: 247.32477pt x 151.4864pt.
  [50
 
@@ -1735,7 +1741,7 @@ ooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png Graphic file (type png
 oth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png>
 Package pdftex.def Info: ../../../figures/plot_sim_loss_approx_2y_losses_with_o
 ptimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png use
-d on input line 1313.
+d on input line 1318.
 (pdftex.def)             Requested size: 247.32477pt x 151.4864pt.
  [51
 
@@ -1761,7 +1767,7 @@ File: ../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_
 <use ../../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_1
 2_59.png>
 Package pdftex.def Info: ../../../figures/epi_be_in_data_command_anchoring_in_d
-ata_14_Sep_2020_18_12_59.png used on input line 1512.
+ata_14_Sep_2020_18_12_59.png used on input line 1517.
 (pdftex.def)             Requested size: 264.73842pt x 172.1427pt.
  [57
 
@@ -1772,81 +1778,129 @@ pt>
 File: ../../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
  <use ../../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../../figures/cleaned_epi10_2020_07_28.png used on 
-input line 1529.
+input line 1534.
 (pdftex.def)             Requested size: 267.49872pt x 173.89926pt.
 pdfTeX warning (ext4): destination with the same identifier (name{epi_cleaned})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1529 \end{frame}
+l.1534 \end{frame}
                    [58
 
  <../../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>]
+<../../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual_2
+5_Sep_2020_10_37_43.png, id=546, 1111.15125pt x 690.58pt>
+File: ../../../figures/rolling_overlapping_pi_command_anchoring_in_data_individ
+ual_25_Sep_2020_10_37_43.png Graphic file (type png)
+
+<use ../../../figures/rolling_overlapping_pi_command_anchoring_in_data_individu
+al_25_Sep_2020_10_37_43.png>
+Package pdftex.def Info: ../../../figures/rolling_overlapping_pi_command_anchor
+ing_in_data_individual_25_Sep_2020_10_37_43.png used on input line 1559.
+(pdftex.def)             Requested size: 244.45403pt x 151.92807pt.
+ [59
+
+ <../../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual_
+25_Sep_2020_10_37_43.png (PNG copy)>]
+<../../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_indivi
+dual_PCE_20_Oct_2020_11_16_01.png, id=554, 1131.22626pt x 689.57625pt>
+File: ../../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_i
+ndividual_PCE_20_Oct_2020_11_16_01.png Graphic file (type png)
+
+<use ../../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_in
+dividual_PCE_20_Oct_2020_11_16_01.png>
+Package pdftex.def Info: ../../../figures/rolling_overlapping_pce_core_command_
+anchoring_in_data_individual_PCE_20_Oct_2020_11_16_01.png used on input line 15
+83.
+(pdftex.def)             Requested size: 248.87054pt x 151.70723pt.
+pdfTeX warning (ext4): destination with the same identifier (name{rollingPi}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1583 ...\beamerreturnbutton{Return}}	\end{frame}
+                                                   [60
+
+ <../../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_indiv
+idual_PCE_20_Oct_2020_11_16_01.png (PNG copy)>]
+<../../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring_in_
+data_individual_20_Oct_2020_11_42_26.png, id=561, 1131.22626pt x 690.58pt>
+File: ../../../figures/rolling_overlapping_pi_controls_pilevel_command_anchorin
+g_in_data_individual_20_Oct_2020_11_42_26.png Graphic file (type png)
+
+<use ../../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring
+_in_data_individual_20_Oct_2020_11_42_26.png>
+Package pdftex.def Info: ../../../figures/rolling_overlapping_pi_controls_pilev
+el_command_anchoring_in_data_individual_20_Oct_2020_11_42_26.png used on input 
+line 1607.
+(pdftex.def)             Requested size: 248.87054pt x 151.92807pt.
+pdfTeX warning (ext4): destination with the same identifier (name{rollingPi}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1607 ...\beamerreturnbutton{Return}}	\end{frame}
+                                                   [61
+
+ <../../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring_in
+_data_individual_20_Oct_2020_11_42_26.png (PNG copy)>]
 <../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59
-.png, id=546, 1080.035pt x 718.685pt>
+.png, id=569, 1080.035pt x 718.685pt>
 File: ../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_
 12_59.png Graphic file (type png)
 
 <use ../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_1
 2_59.png>
 Package pdftex.def Info: ../../../figures/Livingston_IQR_command_anchoring_in_d
-ata_14_Sep_2020_18_12_59.png used on input line 1547.
+ata_14_Sep_2020_18_12_59.png used on input line 1650.
 (pdftex.def)             Requested size: 259.2137pt x 172.48792pt.
- [59
+ [62
 
  <../../../figures/Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_5
 9.png (PNG copy)>]
 <../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_1
-8_12_59.png, id=554, 1045.9075pt x 689.57625pt>
+8_12_59.png, id=577, 1045.9075pt x 689.57625pt>
 File: ../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2
 020_18_12_59.png Graphic file (type png)
 
 <use ../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_20
 20_18_12_59.png>
 Package pdftex.def Info: ../../../figures/SCE_distrib_topbottom_command_anchori
-ng_in_data_14_Sep_2020_18_12_59.png used on input line 1563.
+ng_in_data_14_Sep_2020_18_12_59.png used on input line 1666.
 (pdftex.def)             Requested size: 251.02293pt x 165.50168pt.
 
-Overfull \hbox (30.96037pt too wide) has occurred while \output is active
+Overfull \hbox (75.05432pt too wide) has occurred while \output is active
  [][]  
  []
 
-[60
+[63
 
  <../../../figures/SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_
 18_12_59.png (PNG copy)>]
 <../../../figures/PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_24_3
-0.png, id=563, 1113.15875pt x 688.5725pt>
+0.png, id=586, 1113.15875pt x 688.5725pt>
 File: ../../../figures/PCE_core_target_command_anchoring_in_data_19_Oct_2020_15
 _24_30.png Graphic file (type png)
 
 <use ../../../figures/PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_
 24_30.png>
 Package pdftex.def Info: ../../../figures/PCE_core_target_command_anchoring_in_
-data_19_Oct_2020_15_24_30.png used on input line 1580.
+data_19_Oct_2020_15_24_30.png used on input line 1683.
 (pdftex.def)             Requested size: 267.16356pt x 165.26077pt.
- [61
+ [64
 
  <../../../figures/PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_24_
-30.png (PNG copy)>] [62
+30.png (PNG copy)>] [65
 
 ]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1639.
- [63
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1742.
+ [66
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{g}) has been
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1680 \end{frame}
-                   [64
-
-] [65
-
-] [66
-
-] [67
+l.1783 \end{frame}
+                   [67
 
 ] [68
 
@@ -1856,23 +1910,29 @@ l.1680 \end{frame}
 
 ] [71
 
+] [72
+
+] [73
+
+] [74
+
 ]
 <../../../figures/RIR_together_psi_pi2_command_IRFs_approx_pretty_together_2020
-_10_15.png, id=648, 1294.8375pt x 787.94376pt>
+_10_15.png, id=672, 1294.8375pt x 787.94376pt>
 File: ../../../figures/RIR_together_psi_pi2_command_IRFs_approx_pretty_together
 _2020_10_15.png Graphic file (type png)
 
 <use ../../../figures/RIR_together_psi_pi2_command_IRFs_approx_pretty_together_
 2020_10_15.png>
 Package pdftex.def Info: ../../../figures/RIR_together_psi_pi2_command_IRFs_app
-rox_pretty_together_2020_10_15.png used on input line 1907.
+rox_pretty_together_2020_10_15.png used on input line 2010.
 (pdftex.def)             Requested size: 284.86513pt x 173.34816pt.
- [72
+ [75
 
  <../../../figures/RIR_together_psi_pi2_command_IRFs_approx_pretty_together_202
-0_10_15.png (PNG copy)>] [73
+0_10_15.png (PNG copy)>] [76
 
-] [74
+] [77
 
 ]
 \tf@nav=\write6
@@ -1884,11 +1944,11 @@ rox_pretty_together_2020_10_15.png used on input line 1907.
 \tf@snm=\write8
 \openout8 = `technical.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1997.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1997.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2100.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2100.
  (./technical.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1997.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1997.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2100.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2100.
 
 Package rerunfilecheck Info: File `technical.out' has not changed.
 (rerunfilecheck)             Checksum: 6B09C9E6C904492699257B68C2653B9D;381.
@@ -1896,13 +1956,13 @@ Package rerunfilecheck Info: File `technical.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1997.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2100.
  ) 
 Here is how much of TeX's memory you used:
- 32510 strings out of 493089
- 756171 string characters out of 6134842
+ 32540 strings out of 493089
+ 758010 string characters out of 6134842
  956908 words of memory out of 5000000
- 35045 multiletter control sequences out of 15000+600000
+ 35065 multiletter control sequences out of 15000+600000
  33779 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,18n,79p,941b,908s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1938,10 +1998,10 @@ palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatin
 o/uplbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr
 8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb
 >
-Output written on technical.pdf (74 pages, 1093719 bytes).
+Output written on technical.pdf (77 pages, 1205919 bytes).
 PDF statistics:
- 805 PDF objects out of 1000 (max. 8388607)
- 671 compressed objects within 7 object streams
- 213 named destinations out of 1000 (max. 500000)
- 192 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 831 PDF objects out of 1000 (max. 8388607)
+ 691 compressed objects within 7 object streams
+ 220 named destinations out of 1000 (max. 500000)
+ 207 words of extra memory for PDF output out of 10000 (max. 10000000)
 

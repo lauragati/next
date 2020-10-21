@@ -53,10 +53,10 @@ aggregation_method = 'avg';
 
 % CPI inflation
 [output1] = getFredData('CPIAUCSL', observation_start, observation_end, units, frequency, aggregation_method);
-pce_core = output1.Data(:,2);
+cpi = output1.Data(:,2);
 %
-infl_yoy = (pce_core(5:end) - pce_core(1:end-4))./pce_core(1:end-4)*100;
-infl_qoq = (pce_core(2:end) - pce_core(1:end-1))./pce_core(1:end-1)*100; % -> first inflation obs is for 1992-Q1
+infl_yoy = (cpi(5:end) - cpi(1:end-4))./cpi(1:end-4)*100;
+infl_qoq = (cpi(2:end) - cpi(1:end-1))./cpi(1:end-1)*100; % -> first inflation obs is for 1992-Q1
 % annualized q-o-q percent change (See Annualizing Data from Dallas Fed)
 % infl = ((infl_qoq/100+1).^4 -1)*100;
 % infl = infl_qoq;
@@ -562,10 +562,12 @@ yyaxis left
 plot(time, fe, 'linewidth', lw, 'linestyle', ':'); hold on
 plot(time, fe.*k_ts, 'linewidth', lw,'linestyle', '-');
 ylabel('Annualized percentage points', 'interpreter', 'latex')
+ylim([-5,4])
 yyaxis right
 plot(time, k_ts, 'linewidth', lw,'linestyle', '-.'); 
 ax = gca; % current axes
 ax.FontSize = fs*4/5;
+ylim([0,2])
 datetick('x','yyyy', 'keeplimits')
 % The next three lines force the figure to start where the data starts
 xaxislimits= get(gca,'XLim');

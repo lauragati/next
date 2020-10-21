@@ -46,6 +46,8 @@ command_anchoring_in_data
 
 command_anchoring_in_data_individual
 
+command_anchoring_in_data_individual_PCE
+
 %% Optimal policy
 
 command_pea_approx_main

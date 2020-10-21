@@ -137,6 +137,9 @@ bottom=1in}
 \def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameRolling{rolling_overlapping_command_anchoring_in_data_individual_23_Sep_2020_21_04_48}
 \def\fignameRollingPi{rolling_overlapping_pi_command_anchoring_in_data_individual_25_Sep_2020_10_37_43} % regressing on pi
+\def\fignameRollingPCEcore{rolling_overlapping_pce_core_command_anchoring_in_data_individual_PCE_20_Oct_2020_11_16_01}
+\def\fignameRollingControlPi{rolling_overlapping_pi_controls_pilevel_command_anchoring_in_data_individual_20_Oct_2020_11_42_26}
+\def\fignameRollingControlPiIQR{rolling_overlapping_pi_controls_pilevel_iqrcommand_anchoring_in_data_individual_20_Oct_2020_11_42_26}
 
 
 % Unanchoring in the data
@@ -158,6 +161,7 @@ bottom=1in}
 \def\fignameGainSPF{gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39}
 \def\fignameGainSPFhist{gain_SPF_hist_command_anchoring_in_data_11_Oct_2020_11_08_39}
 \def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_18_Oct_2020_13_11_56}
+%\def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_20_Oct_2020_19_30_43} % pushes gain and fe further apart
 
 
 % Comparative statics of optimal policy
@@ -288,7 +292,7 @@ In order to provide a convincing analysis of optimal policy, I need a qualitativ
 
 Fig. \ref{rolling} provides some preliminary evidence that a model of a smoothly varying gain function may be appropriate. It shows the regression coefficient of a rolling window regression of long-run inflation expectations on short-run forecast errors. Letting $\bar{\pi}^i_t$ denote the 10-year inflation expectation of forecaster $i$ from the Survey of Professional Forecasters (SPF), and $f^i_{t|t-1} \equiv \pi_t - \E^i_{t-1}\pi_t$ denote forecaster $i$'s one-year ahead forecast error, I run
 \begin{align}
-\Delta\bar{\pi}^i_t = & \beta_0 + \beta^w_1 f^i_{t|t-1} + \epsilon_t, 
+\Delta\bar{\pi}^i_t = & \beta^w_0 + \beta^w_1 f^i_{t|t-1} + \epsilon_t, 
 \label{rolling_reg}
 \end{align}
 where $w$ indexes windows of 20 quarters. Fig. \ref{rolling} plots the time series of the estimated coefficient $\hat{\beta}^w_1$, along with 90\% and 95\% confidence intervals.\footnote{Appendix \ref{app_rolling_pi} presents a version of the regression in Equation (\ref{rolling_reg}) with inflation as right-hand-side variable. Appendix \ref{unanchoring_in_data} discusses alternative measures of long-run inflation expectations.}
@@ -338,10 +342,10 @@ Apart from expectation formation, the model is a standard New Keynesian (NK) mod
 \subsection{Households}
 The representative household is infinitely-lived and maximizes expected discounted lifetime utility from consumption net of the disutility of supplying labor hours:
 \begin{equation}
-\hat{\E}_t\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg].
+\hat{\E}^i_t\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg].
 \label{lifetime_U}
 \end{equation}
-In the above, the only non-standard element is the expectations operator, $\hat{\E}$. As detailed in Section \ref{learning}, this operator captures non-rational expectations and is assumed to satisfy the law of iteration expectations. The remaining elements are familiar from the rational expectations version of the NK model. $U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor, respectively, and $\beta$ is the discount factor of the household. I am using standard CRRA utility of the form $U(c_t) = \frac{c_t^{1-\sigma}}{1-\sigma}$. $h^i_t(j)$ denotes the supply of labor hours of household $i$ at time $t$ to the production of good $j$, and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $t$,  $C_t^i$, is a Dixit-Stiglitz composite of all goods in the economy:
+In the above, the only non-standard element is the expectations operator, $\hat{\E}^i$. As detailed in Section \ref{learning}, this operator captures non-rational expectations and is assumed to satisfy the law of iteration expectations, so that $\hat{\E}_t^i \hat{\E}_{t+1}^i= \hat{\E}_t^i$. The remaining elements are familiar from the rational expectations version of the NK model. $U(\cdot)$ and $v(\cdot)$ denote the utility of consumption and disutility of labor, respectively, and $\beta$ is the discount factor of the household. I am using standard CRRA utility of the form $U(c_t) = \frac{c_t^{1-\sigma}}{1-\sigma}$. $h^i_t(j)$ denotes the supply of labor hours of household $i$ at time $t$ to the production of good $j$, and the household participates in the production of all goods $j$. Similarly, household $i$'s consumption bundle at time $t$,  $C_t^i$, is a Dixit-Stiglitz composite of all goods in the economy:
 \begin{equation}
 C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit},
 \end{equation}
@@ -367,7 +371,7 @@ Firms are monopolistically competitive producers of the differentiated varieties
 \end{equation}
 Firm $j$'s problem then is to set the price of the variety it produces, $p_t(j)$, to maximize the present discounted value of profit streams
 \begin{equation}
-\hat{\E}_t\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\hat{\E}^j_t\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
 \label{lifetime_profits}
 \end{equation}
 subject to the downward-sloping demand curve

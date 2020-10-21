@@ -227,6 +227,9 @@
 \def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
 \def\fignameRolling{rolling_overlapping_command_anchoring_in_data_individual_23_Sep_2020_21_04_48}
 \def\fignameRollingPi{rolling_overlapping_pi_command_anchoring_in_data_individual_25_Sep_2020_10_37_43} % regressing on pi
+\def\fignameRollingPCEcore{rolling_overlapping_pce_core_command_anchoring_in_data_individual_PCE_20_Oct_2020_11_16_01}
+\def\fignameRollingControlPi{rolling_overlapping_pi_controls_pilevel_command_anchoring_in_data_individual_20_Oct_2020_11_42_26}
+\def\fignameRollingControlPiIQR{rolling_overlapping_pi_controls_pilevel_iqrcommand_anchoring_in_data_individual_20_Oct_2020_11_42_26}
 
 
 % Unanchoring in the data
@@ -248,6 +251,8 @@
 \def\fignameGainSPF{gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39}
 \def\fignameGainSPFhist{gain_SPF_hist_command_anchoring_in_data_11_Oct_2020_11_08_39}
 \def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_18_Oct_2020_13_11_56}
+%\def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_20_Oct_2020_19_30_43} % pushes gain and fe further apart
+
 
 % Comparative statics of optimal policy
 % di/dpibar
@@ -423,7 +428,7 @@ $w$ indexes windows of 20 quarters
 \vfill
 \vspace{-0.9cm}
 
-\hfill \hyperlink{further_evidence}{\beamergotobutton{Disagreement measures}}
+\hfill \hyperlink{further_evidence}{\beamergotobutton{Robustness}}
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
@@ -584,7 +589,7 @@ $w$ indexes windows of 20 quarters
 
 Maximize lifetime expected utility
 \begin{equation}
-\textcolor{brownreddark}{\hat{\E}_t}\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\textcolor{brownreddark}{\hat{\E}^i_t}\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
 \label{lifetime_U}
 \end{equation}	
 
@@ -609,7 +614,7 @@ Budget constraint
 
 Maximize present value of profits
 \begin{equation}
-\textcolor{brownreddark}{\hat{\E}_t}\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\textcolor{brownreddark}{\hat{\E}^j_t}\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
 \label{lifetime_profits}
 \end{equation}
 
@@ -997,7 +1002,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 %\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
 %\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameGainSPF}}
 \includegraphics[scale = 0.22]{\myFigPath \fignameFeGainGdotFeSPF}
-\caption{Time series of forecast errors, changes in long-run expectations and implied gain}
+\caption{Time series of forecast errors, changes in long-run expectations and gain}
 \label{fe_in_data}
 \end{figure}
 
@@ -1529,10 +1534,108 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Robustness checks}
+\label{further_evidence}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1\textcolor{brownreddark}{\pi_t} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingPi}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
 
 %%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
-	\frametitle{Further evidence: disagreement}\label{further_evidence}
+\frametitle{Robustness checks - PCE core}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta^w_0+ \beta^w_1f_{t|t-1} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingPCEcore}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Robustness checks - controlling for inflation levels}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta^w_0 + \beta^w_1f_{t|t-1} + \beta^w_2 \pi_t + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingControlPi}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}[plain]  % remove progress bar from appendix
+%\frametitle{Robustness checks - controlling for inflation levels and uncertainty}
+%
+%\begin{align*}
+%\Delta\bar{\pi}_t = & \beta^w_0+ \beta^w_1f_{t|t-1} + \beta^w_2 \pi_t + \beta^w_3 IQR_t+ \epsilon_t \tag{1} \\
+%\end{align*}
+%
+%\vspace{-0.7cm}
+%
+%\begin{figure}[h!]
+%%\caption{Responsiveness of long-run expectations}
+%\includegraphics[scale = 0.22]{\myFigPath \fignameRollingControlPiIQR}
+%\caption{Time series of $\hat{\beta}_1^w$}
+%\label{rollingPi}
+%\end{figure}
+%
+%
+%\vfill
+%\vspace{-0.9cm}
+%
+%\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Further evidence: disagreement}
 
 
 \begin{figure}[h!]
@@ -1565,7 +1668,7 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 
 %%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
-%	\frametitle{PCE core against target}\label{further_evidence}
+	\frametitle{Further evidence: introspection}
 
 
 \begin{figure}[h!]
