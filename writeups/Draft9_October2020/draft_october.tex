@@ -252,7 +252,7 @@ An Endogenous Gain Learning Model \\
 %%%%%%%%%%%%%%%%%%%%             DOCUMENT           %%%%%%%%%%%%%%%%%% 
 
 \begin{abstract}
-This paper analyzes monetary policy in a behavioral model with potential unanchoring of expectations. The extent to which expectations are anchored is determined in an adaptive learning setting by the private sector's endogenously time-varying learning gain. Within the context of an otherwise standard macro model with nominal rigidities and natural-rate and cost-push shocks, I find that optimal policy involves an aggressive interest rate response to any threat of expectations unanchoring. This allows the central bank to accommodate inflation fluctuations when expectations are well anchored. Furthermore, I estimate the model-implied relationship that determines the extent of unanchoring. The data suggest that the median inflation surprise in the sample of -20 basis points considerably unanchors expectations. Moreover, negative forecast errors unanchor twice as much as positive ones of the same magnitude do. 
+This paper analyzes monetary policy in a behavioral model with potential unanchoring of expectations. The extent to which expectations are anchored is determined in an adaptive learning setting by the private sector's endogenously time-varying learning gain. Within the context of an otherwise standard macro model with nominal rigidities and natural-rate and cost-push shocks, I find that optimal policy involves an aggressive interest rate response to any threat of expectations unanchoring. This stabilizes both inflation expectations and inflation, allowing the central bank to accommodate inflation fluctuations when expectations are well anchored. Furthermore, I estimate the model-implied relationship that determines the extent of unanchoring. The data suggest that the expectation process is nonlinear: expectations exhibit a higher sensitivity to large forecast errors than to smaller ones. %Moreover, negative forecast errors unanchor twice as much as positive ones of the same magnitude do. 
 %My estimate of the anchoring function and the numerical solution for the optimal policy function together imply that the bank lowers the interest rate by \movei basis points if long-run inflation expectations drop by \movepibar bp. 
 %Moreover, in the presence of an anchoring expectation formation, switching to anchoring-optimal policy eliminates 84\% of welfare losses from additional volatility compared to the rational expectations benchmark.
 \end{abstract}
@@ -292,10 +292,10 @@ In order to provide a convincing analysis of optimal policy, I need a qualitativ
 
 Fig. \ref{rolling} provides some preliminary evidence that a model of a smoothly varying gain function may be appropriate. It shows the regression coefficient of a rolling window regression of long-run inflation expectations on short-run forecast errors. Letting $\bar{\pi}^i_t$ denote the 10-year inflation expectation of forecaster $i$ from the Survey of Professional Forecasters (SPF), and $f^i_{t|t-1} \equiv \pi_t - \E^i_{t-1}\pi_t$ denote forecaster $i$'s one-year ahead forecast error, I run
 \begin{align}
-\Delta\bar{\pi}^i_t = & \beta^w_0 + \beta^w_1 f^i_{t|t-1} + \epsilon_t, 
+\Delta\bar{\pi}^i_t = & \beta^w_0 + \beta^w_1 f^i_{t|t-1} + \epsilon^i_t, 
 \label{rolling_reg}
 \end{align}
-where $w$ indexes windows of 20 quarters. Fig. \ref{rolling} plots the time series of the estimated coefficient $\hat{\beta}^w_1$, along with 90\% and 95\% confidence intervals.\footnote{Appendix \ref{app_rolling_pi} presents a version of the regression in Equation (\ref{rolling_reg}) with inflation as right-hand-side variable. Appendix \ref{unanchoring_in_data} discusses alternative measures of long-run inflation expectations.}
+where $w$ indexes windows of 20 quarters. Fig. \ref{rolling} plots the time series of the estimated coefficient $\hat{\beta}^w_1$, along with 90\% and 95\% confidence intervals.\footnote{Appendix \ref{app_rolling_pi} presents robustness checks. Appendix \ref{unanchoring_in_data} discusses alternative measures of long-run inflation expectations.}
 \begin{figure}[h!]
 \includegraphics[scale = 0.3]{\myFigPath \fignameRolling}
 \caption{Time series of responsiveness of long-run inflation expectations to inflation surprises}
@@ -986,23 +986,36 @@ Lastly, a foray into the empirics of anchoring expectation formation is importan
 % the following command makes equation numbering include the section first, but just for what follows
 \numberwithin{equation}{section}
 
-\section{Rolling regression with inflation as explanatory variable}\label{app_rolling_pi}
+\section{Robustness of rolling regression results}\label{app_rolling_pi}
 
-Replacing the forecast error with realized CPI inflation, Equation (\ref{rolling_reg}) becomes 
+I investigate the following alternative specifications. As a first check, I replace the forecast error with realized CPI inflation. Thus Equation (\ref{rolling_reg}) becomes 
 
-\begin{align*}
-\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 \pi_t + \epsilon_t. 
-\label{rolling_reg_pi}
-\end{align*}
+\begin{align}
+\Delta\bar{\pi}^i_t = & \beta_0 + \beta^w_1 \pi_t + \epsilon^i_t. \label{pi_level}
+\end{align}
+
+I then consider the original specification of Equation (\ref{rolling_reg}), adding realized CPI inflation to control for inflation levels.\footnote{In a separate specification, I have similarly added uncertainty as a control, but it is so similar that I suppress it here.} This results in the following regression:
+
+\begin{align}
+\Delta\bar{\pi}^i_t = & \beta^w_0 + \beta^w_1f^i_{t|t-1} + \beta^w_2 \pi_t + \epsilon^i_t. \label{pi_control}
+\end{align}
+
+In the last alternative specification, I replace both the ten and the one-year ahead CPI inflation expectation with PCE core. The regression equation thus looks identical to Equation (\ref{rolling_reg}) but should clean out the effects of movements in oil prices:
+
+\begin{align}
+\Delta\bar{\pi}^i_t = & \beta^w_0+ \beta^w_1f^i_{t|t-1} + \epsilon^i_t. \label{pi_pce_core}
+\end{align}
 
 \begin{figure}[h!]
-\includegraphics[scale = 0.3]{\myFigPath \fignameRollingPi}
+\subfigure[Specification (\ref{pi_level})]{\includegraphics[scale = 0.16]{\myFigPath \fignameRollingPi}}
+\subfigure[Specification (\ref{pi_control})]{\includegraphics[scale = 0.16]{\myFigPath \fignameRollingControlPi}}
+\subfigure[Specification (\ref{pi_pce_core})]{\includegraphics[scale = 0.16]{\myFigPath \fignameRollingPCEcore}}
 \caption{Time series of responsiveness of long-run inflation expectations to inflation}
 %\floatfoot{Appendix \ref{unanchoring_in_data} discusses alternative measures of long-run inflation.}
 \label{rolling_pi}
 \end{figure}
 
-The time series of the estimate $\hat{\beta}^w_1$ is depicted in Fig. \ref{rolling_pi}. Qualitatively, the same conclusion obtains as in the specification with forecast errors as regressor: the coefficients are time-varying in size and statistical significance. The size of the coefficients is also similar, except that initially the estimation uncertainty around the point estimate is much larger than for the baseline specification. The two specifications disagree about the timing of the succession of anchoring and unanchoring episodes, but the general conclusion of time-varying sensitivity of long-run inflation expectations is robust. 
+The three alternative time series of the estimate $\hat{\beta}^w_1$ are depicted in Fig. \ref{rolling_pi}. Qualitatively, the same conclusion obtains as in the specification in the main text: the coefficients are time-varying in size and statistical significance. In particular, large sensitivity in the 1990s gives way to an insignificant coefficient in the early 2000s, to drift back up shortly after 2010. The data is much shorter for the PCE core specification, but also in this case one observes the upward drift in the estimated coefficient starting around 2010.
 
 
 \section{Alternative measures of long-run inflation expectations}\label{unanchoring_in_data}

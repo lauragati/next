@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 OCT 2020 19:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  22 OCT 2020 09:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -625,7 +625,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 <../../figures/rolling_overlapping_command_anchoring_in_data_individual_23_Sep_
-2020_21_04_48.png, id=146, 1131.22626pt x 690.58pt>
+2020_21_04_48.png, id=145, 1131.22626pt x 690.58pt>
 File: ../../figures/rolling_overlapping_command_anchoring_in_data_individual_23
 _Sep_2020_21_04_48.png Graphic file (type png)
 
@@ -642,7 +642,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 23_Sep_2020_21_04_48.png (PNG copy)>] [4] [5] [6] [7] [8] [9] [10] [11]
 [12] [13] [14]
 <../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000
-_Nsimulations_command_sigmas_15_Oct_2020_15_02_07.png, id=499, 1066.98625pt x 7
+_Nsimulations_command_sigmas_15_Oct_2020_15_02_07.png, id=498, 1066.98625pt x 7
 20.6925pt>
 File: ../../figures/alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid
 _1000_Nsimulations_command_sigmas_15_Oct_2020_15_02_07.png Graphic file (type p
@@ -686,7 +686,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 ../figures/fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59.png (PNG copy)
 > <../../figures/gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39.png (P
 NG copy)>] [18] [19] [20] [21] [22] [23]
-<../../figures/analyze_opt_policy_ip25_Sep_2020.png, id=686, 1095.09125pt x 749
+<../../figures/analyze_opt_policy_ip25_Sep_2020.png, id=685, 1095.09125pt x 749
 .80125pt>
 File: ../../figures/analyze_opt_policy_ip25_Sep_2020.png Graphic file (type png
 )
@@ -741,7 +741,11 @@ Package pdftex.def Info: ../../figures/implement_anchTC_obs_approx24_Sep_2020_0
 
 [26 <../../figures/implement_anchTC_obs_TR_approx24_Sep_2020_09_32_19.png (PNG 
 copy)> <../../figures/implement_anchTC_obs_approx24_Sep_2020_09_35_43.png (PNG 
-copy)>] [27]
+copy)>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[27]
 <../../figures/plot_sim_loss_approx_2y_losses_with_optimal_again_critsmooth_con
 stant_only_pi_only_lamx0_05_lami0_2020_10_14.png, id=766, 1124.2pt x 688.5725pt
 >
@@ -754,14 +758,10 @@ Package pdftex.def Info: ../../figures/plot_sim_loss_approx_2y_losses_with_opti
 mal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png used o
 n input line 850.
 (pdftex.def)             Requested size: 281.04932pt x 172.1427pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[28] [29 <../../figures/plot_sim_loss_approx_2y_losses_with_optimal_again_crits
-mooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png (PNG copy)>]
+ [28 <../../figures/plot_sim_loss_approx_2y_losses_with_optimal_again_critsmoot
+h_constant_only_pi_only_lamx0_05_lami0_2020_10_14.png (PNG copy)>]
 <../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_10_15.png,
- id=797, 1061.9675pt x 699.61375pt>
+ id=788, 1061.9675pt x 699.61375pt>
 File: ../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_10_15
 .png Graphic file (type png)
 
@@ -780,7 +780,7 @@ _pretty_2020_10_15.png used on input line 871.
 (pdftex.def)             Requested size: 212.38974pt x 139.92027pt.
 
 <../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_10_15.png, id
-=798, 1061.9675pt x 699.61375pt>
+=789, 1061.9675pt x 699.61375pt>
 File: ../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_10_15.pn
 g Graphic file (type png)
 
@@ -789,62 +789,97 @@ g Graphic file (type png)
 Package pdftex.def Info: ../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_p
 retty_2020_10_15.png used on input line 872.
 (pdftex.def)             Requested size: 212.38974pt x 139.92027pt.
- [30 <../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_10_15
-.png (PNG copy)> <../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2
-020_10_15.png (PNG copy)>] [31] [32] [33] [34] (./draft_october.bbl [35
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[29] [30 <../../figures/RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_1
+0_15.png (PNG copy)> <../../figures/RIR_unanch_psi_pi2_command_IRFs_approx_pret
+ty_2020_10_15.png (PNG copy)>] [31] [32] [33] (./draft_october.bbl [34
 
 ]
-[36] [37]) [38]
+[35] [36]) [37]
 <../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual_25_S
-ep_2020_10_37_43.png, id=894, 1111.15125pt x 690.58pt>
+ep_2020_10_37_43.png, id=892, 1111.15125pt x 690.58pt>
 File: ../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual
 _25_Sep_2020_10_37_43.png Graphic file (type png)
 
 <use ../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual_
 25_Sep_2020_10_37_43.png>
 Package pdftex.def Info: ../../figures/rolling_overlapping_pi_command_anchoring
-_in_data_individual_25_Sep_2020_10_37_43.png used on input line 999.
-(pdftex.def)             Requested size: 333.34795pt x 207.1756pt.
+_in_data_individual_25_Sep_2020_10_37_43.png used on input line 1010.
+(pdftex.def)             Requested size: 177.78783pt x 110.49506pt.
 
+<../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring_in_dat
+a_individual_20_Oct_2020_11_42_26.png, id=894, 1131.22626pt x 690.58pt>
+File: ../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring_i
+n_data_individual_20_Oct_2020_11_42_26.png Graphic file (type png)
+
+<use ../../figures/rolling_overlapping_pi_controls_pilevel_command_anchoring_in
+_data_individual_20_Oct_2020_11_42_26.png>
+Package pdftex.def Info: ../../figures/rolling_overlapping_pi_controls_pilevel_
+command_anchoring_in_data_individual_20_Oct_2020_11_42_26.png used on input lin
+e 1011.
+(pdftex.def)             Requested size: 180.9999pt x 110.49506pt.
+
+<../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_individua
+l_PCE_20_Oct_2020_11_16_01.png, id=896, 1131.22626pt x 689.57625pt>
+File: ../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_indi
+vidual_PCE_20_Oct_2020_11_16_01.png Graphic file (type png)
+
+<use ../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_indiv
+idual_PCE_20_Oct_2020_11_16_01.png>
+Package pdftex.def Info: ../../figures/rolling_overlapping_pce_core_command_anc
+horing_in_data_individual_PCE_20_Oct_2020_11_16_01.png used on input line 1012.
+
+(pdftex.def)             Requested size: 180.9999pt x 110.33444pt.
+ [38 <../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual
+_25_Sep_2020_10_37_43.png (PNG copy)> <../../figures/rolling_overlapping_pi_con
+trols_pilevel_command_anchoring_in_data_individual_20_Oct_2020_11_42_26.png (PN
+G copy)> <../../figures/rolling_overlapping_pce_core_command_anchoring_in_data_
+individual_PCE_20_Oct_2020_11_16_01.png (PNG copy)>]
 <../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.pn
-g, id=896, 1058.95625pt x 688.5725pt>
+g, id=911, 1058.95625pt x 688.5725pt>
 File: ../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_
 59.png Graphic file (type png)
 
 <use ../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_5
 9.png>
 Package pdftex.def Info: ../../figures/epi_be_in_data_command_anchoring_in_data
-_14_Sep_2020_18_12_59.png used on input line 1014.
+_14_Sep_2020_18_12_59.png used on input line 1027.
 (pdftex.def)             Requested size: 317.68933pt x 206.57333pt.
 
 <../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.png, 
-id=897, 1080.035pt x 696.6025pt>
+id=912, 1080.035pt x 696.6025pt>
 File: ../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.
 png Graphic file (type png)
 
 <use ../../figures/epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59.p
 ng>
 Package pdftex.def Info: ../../figures/epi_in_data_command_anchoring_in_data_14
-_Sep_2020_18_12_59.png used on input line 1015.
+_Sep_2020_18_12_59.png used on input line 1028.
 (pdftex.def)             Requested size: 324.013pt x 208.98236pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[39 <../../figures/rolling_overlapping_pi_command_anchoring_in_data_individual_
-25_Sep_2020_10_37_43.png (PNG copy)>] [40 <../../figures/epi_be_in_data_command
-_anchoring_in_data_14_Sep_2020_18_12_59.png (PNG copy)> <../../figures/epi_in_d
-ata_command_anchoring_in_data_14_Sep_2020_18_12_59.png (PNG copy)>] [41]
-<../../figures/cleaned_epi10_2020_07_28.png, id=926, 1069.9975pt x 695.59875pt>
+[39] [40 <../../figures/epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18
+_12_59.png (PNG copy)> <../../figures/epi_in_data_command_anchoring_in_data_14_
+Sep_2020_18_12_59.png (PNG copy)>]
+<../../figures/cleaned_epi10_2020_07_28.png, id=936, 1069.9975pt x 695.59875pt>
 File: ../../figures/cleaned_epi10_2020_07_28.png Graphic file (type png)
 <use ../../figures/cleaned_epi10_2020_07_28.png>
 Package pdftex.def Info: ../../figures/cleaned_epi10_2020_07_28.png used on inp
-ut line 1038.
+ut line 1051.
 (pdftex.def)             Requested size: 321.00172pt x 208.68123pt.
- [42 <../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>] [43] [44] [45] [4
-6]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[41] [42 <../../figures/cleaned_epi10_2020_07_28.png (PNG copy)>] [43] [44]
+[45] [46]
 <../../figures/autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wm
-id_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png, id=1020, 1051.93p
+id_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png, id=1034, 1051.93p
 t x 731.73375pt>
 File: ../../figures/autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_1000
 00_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png Graphic file 
@@ -854,7 +889,7 @@ File: ../../figures/autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_1000
 0_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png>
 Package pdftex.def Info: ../../figures/autocovariogram_N_100_nfe_5_gridspacing_
 manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_5
-6.png used on input line 1153.
+6.png used on input line 1166.
 (pdftex.def)             Requested size: 368.18102pt x 256.11064pt.
  [47 <../../figures/autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_1000
 00_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56.png (PNG copy)>] 
@@ -862,7 +897,7 @@ manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_5
 [50]
 <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Sep_2020
 _14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_01.pn
-g, id=1105, 1090.0725pt x 689.57625pt>
+g, id=1119, 1090.0725pt x 689.57625pt>
 File: ../../figures/compare_value_pea_results_approx_value_outputs_approx17_Sep
 _2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_
 01.png Graphic file (type png)
@@ -872,27 +907,27 @@ _2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_
 1.png>
 Package pdftex.def Info: ../../figures/compare_value_pea_results_approx_value_o
 utputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty
-_19_Sep_2020_09_30_01.png used on input line 1245.
+_19_Sep_2020_09_30_01.png used on input line 1258.
 (pdftex.def)             Requested size: 272.51746pt x 172.39363pt.
  [51 <../../figures/compare_value_pea_results_approx_value_outputs_approx17_Sep
 _2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_
 01.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1274.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1287.
  [52]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1274.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1287.
  (./draft_october.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1274.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1274.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1287.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1287.
 
 Package rerunfilecheck Info: File `draft_october.out' has not changed.
-(rerunfilecheck)             Checksum: B3116F6AE53B7CEC26F701EA33405971;2242.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1274.
+(rerunfilecheck)             Checksum: 8798A4041BE654E150AEBDD8F9C0CD82;2225.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1287.
  ) 
 Here is how much of TeX's memory you used:
- 10803 strings out of 493089
- 169993 string characters out of 6134842
- 280212 words of memory out of 5000000
- 13804 multiletter control sequences out of 15000+600000
+ 10822 strings out of 493089
+ 171224 string characters out of 6134842
+ 280350 words of memory out of 5000000
+ 13814 multiletter control sequences out of 15000+600000
  16135 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,21n,39p,1681b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -916,10 +951,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_october.pdf (52 pages, 1405489 bytes).
+Output written on draft_october.pdf (52 pages, 1484067 bytes).
 PDF statistics:
- 1256 PDF objects out of 1440 (max. 8388607)
- 1138 compressed objects within 12 object streams
- 305 named destinations out of 1000 (max. 500000)
- 339 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1271 PDF objects out of 1440 (max. 8388607)
+ 1151 compressed objects within 12 object streams
+ 312 named destinations out of 1000 (max. 500000)
+ 349 words of extra memory for PDF output out of 10000 (max. 10000000)
 
