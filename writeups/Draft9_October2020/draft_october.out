@@ -15,17 +15,16 @@
 \BOOKMARK [2][-]{subsection.5.1}{The Ramsey policy under anchoring}{section.5}% 15
 \BOOKMARK [2][-]{subsection.5.2}{Implementing the Ramsey policy: the optimal interest rate sequence}{section.5}% 16
 \BOOKMARK [2][-]{subsection.5.3}{Optimal Taylor rule under anchoring}{section.5}% 17
-\BOOKMARK [2][-]{subsection.5.4}{Welfare gains from optimal policy}{section.5}% 18
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 19
-\BOOKMARK [1][-]{appendix.A}{Robustness of rolling regression results}{}% 20
-\BOOKMARK [1][-]{appendix.B}{Alternative measures of long-run inflation expectations}{}% 21
-\BOOKMARK [1][-]{appendix.C}{Filtering out liquidity risk from TIPS}{}% 22
-\BOOKMARK [1][-]{appendix.D}{Compact model notation}{}% 23
-\BOOKMARK [1][-]{appendix.E}{The observation matrix for learning}{}% 24
-\BOOKMARK [1][-]{appendix.F}{Alternative specifications for the anchoring function}{}% 25
-\BOOKMARK [1][-]{appendix.G}{Estimation procedure}{}% 26
-\BOOKMARK [1][-]{appendix.H}{The policy problem in the simplified baseline model }{}% 27
-\BOOKMARK [1][-]{appendix.I}{Relaxing Assumption 2}{}% 28
-\BOOKMARK [1][-]{appendix.J}{Parameterized expectations algorithm \(PEA\)}{}% 29
-\BOOKMARK [1][-]{appendix.K}{Parametric value function iteration}{}% 30
-\BOOKMARK [1][-]{appendix.L}{Oscillatory dynamics in adaptive learning models}{}% 31
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 18
+\BOOKMARK [1][-]{appendix.A}{Robustness of rolling regression results}{}% 19
+\BOOKMARK [1][-]{appendix.B}{Alternative measures of long-run inflation expectations}{}% 20
+\BOOKMARK [1][-]{appendix.C}{Filtering out liquidity risk from TIPS}{}% 21
+\BOOKMARK [1][-]{appendix.D}{Compact model notation}{}% 22
+\BOOKMARK [1][-]{appendix.E}{The observation matrix for learning}{}% 23
+\BOOKMARK [1][-]{appendix.F}{Alternative specifications for the anchoring function}{}% 24
+\BOOKMARK [1][-]{appendix.G}{Estimation procedure}{}% 25
+\BOOKMARK [1][-]{appendix.H}{The policy problem in the simplified baseline model }{}% 26
+\BOOKMARK [1][-]{appendix.I}{Relaxing Assumption 2}{}% 27
+\BOOKMARK [1][-]{appendix.J}{Parameterized expectations algorithm \(PEA\)}{}% 28
+\BOOKMARK [1][-]{appendix.K}{Parametric value function iteration}{}% 29
+\BOOKMARK [1][-]{appendix.L}{Oscillatory dynamics in adaptive learning models}{}% 30
