@@ -170,7 +170,7 @@ ks= zeros(T,N);
 k_dt = zeros(1,N); % gain when the shock hit
 
 % warning off
-for s=2  %2->zoom in on monetary policy shock
+for s=3  %2->zoom in on monetary policy shock, 3 cost-push shock
     x0 = zeros(1,nx);
     x0(s) = d;
     
@@ -248,6 +248,9 @@ elseif mod(N,10)==0
 end
 well_anch_idx = find(1./k_dt <= k1_10);
 unanch_idx = find(1./k_dt >= k1_90);
+weakly_anch_idx_top = find(1./k_dt <= k1_med*1.2);
+weakly_anch_idx_bottom = find(1./k_dt  >= k1_10*0.8);
+weakly_anch_idx = intersect(weakly_anch_idx_top,weakly_anch_idx_bottom);
 k1_mean = mean(k1_dt_sort);
 
 % warning on
@@ -255,6 +258,7 @@ k1_mean = mean(k1_dt_sort);
 RIR_Y_LH = squeeze(mean(GIR_Y_LH,3));
 RIR_anch = squeeze(mean(GIR_Y_LH(:,:,well_anch_idx),3));
 RIR_unanch = squeeze(mean(GIR_Y_LH(:,:,unanch_idx),3));
+RIR_weakly_anch = squeeze(mean(GIR_Y_LH(:,:,weakly_anch_idx),3));
 RIR_k = squeeze(mean(GIR_k,2));
 RIR_kinv = RIR_k;
 % only invert for nonzero elements
@@ -379,15 +383,16 @@ if plot_IRFs_anch==1
         %         create_subplot(series,subplot_names,figname,print_figs, figtitle, legendnames)
         create_pretty_subplots_holdon(series1,series2,titles_obs,legendnames,'Quarters', xplus,figname,print_figs)
         
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         clear series
-        % 7) IRF: OBSERVABLES LH against RE, anchored AND unanchored
+        % 7) IRF: OBSERVABLES LH as % of RE, strongly anchored, weakly anchored, unanchored
         series1 = RIR_anch(:,:,t);
         series2 = iry;
         series3 = RIR_unanch(:,:,t);
-        series4 = RIR_cgain;
+        series4 = RIR_weakly_anch(:,:,t);
         subplot_names = titles_obs;
-        legendnames = {'Anchored', 'RE', 'Unanchored', 'Constant gain'};
+        legendnames = {'Strongly anchored', 'Weakly anchored', 'Unanchored', 'RE'};
         figtitle = [gain_title, '; when shock imposed at t=', num2str(dt_vals(t)), ', unanchored'];
         
         % Plot configs
@@ -409,12 +414,6 @@ if plot_IRFs_anch==1
             grid on
             grid minor
             title(titles_obs{i}, 'interpreter', 'latex', 'fontsize', fs)
-%             legend([h1(i), h2(i), h3(i)], legendnames, 'location', 'southoutside', 'interpreter', 'latex')
-%            
-            %             if nargin == max_no_inputs
-            %                 xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs/2);
-            %                 xl.Position(1) = xplus + xl.Position(1);
-            %             end
             ax.YAxis.Exponent = 0;
             ax.YRuler.Exponent = 0; % turns off scientific notation
         end
@@ -424,9 +423,9 @@ if plot_IRFs_anch==1
         fig = gcf;
         fig.Position(3) = fig.Position(3) + 250;
         % add legend
-        Lgnd = legend('show',[h1(i), h2(i), h3(i), h4(i)], legendnames, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 4);
+        Lgnd = legend('show',[h1(i), h4(i), h3(i), h2(i)], legendnames, 'location', 'southoutside', 'interpreter', 'latex', 'NumColumns', 4);
         legend('boxoff')
-        Lgnd.Position(1) = 0.3;
+        Lgnd.Position(1) = 0.25;
         Lgnd.Position(2) = 0;
         
         figname = ['RIR_together_psi_pi' ,strrep(num2str(param.psi_pi), '.','_'),figspecs];

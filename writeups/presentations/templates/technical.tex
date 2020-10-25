@@ -308,6 +308,7 @@
 \def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
 \def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
 \def\fignameIRFanchUnanchTogether{RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFanchUnanchTogetherCostPush{RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10_25}
 
 
 % Cross-sectional average gains for various psi_pi
@@ -322,6 +323,8 @@
 \def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
 \def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_10_15}
 \def\fignameIRFpsipiTogether{RIR_together_psi_pi2_command_IRFs_approx_pretty_together_2020_10_15}
+\def\fignameIRFpsipiTogetherCostPush{RIR_together_psi_pi2_command_IRFs_approx_pretty_together_2020_10_25}
+
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -1210,8 +1213,8 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 	\frametitle{Unanchoring causes volatility}\label{IRF1}
 
 \begin{figure}[h!]
-\includegraphics[scale = 0.22]{\myFigPath \fignameIRFanchUnanchTogether}
-\caption{Impulse responses after a contractionary monetary policy shock when policy follows a Taylor rule}
+\includegraphics[scale = 0.22]{\myFigPath \fignameIRFanchUnanchTogetherCostPush}
+\caption{Impulse responses after a cost-push shock when policy follows a Taylor rule}
 \label{IRF}
 \end{figure}	
 
@@ -1997,7 +2000,7 @@ The solution to (\ref{1'}) is given by:
 %%\hfill
 %\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
 %\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
-\includegraphics[scale = 0.22]{\myFigPath \fignameIRFpsipiTogether}
+\includegraphics[scale = 0.22]{\myFigPath \fignameIRFpsipiTogetherCostPush}
 \caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
 %\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
 \label{IRF_unanchored_psi}

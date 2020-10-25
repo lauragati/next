@@ -13,16 +13,11 @@ this_code = mfilename;
 [current_dir, basepath, BC_researchpath,toolpath,export_figpath,figpath,tablepath,datapath] = add_paths;
 
 % Variable stuff ---
-print_figs        = 1;
+print_figs        = 0;
 stop_before_plots = 0;
 skip_old_plots    = 0;
 output_table = print_figs;
 
-plot_IRFs=0;
-plot_simulated_sequence = 0;
-plot_gain_IRF = 0;
-plot_IRFs_anch = 1; % conditional on being anchored when shock hits, not trivial for smooth anchoring
-plot_gains=1;
 
 %% Parameters
 tic
@@ -179,7 +174,7 @@ for p=1:P
     k_dt = zeros(1,N); % gain when the shock hit
     
     % warning off
-    for s=2  %2->zoom in on monetary policy shock
+    for s=3  %2->zoom in on monetary policy shock, 3 cost-push shock
         x0 = zeros(1,nx);
         x0(s) = d;
         
