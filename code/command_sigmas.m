@@ -414,7 +414,7 @@ end
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
-plot(fegrid,alph_true'.*abs(fegrid), 'linewidth', lw); hold on
+plot(fegrid,alph_true'.*fegrid, 'linewidth', lw); hold on
 %     plot(x,y(i,:), 'linewidth', lw, 'marker', 'o', 'markersize', 8); hold on % uncomment when plotting the estimated alpha
 ax = gca; % current axes
 % decrease the drawable area when plotting the estimated alpha
@@ -425,9 +425,9 @@ set(gca,'TickLabelInterpreter', 'latex');
 grid on
 grid minor
 xlab = 'Forecast error (annualized percentage points)';
-ylab = '$\mathbf{g}(\cdot)f_{t|t-1}$ (annualized percentage points)';
+ylab = '$\Delta \bar{\pi}_t$ (annualized percentage points)';
 xlplus = [0,0];
-ylplus = [1.6,2.2];
+ylplus = [1.6,3.2];
 xl = xlabel(xlab,'interpreter', 'latex', 'fontsize', fs*4/5);
 xl.Position(1) = xlplus(1) + xl.Position(1);
 xl.Position(2) = xlplus(2) + xl.Position(2);

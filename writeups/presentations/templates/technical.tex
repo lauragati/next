@@ -242,7 +242,7 @@
 
 % Estimated coefficients alpha
 \def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_15_Oct_2020_15_02_07}
-\def\fignameGdotFe{gdot_feN_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_18_Oct_2020_12_44_38}
+\def\fignameGdotFe{gdot_feN_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_13_Nov_2020_13_50_48}
 % Autocovariogram
 \def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
 
@@ -376,64 +376,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 %%%%%%% Slide %%%%%%
 
 
-%%%%%%% Slide %%%%%%
-\begin{frame}
-\frametitle{Long-run expectations: responsive to short-run conditions?}
 
-\
-
-Individual-level Survey of Professional Forecasters (SPF): for 1991-Q4 onward, estimate rolling regression
-
-\begin{align*}
-\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
-\end{align*}
-
-
-\
-
-$\bar{\pi}_t \quad $ 10-year ahead inflation expectation
-
-\
-
-$f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead forecast error
-
-\
-
-$w$ indexes windows of 20 quarters
-
-
-
-
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
-
-%%%%%%% Slide %%%%%%
-\begin{frame}
-\frametitle{Time-varying responsiveness}\label{rolling}
-
-\begin{align*}
-\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \tag{1} \\
-\end{align*}
-
-\vspace{-0.7cm}
-
-\begin{figure}[h!]
-%\caption{Responsiveness of long-run expectations}
-\includegraphics[scale = 0.22]{\myFigPath \fignameRolling}
-\caption{Time series of $\hat{\beta}_1^w$}
-\label{rolling}
-\end{figure}
-
-
-\vfill
-\vspace{-0.9cm}
-
-\hfill \hyperlink{further_evidence}{\beamergotobutton{Robustness}}
-\end{frame}
-%%%%%%%%%%%%%%%%%
 
 
 
@@ -481,7 +424,7 @@ $w$ indexes windows of 20 quarters
 	\begin{enumerate}
 	\item Estimation
 		\begin{itemize}
-		\item Larger mistakes unanchor more
+		\item Expectations process is nonlinear
 		
 		\
 		
@@ -495,6 +438,8 @@ $w$ indexes windows of 20 quarters
 		\begin{itemize}
 		\item Responds aggressively to inflation when unanchored, accommodates inflation when anchored
 		\end{itemize}
+		
+		\
 		
 		\
 		
@@ -997,30 +942,6 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \end{frame}
 %%%%%%%%%%%%%%%%%
 
-%%%%%%% Slide %%%%%%
-\begin{frame}
-	\frametitle{The expectation process over time}
-
-\begin{figure}[h!]
-%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
-%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameGainSPF}}
-\includegraphics[scale = 0.22]{\myFigPath \fignameFeGainGdotFeSPF}
-\caption{Time series of forecast errors, changes in long-run expectations and gain}
-\label{fe_in_data}
-\end{figure}
-
-%\
-%
-%\pause
-%Median change in long-run expectations $\approx -0.8$ basis points
-%
-%\pause
-%Largest change in absolute value $\approx -240$ basis points
-%Mean gain $\approx 0.12$ \pause $\quad \rightarrow$ discount forecast errors older than 8 quarters 
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%
 
 
 
@@ -1491,6 +1412,8 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 %%%%%%%%%%%%%%%%%%
 
 
+
+
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
 
@@ -1501,6 +1424,65 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Long-run expectations: responsive to short-run conditions?}
+
+\
+
+Individual-level Survey of Professional Forecasters (SPF): for 1991-Q4 onward, estimate rolling regression
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
+\end{align*}
+
+
+\
+
+$\bar{\pi}_t \quad $ 10-year ahead inflation expectation
+
+\
+
+$f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead forecast error
+
+\
+
+$w$ indexes windows of 20 quarters
+
+
+
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Time-varying responsiveness}\label{rolling}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRolling}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rolling}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hfill \hyperlink{further_evidence}{\beamergotobutton{Robustness}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -1806,6 +1788,71 @@ R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{b
 \end{frame}
 %%%%%%%%%%%%%%%%%%
 
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Details on households and firms}
+	\label{details_HHs_firms}
+
+\
+
+Consumption:	
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+$\theta>1$: elasticity of substitution between varieties
+
+\
+
+Aggregate price level:
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+
+Profits:
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+
+Stochastic discount factor
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+
+\vspace{-0.5cm}
+
+\hyperlink{HH}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Derivations}
+	\label{derivations}
+
+Household FOCs
+ \begin{align*}
+\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
+\\
+\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
+\end{align*}
+where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+
+\begin{enumerate}
+\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
+\item Sub in (\ref{IBC})
+\item Aggregate over households $i$
+\item[$\rightarrow$] Obtain (\ref{NKIS})
+\end{enumerate}
+
+
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -1874,6 +1921,32 @@ f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{The expectation process over time}
+
+\begin{figure}[h!]
+%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
+%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameGainSPF}}
+\includegraphics[scale = 0.22]{\myFigPath \fignameFeGainGdotFeSPF}
+\caption{Time series of forecast errors, changes in long-run expectations and gain}
+\label{fe_in_data}
+\end{figure}
+
+%\
+%
+%\pause
+%Median change in long-run expectations $\approx -0.8$ basis points
+%
+%\pause
+%Largest change in absolute value $\approx -240$ basis points
+%Mean gain $\approx 0.12$ \pause $\quad \rightarrow$ discount forecast errors older than 8 quarters 
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
@@ -2014,71 +2087,7 @@ The solution to (\ref{1'}) is given by:
 %%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%% Slide %%%%%%
-\begin{frame}[plain]  % remove progress bar from appendix
-	\frametitle{Details on households and firms}
-	\label{details_HHs_firms}
 
-\
-
-Consumption:	
-\begin{equation}
-C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
-\end{equation}
-$\theta>1$: elasticity of substitution between varieties
-
-\
-
-Aggregate price level:
-\begin{equation}
-P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
-\label{agg_price}
-\end{equation}
-
-Profits:
-\begin{equation}
-\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
-\end{equation}
-
-Stochastic discount factor
-\begin{equation}
-Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
-\end{equation}
-
-\vspace{-0.5cm}
-
-\hyperlink{HH}{\beamerreturnbutton{Return}}	
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
-%%%%%%%% Slide %%%%%%
-\begin{frame}[plain]  % remove progress bar from appendix
-	\frametitle{Derivations}
-	\label{derivations}
-
-Household FOCs
- \begin{align*}
-\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
-\\
-\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
-\end{align*}
-where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
-
-\begin{enumerate}
-\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
-\item Sub in (\ref{IBC})
-\item Aggregate over households $i$
-\item[$\rightarrow$] Obtain (\ref{NKIS})
-\end{enumerate}
-
-
-
-\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%
 %
 %%%%%%%% Slide %%%%%%
 %\begin{frame}

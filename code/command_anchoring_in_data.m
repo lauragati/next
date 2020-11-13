@@ -604,7 +604,7 @@ end
 min(gdotfe) % -2.2433
 max(gdotfe) % 0.7458
 
-
+return
 
 %% The regression plot using CPI inflation and SPF 1- and 10-year ahead
 
