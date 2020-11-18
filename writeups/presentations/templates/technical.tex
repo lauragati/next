@@ -637,7 +637,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 \item Postulate linear functional relationship instead of (\ref{obs_RE}):
 
 \begin{equation}
-\hat{\E}_t y_{t+1} = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t-1}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
+\hat{\E}_t y_{t+1} = \hat{\E}_t \begin{pmatrix}\pi_{t+1} \\ x_{t+1} \\ i_{t+1} \end{pmatrix}  = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t-1}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
 \end{equation}
 
 
@@ -656,7 +656,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 
 \
 
-\item Estimate $\bar{\pi}_{t-1}$ using recursive least squares (RLS) using observed states and knowledge of (\ref{state})
+\item Agents estimate $\bar{\pi}_{t-1}$ using observed states and knowledge of (\ref{state})
 
 
 
@@ -668,7 +668,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 
 %%%%%%% Slide %%%%%%  	
 \begin{frame}
-	\frametitle{Recursive least squares (RLS)}
+	\frametitle{Updating $\bar{\pi}$}
 	\label{RLS_special}
 
 \
@@ -692,7 +692,7 @@ f_{t|t-1}  = \pi_{t} - \big(\bar{\pi}_{t-1}+b_1 s_{t-1}\big)
 
 \
 \pause
-$\rightarrow$ Recursive least squares update for long-run inflation expectations:	
+$\rightarrow$ Update for long-run inflation expectations:	
 
 \begin{equation}
 \bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t  f_{t|t-1} 
@@ -700,10 +700,10 @@ $\rightarrow$ Recursive least squares update for long-run inflation expectations
  
  \
  
- $k_t \in (0,1)$ gain \\
+ $k_t \in (0,1)$ learning gain \\
 \vfill 
 
-\hfill \hyperlink{RLS}{\beamergotobutton{General RLS algorithm}}
+\hfill \hyperlink{RLS}{\beamergotobutton{General algorithm}}
 
 
 
@@ -763,7 +763,9 @@ $\rightarrow$ Recursive least squares update for long-run inflation expectations
  
   \only<5>{\textcolor{dodgerblue}{Optimal monetary policy: -}}
 
+\vfill 
 
+\hfill \hyperlink{ass_g}{\beamergotobutton{Assumptions on $\mathbf{g}(\cdot)$}}
 
 \end{enumerate}
 	
@@ -795,9 +797,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \bar{\pi}_{t}  &=\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
 \end{align}
 
-\
-\pause
-\item[$\rightarrow$] How should $\{ i_t \}$ be set?
+
 \end{itemize}
 
 
@@ -838,7 +838,7 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 
 \
 
-\item Moments: autocovariances of inflation, output gap, federal funds rate and 1-year ahead SPF inflation expectations at lags $0, \dots, 4$
+\item Moments: autocovariances of inflation, output gap, federal funds rate and 1-year ahead Survey of Professional Forecasters (SPF) inflation expectations at lags $0, \dots, 4$
 \end{itemize}
 
 \
@@ -1120,11 +1120,12 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 
 
 
-\only<1-3>{5 bp movement in $\bar{\pi}$ $\rightarrow $ 250 bp movement in $i$} \only<2-3>{(1 standard dev. change in $\bar{\pi}$)}
+\only<1-2>{5 bp movement in $\bar{\pi}$ $\rightarrow $ 250 bp movement in $i$}
+ 
+ \
 
-\
+\only<2>{Mode: 0.3 bp movement in $\bar{\pi}$}
 
-\only<3>{Mode: 0.3 bp movement in $\bar{\pi}$ $\rightarrow $ 15 bp movement in $i$}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%
@@ -1178,6 +1179,41 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
 
 \end{frame}
 %%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{... and from positive feedback} 
+	\label{pos_feedback}
+\begin{itemize}
+\item[] IS curve:	
+ \begin{align*}
+\textcolor<2>{brownreddark}{x_t} &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \textcolor<1>{brownreddark}{\pi_{T+1}}) +\sigma r_T^n \big)   %\\
+%\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+\end{align*}
+
+\
+
+\
+
+ 
+
+\begin{itemize}
+\item<1-2>  \textcolor<1>{brownreddark}{Unanchored $\rightarrow \bar{\pi}$ volatile $\rightarrow \hat{\E}_t \pi_{T+1}$ volatile}
+
+\
+
+\item<2> \textcolor<2>{brownreddark}{$\rightarrow x_t$ volatile}
+
+
+\end{itemize}
+
+
+
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
 
 
 
@@ -1337,7 +1373,7 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 \item[] Estimation of novel unanchoring channel
 \vspace{0.1cm}
 	\begin{itemize}
-	\item Large and negative surprises unanchor more
+	\item Expectations process nonlinear
 %	\vspace{0.1cm}
 %
 %	\item Estimated gain time series: on average, people only use the last 8 quarters of data
@@ -1352,7 +1388,7 @@ x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty}
 	\item Degree of expectations unanchoring determines extent of smoothing shocks
 	\vspace{0.1cm}
 
-	\item Optimal policy aggressive when unanchored, accommodates otherwise
+	\item \textbf{Key:} Optimal policy aggressive when unanchored, accommodates otherwise
 	\vspace{0.1cm}
 
 	\item Taylor rule less aggressive than under rational expectations
@@ -1770,7 +1806,7 @@ $\omega_t$ estimated forecast-error variance
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}[plain]  % remove progress bar from appendix
-	\frametitle{Recursive least squares algorithm}
+	\frametitle{General updating algorithm}
 	\label{RLS}
 
 
@@ -1783,6 +1819,28 @@ R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{b
 \vfill
 
 \hyperlink{RLS_special}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Assumptions on $\mathbf{g}(\cdot)$}
+	\label{ass_g}
+
+
+\begin{align}
+\mathbf{g}_{ff} & \geq 0 \label{ass_g2}
+\end{align}
+
+\
+
+$\mathbf{g}(\cdot)$ convex in forecast errors.
+
+\vfill
+
+\hyperlink{cgain_dgain}{\beamerreturnbutton{Return}}	
 
 
 \end{frame}
