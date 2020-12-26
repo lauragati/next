@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Model of anchoring expectations}{8}{0}{1}
+\beamer@sectionintoc {2}{Optimal monetary policy}{20}{0}{2}

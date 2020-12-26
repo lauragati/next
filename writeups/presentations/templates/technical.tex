@@ -341,7 +341,9 @@
 An Endogenous Gain Learning Model}
 % note: in the [] you can put a short title to be displayed in the footer
 
-\date[]{TO DO April 15, 2020}
+\date[]{TO DO Institution \\
+\vspace{0.2cm}
+TO DO December 3, 2020}
 % note: in the [] you can put a short date to be displayed in the footer
 
 %%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
@@ -382,7 +384,7 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 
 %%%%%%%% Slide %%%%%%
 \begin{frame}
-	\frametitle{This project}
+	\frametitle{This paper}
 	
 	\begin{itemize}
 	\item How to conduct monetary policy when expectations can become unanchored?
@@ -471,14 +473,14 @@ Jerome Powell, Chairman of the Federal Reserve \footnote{``New Economic Challeng
 \
 
 \item \textbf{Adaptive learning}
-\item[] Evans \& Honkapohja (2001, 2006), Sargent (1999), Primiceri (2006), Lubik \& Matthes (2018), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Mele et al (2019), Eusepi \& Preston (2011), Milani (2007, 2014), Marcet \& Nicolini (2003)
+\item[] Evans \& Honkapohja (2001, 2006), Sargent (1999), Primiceri (2006), Lubik \& Matthes (2018), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Mele et al (2019), Eusepi \& Preston (2011), Milani (2007, 2014), Marcet \& Nicolini (2003), Eusepi, Giannoni \& Preston (2018)
 
 \
 
 \
 
 \item \textbf{Anchoring and the Phillips curve} 
-\item[] Goodfriend (1993), Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Hebden et al 2020, Gobbi et al (2019), Carvalho et al (2019)
+\item[] Goodfriend (1993), Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Hebden et al (2020), Gobbi et al (2019), Carvalho et al (2019)
 
 %\
 %
@@ -637,7 +639,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 \item Postulate linear functional relationship instead of (\ref{obs_RE}):
 
 \begin{equation}
-\hat{\E}_t y_{t+1} = \hat{\E}_t \begin{pmatrix}\pi_{t+1} \\ x_{t+1} \\ i_{t+1} \end{pmatrix}  = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t-1}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
+\hat{\E}_t y_{t+1} = \hat{\E}_t \begin{pmatrix}\pi_{t+1} \\ x_{t+1} \\ i_{t+1} \end{pmatrix}  = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
 \end{equation}
 
 
@@ -647,7 +649,7 @@ $\rightarrow$ knows (\ref{obs_RE})
   
 
 
-\item[] \textcolor{brownreddark}{$\bar{\pi}_{t-1}$}	$\rightarrow$ concept of long-run inflation expectations in the model
+\item[] \textcolor{brownreddark}{$\bar{\pi}_{t}$}	$\rightarrow$ concept of long-run inflation expectations in the model
 
 \
 
@@ -656,7 +658,7 @@ $\rightarrow$ knows (\ref{obs_RE})
 
 \
 
-\item Agents estimate $\bar{\pi}_{t-1}$ using observed states and knowledge of (\ref{state})
+\item Agents estimate $\bar{\pi}_{t}$ using observed states and knowledge of (\ref{state})
 
 
 
@@ -789,11 +791,16 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 \end{align}
 \hfill \hyperlink{derivations}{\beamergotobutton{Derivations}} \hyperlink{ALMs}{\beamergotobutton{Actual laws of motion}}
 
+\vspace{0.5cm}
+
+Observables: $y_t = (\pi, x, i)'$ inflation, output gap, interest rate \\
+Exogenous states: $s_t = (r^n_t, u_t)'$ natural rate and cost-push shock
+
 \
 \pause
 \item Expectations: 
 \begin{align}
-\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t-1} + b_1 s_t \\
+\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t} + b_1 s_t \\
 \bar{\pi}_{t}  &=\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
 \end{align}
 
@@ -988,13 +995,13 @@ x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x
 
 \
 
-Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$. Then monetary policy optimally brings about the following target relationship between inflation and the output gap
+Monetary policy optimally brings about the following target relationship between inflation and the output gap
 
 %\begin{small}	
 \begin{align*}
-& \pi_t \; \only<2>{\textcolor{brownreddark}{- \Gamma(k)
-\E_t\sum_{i=1}^{\infty}x_{t+i}}}
-\only<3>{- \Omega \bigg(k_{\textcolor{brownreddark}{t}}\textcolor{brownreddark}{+f_{t|t-1}\mathbf{g}_{\pi,t}}\bigg)
+& \pi_t \; \only<2>{\textcolor{brownreddark}{- \Gamma k
+\E_t\sum_{i=1}^{\infty}x_{t+i} (1-k)^i}}
+\only<3>{- \Gamma \bigg(k_{\textcolor{brownreddark}{t}}\textcolor{brownreddark}{+f_{t|t-1}\mathbf{g}_{\pi,t}}\bigg)
 \bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\textcolor{brownreddark}{\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}})} \bigg)}  = -\frac{\lambda_x}{\kappa}x_t 
  \label{target}
 \end{align*}
@@ -1007,14 +1014,17 @@ Let $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$
  \onslide<1>{RE (discretion): move $\pi_t$ and $x_t$ to offset cost-push shocks \\}
 
 
-\onslide<2>{\textcolor<2>{brownreddark}{Adaptive learning: can move $\E_t x_{t+i}$ too if $k > 0$} \hfill \hyperlink{fullTC}{\beamergotobutton{$\Gamma(k)$}} \\}
+\onslide<2>{\textcolor<2>{brownreddark}{Adaptive learning (exogenous gain): can move $\E_t x_{t+i}$ too if $k > 0$, \\
+where $\Gamma = \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta}$.} %\hfill \hyperlink{fullTC}{\beamergotobutton{$\Gamma(k)$}} 
+\\}
 
 
-\onslide<3>{\textcolor<3>{brownreddark}{Endogenous gain: ability to move $\E_t x_{t+i}$ depends on present and future degree of unanchoring}}
+\onslide<3>{\textcolor<3>{brownreddark}{Endogenous gain: ability to move $\E_t x_{t+i}$ depends on present and future degree of unanchoring, where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$. }}
 
 \vfill
 
-\hfill  \onslide<3>{\hyperlink{fullTC}{\beamergotobutton{Full expression, $\Omega$}} \hyperlink{no_commitment}{\beamergotobutton{No commitment}}}
+\hfill  \onslide<3>{%\hyperlink{fullTC}{\beamergotobutton{Full expression, $\Omega$}} 
+\hyperlink{no_commitment}{\beamergotobutton{No commitment}}}
 
 
 
