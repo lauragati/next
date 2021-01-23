@@ -1,0 +1,2241 @@
+\documentclass[10pt]{beamer}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{sansmathaccent}
+\usepackage{subfigure}
+\usepackage{multicol}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage{pgfplots,tikz}
+\usetikzlibrary{tikzmark,calc}
+\usepackage{overpic}
+\usepackage{color,soul}
+\usepackage{stackengine}
+
+% Layout and style
+\usefonttheme{serif}
+\usepackage{palatino} 
+
+\usetheme{Madrid}
+\usecolortheme{dove}
+
+\def \myFigPath {../../../figures/} 
+\def \myTablePath {../../../tables/} 
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{pbblue}{HTML}{0A75A8}% filling color for the progress bar
+\definecolor{pbgray}{HTML}{575757}% background color for the progress bar
+
+% a set of nice blue, nice red and nice green
+\definecolor{dodgerblue}{RGB}{16,78,139}
+\definecolor{aquamarinegreen}{RGB}{69,139,116}
+\definecolor{brownredlight}{RGB}{238,59,59}
+\definecolor{brownreddark}{RGB}{205,51,51}
+
+
+
+\makeatletter
+\def\progressbar@progressbar{} % the progress bar
+\newcount\progressbar@tmpcounta% auxiliary counter
+\newcount\progressbar@tmpcountb% auxiliary counter
+\newdimen\progressbar@pbht %progressbar height
+\newdimen\progressbar@pbwd %progressbar width
+\newdimen\progressbar@tmpdim % auxiliary dimension
+
+\progressbar@pbwd=1.15\linewidth % change width of progress bar
+\progressbar@pbht=0.7ex % change thickness of progress bar
+
+% the progress bar
+\def\progressbar@progressbar{%
+
+    \progressbar@tmpcounta=\insertframenumber
+    \progressbar@tmpcountb=\inserttotalframenumber
+    \progressbar@tmpdim=\progressbar@pbwd
+    \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+    \divide\progressbar@tmpdim by \progressbar@tmpcountb
+
+  \begin{tikzpicture}[rounded corners=2pt,very thin]
+
+    \shade[top color=pbgray!10,bottom color=pbgray!10,middle color=pbgray!10]
+      (0pt, 0pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+
+      \shade[draw=dodgerblue,top color=dodgerblue,bottom color=dodgerblue,middle color=dodgerblue] %
+        (0pt, 0pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+
+% ADD COMPLETION PERCENTAGE
+%    \draw[color=normal text.fg!50]  
+%      (0pt, 0pt) rectangle (\progressbar@pbwd, \progressbar@pbht) 
+%        node[pos=0.5,color=normal text.fg] {\textnormal{%
+%             \pgfmathparse{\insertframenumber*100/\inserttotalframenumber}%
+%             \pgfmathprintnumber[fixed,precision=2]{\pgfmathresult}\,\%%
+%        }%
+%    };
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{headline}{}
+{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,center,dp=1ex]{white}%
+    \progressbar@progressbar%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+%%%% PROGRESS BAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% footnote suppressing number
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% try to force appendix to be numbered differently
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+% Set colors of buttons
+\setbeamercolor{button}{bg=dodgerblue,fg=white}
+
+% this removes the blue navigation bar that used to be on the bottom right
+\beamertemplatenavigationsymbolsempty 
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Structure of talk}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\useinnertheme{circles}
+
+% resets the bullet points of enumerate and itemize to defaults
+\setbeamertemplate{itemize items}[bullet]
+\setbeamertemplate{enumerate items}[default]
+
+% this removes the ugly bullets for the table of contents and just adds numbers
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % this defines a command to make align only number this line
+
+% Colored lines for legends
+% green solid
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% red solid, dashed, dotted
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddashedline}{\raisebox{2pt}{\tikz{\draw[-,red,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddottedline}{\raisebox{2pt}{\tikz{\draw[-,red,densely dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+% blue solid and dashed
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluedashedline}{\raisebox{2pt}{\tikz{\draw[-,blue,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+% black solid and dashed
+\newcommand{\blackline}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashedline}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+%%\psi_pi lines
+%\newcommand{\psipilineAnch}{\raisebox{2pt}{\tikz{\draw[-,dodgerblue,solid,line width = 1.5pt](0,0) -- (5cm,5cm);}}}
+%\newcommand{\psipilineRE}{\raisebox{2pt}{\tikz{\draw[-,brownredlight,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+
+% New Commands
+\newcommand{\real}{\hbox{\reali R}}
+\newcommand{\realp}{\hbox{\reali R}_{\scriptscriptstyle +}}
+\newcommand{\realpp}{\hbox{\reali R}_{\scriptscriptstyle ++}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\argmin}{arg\,min}
+\newcommand\w{3.0in}
+\newcommand\wnum{3.0}
+\def\myFigWidth{5.3in}
+\def\mySmallerFigWidth{2.1in}
+\def\myEvenBiggerFigScale{0.8}
+\def\myPointSixFigScale{0.6}
+\def\myBiggerFigScale{0.4}
+\def\myFigScale{0.3}
+\def\mySmallFigScale{0.25}
+\def\mySmallerFigScale{0.18}
+\def\myTinyFigScale{0.16}
+\def\myPointFourteenFigScale{0.14}
+\def\myTinierFigScale{0.12}
+\def\myEvenTinierFigScale{0.10}
+\def\myCrazyTinyFigScale{0.09}
+
+\newtheorem{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{result}{Result}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL VARIABLE NUMBERS HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% numbers update: 17 Sept 2020 using ``complete'' or ``21 Sept" Estimation (N=1000) from Materials 44
+
+% Empirical numbers
+% mean estimated alpha
+\def\meanalph{(0.82;    0.61;    0;    0.33;    0.45)}
+\def\calibCalph{(0.8; 0.4; 0; 0.4; 0.8)}
+% for 1% fe, you get a gain of
+\def\oneppFEgives{0.08}
+% pp forecast error that unanchors (that causes a gain of 0.05)
+\def\ppFEunanchors{0.5 }
+\def\bpNegFEunanchors{25}
+\def\bpPosFEunanchors{50}
+
+
+% raise/lower interest rate by x bp when when LR-exp move by y bp
+\def\movepibar{5 }
+\def\movei{12 }
+
+%%%%%%%%%%%%%%%%%%%%
+% DEFINE ALL FIGNAMES HERE
+%%%%%%%%%%%%%%%%%%%%
+
+% Market-based expectations (aren't used in prezi right now)
+\def\fignameMarketEPi{epi10_2020_06_04}
+% cleaned from liq premium
+\def\fignameMarketEPiCleaned{cleaned_epi10_2020_07_28}
+\def\fignameMarketEPiMoreHorizons{epi_be_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+
+
+% SPF long-run-e
+\def\fignameSPFLiv{epi_in_data_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameRolling{rolling_overlapping_command_anchoring_in_data_individual_23_Sep_2020_21_04_48}
+\def\fignameRollingPi{rolling_overlapping_pi_command_anchoring_in_data_individual_25_Sep_2020_10_37_43} % regressing on pi
+\def\fignameRollingPCEcore{rolling_overlapping_pce_core_command_anchoring_in_data_individual_PCE_20_Oct_2020_11_16_01}
+\def\fignameRollingControlPi{rolling_overlapping_pi_controls_pilevel_command_anchoring_in_data_individual_20_Oct_2020_11_42_26}
+\def\fignameRollingControlPiIQR{rolling_overlapping_pi_controls_pilevel_iqrcommand_anchoring_in_data_individual_20_Oct_2020_11_42_26}
+
+
+% Unanchoring in the data
+%\def\fignameEpiData{epi_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+%\def\fignameFeData{fe_in_data_command_anchoring_in_data_29_Aug_2020_12_10_41}
+\def\fignameRegressionPlot{regression_plot_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameSCEdistrib{SCE_distrib_topbottom_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignameLivIQR{Livingston_IQR_command_anchoring_in_data_14_Sep_2020_18_12_59}
+\def\fignamePCEcore{PCE_core_target_command_anchoring_in_data_19_Oct_2020_15_24_30}
+
+% Estimated coefficients alpha
+\def\fignameAlphaHat{alph_opt_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_15_Oct_2020_15_02_07}
+\def\fignameGdotFe{gdot_feN_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_13_Nov_2020_13_50_48}
+% Autocovariogram
+\def\fignameAutocov{autocovariogram_N_100_nfe_5_gridspacing_manual_Wdiffs2_100000_Wmid_1000_Nsimulations_command_sigmas_17_Sep_2020_12_05_56}
+
+\def\fignameFeSPF{fe_SPF_command_anchoring_in_data_19_Sep_2020_11_45_59}
+\def\fignameFeSPFhist{fe_SPF_hist_command_anchoring_in_data_19_Sep_2020_11_45_59}
+\def\fignameGainSPF{gain_SPF_command_anchoring_in_data_11_Oct_2020_11_08_39}
+\def\fignameGainSPFhist{gain_SPF_hist_command_anchoring_in_data_11_Oct_2020_11_08_39}
+\def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_18_Oct_2020_13_11_56}
+%\def\fignameFeGainGdotFeSPF{fe_gain_gdot_fe_SPF_command_anchoring_in_data_20_Oct_2020_19_30_43} % pushes gain and fe further apart
+
+
+% Comparative statics of optimal policy
+% di/dpibar
+% not annualized
+%\def\fignameDiDpibar{analyze_opt_policy_ip17_Sep_2020}
+\def\fignameDiDpibar{analyze_opt_policy_ip18_Oct_2020} % equals Sep 17, just prettier axis labels
+\def\fignameHistPib{analyze_opt_policy_hist_pib_18_Oct_2020}
+% not annualized with stabilizing factor of 2.6 (25 Sept 2020)
+\def\fignameDiDpibarStab{analyze_opt_policy_ip25_Sep_2020}
+
+
+% Observables in PEA for TR
+% annualized
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020}
+% not annualized
+%\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx_40q_17_Sep_2020_19_29_35}
+% not annualized, with psi_pi=1.1083 (opt)
+\def\fignamePEAobsTR{implement_anchTC_obs_TR_approx24_Sep_2020_09_32_19}
+
+%
+% Observables in PEA for anchoring
+% annualized
+% cutting to 40 periods to 
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAobsAnch{implement_anchTC_obs_approx_40q17_Sep_2020_19_19_19}
+% not annualized, with psi_pi=1.1083 (opt) and knowTR=1
+\def\fignamePEAobsAnch{implement_anchTC_obs_approx24_Sep_2020_09_35_43}
+
+
+
+% Compare PEA and VFI policy for sequence of shocks X1 (rng 2)
+% annualized
+\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_19_Sep_2020_09_30_01}
+% not annualized
+%\def\fignamePEAvsVFIfirstX{compare_value_pea_results_approx_value_outputs_approx17_Sep_2020_14_01_16_pea_outputs_approx17_Sep_2020_13_47_33_pretty_40q_17_Sep_2020_19_23_04}
+
+% Central bank loss as a function of psi_pi in RE vs. anchoring
+% Note 30 July 2020: objective_CB_approx.m should use sim_learn_approx_univariate.m to use the univariate anchoring function, but it leads to a bunch of explosions, so I'm not using the correction.
+% Note 23 August 2020: now using sim_learn_approx_univariate.m and it simply leads to lots of explosions (I guess alpha and sig are high, and they can't tolerate psi_pi>1.4). But that's fine.
+% Note 25 August: update with convention: RE red, anchoring blue.
+% retired
+%\def\fignameCBlossnilnil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami0_2020_09_12}
+%\def\fignameCBlossonenil{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami0_2020_09_12}
+%\def\fignameCBlossnilone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_lami1_2020_09_12}
+%\def\fignameCBlossoneone{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx1_lami1_2020_09_12}
+\def\fignameCBlossbaseline{plot_sim_loss_approx_pretty_losses_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+\def\fignameCBlossbaselineWithOptimal{plot_sim_loss_approx_pretty_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_09_19}
+\def\fignameCBlossbaselineTwoY{plot_sim_loss_approx_2y_losses_with_optimal_again_critsmooth_constant_only_pi_only_lamx0_05_lami0_2020_10_14}
+
+% IRFs anchored vs unanchored
+% annualized
+\def\fignameIRFanchored{RIR_anch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFunanchored{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFanchUnanchTogether{RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFanchUnanchTogetherCostPush{RIR_together_psi_pi1_5_command_IRFs_approx_pretty_2020_10_25}
+
+
+% Cross-sectional average gains for various psi_pi
+% not annualized
+\def\fignameGainPsiSmall{gain_sim_psi_pi_1_01_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiMedium{gain_sim_psi_pi_1_5_command_IRFs_approx_pretty_2020_09_17}
+\def\fignameGainPsiBig{gain_sim_psi_pi_2_command_IRFs_approx_pretty_2020_09_17}
+
+% IRFs unanchored for various psi_pi
+% annualized
+\def\fignameIRFpsipiSmall{RIR_unanch_psi_pi1_01_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFpsipiMedium{RIR_unanch_psi_pi1_5_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFpsipiBig{RIR_unanch_psi_pi2_command_IRFs_approx_pretty_2020_10_15}
+\def\fignameIRFpsipiTogether{RIR_together_psi_pi2_command_IRFs_approx_pretty_together_2020_10_15}
+\def\fignameIRFpsipiTogetherCostPush{RIR_together_psi_pi2_command_IRFs_approx_pretty_together_2020_10_25}
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\author[]{Laura G\'ati}
+% note: in the [] you can put a short name to be displayed in the footer
+
+\institute[]{Boston College}
+% note: in the [] you can put a short affiliation to be displayed in the footer
+
+\title[]{Monetary Policy \& Anchored Expectations \\
+An Endogenous Gain Learning Model}
+% note: in the [] you can put a short title to be displayed in the footer
+
+\date[]{ERSA\\
+\vspace{0.2cm}
+28 January 2021}
+% note: in the [] you can put a short date to be displayed in the footer
+
+%%%%%%%%%%%%            BEGIN DOCUMENT         %%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frame}[plain] % use the argument plain here to remove the progress bar
+
+\maketitle
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Anchoring}
+	\label{kahneman}
+
+Tversky \& Kahneman (1974): 
+
+\
+
+
+\begin{itemize}
+\item Tell people a random number (e.g. 10)
+
+\
+
+\item Ask people to estimate some percentage
+
+\vspace{0.1cm}
+
+\item[] (e.g. \% of African countries in the United Nations)
+
+\
+
+\pause
+\item[$\rightarrow$] People will guess in the ballpark of the number you told them 
+
+\vspace{0.1cm}
+
+
+\item[] (average guess was 25)
+
+\
+
+\pause
+\item[$\Rightarrow$] Inflation expectations can anchor and unanchor too?
+\end{itemize}
+
+	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	%\frametitle{This paper}
+	\label{central_bankers}
+	``Essential to anchor inflation expectations at some low level.''
+	
+	\vspace{0.2cm}
+	
+	\hfill ``We don't see a de-anchoring.''
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.445]{\myFigPath bernanke}
+\includegraphics[scale = 0.224]{\myFigPath yellen}
+%\includegraphics[scale = 0.1]{\myFigPath bernanke2}
+%\includegraphics[scale = 0.3]{\myFigPath powell}\\
+\includegraphics[scale = 0.334]{\myFigPath powell2}
+%\includegraphics[scale = 0.22]{\myFigPath draghi}
+\includegraphics[scale = 0.22]{\myFigPath draghi2}
+\label{central_bankers_talk}
+\end{figure}
+
+``Failure of the Fed to stably achieve its 2 percent target could de-anchor inflation expectations.''
+
+	\vspace{0.4cm}
+	
+``Long-run inflation expectations [...] are not perfectly anchored in real economies; moreover, the extent to which they are anchored can change.''
+
+%Yellen: ``But inflation expectations are now well anchored, possibly even a bit too low'' or ``Such well-anchored inflation expectations may have been fostered by the Fed's adoption of a numerical inflation objective of 2 percent in 2012'' or ``Well-anchored inflation expectations, in effect mitigate what might otherwise be painful conflicts between the Fed?s inflation and employment objectives.'' or ``a chronic failure of the Fed to stably achieve its 2 percent target could de-anchor inflation expectations on the downside''
+%
+%
+%Draghi: ``we don't see a de-anchoring'' or ``On inflation expectations I think I've covered it before: of course we are concerned but we don't see signs of de-anchoring,''
+%
+%Powell: ``Policymakers came out of the Great Inflation era with a clear understanding that it was essential to anchor inflation expectations at some low level. '' or ``Well-anchored inflation expectations are critical for giving the Fed the latitude to support employment when necessary without destabilizing inflation.'' or ``Our statement emphasizes that our actions to achieve both sides of our dual mandate will be most effective if longer-term inflation expectations remain well anchored at 2 percent.''
+%
+%Bernanke: ``Long-run inflation expectations do vary over time. That is, they are not perfectly anchored in real economies; moreover, the extent to which they are anchored can change''
+	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{This paper}
+	
+	\begin{itemize}
+	\item How to conduct monetary policy when expectations can become unanchored?
+	%How does a concern to anchor expectations affect the conduct of monetary policy?	
+	
+	\
+	
+	\
+
+	\item Model of expectations unanchoring  \\
+	$\hookrightarrow$ extension to adaptive learning that captures time-varying responsiveness of long-run expectations
+	
+	
+	\
+	
+	\
+	
+	\item Estimate how unanchoring takes place in data \\
+	$\hookrightarrow$ quantify novel anchoring channel
+	
+	\
+	
+	\
+	
+	\item Analyze monetary policy \\
+	$\hookrightarrow$ analytically and numerically using novel model disciplined by data
+
+	\end{itemize}
+	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Preview of results}
+	
+	\vspace{0.5cm}
+\setbeamercovered{transparent}	
+	\begin{enumerate}
+	\item Estimation
+		\begin{itemize}
+		\item Expectations process is nonlinear
+		
+		\
+		
+	%	\item<1> Overestimating inflation unanchors more than underestimating it (Hebden et al 2020)
+		
+		\end{itemize}
+		
+		\
+		
+	\item Optimal policy
+		\begin{itemize}
+		\item Responds aggressively to inflation when unanchored, accommodates inflation when anchored
+		\end{itemize}
+		
+		\
+		
+		\
+		
+	\item Taylor rule
+		\begin{itemize}
+		\item Less aggressive on inflation than under rational expectations
+		\end{itemize}
+	\end{enumerate}
+
+	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Related literature}
+
+\
+
+%\footnotesize{
+\begin{itemize}
+\item \textbf{Optimal monetary policy in the New Keynesian model}
+\item[] Clarida, Gali \& Gertler (1999), Woodford (2003)
+
+\
+
+\
+
+\item \textbf{Adaptive learning}
+\item[] Evans \& Honkapohja (2001, 2006), Sargent (1999), Primiceri (2006), Lubik \& Matthes (2018), Bullard \& Mitra (2002), Preston (2005, 2008), Ferrero (2007), Moln\'ar \& Santoro (2014), Mele et al (2019), Eusepi \& Preston (2011), Milani (2007, 2014), Marcet \& Nicolini (2003), Eusepi, Giannoni \& Preston (2018)
+
+\
+
+\
+
+\item \textbf{Anchoring and the Phillips curve} 
+\item[] Goodfriend (1993), Svensson (2015), Hooper et al (2019), Afrouzi \& Yang (2020), Reis (2020), Hebden et al (2020), J{\o}rgensen \& Lansing (2019), Gobbi et al (2019), Carvalho et al (2019)
+
+%\
+%
+%\
+%
+%\item \textbf{Reputation} 
+%\item[] Barro (1986), Cho \& Matsui (1995)
+\end{itemize}
+
+%}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Structure of talk}
+
+% redefine margin locally - nice. finally it lines up with the TOC
+\setlength{\leftmargini}{12pt}
+\begin{enumerate}
+\item \hspace{-0.15cm} Model of anchoring expectations
+
+\vspace{0.75cm}
+
+\item \hspace{-0.15cm} Quantification of learning channel
+
+\vspace{0.75cm}
+
+\item \hspace{-0.15cm} Solving the Ramsey problem
+
+\vspace{0.75cm}
+
+\item \hspace{-0.15cm} Implementing optimal policy
+
+\vspace{0.75cm}
+
+\item \hspace{-0.15cm} Approximating optimal policy with a Taylor rule
+
+
+
+\end{enumerate}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model of anchoring expectations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Households: standard up to $\hat{\E}$}
+	\label{HH}
+
+Maximize lifetime expected utility
+\begin{equation}
+\textcolor{brownreddark}{\hat{\E}^i_t}\sum^{\infty}_{T=t}\beta^{T-t} \bigg[ U(C^i_T) - \int_0^1 v(h^i_T(j)) dj \bigg]
+\label{lifetime_U}
+\end{equation}	
+
+Budget constraint
+\begin{equation}
+ B^i_t \leq (1+i_{t-1})B^i_{t-1} + \int_0^1 w_t(j)h^i_t(j) dj + \Pi_t^i(j)  dj-T_t -P_tC^i_t
+ \label{BC}
+\end{equation}
+
+
+
+\vfill
+
+%\vspace{2cm}
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Consumption, price level}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Firms: standard up to $\hat{\E}$}
+
+Maximize present value of profits
+\begin{equation}
+\textcolor{brownreddark}{\hat{\E}^j_t}\sum^{\infty}_{T=t}\alpha^{T-t} Q_{t,T} \bigg[ \Pi^j_t(p_t(j))\bigg]
+\label{lifetime_profits}
+\end{equation}
+
+subject to demand
+\begin{equation}
+y_t(j) = Y_t \bigg(\frac{p_t(j)}{P_t}\bigg)^{-\theta}
+\end{equation}
+
+
+\vfill
+
+\hfill \hyperlink{details_HHs_firms}{\beamergotobutton{Profits, stochastic discount factor}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Expectations: $\hat{\E}$ instead of $\E$}
+
+\
+
+\begin{itemize}
+\item Model implies mapping between exogenous states $s_t$ and observables $y_t \equiv (\pi_t, x_t, i_t)'$
+
+ \begin{align}
+% s_t & = h s_{t-1} + \epsilon_t \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} \\
+ y_t & = g s_t \label{obs_RE}
+ \end{align}
+ 
+\
+\pause
+\item Under rational expectations (RE), private sector knows model \\
+$\rightarrow$ knows (\ref{obs_RE}) 
+
+\begin{equation}
+\E_t y_{t+1} = g \E_t s_{t+1}
+\end{equation}
+\
+\pause
+\item $\hat{\E}$: agents do not internalize that identical $\rightarrow$ do not know aggregate model $\rightarrow$ do not know (\ref{obs_RE}) \\
+
+
+
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Adaptive learning}
+	\label{adaptive_learning}
+
+\
+
+\begin{itemize}
+\item Agents know evolution of exogenous states
+
+ \begin{align}
+ s_{t+1} & = h s_{t} + \epsilon_{t+1} \quad \quad \quad \epsilon_t \sim \mathcal{N}(\mathbf{0},\Sigma) \label{state} 
+% y_t & = g s_t \label{obs_RE}
+ \end{align}
+
+
+\pause
+
+\
+
+\item Postulate linear functional relationship instead of (\ref{obs_RE}):
+
+\begin{equation}
+\hat{\E}_t y_{t+1} = \hat{\E}_t \begin{pmatrix}\pi_{t+1} \\ x_{t+1} \\ i_{t+1} \end{pmatrix}  = \begin{pmatrix} \textcolor{brownreddark}{\bar{\pi}_{t}} \\ 0 \\ 0 \end{pmatrix} + g h s_t  \label{PLM_fcst_general}
+\end{equation}
+
+
+\
+
+\pause
+  
+
+
+\item[] \textcolor{brownreddark}{$\bar{\pi}_{t}$}	$\rightarrow$ concept of long-run inflation expectations in the model
+
+\
+
+
+\pause
+
+\
+
+\item Agents estimate $\bar{\pi}_{t}$ using observed states and knowledge of (\ref{state})
+
+
+
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Updating $\bar{\pi}$}
+	\label{RLS_special}
+
+\
+
+ Let $b_1$ denote first row of $g h$.
+ 
+ \
+ 
+ One-period ahead inflation forecast:
+ \begin{equation}
+ \hat{\E}_{t-1}\pi_{t} = \bar{\pi}_{t-1}+b_1 s_{t-1}
+ \end{equation}
+
+\
+\pause
+One-period ahead inflation forecast error:
+
+ \begin{equation}
+f_{t|t-1}  = \pi_{t} - \big(\bar{\pi}_{t-1}+b_1 s_{t-1}\big)
+ \end{equation}
+
+\
+\pause
+$\rightarrow$ Update for long-run inflation expectations:	
+
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k_t  f_{t|t-1} 
+\end{equation}
+ 
+ \
+ 
+ $k_t \in (0,1)$ learning gain \\
+\vfill 
+
+\hfill \hyperlink{RLS}{\beamergotobutton{General algorithm}}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{ Alternatives for the gain }
+	\label{cgain_dgain}
+
+%\begin{small}
+\begin{enumerate}
+\item Decreasing gain:
+
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\frac{1}{t} \; f_{t|t-1}
+\end{equation}
+
+ 
+ 
+
+
+ \only<3-5>{\textcolor{dodgerblue}{Optimal monetary policy: Mele et al 2019}}
+
+ \
+ 
+
+ 
+ \
+ 
+ \item Constant gain:
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; f_{t|t-1}
+\end{equation}
+ 
+
+
+
+  \only<3-5>{\textcolor{dodgerblue}{Optimal monetary policy: Moln\'ar \& Santoro 2014}}
+
+  
+    
+ \pause
+ 
+ \
+ 
+ \
+ 
+ \item Endogenous gain:
+ \begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
+\end{equation}
+
+ \only<4-5>{\textcolor{dodgerblue}{Marcet \& Nicolini 2003, Carvalho et al 2019}}
+ 
+  \only<5>{\textcolor{dodgerblue}{Optimal monetary policy: -}}
+
+\vfill 
+
+\hfill \hyperlink{ass_g}{\beamergotobutton{Assumptions on $\mathbf{g}(\cdot)$}}
+
+\end{enumerate}
+	
+
+%\end{small}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Model summary}
+	\label{aggregate_LOMS}
+\begin{itemize}
+\item New Keynesian core: IS and Phillips curves	
+ \begin{align}
+x_t &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \pi_{T+1}) +\sigma r_T^n \big)  \label{NKIS}  \\
+\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) \label{NKPC} 
+\end{align}
+\hfill \hyperlink{derivations}{\beamergotobutton{Derivations}} \hyperlink{ALMs}{\beamergotobutton{Actual laws of motion}}
+
+\vspace{0.5cm}
+
+Observables: $y_t = (\pi, x, i)'$ inflation, output gap, interest rate \\
+Exogenous states: $s_t = (r^n_t, u_t)'$ natural rate and cost-push shock
+
+\
+\pause
+\item Expectations: 
+\begin{align}
+\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t} + b_1 s_t \\
+\bar{\pi}_{t}  &=\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1}
+\end{align}
+
+
+\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quantification of learning channel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Estimating form of gain function}\label{estimation_general}
+
+
+
+
+\
+
+
+\begin{itemize}
+\item Calibrate parameters of New Keynesian core to literature 
+
+\
+
+\
+
+\item Estimate flexible form of expectations process via simulated method of moments \\ (Duffie \& Singleton 1990, Lee \& Ingram 1991, Smith 1993)
+
+\begin{align}
+%\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t-1} + b_1 s_t \\
+\bar{\pi}_{t}  &=\bar{\pi}_{t-1} +\mathbf{g}(f_{t|t-1}) \; f_{t|t-1} \tag{18}
+\end{align}
+\
+
+\
+
+\item Moments: autocovariances of inflation, output gap, federal funds rate and 1-year ahead Survey of Professional Forecasters (SPF) inflation expectations at lags $0, \dots, 4$
+\end{itemize}
+
+\
+
+\
+
+\vfill
+
+\hfill \hyperlink{estimation_details}{\beamergotobutton{Details}}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Calibration - parameters from the literature}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ c | c  | l }
+\hline
+ $\beta$ & 0.98 & stochastic discount factor \\  \hline
+ $\sigma$ & 1  & intertemporal elasticity of substitution \\  \hline
+ $\alpha$ & 0.5 &  Calvo probability of not adjusting prices \\\hline
+ $\kappa$ & 0.0842 &  slope of the Phillips curve \\\hline
+ $\psi_{\pi} $& 1.5  & coefficient of inflation in Taylor rule\\\hline
+ $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule  \\\hline 
+    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
+    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock  \\ \hline
+    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
+ $\bar{g}$ & $0.145$  & initial value of the gain \\\hline 
+% $\lambda_x$ & 0.05 & weight on the output gap in central bank loss   \\ \hline  
+% $\rho_r$ & 0 &   persistence of natural rate shock \\ \hline 
+% $\rho_i$ & 0 &  persistence of monetary policy shock*  \\ \hline
+% $\rho_u$ & 0  &  persistence of cost-push shock  \\ \hline
+   \end{tabular}     
+   \label{calibration_lit}
+ \end{table}
+\end{center}
+% TABLES WERE UPDATED 29 AUGUST 2020. 
+
+\
+
+\
+
+ Chari et al 2000, Woodford 2003, Nakamura \& Steinsson 2008 \\
+ Carvalho et al 2019
+
+
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Calibration - matching moments}
+%
+%\small{
+%\begin{center}
+%\begin{table}
+%\begin{tabular}{ c | c  | l }
+%\hline
+% $\psi_x$ & 0.3   & coefficient of the output gap in Taylor rule  \\\hline 
+%    $\sigma_r$ & 0.01 & standard deviation, natural rate shock  \\ \hline
+%    $\sigma_i$ &  0.01  &standard deviation, monetary policy shock  \\ \hline
+%    $\sigma_u$ & 0.5 & standard deviation, cost-push shock   \\ \hline  
+%    $\hat{\gamma}_i$ &  \meanalph & coefficients in anchoring function \\ \hline   
+%\end{tabular}     
+%       \label{calibration}
+% \end{table}
+%\end{center}
+%}
+%
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Estimated expectations process}
+
+\begin{align}
+%\hat{\E}_{t}\pi_{t+1} & = \bar{\pi}_{t-1} + b_1 s_t \\
+\bar{\pi}_{t}  - \bar{\pi}_{t-1} &=\mathbf{g}(f_{t|t-1}) \; f_{t|t-1} \tag{18}
+\end{align}
+
+%\
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.22]{\myFigPath \fignameGdotFe}
+\caption{Changes in long-run inflation expectations as a function of forecast errors}
+\label{epi}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solving the Ramsey problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Ramsey problem}
+	 \begin{align*}
+& \min_{ \{y_t, \bar{\pi}_{t-1}, k_t \}_{t=t_0}^{\infty}} \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0} (\pi_t^2  + \lambda_x x_t^2 )  \\
+& \text{s.t. model equations} \\
+& \text{s.t. evolution of expectations} 
+\end{align*}
+
+\
+
+\
+
+\begin{itemize}
+\item $\E$ is the central bank's (CB) expectation
+
+\
+
+\item Assumption: CB observes private expectations and knows the model
+
+\end{itemize}
+
+ 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Target criterion}
+	\label{anchTC}
+	
+	\begin{prop} 
+
+\
+
+Monetary policy optimally brings about the following target relationship between inflation and the output gap
+
+%\begin{small}	
+\begin{align*}
+& \pi_t \; \only<2>{\textcolor{brownreddark}{- \Gamma k
+\E_t\sum_{i=1}^{\infty}x_{t+i} (1-k)^i}}
+\only<3>{- \Gamma \bigg(k_{\textcolor{brownreddark}{t}}\textcolor{brownreddark}{+f_{t|t-1}\mathbf{g}_{\pi,t}}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\textcolor{brownreddark}{\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}})} \bigg)}  = -\frac{\lambda_x}{\kappa}x_t 
+ \label{target}
+\end{align*}
+%\end{small}
+	\end{prop}
+
+
+\
+
+ \onslide<1>{RE (discretion): move $\pi_t$ and $x_t$ to offset cost-push shocks \\}
+
+
+\onslide<2>{\textcolor<2>{brownreddark}{Adaptive learning (exogenous gain): can move $\E_t x_{t+i}$ too if $k > 0$, \\
+where $\Gamma = \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta}$.} %\hfill \hyperlink{fullTC}{\beamergotobutton{$\Gamma(k)$}} 
+\\}
+
+
+\onslide<3>{\textcolor<3>{brownreddark}{Endogenous gain: ability to move $\E_t x_{t+i}$ depends on present and future degree of unanchoring, where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$. }}
+
+\vfill
+
+\hfill  \onslide<3>{%\hyperlink{fullTC}{\beamergotobutton{Full expression, $\Omega$}} 
+\hyperlink{no_commitment}{\beamergotobutton{No commitment}}}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Responding to cost-push shocks}
+%	
+%	
+%
+%\small{
+%%\begin{align*}
+%%& \pi_t  =  \; \textcolor{brownreddark}{-\frac{\lambda_x}{\kappa} x_t} \textcolor{dodgerblue}{ \; + \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}}  \\
+%%& \textcolor{aquamarinegreen}{- \frac{\lambda_x}{\kappa} \frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+ f_{t|t-1}\mathbf{g}_{\pi,t} \bigg)\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(k_{t+1+j}+ f_{t+1+j|t+j}\mathbf{g_{\bar{\pi},t+j}} )}
+%%\end{align*}
+%
+%% makes the covered stuff appear with a low facealpha (only works with some overlay commands such as onslide (not with only))
+%\setbeamercovered{transparent}
+%
+%\begin{align*}
+%& \pi_t  = \only<1>{\textcolor{brownreddark}{-\frac{\lambda_x}{\kappa}x_t} + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)}
+%\only<2>{-\frac{\lambda_x}{\kappa}x_t \; \textcolor{brownreddark}{ + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)}
+%\only<3>{-\frac{\lambda_x}{\kappa}x_t  + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+%\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\textcolor{brownreddark}{\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}})} \bigg)}
+%\end{align*}
+%
+%\
+%
+%\
+%
+% \onslide<1>{\textcolor<1>{brownreddark}{Intratemporal tradeoffs in RE (discretion)} \\}
+%
+%\
+%
+%\
+%
+%\onslide<2>{\textcolor<2>{brownreddark}{Postpone current tradeoff to future as long as gain $>$ 0} \\}
+%
+%\
+%
+%\
+%
+%\onslide<3>{\textcolor<3>{brownreddark}{Extent to which can postpone depends on not unanchoring too much in future}}
+%
+%}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementing optimal policy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Numerical solution procedure}
+	
+\begin{itemize}
+\item[] Solve system of model equations + target criterion 
+
+\
+
+\item[] For calibrated model with $\lambda_x = 0.05$ (Rotemberg \& Woodford 1997),
+
+
+\
+
+\item[] $\hookrightarrow$ solve using parameterized expectations algorithm
+
+\
+
+
+\item[] $\hookrightarrow$ obtain a cubic spline approximation to optimal policy function
+
+\
+
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Optimal policy - responding to unanchoring }
+	
+\begin{figure}[h!]
+\footnotesize
+%\subfigure[$i(\bar{\pi}, \text{all other states at their means})$]{\includegraphics[scale=0.15]{\myFigPath \fignameDiDpibar}}
+\stackunder[5pt]{\includegraphics[scale=0.15]{\myFigPath \fignameDiDpibar}}{$i(\bar{\pi}, \text{all other states at their means})$}
+\stackunder[5pt]{\includegraphics[scale=0.15]{\myFigPath \fignameHistPib}}{Stabilizing $\bar{\pi}$}
+\end{figure} 
+
+\
+
+
+
+\only<1-2>{5 bp movement in $\bar{\pi}$ $\rightarrow $ 250 bp movement in $i$}
+ 
+ \
+
+\only<2>{Mode: 0.3 bp movement in $\bar{\pi}$}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Unanchoring causes volatility}\label{IRF1}
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.22]{\myFigPath \fignameIRFanchUnanchTogetherCostPush}
+\caption{Impulse responses after a cost-push shock when policy follows a Taylor rule}
+\label{IRF}
+\end{figure}	
+
+\vfill
+\vspace{-0.9cm}
+\hfill \hyperlink{oscillatory}{\beamergotobutton{Why oscillatory?}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}
+	\frametitle{Volatility comes from endogenous gain}
+	\label{anchoring_vs_cgain}
+
+%\begin{small}
+\begin{itemize}
+\item Constant gain:
+\begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +k \; f_{t|t-1} \tag{13}
+\end{equation}
+ 
+ \
+ 
+ \
+ 
+ \item Endogenous gain:
+ \begin{equation}
+\bar{\pi}_{t}  =\bar{\pi}_{t-1} +\textcolor<2>{brownreddark}{\mathbf{g}(f_{t|t-1})} \; f_{t|t-1} \tag{14}
+\end{equation}
+
+\
+
+\item[]<2>{\textcolor{brownreddark}{Shocks raise the gain $\rightarrow$ central bank needs to anchor}}
+\end{itemize}
+	
+
+%\end{small}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{... and from positive feedback} 
+	\label{pos_feedback}
+\begin{itemize}
+\item[] IS curve:	
+ \begin{align*}
+\textcolor<2>{brownreddark}{x_t} &=  -\sigma i_t +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta i_{T+1} - \textcolor<1>{brownreddark}{\pi_{T+1}}) +\sigma r_T^n \big)   %\\
+%\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+\end{align*}
+
+\
+
+\
+
+ 
+
+\begin{itemize}
+\item<1-2>  \textcolor<1>{brownreddark}{Unanchored $\rightarrow \bar{\pi}$ volatile $\rightarrow \hat{\E}_t \pi_{T+1}$ volatile}
+
+\
+
+\item<2> \textcolor<2>{brownreddark}{$\rightarrow x_t$ volatile}
+
+
+\end{itemize}
+
+
+
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Approximating optimal policy with a Taylor rule}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Optimal Taylor-coefficient on inflation}
+%	
+%	\begin{equation}
+%	i_t = \textcolor{aquamarinegreen}{\psi_{\pi}} \pi_t + \psi_x x_t
+%	\end{equation}
+%
+%\pause	
+%\begin{figure}[h!]
+%\caption{Central bank loss as a function of $\psi_{\pi}$}
+%\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaselineTwoY}
+%\end{figure} 
+%
+%\pause
+%\small{
+%\textcolor{dodgerblue}{Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$} $\quad \quad $\textcolor{brownreddark}{ RE-optimal coefficient: $\psi_{\pi}^{RE} =2.2$}
+%}
+%
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Optimal Taylor-coefficient on inflation}
+	
+	\begin{equation}
+	i_t = \textcolor{aquamarinegreen}{\psi_{\pi}} \pi_t + \psi_x x_t
+	\end{equation}
+
+\pause	
+\centering
+\begin{tikzpicture}
+    \draw (0, 0) node[inner sep=0] {\includegraphics[scale=0.22]{\myFigPath \fignameCBlossbaselineTwoY}};
+    \draw (0, 3) node {Figure: Central bank loss as a function of $\psi_{\pi}$};
+    \draw<3>[-,dodgerblue,solid,line width = 1.2pt](-3.4,-1.82) -- (-3.4,2.52);
+    \draw<3>[-,brownreddark,solid,line width = 1.2pt](2.625,-1.82) -- (2.625,2.52);
+\end{tikzpicture}
+
+%%\psi_pi lines
+%\newcommand{\psipilineAnch}{\raisebox{2pt}{\tikz{\draw[-,dodgerblue,solid,line width = 1.5pt](0,0) -- (5cm,5cm);}}}
+%\newcommand{\psipilineRE}{\raisebox{2pt}{\tikz{\draw[-,brownredlight,solid,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+
+
+\pause
+\small{
+\textcolor{dodgerblue}{Anchoring-optimal coefficient: $\psi_{\pi}^A =1.1$} $\quad \quad $\textcolor{brownreddark}{ RE-optimal coefficient: $\psi_{\pi}^{RE} =2.2$}
+}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Why less aggressive? Future interest rate expectations} 
+	\label{less_aggressive}
+\begin{itemize}
+\item[] IS curve:	
+ \begin{align*}
+x_t &=  -\sigma \textcolor<1>{brownreddark}{i_t} +\hat{\E}_t \sum_{T=t}^{\infty} \beta^{T-t }\big( (1-\beta)x_{T+1} - \sigma(\beta \textcolor<2-3>{brownreddark}{i_{T+1}} - \pi_{T+1}) +\sigma r_T^n \big)   %\\
+%\pi_t &= \kappa x_t +\hat{\E}_t \sum_{T=t}^{\infty} (\alpha\beta)^{T-t }\big( \kappa \alpha \beta x_{T+1} + (1-\alpha)\beta \pi_{T+1} + u_T\big) 
+\end{align*}
+
+\
+
+\
+
+ 
+
+\begin{itemize}
+\item<1-3>  \textcolor<1>{brownreddark}{Current interest rate $i_t$: one channel of policy}
+
+\
+
+\item<2-3> Taylor rule implies interest rate expectation
+	\begin{equation}
+	\textcolor<2>{brownreddark}{\hat{\E}_ti_{t+k}} = \psi_{\pi}\hat{\E}_t \pi_{t+k}+ \psi_x \hat{\E}_t x_{t+k}
+	\end{equation}
+
+\item<3>  \textcolor<3>{brownreddark}{If private sector understands and believes Taylor rule, expected future interest rates additional channel of policy} \\
+ \textcolor<3>{brownreddark}{(Eusepi, Giannoni \& Preston 2018)}
+
+
+\end{itemize}
+
+
+
+\end{itemize}
+
+
+\vfill \hfill  \hyperlink{IRFs_function_psipi}{\beamergotobutton{IRFs for various $\psi_{\pi}$}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Losses for optimal Taylor-rule coefficient on inflation}
+%	
+%\begin{center}
+%\begin{table}[h!]
+%      \caption{Loss for RE and anchoring models for choice of RE- or anchoring-optimal $\psi_{\pi}$}  
+%
+%\begin{tabular}{ c | c | c | c}
+%%\hline
+%Anchoring, $\psi_{\pi}^{RE}$ & Anchoring, $\psi_{\pi}^{A}$ & RE, $\psi_{\pi}^{RE}$ & Optimal policy \\  \hline
+% 14.2633  &  6.0228 & 4.4866 & 6.0985 \\  \hline
+%\end{tabular}     
+%      \label{table_welfare}
+% \end{table}
+%\end{center}
+%
+%\
+%
+%\
+%
+%\pause
+%
+%$\rightarrow$ Optimal policy or anchoring-optimal $\psi_{\pi}^A$ gets 84\% of the distance to RE-optimal $\psi_{\pi}^{RE}$ under RE
+%
+%\
+%
+%\pause
+%
+%\
+%
+%Optimal policy vs. Taylor rule? $\rightarrow$ is reaction function internalized or not
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+	\frametitle{Conclusion}
+
+\vspace{0.5cm}
+	
+\begin{itemize}
+\item[] First theory of monetary policy for potentially unanchored expectations 
+
+\
+
+\item[] Estimation of novel unanchoring channel
+\vspace{0.1cm}
+	\begin{itemize}
+	\item Expectations process nonlinear
+%	\vspace{0.1cm}
+%
+%	\item Estimated gain time series: on average, people only use the last 8 quarters of data
+	\end{itemize}
+\
+
+
+\item[] Monetary policy
+\vspace{0.1cm}
+
+	\begin{itemize}
+	\item Degree of expectations unanchoring determines extent of smoothing shocks
+	\vspace{0.1cm}
+
+	\item \textbf{Key:} Optimal policy aggressive when unanchored, accommodates otherwise
+	\vspace{0.1cm}
+
+	\item Taylor rule less aggressive than under rational expectations
+	\end{itemize}
+	
+\
+
+
+\item[] Future work
+\vspace{0.1cm}
+
+\begin{itemize}
+\item[$\hookrightarrow$]  How to anchor at zero-lower bound?
+\vspace{0.1cm}
+
+\item[$\hookrightarrow$]  Other applications: currency crises
+\end{itemize}
+
+
+%\item For a 0.1 pp drift in long-run inflation expectations, changes interest rate by \movei pp
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%
+%         TEMPLATES
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%	\frametitle{Slide template}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%  	
+%\begin{frame}
+%	\frametitle{A beamer button template}
+%	\label{identification}
+%	
+%\hyperlink{Technicalities}{\beamergotobutton{Technicalities}}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%                     APPENDIX  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\backupbegin
+
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+
+\begin{centering}
+\hfill \textbf{Appendix} \hfill
+\end{centering}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Long-run expectations: responsive to short-run conditions?}
+
+\
+
+Individual-level Survey of Professional Forecasters (SPF): for 1991-Q4 onward, estimate rolling regression
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \numberthis \\
+\end{align*}
+
+
+\
+
+$\bar{\pi}_t \quad $ 10-year ahead inflation expectation
+
+\
+
+$f_{t|t-1} \equiv \pi_t - \E_{t-1}\pi_t \quad $ individual one-year-ahead forecast error
+
+\
+
+$w$ indexes windows of 20 quarters
+
+
+
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Time-varying responsiveness}\label{rolling}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1 f_{t|t-1} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRolling}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rolling}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hfill \hyperlink{further_evidence}{\beamergotobutton{Robustness}}
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Breakeven inflation}
+	\label{app_TIPS}
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiMoreHorizons} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, various horizons, \%}
+%\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+\vfill 
+\hyperlink{LRE_drifting_down}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Correcting the TIPS from liquidity risk}
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.25]{\myFigPath \fignameMarketEPiCleaned} % \fignameMarketEPiCleaned
+\caption{Market-based inflation expectations, 10 year, \%}
+%\floatfoot{Breakeven inflation, constructed as the difference between the yields of 10-year Treasuries and 10-year TIPS (blue line), difference between 10-year Treasury and 10-year TIPS, the latter cleaned from liquidity risk (red line).}
+\label{epi_cleaned}
+\end{figure}
+
+\vfill 
+\hyperlink{LRE_drifting_down}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Robustness checks}
+\label{further_evidence}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta_0 + \beta^w_1\textcolor{brownreddark}{\pi_t} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingPi}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Robustness checks - PCE core}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta^w_0+ \beta^w_1f_{t|t-1} + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingPCEcore}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Robustness checks - controlling for inflation levels}
+
+\begin{align*}
+\Delta\bar{\pi}_t = & \beta^w_0 + \beta^w_1f_{t|t-1} + \beta^w_2 \pi_t + \epsilon_t \tag{1} \\
+\end{align*}
+
+\vspace{-0.7cm}
+
+\begin{figure}[h!]
+%\caption{Responsiveness of long-run expectations}
+\includegraphics[scale = 0.22]{\myFigPath \fignameRollingControlPi}
+\caption{Time series of $\hat{\beta}_1^w$}
+\label{rollingPi}
+\end{figure}
+
+
+\vfill
+\vspace{-0.9cm}
+
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+%\begin{frame}[plain]  % remove progress bar from appendix
+%\frametitle{Robustness checks - controlling for inflation levels and uncertainty}
+%
+%\begin{align*}
+%\Delta\bar{\pi}_t = & \beta^w_0+ \beta^w_1f_{t|t-1} + \beta^w_2 \pi_t + \beta^w_3 IQR_t+ \epsilon_t \tag{1} \\
+%\end{align*}
+%
+%\vspace{-0.7cm}
+%
+%\begin{figure}[h!]
+%%\caption{Responsiveness of long-run expectations}
+%\includegraphics[scale = 0.22]{\myFigPath \fignameRollingControlPiIQR}
+%\caption{Time series of $\hat{\beta}_1^w$}
+%\label{rollingPi}
+%\end{figure}
+%
+%
+%\vfill
+%\vspace{-0.9cm}
+%
+%\hyperlink{rolling}{\beamerreturnbutton{Return}}	\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Further evidence: disagreement}
+
+
+\begin{figure}[h!]
+\caption{Livingston Survey of Firms: \newline Interquartile range of 10-year ahead inflation expectations}
+\includegraphics[scale = 0.24]{\myFigPath \fignameLivIQR}
+\label{LivIQR}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}
+%	\frametitle{Unanchoring in the data}
+
+\begin{figure}[h!]
+\caption{New York Fed Survey of Consumers: \newline Percent of respondents indicating 3-year ahead inflation will be in a particular range}
+\includegraphics[scale = 0.24]{\myFigPath \fignameSCEdistrib}
+\label{SCEdistrib}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Further evidence: introspection}
+
+
+\begin{figure}[h!]
+\caption{PCE core inflation against the Fed's target}
+\includegraphics[scale = 0.24]{\myFigPath \fignamePCEcore}
+\label{PCEcore}
+\end{figure}
+
+\vfill 
+\hyperlink{rolling}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+\frametitle{Oscillatory dynamics in adaptive learning}
+	\label{oscillatory}
+
+Consider a stylized adaptive learning model in two equations:
+\begin{align}
+\pi_t & = \beta f_t + u_t  \\
+f_t & = f_{t-1} + k(\pi_t - f_{t-1}) 
+\end{align}
+
+Solve for the time series of expectations $f_t$
+\begin{equation}
+f_t = \underbrace{\frac{1-k^{-1}}{1-k^{-1}\beta}}_{\approx 1}f_{t-1} + \frac{k^{-1}}{1-k^{-1}\beta}u_t
+\end{equation}
+
+Solve for forecast error $f_t \equiv \pi_t - f_{t-1}$:
+\begin{equation}
+f_t = \underbrace{-\frac{1-\beta}{1-k\beta}}_{\lim_{k \to 1} = -1}f_{t-1} + \frac{1}{1-k\beta}u_t 
+\end{equation}
+
+\vfill 
+\hyperlink{IRF1}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Functional forms for $\mathbf{g}$ in the literature}
+	\label{g}
+\begin{itemize}
+\item Smooth anchoring function (Gobbi et al, 2019)
+\begin{equation}
+ p = h(y_{t-1}) = A + \frac{B C e^{-D y_{t-1}}}{( C e^{-D y_{t-1}}+1)^2}
+\end{equation}
+$p \equiv Prob(\text{liquidity trap regime}) $ \\
+$y_{t-1}$ output gap \\
+
+
+\
+
+\item Kinked anchoring function (Carvalho et al, 2019)
+ \begin{align*}
+k_t & = \begin{cases} \frac{1}{t} \quad \text{when} \quad \theta_t < \bar{\theta}  \\ k \quad \text{otherwise.}\numberthis
+\end{cases} 
+\end{align*}
+$\theta_t$ criterion, $\bar{\theta}$ threshold value
+
+\end{itemize}
+
+\vfill 
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%% Slide
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Choices for criterion $\theta_t$}
+	\label{g}
+\begin{itemize}
+\item Carvalho et al. (2019)'s criterion  
+\begin{equation}
+\theta_t^{CEMP} = \max | \Sigma^{-1} ( \phi_{t-1} - T(\phi_{t-1})) |
+\end{equation}
+
+
+$\Sigma$ variance-covariance matrix of shocks \\
+$T(\phi)$ mapping from PLM to ALM
+
+\
+
+\
+
+\item CUSUM-criterion
+\begin{align}
+\omega_t & =  \omega_{t-1} + \kappa k_{t-1}(f_{t|t-1} f_{t|t-1}'  -\omega_{t-1})\\
+\theta_t^{CUSUM} & =  \theta_{t-1} + \kappa k_{t-1}(f_{t|t-1}'\omega_t^{-1}f_{t|t-1} -\theta_{t-1})
+\end{align}
+
+\
+
+$\omega_t$ estimated forecast-error variance
+\end{itemize}
+
+
+
+
+\vfill
+
+\hyperlink{anchoring1}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{General updating algorithm}
+	\label{RLS}
+
+
+\begin{align}
+\phi_t  & = \bigg( \phi_{t-1}' + k_t R_t^{-1}\begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix}\bigg(y_{t} - \phi_{t-1} \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \bigg)' \bigg)' \\
+R_t &= R_{t-1} +  k_t \bigg( \begin{bmatrix} 1 \\ s_{t-1} \end{bmatrix} \begin{bmatrix} 1 & s_{t-1} \end{bmatrix}  - R_{t-1} \bigg)
+\end{align}
+
+
+\vfill
+
+\hyperlink{RLS_special}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Assumptions on $\mathbf{g}(\cdot)$}
+	\label{ass_g}
+
+
+\begin{align}
+\mathbf{g}_{ff} & \geq 0 \label{ass_g2}
+\end{align}
+
+\
+
+$\mathbf{g}(\cdot)$ convex in forecast errors.
+
+\vfill
+
+\hyperlink{cgain_dgain}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Details on households and firms}
+	\label{details_HHs_firms}
+
+\
+
+Consumption:	
+\begin{equation}
+C^i_t =  \bigg[  \int_0^1 c^i_t(j)^{\frac{\theta-1}{\theta}} dj \bigg]^{\frac{\theta}{\theta-1}}\label{dixit}
+\end{equation}
+$\theta>1$: elasticity of substitution between varieties
+
+\
+
+Aggregate price level:
+\begin{equation}
+P_t =  \bigg[  \int_0^1 p_t(j)^{1-\theta} dj \bigg]^{\frac{1}{\theta-1}}
+\label{agg_price}
+\end{equation}
+
+Profits:
+\begin{equation}
+\Pi_t^j = p_t(j)y_t(j) -w_t(j)f^{-1}(y_t(j)/A_t)
+\end{equation}
+
+Stochastic discount factor
+\begin{equation}
+Q_{t,T} = \beta^{T-t} \frac{P_t U_c(C_T)}{P_T U_c(C_t)}
+\end{equation}
+
+\vspace{-0.5cm}
+
+\hyperlink{HH}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Derivations}
+	\label{derivations}
+
+Household FOCs
+ \begin{align*}
+\hat{C}_{t}^i & = \hat{\E}^i_t \hat{C}_{t+1}^i - \sigma(\hat{i}_{t} -\hat{\E}^i_t \hat{\pi}_{t+1})    \label{EE} \numberthis \\
+\\
+\hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{C}^i_t& =\omega^i_t + \hat{\E}^i_t \sum_{s=0}^{\infty}\beta^s \hat{Y}^i_t \label{IBC} \numberthis
+\end{align*}
+where `hats' denote log-linear approximation and $\omega_t^i \equiv \frac{(1+i_{t-1})B^i_{t-1} }{P_t Y^*}$.
+
+\begin{enumerate}
+\item Solve (\ref{EE}) backward to some date $t$, take expectations at $t$ 
+\item Sub in (\ref{IBC})
+\item Aggregate over households $i$
+\item[$\rightarrow$] Obtain (\ref{NKIS})
+\end{enumerate}
+
+
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Actual laws of motion}
+	\label{ALMs}
+
+ \begin{align*}
+y_t & = A_1 f_{a,t} + A_2 f_{b,t} + A_3 s_t \label{LOM_LR} \numberthis \\
+\\
+s_t & = h s_{t-1} + \epsilon_t \label{exog} \numberthis
+\end{align*}
+where
+
+\begin{equation}
+ y_t \equiv \begin{pmatrix} \pi_t \\ x_t \\ i_t
+ \end{pmatrix} 
+ \quad \quad \quad 
+  s_t  \equiv \begin{pmatrix} r_t^n \\ u_t 
+ \end{pmatrix} 
+\end{equation}
+and
+
+  \begin{align}
+f_{a,t}  \equiv  \hat{\E}_t\sum_{T=t}^{\infty} (\alpha\beta)^{T-t } y_{T+1} \quad \quad \quad \quad 
+f_{b,t}  \equiv \hat{\E}_t\sum_{T=t}^{\infty} (\beta)^{T-t } y_{T+1} \label{fafb}
+\end{align}
+
+\hyperlink{aggregate_LOMS}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%  	
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Piecewise linear approximation to gain function}\label{estimation_details}
+
+
+
+\begin{equation}
+ \mathbf{g}(f_{t|t-1}) = \sum_i\gamma_i b_i(f_{t|t-1})
+\end{equation}
+
+\
+
+\begin{itemize}
+\item $ b_i(f_{t|t-1}) = $ piecewise linear basis
+
+\
+
+\item $\gamma_i  = $ approximating coefficient at node $i$
+
+\
+
+\item[$\hookrightarrow$] Estimate $\hat{\gamma}$ via simulated method of moments
+\end{itemize}
+
+
+
+\vfill
+
+
+\hyperlink{estimation_general}{\beamerreturnbutton{Return}}	
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{The expectation process over time}
+
+\begin{figure}[h!]
+%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameFeSPF}}
+%\subfigure{\includegraphics[scale = 0.15]{\myFigPath \fignameGainSPF}}
+\includegraphics[scale = 0.22]{\myFigPath \fignameFeGainGdotFeSPF}
+\caption{Time series of forecast errors, changes in long-run expectations and gain}
+\label{fe_in_data}
+\end{figure}
+
+%\
+%
+%\pause
+%Median change in long-run expectations $\approx -0.8$ basis points
+%
+%\pause
+%Largest change in absolute value $\approx -240$ basis points
+%Mean gain $\approx 0.12$ \pause $\quad \rightarrow$ discount forecast errors older than 8 quarters 
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Target criterion}
+	\label{fullTC}
+	
+	\begin{prop} 
+
+\
+
+In the model with anchoring, monetary policy optimally brings about the following target relationship between inflation and the output gap
+
+%\begin{small}	
+\begin{align*}
+& \pi_t  = -\frac{\lambda_x}{\kappa}x_t \\
+& + \frac{\lambda_x}{\kappa}\frac{(1-\alpha)\beta}{1-\alpha\beta} \bigg(k_t+f_{t|t-1}\mathbf{g}_{\pi,t}\bigg)
+\bigg(\E_t\sum_{i=1}^{\infty}x_{t+i}\prod_{j=0}^{i-1}(1-k_{t+1+j} - f_{t+1+j|t+j}\mathbf{g_{\bar{\pi}, t+j}}) \bigg)
+\end{align*}
+%\end{small}
+\
+
+\
+
+where $\; \mathbf{g}_{z,t} \equiv \frac{\partial \mathbf{g}}{\partial z}\;$ at $t$, and $b_1$ is the first row of $b$.
+	\end{prop}
+
+
+
+\vfill
+
+
+\hyperlink{anchTC}{\beamerreturnbutton{Return}}	\hfill \hyperlink{generalTC}{\beamergotobutton{General case}} 
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{}
+	\label{no_commitment}
+
+\begin{lemma} The discretion and commitment solutions of the Ramsey problem coincide. 
+\end{lemma}
+
+\
+
+\hfill \hyperlink{no_commitment_intuition}{\beamergotobutton{Why no commitment?}}
+
+\
+
+\
+
+\begin{corollary} Optimal policy under adaptive learning is time-consistent. 
+\end{corollary}
+
+
+
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{No commitment - no lagged multipliers}
+	\label{no_commitment_intuition}
+	
+	Simplified version of the model: planner chooses $\{\pi_t, x_t, f_t, k_t\}_{t=t_0}^{\infty}$ to minimize
+ \begin{align*}
+\mathcal{L} &= \E_{t_0}\sum_{t=t_0}^{\infty} \beta^{t-t_0}\bigg\{ \pi_t^2  + \lambda x_t^2 + \varphi_{1,t} (\pi_t -\kappa x_t- \beta f_t +u_t) \\ &+ \varphi_{2,t}(f_t - f_{t-1} -k_t(\pi_t - f_{t-1})) + \varphi_{3,t}(k_t- \mathbf{g}(\pi_t - f_{t-1})) \bigg\}
+ \end{align*}
+
+ \begin{align}
+  2\pi_t +2\frac{\lambda}{\kappa}x_t -\textcolor{brownreddark}{\varphi_{2,t}}(k_t + \mathbf{g_{\pi}}(\pi_t -f_{t-1}))& = 0 \label{simpleFOC1} \\
+  -2\beta\frac{\lambda}{\kappa}x_t + \textcolor{brownreddark}{\varphi_{2,t}} -\textcolor{brownreddark}{\varphi_{2,t+1}}(1-k_{t+1} -\mathbf{g_{f}}(\pi_{t+1} -f_{t})) & = 0 \label{simpleFOC2} 
+ \end{align}
+
+  
+\hyperlink{no_commitment}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Target criterion system for anchoring function as changes of the gain}
+	\label{generalTC}
+
+\begin{align*}
+\varphi_{6,t} & = -c f_{t|t-1} x_{t+1} + \bigg(1+ \frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1}) -f_{t|t-1} \mathbf{g}_{\bar{\pi},t} \bigg) \varphi_{6,t+1} \\
+& -\frac{f_{t|t-1}}{f_{t+1|t}}(1-k_{t+1})\varphi_{6,t+2} \numberthis \label{6'} \\
+0 & = 2\pi_t + 2\frac{\lambda_x}{\kappa}x_t   - \bigg( \frac{k_t}{f_{t|t-1}} + \mathbf{g}_{\pi,t}\bigg)\varphi_{6,t} + \frac{k_t}{f_{t|t-1}}\varphi_{6,t+1}\numberthis \label{1'}
+\end{align*}
+$\varphi_{6,t}$ Lagrange multiplier on anchoring function
+
+\
+
+The solution to (\ref{1'}) is given by:
+\begin{equation}
+\varphi_{6,t} = -2\E_t\sum_{i=0}^{\infty}(\pi_{t+i}+\frac{\lambda_x}{\kappa}x_{t+i})\prod_{j=0}^{i-1}\frac{\frac{k_{t+j}}{f_{t+j|t+j-1}}}{\frac{k_{t+j}}{f_{t+j|t+j-1}} + \mathbf{g}_{\pi, t+j}} \label{sol1'}
+\end{equation}
+
+
+\vspace{-0.5cm}
+ 
+\hyperlink{anchTC}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% Slide %%%%%%
+\begin{frame}[plain]  % remove progress bar from appendix
+	\frametitle{Respond but not too much}\label{IRFs_function_psipi}
+
+\begin{figure}[h!]
+%\subfigure[$\psi_{\pi} = 1.01$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiSmall}}
+%%\hfill
+%\subfigure[$\psi_{\pi} = 1.5$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiMedium}}
+%\subfigure[$\psi_{\pi} = 2$]{\includegraphics[scale = 0.13]{\myFigPath \fignameIRFpsipiBig}}
+\includegraphics[scale = 0.22]{\myFigPath \fignameIRFpsipiTogetherCostPush}
+\caption{Impulse responses for unanchored expectations for various values of $\psi_{\pi}$}
+%\floatfoot{Shock imposed at $t=25$ of a sample length of $T=400$ (with 5 initial burn-in periods), cross-sectional average with a cross-section size of $N=1000$.}
+\label{IRF_unanchored_psi}
+\end{figure}
+
+\vfill
+\hyperlink{less_aggressive}{\beamerreturnbutton{Return}}	
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+
+
+%
+%%%%%%%% Slide %%%%%%
+%\begin{frame}
+%\frametitle{A beamer button template, how to get back to main text}
+%\label{Steps}
+%
+%\begin{equation}
+%D = \begin{bmatrix}
+%d_{11} & \gamma_{12} & \gamma_{13} & d_{14} & \cdots \\
+%d_{21} & \gamma_{22} & \gamma_{23} & d_{24} & \cdots \\
+%\vdots & \vdots & \vdots & \ddots & \vdots 
+%\end{bmatrix}
+%\end{equation}
+%
+%\hyperlink{calcCBloss}{\beamerreturnbutton{Return}}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%
+
+\backupend
+
+
+\end{document}
