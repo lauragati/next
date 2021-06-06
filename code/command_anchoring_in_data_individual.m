@@ -174,25 +174,29 @@ figspecs = [this_code, '_', nowstr];
 
 time_cropped = linspace(time(1), time(end), n_win);
 
+% Dodgerblue for latex
+dodgerblue = 1/255*[16,78,139];
+gray = [0.25,0.25,0.25];
+
 figure
 set(gcf,'color','w'); % sets white background color
 set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
 % plot(time_cropped,ub,'Color', [0.25,0.25,0.25]); hold on
 % plot(time_cropped,lb, 'Color', [0.25,0.25,0.25])
-h = plot(time_cropped,betahat, 'k','linewidth', lw);
+h = plot(time_cropped,betahat, 'color', dodgerblue,'linewidth', lw);
 hold on
 % x=0:0.01:2*pi;                  %#initialize x array
 % y1=sin(x);                      %#create first curve
 % y2=sin(x)+.5;                   %#create second curve
 X=[time_cropped,fliplr(time_cropped)];                %#create continuous x value array for plotting
 Y=[ub95',fliplr(lb95')];              %#create y values for out and then back
-f95 = fill(X,Y,[0.25,0.25,0.25],'edgecolor','none');                  %#plot filled area
+f95 = fill(X,Y,dodgerblue,'edgecolor','none');                  %#plot filled area
 % Choose a number between 0 (invisible) and 1 (opaque) for facealpha.  
 set(f95,'facealpha',.25)
 
 X=[time_cropped,fliplr(time_cropped)];                %#create continuous x value array for plotting
 Y=[ub90',fliplr(lb90')];              %#create y values for out and then back
-f90 = fill(X,Y,[0.25,0.25,0.25],'edgecolor','none');                  %#plot filled area
+f90 = fill(X,Y,dodgerblue,'edgecolor','none');                  %#plot filled area
 % Choose a number between 0 (invisible) and 1 (opaque) for facealpha.  
 set(f90,'facealpha',.45)
 

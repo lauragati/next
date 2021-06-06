@@ -1,0 +1,337 @@
+
+
+% Bibstyle aea.bst version 2009.05.20
+
+\begin{thebibliography}{xx}
+
+\harvarditem[Andreasen, Christensen \harvardand\ Riddell]{Martin~M Andreasen,
+  Jens~HE Christensen \harvardand\ Simon Riddell}{2018}{andreasen2018tips}
+{\bf Andreasen, Martin~M, Jens~HE Christensen, and Simon Riddell.} 2018. ``The
+  {TIPS} liquidity premium.'' Federal Reserve Bank of San Francisco.
+
+\harvarditem[Angeletos \harvardand\ Pavan]{George-Marios Angeletos \harvardand\
+  Alessandro Pavan}{2009}{angeletos2009policy}
+{\bf Angeletos, George-Marios, and Alessandro Pavan.} 2009. ``Policy with
+  dispersed information.'' {\em Journal of the European Economic Association},
+  7(1):~11--60.
+
+\harvarditem[Angeletos, Huo \harvardand\ Sastry]{George-Marios Angeletos, Zhen
+  Huo \harvardand\ Karthik~A Sastry}{2020}{NBERw27308}
+{\bf Angeletos, George-Marios, Zhen Huo, and Karthik~A Sastry.} 2020.
+  ``Imperfect Macroeconomic Expectations: Evidence and Theory.'' National
+  Bureau of Economic Research Working Paper 27308.
+
+\harvarditem[Anufriev \harvardand\ Hommes]{Mikhail Anufriev \harvardand\ Cars
+  Hommes}{2012}{anufriev2012evolutionary}
+{\bf Anufriev, Mikhail, and Cars Hommes.} 2012. ``Evolutionary selection of
+  individual expectations and aggregate outcomes in asset pricing
+  experiments.'' {\em American Economic Journal: Microeconomics}, 4(4):~35--64.
+
+\harvarditem[Ball]{Laurence Ball}{1994}{ball1994credible}
+{\bf Ball, Laurence.} 1994. ``Credible disinflation with staggered
+  price-setting.'' {\em American Economic Review}, 84(1):~282--289.
+
+\harvarditem[Baxter \harvardand\ King]{Marianne Baxter \harvardand\ Robert~G
+  King}{1999}{baxter1999measuring}
+{\bf Baxter, Marianne, and Robert~G King.} 1999. ``Measuring business cycles:
+  approximate band-pass filters for economic time series.'' {\em Review of
+  {E}conomics and {S}tatistics}, 81(4):~575--593.
+
+\harvarditem[Beaudry \harvardand\ Portier]{Paul Beaudry \harvardand\ Franck
+  Portier}{2006}{beaudry2006stock}
+{\bf Beaudry, Paul, and Franck Portier.} 2006. ``Stock prices, news, and
+  economic fluctuations.'' {\em American Economic Review}, 96(4):~1293--1307.
+
+\harvarditem[Bils \harvardand\ Klenow]{Mark Bils \harvardand\ Peter~J
+  Klenow}{2004}{bils2004some}
+{\bf Bils, Mark, and Peter~J Klenow.} 2004. ``Some evidence on the importance
+  of sticky prices.'' {\em Journal of {P}olitical {E}conomy}, 112(5):~947--985.
+
+\harvarditem[Bordalo, Gennaioli \harvardand\ Shleifer]{Pedro Bordalo, Nicola
+  Gennaioli \harvardand\ Andrei Shleifer}{2018}{bordalo2018diagnostic}
+{\bf Bordalo, Pedro, Nicola Gennaioli, and Andrei Shleifer.} 2018. ``Diagnostic
+  expectations and credit cycles.'' {\em The Journal of Finance},
+  73(1):~199--227.
+
+\harvarditem[Branch \harvardand\ Evans]{William~A Branch \harvardand\ George~W
+  Evans}{2006}{branch2006simple}
+{\bf Branch, William~A, and George~W Evans.} 2006. ``A simple recursive
+  forecasting model.'' {\em Economics Letters}, 91(2):~158--166.
+
+\harvarditem[Branch \harvardand\ Evans]{William~A. Branch \harvardand\
+  George~W. Evans}{2011}{Branch2011}
+{\bf Branch, William~A., and George~W. Evans.} 2011. ``Monetary policy and
+  heterogeneous expectations.'' {\em Economic Theory}, 47(2):~365--393.
+
+\harvarditem[Brown, Durbin \harvardand\ Evans]{Robert~L Brown, James Durbin
+  \harvardand\ James~M Evans}{1975}{brown1975techniques}
+{\bf Brown, Robert~L, James Durbin, and James~M Evans.} 1975. ``Techniques for
+  testing the constancy of regression relationships over time.'' {\em Journal
+  of the Royal Statistical Society: Series B (Methodological)},
+  37(2):~149--163.
+
+\harvarditem[Bullard \harvardand\ Mitra]{James Bullard \harvardand\ Kaushik
+  Mitra}{2002}{bullard2002learning}
+{\bf Bullard, James, and Kaushik Mitra.} 2002. ``Learning about monetary policy
+  rules.'' {\em Journal of Monetary Economics}, 49(6):~1105--1129.
+
+\harvarditem[Calvo]{Guillermo~A Calvo}{1983}{calvo1983staggered}
+{\bf Calvo, Guillermo~A.} 1983. ``Staggered prices in a utility-maximizing
+  framework.'' {\em Journal of Monetary Economics}, 12(3):~383--398.
+
+\harvarditem[Campbell et~al.]{Jeffrey~R. Campbell, Charles~L. Evans, Jonas
+  D.~M. Fisher \harvardand\ Alejandro
+  Justiniano}{2012}{campbell2012macroeconomic}
+{\bf Campbell, Jeffrey~R., Charles~L. Evans, Jonas D.~M. Fisher, and Alejandro
+  Justiniano.} 2012. ``Macroeconomic Effects of {F}ederal {R}eserve Forward
+  Guidance [with Comments and Discussion].'' {\em Brookings Papers on Economic
+  Activity}, 1--80.
+
+\harvarditem[Carvalho et~al.]{Carlos Carvalho, Stefano Eusepi, Emanuel Moench
+  \harvardand\ Bruce Preston}{2019}{carvalho2019anchored}
+{\bf Carvalho, Carlos, Stefano Eusepi, Emanuel Moench, and Bruce Preston.}
+  2019. ``Anchored inflation expectations.'' {\em Available at SSRN 3018198}.
+
+\harvarditem[Chari, Kehoe \harvardand\ McGrattan]{Varadarajan~V Chari,
+  Patrick~J Kehoe \harvardand\ Ellen~R McGrattan}{2000}{chari2000sticky}
+{\bf Chari, Varadarajan~V, Patrick~J Kehoe, and Ellen~R McGrattan.} 2000.
+  ``Sticky price models of the business cycle: can the contract multiplier
+  solve the persistence problem?'' {\em Econometrica}, 68(5):~1151--1179.
+
+\harvarditem[Cho \harvardand\ Matsui]{In-Koo Cho \harvardand\ Akihiko
+  Matsui}{1995}{cho1995induction}
+{\bf Cho, In-Koo, and Akihiko Matsui.} 1995. ``Induction and the {R}amsey
+  policy.'' {\em Journal of Economic Dynamics and Control},
+  19(5-7):~1113--1140.
+
+\harvarditem[Christiano \harvardand\ Fisher]{Lawrence~J. Christiano
+  \harvardand\ Jonas~D.M. Fisher}{2000}{christiano2000occasionally}
+{\bf Christiano, Lawrence~J., and Jonas~D.M. Fisher.} 2000. ``Algorithms for
+  solving dynamic models with occasionally binding constraints.'' {\em Journal
+  of Economic Dynamics and Control}, 24(8):~1179 -- 1232.
+
+\harvarditem[Clarida, Gali \harvardand\ Gertler]{Richard Clarida, Jordi Gali
+  \harvardand\ Mark Gertler}{1999}{clarida1999science}
+{\bf Clarida, Richard, Jordi Gali, and Mark Gertler.} 1999. ``The science of
+  monetary policy: a new {K}eynesian perspective.'' {\em Journal of Economic
+  Literature}, 37(4):~1661--1707.
+
+\harvarditem[Cogley \harvardand\ Nason]{Timothy Cogley \harvardand\ James~M
+  Nason}{1993}{cogley1993impulse}
+{\bf Cogley, Timothy, and James~M Nason.} 1993. ``Impulse dynamics and
+  propagation mechanisms in a real business cycle model.'' {\em Economics
+  Letters}, 43(1):~77--81.
+
+\harvarditem[Coibion \harvardand\ Gorodnichenko]{Olivier Coibion \harvardand\
+  Yuriy Gorodnichenko}{2015}{coibion2015information}
+{\bf Coibion, Olivier, and Yuriy Gorodnichenko.} 2015. ``Information rigidity
+  and the expectations formation process: A simple framework and new facts.''
+  {\em American Economic Review}, 105(8):~2644--78.
+
+\harvarditem[Dombeck]{Brian Dombeck}{2017}{dombeck2017effects}
+{\bf Dombeck, Brian.} 2017. ``The Effects of News Shocks and Bounded
+  Rationality on Macroeconomic Volatility.''
+
+\harvarditem[Duffie \harvardand\ Singleton]{Darrell Duffie \harvardand\
+  Kenneth~J Singleton}{1990}{duffie1990simulated}
+{\bf Duffie, Darrell, and Kenneth~J Singleton.} 1990. ``Simulated moments
+  estimation of {M}arkov models of asset prices.'' National Bureau of Economic
+  Research.
+
+\harvarditem[Eichenbaum, Jaimovich \harvardand\ Rebelo]{Martin Eichenbaum, Nir
+  Jaimovich \harvardand\ Sergio Rebelo}{2011}{eichenbaum2011reference}
+{\bf Eichenbaum, Martin, Nir Jaimovich, and Sergio Rebelo.} 2011. ``Reference
+  prices, costs, and nominal rigidities.'' {\em American Economic Review},
+  101(1):~234--62.
+
+\harvarditem[Eusepi \harvardand\ Preston]{Stefano Eusepi \harvardand\ Bruce
+  Preston}{2011}{eusepi2011expectations}
+{\bf Eusepi, Stefano, and Bruce Preston.} 2011. ``Expectations, learning, and
+  business cycle fluctuations.'' {\em American Economic Review},
+  101(6):~2844--72.
+
+\harvarditem[Eusepi, Giannoni \harvardand\ Preston]{Stefano Eusepi, Marc
+  Giannoni \harvardand\ Bruce Preston}{2018}{eusepi2018limits}
+{\bf Eusepi, Stefano, Marc Giannoni, and Bruce Preston.} 2018. ``On the Limits
+  of Monetary Policy.''
+
+\harvarditem[Evans \harvardand\ McGough]{George~W Evans \harvardand\ Bruce
+  McGough}{2009}{evans2009SP}
+{\bf Evans, George~W, and Bruce McGough.} 2009. ``Learning to optimize.''
+  Citeseer.
+
+\harvarditem[Evans \harvardand\ Honkapohja]{George~W. Evans \harvardand\ Seppo
+  Honkapohja}{2001}{evans_honkapohja2001}
+{\bf Evans, George~W., and Seppo Honkapohja.} 2001. {\em Learning and
+  Expectations in Macroeconomics.} Princeton University Press.
+
+\harvarditem[Evans et~al.]{George~W Evans, Seppo Honkapohja, Thomas~J Sargent
+  \harvardand\ Noah Williams}{2013}{evans2013bayesian}
+{\bf Evans, George~W, Seppo Honkapohja, Thomas~J Sargent, and Noah Williams.}
+  2013. ``Bayesian model averaging, learning and model selection.'' , ed.
+  Thomas~J Sargent and J. Vilmunen, Chapter 6, 99--119. Oxford University Press
+  Oxford.
+
+\harvarditem[Gaspar, Smets \harvardand\ Vestin]{Vitor Gaspar, Frank Smets
+  \harvardand\ David Vestin}{2010}{gaspar2010inflation}
+{\bf Gaspar, Vitor, Frank Smets, and David Vestin.} 2010. ``Inflation
+  expectations, adaptive learning and optimal monetary policy.'' In {\em
+  Handbook of Monetary Economics}. Vol.~3, 1055--1095. Elsevier.
+
+\harvarditem[Gobbi, Mazzocchi \harvardand\ Tamborini]{Lucio Gobbi, Ronny
+  Mazzocchi \harvardand\ Roberto Tamborini}{2019}{gobbi2019monetary}
+{\bf Gobbi, Lucio, Ronny Mazzocchi, and Roberto Tamborini.} 2019. ``Monetary
+  policy, de-anchoring of inflation expectations, and the ``new normal''.''
+  {\em Journal of Macroeconomics}, 61:~103070.
+
+\harvarditem[Goodfriend]{Marvin Goodfriend}{1993}{goodfriend1993interest}
+{\bf Goodfriend, Marvin.} 1993. ``Interest rate policy and the inflation scare
+  problem: 1979-1992.'' {\em FRB Richmond Economic Quarterly}, 79(1):~1--23.
+
+\harvarditem[Hebden et~al.]{James Hebden, Edward~P Herbst, Jenny Tang, Giorgio
+  Topa \harvardand\ Fabian Winkler}{2020}{hebden2020robust}
+{\bf Hebden, James, Edward~P Herbst, Jenny Tang, Giorgio Topa, and Fabian
+  Winkler.} 2020. ``How Robust Are Makeup Strategies to Key Alternative
+  Assumptions?''
+
+\harvarditem[Ireland]{Peter~N Ireland}{2000}{ireland2000expectations}
+{\bf Ireland, Peter~N.} 2000. ``Expectations, credibility, and time-consistent
+  monetary policy.'' {\em Macroeconomic Dynamics}, 4(4):~448--466.
+
+\harvarditem[Judd]{Kenneth~L. Judd}{1998}{judd1998numerical}
+{\bf Judd, Kenneth~L.} 1998. {\em {Numerical Methods in Economics}.} {\em MIT
+  Press Books}, The MIT Press.
+
+\harvarditem[Klenow \harvardand\ Malin]{Peter~J Klenow \harvardand\ Benjamin~A
+  Malin}{2010}{klenow2010microeconomic}
+{\bf Klenow, Peter~J, and Benjamin~A Malin.} 2010. ``Microeconomic evidence on
+  price-setting.'' In {\em Handbook of {M}onetary {E}conomics}. Vol.~3,
+  231--284. Elsevier.
+
+\harvarditem[Klenow \harvardand\ Kryvtsov]{Peter~J Klenow \harvardand\ Oleksiy
+  Kryvtsov}{2008}{klenow2008state}
+{\bf Klenow, Peter~J, and Oleksiy Kryvtsov.} 2008. ``State-dependent or
+  time-dependent pricing: Does it matter for recent {US} inflation?'' {\em The
+  Quarterly Journal of Economics}, 123(3):~863--904.
+
+\harvarditem[Kreps]{David~M Kreps}{1998}{kreps1998anticipated}
+{\bf Kreps, David~M.} 1998. ``Anticipated utility and dynamic choice.'' {\em
+  Econometric Society Monographs}, 29:~242--274.
+
+\harvarditem[Kydland \harvardand\ Prescott]{Finn~E Kydland \harvardand\
+  Edward~C Prescott}{1977}{kydland1977rules}
+{\bf Kydland, Finn~E, and Edward~C Prescott.} 1977. ``Rules rather than
+  discretion: The inconsistency of optimal plans.'' {\em Journal of Political
+  Economy}, 85(3):~473--491.
+
+\harvarditem[Lee \harvardand\ Ingram]{Bong-Soo Lee \harvardand\ Beth~Fisher
+  Ingram}{1991}{lee1991simulation}
+{\bf Lee, Bong-Soo, and Beth~Fisher Ingram.} 1991. ``Simulation estimation of
+  time-series models.'' {\em Journal of Econometrics}, 47(2-3):~197--205.
+
+\harvarditem[Lubik \harvardand\ Matthes]{Thomas~A. Lubik \harvardand\ Christian
+  Matthes}{2016}{LUBIK201685}
+{\bf Lubik, Thomas~A., and Christian Matthes.} 2016. ``Indeterminacy and
+  learning: An analysis of monetary policy in the {G}reat {I}nflation.'' {\em
+  Journal of Monetary Economics}, 82:~85 -- 106.
+
+\harvarditem[Lucas]{Robert~E Lucas}{1976}{lucas1976econometric}
+{\bf Lucas, Robert~E.} 1976. ``Econometric policy evaluation: A critique.''
+  Vol.~1, 19--46.
+
+\harvarditem[L{\"u}tkepohl]{Helmut
+  L{\"u}tkepohl}{2013}{lutkepohl2013introduction}
+{\bf L{\"u}tkepohl, Helmut.} 2013. {\em Introduction to multiple time series
+  analysis.} Springer Science \& Business Media.
+
+\harvarditem[Mackowiak \harvardand\ Wiederholt]{Bartosz Mackowiak \harvardand\
+  Mirko Wiederholt}{2009}{mackowiak2009optimal}
+{\bf Mackowiak, Bartosz, and Mirko Wiederholt.} 2009. ``Optimal sticky prices
+  under rational inattention.'' {\em American Economic Review},
+  99(3):~769--803.
+
+\harvarditem[Mankiw \harvardand\ Reis]{N~Gregory Mankiw \harvardand\ Ricardo
+  Reis}{2002}{mankiw2002sticky}
+{\bf Mankiw, N~Gregory, and Ricardo Reis.} 2002. ``Sticky information versus
+  sticky prices: a proposal to replace the {N}ew {K}eynesian {P}hillips
+  curve.'' {\em The Quarterly Journal of Economics}, 117(4):~1295--1328.
+
+\harvarditem[Marcet \harvardand\ Nicolini]{Albert Marcet \harvardand\ Juan~P
+  Nicolini}{2003}{marcet2003recurrent}
+{\bf Marcet, Albert, and Juan~P Nicolini.} 2003. ``Recurrent hyperinflations
+  and learning.'' {\em American Economic Review}, 93(5):~1476--1498.
+
+\harvarditem[Mele, Moln{\'a}r \harvardand\ Santoro]{Antonio Mele, Krisztina
+  Moln{\'a}r \harvardand\ Sergio Santoro}{2019}{mele2019perils}
+{\bf Mele, Antonio, Krisztina Moln{\'a}r, and Sergio Santoro.} 2019. ``On the
+  perils of stabilizing prices when agents are learning.'' {\em Journal of
+  Monetary Economics}.
+
+\harvarditem[Milani]{Fabio Milani}{2007}{milani2007expectations}
+{\bf Milani, Fabio.} 2007. ``Expectations, learning and macroeconomic
+  persistence.'' {\em Journal of Monetary Economics}, 54(7):~2065--2082.
+
+\harvarditem[Milani]{Fabio Milani}{2014}{milani2014learning}
+{\bf Milani, Fabio.} 2014. ``Learning and time-varying macroeconomic
+  volatility.'' {\em Journal of Economic Dynamics and Control}, 47:~94--114.
+
+\harvarditem[Moln{\'a}r \harvardand\ Santoro]{Krisztina Moln{\'a}r \harvardand\
+  Sergio Santoro}{2014}{molnar2014optimal}
+{\bf Moln{\'a}r, Krisztina, and Sergio Santoro.} 2014. ``Optimal monetary
+  policy when agents are learning.'' {\em European Economic Review},
+  66:~39--62.
+
+\harvarditem[Nakamura \harvardand\ Steinsson]{Emi Nakamura \harvardand\ J{\'o}n
+  Steinsson}{2008}{nakamura2008five}
+{\bf Nakamura, Emi, and J{\'o}n Steinsson.} 2008. ``Five facts about prices: A
+  reevaluation of menu cost models.'' {\em The Quarterly Journal of Economics},
+  123(4):~1415--1464.
+
+\harvarditem[Orphanides \harvardand\ Williams]{Athanasios Orphanides
+  \harvardand\ John Williams}{2004}{orphanides2004imperfect}
+{\bf Orphanides, Athanasios, and John Williams.} 2004. ``Imperfect knowledge,
+  inflation expectations, and monetary policy.'' In {\em The
+  inflation-targeting debate}. 201--246. University of Chicago Press.
+
+\harvarditem[Preston]{Bruce Preston}{2005}{preston2005}
+{\bf Preston, Bruce.} 2005. ``Learning about Monetary Policy Rules when
+  Long-Horizon Expectations Matter.'' University Library of Munich, Germany
+  {MPRA} Paper.
+
+\harvarditem[Rotemberg \harvardand\ Woodford]{Julio~J Rotemberg \harvardand\
+  Michael Woodford}{1997}{rotemberg1997optimization}
+{\bf Rotemberg, Julio~J, and Michael Woodford.} 1997. ``An optimization-based
+  econometric framework for the evaluation of monetary policy.'' {\em NBER
+  {M}acroeconomics {A}nnual}, 12:~297--346.
+
+\harvarditem[Sargent]{Thomas~J. Sargent}{1999}{sargent1999}
+{\bf Sargent, Thomas~J.} 1999. {\em The Conquest of American Inflation.}
+  Princeton University Press.
+
+\harvarditem[Sims]{Christopher~A. Sims}{2003}{sims2003}
+{\bf Sims, Christopher~A.} 2003. ``Implications of rational inattention.'' {\em
+  Journal of Monetary Economics}, 50(3):~665 -- 690. Swiss National Bank/Study
+  Center Gerzensee Conference on Monetary Policy under Incomplete Information.
+
+\harvarditem[Smith]{A.~A. Smith}{1993}{smith1993SMM}
+{\bf Smith, A.~A.} 1993. ``Estimating Nonlinear Time-Series Models Using
+  Simulated Vector Autoregressions.'' {\em Journal of Applied Econometrics},
+  8:~S63--S84.
+
+\harvarditem[Svensson]{Lars~EO Svensson}{1999}{svensson1999inflation}
+{\bf Svensson, Lars~EO.} 1999. ``Inflation targeting as a monetary policy
+  rule.'' {\em Journal of Monetary Economics}, 43(3):~607--654.
+
+\harvarditem[Taylor]{John~B Taylor}{1993}{taylor1993discretion}
+{\bf Taylor, John~B.} 1993. ``Discretion versus policy rules in practice.''
+  Vol.~39, 195--214, Elsevier.
+
+\harvarditem[Woodford]{M. Woodford}{2003}{woodford2011interest}
+{\bf Woodford, M.} 2003. {\em Interest and Prices: Foundations of a Theory of
+  Monetary Policy.} Princeton University Press.
+
+\harvarditem[Woodford]{Michael Woodford}{2019}{woodford2019monetary}
+{\bf Woodford, Michael.} 2019. ``Monetary policy analysis when planning
+  horizons are finite.'' {\em NBER Macroeconomics Annual}, 33(1):~1--50.
+
+\end{thebibliography}

@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft_june_AER_template.aux
+The style file: aea.bst
+Database file #1: ../../literature/ref_next.bib
+Warning--empty booktitle in andreasen2018tips
+Warning--empty journal in dombeck2017effects
+Warning--empty journal in eusepi2018limits
+Warning--empty journal in hebden2020robust
+You've used 62 entries,
+            2695 wiz_defined-function locations,
+            962 strings with 13588 characters,
+and the built_in function-call counts, 350659 in all, are:
+= -- 58415
+> -- 3851
+< -- 4
++ -- 28117
+- -- 1201
+* -- 31304
+:= -- 68717
+add.period$ -- 436
+call.type$ -- 62
+change.case$ -- 806
+chr.to.int$ -- 62
+cite$ -- 66
+duplicate$ -- 947
+empty$ -- 2607
+format.name$ -- 1213
+if$ -- 63048
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 193
+num.names$ -- 683
+pop$ -- 68
+preamble$ -- 1
+purify$ -- 930
+quote$ -- 0
+skip$ -- 845
+stack$ -- 0
+substring$ -- 83673
+swap$ -- 407
+text.length$ -- 872
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 236
+warning$ -- 4
+while$ -- 1573
+width$ -- 0
+write$ -- 313
+(There were 4 warnings)

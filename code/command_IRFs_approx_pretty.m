@@ -276,7 +276,7 @@ end
 %% Plots
 
 shocknames = {'natrate', 'monpol','costpush'};
-% titles_obs = {'Inflation','Output gap','Interest rate'};
+titles_obs_names = {'Inflation','Output gap','Interest rate'};
 titles_obs = {'$\pi$','$x$','$i$'};
 
 titles_fcsts = {'E^m_t(\pi_{t+1})', 'E^e_t(\pi_{t+1})'};
@@ -401,19 +401,20 @@ if plot_IRFs_anch==1
         figure
         set(gcf,'color','w'); % sets white background color
         set(gcf, 'Position', get(0, 'Screensize')); % sets the figure fullscreen
+        colororder_default = get(gca,'colororder');
         for i=1:ny
             subplot(1,ny,i)
-            plot(zeros(1,length(series1)), 'k', 'linewidth',lw); hold on
-            h1(i) =   plot(series1(i,:), 'linewidth', lw);
-            h2(i) =   plot(series2(i,:), 'linewidth', lw, 'linestyle', '--');
-            h3(i) =   plot(series3(i,:), 'linewidth', lw, 'marker', 'o');
-            h4(i) =   plot(series4(i,:), 'linewidth', lw, 'linestyle', ':');
+            plot([0:10],zeros(1,length(series1)+1), 'k', 'linewidth',lw); hold on
+            h1(i) =   plot(series1(i,:), 'color', colororder_default(1,:),'linewidth', lw);
+            h2(i) =   plot(series2(i,:), 'color', colororder_default(2,:),'linewidth', lw, 'linestyle', '--');
+            h3(i) =   plot(series3(i,:), 'color', colororder_default(3,:),'linewidth', lw, 'marker', 'o');
+            h4(i) =   plot(series4(i,:), 'color', colororder_default(4,:),'linewidth', lw, 'linestyle', ':');
             ax = gca; % current axes
             ax.FontSize = fs/1.2;
             set(gca,'TickLabelInterpreter', 'latex');
             grid on
             grid minor
-            title(titles_obs{i}, 'interpreter', 'latex', 'fontsize', fs)
+            title(titles_obs_names{i}, 'interpreter', 'latex', 'fontsize', fs)
             ax.YAxis.Exponent = 0;
             ax.YRuler.Exponent = 0; % turns off scientific notation
         end
