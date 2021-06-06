@@ -32,9 +32,24 @@ save_stuff=0;
 return
 
 
-%% Create bootstrapped samples
+%% Create bootstrapped samples 
+% actually, this has already been done for 10000 samples in
+% command_acf_data.m, so just use the first 100.
 
-command_bootstrap
+%% Run estimation routine on each bootstrap sample
+% Do on server
 
+command_GMM_boot_server
+% saved estimates are called alpha_hat_boot_date.mat (and should be 5x100)
+
+
+%% Take sddev of estimated alpha_hat
+% do locally
+
+se = command_se
+
+%% Generate the plot
+% do locally
+% rely on command_sigmas.m
 
 
