@@ -50,7 +50,7 @@ elseif contains(current_dir, 'gsfs0') % sirius server
     
     addpath(basepath)
     addpath(toolpath)
-    addpath(addonspath)
+%     addpath(addonspath) % we don't need this anymore since Matlab 2020a on server
     addpath(export_figpath)
     addpath(figpath)
     addpath(datapath)

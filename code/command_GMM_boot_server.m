@@ -14,9 +14,11 @@ this_code = mfilename;
 todays_date = strrep(datestr(today), '-','_');
 nowstr = strrep(strrep(strrep(datestr(now), '-','_'), ' ', '_'), ':', '_');
 
+
 % Variable stuff ---
+save_estimates = 0;
 if contains(current_dir, 'gsfs0') % sirius server
-    print_figs=1;
+    save_estimates=1;
 end
 
 
@@ -60,7 +62,7 @@ options = optimoptions(options, 'display', 'iter');
 options.MaxFunEvals = 700; % 700
 % options.MaxIter = 33;
 % options.TolX = 1e-9; % step tolerance: default 1.0000e-06
-options.UseParallel = false; % 2/3 of the time
+options.UseParallel = true; % 2/3 of the time % Note: the objective function has a parfor in it that starts the parpool anyway.
 h_sig = 100000;
 h_alph= 100;%100000
 % options.FiniteDifferenceStepSize = sqrt(eps)*[h_alph;h_alph;h_alph;h_alph;h_alph;]; % default is sqrt(eps); sqrt(eps)*[h_sig;h_sig;h_sig;h_alph;h_alph;h_alph;h_alph;h_alph;]
@@ -241,9 +243,16 @@ k10 = ndim_simplex_eval(x,fegrid_fine,alph0);
 
 NB = 1; %100
 alpha_hat_boot = zeros(nfe,NB);
+
+% return
 %% Here it goes: for each bootstrap moments vector
 
-% CONT HERE WITH PARFOR
+% Note: if I run this as a parfor, the inner parfor within
+% obj_GMM_LOMgain_univariate_mean.m is not run in parallel. According to
+% Matlab, it's always better to run the outer loop in parfor and the inner
+% sequentially as it minimizes overhead. (But that seems to take 873 sec instead of 600 something.)
+% The third option is to set options.UseParallel=true, and not have an
+% outer parfor; this option takes 700 sec.
 for bb = 1:NB
     Om = Om_boot(:,bb); % NEW
     
@@ -265,4 +274,10 @@ for bb = 1:NB
     Om1mean = Om1;
     
     alpha_hat_boot(:,bb) = alph_opt; % NEW
+end
+
+if save_estimates ==1
+    filename = ['alpha_hat_boot_', todays_date];
+    save([filename,'.mat'],'alpha_hat_boot')
+    disp(['Saving as ' filename])
 end
